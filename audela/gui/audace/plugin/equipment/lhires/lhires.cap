@@ -1,0 +1,151 @@
+#
+# Fichier : lhires.cap
+# Mise a jour $Id: lhires.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(lhires,label)                 "Lhires 3"
+set caption(lhires,link)                  "Link"
+set caption(lhires,configure)             "Set up"
+set caption(lhires,bitLampOn)             "Start Bit Number"
+set caption(lhires,bitLampOff)            "Direction Bit Number"
+
+set caption(lhires,lampDown)              "Test: Switch on the calibration lamp"
+set caption(lhires,lampUp)                "Test: Switch off the calibration lamp"
+
+set caption(lhires,arreter)               "Stop"
+set caption(lhires,creer_au_demarrage)    "Next time software is run connect this equipment automatically"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(lhires,label)              "Lhires 3"
+   set caption(lhires,link)               "Liaison"
+   set caption(lhires,configure)          "Configurer"
+   set caption(lhires,bitLampOn)          "Numéro du bit de démarrage"
+   set caption(lhires,bitLampOff)         "Numéro du bit de direction"
+
+   set caption(lhires,lampDown)           "Test : Allumer la lampe de calibration"
+   set caption(lhires,lampUp)             "Test : Eteindre la lampe de calibration"
+
+   set caption(lhires,arreter)            "Arrêter"
+   set caption(lhires,creer_au_demarrage) "Connexion automatique de cet équipement au prochain démarrage"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(lhires,label)              "Lhires 3"
+   set caption(lhires,link)               "Collegamento"
+   set caption(lhires,configure)          "Configurare"
+   set caption(lhires,bitLampOn)          "Numero del bit di start"
+   set caption(lhires,bitLampOff)         "Numero del bit di direzione"
+
+   set caption(lhires,lampDown)           "Test: Accendere la lampada di calibrazione"
+   set caption(lhires,lampUp)             "Test: Spegnere la lampada di calibrazione"
+
+   set caption(lhires,arreter)            "Fermare"
+   set caption(lhires,creer_au_demarrage) "Connessione automatica di questo equipaggiamento alla prossima esecuzione del software"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(lhires,label)              "Lhires 3"
+   set caption(lhires,link)               "Enlace"
+   set caption(lhires,configure)          "Configurar"
+   set caption(lhires,bitLampOn)          "Numero del bit de comienzo"
+   set caption(lhires,bitLampOff)         "Numero del bit de dirección"
+
+   set caption(lhires,lampDown)           "Test: Encender la lampara de calibración"
+   set caption(lhires,lampUp)             "Test: Apagar la lampara de calibración"
+
+   set caption(lhires,arreter)            "Parar"
+   set caption(lhires,creer_au_demarrage) "La próxima vez que se ejecute el programa, el equipo se conecta automáticamente"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(lhires,label)              "Lhires 3"
+   set caption(lhires,link)               "Link"
+   set caption(lhires,configure)          "Konfigurieren"
+   set caption(lhires,bitLampOn)          "Nummer der Start Bit"
+   set caption(lhires,bitLampOff)         "Nummer der Direktion Bit"
+
+   set caption(lhires,lampDown)           "Test: Kalibrierungs Lampe einschalten"
+   set caption(lhires,lampUp)             "Test: Kalibrierungs Lampe ausschalten"
+
+   set caption(lhires,arreter)            "Halten"
+   set caption(lhires,creer_au_demarrage) "Nächste Mal diese Einrichtung automatisch anschließen"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(lhires,label)              "Lhires 3"
+   set caption(lhires,link)               "Ligação"
+   set caption(lhires,configure)          "Configurar"
+   set caption(lhires,bitLampOn)          "Número do bit inicial"
+   set caption(lhires,bitLampOff)         "Número do bit de direcção"
+
+   set caption(lhires,lampDown)           "Teste: Ligar a lâmpada de calibração"
+   set caption(lhires,lampUp)             "Teste: Apagar a lâmpada de calibração"
+
+   set caption(lhires,arreter)            "Parar"
+   set caption(lhires,creer_au_demarrage) "O equipamento conecta-se automaticamente na próxima execução do programa"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(lhires,label)              "Lhires 3"
+   set caption(lhires,link)               "Link"
+   set caption(lhires,configure)          "Opsætning"
+   set caption(lhires,bitLampOn)          "Start bit-værdi"
+   set caption(lhires,bitLampOff)         "Retnings bit-værdi"
+
+   set caption(lhires,lampDown)           "Test: Tænd kalibreringslampe"
+   set caption(lhires,lampUp)             "Test: Sluk kalibreringslampe"
+
+   set caption(lhires,arreter)            "Stop"
+   set caption(lhires,creer_au_demarrage) "Tilslut automatisk dette udstyr ved næste start"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(lhires,label)              "Lhires 3"
+   set caption(lhires,link)               "Link"
+   set caption(lhires,configure)          "Set up"
+   set caption(lhires,bitLampOn)          "Start Bit Number"
+   set caption(lhires,bitLampOff)         "Direction Bit Number"
+
+   set caption(lhires,lampDown)           "Test: Switch on the calibration lamp"
+   set caption(lhires,lampUp)             "Test: Switch off the calibration lamp"
+
+   set caption(lhires,arreter)            "Stop"
+   set caption(lhires,creer_au_demarrage) "Next time software is run connect this equipment automatically"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(lhires,label)              "Lhires 3"
+   set caption(lhires,link)               "Link"
+   set caption(lhires,configure)          "Set up"
+   set caption(lhires,bitLampOn)          "Start Bit Number"
+   set caption(lhires,bitLampOff)         "Direction Bit Number"
+
+   set caption(lhires,lampDown)           "Test: Switch on the calibration lamp"
+   set caption(lhires,lampUp)             "Test: Switch off the calibration lamp"
+
+   set caption(lhires,arreter)            "Stop"
+   set caption(lhires,creer_au_demarrage) "Next time software is run connect this equipment automatically"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

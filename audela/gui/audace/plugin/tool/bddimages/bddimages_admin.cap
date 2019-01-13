@@ -1,0 +1,76 @@
+#
+# Fichier : bddimages_admin.cap
+# $Id: bddimages_admin.cap 13886 2016-05-22 21:55:06Z jberthier $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(bddimages_admin,msg_prevent)        "Warning!"
+set caption(bddimages_admin,msg_prevent2)       "This will reset the database. All data will be deleted from the disk. Are you sure?"
+set caption(bddimages_admin,efface)             "Reset of the database"
+set caption(bddimages_admin,mdprootsql)         "Enter the root password for the SQL server"
+set caption(bddimages_admin,cancelRAZ)          "Database reset canceled"
+set caption(bddimages_admin,mysqlconnecterr)    "MySQL connection error:"
+set caption(bddimages_admin,mysqlshowerr)       "Request failed:"
+set caption(bddimages_admin,mysqlok)            "Connecting to database:\n Success"
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(bddimages_admin,msg_prevent)     "Attention !"
+   set caption(bddimages_admin,msg_prevent2)    "Cette action va réinitialiser la base de données. Toutes les données seront définitivement effacées du disque. Etes-vous sûr ?"
+   set caption(bddimages_admin,efface)          "Réinitialisation de la base de données"
+   set caption(bddimages_admin,mdprootsql)      "Veuillez saisir le mot de passe root du serveur SQL"
+   set caption(bddimages_admin,cancelRAZ)       "RAZ annulée de la base de données"
+   set caption(bddimages_admin,mysqlconnecterr) "Erreur de connexion à MySQL :"
+   set caption(bddimages_admin,mysqlshowerr)    "La requête a échoué :"
+   set caption(bddimages_admin,mysqlok)         "Connexion à la base de données :\n OK"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(bddimages_admin,msg_prevent)     "Attenzione !"
+   set caption(bddimages_admin,msg_prevent2)    "Questa azione resetterà il database. Tutti i dati saranno cancellati dal disco. Sei sicuro?"
+   set caption(bddimages_admin,efface)          "Ripristino del database"
+   set caption(bddimages_admin,mdprootsql)      "Digita la password di root del server SQL"
+   set caption(bddimages_admin,cancelRAZ)       "Il reset del database è annullato"
+   set caption(bddimages_admin,mysqlconnecterr) "Errore di connessione a MySQL:"
+   set caption(bddimages_admin,mysqlshowerr)    "Richiesta non riuscita:"
+   set caption(bddimages_admin,mysqlok)         "Connessione al database:\n OK"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

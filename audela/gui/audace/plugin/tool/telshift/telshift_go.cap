@@ -1,0 +1,61 @@
+#
+# Fichier : telshift_go.cap
+# Mise a jour $Id: telshift_go.cap 13004 2016-01-31 08:13:50Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(telshift_go,telshift)         "Shoot and Shift"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(telshift_go,telshift)      "Imager & Déplacer"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(telshift_go,telshift)      "Ripresa & Trasf."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(telshift_go,telshift)      "Adq. & Mueve-tel."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(telshift_go,telshift)      "Bildieren & Versch."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(telshift_go,telshift)      "Capturar & Deslocar"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(telshift_go,telshift)      "Eksponér og Flyt"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(telshift_go,telshift)      "Shoot and Shift"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(telshift_go,telshift)      "Shoot and Shift"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

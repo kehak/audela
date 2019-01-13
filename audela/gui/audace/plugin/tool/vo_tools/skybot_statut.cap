@@ -1,0 +1,196 @@
+#
+# Fichier : skybot_statut.cap
+# Mise a jour $Id: skybot_statut.cap 6807 2011-02-27 10:35:13Z robertdelmas  $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(statut,main_title)        "SkyBoT - Status"
+set caption(statut,titre)             "Status of SkyBoT database"
+set caption(statut,label_ok)          "Status"
+set caption(statut,label_periode)     "Time span"
+set caption(statut,label_aster)       "Number of asteroids"
+set caption(statut,label_planet)      "Number of planets"
+set caption(statut,label_satnat)      "Number of natural satellite"
+set caption(statut,label_comet)       "Number of comets"
+set caption(statut,label_maj)         "Last update"
+
+set caption(statut,aide)              "Help"
+set caption(statut,fermer)            "Close"
+
+set caption(statut,msg_erreur)        "Error"
+set caption(statut,msg_internet)      "An Internet connexion is required to access SkyBoT database."
+set caption(statut,msg_skybot)        "The SkyBoT server is unreachable; please, try again later."
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(statut,main_title)     "SkyBoT - Statut"
+   set caption(statut,titre)          "Statut de la base de données SkyBoT"
+   set caption(statut,label_ok)       "Statut"
+   set caption(statut,label_periode)  "Période couverte"
+   set caption(statut,label_aster)    "Astéroïdes"
+   set caption(statut,label_planet)   "Planètes"
+   set caption(statut,label_satnat)   "Satellites naturels"
+   set caption(statut,label_comet)    "Comètes"
+   set caption(statut,label_maj)      "Dernière mise à jour"
+
+   set caption(statut,aide)           "Aide"
+   set caption(statut,fermer)         "Fermer"
+
+   set caption(statut,msg_erreur)     "Erreur"
+   set caption(statut,msg_internet)   "Une connexion à Internet opérationnelle est nécessaire pour accéder à la base de données SkyBoT."
+   set caption(statut,msg_skybot)     "Le serveur SkyBoT n'est pas accessible. Veuillez recommencer l'opération ultérieurement."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(statut,main_title)     "# SkyBoT - Statut"
+   set caption(statut,titre)          "# Statut de la base de données SkyBoT"
+   set caption(statut,label_ok)       "# Statut"
+   set caption(statut,label_periode)  "# Période couverte"
+   set caption(statut,label_aster)    "# Nombre d'astéroïdes"
+   set caption(statut,label_planet)   "# Nombre de planètes"
+   set caption(statut,label_satnat)   "# Nombre de satellites naturels"
+   set caption(statut,label_comet)    "# Nombre de comètes"
+   set caption(statut,label_maj)      "# Dernière mise à jour"
+
+   set caption(statut,aide)           "# Aide"
+   set caption(statut,fermer)         "# Fermer"
+
+   set caption(statut,msg_erreur)     "# Erreur"
+   set caption(statut,msg_internet)   "# Une connexion à Internet opérationnelle est nécessaire pour accéder à la base de données SkyBoT."
+   set caption(statut,msg_skybot)     "# Le serveur SkyBoT n'est pas accessible. Veuillez recommencer l'opération ultérieurement."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(statut,main_title)     "# SkyBoT - Statut"
+   set caption(statut,titre)          "# Statut de la base de données SkyBoT"
+   set caption(statut,label_ok)       "# Statut"
+   set caption(statut,label_periode)  "# Période couverte"
+   set caption(statut,label_aster)    "# Nombre d'astéroïdes"
+   set caption(statut,label_planet)   "# Nombre de planètes"
+   set caption(statut,label_satnat)   "# Nombre de satellites naturels"
+   set caption(statut,label_comet)    "# Nombre de comètes"
+   set caption(statut,label_maj)      "# Dernière mise à jour"
+
+   set caption(statut,aide)           "# Aide"
+   set caption(statut,fermer)         "# Fermer"
+
+   set caption(statut,msg_erreur)     "# Erreur"
+   set caption(statut,msg_internet)   "# Une connexion à Internet opérationnelle est nécessaire pour accéder à la base de données SkyBoT."
+   set caption(statut,msg_skybot)     "# Le serveur SkyBoT n'est pas accessible. Veuillez recommencer l'opération ultérieurement."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(statut,main_title)     "# SkyBoT - Statut"
+   set caption(statut,titre)          "# Statut de la base de données SkyBoT"
+   set caption(statut,label_ok)       "# Statut"
+   set caption(statut,label_periode)  "# Période couverte"
+   set caption(statut,label_aster)    "# Nombre d'astéroïdes"
+   set caption(statut,label_planet)   "# Nombre de planètes"
+   set caption(statut,label_satnat)   "# Nombre de satellites naturels"
+   set caption(statut,label_comet)    "# Nombre de comètes"
+   set caption(statut,label_maj)      "# Dernière mise à jour"
+
+   set caption(statut,aide)           "# Aide"
+   set caption(statut,fermer)         "# Fermer"
+
+   set caption(statut,msg_erreur)     "# Erreur"
+   set caption(statut,msg_internet)   "# Une connexion à Internet opérationnelle est nécessaire pour accéder à la base de données SkyBoT."
+   set caption(statut,msg_skybot)     "# Le serveur SkyBoT n'est pas accessible. Veuillez recommencer l'opération ultérieurement."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(statut,main_title)     "SkyBoT - Estado"
+   set caption(statut,titre)          "Estado da base de dados SkyBoT"
+   set caption(statut,label_ok)       "Estado"
+   set caption(statut,label_periode)  "Período coberto"
+   set caption(statut,label_aster)    "Número de asteróides"
+   set caption(statut,label_planet)   "Número de planetas"
+   set caption(statut,label_satnat)   "Número de satélites naturais"
+   set caption(statut,label_comet)    "Número de cometas"
+   set caption(statut,label_maj)      "Última actualização"
+
+   set caption(statut,aide)           "Ajuda"
+   set caption(statut,fermer)         "Fechar"
+
+   set caption(statut,msg_erreur)     "Erro"
+   set caption(statut,msg_internet)   "Uma conexão à Internet operacional é necessária para aceder à base de dados SkyBoT."
+   set caption(statut,msg_skybot)     "# Le serveur SkyBoT n'est pas accessible. Veuillez recommencer l'opération ultérieurement."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(statut,main_title)     "SkyBoT - Status"
+   set caption(statut,titre)          "Status of SkyBoT database"
+   set caption(statut,label_ok)       "Status"
+   set caption(statut,label_periode)  "Time span"
+   set caption(statut,label_aster)    "Number of asteroids"
+   set caption(statut,label_planet)   "Number of planets"
+   set caption(statut,label_satnat)   "Number of natural satellite"
+   set caption(statut,label_comet)    "Number of comets"
+   set caption(statut,label_maj)      "Last update"
+
+   set caption(statut,aide)           "Help"
+   set caption(statut,fermer)         "Close"
+
+   set caption(statut,msg_erreur)     "Error"
+   set caption(statut,msg_internet)   "An Internet connexion is required to access SkyBoT database."
+   set caption(statut,msg_skybot)     "The SkyBoT server is unreachable; please, try again later."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(statut,main_title)     "SkyBoT - Status"
+   set caption(statut,titre)          "Status of SkyBoT database"
+   set caption(statut,label_ok)       "Status"
+   set caption(statut,label_periode)  "Time span"
+   set caption(statut,label_aster)    "Number of asteroids"
+   set caption(statut,label_planet)   "Number of planets"
+   set caption(statut,label_satnat)   "Number of natural satellite"
+   set caption(statut,label_comet)    "Number of comets"
+   set caption(statut,label_maj)      "Last update"
+
+   set caption(statut,aide)           "Help"
+   set caption(statut,fermer)         "Close"
+
+   set caption(statut,msg_erreur)     "Error"
+   set caption(statut,msg_internet)   "An Internet connexion is required to access SkyBoT database."
+   set caption(statut,msg_skybot)     "The SkyBoT server is unreachable; please, try again later."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(statut,main_title)     "SkyBoT - Status"
+   set caption(statut,titre)          "Status of SkyBoT database"
+   set caption(statut,label_ok)       "Status"
+   set caption(statut,label_periode)  "Time span"
+   set caption(statut,label_aster)    "Number of asteroids"
+   set caption(statut,label_planet)   "Number of planets"
+   set caption(statut,label_satnat)   "Number of natural satellite"
+   set caption(statut,label_comet)    "Number of comets"
+   set caption(statut,label_maj)      "Last update"
+
+   set caption(statut,aide)           "Help"
+   set caption(statut,fermer)         "Close"
+
+   set caption(statut,msg_erreur)     "Error"
+   set caption(statut,msg_internet)   "An Internet connexion is required to access SkyBoT database."
+   set caption(statut,msg_skybot)     "The SkyBoT server is unreachable; please, try again later."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

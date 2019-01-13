@@ -1,0 +1,2 @@
+LIBRARY libandor
+EXPORTS Andor_Init @1

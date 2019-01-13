@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F12C72B9-A7C8-4FE1-8CA7-00B06819033A}</ProjectGuid>
+    <RootNamespace>libgslcblas</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.24730.2</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <GenerateManifest>true</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEvent>
+      <Command />
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\gsl-1.8;..\..\gsl-1.8\gsl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;GSL_DLL;DLL_EXPORT;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <ExceptionHandling />
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CompileAs>CompileAsC</CompileAs>
+    </ClCompile>
+    <Link>
+      <OutputFile>..\..\..\..\..\bin\libgslcblas.dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>..\..\..\lib\libgslcblas.lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>install.bat Debug</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+      <Command />
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\gsl-1.8;..\..\gsl-1.8\gsl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;GSL_DLL;DLL_EXPORT;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling />
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>CompileAsC</CompileAs>
+    </ClCompile>
+    <Link>
+      <OutputFile>..\..\..\..\..\bin\libgslcblas.dll</OutputFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>..\..\..\lib\libgslcblas.lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>install.bat Release</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\gsl-1.8\cblas\caxpy.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ccopy.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\cdotc_sub.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\cdotu_sub.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\cgbmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\cgemm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\cgemv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\cgerc.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\cgeru.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\chbmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\chemm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\chemv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\cher.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\cher2.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\cher2k.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\cherk.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\chpmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\chpr.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\chpr2.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\cscal.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\csscal.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\cswap.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\csymm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\csyr2k.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\csyrk.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ctbmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ctbsv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ctpmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ctpsv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ctrmm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ctrmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ctrsm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ctrsv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dasum.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\daxpy.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dcopy.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ddot.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dgbmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dgemm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dgemv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dger.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dnrm2.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\drot.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\drotg.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\drotm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\drotmg.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dsbmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dscal.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dsdot.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dspmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dspr.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dspr2.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dswap.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dsymm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dsymv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dsyr.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dsyr2.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dsyr2k.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dsyrk.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dtbmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dtbsv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dtpmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dtpsv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dtrmm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dtrmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dtrsm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dtrsv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dzasum.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\dznrm2.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\icamax.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\idamax.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\isamax.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\izamax.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\sasum.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\saxpy.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\scasum.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\scnrm2.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\scopy.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\sdot.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\sdsdot.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\sgbmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\sgemm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\sgemv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\sger.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\snrm2.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\srot.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\srotg.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\srotm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\srotmg.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ssbmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\sscal.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\sspmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\sspr.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\sspr2.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\sswap.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ssymm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ssymv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ssyr.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ssyr2.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ssyr2k.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ssyrk.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\stbmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\stbsv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\stpmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\stpsv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\strmm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\strmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\strsm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\strsv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\xerbla.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zaxpy.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zcopy.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zdotc_sub.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zdotu_sub.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zdscal.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zgbmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zgemm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zgemv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zgerc.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zgeru.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zhbmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zhemm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zhemv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zher.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zher2.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zher2k.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zherk.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zhpmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zhpr.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zhpr2.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zscal.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zswap.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zsymm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zsyr2k.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\zsyrk.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ztbmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ztbsv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ztpmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ztpsv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ztrmm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ztrmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ztrsm.c" />
+    <ClCompile Include="..\..\gsl-1.8\cblas\ztrsv.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

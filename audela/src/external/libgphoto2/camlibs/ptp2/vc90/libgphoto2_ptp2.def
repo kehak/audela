@@ -1,0 +1,15 @@
+LIBRARY libgphoto2_ptp2
+EXPORTS 
+    camera_about
+    camera_abilities
+    camera_capture
+    camera_capture_preview
+    camera_get_config
+    camera_exit
+    camera_id
+    camera_init
+    camera_set_config
+    camera_summary
+
+
+    

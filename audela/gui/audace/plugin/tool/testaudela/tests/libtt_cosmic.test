@@ -1,0 +1,42 @@
+#--- je recupere le buffer de la premiere visu
+set visuNo 1
+set bufNo [::confVisu::getBufNo $visuNo]
+
+#-------------------------------------------------------------------------------
+# supprime les cosmiques et affiche la "map" des pixels modifie
+#-------------------------------------------------------------------------------
+test libtt_cosmic_1 {imaseries HOT_PIXEL corrige un pixel chaud } -constraints {
+   AUDACE
+} -setup {
+
+} -body  {
+   #---- je charge le fichier
+   loadima [file join $::conf(testaudela,rep_images) "hd21620-5.fit"]
+   ::confVisu::autovisu $visuNo
+   update
+   #--- je traite le fichier
+   buf$bufNo  imaseries "COSMIC COSMIC_THRESHOLD=10"
+   #--- j'affiche le resultat
+   ::confVisu::autovisu $visuNo
+   update
+   after 500
+   buf$bufNo save [file join $::audace(rep_images) "hd21620-5-out.fit"]
+   #--- j'affiche la map dans une nouvelle visu
+   set visu2 [confVisu::create]
+   set bufNo2 [::confVisu::getBufNo $visu2]
+   buf$bufNo2 load "@map.fit"
+   ::confVisu::autovisu $visu2
+   visu$visu2 cut { 32000 0 }
+   visu$visu2 disp
+   update
+   after 500
+   ::confVisu::close $visu2
+   update
+   return ""
+} -cleanup  {
+   file delete  -force  [file join $::audace(rep_images) "hd21620-5-out.fit"]
+   file delete  -force  "@map.fit"
+   #--- raz de l'affichage de la visu principale
+   confVisu::clear $visuNo
+} -result ""
+

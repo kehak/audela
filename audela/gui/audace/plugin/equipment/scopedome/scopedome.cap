@@ -1,0 +1,225 @@
+#
+# Fichier : scopedome.cap
+# Mise a jour $Id: scopedome.cap 10704 2014-04-26 18:16:30Z rzachantke $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(scopedome,label)                          "ScopeDome"
+
+set caption(scopedome,fileName)                       "File Name"
+set caption(scopedome,fileAccess)                     "Path"
+set caption(scopedome,search)                         "..."
+set caption(scopedome,warning)                        "Warning"
+set caption(scopedome,error)                          "Choose the right path."
+set caption(scopedome,limite)                         "This value must be between 0 and 360."
+set caption(scopedome,version)                        "Driver version"
+set caption(scopedome,connectScope)                   "Follow scope"
+set caption(scopedome,sensor)                         "Sensor value"
+set caption(scopedome,cmdswitch)                      "Commande switch"
+set caption(scopedome,cmddbl)                         "Commande+double"
+set caption(scopedome,action)                         "Commande"
+
+set caption(scopedome,site_web)                       "Reference Web Site:"
+set caption(scopedome,site_web_scopedome)             "http://www.scopedome.com/en/default.aspx"
+
+set caption(scopedome,arreter)                        "Stop"
+set caption(scopedome,creer_au_demarrage)             "Next time software is run connect this equipment automatically"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(scopedome,label)                       "ScopeDome"
+
+   set caption(scopedome,fileName)                    "Nom du fichier"
+   set caption(scopedome,fileAccess)                  "Chemin d'accès"
+   set caption(scopedome,search)                      "..."
+   set caption(scopedome,warning)                     "Attention"
+   set caption(scopedome,error)                       "Veuillez indiquer le bon chemin."
+   set caption(scopedomelimite)                       "Cette valeur doit être comprise entre 0 et 360."
+   set caption(scopedome,version)                     "Version du driver"
+   set caption(scopedome,connectScope)                "Suivre le télescope"
+   set caption(scopedome,sensor)                      "Valeur du senseur"
+   set caption(scopedome,cmdswitch)                   "Commande switch"
+   set caption(scopedome,cmddbl)                      "Commande+double"
+   set caption(scopedome,action)                      "Commande"
+
+   set caption(scopedome,site_web)                    "Site Web de référence :"
+   set caption(scopedome,site_web_scopedome)          "http://www.scopedome.com/en/default.aspx"
+
+   set caption(scopedome,arreter)                     "Arrêter"
+   set caption(scopedome,creer_au_demarrage)          "Connexion automatique de cet équipement au prochain démarrage"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(scopedome,label)                       "ScopeDome"
+
+   set caption(scopedome,fileName)                    "Nome file"
+   set caption(scopedome,fileAccess)                  "Percorso"
+   set caption(scopedome,search)                      "..."
+   set caption(scopedome,warning)                     "Attenzione"
+   set caption(scopedome,error)                       "Scegli il percorso giusto."
+   set caption(scopedome,version)                     "# Version du driver"
+   set caption(scopedome,connectScope)                "# Suivre le télescope"
+   set caption(scopedome,sensor)                      "# Valeur du senseur"
+   set caption(scopedome,cmdswitch)                   "# Commande switch"
+   set caption(scopedome,cmddbl)                      "# Commande+double"
+   set caption(scopedome,action)                      "# Commande"
+
+   set caption(scopedome,site_web)                    "Sito Web di riferimento:"
+   set caption(scopedome,site_web_scopedome)          "http://www.scopedome.com/en/default.aspx"
+
+   set caption(scopedome,arreter)                     "Fermare"
+   set caption(scopedome,creer_au_demarrage)          "Connessione automatica di questo equipaggiamento alla prossima esecuzione del software"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(scopedome,label)                       "ScopeDome"
+
+   set caption(scopedome,fileName)                    "Nombre de fichero"
+   set caption(scopedome,fileAccess)                  "Camino de acceso"
+   set caption(scopedome,search)                      "..."
+   set caption(scopedome,warning)                     "Cuidado¡"
+   set caption(scopedome,error)                       "Debe indicar el camino correcto."
+   set caption(scopedome,version)                     "# Version du driver"
+   set caption(scopedome,connectScope)                "# CSuivre le télescope"
+      set caption(scopedome,sensor)                   "# Valeur du senseur"
+   set caption(scopedome,cmdswitch)                   "# Commande switch"
+   set caption(scopedome,cmddbl)                      "# Commande+double"
+   set caption(scopedome,action)                      "# Commande"
+
+   set caption(scopedome,site_web)                    "Sitio Web de referencia:"
+   set caption(scopedome,site_web_scopedome)          "http://www.scopedome.com/en/default.aspx"
+
+   set caption(scopedome,arreter)                     "Parar"
+   set caption(scopedome,creer_au_demarrage)          "La próxima vez que se ejecute el programa, el equipo se conecta automáticamente"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(scopedome,label)                       "ScopeDome"
+
+   set caption(scopedome,fileName)                    "Dateien Namen"
+   set caption(scopedome,fileAccess)                  "Zugang Weg"
+   set caption(scopedome,search)                      "..."
+   set caption(scopedome,warning)                     "Achtung!"
+   set caption(scopedome,error)                       "Den richtigen Weg Bitte geben."
+   set caption(scopedome,version)                     "# Version du driver"
+   set caption(scopedome,connectScope)                "# Suivre le télescope"
+   set caption(scopedome,sensor)                      "# Valeur du senseur"
+   set caption(scopedome,cmdswitch)                   "# Commande switch"
+   set caption(scopedome,cmddbl)                      "# Commande+double"
+   set caption(scopedome,action)                      "# Commande"
+
+   set caption(scopedome,site_web)                    "Referenz Webseite:"
+   set caption(scopedome,site_web_scopedome)          "http://www.scopedome.com/en/default.aspx"
+
+   set caption(scopedome,arreter)                     "Halten"
+   set caption(scopedome,creer_au_demarrage)          "Nächste Mal diese Einrichtung automatisch anschließen"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(scopedome,label)                       "ScopeDome"
+
+   set caption(scopedome,fileName)                    "Nome do Ficheiro"
+   set caption(scopedome,fileAccess)                  "Caminho"
+   set caption(scopedome,search)                      "..."
+   set caption(scopedome,warning)                     "Aviso"
+   set caption(scopedome,error)                       "Choose the right path."
+   set caption(scopedome,version)                     "# Version du driver"
+   set caption(scopedome,connectScope)                "# Suivre le télescope"
+   set caption(scopedome,sensor)                      "# Valeur du senseur"
+   set caption(scopedome,cmdswitch)                   "# Commande switch"
+   set caption(scopedome,cmddbl)                      "# Commande+double"
+   set caption(scopedome,action)                      "# Commande"
+
+   set caption(scopedome,site_web)                    "Site Web de referência:"
+   set caption(scopedome,site_web_scopedome)          "http://www.scopedome.com/en/default.aspx"
+
+   set caption(scopedome,arreter)                     "Parar"
+   set caption(scopedome,creer_au_demarrage)          "O equipamento conecta-se automaticamente na próxima execução do programa"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(scopedome,label)                       "ScopeDome"
+
+   set caption(scopedome,fileName)                    "File Name"
+   set caption(scopedome,fileAccess)                  "Path"
+   set caption(scopedome,search)                      "..."
+   set caption(scopedome,warning)                     "Warning"
+   set caption(scopedome,error)                       "Choose the right path."
+   set caption(scopedome,version)                     "Driver version"
+   set caption(scopedome,connectScope)                "Follow scope"
+   set caption(scopedome,sensor)                      "Sensor value"
+   set caption(scopedome,cmdswitch)                   "Commande switch"
+   set caption(scopedome,cmddbl)                      "Commande+double"
+   set caption(scopedome,action)                      "Commande"
+
+   set caption(station_meteo,site_web)                "Reference Web Site:"
+   set caption(station_meteo,site_web_scopedome)      "http://www.scopedome.com/en/default.aspx"
+
+   set caption(scopedome,arreter)                     "Stop"
+   set caption(scopedome,creer_au_demarrage)          "Next time software is run connect this equipment automatically"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(scopedome,label)                       "ScopeDome"
+
+   set caption(scopedome,fileName)                    "File Name"
+   set caption(scopedome,fileAccess)                 "Path"
+   set caption(scopedome,search)                      "..."
+   set caption(scopedome,warning)                     "Warning"
+   set caption(scopedome,error)                       "Choose the right path."
+   set caption(scopedome,version)                     "Driver version"
+   set caption(scopedome,connectScope)                "Follow scope"
+   set caption(scopedome,sensor)                      "Sensor value"
+   set caption(scopedome,cmdswitch)                   "Commande switch"
+   set caption(scopedome,cmddbl)                      "Commande+double"
+   set caption(scopedome,action)                      "Commande"
+
+   set caption(scopedome,site_web)                    "Reference Web Site:"
+   set caption(scopedome,site_web_scopedome)          "http://www.scopedome.com/en/default.aspx"
+
+   set caption(scopedome,arreter)                     "Stop"
+   set caption(scopedome,creer_au_demarrage)          "Next time software is run connect this equipment automatically"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(scopedome,label)                       "ScopeDome"
+
+   set caption(scopedome,fileName)                    "File Name"
+   set caption(scopedome,fileAccess)                  "Path"
+   set caption(scopedome,search)                      "..."
+   set caption(scopedome,warning)                     "Warning"
+   set caption(scopedome,error)                       "Choose the right path."
+   set caption(scopedome,version)                     "Driver version"
+   set caption(scopedome,connectScope)                "Follow scope"
+   set caption(scopedome,sensor)                      "Sensor value"
+   set caption(scopedome,cmdswitch)                   "Commande switch"
+   set caption(scopedome,cmddbl)                      "Commande+double"
+   set caption(scopedome,action)                      "Commande"
+
+   set caption(scopedome,site_web)                    "Reference Web Site:"
+   set caption(scopedome,site_web_scopedome)          "http://www.scopedome.com/en/default.aspx"
+
+   set caption(scopedome,arreter)                     "Stop"
+   set caption(scopedome,creer_au_demarrage)          "Next time software is run connect this equipment automatically"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

@@ -1,0 +1,115 @@
+Apennine Front            25.9N   3.7E    6.0     22                                              Astronaut-named feature, Apollo 15 site
+Baby Ray                  9.1S    15.4E   0.0     45                                              Astronaut-named feature, Apollo 16 site
+Bear Mountain             20.0N   30.7E   0.0     25                                              Astronaut-named feature, Apollo 17 site
+Bench                     3.2S    23.4W   0.0     42                                              Astronaut-named feature, Apollo 12 site
+Block                     3.2S    23.4W   0.0     42                                              Astronaut-named feature, Apollo 12 site
+Bowen-Apollo              20.3N   30.9E   0.0     25                                              Astronaut-named feature, Apollo 17 site
+Bridge                    26.0N   3.6E    1.0     22                                              Astronaut-named feature, Apollo 15 site
+Brontë                    20.2N   30.7E   0.0     25                                              Astronaut-named feature, Apollo 17 site
+Camelot                   20.2N   30.7E   1.0     25                                              Astronaut-named feature, Apollo 17 site
+Cinco                     19.1S   15.5E   0.0     45                                              Astronaut-named feature, Apollo 16 site
+Cochise                   20.2S   30.8E   1.0     25                                              Astronaut-named feature, Apollo 17 site
+Cone                      3.7S    17.4W   0.0     42                                              Astronaut-named feature, Apollo 14 site
+Crescent                  2.9S    23.4W   1.0     42                                              Astronaut-named feature, Apollo 12 site
+Doublet                   3.7S    17.5W   0.0     42                                              Astronaut-named feature, Apollo 14 site
+Dune                      26.0N   3.7E    0.0     22                                              Astronaut-named feature, Apollo 15 site
+Earthlight                26.1N   3.7E    0.0     22                                              Astronaut-named feature, Apollo 15 site
+Elbow                     26.0N   3.6E    0.0     22                                              Astronaut-named feature, Apollo 15 site
+Emory                     20.1N   30.8E   1.0     25                                              Astronaut-named feature, Apollo 17 site
+End                       8.9S    15.6E   0.0     45                                              Astronaut-named feature, Apollo 16 site
+Family Mountain           20.4N   30.3E   7.0     25                                              Astronaut-named feature, Apollo 17 site
+Flag                      9.0S    15.5E   0.0     45                                              Astronaut-named feature, Apollo 16 site
+Flank                     3.7S    17.4W   0.0     42                                              Astronaut-named feature, Apollo 14 site
+Gator                     9.0S    15.6E   1.0     45                                              Astronaut-named feature, Apollo 16 site
+Halfway                   9.0S    15.5E   0.0     45                                              Astronaut-named feature, Apollo 16 site
+Halo                      3.2S    23.4W   0.0     42                                              Astronaut-named feature, Apollo 12 site
+Head                      3.0S    23.4W   0.0     42                                              Astronaut-named feature, Apollo 12 site
+Hess-Apollo               20.1N   30.7E   1.0     25                                              Astronaut-named feature, Apollo 17 site
+Horatio                   20.2N   30.7E   0.0     25                                              Astronaut-named feature, Apollo 17 site
+Index                     26.1N   3.7E    0.0     22                                              Astronaut-named feature, Apollo 15 site
+Kiva                      8.6S    15.5E   1.0     45                                              Astronaut-named feature, Apollo 16 site
+Lara                      20.4N   30.5E   0.0     25                                              Astronaut-named feature, Apollo 17 site
+Last                      26.1N   0.0E    0.0     22                                              Astronaut-named feature, Apollo 15 site
+Light Mantle              20.2N   30.8E   4.0     25                                              Astronaut-named feature, Apollo 17 site
+Mackin-Apollo (Mackin)    20.1N   30.7E   0.0     25                                              Astronaut-named feature, Apollo 17 site
+Middle Crescent           3.2S    23.4W   0.0     42                                              Astronaut-named feature, Apollo 12 site
+Nansen-Apollo             20.1N   30.5E   1.0     25                                              Astronaut-named feature, Apollo 17 site
+North Complex             26.2N   3.6E    2.0     22                                              Astronaut-named feature, Apollo 15 site
+North Massif              20.4N   30.8E   14.0    25                                              Astronaut-named feature, Apollo 17 site
+North Ray                 8.8S    15.5E   1.0     45                                              Astronaut-named feature, Apollo 16 site
+Old Nameless              3.7S    17.5W   0.0     42                                              Astronaut-named feature, Apollo 14 site
+Palmetto                  8.9S    15.5E   0.0     45                                              Astronaut-named feature, Apollo 16 site
+Plain                     26.2N   3.6E    2.0     22                                              Astronaut-named feature, Apollo 15 site
+Plum                      9.0S    15.5E   0.0     45                                              Astronaut-named feature, Apollo 16 site
+Powell                    20.2N   30.8E   1.0     25                                              Astronaut-named feature, Apollo 17 site
+Ravine                    8.9S    15.6E   1.0     45                                              Astronaut-named feature, Apollo 16 site
+Rhysling                  26.1N   3.7E    0.0     22                                              Astronaut-named feature, Apollo 15 site
+Scarp                     20.3N   30.6E   8.0     25                                              Astronaut-named feature, Apollo 17 site
+Sculptured Hills          20.3N   31.0E   8.0     25                                              Astronaut-named feature, Apollo 17 site
+Shakespeare               20.2N   30.8E   1.0     25                                              Astronaut-named feature, Apollo 17 site
+Sharp-Apollo              3.2S    23.4W   0.0     42                                              Astronaut-named feature, Apollo 12 site
+Sherlock                  20.2N   30.8E   0.0     25                                              Astronaut-named feature, Apollo 17 site
+Shorty                    20.2N   30.6E   0.0     25                                              Astronaut-named feature, Apollo 17 site
+Smoky Mountains           8.8S    15.6E   3.0     45                                              Astronaut-named feature, Apollo 16 site
+Snowman                   3.2S    23.4W   1.0     42                                              Astronaut-named feature, Apollo 12 site
+South Cluster             26.0N   3.7E    2.0     22                                              Astronaut-named feature, Apollo 15 site
+South Massif              20.0N   30.4E   16.0    25                                              Astronaut-named feature, Apollo 17 site
+South Ray                 9.2S    15.4E   1.0     45                                              Astronaut-named feature, Apollo 16 site
+Spook                     9.0S    15.5E   0.0     45                                              Astronaut-named feature, Apollo 16 site
+Spot                      9.0S    15.5E   0.0     45                                              Astronaut-named feature, Apollo 16 site
+Spur                      27.9N   1.2W    13.0    22                                              Astronaut-named feature, Apollo 15 site
+St. George                26.0N   3.5E    2.0     22                                              Astronaut-named feature, Apollo 15 site
+Statio Tranquillitatis    0.8N    23.5E   0.0     35                                              "Tranquility Base", Apollo 11 landing site
+Steno-Apollo              20.1N   30.8E   1.0     25                                              Astronaut-named feature, Apollo 17 site
+Stone Mountain            9.1S    15.6E   5.0     45                                              Astronaut-named feature, Apollo 16 site
+Stubby                    9.1S    15.5E   1.0     45                                              Astronaut-named feature, Apollo 16 site
+Surveyor                  3.2S    23.4W   0.0     42                                              Astronaut-named feature, Apollo 12 site
+Taurus-Littrow Valley     20.0N   31.0E   30.0    25                                              Astronaut-named feature, Apollo 17 site
+Terrace                   26.1N   3.7E    0.0     22                                              Astronaut-named feature, Apollo 15 site
+Tortilla Flat             20.2N   30.7E   1.0     25                                              Astronaut-named feature, Apollo 17 site
+Trap                      9.1S    15.4E   1.0     45                                              Astronaut-named feature, Apollo 16 site
+Trident                   20.2N   30.8E   0.0     25                                              Astronaut-named feature, Apollo 17 site
+Triplet                   3.7S    17.5W   0.0     42                                              Astronaut-named feature, Apollo 14 site
+Van Serg                  20.2N   30.8E   0.0     25                                              Astronaut-named feature, Apollo 17 site
+Victory                   20.2N   30.7E   1.0     25                                              Astronaut-named feature, Apollo 17 site
+Weird                     3.7S    17.5W   0.0     42                                              Astronaut-named feature, Apollo 14 site
+Wessex Cleft              20.3N   30.9E   4.0     25                                              Astronaut-named feature, Apollo 17 site
+West                      0.8N    23.5E   0.0     35                                              Astronaut-named feature, Apollo 11 site
+Wreck                     9.1S    15.5E   1.0     45                                              Astronaut-named feature, Apollo 16 site
+Luna 2                    29.1N   0.0W    0.0     22                                              Launched 12 September 1959 - Impacted Moon 13 September 1959 at 22:02:04 UT - Marsh of Decay 
+Luna 9                    7.1N    64.4W   0.0     28                                              Launched 31 January 1966 - Landed on Moon 03 February 1966 at 18:44:52 UT - Ocean of Storms
+Luna 13                   18.9N   62.1W   0.0     17                                              Launched 21 December 1966 - Landed on Moon 24 December 1966 at 18:01:00 UT - Ocean of Storms
+Luna 16                   0.7S    56.3E   0.0     49                                              Launched 12 September 1970 - Landed on Moon 20 September 1970 at 05:18:00 UT - Sea of Fecundity - Lunar Sample Return
+Luna 17                   38.3N   35.0W   0.0     10                                              Launched 10 November 1970 - Landed on Moon 17 November 1970 at 03:47:00 UT - Sea of Showers - Lunar Rover - Lunokhod 1
+Luna 18                   57.0N   50.5E   0.0     6                                              
+Luna 20                   3.6N    56.5E   0.0     38                                              Launched 14 February 1972 - Landed on Moon 21 February 1972 at 19:19:00 UT - Sea of Fecundity - Lunar Sample Return to Earth 25 February 1972
+Luna 21                   25.5N   30.4E   0.0     24  25                                          Launched 08 January 1973 - Landed on Moon 15 January 1973 at 23:35:00 UT - Sea of Serenity - Lunar Rover - Lunokhod 2
+Luna 24                   12.3N   62.2E   0.0     38                                              Launched 14 August 1976 - Landed on Moon 18 August 1976 at 02:00:00 UT - Sea of Crises - Lunar Sample Return
+Ranger 7                  10.4S   20.6W   0.0     42                                              Launched 28 July 1964 - Impacted Moon 31 July 1964 at 13:25:49 UT - Sea of Clouds
+Ranger 8                  2.7N    24.7E   0.0     35                                              Launched 17 February 1965 - Impacted Moon 20 February 1965 at 09:57:37 UT - Sea of Tranquility
+Ranger 9                  12.9S   2.4W    0.0     44                                              Launched 21 March 1965 - Impacted Moon 24 March 1965 at 14:08:20 UT - Alphonsus
+Surveyor 1                2.5S    43.2W   0.0     40                                              Launched 30 May 1966 - Landed 02 June 1966, 06:17:37 UT - Flamsteed P
+Surveyor 2                                0.0                                                     Launched 20 September 1966 - Crashed on Moon 22 September 1966 - Vernier engine failed to ignite - Southeast of Copernicus Crater
+Surveyor 3                2.9S    23.3W   0.0     42                                              Launched 17 April 1967 - Landed 20 April 1967, 00:04:53 UT - Ocean of Storms
+Surveyor 4                                0.0                                                     Launched 14 July 1967 - Radio contact lost 17 July 1967 - 2.5 minutes from touchdown - Bay of the center
+Surveyor 5                1.4N    23.2E   0.0     35                                              Launched 08 September 1967 - Landed 11 September 1967, 00:46:44 UT - Sea of Tranquility
+Surveyor 6                0.5N    1.4W    0.0     33                                              Launched 07 November 1967 - Landed 10 November 1967, 01:01:06 UT - Bay of the center
+Surveyor 7                41.0S   11.4W   0.0     64                                              Launched 07 January 1968 - Landed 10 January 1968, 01:05:36 UT - Tycho North Rim
+Apollo 11 LM Eagle        0.67N   23.47E  0.0     35                                              Launched 16 July 1969 - Landed 20 July 1969 - Sea of Tranquility
+Apollo 11 LRRR            0.67N   23.47E  0.0     35                                              Launched 16 July 1969 - Landed 20 July 1969 - Sea of Tranquility
+Apollo 12 LM Intrepid     3.01S   23.42W  0.0     42                                              Launched 14 November 1969 - Landed 19 November 1969 - Ocean of Storms - Apollo 12 landed within walking distance of Surveyor 3
+Apollo 12 ALSEP           3.01S   23.42W  0.0     42                                              Launched 14 November 1969 - Landed 19 November 1969 - Ocean of Storms - Apollo 12 landed within walking distance of Surveyor 3
+Apollo 12 LM impact       3.94S   21.21W  0.0     42                                              Launched 14 November 1969 - Landed 19 November 1969 - Ocean of Storms - Apollo 12 landed within walking distance of Surveyor 3
+Apollo 14 LM Antares      3.65S   17.47W  0.0     42                                              Launched 31 January 1971 - Landed 05 February 1971 - Fra Mauro
+Apollo 14 LRRR            3.64S   17.48W  0.0     42                                              Launched 31 January 1971 - Landed 05 February 1971 - Fra Mauro
+Apollo 14 ALSEP           3.64S   17.48W  0.0     42                                              Launched 31 January 1971 - Landed 05 February 1971 - Fra Mauro
+Apollo 14 LM impact       3.42S   19.67W  0.0     42                                              Launched 31 January 1971 - Landed 05 February 1971 - Fra Mauro
+Apollo 15 LM Falcon       26.13N  3.63E   0.0     22                                              Launched 26 July 1971 - Landed 30 July 1971 - Hadley Rille
+Apollo 15 LRRR            26.13N  3.63E   0.0     22                                              Launched 26 July 1971 - Landed 30 July 1971 - Hadley Rille
+Apollo 15 ALSEP           26.13N  3.63E   0.0     22                                              Launched 26 July 1971 - Landed 30 July 1971 - Hadley Rille
+Apollo 15 LM impact       26.36N  0.25E   0.0     22                                              Launched 26 July 1971 - Landed 30 July 1971 - Hadley Rille
+Apollo 16 LM Orion        8.97S   15.50E  0.0     45                                              Launched 16 April 1972 - Landed 20 April 1972 - Descartes
+Apollo 16 ALSEP           8.98S   15.50E  0.0     45                                              Launched 16 April 1972 - Landed 20 April 1972 - Descartes
+Apollo 17 LM Challenger   20.19N  30.77E  0.0     25                                              Launched 07 December 1972 - Landed 11 December 1972 - Taurus-Littrow
+Apollo 17 ALSEP           20.19N  30.77E  0.0     25                                              Launched 07 December 1972 - Landed 11 December 1972 - Taurus-Littrow
+Apollo 17 LM impact       19.96N  30.50E  0.0     25                                              Launched 07 December 1972 - Landed 11 December 1972 - Taurus-Littrow

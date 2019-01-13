@@ -1,0 +1,6 @@
+The script pixci.sh loads the pixci kernel module and compiles it, in the case it is not present.
+It requires XCAP to be installed in the default directory /usr/local/xcap (at least in the Viewer mode). The directory can be changed by modifying the variable BASE_DIR.
+It uses by default 30 GB of frame buffer memory. This amount of memory can be changed by modifying the value of the variable MEM in the script.
+Up now, it was tested only on a x86_64 linux with kernel 2.6.32-5 (Debian Squeeze).
+
+The file pixci contains an init script that runs pixci.sh. It works for Debian Squeeze, but it should probably be rewritten to fit another system (the init system is distribution dependent).

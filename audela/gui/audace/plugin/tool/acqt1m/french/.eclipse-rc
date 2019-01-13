@@ -1,0 +1,16 @@
+#
+# eclipse configuration file
+#
+
+
+# Add eclipse to path
+E_PATH='/usr/local/src/eclipse-5.0.0' ; export E_PATH
+PATH="$PATH:$E_PATH/bin"
+
+# Add verbose/debug
+E_VERBOSE=1 ; export E_VERBOSE
+E_DEBUG=0 ; export E_DEBUG
+# Temporary swap directory
+E_TMPDIR=. ; export E_TMPDIR
+
+# end of file

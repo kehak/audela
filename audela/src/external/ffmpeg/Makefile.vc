@@ -1,0 +1,30 @@
+
+CP= copy
+RM= -@del /f /q
+
+SOURCE=ffmpeg-0.8.5-win
+EXTERNAL_INCLUDE=..\include
+EXTERNAL_LIB=..\lib
+AUDELA_BIN=..\..\..\bin
+
+build:
+	if not exist $(EXTERNAL_INCLUDE)  mkdir $(EXTERNAL_INCLUDE)
+	if not exist $(EXTERNAL_LIB)      mkdir $(EXTERNAL_LIB)
+	if not exist $(AUDELA_BIN)        mkdir $(AUDELA_BIN)
+	$(CP) $(SOURCE)\bin\avcodec-53.dll   $(AUDELA_BIN)
+	$(CP) $(SOURCE)\bin\avdevice-53.dll   $(AUDELA_BIN)
+	$(CP) $(SOURCE)\bin\avfilter-2.dll   $(AUDELA_BIN)
+	$(CP) $(SOURCE)\bin\avformat-53.dll   $(AUDELA_BIN)
+	$(CP) $(SOURCE)\bin\avutil-51.dll   $(AUDELA_BIN)
+	$(CP) $(SOURCE)\bin\postproc-51.dll   $(AUDELA_BIN)
+	$(CP) $(SOURCE)\bin\swscale-2.dll   $(AUDELA_BIN)
+
+clean:
+	$(RM) $(AUDELA_BIN)\avcodec-53.dll   
+	$(RM) $(AUDELA_BIN)\avdevice-53.dll  
+	$(RM) $(AUDELA_BIN)\avfilter-2.dll  
+	$(RM) $(AUDELA_BIN)\avformat-53.dll  
+	$(RM) $(AUDELA_BIN)\avutil-51.dll 
+	$(RM) $(AUDELA_BIN)\postproc-51.dll  
+	$(RM) $(AUDELA_BIN)\swscale-2.dll  
+

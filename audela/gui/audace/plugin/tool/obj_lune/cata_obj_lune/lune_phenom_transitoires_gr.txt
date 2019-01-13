@@ -1,0 +1,27 @@
+Aristarchus               23.7N   47.4W           18                                              Greek astronomer (310-230 B.C. ?)
+Plato                     51.6N   9.4W            3   4                                           Greek philosopher (c.428-c.347 B.C.)
+Proclus                   16.1N   46.8E           26                                              Diadochos (The Successor); Greek mathematician, astronomer, philosopher (410-485)
+Alphonsus                 13.7S   3.2W            44  55                                          Alfonso X; Spanish astronomer (1223-1284)
+Agrippa                   4.1N    10.5E           34                                              Greek astronomer (unkn-fl. A.D. 92)
+Herodotus                 23.2N   49.7W           18                                              Of Halikarnassus; Greek historian (c. 484-408 B.C.)
+Gassendi                  17.6S   40.1W           52                                              Pierre; French astronomer, mathematician (1592-1655)
+Mare Crisium              17.0N   59.1E           26  27  37  38                                  Sea of Crises
+Vallis Schröteri          26.2N   50.8W           18                                              Schröter's Valley
+Copernicus                9.7N    20.1W           31                                              Nicholas; Polish astronomer (1473-1543)
+Linne                     27.7N   11.8E                                                           
+Grimaldi                  5.5S    68.3W           39                                              Francesco Maria; Italian astronomer, physicist (1618-1663)
+Atlas                     46.7N   44.4E           15                                              Mythological Greek Titan
+Kepler                    8.1N    38.0W           30                                              Johannes; German astronomer (1571-1630)
+Eratosthenes              14.5N   11.3W           21  32                                          Greek astronomer, geographer (c. 276-196 B.C.)
+Tycho                     43.4S   11.1W           64                                              Tycho Brahe; Danish astronomer (1546-1601)
+Picard                    14.6N   54.7E           26  37                                          Jean; French astronomer (1620-1682)
+Manilius                  14.5N   9.1E            23  34                                          Marcus; Roman writer (unkn-c. 50 B.C.)
+Menelaus                  16.3N   16.0E           23                                              Of Alexandria; Greek geometer, astronomer (c. A.D. 98)
+Censorinus                0.4S    32.7E           47                                              Roman astronomer (fl. 238-unkn)
+Posidonius                31.8N   29.9E           14                                              Of Apamea; Greek geographer (135(?)-51(?) B.C.)
+Theophilus                11.4S   26.4E           46  47                                          Greek astronomer (d. A.D. 412)
+Mons Piton                40.6N   1.1W            12                                              Named from Mt. Piton on Tenerife Islands
+Mons Pico                 45.7N   8.9W            11                                              Spanish for "peak"
+Schickard                 44.3S   55.3W           62                                              Wilhelm; German astronomer, mathematician (1592-1635)
+Archimedes                29.7N   4.0W            12  22                                          Greek physicist, mathematician (c. 287-212 B.C.)
+

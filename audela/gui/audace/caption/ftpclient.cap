@@ -1,0 +1,187 @@
+#
+# Fichier : ftpclient.cap
+# Mise a jour $Id: ftpclient.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(ftpclient,hostname)              "FTP Server"
+set caption(ftpclient,port)                  "FTP Port"
+set caption(ftpclient,user)                  "User Login"
+set caption(ftpclient,password)              "Password"
+set caption(ftpclient,directory)             "Folder"
+set caption(ftpclient,timeout)               "Timeout"
+
+set caption(ftpclient,sizePosition)          "Size Column Position"
+set caption(ftpclient,namePositionBegin)     "Name Column Position"
+set caption(ftpclient,preview)               "Preview"
+set caption(ftpclient,file_copy)             "Copying"
+set caption(ftpclient,connection_ok)         "Connection Sucessfull"
+set caption(ftpclient,connection_error)      "Connection Error"
+set caption(ftpclient,connection_close)      "Connection Closed"
+set caption(ftpclient,directory_error)       "This folder doen't exist or is empty."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(ftpclient,hostname)           "Serveur FTP"
+   set caption(ftpclient,port)               "Port FTP"
+   set caption(ftpclient,user)               "Login"
+   set caption(ftpclient,password)           "Mot de passe"
+   set caption(ftpclient,directory)          "Répertoire"
+   set caption(ftpclient,timeout)            "Timeout"
+
+   set caption(ftpclient,sizePosition)       "Position colonne taille"
+   set caption(ftpclient,namePositionBegin)  "Position colonne nom"
+   set caption(ftpclient,preview)            "Aperçu"
+   set caption(ftpclient,file_copy)          "Copie de"
+   set caption(ftpclient,connection_ok)      "Ouverture connexion réussie"
+   set caption(ftpclient,connection_error)   "Erreur de connexion"
+   set caption(ftpclient,connection_close)   "Fermeture connexion"
+   set caption(ftpclient,directory_error)    "Le répertoire est vide ou absent."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(ftpclient,hostname)           "Server FTP"
+   set caption(ftpclient,port)               "Porta FTP"
+   set caption(ftpclient,user)               "Login"
+   set caption(ftpclient,password)           "Password"
+   set caption(ftpclient,directory)          "Cartella"
+   set caption(ftpclient,timeout)            "Timeout"
+
+   set caption(ftpclient,sizePosition)       "Posizione colonna dimensione"
+   set caption(ftpclient,namePositionBegin)  "Posizione colonna nome"
+   set caption(ftpclient,preview)            "Stima"
+   set caption(ftpclient,file_copy)          "Copia di"
+   set caption(ftpclient,connection_ok)      "Connessione effettuata"
+   set caption(ftpclient,connection_error)   "Errore di connessione"
+   set caption(ftpclient,connection_close)   "Chiusura connessione"
+   set caption(ftpclient,directory_error)    "La cartella e' vuota o mancante."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(ftpclient,hostname)           "Servidor FTP"
+   set caption(ftpclient,port)               "Puerto FTP"
+   set caption(ftpclient,user)               "Login"
+   set caption(ftpclient,password)           "Contraseña"
+   set caption(ftpclient,directory)          "Carpeta"
+   set caption(ftpclient,timeout)            "Plazo expirado"
+
+   set caption(ftpclient,sizePosition)       "Posición de la columna Tamaño"
+   set caption(ftpclient,namePositionBegin)  "Posicion de la columna Nombre"
+   set caption(ftpclient,preview)            "Cálculo"
+   set caption(ftpclient,file_copy)          "Copiando"
+   set caption(ftpclient,connection_ok)      "Conexión realizada"
+   set caption(ftpclient,connection_error)   "Error de conexión"
+   set caption(ftpclient,connection_close)   "Conexión cerrada"
+   set caption(ftpclient,directory_error)    "La carpeta no existe o está vacío."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(ftpclient,hostname)           "FTP Anbieter"
+   set caption(ftpclient,port)               "FTP Port"
+   set caption(ftpclient,user)               "Login"
+   set caption(ftpclient,password)           "Lösungswort"
+   set caption(ftpclient,directory)          "Verzeichnis"
+   set caption(ftpclient,timeout)            "Timeout"
+
+   set caption(ftpclient,sizePosition)       "Kolonne Größe Position"
+   set caption(ftpclient,namePositionBegin)  "Kolonne Name Position"
+   set caption(ftpclient,preview)            "Überschlag"
+   set caption(ftpclient,file_copy)          "Kopie von"
+   set caption(ftpclient,connection_ok)      "Anschluß gelungen"
+   set caption(ftpclient,connection_error)   "Anschluß Irrtum"
+   set caption(ftpclient,connection_close)   "Anschluß geschlossen"
+   set caption(ftpclient,directory_error)    "Der Register ist Lehr oder existiert nicht."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(ftpclient,hostname)           "Servidor FTP"
+   set caption(ftpclient,port)               "Porto FTP"
+   set caption(ftpclient,user)               "Login"
+   set caption(ftpclient,password)           "Palavra-passe"
+   set caption(ftpclient,directory)          "Directório"
+   set caption(ftpclient,timeout)            "Prazo expirado"
+
+   set caption(ftpclient,sizePosition)       "Posição da coluna Tamanho"
+   set caption(ftpclient,namePositionBegin)  "Posição da coluna Nome"
+   set caption(ftpclient,preview)            "Cálculo"
+   set caption(ftpclient,file_copy)          "A copiar"
+   set caption(ftpclient,connection_ok)      "Conexão realizada"
+   set caption(ftpclient,connection_error)   "Erro de conexão"
+   set caption(ftpclient,connection_close)   "Conexão fechada"
+   set caption(ftpclient,directory_error)    "O directório não existe ou está vazio."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(ftpclient,hostname)           "FTP Server"
+   set caption(ftpclient,port)               "FTP Port"
+   set caption(ftpclient,user)               "User Login"
+   set caption(ftpclient,password)           "Password"
+   set caption(ftpclient,directory)          "Folder"
+   set caption(ftpclient,timeout)            "Timeout"
+
+   set caption(ftpclient,sizePosition)       "Size Column Position"
+   set caption(ftpclient,namePositionBegin)  "Name Column Position"
+   set caption(ftpclient,preview)            "Preview"
+   set caption(ftpclient,file_copy)          "Copying"
+   set caption(ftpclient,connection_ok)      "Connection Sucessfull"
+   set caption(ftpclient,connection_error)   "Connection Error"
+   set caption(ftpclient,connection_close)   "Connection Closed"
+   set caption(ftpclient,directory_error)    "This folder doen't exist or is empty."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(ftpclient,hostname)           "FTP Server"
+   set caption(ftpclient,port)               "FTP Port"
+   set caption(ftpclient,user)               "User Login"
+   set caption(ftpclient,password)           "Password"
+   set caption(ftpclient,directory)          "Folder"
+   set caption(ftpclient,timeout)            "Timeout"
+
+   set caption(ftpclient,sizePosition)       "Size Column Position"
+   set caption(ftpclient,namePositionBegin)  "Name Column Position"
+   set caption(ftpclient,preview)            "Preview"
+   set caption(ftpclient,file_copy)          "Copying"
+   set caption(ftpclient,connection_ok)      "Connection Sucessfull"
+   set caption(ftpclient,connection_error)   "Connection Error"
+   set caption(ftpclient,connection_close)   "Connection Closed"
+   set caption(ftpclient,directory_error)    "This folder doen't exist or is empty."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(ftpclient,hostname)           "FTP Server"
+   set caption(ftpclient,port)               "FTP Port"
+   set caption(ftpclient,user)               "User Login"
+   set caption(ftpclient,password)           "Password"
+   set caption(ftpclient,directory)          "Folder"
+   set caption(ftpclient,timeout)            "Timeout"
+
+   set caption(ftpclient,sizePosition)       "Size Column Position"
+   set caption(ftpclient,namePositionBegin)  "Name Column Position"
+   set caption(ftpclient,preview)            "Preview"
+   set caption(ftpclient,file_copy)          "Copying"
+   set caption(ftpclient,connection_ok)      "Connection Sucessfull"
+   set caption(ftpclient,connection_error)   "Connection Error"
+   set caption(ftpclient,connection_close)   "Connection Closed"
+   set caption(ftpclient,directory_error)    "This folder doen't exist or is empty."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

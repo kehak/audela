@@ -1,0 +1,12 @@
+le répertoire doxy_conf contient des éléments de configuration spécifique du "header" d'une page doxygen:
+- new_header.html, qui reprend des éléments du header des pages du site www.audela.org
+- audelalayout.css pour configurer la zone "titlearea"
+- le dossier images contenant l'image affichée en tête des pages du site
+
+warning :
+-new_header.html et audelalayout.css figurent dans audace.doxyfile et sont automatiquement utilisés et recopiés.
+-le fichier "images" est recopié par copyimage.bat vers "doc_doxygen/images"
+
+1) pour compléter/modifier le header des pages doxygen, modifier le contenu de new_header.html
+sans modifier le nom des variables doxygen ni les id des div, ces "id" sont ncéssaires à audelalayout.css
+2) pour modifier la présentation de l'en-tête des pages, modifier audelalayout.css

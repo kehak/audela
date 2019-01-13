@@ -1,0 +1,150 @@
+#
+# Fichier : sampTools.cap
+# Mise a jour $Id: sampTools.cap 13305 2016-03-05 10:29:34Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+set caption(SampTools,samp_connected)          "Samp: connected to hub"
+set caption(SampTools,samp_hubnotfound)        "Samp: hub not found, could not connect"
+set caption(SampTools,samp_imgtobroadcast)     "Broadcasting image "
+set caption(SampTools,samp_noimgtobroadcast)   "No image to broadcast"
+set caption(SampTools,samp_tabtobroadcast)     "Broadcasting VOTable "
+set caption(SampTools,samp_notabtobroadcast)   "No VOTable to broadcast"
+set caption(SampTools,samp_spetobroadcast)     "Broadcasting spectrum "
+set caption(SampTools,samp_nospetobroadcast)   "No spectrum to broadcast"
+set caption(SampTools,samp_noimageloaded)      "Impossible to load a VOTable because there is no image loaded in the canvas"
+set caption(SampTools,samp_sendaladinscript)   "Broadcasting script to Aladin "
+set caption(SampTools,samp_nosendaladinscript) "No script to broadcast to Aladin"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(SampTools,samp_connected)          "Samp: connecté au hub"
+   set caption(SampTools,samp_hubnotfound)        "Samp: hub non trouvé, connexion impossible"
+   set caption(SampTools,samp_imgtobroadcast)     "Diffusion de l'image "
+   set caption(SampTools,samp_noimgtobroadcast)   "Aucune image à diffuser"
+   set caption(SampTools,samp_tabtobroadcast)     "Diffusion de la VOTable "
+   set caption(SampTools,samp_notabtobroadcast)   "Aucune VOTable à diffuser"
+   set caption(SampTools,samp_spetobroadcast)     "Diffusion du spectre "
+   set caption(SampTools,samp_nospetobroadcast)   "Aucun spectre à diffuser"
+   set caption(SampTools,samp_noimageloaded)      "Impossible de charger une VOTable car il n'y a aucune image dans le canvas"
+   set caption(SampTools,samp_sendaladinscript)   "Diffusion du script Aladin "
+   set caption(SampTools,samp_nosendaladinscript) "Aucun script Aladin à diffuser"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(SampTools,samp_connected)          "Samp: connected to hub"
+   set caption(SampTools,samp_hubnotfound)        "Samp: hub not found, could not connect"
+   set caption(SampTools,samp_imgtobroadcast)     "Broadcasting image "
+   set caption(SampTools,samp_noimgtobroadcast)   "No image to broadcast"
+   set caption(SampTools,samp_tabtobroadcast)     "Broadcasting VOTable "
+   set caption(SampTools,samp_notabtobroadcast)   "No VOTable to broadcast"
+   set caption(SampTools,samp_spetobroadcast)     "Broadcasting spectrum "
+   set caption(SampTools,samp_nospetobroadcast)   "No spectrum to broadcast"
+   set caption(SampTools,samp_noimageloaded)      "Impossible to load a VOTable because there is no image loaded in the canvas"
+   set caption(SampTools,samp_sendaladinscript)   "Broadcasting script to Aladin "
+   set caption(SampTools,samp_nosendaladinscript) "No script to broadcast to Aladin"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(SampTools,samp_connected)          "Samp: connected to hub"
+   set caption(SampTools,samp_hubnotfound)        "Samp: hub not found, could not connect"
+   set caption(SampTools,samp_imgtobroadcast)     "Broadcasting image "
+   set caption(SampTools,samp_noimgtobroadcast)   "No image to broadcast"
+   set caption(SampTools,samp_tabtobroadcast)     "Broadcasting VOTable "
+   set caption(SampTools,samp_notabtobroadcast)   "No VOTable to broadcast"
+   set caption(SampTools,samp_spetobroadcast)     "Broadcasting spectrum "
+   set caption(SampTools,samp_nospetobroadcast)   "No spectrum to broadcast"
+   set caption(SampTools,samp_noimageloaded)      "Impossible to load a VOTable because there is no image loaded in the canvas"
+   set caption(SampTools,samp_sendaladinscript)   "Broadcasting script to Aladin "
+   set caption(SampTools,samp_nosendaladinscript) "No script to broadcast to Aladin"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(vo_tools_go,samp_connected)        "Samp: connected to hub"
+   set caption(vo_tools_go,samp_hubnotfound)      "Samp: hub not found, could not connect"
+   set caption(vo_tools_go,samp_imgtobroadcast)   "Broadcasting image "
+   set caption(vo_tools_go,samp_noimgtobroadcast) "No image to broadcast"
+   set caption(vo_tools_go,samp_tabtobroadcast)   "Broadcasting VOTable "
+   set caption(vo_tools_go,samp_notabtobroadcast) "No VOTable to broadcast"
+   set caption(vo_tools_go,samp_spetobroadcast)   "Broadcasting spectrum "
+   set caption(vo_tools_go,samp_nospetobroadcast) "No spectrum to broadcast"
+   set caption(vo_tools_go,samp_noimageloaded)    "Impossible to load a VOTable because there is no image loaded in the canvas"
+   set caption(SampTools,samp_sendaladinscript)   "Broadcasting script to Aladin "
+   set caption(SampTools,samp_nosendaladinscript) "No script to broadcast to Aladin"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(vo_tools_go,samp_connected)        "Samp: connected to hub"
+   set caption(vo_tools_go,samp_hubnotfound)      "Samp: hub not found, could not connect"
+   set caption(vo_tools_go,samp_imgtobroadcast)   "Broadcasting image "
+   set caption(vo_tools_go,samp_noimgtobroadcast) "No image to broadcast"
+   set caption(vo_tools_go,samp_tabtobroadcast)   "Broadcasting VOTable "
+   set caption(vo_tools_go,samp_notabtobroadcast) "No VOTable to broadcast"
+   set caption(vo_tools_go,samp_spetobroadcast)   "Broadcasting spectrum "
+   set caption(vo_tools_go,samp_nospetobroadcast) "No spectrum to broadcast"
+   set caption(vo_tools_go,samp_noimageloaded)    "Impossible to load a VOTable because there is no image loaded in the canvas"
+   set caption(SampTools,samp_sendaladinscript)   "Broadcasting script to Aladin "
+   set caption(SampTools,samp_nosendaladinscript) "No script to broadcast to Aladin"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(vo_tools_go,samp_connected)        "Samp: connected to hub"
+   set caption(vo_tools_go,samp_hubnotfound)      "Samp: hub not found, could not connect"
+   set caption(vo_tools_go,samp_imgtobroadcast)   "Broadcasting image "
+   set caption(vo_tools_go,samp_noimgtobroadcast) "No image to broadcast"
+   set caption(vo_tools_go,samp_tabtobroadcast)   "Broadcasting VOTable "
+   set caption(vo_tools_go,samp_notabtobroadcast) "No VOTable to broadcast"
+   set caption(vo_tools_go,samp_spetobroadcast)   "Broadcasting spectrum "
+   set caption(vo_tools_go,samp_nospetobroadcast) "No spectrum to broadcast"
+   set caption(vo_tools_go,samp_noimageloaded)    "Impossible to load a VOTable because there is no image loaded in the canvas"
+   set caption(SampTools,samp_sendaladinscript)   "Broadcasting script to Aladin "
+   set caption(SampTools,samp_nosendaladinscript) "No script to broadcast to Aladin"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(vo_tools_go,samp_connected)        "Samp: connected to hub"
+   set caption(vo_tools_go,samp_hubnotfound)      "Samp: hub not found, could not connect"
+   set caption(vo_tools_go,samp_imgtobroadcast)   "Broadcasting image "
+   set caption(vo_tools_go,samp_noimgtobroadcast) "No image to broadcast"
+   set caption(vo_tools_go,samp_tabtobroadcast)   "Broadcasting VOTable "
+   set caption(vo_tools_go,samp_notabtobroadcast) "No VOTable to broadcast"
+   set caption(vo_tools_go,samp_spetobroadcast)   "Broadcasting spectrum "
+   set caption(vo_tools_go,samp_nospetobroadcast) "No spectrum to broadcast"
+   set caption(vo_tools_go,samp_noimageloaded)    "Impossible to load a VOTable because there is no image loaded in the canvas"
+   set caption(SampTools,samp_sendaladinscript)   "Broadcasting script to Aladin "
+   set caption(SampTools,samp_nosendaladinscript) "No script to broadcast to Aladin"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(vo_tools_go,samp_connected)        "Samp: connected to hub"
+   set caption(vo_tools_go,samp_hubnotfound)      "Samp: hub not found, could not connect"
+   set caption(vo_tools_go,samp_imgtobroadcast)   "Broadcasting image "
+   set caption(vo_tools_go,samp_noimgtobroadcast) "No image to broadcast"
+   set caption(vo_tools_go,samp_tabtobroadcast)   "Broadcasting VOTable "
+   set caption(vo_tools_go,samp_notabtobroadcast) "No VOTable to broadcast"
+   set caption(vo_tools_go,samp_spetobroadcast)   "Broadcasting spectrum "
+   set caption(vo_tools_go,samp_nospetobroadcast) "No spectrum to broadcast"
+   set caption(vo_tools_go,samp_noimageloaded)    "Impossible to load a VOTable because there is no image loaded in the canvas"
+   set caption(SampTools,samp_sendaladinscript)   "Broadcasting script to Aladin "
+   set caption(SampTools,samp_nosendaladinscript) "No script to broadcast to Aladin"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

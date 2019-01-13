@@ -1,0 +1,445 @@
+#-----------------------------------------------------------------------------
+set visuNo 1
+set bufNo [::confVisu::getBufNo $visuNo]
+#--   le nom de la tablelist des fichiers
+set w ".audace.prtr.usr.choix.tablelist"
+#--   le nom de la zone de cmd
+set z ".audace.prtr.usr.table"
+set ::conf(extension,defaut) .fit
+set ::conf(fichier,compres) 0
+
+variable SETUP {
+   ::blt::vector create attendu mesure -watchunset 1
+   file copy -force [file join $::conf(testaudela,rep_images) rz_rgbr_8.fit] $::audace(rep_images)
+   loadima rz_rgbr_8.fit
+   attendu set [lrange [buf$bufNo getpix {1 1}] 1 end]
+}
+
+variable SETUP2 {
+   ::blt::vector create attendu mesure redValue greenValue blueValue temp -watchunset 1
+   foreach file {rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} {
+      file copy -force [file join $::conf(testaudela,rep_images) $file.fit] $::audace(rep_images)
+   }
+}
+
+variable CLEANUP {
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+   file delete "./${name}r.txt" "./${name}g.txt" "./${name}b.txt"
+   ttscript2 "IMA/SERIES . rz_rgbr_8 * * .fit . . . . DELETE"
+   ::blt::vector destroy attendu mesure
+}
+
+variable CLEANUP2 {
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+   set liste [list rz_rgbr_8 rz_rgbr_15 rz_rgbr_30 ${name_out}1 ${name_out}2 ${name_out}3]
+   ttscript2 "IMA/SERIES . \"$liste\" * * .fit . . . . DELETE"
+   ::blt::vector destroy attendu mesure redValue greenValue blueValue temp
+}
+
+#-----------------------------------------------------------------------------
+#--   chaque test a pour entree une seule images RGB
+#--   les fichiers .txt sont stockes dans rep_images
+#--   le test porte sur l'existence de trois fichiers .txt
+#     et la concordance entre les valeurs au point {1 1} et les valeurs lues dans les fichiers
+#-----------------------------------------------------------------------------
+#--   test IMA/SERIES PROFILE direction=x
+test imaseries_profile_x {extraire une ligne de rz_rbgr_8} -constraints {AUDACE} -setup $SETUP -body {
+   #--   clic sur le menu "Analyse/Extraire/Une ligne..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,extract)" "$::caption(audace,menu,ligne)..."
+   #--   saisit les coordonnees de la zone a extraire
+   ::testaudela::putLabelEntry $z.funoptions.offset 1
+   #--   le nom de sortie est identique au nom de l'image d'entree
+   #--   donc il n'y a rien a saisir
+   set name $::prtr::filename
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   set result "0"
+   #--   le nom de sortie du fichier txt est le nom par defaut (row)
+   set name $::prtr::filename
+   foreach file [list ${name}r.txt ${name}g.txt ${name}b.txt] {
+      if {[file exists $file]} {
+         incr result
+         #--   ouvre le fichier
+         set fd [open $file r+]
+         gets $fd content
+         mesure append [lindex [gets $fd] end]
+         close $fd
+      }
+   }
+   attendu expr {round(attendu-mesure)}
+   incr result [llength [attendu search 0]]
+   return $result
+} -cleanup $CLEANUP -result "6"
+
+#--   test IMA/SERIES PROFILE direction=y
+test imaseries_profile_y {extraire une colonne de rz_rbgr_8b} -constraints {AUDACE} -setup $SETUP -body {
+   #--   clic sur le menu "Analyse/Extraire/Une colonne..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,extract)" "$::caption(audace,menu,colonne)..."
+   #--   saisit les coordonnees de la zone a extraire
+   ::testaudela::putLabelEntry $z.funoptions.offset 1
+   #--   le nom de sortie est identique au nom de l'image d'entree
+   #--   donc il n'y a rien a saisir
+   set name $::prtr::filename
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   set result "0"
+   foreach file [list ${name}r.txt ${name}g.txt ${name}b.txt] {
+      if {[file exists $file]} {
+         incr result
+         #--   ouvre le fichier
+         set fd [open "$file" r+]
+         gets $fd content
+         mesure append [lindex [gets $fd] end]
+         close $fd
+      }
+   }
+   attendu expr {round(attendu-mesure)}
+   incr result [llength [attendu search 0]]
+   return $result
+} -cleanup $CLEANUP -result "6"
+
+#--   IMA/SERIES MATRIX
+test imaseries_matrix {extraire une zone de rz_rbgr_8} -constraints {AUDACE} -setup $SETUP -body {
+   #--   clic sur le menu "Analyse/Extraire/Une zone..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,extract)" "$::caption(audace,menu,matrice)..."
+   #--   saisit les coordonnees de la zone a extraire
+   ::testaudela::putLabelEntry $z.funoptions.x1 1
+   ::testaudela::putLabelEntry $z.funoptions.y1 1
+   ::testaudela::putLabelEntry $z.funoptions.x2 10
+   ::testaudela::putLabelEntry $z.funoptions.y2 10
+   set name $::prtr::filematrix
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   set result "0"
+   foreach file [list ${name}r.txt ${name}g.txt ${name}b.txt] {
+      if {[file exists $file]} {
+         incr result
+         #--   ouvre le fichier
+         set fd [open "./$file" r+]
+         gets $fd content
+         mesure append [lindex [gets $fd] end]
+         close $fd
+      }
+   }
+   attendu expr {round(attendu-mesure)}
+   incr result [llength [attendu search 0]]
+   return $result
+} -cleanup $CLEANUP -result "6"
+
+#-----------------------------------------------------------------------------
+#--   chaque test BINX BINY MEDIANX MEDIANY a pour entree trois images RGB a traiter
+#--   le test porte sur la concordance entre les valeurs au point {1 1} et les valeurs calculees
+#-----------------------------------------------------------------------------
+
+#--   test IMA/SERIES BINX
+test imaseries_bin_x {binning des colonnes de rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} -constraints {AUDACE} -setup $SETUP2 -body {
+   loadima rz_rgbr_8.fit
+   for {set i 101} {$i <= 110} {incr i} {
+      set val [lrange [buf$bufNo getpix [list $i 1]] 1 end ]
+      redValue append [lindex $val 0]
+      greenValue append [lindex $val 1]
+      blueValue append [lindex $val 2]
+   }
+   attendu append $redValue(sum) $greenValue(sum) $blueValue(sum)
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+
+   #--   clic sur le menu "Analyse/Extraire/Somme de colonnes..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,extract)" "$::caption(audace,menu,bin_x)..."
+   #--   selectionne rz_rgbr_8 rz_rgbr_15 rz_rgbr_30
+   foreach img {rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} {
+      ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #--   saisit les entrees
+   ::testaudela::putLabelEntry $z.funoptions.x1 "101"
+   ::testaudela::putLabelEntry $z.funoptions.x2 "110"
+   set width "5"
+   ::testaudela::putLabelEntry $z.funoptions.width $width
+   #-- saisit le nom de sortie
+   set name_out "add_col"
+   ::testaudela::putLabelEntry $z.sortie.out "$name_out"
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   #--   charge l'image correspondante a rz_rgbr_8
+   loadima add_col1.fit
+   set result 0
+   if {[lindex [buf$bufNo getkwd NAXIS1] 1] == $width} {incr result}
+   #--   cherche la valeur du point {1 1}
+   mesure set [lrange [buf$bufNo getpix {1 1}] 1 end]
+   #::console::disp "imaseries_bin_x attendu $attendu(:) mesure $mesure(:)\n"
+   attendu expr {round(attendu-mesure)}
+   #--   nb de difference < 1
+   attendu expr {abs(attendu) <= 1.0}
+   incr result [llength [attendu search 1]]
+   foreach file [list ${name_out}1r.jpg ${name_out}1g.jpg ${name_out}1b.jpg \
+      ${name_out}2r.jpg ${name_out}2g.jpg ${name_out}2b.jpg \
+      ${name_out}3r.jpg ${name_out}3g.jpg ${name_out}3b.jpg] {
+      if {[file exists $file]} {incr result}
+   }
+   return $result
+} -cleanup $CLEANUP2 -result "4"
+
+#--   test IMA/SERIES MEDIANX
+test imaseries_median_x {mediane des colonnes de rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} -constraints {AUDACE} -setup $SETUP2 -body {
+   loadima rz_rgbr_8.fit
+   for {set i 101} {$i <= 200} {incr i} {
+      set val [lrange [buf$bufNo getpix [list $i 1]] 1 end ]
+      redValue append [lindex $val 0]
+      greenValue append [lindex $val 1]
+      blueValue append [lindex $val 2]
+   }
+   foreach vector {redValue greenValue blueValue} {
+      temp expr {median($vector)}
+      attendu append temp
+   }
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+   #--   clic sur le menu "Analyse/Extraire/Médiane de colonnes..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,extract)" "$::caption(audace,menu,med_x)..."
+   #--   selectionne rz_rgbr_8 rz_rgbr_15 rz_rgbr_30
+   foreach img {rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} {
+     ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #--   saisit les entrees
+   ::testaudela::putLabelEntry $z.funoptions.x1 "101"
+   ::testaudela::putLabelEntry $z.funoptions.x2 "200"
+   set width "28"
+   ::testaudela::putLabelEntry $z.funoptions.width "$width"
+   #-- saisit le nom de sortie
+   set name_out "medianx"
+   ::testaudela::putLabelEntry $z.sortie.out "$name_out"
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   #--   charge l'image correspondante a rz_rgbr_8
+   loadima medianx1.fit
+   set result 0
+   if {[lindex [buf$bufNo getkwd NAXIS1] 1] == $width} {incr result}
+   #--   cherche la valeur du point {1 1}
+   mesure set [lrange [buf$bufNo getpix {1 1}] 1 end]
+   #::console::disp "imaseries_median_x attendu $attendu(:) mesure $mesure(:)\n"
+   attendu expr {round(attendu-mesure)}
+   #--   nb de difference < 1
+   attendu expr {abs(attendu) <= 1.0}
+   incr result [llength [attendu search 1]]
+   return $result
+} -cleanup $CLEANUP2 -result "4"
+
+#--   nature du test IMA/SERIES SORTX :
+#     concordance des intensites R G B constatees avec celles calculees
+test imaseries_sortx {valeur triée des colonnes de rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} -constraints {AUDACE} -setup $SETUP2 -body {
+   loadima rz_rgbr_8.fit
+   for {set i 101} {$i <= 200} {incr i} {
+      set val [lrange [buf$bufNo getpix [list $i 1]] 1 end ]
+      redValue append [lindex $val 0]
+      greenValue append [lindex $val 1]
+      blueValue append [lindex $val 2]
+   }
+   #--   definit le niveau
+   set seuil "30"
+   #--
+   set index [expr {int([redValue length]*$seuil/100)}]
+   #--   constitue le vecteur de sortie
+   foreach v {redValue greenValue blueValue} {
+      #--   tri par ordre ascendant
+      $v sort
+      attendu append [$v range $index $index]
+   }
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+   #--   clic sur le menu "Analyse/Extraire/Valeur triée de colonnes..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,extract)" "$::caption(audace,menu,sort_x)..."
+   #--   selectionne rz_rgbr_8 rz_rgbr_15 rz_rgbr_30
+   foreach img {rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} {
+      ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #--   saisit les entrees
+   ::testaudela::putLabelEntry $z.funoptions.x1 "101"
+   ::testaudela::putLabelEntry $z.funoptions.x2 "200"
+   set width "28"
+   ::testaudela::putLabelEntry $z.funoptions.width "$width"
+   set seuil "30"
+   ::testaudela::putLabelEntry $z.funoptions.percent $seuil
+   #-- saisit le nom de sortie
+   set name_out "sortx"
+   ::testaudela::putLabelEntry $z.sortie.out "$name_out"
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   #--   charge l'image correspondante a rz_rgbr_8
+   loadima sortx1.fit
+   set result 0
+   if {[lindex [buf$bufNo getkwd NAXIS1] 1] == $width} {incr result}
+   #--   cherche la valeur du point {1 1}
+   mesure set [lrange [buf$bufNo getpix {1 1}] 1 end]
+   #::console::disp "imaseries_sortx attendu $attendu(:) mesure $mesure(:)\n"
+   attendu expr {round(attendu-mesure)}
+   #--   nb de difference < 1
+   attendu expr {abs(attendu) <= 1.0}
+   incr result [llength [attendu search 1]]
+   return $result
+} -cleanup $CLEANUP2 -result "4"
+
+#--   test IMA/SERIES BINY
+test imaseries_bin_y {binning des lignes de rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} -constraints {AUDACE} -setup $SETUP2 -body {
+   loadima [file join $::audace(rep_images) rz_rgbr_8.fit]
+   for {set i 101} {$i <= 110} {incr i} {
+      set val [lrange [buf$bufNo getpix [list 1 $i]] 1 end ]
+      redValue append [lindex $val 0]
+      greenValue append [lindex $val 1]
+      blueValue append [lindex $val 2]
+   }
+   attendu append $redValue(sum) $greenValue(sum) $blueValue(sum)
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+
+   #--   clic sur le menu "Analyse/Extraire/Somme de lignes..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,extract)" "$::caption(audace,menu,bin_y)..."
+   #--   selectionne rz_rgbr_8 rz_rgbr_15 rz_rgbr_30
+   foreach img {rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} {
+      ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #--   saisit les entrees
+   ::testaudela::putLabelEntry $z.funoptions.y1 "101"
+   ::testaudela::putLabelEntry $z.funoptions.y2 "110"
+   set height "1"
+  ::testaudela::putLabelEntry $z.funoptions.height $height
+   #--   change le bitpix
+   #-- saisit le nom de sortie
+   set name_out "add_li"
+   ::testaudela::putLabelEntry $z.sortie.out "$name_out"
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   #--   charge l'image correspondante a rz_rgbr_8
+   loadima add_li1.fit
+   set result 0
+   if {[lindex [buf$bufNo getkwd NAXIS2] 1] == $height} {incr result}
+   #--   cherche la valeur du point {1 1}
+   mesure set [lrange [buf$bufNo getpix {1 1}] 1 end]
+   #::console::disp "imaseries_bin_y attendu $attendu(:) mesure $mesure(:)\n"
+   attendu expr {(attendu-mesure) >= 1}
+   #--   nb de difference < 1
+   incr result [llength [attendu search 0]]
+   return $result
+} -cleanup $CLEANUP2 -result "4"
+
+#--   test IMA/SERIES MEDIANY
+test imaseries_median_y {mediane des colonnes de rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} -constraints {AUDACE} -setup $SETUP2 -body {
+   loadima rz_rgbr_8.fit
+   for {set i 101} {$i <= 200} {incr i} {
+      set val [lrange [buf$bufNo getpix [list 1 $i]] 1 end ]
+      redValue append [lindex $val 0]
+      greenValue append [lindex $val 1]
+      blueValue append [lindex $val 2]
+   }
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+   #--   clic sur le menu "Analyse/Extraire/Médiane de lignes..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,extract)" "$::caption(audace,menu,med_y)..."
+   #--   selectionne rz_rgbr_8 rz_rgbr_15 rz_rgbr_30
+   foreach img {rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} {
+      ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #--   saisit les entrees
+   ::testaudela::putLabelEntry $z.funoptions.y1 "101"
+   ::testaudela::putLabelEntry $z.funoptions.y2 "200"
+   set height "45"
+   ::testaudela::putLabelEntry $z.funoptions.height $height
+   #-- saisit le nom de sortie
+   set name_out "mediany"
+   ::testaudela::putLabelEntry $z.sortie.out "$name_out"
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   #--   charge l'image correspondante a rz_rgbr_8
+   loadima mediany1.fit
+   set result 0
+   if {[lindex [buf$bufNo getkwd NAXIS2] 1] == $height} {incr result}
+   #--   cherche la valeur du point {1 1}
+   mesure set [lrange [buf$bufNo getpix {1 1}] 1 end]
+   foreach vector {redValue greenValue blueValue} {
+      temp expr {median($vector)}
+      attendu append temp
+   }
+   #::console::disp "imaseries_median_y attendu $attendu(:) mesure $mesure(:)\n"
+   attendu expr {round(attendu-mesure)}
+   #--   nb de differences egale a 1
+   attendu expr {abs(attendu) <= 1.0}
+   incr result [llength [attendu search 1]]
+   return $result
+} -cleanup $CLEANUP2 -result "4"
+
+#--   nature du test IMA/SERIES SORTY :
+#     concordance des intensites R G B constatees avec celles calculees
+test imaseries_sorty {valeur triée des colonnes de rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} -constraints {AUDACE} -setup $SETUP2 -body {
+   loadima rz_rgbr_8.fit
+   for {set i 101} {$i <= 200} {incr i} {
+     set val [lrange [buf$bufNo getpix [list 1 $i]] 1 end ]
+      redValue append [lindex $val 0]
+      greenValue append [lindex $val 1]
+      blueValue append [lindex $val 2]
+   }
+   #--   definit le niveau
+  set seuil "30"
+   #--
+   set index [expr {int([redValue length]*$seuil/100)}]
+   #--   constitue le vecteur de sortie
+   foreach v {redValue greenValue blueValue} {
+      #--   tri par ordre ascendant
+      $v sort
+      attendu append [$v range $index $index]
+   }
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+   #--   clic sur le menu "Analyse/Extraire/Valeur triée de lignes..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,extract)" "$::caption(audace,menu,sort_y)..."
+   #--   selectionne rz_rgbr_8 rz_rgbr_15 rz_rgbr_30
+   foreach img {rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} {
+      ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #--   saisit les entrees
+   ::testaudela::putLabelEntry $z.funoptions.y1 "101"
+   ::testaudela::putLabelEntry $z.funoptions.y2 "200"
+   set height "50"
+   ::testaudela::putLabelEntry $z.funoptions.height "$height"
+   ::testaudela::putLabelEntry $z.funoptions.percent $seuil
+   #-- saisit le nom de sortie
+   set name_out "sorty"
+   ::testaudela::putLabelEntry $z.sortie.out "$name_out"
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   #--   charge l'image correspondante a rz_rgbr_8
+   loadima sorty1.fit
+   set result 0
+   if {[lindex [buf$bufNo getkwd NAXIS2] 1] == $height} {incr result}
+   #--   cherche la valeur du point {1 1}
+   mesure set [lrange [buf$bufNo getpix {1 1}] 1 end]
+   #::console::disp "imaseries_sorty attendu $attendu(:) mesure $mesure(:)\n"
+   attendu expr {round(attendu-mesure)}
+   #--   nb de difference < 1
+   attendu expr {abs(attendu) <= 1.0}
+   incr result [llength [attendu search 1]]
+   return $result
+} -cleanup $CLEANUP2 -result "4"
+

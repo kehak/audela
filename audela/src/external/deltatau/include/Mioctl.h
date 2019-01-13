@@ -1,0 +1,153 @@
+//-------------------------------------------------------------------------
+//
+// MIOCTL.H
+//
+// 32-bit Motion Control Device Driver
+//
+// Defines interface to kernel driver to be used by user-level dll.
+//
+//-------------------------------------------------------------------------
+
+
+#ifndef _MIOCTL_
+  #define _MIOCTL_
+
+  #ifndef _NT
+    #define CTL_CODE( DeviceType, Function, Method, Access ) (                 \
+        ((DeviceType) << 16) | ((Access) << 14) | ((Function) << 2) | (Method) \
+    )
+    #define METHOD_BUFFERED  0
+    #define FILE_ANY_ACCESS  0
+    #define FILE_DEVICE_SOUND               0x0000001d
+  #endif
+
+// device type - we are a multimedia device, so for now we will be a sound device
+  #define FILE_DEVICE_MOTION            FILE_DEVICE_SOUND
+
+// maximum number of pmac devices and users we allow
+  #define MAX_MOTION_DEVICES            6
+  #define MAX_DEVICE_USERS              5
+
+// base for IOCTL requests - just above the sound requests
+  #define IOCTL_MOTION_BASE 0x200
+
+// Ioctl set
+
+// Interrupt functions
+//stream init       <IN ULONG microsec-per-frame>
+  #define IOCTL_MOTION_INTR_INIT      CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x0E, METHOD_BUFFERED, FILE_ANY_ACCESS)
+//interrupt term        no args
+  #define IOCTL_MOTION_INTR_TERM      CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x0F, METHOD_BUFFERED, FILE_ANY_ACCESS)
+//queue interrupt (queus interrupts down to driver) <OUT ULONG count>
+  #define IOCTL_MOTION_QUEUE_INTR     CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x13, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_GET_PMACIR     CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x14, METHOD_BUFFERED, FILE_ANY_ACCESS)
+// BUS
+  #define IOCTL_MOTION_FLUSH_PORT     CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x20, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_PORT_READREADY CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x21, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_READLN_PORT    CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x22, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_WRITELN_PORT   CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x23, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_WRITECHAR_PORT CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x24, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_PORT_ERROR     CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x25, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_WRITECHAR_PORT        CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x26, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_READCHAR_PORT         CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x27, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_CTRLRESP_PORT  CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x28, METHOD_BUFFERED, FILE_ANY_ACCESS)
+
+
+// DPRAM
+  #define IOCTL_MOTION_FLUSH_MEM      CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x30, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_MEM_READREADY  CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x31, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_READLN_MEM     CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x32, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_WRITELN_MEM    CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x33, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_WRITECHAR_MEM  CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x34, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_WRITECTRL_MEM  CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x35, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_MEM_ERROR      CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x36, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_GET_DPRAM      CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x37, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_FREE_DPRAM     CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x38, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_CTRLRESP_MEM   CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x39, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_GET_MEM        CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x40, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_SET_MEM        CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x41, METHOD_BUFFERED, FILE_ANY_ACCESS)
+
+// General
+  #define IOCTL_MOTION_VERSION       CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x50, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_DATE          CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x51, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_LINK          CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x52, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_PSCALES       CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x53, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_VSCALES       CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x54, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_DEV_TYPE      CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x55, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_I10           CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x56, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_LDSLINK       CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x57, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_PDEVINFO      CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x58, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_SETPMAC_NO    CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x59, METHOD_BUFFERED, FILE_ANY_ACCESS)
+  #define IOCTL_MOTION_TIMEOUT_COUNT CTL_CODE(FILE_DEVICE_MOTION, IOCTL_MOTION_BASE+0x5A, METHOD_BUFFERED, FILE_ANY_ACCESS)
+
+
+// Communications return codes
+  #define COMM_CHARS(c)    (c & 0x0FFFFFFF)
+  #define COMM_STATUS(c)   (c & 0xF0000000)
+  #define COMM_OK          1
+
+  #define COMM_EOT           0x80000000
+  #define COMM_TIMEOUT       0xC0000000
+  #define COMM_ERROR         0xE0000000
+  #define COMM_FAIL          0xF0000000
+  #define COMM_ANYERR        0x70000000
+
+  #define IS_COMM_MORE(c)     ((c & 0xF0000000) == 0)
+  #define IS_COMM_EOT(c)      ((c & 0xF0000000) == COMM_EOT)
+  #define IS_COMM_TIMEOUT(c)  ((c & 0xF0000000) == COMM_TIMEOUT)
+  #define IS_COMM_ERROR(c)    ((c & 0xF0000000) == COMM_ERROR)
+  #define IS_COMM_FAIL(c)     ((c & 0xF0000000) == COMM_FAIL)
+  #define IS_COMM_ANYERROR(c) ((c & 0x70000000) == COMM_ANYERR)
+
+  #define MAX_COMM_BUFFER    256
+
+// Comm passing structure
+typedef struct
+{
+  CHAR  buffer[MAX_COMM_BUFFER]; // pointer to buffer
+  int   status;                  // return status
+  int   count;                   // num of characters returned
+  int   maxChars;                // max characters calling buffer will hold
+
+} COMM_BUFFER, *PCOMM_BUFFER;
+
+// Data passing structure
+typedef struct
+{
+  PBYTE buffer; // pointer to buffer
+  UINT  offset; // offset from DPRAM base
+  UINT  count;  // num of characters desired
+  int   status; // return status
+} MEM_BUFFER, *PMEM_BUFFER;
+
+//-----------------------------------
+// PMAC values for control characters
+//-----------------------------------
+  #define CTRL_A          1
+  #define CTRL_B          2
+  #define CTRL_C          3
+  #define CTRL_D          4
+  #define CTRL_E          5
+  #define CTRL_F          6
+  #define CTRL_G          7
+  #define CTRL_H          8
+  #define CTRL_I          9
+  #define CTRL_J         10
+  #define CTRL_K         11
+  #define CTRL_L         12
+  #define CTRL_M         13
+  #define CTRL_N         14
+  #define CTRL_O         15
+  #define CTRL_P         16
+  #define CTRL_Q         17
+  #define CTRL_R         18
+  #define CTRL_S         19
+  #define CTRL_T         20
+  #define CTRL_U         21
+  #define CTRL_V         22
+  #define CTRL_W         23
+  #define CTRL_X         24
+  #define CTRL_Y         25
+  #define CTRL_Z         26
+
+#endif // _MIOCTL_

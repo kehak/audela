@@ -1,0 +1,7 @@
+#pragma precompile_target "fitsTclHeader"
+
+#define MAC_TCL
+
+#pragma export on
+#include "fitsTcl.h"
+#pragma export reset

@@ -1,0 +1,74 @@
+#
+::tel::create eqmod com1
+tel1 hadec init {6h 0°}
+tel1 hadec goto {1h 30°} -blocking 1
+
+tel1 hadec goto {4h 80°} -blocking 1
+
+#% G21x
+#pi=[1 10 20 50 100 200 800];
+#c=[49.1 43.1 21.7 8.69 4.35 2.17 0.54];
+
+
+#######################################################################
+Title: Re: Block diagram GOTO
+Sent: Mefody from 14.10.2008 [09:32:07]
+Protocol is quite simple, by the way. A one command and parameters in the Hex-a ...
+Some teams meet mounting issuance value | = ...
+
+For example:
+
+1) Initialize mount:
+: a1. | = 00B289.
+a1 = number of steps to a complete turnover of the axis of RA = 9024000
+: a2. | = 00B289.
+a2 = number of steps to a complete turnover of the axis of DEC = 9024000
+: b1. | = A7FD00.
+b1 [spetsparametr RA] = 64935
+: b2. | = A7FD00.
+b2 [spetsparametr DEC] = 64935
+: s1. | = 1C0501.
+s1 = number of steps to a complete turnover of worm axis RA = 66844
+: s2. | = 1C0501.
+s2 = number of steps to a complete turnover of worm axis DEC = 66844
+
+2) Stop both motors:
+: K1. | =.
+K1 = Stop motor axis RA
+: K2. | =.
+K2 = Stop motor axis DEC
+
+3) Sync with mounting zveznymi coordinates:
+: E1000080. | =.
+E1 = Set the counter status of the motor to 0 RA = 00h 00m 0.00s
+: E2806CA2. | =.
+E2 = Set the counter status of the engine in 2256000 DEC = +90 00 '0.00 "
+
+4) Request the status of the motors (step counter):
+: j1. | = 000080.
+j1 = issue of motor RA (= 0 = 00h 00m 0.00s)
+: j2. | = 806CA2.
+j2 = issue of motor DEC (= 2256000 = 90 00 '0.00 ")
+
+5) Execute GOTO in the axis of RA:
+: f1. | = 101.
+: K1. | =.
+K1 = Stop motor axis RA
+: G101. | =.
+G1 = Install engine in RA 0x01 = 1
+: H10AB216. | =.
+H1 = Set goal GOTO-shift in the axis of 1487370 RA = 03h 57m 20.77s
+: M18A7915. | =.
+M1 = Set start braking with GOTO to 1407370 in RA = 03h 44m 34.81s
+: J1. | =.
+J1 = Execute GOTO in the axis of RA
+
+I gave commands that are issued developer Synta. A full description of commands
+and parameters (transmitted / received), as well as the setting speed of transition and pr
+WILL NOT be published. For this know-how of the producer ...
+
+Moreover, as a participant in the creation of the driver EQMOD, I will strongly oppose the publication of
+protocol (up to the treatment of moderators and administrators).
+
+Zasim can study protocol, to create on its basis produce drive. But only for personal
+to ...

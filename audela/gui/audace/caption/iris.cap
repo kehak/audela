@@ -1,0 +1,205 @@
+#
+# Fichier : iris.cap
+# Mise a jour $Id: iris.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(iris,subdir)               "Creating the folder where R, V, and B images will be saved:\n"
+set caption(iris,selectmsg)            "Loading the first master image in Iris to select the planet center...\n"
+set caption(iris,select)               "Select the center in Iris\n"
+set caption(iris,normoffset_maitre)    "Normalizing the bias frame of the master sequence...\n"
+set caption(iris,mf)                   "Enhancing the contrast of the master sequence through unsharp masking...\n"
+set caption(iris,bestof)               "Choosing best images from the master sequence with enhanced contrast...\n"
+set caption(iris,registr_maitre)       "Registering sorted master images...\n"
+set caption(iris,ima_r)                "Processing Red Images...\n"
+set caption(iris,ima_v)                "Processing Green Images...\n"
+set caption(iris,ima_b)                "Processing Blue Images...\n"
+set caption(iris,nom_maitre)           "Generic Name of Master Images:"
+set caption(iris,nom_rouge)            "Generic Name of Red Images:"
+set caption(iris,nom_vert)             "Generic Name of Green Images:"
+set caption(iris,nom_bleu)             "Generic Name of Blue Images:"
+set caption(iris,taille_pregistr)      "Window Size for registration (pregister):"
+set caption(iris,nb_tot)               "Total Number of Images:"
+set caption(iris,nb_select)            "Number of Selected Images:"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(iris,subdir)            "Création du répertoire où seront enregistrées les composantes R, V et B :\n"
+   set caption(iris,selectmsg)         "Chargement de la première image maître dans Iris pour sélectionner le centre de la planète...\n"
+   set caption(iris,select)            "Sélectionner le centre dans Iris\n"
+   set caption(iris,normoffset_maitre) "Normalisation de l'offset de la séquence maître...\n"
+   set caption(iris,mf)                "Réhaussement du contraste de la séquence maître par masque flou...\n"
+   set caption(iris,bestof)            "Bestof sur la séquence maître de contraste réhaussé...\n"
+   set caption(iris,registr_maitre)    "Registration des images maîtres triées...\n"
+   set caption(iris,ima_r)             "Traitement des images rouges...\n"
+   set caption(iris,ima_v)             "Traitement des images vertes...\n"
+   set caption(iris,ima_b)             "Traitement des images bleues...\n"
+   set caption(iris,nom_maitre)        "Nom générique des images maîtres :"
+   set caption(iris,nom_rouge)         "Nom générique des images rouges :"
+   set caption(iris,nom_vert)          "Nom générique des images vertes :"
+   set caption(iris,nom_bleu)          "Nom générique des images bleues :"
+   set caption(iris,taille_pregistr)   "Taille de fenêtre pour la registration (pregister) :"
+   set caption(iris,nb_tot)            "Nombre d'images total :"
+   set caption(iris,nb_select)         "Nombre d'images sélectionnées :"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(iris,subdir)            "Creazione della cartella dove verranno salvate le componenti R, V, B dell' immagine:\n"
+   set caption(iris,selectmsg)         "Caricamento dell' immagine master in Iris per selezionare i centro del pianeta ...\n"
+   set caption(iris,select)            "Selezionare il centro in Iris\n"
+   set caption(iris,normoffset_maitre) "Normalizzazione del bias della sequenza master...\n"
+   set caption(iris,mf)                "Incremento del contrasto della sequenza master tramite Unsharp Masking...\n"
+   set caption(iris,bestof)            "Scelta delle immagini contrastate migliori della sequenza master...\n"
+   set caption(iris,registr_maitre)    "Registrazione delle immagini selezionate...\n"
+   set caption(iris,ima_r)             "Trattamento delle immagini nel rosso...\n"
+   set caption(iris,ima_v)             "Trattamento delle immagini nel verde...\n"
+   set caption(iris,ima_b)             "Trattamento delle immagini nel blu...\n"
+   set caption(iris,nom_maitre)        "Nome generico delle immagini master:"
+   set caption(iris,nom_rouge)         "Nome generico delle immagini nel rosso:"
+   set caption(iris,nom_vert)          "Nome generico delle immagini nel verde:"
+   set caption(iris,nom_bleu)          "Nome generico delle immagini nel blu:"
+   set caption(iris,taille_pregistr)   "Dimensioni della finestra per registrazioni(pregister):"
+   set caption(iris,nb_tot)            "Numero immagini totali:"
+   set caption(iris,nb_select)         "Numero immagini selezionate:"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(iris,subdir)            "Creando la carpeta donde se almacenaran los ficheros RGB\n"
+   set caption(iris,selectmsg)         "Cargando la primera imagen maestra en Iris para seleccionar el centro del planeta...\n"
+   set caption(iris,select)            "Seleccionar el centro en Iris\n"
+   set caption(iris,normoffset_maitre) "Normalizando la toma bias de la secuencia maestra...\n"
+   set caption(iris,mf)                "Resaltando el contraste de la secuencia maestra aplicando una mascara desenfocada...\n"
+   set caption(iris,bestof)            "Escogiendo las mejores imágenes con el contraste resaltado de la secuencia maestra ...\n"
+   set caption(iris,registr_maitre)    "Alienando las imagenes maestras escogidas...\n"
+   set caption(iris,ima_r)             "Procesando componente Rojo de las imagenes...\n"
+   set caption(iris,ima_v)             "Procesando componente Verde de las imagenes...\n"
+   set caption(iris,ima_b)             "Procesando componente Azul de las imagenes...\n"
+   set caption(iris,nom_maitre)        "Nombre genérico de las imágenes maestras:"
+   set caption(iris,nom_rouge)         "Nombre genérico de las componentes rojas de las imagenes:"
+   set caption(iris,nom_vert)          "Nombre genérico de las componentes verdes de las imagenes:"
+   set caption(iris,nom_bleu)          "Nombre genérico de las componentes azules de las imagenes:"
+   set caption(iris,taille_pregistr)   "Tamaño de la ventana para el alineamiento (pregister):"
+   set caption(iris,nb_tot)            "Numero total de imagenes:"
+   set caption(iris,nb_select)         "Numero de imágenes seleccionadas:"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(iris,subdir)            "Register wo die R, G und B Komponente Bilder gespeichert werden schaffen:\n"
+   set caption(iris,selectmsg)         "Das erste Haupt Bild in Iris laden um den Planeten Zentrum zu wählen...\n"
+   set caption(iris,select)            "Den Zentrum in Iris wählen\n"
+   set caption(iris,normoffset_maitre) "Abstand der Hauptbildfolge normieren...\n"
+   set caption(iris,mf)                "Hauptbildfolge Konstrast verstärkung mit unscharf Maske...\n"
+   set caption(iris,bestof)            "Beste Bilder von der Kontrast verstärkte Hauptbildfolge wâhlen...\n"
+   set caption(iris,registr_maitre)    "Die Sortierten Hauptbilder registrieren...\n"
+   set caption(iris,ima_r)             "Rote Bilder verarbeiten...\n"
+   set caption(iris,ima_v)             "Grüne Bilder verarbeiten...\n"
+   set caption(iris,ima_b)             "Blaue Bilder verarbeiten...\n"
+   set caption(iris,nom_maitre)        "Gattungs Namen der Hauptbilder:"
+   set caption(iris,nom_rouge)         "Gattungs Namen der rote Bilder:"
+   set caption(iris,nom_vert)          "Gattungs Namen der grüne Bilder:"
+   set caption(iris,nom_bleu)          "Gattungs Namen der blaue Bilder:"
+   set caption(iris,taille_pregistr)   "Fenster Größe für die Registrierung (Pregistrierung):"
+   set caption(iris,nb_tot)            "Total Bild Nummer:"
+   set caption(iris,nb_select)         "Gewählten Bild Nummer:"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(iris,subdir)            "A criar a pasta onde as imagens R, G e B vão ser armazenadas:\n"
+   set caption(iris,selectmsg)         "A carregar a primeira imagem principal em Iris para seleccionar o centro do planeta...\n"
+   set caption(iris,select)            "Seleccionar o centro em Iris\n"
+   set caption(iris,normoffset_maitre) "A normalizar offset da sequência principal...\n"
+   set caption(iris,mf)                "A ressaltar o contraste da sequência principal aplicando una máscara de focagem...\n"
+   set caption(iris,bestof)            "A escolher as melhores imagens com contraste ressaltado da sequência principal ...\n"
+   set caption(iris,registr_maitre)    "A organizar as imagens principais escolhidas...\n"
+   set caption(iris,ima_r)             "A processar componente Vermelhoo das imagens...\n"
+   set caption(iris,ima_v)             "A processar componente Verde das imagens...\n"
+   set caption(iris,ima_b)             "A processar componente Azul das imagens...\n"
+   set caption(iris,nom_maitre)        "Nome genérico das imagens principais:"
+   set caption(iris,nom_rouge)         "Nome genérico das componentes vermelhas das imagens:"
+   set caption(iris,nom_vert)          "Nome genérico das componentes verdes das imagens:"
+   set caption(iris,nom_bleu)          "Nome genérico das componentes azuis das imagens:"
+   set caption(iris,taille_pregistr)   "Tamanho da janela para o alinhamento (pregister):"
+   set caption(iris,nb_tot)            "Número total de imagens:"
+   set caption(iris,nb_select)         "Número de imagens seleccionadas:"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(iris,subdir)            "Creating the folder where R, V, and B images will be saved:\n"
+   set caption(iris,selectmsg)         "Loading the first master image in Iris to select the planet center...\n"
+   set caption(iris,select)            "Select the center in Iris\n"
+   set caption(iris,normoffset_maitre) "Normalizing the bias frame of the master sequence...\n"
+   set caption(iris,mf)                "Enhancing the contrast of the master sequence through unsharp masking...\n"
+   set caption(iris,bestof)            "Choosing best images from the master sequence with enhanced contrast...\n"
+   set caption(iris,registr_maitre)    "Registering sorted master images...\n"
+   set caption(iris,ima_r)             "Processing Red Images...\n"
+   set caption(iris,ima_v)             "Processing Green Images...\n"
+   set caption(iris,ima_b)             "Processing Blue Images...\n"
+   set caption(iris,nom_maitre)        "Generic Name of Master Images:"
+   set caption(iris,nom_rouge)         "Generic Name of Red Images:"
+   set caption(iris,nom_vert)          "Generic Name of Green Images:"
+   set caption(iris,nom_bleu)          "Generic Name of Blue Images:"
+   set caption(iris,taille_pregistr)   "Window Size for registration (pregister):"
+   set caption(iris,nb_tot)            "Total Number of Images:"
+   set caption(iris,nb_select)         "Number of Selected Images:"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(iris,subdir)            "Creating the folder where R, V, and B images will be saved:\n"
+   set caption(iris,selectmsg)         "Loading the first master image in Iris to select the planet center...\n"
+   set caption(iris,select)            "Select the center in Iris\n"
+   set caption(iris,normoffset_maitre) "Normalizing the bias frame of the master sequence...\n"
+   set caption(iris,mf)                "Enhancing the contrast of the master sequence through unsharp masking...\n"
+   set caption(iris,bestof)            "Choosing best images from the master sequence with enhanced contrast...\n"
+   set caption(iris,registr_maitre)    "Registering sorted master images...\n"
+   set caption(iris,ima_r)             "Processing Red Images...\n"
+   set caption(iris,ima_v)             "Processing Green Images...\n"
+   set caption(iris,ima_b)             "Processing Blue Images...\n"
+   set caption(iris,nom_maitre)        "Generic Name of Master Images:"
+   set caption(iris,nom_rouge)         "Generic Name of Red Images:"
+   set caption(iris,nom_vert)          "Generic Name of Green Images:"
+   set caption(iris,nom_bleu)          "Generic Name of Blue Images:"
+   set caption(iris,taille_pregistr)   "Window Size for registration (pregister):"
+   set caption(iris,nb_tot)            "Total Number of Images:"
+   set caption(iris,nb_select)         "Number of Selected Images:"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(iris,subdir)            "Creating the folder where R, V, and B images will be saved:\n"
+   set caption(iris,selectmsg)         "Loading the first master image in Iris to select the planet center...\n"
+   set caption(iris,select)            "Select the center in Iris\n"
+   set caption(iris,normoffset_maitre) "Normalizing the bias frame of the master sequence...\n"
+   set caption(iris,mf)                "Enhancing the contrast of the master sequence through unsharp masking...\n"
+   set caption(iris,bestof)            "Choosing best images from the master sequence with enhanced contrast...\n"
+   set caption(iris,registr_maitre)    "Registering sorted master images...\n"
+   set caption(iris,ima_r)             "Processing Red Images...\n"
+   set caption(iris,ima_v)             "Processing Green Images...\n"
+   set caption(iris,ima_b)             "Processing Blue Images...\n"
+   set caption(iris,nom_maitre)        "Generic Name of Master Images:"
+   set caption(iris,nom_rouge)         "Generic Name of Red Images:"
+   set caption(iris,nom_vert)          "Generic Name of Green Images:"
+   set caption(iris,nom_bleu)          "Generic Name of Blue Images:"
+   set caption(iris,taille_pregistr)   "Window Size for registration (pregister):"
+   set caption(iris,nb_tot)            "Total Number of Images:"
+   set caption(iris,nb_select)         "Number of Selected Images:"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

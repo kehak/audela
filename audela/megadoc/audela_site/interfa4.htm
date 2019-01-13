@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Piloter un t&eacute;lescope</title>
+</head>
+
+<body>
+  <p>Le pilotage d'un t&eacute;lescope constitue un atout tr&egrave;s important en imagerie CCD. Il est ainsi possible d'acqu&eacute;rir les images sans perdre de temps avec la recherche du champ &agrave; observer. Evidemment, pour pouvoir piloter un t&eacute;lescope avec Audace, il faut qu'il soit motoris&eacute; et &eacute;quip&eacute; d'une interface reconnue par Audela. Si le protocole de communication de votre t&eacute;lescope n'est pas implant&eacute; dans Audela, vous pouvez le faire vous m&ecirc;me. Pour cela, voir la page consacr&eacute;e &agrave; la r&eacute;alisation d'un <a href="script3b.htm">script de driver de t&eacute;lescope</a>.</p>
+  <h3> 1.Param&eacute;trer le t&eacute;lescope</h3>
+  <p>Pour r&eacute;gler les param&egrave;tres de connexion d'un t&eacute;lescope, il faut faire appara&icirc;tre la fen&ecirc;tre des r&eacute;glages. Pour cela, aller dans le menu R&eacute;glages puis cliquer sur T&eacute;lescope : </p>
+  <p align="center"><img src="images/adc/adc23-fr.jpg" width="648" height="147" /></p>
+  <p>La fen&ecirc;tre de configuration du t&eacute;lescope se pr&eacute;sente comme ci dessous. </p>
+  <p align="center"><img src="images/adc/adc24-fr.jpg" height="247" width="408" /></p>
+  <p>Apr&egrave;s avoir rempli les champs avec les valeurs correspondant &agrave; votre t&eacute;lescope, appuyer sur le bouton OK.</p>
+  <h3> 2. Pointer le t&eacute;lescope</h3>
+  <p>Pour faire pointer le t&eacute;lescope, il faut faire appara&icirc;tre le panneau t&eacute;lescope. Pour cela, aller dans le menu Panneau puis cliquer sur Telescope : </p>
+  <p align="center"><img src="images/adc/adc25-fr.jpg" height="200" width="639" /></p>
+  <p>Le panneau de t&eacute;lescope sert &agrave; r&eacute;gler les param&egrave;tres de pointage et de lancer une pose de v&eacute;rification. </p>
+  <p align="center"><img src="images/adc/adc26-fr.jpg" height="526" width="648" /></p>
+  <p>Le pointage est param&eacute;tr&eacute; gr&acirc;ce a un menu d&eacute;roulant. Par d&eacute;faut l'option "Coord." permet d'entrer manuellement la valeur coordonn&eacute;es (ascension droite et d&eacute;clinaison, appel&eacute;es par la suite RA et DEC). Le menu propose aussi une liste d'&eacute;toiles brillantes utiles pour initialiser le t&eacute;lescope. Enfin, il sera bient&ocirc;t possible de choisir un objet par son num&eacute;ro Messier par exemple.</p>
+  <p>Le cartouche des coordonn&eacute;es montre la valeur de RA et DEC point&eacute;es par le t&eacute;lescope. Le rafraichissement de ces coordonn&eacute;es n'est pas automatique (il est r&eacute;alis&eacute; &agrave; chaque d&eacute;placement du t&eacute;lescope effectu&eacute; avec ce panneau de contr&ocirc;le). Pour rafraichir, cliquer sur les coordonn&eacute;es. Si la connexion entre Audace et le t&eacute;lescope n'a pas &eacute;t&eacute; &eacute;tablie, les coordonn&eacute;es n'apparaissent pas. Il est cependant possible de connecter directement le t&eacute;lescope en cliquant dans cette zone.</p>
+  <p>La raquette permet un d&eacute;placement dans les quatre directions. La vitesse de d&eacute;placement est indiqu&eacute;e par un chiffre situ&eacute; au milieu des boutons. Plus ce chiffre est grand, plus la vitesse est importante. On change de vitesse en appuyant sur le chiffre.</p>
+  <p>Le bouton MATCH sert &agrave; re-initialiser les coordonn&eacute;es du t&eacute;lescope sur les coordonn&eacute;es indiqu&eacute;es dans la zone d'entr&eacute;e orange du cartouche de pointage.</p>
+  <p>Le cartouche du bas sert &agrave; param&eacute;trer et lancer une pose CCD pour v&eacute;rifier le centrage de l'objet. Il faut remplir le temps de pose et la d&eacute;finition de l'image. La haute d&eacute;finition consiste &agrave; convertir un pixel du composant CCD en un pixel dans l'image finale (encore appel&eacute; binning 1x1). La moyenne d&eacute;finition consite &agrave; rassembler les pixels du composant CCD par paquets de quatre dans l'image finale (encore appel&eacute; binning 2x2). La basse d&eacute;finition consiste &agrave; rassembler les pixels du composant CCD par paquets de seize dans l'image finale (encore appel&eacute; binning 4x4). Plus la d&eacute;finition est haute, meilleure sera la r&eacute;solution, mais l'image occupera une plus grande place m&eacute;moire et sera plus longue &agrave; &ecirc;tre lue. Pour la phase de v&eacute;rification de pointage on utilise g&eacute;n&eacute;ralement la basse d&eacute;finition. Le bouton GO permet de d&eacute;marrer l'acquisition d'image. A la fin de la lecture, l'image est automatiquement affich&eacute;e.</p>
+</body>
+</html>

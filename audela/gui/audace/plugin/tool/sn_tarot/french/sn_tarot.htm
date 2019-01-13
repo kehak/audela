@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Tarot supernovae</title>
+</head>
+
+<body>
+<p class="date">Date de mise &#224; jour : 10 janvier 2012</p>
+<h1>Tarot Supernovae (recherche de supernovae)</h1>
+<h2>1. Comment fonctionne ce script ?</h2>
+<p>Le script de recherche de supernovae est un ensemble de
+fonctions de l'interface Aud'ACE, destin&#233; &#224; rechercher
+des supernovae sur des images acquises avec les t&#233;lescopes
+automatiques Tarot du Calern (FRANCE) et de La Silla (CHILI). L'objectif est de permettre
+au plus grand nombre de partager une m&#233;thode d'observation
+performante et &#233;ventuellement de l'am&#233;liorer.</p>
+<h2>2. D&#233;marrer le script</h2>
+<p>D&#233;marrer l'interface Aud'ACE puis choisir le menu
+<b>Analyse/Tarot supernovae</b>. Une connexion <b>Internet</b>
+est n&#233;cessaire car des mises &#224; jour vont &#234;tre
+faites et des v&#233;rifications effectu&#233;es :</p>
+<p><img style="width: 472px; height: 183px;" alt="" src="images/sn_tarot_maj.gif" /></p>
+<p>Ces mises &#224; jour concernent les dossiers, les listes de
+fichiers d'images disponibles et les images de
+r&#233;f&#233;rence. Le chargement et la d&#233;compression des
+images de r&#233;f&#233;rence (plus de 28 Mo) prennent du temps
+mais, sauf suppression de certains fichiers ou dossiers, cette
+op&#233;ration n'est r&#233;alis&#233;e qu'&#224; la toute
+premi&#232;re connexion.</p>
+<p>Les commandes sont inhib&#233;es durant l'ex&#233;cution et
+les cases coch&#233;es au fur et &#224; mesure de l'avancement
+:</p>
+<p><img style="width: 472px; height: 183px;" alt="" src="images/sn_tarot_maj2.gif" /></p>
+<p><b>Note</b> : Si le contact avec les sites permettant la mise
+&#224; jour est impossible, la liste des dates correspond aux
+archives compress&#233;es disponibles dans le dossier
+<b>tarot/archives</b>.</p>
+<p>Lorsque la mise &#224; jour est termin&#233;e, l'outil s'ouvre
+et ressemble alors &#224; cela :</p>
+<table>
+<tbody>
+<tr>
+<td rowspan="8"><img style="width: 112px; height: 285px;" alt="" src="images/sn_tarot_panel.gif" /></td>
+<td height="20"><br /></td>
+</tr>
+<tr>
+<td>Un bouton d'aide affichant cette aide.</td>
+</tr>
+<tr>
+<td>Un s&#233;lecteur de t&#233;lescope <br>Un s&#233;lecteur de fichier ; son nom est codifi&#233; comme
+suit : (ann&#233;e)(mois)(jour). Il est suivi de <b>_old</b> si
+les images concerne la nuit courante locale.</td>
+</tr>
+<tr>
+<td>Un bouton pour relancer la mise &#224; jour</td>
+</tr>
+<tr>
+<td>Un bouton pour t&#233;l&#233;charger le fichier
+s&#233;lectionn&#233;. Il faut disposer d'une connexion
+Internet.</td>
+</tr>
+<tr>
+<td>Un bouton pour lancer la recherche.</td>
+</tr>
+</tbody>
+</table>
+<h2>3. T&#233;l&#233;chargement des images d'un t&#233;lescope
+Tarot</h2>
+<p>Le processus est simple :</p>
+<p>Choisir un t&#233;lescope <b>{ Tarot_Calern | Tarot_Chili
+}</b> dans le menu d&#233;roulant et une date. Appuyer sur le
+bouton <b>T&#233;l&#233;charger</b> : Une fen&#234;tre de
+confirmation s'ouvre :</p>
+<p><img src="images/sn_tarot_download.gif" alt="" height="113" width="362" /></p>
+<p>Appuyer sur <b>OUI</b> pour continuer, sur <b>NON</b> pour
+abandonner. Durant le chargement les boutons
+<b>T&#233;l&#233;charger</b> et <b>Recherche supernovae</b>
+sont inhib&#233;s.</p>
+<p>Pour passer au stade de la recherche appuyer sur <b>Recherche supernovae</b>.</p>
+<p>En cas d'absence d'images d'archives &#224; traiter, un
+message avertit qu'il faut s&#233;lectionner une date et
+t&#233;l&#233;charger l'archive correspondante :</p>
+<p><img src="images/sn_tarot_no_archive.gif" alt="" height="126" width="297" /></p>
+<p>et la fen&#234;tre de recherche ne s'ouvre pas.</p>
+<h2>4. <a name="sn_visu" id="sn_visu">Recherche de
+supernovae</a></h2>
+<p><strong>Tarot Sn Visu</strong> est un assistant pour la
+visualisation des images de galaxies. L'outil ne d&#233;tecte pas
+automatiquement les supernovae. Il faut regarder soigneusement
+toutes les images. Avec un peu d'exp&#233;rience, on arrive
+&#224; analyser environ 300 images par heure. <strong>Tarot Sn
+Visu</strong> permet donc de visualiser une image, acquise la
+nuit derni&#232;re, et de la comparer avec une image d'une nuit
+ant&#233;rieure affich&#233;e &#224; c&#244;t&#233;. Si les
+images sont r&#233;alis&#233;es avec le m&#234;me t&#233;lescope
+elles doivent se ressembler beaucoup. C'est la meilleure
+m&#233;thode pour permettre &#224; l'&#339;il de juger
+rapidement. L'interface <b>Tarot Sn Visu</b> ressemble &#224;
+cela :</p>
+<img src="images/sn_tarot_window1.gif" alt="" height="580" width="668" />
+<p>L'utilisation de cette interface est tr&#232;s intuitive. Il
+faut d'abord choisir le nom de l'archive qui contient les images
+&#224; analyser dans le menu d&#233;roulant (en bas au
+centre). Avec le radio bouton sur
+<b>Personnel</b>, on pointe vers le dossier qui contient vos
+images de r&#233;f&#233;rence personnelles, alors que le choix
+<b>DSS</b> permet de pointer vers le dossier qui contient des
+champs du DSS. Ensuite, appuyez sur le bouton <b>Suivante
+(F1)</b> ou sur la touche fonction <b>F1</b> pour visionner les
+galaxies les unes apr&#232;s les autres sur l'&#233;cran de
+gauche ou sur le bouton <b>Pr&#233;c&#233;dente</b> pour revenir
+&#224; une image pr&#233;c&#233;dente. Si une image de m&#234;me
+nom est trouv&#233;e dans le dossier de r&#233;f&#233;rence
+s&#233;lectionn&#233; (<b>Personnel</b> ou <b>DSS</b>), elle sera
+affich&#233;e &#224; droite.</p>
+<img src="images/sn_tarot_window2.gif" alt="" height="580" width="668" />
+<p>Les autres commandes disponibles sont les suivantes :</p>
+<p><b>Aller &#224;</b> permet d'aller directement &#224; un
+num&#233;ro d'image donn&#233; (entre 1 et 26, et c'est l'image 1
+qui a &#233;t&#233; choisie dans l'exemple ci-dessus).</p>
+<p>Le bouton <b>Fond du ciel (F2)</b> permet de retirer le fond
+du ciel et les extensions des grandes galaxies en vue de
+faciliter la d&#233;tection d'un candidat supernova.</p>
+<p>Toujours pour faciliter la d&#233;couverte de supernovae, il
+existe une fonction blink avec recentrage automatique de l'image
+acquise et de l'image de r&#233;f&#233;rence qui est activ&#233;e
+en appuyant sur le bouton <b>GO Blink (F3)</b> ou sur la touche
+fonction <b>F3</b>. On peut &#224; tout moment arr&#234;ter la
+fonction blink en appuyant sur le m&#234;me bouton qui a pris le
+nom <b>Stop Blink</b> pour l'occasion. Apr&#232;s l'arr&#234;t de
+la fonction blink, le bouton reprendra le nom <b>GO Blink
+(F3)</b>.</p>
+<p>Si l'image de la nuit est de meilleure qualit&#233; que
+l'image de r&#233;f&#233;rence, il suffit d'appuyer sur le bouton
+<b>Enregistrer (F4)</b> ou sur la touche de fonction <b>F4</b>
+pour qu'elle devienne la nouvelle image de r&#233;f&#233;rence,
+mais avant un message de confirmation vous invitera ou non &#224;
+faire cette substitution.</p>
+<p>Un s&#233;lecteur <b>Personnel</b> ou <b>DSS</b> permet de
+s&#233;lectionner les images de r&#233;f&#233;rence du Tarot
+(t&#233;l&#233;charg&#233;es lors de la mise &#224; jour) ou du
+<a href="#DSS">Digitalized Sky Survey</a>,
+t&#233;l&#233;charg&#233;es au fur et &#224; mesure des
+besoins.</p>
+<p>Une petite console donne des informations sur les images
+affich&#233;es &#224; gauche (image1) et &#224; droite
+(image2).</p>
+<p>Le bouton <b>Configuration</b> est comment&#233; au <a href="#sn_config">paragraphe 7.</a></p>
+<p>La fen&#234;tre de s&#233;lection de l'archive &#224; traiter
+donne la liste des fichiers compress&#233;s pr&#233;sents dans le
+dossier archives. La s&#233;lection d'une archive diff&#233;rente
+de celle affich&#233;e entra&#238;ne la d&#233;compression du
+fichier vers le dossier <b>night</b> et le remplacement des
+images pr&#233;sentes. Une fen&#234;tre confirme les
+op&#233;rations :</p>
+<img src="images/sn_tarot_unzip.gif" alt="" height="133" width="656" />
+<p>La premi&#232;re image de la nouvelle s&#233;rie est
+automatiquement affich&#233;e.</p>
+<p>Le bouton <b>Aide</b> ouvre cette page html.</p>
+<p>Le bouton <b>Quitter</b> permet de sortir de <b>Tarot Sn
+Visu</b> et de sauvegarder les modifications des param&#232;tres
+de configuration.</p>
+<p><a name="sn_raccourcis" id="sn_raccourcis" />Il existe un
+certain nombre de raccourcis qu'il est utile de conna&#238;tre
+pour utiliser au mieux <b>Tarot Sn Visu</b>, en voici la
+liste:</p>
+<ul>
+<li><b>F1</b> : Equivalent &#224; un appui sur le bouton
+<b>Suivante (F1)</b>.</li>
+<li><b>F2</b> : Equivalent &#224; un appui sur le bouton <b>Fond
+du ciel (F2)</b>.</li>
+<li><b>F3</b> : Equivalent &#224; un appui sur le bouton <b>GO
+Blink (F3)</b>.</li>
+<li><b>F4</b> : Equivalent &#224; un appui sur le bouton
+<b>Enregistrer (F4)</b>.</li>
+<li><b>F5</b> : Edite l'en-t&#234;te FITS de l'image de la
+nuit.</li>
+<li><b>F6</b> : Edite l'en-t&#234;te FITS de l'image de
+r&#233;f&#233;rence.</li>
+<li><b>F7</b> : Applique un filtre m&#233;dian sur l'image de la
+nuit pour &#233;liminer les cosmiques.</li>
+</ul>
+<p>Lorsque vous enregistrez une nouvelle image de
+r&#233;f&#233;rence, elle prend le nom de l'image actuelle sans
+son indice. Par exemple, la galaxie NGC524-1.fit est
+enregistr&#233;e dans le dossier de r&#233;f&#233;rence sous le
+nom NGC524.fit.</p>
+<h2>5. Que faire en cas de d&#233;tection d'une supernovae ?</h2>
+<p><b>Note</b> : Toutes les commandes sp&#233;cifiques &#224;
+cette &#233;tape sont regroup&#233;es dans un menu contextuel appel&#233;
+avec le clic droit de la souris.</p>
+<p>Si l'on a rep&#233;r&#233; une candidate :</p>
+<ol>
+<li>On visualise aussi l'image DSS pour v&#233;rifier qu'il n'y a
+rien non plus &#224; cet endroit.</li>
+<li>On pointe la souris sur le centre de la galaxie et on fait un
+clic droit pour valider la position du centre avec la commande
+<b>Centre de la galaxie h&#244;te</b>.</li>
+<li>On pointe la souris sur une &#233;toile quelconque du champ,
+assez isol&#233;e, pas trop pr&#232;s du bord, ni trop faible, ni
+trop brillante. Avec un clic droit on demande la validation d'une
+&#233;toile de r&#233;f&#233;rence avec la commande <b>Position
+d'une &#233;toile de r&#233;f&#233;rence</b>. Le calcul de la
+fiche candidate ira chercher quelle est l'&#233;toile
+correspondante dans le catalogue NOMAD1 au CDS.</li>
+<li>On pointe la souris sur la candidate et on valide avec un clic
+droit et la commande <b>Position de la candidate SN</b>.</li>
+<li>On demande la cr&#233;ation de la fiche avec un clic droit et la
+commande <b>Cr&#233;ation de la fiche de la candidate SN</b>. Une
+fen&#234;tre appara&#238;t : <img src="images/sn_tarot_creation_candidate.gif" alt="" height="129" width="608" /><br />
+Attendre la cr&#233;ation de la fiche car une recherche de
+pr&#233;sence des ast&#233;ro&#239;des et des SN connus est effectu&#233;e.
+De plus une recherche explore les fichiers d'archives
+qui contiennent les images afin de retrouver &#233;ventuellement
+la derni&#232;re image sur laquelle la candidate n'apparait pas.</li>
+<li>Une fois la fiche compl&#232;te affich&#233;e :<br />
+<img src="images/sn_tarot_fiche_candidate.gif" alt="" height="766" width="608" /></li>
+<li>On peut modifier le texte afin d'entrer des
+commentaires personnels. Valider avec le bouton en bas &#224;
+gauche <span style="font-weight: bold;">Modifier le fichier de la candidate</span>, puis <span style="font-weight: bold;">OK</span>. A noter que dans ce texte il y a le canevas qui
+servira &#224; envoyer le message d'annonce de la supernova si on la
+retrouve la nuit suivante.</li>
+<li>Le fichier texte de cette fiche est stock&#233; dans le
+dossier <b>../archives/tarot/alert</b>. Il contient la collection
+des fichiers textes d&#233;crivant les candidates. On peut ainsi
+valider ou r&#233;futer l'existence d'une candidate la nuit
+suivante.</li>
+</ol>
+<h2>6. <a name="DSS" id="DSS">Chargement des images du Digitized
+Sky Survey (DSS)</a></h2>
+<p>Le dossier <b>references</b> contient les images de
+r&#233;f&#233;rence Tarot. Le dossier <b>dss</b> contient les
+images de r&#233;f&#233;rence d&#233;livr&#233;es par <b><a href="http://skyview.gsfc.nasa.gov/">Skyview</a></b>.</p>
+<p>Lors de la s&#233;lection d'un dossier &#224; traiter, le
+programme identifie aussi les images <b>DSS</b> manquantes.</p>
+<p>Si toutes les images sont pr&#233;sentes le message suivant est
+affich&#233; :</p>
+<img src="images/sn_tarot_dss_all.gif" alt="" height="126" width="261" />
+<p>Si certaines images sont absentes, c'est le message suivant qui est
+affich&#233; :</p>
+<img src="images/sn_tarot_dss_manquantes.gif" alt="" height="159" width="800" />
+<p>L'appui sur le bouton <b>Oui</b> provoque le basculement sur le
+dossier de r&#233;f&#233;rence <b>Personnel</b>, l'inhibition du
+bouton <b>DSS</b> et le t&#233;l&#233;chargement des images
+manquantes du DSS.<br />
+Durant le t&#233;l&#233;chargement, il est possible de travailler
+avec les images de r&#233;f&#233;rence <b>Personnel</b>.</p>
+<p>Le programme se charge de formuler la requ&#234;te aupr&#232;s
+de Skyview.<br />
+La progression du t&#233;l&#233;chargement peut &#234;tre suivie
+par l'interm&#233;diaire d'une barre de progression qui indique
+le nom de l'image en cours de chargement et l'avancement
+r&#233;alis&#233; :</p>
+<img src="images/sn_tarot_progress_dss.gif" alt="" height="110" width="426" />
+<p>En cas d'&#233;chec, un message dans la console signale le
+motif de non chargement. Si l'&#233;chec est due &#224;
+l'impossibilit&#233; de contacter le site, le
+t&#233;l&#233;chargement s'arr&#234;te.</p>
+<p>A la fin le bouton <b>DSS</b> redevient accessible. Les images
+de la nuit peuvent &#234;tre compar&#233;es aux images de
+r&#233;f&#233;rence <b>Personnel</b> et/ou <b>DSS</b> simplement
+en activant l'un ou l'autre des boutons.</p>
+<p><b>Note</b> : Durant le t&#233;l&#233;chargement on ne peut
+pas fermer la fen&#234;tre <strong>Tarot Sn Visu</strong>.</p>
+<h2><a name="sn_config" id="sn_config">7. Sauvegarde des
+options</a></h2>
+<p>Tous les dossiers sont localis&#233;s dans le r&#233;pertoire
+<b>../tarot</b> :</p>
+<ul>
+<li><b>archives</b> : Contient les fichiers
+t&#233;l&#233;charg&#233;s sous forme compress&#233;s.</li>
+<li><b>night</b> : Contient les images de la nuit.</li>
+<li><b>references</b> : Contient les images de
+r&#233;f&#233;rence, surnomm&#233; <b>Personnel</b>.</li>
+<li><b>dss</b> : Contient les images de r&#233;f&#233;rence du
+DSS, surnomm&#233; <b>DSS</b>.</li>
+</ul>
+<p>Enfin, d'autres param&#232;tres sont accessibles &#224; partir
+du bouton <strong>Configuration</strong>, qui sont :</p>
+<img src="images/sn_tarot_config.gif" alt="" height="153" width="440" />
+<ul>
+<li><b>Rafra&#238;chissement de la la visualisation</b> lorsque
+l'on agit sur les barres de seuil. L'option <b>motion</b>
+signifie que la visualisation suit le mouvement du curseur de la
+barre de seuils. L'option <b>release</b> signifie que la
+visualisation n'est rafra&#238;chie qu'apr&#232;s avoir
+rel&#226;ch&#233; le curseur de la barre de seuils.</li>
+<li><b>Blink - D&#233;lai (ms)</b> permet de fixer le d&#233;lai
+d'attente en ms entre l'affichage de l'image acquise et
+l'affichage de l'image de r&#233;f&#233;rence et ainsi de
+suite.</li>
+<li><b>Nombre de boucles</b> permet de fixer le nombre de cycles
+de clignotement de l'image acquise et de l'image de
+r&#233;f&#233;rence pour r&#233;aliser la fonction blink.</li>
+<li><b>Enregistrement des images de r&#233;f&#233;rence</b>
+permet (<b>yes</b>) ou non (<b>no</b>) d'enregistrer les images
+de la nuit sous la forme compress&#233;e (.gzip) dans la base des
+images de r&#233;f&#233;rence (<strong>Personnel</strong>), soit
+pour ajouter une galaxie, soit pour remplacer une image de
+r&#233;f&#233;rence mal r&#233;solue par exemple.</li>
+</ul>
+<p>Toute modification d'un de ces param&#232;tres est
+valid&#233;e par un appui sur le bouton <strong>GO</strong>. Mais
+attention, le rafra&#238;chissement de la visualisation
+n&#233;cessite un red&#233;marrage de l'interface Tarot Sn Visu
+:</p>
+<img src="images/sn_tarot_inform.gif" alt="" height="126" width="413" />
+</body></html>

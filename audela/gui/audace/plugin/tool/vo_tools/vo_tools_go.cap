@@ -1,0 +1,204 @@
+#
+# Fichier : vo_tools_go.cap
+# Mise a jour $Id: vo_tools_go.cap 9350 2013-04-06 08:28:14Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(vo_tools_go,vo_tools)                  "Virtual\nObservatory"
+set caption(vo_tools_go,titre)                     "Virtual Observatory"
+set caption(vo_tools_go,help_titre)                "Help for this Tool"
+set caption(vo_tools_go,help_titre1)               "Help for the Tool:"
+set caption(vo_tools_go,aladin)                    "Run Aladin\n(VO Web Portal)"
+set caption(vo_tools_go,cone-search)               "Search for solar\nsystem bodies\nin a field of view"
+set caption(vo_tools_go,resolver)                  "Search for solar\nsystem bodies\naround a\ncelestial object"
+set caption(vo_tools_go,statut)                    "Status of\nSkyBoT Service"
+set caption(vo_tools_go,samp_menu_interop)         "Interop Menu"
+set caption(vo_tools_go,samp_menu_help)            "Help"
+set caption(vo_tools_go,samp_menu_loadvotable)     "Load VOTable"
+set caption(vo_tools_go,samp_menu_cleardisplay)    "Clear display"
+set caption(vo_tools_go,samp_menu_broadcastImg)    "Broadcast image"
+set caption(vo_tools_go,samp_menu_broadcastTab)    "Broadcast VOTable"
+set caption(vo_tools_go,samp_menu_broadcastSpe)    "Broadcast spectrum"
+set caption(vo_tools_go,samp_menu_connect)         "Connect"
+set caption(vo_tools_go,samp_menu_disconnect)      "Disconnect"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(vo_tools_go,vo_tools)               "Observatoire\nVirtuel"
+   set caption(vo_tools_go,titre)                  "Observatoire Virtuel"
+   set caption(vo_tools_go,help_titre)             "Aide de cet outil"
+   set caption(vo_tools_go,help_titre1)            "Aide de l'outil :"
+   set caption(vo_tools_go,aladin)                 "Lancer Aladin\n(Portail OV)"
+   set caption(vo_tools_go,cone-search)            "Recherche des\ncorps du Système\nSolaire dans un\nchamp de vue"
+   set caption(vo_tools_go,resolver)               "Recherche des\ncorps du Système\nSolaire autour\nd'un corps céleste"
+   set caption(vo_tools_go,statut)                 "Statut du service\nSkyBoT"
+   set caption(vo_tools_go,samp_menu_interop)      "Menu Interop"
+   set caption(vo_tools_go,samp_menu_help)         "Aide"
+   set caption(vo_tools_go,samp_menu_loadvotable)  "Charger une VOTable"
+   set caption(vo_tools_go,samp_menu_cleardisplay) "Effacer les objets"
+   set caption(vo_tools_go,samp_menu_broadcastImg) "Diffuser l'image"
+   set caption(vo_tools_go,samp_menu_broadcastTab) "Diffuser la VOTable"
+   set caption(vo_tools_go,samp_menu_broadcastSpe) "Diffuser le spectre"
+   set caption(vo_tools_go,samp_menu_connect)      "Connecter"
+   set caption(vo_tools_go,samp_menu_disconnect)   "Déconnecter"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(vo_tools_go,vo_tools)               "Osservatorio\nVirtuale"
+   set caption(vo_tools_go,titre)                  "Osservatorio Virtuale"
+   set caption(vo_tools_go,help_titre)             "Aiuto per questo tool"
+   set caption(vo_tools_go,help_titre1)            "Aiuto per lo tool:"
+   set caption(vo_tools_go,aladin)                 "Esegui Aladin\n(Web Portale OV)"
+   set caption(vo_tools_go,cone-search)            "Ricerca dei\ncorpi del\nsistema solare\nin un campo"
+   set caption(vo_tools_go,resolver)               "Ricerca dei corpi\ndel sistema solare\nattorno ad un\ncorpo celeste"
+   set caption(vo_tools_go,statut)                 "Stato del\nservizio SkyBot"
+   set caption(vo_tools_go,samp_menu_interop)      "Menu Interop"
+   set caption(vo_tools_go,samp_menu_help)         "Aiuto"
+   set caption(vo_tools_go,samp_menu_loadvotable)  "Load VOTable"
+   set caption(vo_tools_go,samp_menu_cleardisplay) "Clear display"
+   set caption(vo_tools_go,samp_menu_broadcastImg) "Diffusione dell'immagine"
+   set caption(vo_tools_go,samp_menu_broadcastTab) "Broadcast VOTable"
+   set caption(vo_tools_go,samp_menu_broadcastSpe) "Broadcast spectrum"
+   set caption(vo_tools_go,samp_menu_connect)      "Connettere"
+   set caption(vo_tools_go,samp_menu_disconnect)   "Sconnettere"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(vo_tools_go,vo_tools)               "Observatorio\nVisual"
+   set caption(vo_tools_go,titre)                  "Observatorio Visual"
+   set caption(vo_tools_go,help_titre)             "Ayuda para esta herramienta"
+   set caption(vo_tools_go,help_titre1)            "Ajuda para del herramienta:"
+   set caption(vo_tools_go,aladin)                 "Lanzar Aladin\n(Web Portal OV)"
+   set caption(vo_tools_go,cone-search)            "Buscar cuerpos\ndel sistema\nsolar en el\ncampo de visión"
+   set caption(vo_tools_go,resolver)               "Buscar cuerpos\ndel sistema\nsolar alrededor de\nun objeto celeste"
+   set caption(vo_tools_go,statut)                 "Estado del\nservicio SkyBoT"
+   set caption(vo_tools_go,samp_menu_interop)      "Menú Interop"
+   set caption(vo_tools_go,samp_menu_help)         "Ayuda"
+   set caption(vo_tools_go,samp_menu_loadvotable)  "Load VOTable"
+   set caption(vo_tools_go,samp_menu_cleardisplay) "Clear display"
+   set caption(vo_tools_go,samp_menu_broadcastImg) "Difundir la imagen"
+   set caption(vo_tools_go,samp_menu_broadcastTab) "Broadcast VOTable"
+   set caption(vo_tools_go,samp_menu_broadcastSpe) "Broadcast spectrum"
+   set caption(vo_tools_go,samp_menu_connect)      "Conectar"
+   set caption(vo_tools_go,samp_menu_disconnect)   "Desconectar"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(vo_tools_go,vo_tools)               "Virtuelle\nSternwarte"
+   set caption(vo_tools_go,titre)                  "Virtuelle Sternwarte"
+   set caption(vo_tools_go,help_titre)             "Hilfe für dieses Gerät"
+   set caption(vo_tools_go,help_titre1)            "Hilfe für die Gerät:"
+   set caption(vo_tools_go,aladin)                 "Aladin starten\n(Web Portal VS)"
+   set caption(vo_tools_go,cone-search)            "In einen\nAnsicht Feld\nSonnen System\nKörper Suchung"
+   set caption(vo_tools_go,resolver)               "Herum einen\nhimmlisch Körper\nSonnen System\nKörper Suchung"
+   set caption(vo_tools_go,statut)                 "Skybolt Wartung\nStatus"
+   set caption(vo_tools_go,samp_menu_interop)      "Interop Menü"
+   set caption(vo_tools_go,samp_menu_help)         "Hilfe"
+   set caption(vo_tools_go,samp_menu_loadvotable)  "Load VOTable"
+   set caption(vo_tools_go,samp_menu_cleardisplay) "Clear display"
+   set caption(vo_tools_go,samp_menu_broadcastImg) "Bild übertragen"
+   set caption(vo_tools_go,samp_menu_broadcastTab) "Broadcast VOTable"
+   set caption(vo_tools_go,samp_menu_broadcastSpe) "Broadcast spectrum"
+   set caption(vo_tools_go,samp_menu_connect)      "Anschließen"
+   set caption(vo_tools_go,samp_menu_disconnect)   "Abschließen"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(vo_tools_go,vo_tools)               "Observatório\nVirtual"
+   set caption(vo_tools_go,titre)                  "Observatório Virtual"
+   set caption(vo_tools_go,help_titre)             "Ajuda para esta ferramenta"
+   set caption(vo_tools_go,help_titre1)            "Ajuda para del ferramenta:"
+   set caption(vo_tools_go,aladin)                 "Iniciar Aladin\n(Portal OV)"
+   set caption(vo_tools_go,cone-search)            "Procura de\ncorpos do Sistema\nSolar\nobserváveis"
+   set caption(vo_tools_go,resolver)               "Procura de\ncorpos do Sistema\nSolar em torno\nde um corpo celeste"
+   set caption(vo_tools_go,statut)                 "Estado do serviço\nSkyBoT"
+   set caption(vo_tools_go,samp_menu_interop)      "Menu Interop"
+   set caption(vo_tools_go,samp_menu_help)         "Ajuda"
+   set caption(vo_tools_go,samp_menu_loadvotable)  "Load VOTable"
+   set caption(vo_tools_go,samp_menu_cleardisplay) "Clear display"
+   set caption(vo_tools_go,samp_menu_broadcastImg) "Difundir imagem"
+   set caption(vo_tools_go,samp_menu_broadcastTab) "Broadcast VOTable"
+   set caption(vo_tools_go,samp_menu_broadcastSpe) "Broadcast spectrum"
+   set caption(vo_tools_go,samp_menu_connect)      "Conectar"
+   set caption(vo_tools_go,samp_menu_disconnect)   "Desconectar"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(vo_tools_go,vo_tools)               "Virtuel\nObservatorium"
+   set caption(vo_tools_go,titre)                  "Virtuel Observatorium"
+   set caption(vo_tools_go,help_titre)             "Hjælp til dette værktøj"
+   set caption(vo_tools_go,help_titre1)            "Hjælp til i værktøj:"
+   set caption(vo_tools_go,aladin)                 "Start Aladin\n(VO Portal)"
+   set caption(vo_tools_go,cone-search)            "Søgning efter\nsolsystems\nelementer i\nsynsfelt"
+   set caption(vo_tools_go,resolver)               "Søgning efter\nsolsystems\nelementer omkring\net himmelobjekt"
+   set caption(vo_tools_go,statut)                 "Status på\nSkyBoT service"
+   set caption(vo_tools_go,samp_menu_interop)      "Kompatibilitets menu"
+   set caption(vo_tools_go,samp_menu_help)         "Hjælp"
+   set caption(vo_tools_go,samp_menu_loadvotable)  "Load VOTable"
+   set caption(vo_tools_go,samp_menu_cleardisplay) "Clear display"
+   set caption(vo_tools_go,samp_menu_broadcastImg) "Broadcast billede"
+   set caption(vo_tools_go,samp_menu_broadcastTab) "Broadcast VOTable"
+   set caption(vo_tools_go,samp_menu_broadcastSpe) "Broadcast spectrum"
+   set caption(vo_tools_go,samp_menu_connect)      "Tilslut"
+   set caption(vo_tools_go,samp_menu_disconnect)   "Afbryd"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(vo_tools_go,vo_tools)               "Virtual\nObservatory"
+   set caption(vo_tools_go,titre)                  "Virtual Observatory"
+   set caption(vo_tools_go,help_titre)             "Help for this Tool"
+   set caption(vo_tools_go,help_titre1)            "Help for the Tool:"
+   set caption(vo_tools_go,aladin)                 "Run Aladin\n(VO Web Portal)"
+   set caption(vo_tools_go,cone-search)            "Search for solar\nsystem bodies\nin a field of view"
+   set caption(vo_tools_go,resolver)               "Search for solar\nsystem bodies\naround a\ncelestial object"
+   set caption(vo_tools_go,statut)                 "Status of\nSkyBoT Service"
+   set caption(vo_tools_go,samp_menu_interop)      "Interop Menu"
+   set caption(vo_tools_go,samp_menu_help)         "Help"
+   set caption(vo_tools_go,samp_menu_loadvotable)  "Load VOTable"
+   set caption(vo_tools_go,samp_menu_cleardisplay) "Clear display"
+   set caption(vo_tools_go,samp_menu_broadcastImg) "Broadcast the image"
+   set caption(vo_tools_go,samp_menu_broadcastTab) "Broadcast VOTable"
+   set caption(vo_tools_go,samp_menu_broadcastSpe) "Broadcast spectrum"
+   set caption(vo_tools_go,samp_menu_connect)      "Connect"
+   set caption(vo_tools_go,samp_menu_disconnect)   "Disconnect"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(vo_tools_go,vo_tools)               "Virtual\nObservatory"
+   set caption(vo_tools_go,titre)                  "Virtual Observatory"
+   set caption(vo_tools_go,help_titre)             "Help for this Tool"
+   set caption(vo_tools_go,help_titre1)            "Help for the Tool:"
+   set caption(vo_tools_go,aladin)                 "Run Aladin\n(VO Web Portal)"
+   set caption(vo_tools_go,cone-search)            "Search for solar\nsystem bodies\nin a field of view"
+   set caption(vo_tools_go,resolver)               "Search for solar\nsystem bodies\naround a\ncelestial object"
+   set caption(vo_tools_go,statut)                 "Status of\nSkyBoT Service"
+   set caption(vo_tools_go,samp_menu_interop)      "Interop Menu"
+   set caption(vo_tools_go,samp_menu_help)         "Help"
+   set caption(vo_tools_go,samp_menu_loadvotable)  "Load VOTable"
+   set caption(vo_tools_go,samp_menu_cleardisplay) "Clear display"
+   set caption(vo_tools_go,samp_menu_broadcastImg) "Broadcast the image"
+   set caption(vo_tools_go,samp_menu_broadcastTab) "Broadcast VOTable"
+   set caption(vo_tools_go,samp_menu_broadcastSpe) "Broadcast spectrum"
+   set caption(vo_tools_go,samp_menu_connect)      "Connect"
+   set caption(vo_tools_go,samp_menu_disconnect)   "Disconnect"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================

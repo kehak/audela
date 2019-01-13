@@ -1,0 +1,20 @@
+TODOLIST
+
+- Analyse, pb de nom du repertoire cree : le mois deconne
+- analyse photometrique, quand la mesure plante, ca penalise la suite, il faudrait mettre 0
+
+- documentation 
+
+- Analyse rapport : il faut garder le remplissage des champs dans la session audela. 
+
+- CDL : utiliser la mesure du photocentre de psf_tool_box
+            
+- Analyse : Coder le calcul Immersion/Emersion en C
+
+- Faire les captions de l outil calcul
+- Faire un bouton log pour les fichiers intermediaire de la partie calcul
+- Finir l outil verif
+- Faire le traitement des Flats et des Darks.
+- debugger le pb de chargement du flux video sous linux
+- faire un rapport sous forme XML
+- Analyse, pb de nom du repertoire cree : le mois deconne

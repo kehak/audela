@@ -1,0 +1,45 @@
+    Website : http://www.audela.org
+
+FRANCAIS : Qu'est-ce que AudeLA ?
+==========
+
+AudeLA est un logiciel de pilotage d'instruments 
+astronomiques amateurs et de traitement d'images. 
+Sa particularité est de proposer une modularité 
+unique dans son domaine grâce a un puissant langage 
+de script. C'est le fruit du travail d'astronomes 
+amateurs, réalisé pendant leur temps libre, dans le 
+but d'ameliorer leurs conditions d'observation. 
+Leur souhait est de partager cet outil avec 
+d'autres personnes, tant astronomes amateurs 
+qu'informaticiens amateurs, afin de le faire 
+progresser : n'hésitez pas a nous contacter si 
+vous souhaitez apporter votre contribution.
+
+Ce logiciel est libre et gratuit. Reportez-vous 
+à la licence pour plus de details.
+
+L'installation ne dure que quelques secondes
+et occupe environ 75 Mo sur votre disque dur.
+
+ENGLISH : What is AudeLA?
+=========
+
+AudeLA is an astronomical software intended for 
+digital observations (CCD, cameras, Webcams, etc.).
+You can use it to drive astronomical instruments 
+and process images. Its originality lies in the fact 
+that it is entirely reprogrammable using a powerfull 
+script language.  It is the result of work carried 
+out in spare time by a group of amateur astronomers 
+in order to improve their observing technique.
+Their wish is to share that tool with other
+people, amateur astronomers, amateur computer
+scientists, to improve it further.  Contact us 
+if you want to help.
+
+This software is free and open-source. Read the 
+license agreements for more details.
+
+The installation takes only few seconds and requires
+about 75 MB of free disk space.

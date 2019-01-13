@@ -1,0 +1,30 @@
+#echo -----------------------------------------------------------
+#echo --- Note pour le developpement de l'interface de camera QSI
+#echo Les fichiers QSICamera.h et QSICamera.lib ne sont plus fournis par le
+#echo le fabriquant.  Ils sont generes automatiquement par VisualC++ v9.
+#echo Il faut auparavant enregistrer QSICamera.dll dans la base de registre
+#echo de Windows avec la commande regsvr32 sur le poste de developpement.
+
+#echo --- Note pour l'utilisation de l'interface de camera QSI
+#echo Avant de lancer Audela , l'utilisateur doit installer le driver de
+#echo la camera QSI disponible sur http://www.qsimaging.com
+#echo -----------------------------------------------------------
+
+CP= copy
+RM= -@del /f /q
+
+SOURCE=qsi
+EXTERNAL_LIB=..\lib
+
+build:
+
+install: build
+	if not exist $(EXTERNAL_LIB)      mkdir $(EXTERNAL_LIB)
+	$(CP) $(SOURCE)\lib\QSICamera.dll   $(EXTERNAL_LIB)
+	rem regsvr32 /s $(EXTERNAL_LIB)\QSICamera.dll
+	
+clean:
+	rem -@regsvr32 /u /s $(EXTERNAL_LIB)\QSICamera.dll
+	$(RM) $(EXTERNAL_LIB)\QSICamera.dll
+
+

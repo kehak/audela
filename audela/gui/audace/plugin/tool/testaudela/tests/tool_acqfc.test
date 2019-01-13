@@ -1,0 +1,129 @@
+
+set visuNo 1
+
+#-------------------------------------------------------------------------------
+#  connecte la camera audine
+#-------------------------------------------------------------------------------
+test tool_acqfc_connect_camera {connecte la camera} {AUDACE AUDINE} {
+  #--- je deconnecte la camera si elle est deja connectee
+   if {  [::confCam::isReady A] == 1 } {
+      ::confCam::stopItem A
+   }
+   set ::confCam::private(A,camName) "audine"
+   set ::conf(audine,port) "LPT1:"
+   ::confCam::configureCamera "A"
+   set result [confCam::isReady A]
+   return $result
+} "1"
+
+#-------------------------------------------------------------------------------
+# fait une acquisition et enregistre au format JPEG
+#-------------------------------------------------------------------------------
+test tool_acqfc_sauve_jpeg {sauvegarde JPG} {AUDACE AUDINE} {
+   #-- je selectionne l'outil acqfc
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,acquisition)" "$::caption(acqfc,menu)"
+   #--- je charge l'image m57.fit
+   loadima [file join $::conf(testaudela,rep_images) m57.fit]
+   #--- je selectionne le mode "une image"
+   ::testaudela::clicCombobox $::panneau(acqfc,$visuNo,This).mode.but "@0"
+   #--- je saisis le nom du fichier a enregistrer
+   ::testaudela::putEntry $::panneau(acqfc,$visuNo,This).mode.une.nom.entr "m57-j"
+   #--- je selectionne l'extension .jpg
+   ::testaudela::clicMenuButton  $::panneau(acqfc,$visuNo,This).mode.une.nom.extension ".jpg"
+   #--- je decoche l'index
+   ::testaudela::clicCheckButton $::panneau(acqfc,$visuNo,This).mode.une.index.case "0"
+   update
+   #--- j'execute la sauvegarde
+   ::testaudela::clicButton $::panneau(acqfc,$visuNo,This).mode.une.sauve
+
+   #--- je verifie que le fichier "m57-j.jpg" existe
+   set fileName [file join $::audace(rep_images) "m57-j.jpg"]
+   if { [file exists $fileName] == "0" } {
+      #--- je retourne une erreur
+      return "$fileName not found"
+   }
+
+   #--- j'efface le fichier
+   file delete $fileName
+   #--- je selectionne l'extension .fit
+   ::testaudela::clicMenuButton  $::panneau(acqfc,$visuNo,This).mode.une.nom.extension ".fit"
+   return 1
+} "1"
+
+#-------------------------------------------------------------------------------
+#  fait une acquisition d'une image
+#-------------------------------------------------------------------------------
+test tool_acqfc_acq_une_image {acquisition une image} {AUDACE AUDINE} {
+   #-- je selectionne l'outil acqfc
+   ::testaudela::clicMenu $visuNo $::caption(audace,menu,acquisition) $::caption(acqfc,menu)
+   #--- je selectionne le temps de pose, binning et le mode
+   set expTime 3
+   set binning "2x2"
+   set fileName "une_image"
+   set extension ".fit"
+   set fullFileName [file join $::audace(rep_images) "$fileName$extension" ]
+
+   #--- j'efface le fichier s'il existe deja
+   file delete $fullFileName
+
+   ::acqfc::startAcquisitionUneImage $visuNo $expTime $binning $fileName
+   #--- je selectionne l'extension .jpg
+   ::testaudela::clicMenuButton  $::panneau(acqfc,$visuNo,This).mode.une.nom.extension $extension
+
+   #--- je verifie que le fichier "une_image.fit" existe
+   if { [file exists $fullFileName] == "0" } {
+      #--- je retourne une erreur
+      return "$fileName not found"
+   } else {
+      #--- j'efface le fichier
+      file delete $fullFileName
+   }
+
+   return 1
+} "1"
+
+#-------------------------------------------------------------------------------
+#  fait une acquisition d'une image
+#-------------------------------------------------------------------------------
+test tool_acqfc_acq_une_image {acquisition série} {AUDACE AUDINE} {
+   #-- je selectionne l'outil acqfc
+   ::testaudela::clicMenu $visuNo $::caption(audace,menu,acquisition) $::caption(acqfc,menu)
+   #--- je selectionne le temps de pose, binning et le mode
+   set expTime 3
+   set binning "2x2"
+   set fileName "serie"
+   set extension ".fit"
+   set fullFileName1 [file join $::audace(rep_images) "${fileName}1$extension" ]
+   set fullFileName2 [file join $::audace(rep_images) "${fileName}2$extension" ]
+
+   #--- je selectionne l'extension .fit
+   ::testaudela::clicMenuButton  $::panneau(acqfc,$visuNo,This).mode.une.nom.extension $extension
+
+   ::acqfc::startAcquisitionSerieImage $visuNo $expTime $binning $fileName 2
+   #--- je verifie que les fichiers "serie1.fit" et serie1.fit existenet
+   if { [file exists $fullFileName1] == "0" } {
+      #--- je retourne une erreur
+      set result "$fullFileName1 not found"
+  } elseif { [file exists $fullFileName2] == 0 } {
+      #--- je retourne une erreur
+      set result "$fullFileName2 not found"
+   } else {
+      set result ""
+   }
+
+   #--- j'efface les fichiers
+   file delete $fullFileName1
+   file delete $fullFileName2
+
+   return $result
+} ""
+
+#-------------------------------------------------------------------------------
+#  deconnecte la camera
+#-------------------------------------------------------------------------------
+test tool_acqfc_disconnect_camera {deconnecte la camera} {AUDACE AUDINE} {
+   ::confCam::stopItem A
+   set result [::confCam::isReady A]
+   return $result
+} "0"
+

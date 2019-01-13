@@ -1,0 +1,304 @@
+#
+# Fichier : ascomcam.cap
+# Mise a jour $Id: ascomcam.cap 9969 2013-08-17 09:55:00Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(ascomcam,camera)                       "ASCOM"
+set caption(ascomcam,modele)                       "Camera Selection"
+
+set caption(ascomcam,configurer)                   "Set up"
+set caption(ascomcam,install)                      "%s V%s update completed."
+
+set caption(ascomcam,miroir_x)                     "Top/Bottom Reversal"
+set caption(ascomcam,miroir_y)                     "Left/Right Reversal"
+
+set caption(ascomcam,dimPixelX)                    "X Pixel Size (mum)"
+set caption(ascomcam,dimPixelY)                    "Y Pixel Size (mum)"
+
+set caption(ascomcam,manuel)                       "Manual"
+set caption(ascomcam,auto)                         "Automatic"
+
+set caption(ascomcam,rafraichir)                   "Reload"
+
+set caption(ascomcam,obtu_ouvert)                  "Open"
+set caption(ascomcam,obtu_ferme)                   "Closed"
+set caption(ascomcam,obtu_synchro)                 "Synchro"
+
+set caption(ascomcam,installNewVersion)            "Installation of library %s of plugin ascomcam v%s completed."
+
+set caption(ascomcam,port_camera)                  "ASCOM Driver"
+set caption(ascomcam,2points)                      ":"
+
+set caption(ascomcam,titre_site_web)               "Reference Web Site:"
+set caption(ascomcam,site_web_ref)                 "http://ascom-standards.org"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(ascomcam,camera)                    "ASCOM"
+   set caption(ascomcam,modele)                    "Choix de la caméra"
+
+   set caption(ascomcam,configurer)                "Configurer"
+   set caption(ascomcam,install)                   "La mise à jour de %s V%s est terminée."
+
+   set caption(ascomcam,miroir_x)                  "Inverser Haut/Bas"
+   set caption(ascomcam,miroir_y)                  "Inverser Gauche/Droite"
+
+   set caption(ascomcam,dimPixelX)                 "Taille des pixels X (mum)"
+   set caption(ascomcam,dimPixelY)                 "Taille des pixels Y (mum)"
+
+   set caption(ascomcam,manuel)                    "Manuel"
+   set caption(ascomcam,auto)                      "Automatique"
+
+   set caption(ascomcam,rafraichir)                "Rafraîchir"
+
+   set caption(ascomcam,obtu_ouvert)               "Ouvert"
+   set caption(ascomcam,obtu_ferme)                "Fermé"
+   set caption(ascomcam,obtu_synchro)              "Synchro"
+
+   set caption(ascomcam,installNewVersion)         "Fin de l'installation de la librairie %s du plugin ascomcam v%s."
+
+   set caption(ascomcam,port_camera)               "Driver ASCOM"
+   set caption(ascomcam,2points)                   ":"
+
+   set caption(ascomcam,titre_site_web)            "Site Web de référence :"
+   set caption(ascomcam,site_web_ref)              "http://ascom-standards.org"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(ascomcam,camera)                    "ASCOM"
+   set caption(ascomcam,modele)                    "Selezione della camera"
+
+   set caption(ascomcam,configurer)                "Configurare"
+   set caption(ascomcam,install)                   "L'aggiornamento di %s V%s è terminato."
+
+   set caption(ascomcam,miroir_x)                  "Inversione Alto/Basso"
+   set caption(ascomcam,miroir_y)                  "Inversione Sinistra/Destra"
+
+   set caption(ascomcam,dimPixelX)                 "Dimensione dei pixel X (mum)"
+   set caption(ascomcam,dimPixelY)                 "Dimensione dei pixel Y (mum)"
+
+   set caption(ascomcam,manuel)                    "Manuale"
+   set caption(ascomcam,auto)                      "Automatico"
+
+   set caption(ascomcam,rafraichir)                "Rinfresca"
+
+   set caption(ascomcam,obtu_ouvert)               "Aperto"
+   set caption(ascomcam,obtu_ferme)                "Chiuso"
+   set caption(ascomcam,obtu_synchro)              "Sincronizza"
+
+   set caption(ascomcam,installNewVersion)         "Installazione della libreria %s del plugin ascomcam v%s terminata."
+
+   set caption(ascomcam,port_camera)               "Driver ASCOM"
+   set caption(ascomcam,2points)                   ":"
+
+   set caption(ascomcam,titre_site_web)            "Sito Web di riferimento:"
+   set caption(ascomcam,site_web_ref)              "http://ascom-standards.org"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(ascomcam,camera)                    "ASCOM"
+   set caption(ascomcam,modele)                    "Selección de cámara"
+
+   set caption(ascomcam,configurer)                "Configurar"
+   set caption(ascomcam,install)                   "Actualización de %s V%s terminada."
+
+   set caption(ascomcam,miroir_x)                  "Invertir Arriba/Abajo"
+   set caption(ascomcam,miroir_y)                  "Invertir Izquierda/Derecha"
+
+   set caption(ascomcam,dimPixelX)                 "Tamaño de píxeles X (mum)"
+   set caption(ascomcam,dimPixelY)                 "Tamaño de píxeles Y (mum)"
+
+   set caption(ascomcam,manuel)                    "Manual"
+   set caption(ascomcam,auto)                      "Automático"
+
+   set caption(ascomcam,rafraichir)                "Recargar"
+
+   set caption(ascomcam,obtu_ouvert)               "Abierto"
+   set caption(ascomcam,obtu_ferme)                "Cerrado"
+   set caption(ascomcam,obtu_synchro)              "Sincro"
+
+   set caption(ascomcam,installNewVersion)         "Fin de la instalación de la libreria %s del plugin ascomcam v%s."
+
+   set caption(ascomcam,port_camera)               "Driver ASCOM"
+   set caption(ascomcam,2points)                   ":"
+
+   set caption(ascomcam,titre_site_web)            "Sitio Web de referencia:"
+   set caption(ascomcam,site_web_ref)              "http://ascom-standards.org"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(ascomcam,camera)                    "ASCOM"
+   set caption(ascomcam,modele)                    "Kamera Auswahl"
+
+   set caption(ascomcam,configurer)                "Konfigurieren"
+   set caption(ascomcam,install)                   "%s V%s Update beendet."
+
+   set caption(ascomcam,miroir_x)                  "Oben/Unten umkehren"
+   set caption(ascomcam,miroir_y)                  "Links/Rechts umkehren"
+
+   set caption(ascomcam,dimPixelX)                 "X Rasterpunkten Größe (mum)"
+   set caption(ascomcam,dimPixelY)                 "Y Rasterpunkten Größe (mum)"
+
+   set caption(ascomcam,manuel)                    "Manuell"
+   set caption(ascomcam,auto)                      "Automatisch"
+
+   set caption(ascomcam,rafraichir)                "Aktualisieren"
+
+   set caption(ascomcam,obtu_ouvert)               "Offen"
+   set caption(ascomcam,obtu_ferme)                "Geschlossen"
+   set caption(ascomcam,obtu_synchro)              "Synchro"
+
+   set caption(ascomcam,installNewVersion)         "Die Installation der Bibliothek %s ist vervollständigt der Plugin ascomcam v%s."
+
+   set caption(ascomcam,port_camera)               "ASCOM Driver"
+   set caption(ascomcam,2points)                   ":"
+
+   set caption(ascomcam,titre_site_web)            "Referenz Webseite:"
+   set caption(ascomcam,site_web_ref)              "http://ascom-standards.org"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(ascomcam,camera)                    "ASCOM"
+   set caption(ascomcam,modele)                    "Selecção da câmara"
+
+   set caption(ascomcam,configurer)                "Configuração"
+   set caption(ascomcam,install)                   "Actualização de %s V%s concluída."
+
+   set caption(ascomcam,miroir_x)                  "Inverter Cima/Baixo"
+   set caption(ascomcam,miroir_y)                  "Inverter Esquerda/Direita"
+
+   set caption(ascomcam,dimPixelX)                 "Tamanho do Pixel X (mum)"
+   set caption(ascomcam,dimPixelY)                 "Tamanho do Pixel Y (mum)"
+
+   set caption(ascomcam,manuel)                    "Manual"
+   set caption(ascomcam,auto)                      "Automático"
+
+   set caption(ascomcam,rafraichir)                "Actualizar"
+
+   set caption(ascomcam,obtu_ouvert)               "Aberto"
+   set caption(ascomcam,obtu_ferme)                "Fechado"
+   set caption(ascomcam,obtu_synchro)              "Sincro"
+
+   set caption(ascomcam,installNewVersion)         "Instalação da livraria %s do plugin ascomcam v%s concluída."
+
+   set caption(ascomcam,port_camera)               "Driver ASCOM"
+   set caption(ascomcam,2points)                   ":"
+
+   set caption(ascomcam,titre_site_web)            "Site Web de referência:"
+   set caption(ascomcam,site_web_ref)              "http://ascom-standards.org"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(ascomcam,camera)                    "ASCOM"
+   set caption(ascomcam,modele)                    "Camera Selection"
+
+   set caption(ascomcam,configurer)                "Set up"
+   set caption(ascomcam,install)                   "%s V%s update completed."
+
+   set caption(ascomcam,miroir_x)                  "Top/Bottom Reversal"
+   set caption(ascomcam,miroir_y)                  "Left/Right Reversal"
+
+   set caption(ascomcam,dimPixelX)                 "X Pixel Size (mum)"
+   set caption(ascomcam,dimPixelY)                 "Y Pixel Size (mum)"
+
+   set caption(ascomcam,manuel)                    "Manual"
+   set caption(ascomcam,auto)                      "Automatic"
+
+   set caption(ascomcam,rafraichir)                "Reload"
+
+   set caption(ascomcam,obtu_ouvert)               "Open"
+   set caption(ascomcam,obtu_ferme)                "Closed"
+   set caption(ascomcam,obtu_synchro)              "Synchro"
+
+   set caption(ascomcam,installNewVersion)         "Installation of library %s of plugin ascomcam v%s completed."
+
+   set caption(ascomcam,port_camera)               "ASCOM Driver"
+   set caption(ascomcam,2points)                   ":"
+
+   set caption(ascomcam,titre_site_web)            "Reference Web Site:"
+   set caption(ascomcam,site_web_ref)              "http://ascom-standards.org"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(ascomcam,camera)                    "ASCOM"
+   set caption(ascomcam,modele)                    "Camera Selection"
+
+   set caption(ascomcam,configurer)                "Set up"
+   set caption(ascomcam,install)                   "%s V%s update completed."
+
+   set caption(ascomcam,miroir_x)                  "Top/Bottom Reversal"
+   set caption(ascomcam,miroir_y)                  "Left/Right Reversal"
+
+   set caption(ascomcam,dimPixelX)                 "X Pixel Size (mum)"
+   set caption(ascomcam,dimPixelY)                 "Y Pixel Size (mum)"
+
+   set caption(ascomcam,manuel)                    "Manual"
+   set caption(ascomcam,auto)                      "Automatic"
+
+   set caption(ascomcam,rafraichir)                "Reload"
+
+   set caption(ascomcam,obtu_ouvert)               "Open"
+   set caption(ascomcam,obtu_ferme)                "Closed"
+   set caption(ascomcam,obtu_synchro)              "Synchro"
+
+   set caption(ascomcam,installNewVersion)         "Installation of library %s of plugin ascomcam v%s completed."
+
+   set caption(ascomcam,port_camera)               "ASCOM Driver"
+   set caption(ascomcam,2points)                   ":"
+
+   set caption(ascomcam,titre_site_web)            "Reference Web Site:"
+   set caption(ascomcam,site_web_ref)              "http://ascom-standards.org"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(ascomcam,camera)                    "ASCOM"
+   set caption(ascomcam,modele)                    "Camera Selection"
+
+   set caption(ascomcam,configurer)                "Set up"
+   set caption(ascomcam,install)                   "%s V%s update completed."
+
+   set caption(ascomcam,miroir_x)                  "Top/Bottom Reversal"
+   set caption(ascomcam,miroir_y)                  "Left/Right Reversal"
+
+   set caption(ascomcam,dimPixelX)                 "X Pixel Size (mum)"
+   set caption(ascomcam,dimPixelY)                 "Y Pixel Size (mum)"
+
+   set caption(ascomcam,manuel)                    "Manual"
+   set caption(ascomcam,auto)                      "Automatic"
+
+   set caption(ascomcam,rafraichir)                "Reload"
+
+   set caption(ascomcam,obtu_ouvert)               "Open"
+   set caption(ascomcam,obtu_ferme)                "Closed"
+   set caption(ascomcam,obtu_synchro)              "Synchro"
+
+   set caption(ascomcam,installNewVersion)         "Installation of library %s of plugin ascomcam v%s completed."
+
+   set caption(ascomcam,port_camera)               "ASCOM Driver"
+   set caption(ascomcam,2points)                   ":"
+
+   set caption(ascomcam,titre_site_web)            "Reference Web Site:"
+   set caption(ascomcam,site_web_ref)              "http://ascom-standards.org"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

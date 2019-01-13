@@ -1,0 +1,4 @@
+LIBRARY libeshel
+EXPORTS Eshel_Init @1
+
+

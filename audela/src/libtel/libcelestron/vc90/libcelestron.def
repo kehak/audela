@@ -1,0 +1,2 @@
+LIBRARY libcelestron
+EXPORTS Celestron_Init @1

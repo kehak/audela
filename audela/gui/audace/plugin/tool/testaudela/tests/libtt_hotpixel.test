@@ -1,0 +1,108 @@
+#--- je recupere le buffer de la premiere visu
+set bufNo [::confVisu::getBufNo 1]
+
+#-------------------------------------------------------------------------------
+test hotpixel {imaseries HOT_PIXEL corrige un pixel chaud } {  } {
+
+   #---- je fabrique un dark intensite=1100
+   buf$bufNo setpixels CLASS_GRAY 768 512 FORMAT_FLOAT COMPRESS_NONE 0
+   buf$bufNo setkwd { NAXIS  2 short "" "" }
+   buf$bufNo setkwd { NAXIS1 768 short "" "" }
+   buf$bufNo setkwd { NAXIS2 512 short "" "" }
+   buf$bufNo offset 1100
+   #--- j'ajoute un pixel chaud
+   buf$bufNo setpix { 100 50 } 32000
+   buf$bufNo setpix { 100 51 } 32000
+   buf$bufNo save [file join $::audace(rep_images) "hotpixel-dark.fit"]
+   #---
+   set hotPixelList { P 100 50 P 100 51 }
+   #--- je supprime le fichier de sortie s'il existait ddeja
+   file delete [file join $::audace(rep_images) "hotpixel-repared1.fit"]
+   #--- je corrige les pixels chauds
+   ttscript2 "IMA/SERIES  \"$::audace(rep_images)\" \"hotpixel-dark.fit\"  * * \"\" \"$::audace(rep_images)\" hotpixel-repared 1 .fit HOTPIXEL \"HOT_PIXEL_LIST=$hotPixelList\"  "
+   buf$bufNo load [file join $::audace(rep_images) "hotpixel-repared1.fit"]
+   set pix [expr int([lindex [buf$bufNo getpix { 100 50 }]  1])]
+
+} "1100"
+
+#-------------------------------------------------------------------------------
+test hotpixel_subdark {imaseries SUBDARK corrige un pixel chaud } {  } {
+
+##console::disp "$::audace(rep_images)\n"
+   #---- je fabrique une image
+   buf$bufNo setpixels CLASS_GRAY 768 512 FORMAT_FLOAT COMPRESS_NONE 0
+   buf$bufNo setkwd { NAXIS  2 short "" "" }
+   buf$bufNo setkwd { NAXIS1 768 short "" "" }
+   buf$bufNo setkwd { NAXIS2 512 short "" "" }
+
+   #--- j'enregistre le BIAS
+   buf$bufNo offset 1000
+   buf$bufNo save [file join $::audace(rep_images) "hotpixel-bias.fit"]
+
+   #--- j'enregistre le DARK hotpixel-dark.fit
+   buf$bufNo offset 100
+   buf$bufNo setpix { 100 50 } 32000
+   buf$bufNo setkwd [list EXPTIME 60 float "" "" ]
+   buf$bufNo save [file join $::audace(rep_images) "hotpixel-dark.fit"]
+
+   buf$bufNo offset 50
+   buf$bufNo setpix { 100 50 } 32000
+   buf$bufNo setkwd [list EXPTIME 60 float "" "" ]
+   #--- j'enregistre l'objet dans  hotpixel-object1.fit
+   buf$bufNo save [file join $::audace(rep_images) "hotpixel-object1.fit"]
+   #--- j'enregistre l'objet dans  hotpixel-object2.fit
+   buf$bufNo save [file join $::audace(rep_images) "hotpixel-object2.fit"]
+
+   #---
+   set hotPixelList { P 100 50 }
+   #--- je supprime le fichier de sortie s'il existait deja
+   file delete [file join $::audace(rep_images) "hotpixel-repared1.fit"]
+   file delete [file join $::audace(rep_images) "hotpixel-repared2.fit"]
+   #--- je corrige les pixels chauds
+   ttscript2 "IMA/SERIES  \"$::audace(rep_images)\" \"hotpixel-object1.fit hotpixel-object2.fit\"  * * \"\" \"$::audace(rep_images)\" hotpixel-repared 1 .fit SUBDARK  \"dark=[file join $::audace(rep_images) hotpixel-dark.fit]\" \"bias=[file join $::audace(rep_images) hotpixel-bias.fit]\" \"HOT_PIXEL_LIST=$hotPixelList\"  "
+   buf$bufNo load [file join $::audace(rep_images) "hotpixel-repared1.fit"]
+   set pix [expr int([lindex [buf$bufNo getpix { 100 50 }]  1])]
+
+   file delete [file join $::audace(rep_images) "hotpixel-bias.fit"]
+   file delete [file join $::audace(rep_images) "hotpixel-dark.fit"]
+   file delete [file join $::audace(rep_images) "hotpixel-object1.fit"]
+   file delete [file join $::audace(rep_images) "hotpixel-object2.fit"]
+   file delete [file join $::audace(rep_images) "hotpixel-repared1.fit"]
+   file delete [file join $::audace(rep_images) "hotpixel-repared2.fit"]
+   return $pix
+} "50"
+
+#-------------------------------------------------------------------------------
+test hotpixel_add_dark {imastack ADD corrige un pixel chaud } {  } {
+
+   #---- je fabrique un dark
+   buf$bufNo setpixels CLASS_GRAY 768 512 FORMAT_FLOAT COMPRESS_NONE 0
+   buf$bufNo setkwd { NAXIS  2 short "" "" }
+   buf$bufNo setkwd { NAXIS1 768 short "" "" }
+   buf$bufNo setkwd { NAXIS2 512 short "" "" }
+   buf$bufNo offset 1100
+   #--- j'ajoute un pixel dans le fichier hotpixel-dark1.fit
+   buf$bufNo setpix { 100 50 } 32000
+   buf$bufNo save [file join $::audace(rep_images) "hotpixel-dark1.fit"]
+
+   #--- j'ajoute un pixel dans le fichier hotpixel-dark2.fit
+   buf$bufNo offset 200
+   buf$bufNo setpix { 100 50 } 32000
+   buf$bufNo save [file join $::audace(rep_images) "hotpixel-dark2.fit"]
+   #---
+   set hotPixelList { P 100 50 }
+   #--- je supprime le fichier de sortie s'il existait ddeja
+   file delete [file join $::audace(rep_images) "hotpixel-sum.fit"]
+   #--- je corrige les pixels chauds
+   ttscript2 "IMA/STACK  \"$::audace(rep_images)\" \"hotpixel-dark1.fit hotpixel-dark2.fit\"  * * \"\" \"$::audace(rep_images)\" hotpixel-sum . .fit ADD \"HOT_PIXEL_LIST=$hotPixelList\"  "
+   ###ttscript2 "IMA/STACK  \"$::audace(rep_images)\" \"hotpixel-dark1.fit hotpixel-dark2.fit\"  * * \"\" \"$::audace(rep_images)\" hotpixel-sum . .fit ADD  "
+   buf$bufNo load [file join $::audace(rep_images) "hotpixel-sum.fit"]
+   set pix [expr int([lindex [buf$bufNo getpix { 100 50 }]  1])]
+
+   file delete [file join $::audace(rep_images) "hotpixel-dark1.fit"]
+   file delete [file join $::audace(rep_images) "hotpixel-dark2.fit"]
+   file delete [file join $::audace(rep_images) "hotpixel-sum.fit"]
+
+   return $pix
+} "2400"
+

@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Focalisation</title>
+</head>
+
+<body>
+<p class="date">Date de mise &#224; jour : 29 août 2013</p>
+<h1>Focalisation</h1>
+<p>La focalisation consiste à régler la position de la
+caméra sur l'axe optique du télescope de façon
+à avoir les images les plus nettes possibles. Dans le menu
+déroulant <b>Caméra</b>, sélectionner
+<b>Focalisation</b>.</p>
+<p>Le processus est simple :<br />
+- Faire varier la mise au point (en agissant manuellement ou par
+des moteurs).<br />
+- Mesurer le résultat (intensité, FWHM, contraste, HFD)
+dans une petite fenêtre autour de l'étoile cible.<br />
+- Choisir la position optimale (manuellement ou avec un compteur
+de pas). C'est certainement cette étape qui est la plus
+difficile car, à défaut de pouvoir reproduire la
+position, il faut se contenter d'observer la succession des
+résultats (cf. les illustrations ci-dessous
+réalisées sur la même série d'images).<br />
+Note : HFD (Half Flux Diameter) donne le diamètre contenant
+50% du flux sans faire l'hypothèse d'une répartition
+gaussienne (cas de FWHM). Elles peuvent être très
+proches ou très différentes notamment en cas de forte
+défocalisation.</p>
+<h2>Configurations de l'outil<br />
+</h2>
+<p>L'outil comporte a minima ce qui est nécessaire à
+l'acquisition (centrage, fenêtrage, temps de pose). Sa
+configuration s'adapte au focuser (ou à son absence) et
+permet de suivre la variation de la qualité de la mise au
+point à l'aide d'une fenêtre d'informations et d'un
+graphique gradué en numéro d'image ou en pas
+compteur. Ces graphiques ne peuvent être fermés durant
+les opérations de fenêtrage.</p>
+<table>
+<tbody>
+<tr>
+<th align="center" width="15">Configuration</th>
+<th align="center">Outil</th>
+<th align="center">Suivi de la qualité d'une image</th>
+<th align="center">Suivi des réglages successifs de la mise
+au point</th>
+</tr>
+<tr>
+<td align="center" width="15">Pas de focuser</td>
+<td align="center"><img style="width: 132px; height: 358px;" src="images/pas_focuser.gif" /></td>
+<td align="center"><img style="width: 109px; height: 147px;" src="images/qualite_foc.gif" /></td>
+<td align="center" width="330"><img style="width: 325px; height: 396px;" src="images/graf_4.gif" /></td>
+</tr>
+<tr>
+<td align="center" width="15">Focuser manuel (focuserlx200,
+focuserjmi, focusert193)</td>
+<td align="center"><img style="width: 134px; height: 438px;" src="images/focuser_motorise.gif" /></td>
+<td align="center"><img style="width: 109px; height: 147px;" src="images/qualite_foc.gif" /></td>
+<td align="center" width="330"><img style="width: 325px; height: 396px;" src="images/graf_4.gif" /></td>
+</tr>
+<tr>
+<td align="center" width="15">Focusers automatiques
+(focuseraudecom, usb_focus)</td>
+<td align="center"><img style="width: 132px; height: 661px;" src="images/focus_auto.gif" /></td>
+<td align="center"><img style="width: 109px; height: 147px;" src="images/qualite_foc.gif" /></td>
+<td align="center" width="330"><img style="width: 306px; height: 520px;" src="images/graph_HFD.gif" /><br />
+Cette fenêtre comporte, outre le graphique principal du HFD
+en fonction du nombre de pas, une représentation
+schématique de la position de l'étoile dans l'image
+initiale (en haut à droite), une coupe horizontale du flux
+mesuré sur toute la hauteur de la fenêtre (en haut au
+centre) et la représentation de l'intégrale du flux en
+fonction de la distance au centre (en haut à droite), la
+focalisation est d'autant meilleure que la pente est raide.</td>
+</tr>
+</tbody>
+</table>
+<h2>Les acquisitions</h2>
+<h3>Type d'images</h3>
+<p>Si des images RAW ou RGB sont acquises avec des webcam ou des APN,
+le plan vert en est extrait et les mesures sont réalisées sur lui.
+Compte tenu de la durée des opérations de conversion,
+notamment pour des images de grande taille,
+il est préférable de travailler en N&B.</p>
+<h3>Stabilisation</h3>
+<p>Une fenêtre de saisie permet de programmer le délai de stabilisation
+en ms (500 par défaut) après un mouvement du focuser et avant d'acquérir une image :<br />
+le déplacement de celui-ci introduit des vibrations spécifiques à chaque instrument,
+il convient de trouver la bonne valeur.</p>
+<h3>Centrage</h3>
+<p>Pour commencer cette phase de recherche de la meilleure
+focalisation, il faut débuter par une acquisition en mode
+<b>Centrage</b>. Un appui sur le bouton <b>GO CCD</b> permet de
+faire une première image avec ce mode. Elle se fait
+automatiquement en binning 2x2 (donc en définition moyenne).
+Elle a pour but de choisir une étoile dans le champ pour
+régler la focalisation.</p>
+<p>Pendant l'acquisition de cette image, le bouton <b>R.A.Z.</b>
+(remise à zéro) se transforme en <b>Stop</b>, il est
+donc possible d'arrêter l'acquisition en cours si un
+problème est détecté (mauvais temps de pose par
+exemple). Ensuite, après l'affichage de l'image nouvellement
+acquise ce bouton récupère la fonction
+<b>R.A.Z.</b>.</p>
+<p>Si l'option <b>Avancement de l'acquisition</b> est
+cochée, une barre de progression du temps s'ouvre :</p>
+<p align="center"><img style="width: 220px; height: 108px;" src="images/suivi_pose.gif" /></p>
+<h3>Fenêtrage manuel</h3>
+<p>Sur l'image acquise, choisir une étoile suffisamment
+brillante (si possible de magnitude comprise entre 2 et 7) mais
+qui ne sature pas le capteur CCD.</p>
+Cette sélection s'effectue avec la souris en encadrant
+l'étoile choisie d'un rectangle (rectangle bleu sur
+l'étoile la plus à gauche) avec le bouton gauche
+appuyé.
+<p align="center"><img style="width: 324px; height: 217px;" src="images/centrage.gif" /></p>
+<p>Activer <b>Fenêtrage manuel</b> en appuyant avec le
+bouton gauche de la souris sur le bouton dédié, puis
+<b>GO CCD</b>. Dès lors les acquisitions se font en mode
+rafale avec le temps de pose sélectionné. Le graphique
+spécifique s'ouvre. Il est toujours possible de faire un
+<b>Stop</b> entre deux acquisitions, par exemple pour modifier la
+mise au point en mode manuel.</p>
+<p>Les images affichées correspondent au contenu de la
+boîte de sélection :</p>
+<p align="center"><img style="width: 183px; height: 145px;" src="images/imagette.gif" /></p>
+<p>Dans tous les cas les statistiques (intensité, FWHM en x,
+FWHM en y, contraste, HFD) sont réalisées sur l'image
+dont le fond du ciel a été normalisé à 0.</p>
+<h3>Fenêtrage automatique</h3>
+<p>Dans le menu des modes d'acquisition existe le mode
+<b>Fenêtrage automatique</b> à n'utiliser que si
+l'image acquise lors du centrage est de bonne qualité (pas
+de pixel chaud), si le nombre d'étoiles n'est pas trop
+important et si l'étoile de référence a
+été soigneusement choisie (cas des télescopes
+automatisés). L'étape de sélection d'une
+boîte est alors réalisée automatiquement.</p>
+<h3>Recherche de la meilleure mise au point</h3>
+<h4>En l'absence de focuser</h4>
+<p>Il faut affiner la mise au point de façon à
+minimiser les valeurs des fwhm (en x et en y) et à maximiser
+celles de l'intensité et du contraste. Examiner les valeurs
+affichées dans les graphiques (cf. les illustrations du
+paragraphe Configuration de l'outil). Pour modifier la mise au
+point, interrompre le mode rafale en appuyant sur le bouton
+<b>Stop</b> avant de faire une nouvelle acquisition avec le
+bouton <b>GO CCD</b>. Attention le bouton <b>R.A.Z.</b> a pour
+effet d'effacer le contenu des graphiques.</p>
+<h4>Focuser ne disposant pas d'un compteur de position</h4>
+<p>Le processus est identique au précédent mis à
+part la modification de la mise au point qui s'effectue en
+agissant sur le moteur du focuser par l'intermédiaire des
+boutons + ou - :</p>
+<p align="center"><img style="width: 128px; height: 130px;" src="images/focus_manuel.gif" /></p>
+<h4>Focuser disposant d'un compteur de position</h4>
+<table>
+<tbody><tr>
+<td><img style="width: 135px; height: 224px;" src="images/robofocus.gif" /></td>
+<td>Il faut affiner la mise au point de façon à
+minimiser le HFD (demi-diamètre) (cf. les illustrations du
+paragraphe Configuration de l'outil). Le graphique indique
+notamment la valeur de la position correspondant à
+l'intersection des deux branches du V et proche de
+l'optimum.<br />
+L'outil comporte donc les commandes nécessaires pour
+initialiser le focuser, demander une position précise, lire
+sa position actuelle ou explorer un intervalle de pas, y compris
+en répétant les mesures.</td>
+</tr>
+</tbody></table>
+<h4>Simulation</h4>
+<p>Une dernière case à cocher <b>Simulation</b> permet
+d'explorer l'ensemble du domaine d'un focuser réel (AudeCom
+ou USB_Focus) ou virtuel en pointant
+<ul>
+<li>l'étoile HIP 13367,</li>
+<li>avec une caméra Audine Kaf-401ME virtuelle,</li>
+<li>et le télescope décrit (nom, diamètre, focale), peut être le vôtre ?, dans le panneau du menu <b>Configuration/Optique...</b>
+</ul>
+Bien entendu, il ne s'agit que d'une simulation sans image de référence !<br />
+Pour lancer le processus, il suffit de :</p>
+<ul>
+<li>Cocher la case <b>Simulation</b>,</li>
+<li>Eventuellement modifier le temps d'exposition,</li>
+<li>Définir les valeurs pour les focusers <b>focuseraudecom</b> ou <b>usb_focus</b>
+et rien pour tous les autres focusers,</li>
+<li>Appuyer sur <b>GO CCD</b>,</li>
+<li>Lorsque l'image est affichée faire un fenêtrage
+manuel ou automatique,</li>
+<li>Re-appuyer sur <b>GO CCD</b>.</li>
+</ul>
+<p>Si un focuser <b>focuseraudecom</b> ou <b>usb_focus</b> est
+connecté, il ira d'abord à la position initiale, puis
+progressera entre chaque image.<br />
+Dans le cas contraire, le déplacement sera virtuel.</p>
+<p>Le graphique correspondant au focuser sélectionné
+s'affichera et se remplira automatiquement.</p>
+<p>L'appui sur le bouton <b>Stop</b> interrompt la simulation et
+repositionne le menu sur Centrage.</p>
+<h2>Fichier de log</h2>
+<p>Un fichier foc.log est créé à chaque session.
+Un <b>Copier/Coller</b> permet de récupérer les valeurs
+dans un tableur.</p>
+</body></html>

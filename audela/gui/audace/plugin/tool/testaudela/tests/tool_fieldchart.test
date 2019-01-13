@@ -1,0 +1,98 @@
+
+   global caption
+   set visuNo "1"
+   set w $::audace(hCanvas)
+
+#-------------------------------------------------------------------------------
+test carte_de_champ {traite m45_champ.fit} -constraints {AUDACE} -setup {
+
+   set old_zoom [ ::confVisu::getZoom $visuNo ]
+   #--   je passe le zoom a 1
+   ::confVisu::setZoom $visuNo 1
+   #--   je charge le package fieldchart
+   package require fieldchart
+   #--- je demarre l'outil
+   ::confVisu::selectTool $visuNo ::fieldchart
+
+} -body {
+
+   #--   je charge m45_champ dans la visu1
+   loadima [file join $::conf(testaudela,rep_images) m45_champ.fit]
+   #--   clic sur le menu analyse->carte de champ
+   ::testaudela::clicMenu $visuNo "$caption(audace,menu,analysis)" "$caption(fieldchart,carte_champ)"
+   #--   je selectionne le catalogue MICROCAT
+   ::testaudela::clicCombobox .audace.tool.fieldchart.usr.1.cata "MicroCat"
+   #--   je regle la magnitude limite sur 8
+   set ::fieldchart::widget(fieldchart,magmax) 8
+   #--   je clique sur le bouton "Récupérer les parametres de l'image
+   ::testaudela::clicButton ".audace.tool.fieldchart.usr.2.but3"
+   #--   je clique sur le bouton "Appliquer"
+   ::testaudela::clicButton ".audace.tool.fieldchart.cmd.appliquer"
+
+   #--   controle
+   set result 0
+   #--   je verifie que les CRPIX ont les bonnes valeurs
+   if { $::fieldchart(Crpix1) == 320.00 } { incr result }
+   if { $::fieldchart(Crpix2) == 240.00 } { incr result }
+   #--   je verifie l'existence de 33 tags chart
+   if { [llength [ $w find withtag chart ] ] == 33 } { incr result }
+
+   #--   j'isole les caracteristiques de l'etoile N°30
+   set star_ref [ lindex $::etoiles 30 ]
+   #--   je cherche le N° d'item correspondant
+   set itemNo [ ::fieldchart::getItemNo $w $star_ref ]
+   #--   j'identifie le centre de cet item
+   lassign [ ::polydraw::center $visuNo $w $itemNo ] x1 y1
+   #--   je convertis les coordonnees picture de la cible en coordonnees canvas
+   set cible [ list 126.0 202.0 ]
+   lassign [ ::confVisu::picture2Canvas $visuNo $cible ]  x2 y2
+   #--   je simule la pression sur B1
+   event generate $w <ButtonPress-1> -x $x1 -y $y1
+   #--   je simule le relachement de B1
+   event generate $w <ButtonRelease-1> -x $x2 -y $y2
+
+   #--   controle
+   #--   je cherche le N° d'item correspondant a l'etoile
+   set itemNo [ $w find closest $x2 $y2 ]
+   #--   je cherche les coordonnees du centre de ce point
+   set coords [ ::polydraw::center $visuNo $w $itemNo ]
+   #--   je convertis les coordonnees canvas en coordonnees picture
+   set coords [ ::confVisu::canvas2Picture $visuNo $coords ]
+   #--   je verifie que les CRPIX ont les bonnes valeurs
+   if { $::fieldchart(Crpix1) == 249.399292 } { incr result }
+   if { $::fieldchart(Crpix2) == 256.595822 } { incr result }
+   #--   je verifie que la translation est correcte
+   if { $coords eq "$cible" } { incr result }
+
+   #--   j'isole les caracteristiques de l'etoile N°0
+   set star_ref [ lindex $::etoiles 0 ]
+   #--   je cherche le N° d'item correspondant
+   set itemNo [ ::fieldchart::getItemNo $w $star_ref ]
+   #--   j'identifie le centre de cet item
+   lassign [ ::polydraw::center $visuNo $w $itemNo ] x1 y1
+   #--   je convertis les coordonnees picture de la cible en coordonnees canvas
+   set cible [ list 566.0 299.0 ]
+   lassign [ ::confVisu::picture2Canvas $visuNo $cible ]  x2 y2
+   #--   je simule la pression sur B1
+   event generate $w <ButtonPress-1> -x $x1 -y $y1
+   #--   je simule le relachement de B1
+   event generate $w <Control-ButtonRelease-1> -x $x2 -y $y2
+
+   #--   controle
+   #--   je verifie que l'angle est correct
+   if { $::fieldchart(Inclin) > "358.438552846" } { incr result }
+
+   return $result
+} -cleanup {
+
+   #--   je repasse le zoom a la valeur initiale
+   ::confVisu::setZoom $visuNo $old_zoom
+   #--   je supprime l'instance
+   ::fieldchart::deletePluginInstance $visuNo
+   #--   je supprime le package de la memoire
+   package forget fieldchart
+   #--   raz de l'affichage
+   confVisu::clear $visuNo
+
+} -result "7"
+

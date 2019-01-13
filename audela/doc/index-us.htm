@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>AudeLA : General description</title>
+  <meta content="A. Klotz" name="author" />
+</head>
+<body>
+<p class="date">Update date :&nbsp;2013 July 02nd</p>
+<h1>AudeLA&nbsp;</h1>
+<h2>A software and a Tcl/Tk extension for astronomy </h2>
+<h1> 1. Introduction</h1>
+<p><a href="http://www.audela.org">AudeLA</a> is a standalone
+astronomical software
+and an<a href="http://wiki.tcl.tk/940"> extension</a> of the <a
+ href="http://www.tcl.tk/">Tcl/Tk langage</a>.&nbsp;</p>
+As a Tcl/Tk extension, AudeLA provides a set of astronomical functions
+to drive modern instruments (telescopes and cameras). Celestial
+mechanics and image processing are also included in the
+set of Tcl/Tk extension commands.<br />
+<br />
+AudeLA is distributed with a graphical interface&nbsp;which is called
+Aud'ACE. By this way, AudeLA appears as a complete software directly
+usable by any astronomer.<br />
+<br />
+Any Tcl/Tk script can be executed in a AudeLA process. It opens the
+possibility to personalize the software without any limit. All the
+devices of an observatory can be driven by AudeLA.<br />
+<h1>2. Using AudeLA as a standalone software</h1>
+Download the<a href="http://www.audela.org"> last&nbsp;version of the
+binary installation</a>. Linux and
+Windows versions are available.<br />
+This is a simpliest way to discover AudeLA and to use it for
+astronomical observations.<br />
+The planetarium software <a href="http://www.ap-i.net/skychart/">Cartes
+du Ciel</a> must be also installed to provide a sky map to AudeLA. <br />
+The Aud'ACE graphical interface provides a window to display images and
+a terminal window to execute Tcl/Tk scripts.<br />
+<br />
+AudeLA uses professional librairies to manipulate data (FITSIO,
+Sextractor, Virtual Observatory service access) and can read many
+stellar catalogs (USNO, UCAC, Tycho, NOMAD1
+etc.)<br />
+<br />
+AudeLA drives:<br />
+<ul>
+  <li>Telescopes : ASCOM, AudeCom, Celestron,&nbsp;DFM, EQMOD, Meade
+(LX200), Ouranos, Temma (Takahashi).</li>
+  <li>Cameras : Andor, DLSR, ASCOM, Atik, Audine, CookBook, FLI,
+Hi-SIS, Kitty, QSI, SBig, Starlight, Webcams.</li>
+  <li>Com interfaces : AudiNet, EthernAude,GPhoto2, Oscadine, Parallel
+&nbsp;port, serial port, QuickRemote, Velleman</li>
+  <li>Focusers : AudeCOm, JMI, LX200, LhiresIII</li>
+</ul>
+The Aud'ACE graphical interface provides tens of thematic tools to
+acquire images (video, guiding, eShel spectrometer, etc.) drive
+telescopes (King, pointing model, etc.) and to analyze data
+(calibrations, extracting light curves, searching for supernovae,
+etc.).
+<ul>
+</ul>
+<h1>3. Using AudeLA as a CGI in a web service</h1>
+From the binary installation it is possible to deploy AudeLA as a CGI
+web service.<br />
+To deploy AudeLA as a CGI, execute the following command in the
+terminal window: <br />
+<pre>source $audace(rep_install)/bin/cgi_install.tcl ; ::cgi_install::run</pre>
+Fill the form and valid the Deploy button.<br />
+Read the help in the folder <a href="../gui/cgi">audela/gui/cgi</a><br />
+<h1>4. Write your own scripts to drive your observatory</h1>
+The<a href="http://www.tcl.tk/man/"> Tcl/Tk script langage</a> provides
+the way to add new functions or to
+execute series a commands to drive the devices of your observatory all
+over the nights.<br />
+For example, to acquire 100 images of 10 seconds with binning 2x2, you
+can copy/paste the following lines in the audeLA terminal:<br />
+<pre>for {set k 1} {$k&lt;=100} {incr k} {<br />&nbsp; &nbsp;acq 10 2<br />&nbsp; &nbsp;saveima image$k<br />}</pre>
+As AudeLA provides celestial mechanics (ephemeris, coordinates
+tranforms, etc.) and image processing (dark, flat, registration,
+astrom&eacute;tric calibration, etc.) functions the script can detect
+the beginning and the end of the night and can process images during
+the night.<br />
+<br />
+Read the <a href="tutorials">tutorials</a> to help you to write Tcl
+scripts.<br />
+<h1>5. Insert your own code in AudeLA</h1>
+AudeLA allows you to add new commands using the Tcl langage but also
+using C code. For this last way you must download the source codes of
+AudeLA and install a compiler. To do that , read the file
+audela/doc/compil/<a href="compil/audela_svn_windows_linux_en.odp">audela_svn_windows_linux_en.odp</a>.
+It explains how to download sources and the compilation step by step.<br />
+<br />
+</body>
+</html>

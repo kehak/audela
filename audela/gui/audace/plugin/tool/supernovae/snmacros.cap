@@ -1,0 +1,160 @@
+#
+# Fichier : snmacros.cap
+# Mise a jour $Id: snmacros.cap 7102 2011-04-06 16:43:28Z robertdelmas  $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(snmacros,obscurite)           "The camera must be in total darkness."
+set caption(snmacros,acqde1)              "Acquisition of %s bias frames"
+set caption(snmacros,acqbias)             "Acquisition of Bias Frames"
+set caption(snmacros,synthesebias)        "Synthesis of the Final Bias Frame..."
+set caption(snmacros,synthesebiasfini)    "Synthesis of the bias frame completed"
+set caption(snmacros,acqbias_stop)        "Bias Frame Acquisition Interrupted"
+set caption(snmacros,acqde2)              "Acquisition of %s dark frames of %s seconds"
+set caption(snmacros,acqdark)             "Dark Frame Acquisition"
+set caption(snmacros,synthesedark)        "Synthesis of the Final Dark Frame..."
+set caption(snmacros,synthesedarkfini)    "Synthesis of the dark frame completed"
+set caption(snmacros,acqdark_stop)        "Dark Frame Acquisition Interrupted"
+set caption(snmacros,est)                 "E"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(snmacros,obscurite)        "La caméra doit être placée dans l'obscurité complète."
+   set caption(snmacros,acqde1)           "Acquisition de %s bias"
+   set caption(snmacros,acqbias)          "Acquisition du bias"
+   set caption(snmacros,synthesebias)     "Synthèse du bias final..."
+   set caption(snmacros,synthesebiasfini) "Synthèse du bias terminée"
+   set caption(snmacros,acqbias_stop)     "Acquisition des bias suspendue"
+   set caption(snmacros,acqde2)           "Acquisition de %s darks de %s secondes"
+   set caption(snmacros,acqdark)          "Acquisition du dark"
+   set caption(snmacros,synthesedark)     "Synthèse du dark final..."
+   set caption(snmacros,synthesedarkfini) "Synthèse du dark terminée"
+   set caption(snmacros,acqdark_stop)     "Acquisition des darks suspendue"
+   set caption(snmacros,est)              "E"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(snmacros,obscurite)        "La camere deve essere in completa oscurita`."
+   set caption(snmacros,acqde1)           "Acquisizione di %s bias"
+   set caption(snmacros,acqbias)          "Acquisizione del bias"
+   set caption(snmacros,synthesebias)     "Sintesi finale del bias..."
+   set caption(snmacros,synthesebiasfini) "Sintesi del bias completata"
+   set caption(snmacros,acqbias_stop)     "Acquisizioni dei bias interrotta"
+   set caption(snmacros,acqde2)           "Acquisizione di %s dark da %s secondi"
+   set caption(snmacros,acqdark)          "Acquisizione del dark"
+   set caption(snmacros,synthesedark)     "Sintesi finale del dark..."
+   set caption(snmacros,synthesedarkfini) "Sintesi del dark completata"
+   set caption(snmacros,acqdark_stop)     "Acquisizioni dei dark interrotta"
+   set caption(snmacros,est)              "E"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(snmacros,obscurite)        "La cámara debe estar en total oscuridad."
+   set caption(snmacros,acqde1)           "Adquisición de %s imagen de bias"
+   set caption(snmacros,acqbias)          "Adquisición de imagenes bias"
+   set caption(snmacros,synthesebias)     "Síntesis de la imagen bias final..."
+   set caption(snmacros,synthesebiasfini) "Síntesis de la imagen de bias completada"
+   set caption(snmacros,acqbias_stop)     "Adquisición de bias interrumpida"
+   set caption(snmacros,acqde2)           "Adquisición de %s darks de %s segundo"
+   set caption(snmacros,acqdark)          "Adquisición de dark"
+   set caption(snmacros,synthesedark)     "Síntesis de dark final..."
+   set caption(snmacros,synthesedarkfini) "Síntesis de dark completada"
+   set caption(snmacros,acqdark_stop)     "Adquisición de dark interrumpida"
+   set caption(snmacros,est)              "E"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(snmacros,obscurite)        "Die Kamera muss in vollkommen Finsternis gestellt sein."
+   set caption(snmacros,acqde1)           "Belichtung von %s Bias"
+   set caption(snmacros,acqbias)          "Bias Belichtung"
+   set caption(snmacros,synthesebias)     "Bias Zusammenfassung Schlusssatz..."
+   set caption(snmacros,synthesebiasfini) "Bias Zusammenfassung beendet"
+   set caption(snmacros,acqbias_stop)     "Bias Belichtung unterbrecht"
+   set caption(snmacros,acqde2)           "Belichtung von %s Darks von %s Sekunden"
+   set caption(snmacros,acqdark)          "Dark Belichtung"
+   set caption(snmacros,synthesedark)     "Dark Zusammenfassung Schlusssatz..."
+   set caption(snmacros,synthesedarkfini) "Dark Zusammenfassung beendet"
+   set caption(snmacros,acqdark_stop)     "Dark Belichtung unterbrecht"
+   set caption(snmacros,est)              "O"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(snmacros,obscurite)        "A câmara deve estar colocada em meio completamente escuro."
+   set caption(snmacros,acqde1)           "Aquisição de %s bias"
+   set caption(snmacros,acqbias)          "Aquisição do bias"
+   set caption(snmacros,synthesebias)     "Síntese do bias final..."
+   set caption(snmacros,synthesebiasfini) "Síntese do bias terminada"
+   set caption(snmacros,acqbias_stop)     "Aquisição dos bias suspensa"
+   set caption(snmacros,acqde2)           "Aquisição de %s darks de %s segundos"
+   set caption(snmacros,acqdark)          "Aquisição do dark"
+   set caption(snmacros,synthesedark)     "Síntese do dark final..."
+   set caption(snmacros,synthesedarkfini) "Síntese do dark terminada"
+   set caption(snmacros,acqdark_stop)     "Aquisição dos darks suspensa"
+   set caption(snmacros,est)              "E"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(snmacros,obscurite)        "The camera must be in total darkness."
+   set caption(snmacros,acqde1)           "Acquisition of %s bias frames"
+   set caption(snmacros,acqbias)          "Acquisition of Bias Frames"
+   set caption(snmacros,synthesebias)     "Synthesis of the Final Bias Frame..."
+   set caption(snmacros,synthesebiasfini) "Synthesis of the bias frame completed"
+   set caption(snmacros,acqbias_stop)     "Bias Frame Acquisition Interrupted"
+   set caption(snmacros,acqde2)           "Acquisition of %s dark frames of %s seconds"
+   set caption(snmacros,acqdark)          "Dark Frame Acquisition"
+   set caption(snmacros,synthesedark)     "Synthesis of the Final Dark Frame..."
+   set caption(snmacros,synthesedarkfini) "Synthesis of the dark frame completed"
+   set caption(snmacros,acqdark_stop)     "Dark Frame Acquisition Interrupted"
+   set caption(snmacros,est)              "E"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(snmacros,obscurite)        "The camera must be in total darkness."
+   set caption(snmacros,acqde1)           "Acquisition of %s bias frames"
+   set caption(snmacros,acqbias)          "Acquisition of Bias Frames"
+   set caption(snmacros,synthesebias)     "Synthesis of the Final Bias Frame..."
+   set caption(snmacros,synthesebiasfini) "Synthesis of the bias frame completed"
+   set caption(snmacros,acqbias_stop)     "Bias Frame Acquisition Interrupted"
+   set caption(snmacros,acqde2)           "Acquisition of %s dark frames of %s seconds"
+   set caption(snmacros,acqdark)          "Dark Frame Acquisition"
+   set caption(snmacros,synthesedark)     "Synthesis of the Final Dark Frame..."
+   set caption(snmacros,synthesedarkfini) "Synthesis of the dark frame completed"
+   set caption(snmacros,acqdark_stop)     "Dark Frame Acquisition Interrupted"
+   set caption(snmacros,est)              "E"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(snmacros,obscurite)        "The camera must be in total darkness."
+   set caption(snmacros,acqde1)           "Acquisition of %s bias frames"
+   set caption(snmacros,acqbias)          "Acquisition of Bias Frames"
+   set caption(snmacros,synthesebias)     "Synthesis of the Final Bias Frame..."
+   set caption(snmacros,synthesebiasfini) "Synthesis of the bias frame completed"
+   set caption(snmacros,acqbias_stop)     "Bias Frame Acquisition Interrupted"
+   set caption(snmacros,acqde2)           "Acquisition of %s dark frames of %s seconds"
+   set caption(snmacros,acqdark)          "Dark Frame Acquisition"
+   set caption(snmacros,synthesedark)     "Synthesis of the Final Dark Frame..."
+   set caption(snmacros,synthesedarkfini) "Synthesis of the dark frame completed"
+   set caption(snmacros,acqdark_stop)     "Dark Frame Acquisition Interrupted"
+   set caption(snmacros,est)              "E"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

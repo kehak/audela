@@ -1,0 +1,2 @@
+LIBRARY libeteltcl
+EXPORTS Eteltcl_Init @1

@@ -1,0 +1,9 @@
+Promontorium Agarum       14.0N   66.0E   70.0    38                                              Nommé comme un cap de la mer d'Asow
+Promontorium Agassiz      42.0N   1.8E    20.0    12                                              Jean Louis Rodolphe ; Zoologiste et géologue suisse (1807-1873)
+Promontorium Archerusia   16.7N   22.0E   10.0    24                                              Nommé comme un cap de la mer Noire
+Promontorium Deville      43.2N   1.0E    20.0    12                                              Sainte-Claire Charles ; Géologue français (1814-1876)
+Promontorium Fresnel      29.0N   4.7E    20.0    22                                              Augustin Jean ; Opticien français (1788-1827)
+Promontorium Heraclides   40.3N   33.2W   50.0    10                                              Ponticus ; Astronome grec (388-310 avant J.C.)
+Promontorium Kelvin       27.0S   33.0W   50.0    52                                              William Thomson, Lord Kelvin ; Physicien écossais (1824-1907)
+Promontorium Laplace      46.0N   25.8W   50.0    10                                              Pierre Simon ; Mathématicien et astronome français (1749-1827)
+Promontorium Taenarium    19.0S   8.0W    70.0    54                                              Nommé comme un cap du Péloponnèse ; Aujourd'hui Matapan ou Ténare

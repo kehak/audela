@@ -1,0 +1,84 @@
+
+set visuNo 1
+set bufNo [::confVisu::getBufNo 1]
+
+#-------------------------------------------------------------------------------
+test tool_eshelvisu_exportfit {export orders} -constraints {
+   AUDACE
+} -setup {
+
+   #--- je charge le package eshel
+   package require eshelvisu
+   #--- je demarre l'outil
+   ::confVisu::selectTool $visuNo ::eshelvisu
+
+} -body {
+   set fileName "20090109-22291400-Lune-1x120s.fit"
+   set outputDirectory $::audace(rep_images)
+
+   #--- j'affiche l'image
+   loadima [file join $::conf(testaudela,rep_images) $fileName]
+
+   #--- j'exporte le HDU ORDERS
+   ##::eshel::exportfits::saveFile $inputFileName [list P_1A P_1B] $outputDirectory
+   ::eshel::exportfits::saveFile [file join $::conf(testaudela,rep_images) $fileName] [list ORDERS] $::audace(rep_images)
+
+   #--- je verifie que le fichier contient 2 HDU
+   set result ""
+   set hFile [fits open [file join $::audace(rep_images) 20090109-22291400-Lune-1x120s_ORDERS.fit] 0]
+   set nbHdu [$hFile info nhdu]
+   if { $nbHdu != 2 } {
+      append result "nbHdu=$nbHdu "
+   }
+   #--- je verifie que le permier HDU est vide
+   set naxis [::eshelvisu::getKeyword $hFile NAXIS]
+   if { $naxis != 0 } {
+      append result "naxis=$naxis "
+   }
+   #--- je verifie les dimensions et le nom du deuxieme HDU
+   $hFile move 2
+   set naxis [::eshelvisu::getKeyword $hFile NAXIS]
+   if { $naxis != 2 } {
+      append result "HDU#2 naxis=$naxis "
+   }
+   set extname [::eshelvisu::getKeyword $hFile EXTNAME]
+   if { $extname != "ORDERS" } {
+      append result "HDU#2 extname=$extname "
+   }
+   set nbcols [::eshelvisu::getKeyword $hFile NAXIS2]
+   if { $nbcols != "19" } {
+      append result "HDU#2 nbcols=$nbcols "
+   }
+
+   #--- je verifie que la 2ieme ligne contient l'ordre numero 34 avec une dispersion 0.177
+   set orderNum [lindex [lindex [$hFile get table "order" 2 ] 0] 0]
+   if { $orderNum != "34" } {
+      append result "HDU#2 line=2 orderNum=$orderNum "
+   }
+   set dispersion [lindex [lindex [$hFile get table "disp" 2 ] 0] 0]
+   if { $dispersion != 0.177 } {
+      append result "HDU#2 line=2 dispersion=$dispersion "
+   }
+
+   $hFile close
+   #--- j'attends une seconde pour laisser voir le resultat
+   after 1000
+   #--- result est vide s'il n'y a pas d'erreur, sinon il contient le message d'erreur
+   return $result
+} -cleanup {
+   #--- je supprime l'instance
+   ::confVisu::stopTool $visuNo ::eshelvisu
+   #--- je supprime le package de la memoire
+   package forget eshelvisu
+   #--- raz de l'affichage
+   confVisu::clear $visuNo
+   file delete -force [file join $::audace(rep_images) 20090109-22291400-Lune-1x120s_ORDERS.fit]
+   #--- je cree une instance ayant pour raccourci F2
+   foreach { namespace raccourci } $::conf(outilsActifsInactifs) {
+      if { [ lindex $raccourci 1 ] == "F2" } {
+         #--- je demarre l'outil
+         ::confVisu::selectTool $visuNo ::$namespace
+      }
+   }
+} -result ""
+

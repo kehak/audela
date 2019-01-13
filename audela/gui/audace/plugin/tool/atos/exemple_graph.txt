@@ -1,0 +1,102 @@
+  # Copyright Vincent Verdon 2001 - V. Verdon Corp. !
+    # Placé en licence libre GNU/GPL
+    # Cette licence peut être consultée à : http://www.gnu.org
+
+    ################################################################################
+    # procédure qui génère le tracé
+    ################################################################################
+    proc tracer {amplitude couleur} {
+
+    # les distance sont exprimées en pixel, et l'origine est placée
+    # en haut à gauche du canvas
+    set pi "3.14159"
+    set coord "0 250"
+    for {set i 0} {$i<=100} {incr i} {
+        set x [expr $pi / 10 * $i]
+        set y [expr 253 - $amplitude * sin($x)]
+        set x [expr 3 + $x * 15]
+        set coord "$coord $x $y"
+    }
+     set c [.t.f0.c create line $coord -fill $couleur -width 2]
+     return $c
+    }
+
+    ################################################################################
+    # Début
+    ################################################################################
+
+    # initialisation de variables
+    set couleur red
+    set amplitude 100
+    global courbes
+    set courbes ""
+
+    package require Tk
+    wm withdraw .
+
+    toplevel .t
+    wm title .t "Exemple de simulateur realise en TCL/TK"
+
+    # frame principale
+    frame .t.f0
+    pack .t.f0
+
+    # création du canvas (objet dans lequel on peut dessiner)
+    canvas .t.f0.c -height 500 -width 500
+    pack .t.f0.c -side left
+
+    # dessin du repère de tracé
+    # les distance sont exprimées en pixel, et l'origine est placée en haut à gauche
+    # du canvas
+    .t.f0.c create line 3 250 500 250 -arrow last -fill blue
+    .t.f0.c create line 3 3 3 500 -arrow first -fill blue
+
+    # frame contenant les boutons
+    frame .t.f1 -borderwidth 2 -relief groove
+    pack .t.f1 -fill x -expand 1
+
+    # création des boutons
+    button .t.f1.b1 -text "Tracer" -command {
+     set courbe [tracer $amplitude $couleur]
+     set courbes "$courbes $courbe"
+    }
+    pack .t.f1.b1 -fill x -side left -expand 1
+
+    button .t.f1.b2 -text "Effacer" -command {
+    foreach courbe $courbes {
+        .t.f0.c delete $courbe
+    }
+       set courbes ""
+    }
+    pack .t.f1.b2 -fill x -side left -expand 1
+
+    button .t.f1.b3 -text "Quitter" -command {exit}
+    pack .t.f1.b3 -fill x -side left -expand 1
+
+    button .t.f1.b4 -text "A propos" -command {
+    tk_messageBox -title "A propos" -icon info \
+    -message [string map {# @} "un petit exemple de simulateur en Tcl/Tk \n \
+    ecrit en moins de 70 lignes de code ! \n V. Verdon Corp. 2001!\n \
+    http://www.pianos.com.fr/vincent.verdon \n vincent.verdon#interpc.fr"]
+    }
+    pack .t.f1.b4 -fill x -side left -expand 1
+
+    # Création des choix d'options de tracé
+    frame .t.f0.f2 -borderwidth 2 -relief groove
+    pack .t.f0.f2 -side left -fill y
+
+    button .t.f0.f2.couleur -text "Couleur" -background $couleur -height 3 \
+     -command {
+     set nouv_couleur [tk_chooseColor]
+     if {$nouv_couleur != ""} {
+         set couleur $nouv_couleur
+         .t.f0.f2.couleur configure -background $couleur
+     }
+    }
+    pack .t.f0.f2.couleur -fill x
+
+    label .t.f0.f2.ampli1 -text "Amplitude du signal"
+    pack .t.f0.f2.ampli1
+
+    entry  .t.f0.f2.ampli2 -textvariable amplitude
+    pack .t.f0.f2.ampli2

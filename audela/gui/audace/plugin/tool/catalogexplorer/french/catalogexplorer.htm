@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Explorateur de catalogues</title>
+</head>
+
+</body>
+<p class="date">Date de mise &agrave; jour : 22 f&eacute;vrier 2016.</p>
+<h1>Explorateur de catalogues</h1>
+<h2>1. Nature de l'outil</h2>
+<p>Cet outil est une tablette virtuelle visualisant les &eacute;toiles d'un catalogue et donnant des informations sur celles-ci.</p>
+<h2>2. Outil</h2>
+<p><img style="width: 303px; height: 444px;" alt="" src="images/cataexplor1.gif" /></p>
+<p>La fen&ecirc;tre permet de simuler l'acquisition d'une image avec un instrument virtuel : dimensions (en pixels) du capteur, taille des pixels (en um), focale (en m), inclinaison de la cam&eacute;ra (en &deg;), coordonn&eacute;es de pointage au centre (par d&eacute;faut le z&eacute;nith de la position de l'observateur).<br>
+Le champ de vision (en degr&eacute;s) est mis &agrave automatiquement lors du changement d'un param&egrave;tre.<br>
+Les saisies suivantes ont pour but de d&eacute;finir l'espace des magnitudes (minimale et limite) &agrave; visualiser.<br>
+Il suffit de s&eacute;lectionner le catalogue voulu parmi <b>2MASS BMK LONEOS NOMAD1 PPMX PPMXL TYCHO2_FAST UCAC2 UCAC3 UCAC4 URAT1 USNOA2 WFIBC AAVSO B/wds</b>.</p>
+<p>Le catalogue <b>AAVSO</b> fait r&eacute;f&eacute;rence &agrave des fichiers <b>apass_ra_dec_radius.cvs</b> t&eacute;l&eacute;charg&eacute;s sur le site de l'AAVSO.<br>
+Ils donnent les magnitudes pour les filtres Johnson_V, Johnson_B, Sloan_g, Sloan_r et Sloan_i.<br>
+Lorsque ce type de catalogue est s&eacute;lectionn&eacute;, une fen&ecirc;tre annexe permet d'indiquer la localisation du fichier.</br>
+Les coordonn&eacute;es RA et DEC sont mises &agrave jour automatiquement &agrave partir du nom du fichier.</p>
+<p>L'option <b>B/wds</b> a pour effet d'interroger le service <b>VizieR</b> (internet indispensable) pour explorer les bases <b>I/280B</b> avec 2.5 millions d'&eacute;loiles, <b>B/wds</b> du <b>Whasington Double Star Catalog</b> avec plus de 132000 enregistrements.</p>
+<p>Le zoom permet de dimensionner la taille de l'&eacute;cran virtuel. Une but&eacute;e automatique &eacute;vite le d&eacute;bordement du texte : le zoom r&eacute;el est affich&eacute; en t&ecirc;te de la tablette. L'utilisateur doit rechercher le bon r&eacute;glage en fonction des naxis1 et naxis2 de son capteur et de la taille de son &eacute;cran r&eacute;el.</p>
+<p>La zone inf&eacute;rieure comprend les boutons habituels pour lancer la commande, appeler l'aide ou fermer l'outil.</br>
+<p>La fermeture de l'outil provoque la sauvegarde des derni&egrave;res informations contenues, &agrave l'exception de RA et DEC.<br>
+Cette configuration est rappel&eacute;e à l'ouverture suivante. On peut donc ais&eacute;ment configurer son dispositif pr&eacute;f&eacute;r&eacute;.</p>
+<h2>3. Sortie HTML</h2>
+<p>La commande produit une page HTML localis&eacute;e dans le r&eacute;pertoire images.<br>
+<p>Le haut de l'image indique le catalogue utilis&eacute, le nombre d'&eacute;toiles, l'intervalle de magnitude, le rayon de recherche (en degr&eacute;s) autour du centre et la valeur du zoom.<br>
+Si les ecmascripts sont activ&eacute;s, la fen&ecirc;tre inf&eacute;rieure de l'image donne les coordonn&eacute;es de l'&eacute;toile point&eacute;e par la souris ainsi que sa magnitude pour diff&eacute;rents filtres. L'&eacute;toile s&eacute;lectionn&eacute;e est cercl&eacute;e de rouge. Le niveau de gris des &eacute;toiles est ajust&eacute; en fonction de la magnitude de mani&egrave;re &agrave les montrer toutes (pour la plage s&eacute;lectionn&eacute;e).</p>
+<p><img style="width: 543px; height: 447px;" alt="" src="images/cataexplor2.gif" /></p>
+<p>Les informations affich&eacute;es sont fonction du catalogue :</p>
+<table>
+<tr><th>Catalogue</th><th>Sorties</th></tr>
+<tr><td>2MASS</td><td><img style="width: 254px; height: 38px;" alt="" src="images/2mass.gif" /></td></tr>
+<tr><td>BMK</td><td><img style="width: 291px; height: 32px;" alt="" src="images/mk.gif" /></td></tr>
+<tr><td>LONEOS</td><td><img style="width: 306px; height: 28px;" alt="" src="images/loneos.gif" /></td></tr>
+<tr><td>NOMAD1</td><td><img style="width: 468px; height: 34px;" alt="" src="images/nomad1.gif" /></td></tr>
+<tr><td>PPMX</td><td><img style="width: 501px; height: 37px;" alt="" src="images/ppmx.gif" /></td></tr>
+<tr><td>PPMXL</td><td><img style="width: 431px; height: 34px;" alt="" src="images/ppmxl.gif" /></td></tr>
+<tr><td>TYCHO2_FAST</td><td><img style="width: 233px; height: 36px;" alt="" src="images/tycho2_fast.gif" /></td></tr>
+<tr><td>UCAC2</td><td><img style="width: 252px; height: 31px;" alt="" src="images/ucac2.gif" /></td></tr>
+<tr><td>UCAC3</td><td><img style="width: 267px; height: 34px;" alt="" src="images/ucac3.gif" /></td></tr>
+<tr><td>UCAC4</td><td><img style="width: 216px; height: 35px;" alt="" src="images/ucac4.gif" /></td></tr>
+<tr><td>URAT1</td><td><img style="width: 306px; height: 28px;" alt="" src="images/loneos.gif" /></td></tr>
+<tr><td>USNOA2</td><td><img style="width: 212px; height: 36px;" alt="" src="images/ucac4.gif" /></td></tr>
+<tr><td>WFIBC</td><td><img style="width: 186px; height: 29px;" alt="" src="images/wfibc.gif" /></td></tr>
+<tr><td>AAVSO</td><td><img style="width: 350px; height: 39px;" alt="" src="images/aavso.gif" /></td></tr>
+<tr><td>I/280B</td><td><img style="width: 391px; height: 36px;" alt="" src="images/I280B.gif" /></td></tr>
+<tr><td>B/wds</td><td><img style="width: 392px; height: 34px;" alt="" src="images/wds.gif" /></td></tr>
+</table>
+<p>Les catalogues NOMAD1 et PPMX donnent le type spectral &eacute;valu&eacute; selon la m&eacute;thode de <b>F. Vachier</b> en usage dans l'outil <b>Bases de donn&eacute;es images</b>.<br>
+Les catalogues <b>BMK</b> et <b>B/wds</b> donnent le type spectral du catalogue.</p>
+<p>Notes d'exploitation :<br>
+-L'ordre de information est : RA, DEC, nom (s'il existe), filtre et magnitude correspondante, etc.<br>
+-L'&eacute;clat des &eacute;toiles est relatif &agrave l'intervalle r&eacute;el des magnitudes (minimum et maximum) dans la plage d&eacute;finie dans la fen&ecirc;tre.<br>
+-Il est possible qu'un catalogue sp&eacute;cialis&eacute; ne contienne aucune &eacute;toile pour une longue focale : un message dans la console le signale et la page HTML n'est pas cr&eacute;&eacute;e.<br>
+-L'usage d'une courte focale peut conduire &agrave; une image contenant beaucoup d'étoiles, allongeant le temps de traitement et rendant l'image inutilisable. Le processus s'arr&ecirc;te s'il a plus de 1000 &eacute;toiles &agrave; visualiser avec un message dans la console.</p>
+<p>Astuce : Chaque activation de la commande ouvre une nouvelle page dans le navigateur; il est donc possible d'avoir plusieurs pages avec des donn&eacute;es un peu diff&eacute;rentes bien que seule la derni&egrave;re page soit sauvegard&eacute;e.</p>
+</html>
+

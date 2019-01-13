@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Les fonctions d'AudeLA</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 15 avril 2018</p>
+<h1>Les fonctions d'AudeLA </h1>
+<p>AudeLA ajoute, &agrave; Tcl, des fonctions sp&eacute;cialis&eacute;es &agrave; l'astronomie : gestion d'images au format FITS, traitement d'image, pilotage de cam&eacute;ras et de t&eacute;lescopes, etc. Pour faciliter l'utilisation, de nombreuses fonctions ont &eacute;t&eacute; rassembl&eacute;es en familles appel&eacute;es objets. Faisons un rapide tour d'horizon de ces objets : </p>
+<ul>
+  <li>
+    <p><a href="../../../../../doc/libaudela/audus1_fr.htm#buf">buffer</a> : les fonctions de buffer permettent de charger une image en m&eacute;moire, de la sauver sur le disque et de r&eacute;aliser quelques traitement d'images.</p>
+  </li>
+  <li>
+    <p><a href="../../../../../doc/libaudela/audus1_fr.htm#cam">cam&eacute;ra</a> : les fonctions de cam&eacute;ra permettent de param&eacute;trer l'acquisition d'images par des cam&eacute;ras CCD.</p>
+  </li>
+  <li>
+    <p><a href="../../../../../doc/libaudela/audus1_fr.htm#visu">visualisation</a> : les fonctions de visualisation permettent de param&eacute;trer l'affichage des images dans une fen&ecirc;tre du logiciel.</p>
+  </li>
+  <li>
+    <p><a href="../../../../../doc/libaudela/audus1_fr.htm#tel">t&eacute;lescope</a> : les fonctions de t&eacute;lescope permettent de param&eacute;trer le pointage et le suivi de t&eacute;lescopes.</p>
+  </li>
+</ul>
+<p>AudeLA <a href="../../../../../doc/libaudela/audus1_fr.htm#biblio">ajoute diverses fonctions utiles</a> pour l'astronomie. </p>
+<p>Ces fonctions sont d&eacute;finies dans le fichier libaudela.dll (sous Windows) et libaudela.so (sous Linux). </p>
+<p>Notons que AudeLA a besoin de librairies additionnelles pour fonctionner normalement. </p>
+<p>La librairie <a href="../../../../../doc/libtt/ttus1-fr.htm">LibTT</a> assure les fonctions la lecture et l'&eacute;criture des images, sur le disque, aux formats FITS (FITSIO) et Jpeg. Cette librairie est appel&eacute;e automatiquement par AudeLA. LibTT ajoute aussi de nombreuses fonctions de traitement d'images &agrave; AudeLA (appelables &agrave; partir de l'objet buffer). </p>
+<p>Les librairies d'extensions Tcl <a href="../../../../../doc/libgzip/gzipus-fr.htm">LibGzip</a>, <a href="../../../../../doc/libmc/mcusr_fr.htm">LibMC</a>. permettent de compresser les fichier et d'ajouter des fonctions de m&eacute;canique c&eacute;leste. </p>
+</body>
+
+</html>

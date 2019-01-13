@@ -1,0 +1,1 @@
+copy dll\*.dll ..\..\..\bin

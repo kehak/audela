@@ -1,0 +1,241 @@
+#
+# Fichier : aud_menu_8.cap
+# Mise à jour $Id: aud_menu_8.cap 9483 2013-05-23 16:48:47Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(audace,menu,aide)                         "Help"
+set caption(audace,menu,sommaire)                     "Contents"
+set caption(audace,menu,menu)                         "Menus"
+set caption(audace,menu,fonctions)                    "Function Index"
+set caption(audace,menu,programmation)                "Programming"
+set caption(audace,menu,tutorial)                     "Tutorials"
+set caption(audace,menu,tutorial1)                    "CCD imaging introductory course with an Audine camera on a parallel port"
+set caption(audace,menu,tutorial2)                    "Astrometry"
+set caption(audace,menu,tutorial3)                    "Photometry"
+set caption(audace,menu,tutorial4)                    "Image Simulator and Exposure Time Calculator"
+set caption(audace,menu,tutorial5)                    "Gamma Outburst Data Analysis"
+set caption(audace,menu,tutorial6)                    "About electronic parameters determination of a CCD camera"
+set caption(audace,menu,site_audela)                  "Web Site"
+set caption(audace,menu,site_internet)                "Web Site (Internet)"
+set caption(audace,menu,site_dd)                      "Web Site (Hard Disk Copy)"
+set caption(audace,menu,notice_pdf)                   "User Guides (.pdf)"
+set caption(audace,menu,a_propos_de)                  "About..."
+
+set caption(audace,console_gagne)                     "Access OK"
+set caption(audace,console_annule)                    "Cancelled"
+set caption(audace,console_rate)                      "Access not possible"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(audace,menu,aide)                      "Aide"
+   set caption(audace,menu,sommaire)                  "Sommaire"
+   set caption(audace,menu,menu)                      "Menus"
+   set caption(audace,menu,fonctions)                 "Index des fonctions"
+   set caption(audace,menu,programmation)             "Programmation"
+   set caption(audace,menu,tutorial)                  "Tutoriels"
+   set caption(audace,menu,tutorial1)                 "Initiation à l'imagerie CCD avec une caméra Audine à port parallèle"
+   set caption(audace,menu,tutorial2)                 "Astrométrie"
+   set caption(audace,menu,tutorial3)                 "Photométrie"
+   set caption(audace,menu,tutorial4)                 "Simulateur d'images et calculateur de temps de pose"
+   set caption(audace,menu,tutorial5)                 "Analyse des données sur les sursauts gamma"
+   set caption(audace,menu,tutorial6)                 "Détermination des paramètres électroniques d'une caméra CCD"
+   set caption(audace,menu,site_audela)               "Site Web"
+   set caption(audace,menu,site_internet)             "Site Web (Internet)"
+   set caption(audace,menu,site_dd)                   "Site Web (copie sur le disque dur)"
+   set caption(audace,menu,notice_pdf)                "Notices (.pdf)"
+   set caption(audace,menu,a_propos_de)               "A propos de ..."
+
+   set caption(audace,console_gagne)                  "Accès réussi"
+   set caption(audace,console_annule)                 "Annulé"
+   set caption(audace,console_rate)                   "Accès non possible"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(audace,menu,aide)                      "Aiuto"
+   set caption(audace,menu,sommaire)                  "Sommario"
+   set caption(audace,menu,menu)                      "Menu"
+   set caption(audace,menu,fonctions)                 "Indice delle funzioni"
+   set caption(audace,menu,programmation)             "Programmazione"
+   set caption(audace,menu,tutorial)                  "Tutorials"
+   set caption(audace,menu,tutorial1)                 "Introduzione al CCD con una camera Audine su porta parallela"
+   set caption(audace,menu,tutorial2)                 "Astrometria"
+   set caption(audace,menu,tutorial3)                 "Fotometria"
+   set caption(audace,menu,tutorial4)                 "Simulatore di immagini e calcolatore del tempo di esposizione"
+   set caption(audace,menu,tutorial5)                 "Analisi dei dati su lampi gamma"
+   set caption(audace,menu,tutorial6)                 "Determinazione dei parametri elettronici di una camera CCD"
+   set caption(audace,menu,site_audela)               "Sito Web"
+   set caption(audace,menu,site_internet)             "Sito Web (Internet)"
+   set caption(audace,menu,site_dd)                   "Sito Web (copia su hard disk)"
+   set caption(audace,menu,notice_pdf)                "Guida utente (.pdf)"
+   set caption(audace,menu,a_propos_de)               "About..."
+
+   set caption(audace,console_gagne)                  "Accesso riuscito"
+   set caption(audace,console_annule)                 "Cancellato"
+   set caption(audace,console_rate)                   "Accesso non possibile"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(audace,menu,aide)                      "Ayuda"
+   set caption(audace,menu,sommaire)                  "Tabla de Contenidos"
+   set caption(audace,menu,menu)                      "Menús"
+   set caption(audace,menu,fonctions)                 "Indice de funciones"
+   set caption(audace,menu,programmation)             "Programación"
+   set caption(audace,menu,tutorial)                  "Tutorials"
+   set caption(audace,menu,tutorial1)                 "Iniciación a la adquisición CCD con una cámara Audine en un puerto paralelo"
+   set caption(audace,menu,tutorial2)                 "Astrometría"
+   set caption(audace,menu,tutorial3)                 "Fotometría"
+   set caption(audace,menu,tutorial4)                 "Simulador de imágenes y calculador de tiempos de exposición"
+   set caption(audace,menu,tutorial5)                 "Analisis de datos sobre explosiones gamma"
+   set caption(audace,menu,tutorial6)                 "Determinación de parametros electrónicos de una cámara CCD"
+   set caption(audace,menu,site_audela)               "Sitio Web"
+   set caption(audace,menu,site_internet)             "Sitio Web (Internet)"
+   set caption(audace,menu,site_dd)                   "Sitio Web (copia de disco duro)"
+   set caption(audace,menu,notice_pdf)                "Manuales de Usuario (.pdf)"
+   set caption(audace,menu,a_propos_de)               "Sobre..."
+
+   set caption(audace,console_gagne)                  "Acceso correcto"
+   set caption(audace,console_annule)                 "Cancelado"
+   set caption(audace,console_rate)                   "El acceso no es posible"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(audace,menu,aide)                      "Hilfe"
+   set caption(audace,menu,sommaire)                  "Inhalt"
+   set caption(audace,menu,menu)                      "Menüs"
+   set caption(audace,menu,fonctions)                 "Funktionen Register"
+   set caption(audace,menu,programmation)             "Programmierung"
+   set caption(audace,menu,tutorial)                  "Tutorials"
+   set caption(audace,menu,tutorial1)                 "Audine Kamera mit Parallel-Port CCD-Einführungskurs"
+   set caption(audace,menu,tutorial2)                 "Astrometrie"
+   set caption(audace,menu,tutorial3)                 "Lichtmessung"
+   set caption(audace,menu,tutorial4)                 "Bild Simulator und Belichtungszeit Rechner"
+   set caption(audace,menu,tutorial5)                 "Daten über Gamma-Ray Platzen Analyse"
+   set caption(audace,menu,tutorial6)                 "Über elektronische Parameter einer CCD-Kamera Bestimmung"
+   set caption(audace,menu,site_audela)               "Webseite"
+   set caption(audace,menu,site_internet)             "Webseite (Internet)"
+   set caption(audace,menu,site_dd)                   "Webseite (auf die Festplatte nachbilden)"
+   set caption(audace,menu,notice_pdf)                "Bedienungsanleitung (.pdf)"
+   set caption(audace,menu,a_propos_de)               "Über AudeLA"
+
+   set caption(audace,console_gagne)                  "Zugriff gelungen"
+   set caption(audace,console_annule)                 "Annulliert"
+   set caption(audace,console_rate)                   "Unmöglichen Zugang"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(audace,menu,aide)                      "Ajuda"
+   set caption(audace,menu,sommaire)                  "Conteúdos"
+   set caption(audace,menu,menu)                      "Menus"
+   set caption(audace,menu,fonctions)                 "Indice de funções"
+   set caption(audace,menu,programmation)             "Programação"
+   set caption(audace,menu,tutorial)                  "Tutorials"
+   set caption(audace,menu,tutorial1)                 "Introdução à imageria CCD com uma camâra Audine em porta paralela"
+   set caption(audace,menu,tutorial2)                 "Astrometria"
+   set caption(audace,menu,tutorial3)                 "Fotometria"
+   set caption(audace,menu,tutorial4)                 "Simulador de imagens e calculador de tempo de exposição"
+   set caption(audace,menu,tutorial5)                 "Análise de dados sobre os sobressaltos gamma"
+   set caption(audace,menu,tutorial6)                 "# Détermination des paramètres électroniques d'une caméra CCD"
+   set caption(audace,menu,site_audela)               "Site Web"
+   set caption(audace,menu,site_internet)             "Site Web (Internet)"
+   set caption(audace,menu,site_dd)                   "Site Web (cópia de disco rígido)"
+   set caption(audace,menu,notice_pdf)                "Manuais de utilizador (.pdf)"
+   set caption(audace,menu,a_propos_de)               "Sobre..."
+
+   set caption(audace,console_gagne)                  "Acesso OK"
+   set caption(audace,console_annule)                 "Cancelado"
+   set caption(audace,console_rate)                   "O acesso não é possivel"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(audace,menu,aide)                      "Hjælp"
+   set caption(audace,menu,sommaire)                  "Indhold"
+   set caption(audace,menu,menu)                      "Menuer"
+   set caption(audace,menu,fonctions)                 "Funktionsindex"
+   set caption(audace,menu,programmation)             "Programmering"
+   set caption(audace,menu,tutorial)                  "Tutorials"
+   set caption(audace,menu,tutorial1)                 "Intro-kursus i CCD optage-teknik ved brug af Audine kamera med parallel port"
+   set caption(audace,menu,tutorial2)                 "Astrometri"
+   set caption(audace,menu,tutorial3)                 "Fotometri"
+   set caption(audace,menu,tutorial4)                 "Billed-simulator og Eksponeringstid-beregner"
+   set caption(audace,menu,tutorial5)                 "Gamma udbrud data analyse"
+   set caption(audace,menu,tutorial6)                 "Fastlæggelse parametre af en elektronisk CCD kamera"
+   set caption(audace,menu,site_audela)               "Hjemmeside"
+   set caption(audace,menu,site_internet)             "Hjemmeside (Internet)"
+   set caption(audace,menu,site_dd)                   "Hjemmeside (harddisk-kopi)"
+   set caption(audace,menu,notice_pdf)                "Brugsanvisning (.pdf)"
+   set caption(audace,menu,a_propos_de)               "Om..."
+
+   set caption(audace,console_gagne)                  "Adgang: OK!"
+   set caption(audace,console_annule)                 "Annulleret"
+   set caption(audace,console_rate)                   "Ingen adgang"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(audace,menu,aide)                      "Help"
+   set caption(audace,menu,sommaire)                  "Contents"
+   set caption(audace,menu,menu)                      "Menus"
+   set caption(audace,menu,fonctions)                 "Function Index"
+   set caption(audace,menu,programmation)             "Programming"
+   set caption(audace,menu,tutorial)                  "Tutorials"
+   set caption(audace,menu,tutorial1)                 "CCD imaging introductory course with an Audine camera on a parallel port"
+   set caption(audace,menu,tutorial2)                 "Astrometry"
+   set caption(audace,menu,tutorial3)                 "Photometry"
+   set caption(audace,menu,tutorial4)                 "Image Simulator and Exposure Time Calculator"
+   set caption(audace,menu,tutorial5)                 "Gamma Outburst Data Analysis"
+   set caption(audace,menu,tutorial6)                 "About electronic parameters determination of a CCD camera"
+   set caption(audace,menu,site_audela)               "Web Site"
+   set caption(audace,menu,site_internet)             "Web Site (Internet)"
+   set caption(audace,menu,site_dd)                   "Web Site (Hard Disk Copy)"
+   set caption(audace,menu,notice_pdf)                "User Guides (.pdf)"
+   set caption(audace,menu,a_propos_de)               "About..."
+
+   set caption(audace,console_gagne)                  "Access OK"
+   set caption(audace,console_annule)                 "Cancelled"
+   set caption(audace,console_rate)                   "Access not possible"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(audace,menu,aide)                      "Help"
+   set caption(audace,menu,sommaire)                  "Contents"
+   set caption(audace,menu,menu)                      "Menus"
+   set caption(audace,menu,fonctions)                 "Function Index"
+   set caption(audace,menu,programmation)             "Programming"
+   set caption(audace,menu,tutorial)                  "Tutorials"
+   set caption(audace,menu,tutorial1)                 "CCD imaging introductory course with an Audine camera on a parallel port"
+   set caption(audace,menu,tutorial2)                 "Astrometry"
+   set caption(audace,menu,tutorial3)                 "Photometry"
+   set caption(audace,menu,tutorial4)                 "Image Simulator and Exposure Time Calculator"
+   set caption(audace,menu,tutorial5)                 "Gamma Outburst Data Analysis"
+   set caption(audace,menu,tutorial6)                 "About electronic parameters determination of a CCD camera"
+   set caption(audace,menu,site_audela)               "Web Site"
+   set caption(audace,menu,site_internet)             "Web Site (Internet)"
+   set caption(audace,menu,site_dd)                   "Web Site (Hard Disk Copy)"
+   set caption(audace,menu,notice_pdf)                "User Guides (.pdf)"
+   set caption(audace,menu,a_propos_de)               "About..."
+
+   set caption(audace,console_gagne)                  "Access OK"
+   set caption(audace,console_annule)                 "Cancelled"
+   set caption(audace,console_rate)                   "Access not possible"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

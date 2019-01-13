@@ -1,0 +1,498 @@
+<html><head><title>Tcl/Tk : Tk</title></head>
+
+<body><h1>Tcl/Tk : Tk</h1>
+<address>Anne Possoz</address>
+<hr>
+<h2>Table of Contents</h2>
+
+<ul>
+<ul>
+    <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR0"> 1. L'environnement Xwindow</a> <br>
+    <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR1"> 2. Les widgets</a> 
+    <ul>
+      <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR2"> 2.1. Introduction</a> <br>
+      <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR3"> 2.2. Tk et les widgets</a> <br>
+      <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR4"> 2.3. Construction d'un widget, tour 
+      d'horizon</a> 
+      <ul>
+        <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR5"> 2.3.1. Création</a> <br>
+        <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR6"> 2.3.2. Le responsable de la géométrie: 
+        le packer</a> <br>
+        <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR7"> 2.3.3. Actions possibles sur les widgets, 
+        y compris la configuration</a> 
+      </ul>
+</ul>
+
+    <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR8"> 3. Le window manager</a> <br>
+    <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR9"> 4. Le packer et sa stratégie</a> 
+    <br>
+    <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR10"> 5. Associer les commandes aux événements 
+    X: le binding</a> 
+    <ul>
+      <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR11"> 5.1. Syntaxe spécifique à 
+      la commande bind: %</a> <br>
+      <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR12"> 5.2. Syntaxe pour décrire un 
+      événement X</a> <br>
+      <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR13"> 5.3. Quelques exemples simples de binding</a> 
+    </ul>
+
+    <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR14"> 6. Utilisation des ressources X</a> 
+    <ul>
+      <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR15"> 6.1. Hiérarchie d'attribution 
+      des ressources X</a> <br>
+      <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR16"> 6.2. Xresources database de Tk</a> 
+      <br>
+      <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR17"> 6.3. Spécification d'une ressource 
+      X pour la Xresources database de Tk</a> <br>
+      <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR18"> 6.4. Exemple</a> <br>
+      <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR19"> 6.5. Remarques</a> 
+    </ul>
+
+    <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR20"> 7. Résumé de quelques commandes 
+    et quelques conseils</a> 
+    <ul>
+      <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR21"> 7.1. Pour l'information</a> <br>
+      <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR22"> 7.2. Pour le déplacement ou 
+      la destruction</a> <br>
+      <a href="http://software.audela.free.fr/possoz/tcltk_cours_tk.html#HDR23"> 7.3. Quelques conseils</a> 
+    </ul>
+</ul>
+</ul>
+
+<hr>
+<!-- This file was created with the fm2html filter.
+The filter is copyright Norwegian Telecom Research and
+was programmed by Jon Stephenson von Tetzchner. -->
+
+
+
+<h3><a name="HDR0"> 1.    L'environnement Xwindow</a></h3>
+<p>Le système <b>X window</b> permet de manipuler des fenêtres [<i>windows</i>] sur les écrans [<i>displays</i>].
+</p><p>Le dessin qui suit représente un écran et ses fenêtres.
+</p><p><a href="http://software.audela.free.fr/possoz/fig1.ps"><img src="tcltk_cours_tk_fichiers/fig1.gif"> </a> 
+</p><p>On peut avoir un ou plusieurs écrans [<i>screens</i>] sur une même station de travail [<i>display</i>]. Chaque écran montre un ensemble de fenêtres rectangulaires qui ont entre elle une hiérarchie :
+
+</p><ul>
+<p></p><li><i>root window</i>: la fenêtre qui couvre tout le fond d'écran,
+<br>
+<p></p></li><li><i>toplevel</i> <i>windows</i>: une ou plusieurs fenêtre par application,
+<br>
+<p></p></li><li><i>internal</i> <i>windows</i>: une fenêtre d'une applications
+peut contenir des fenêtres internes qui sont utilisées pour les boutons,
+barres de défilement, fenêtres pour texte, toiles de fond pour dessins ou
+simplement des fenêtres qui servent à regrouper d'autres fenêtres; on parle
+ici de parents et enfants. <br></li></ul>
+
+
+<p>Dans <b>X</b>, les coordonnées sont mesurées en pixels par rapport à la
+fenêtre parent. La coordonnée (0,0) dans une fenêtre est son point supérieur
+gauche (x augmente vers la droite et y vers le bas). </p><p><b>X</b> permet de créer et détruire des fenêtres, de les déplacer,
+de les redimensionner à l'intérieur de leur parent respectif et d'y dessiner
+du texte, des lignes et des bitmaps. Si deux fenêtres se recouvrent, l'une
+est supposée être au-dessus de l'autre. <b>X</b> montre tout ce qui concerne
+la partie supérieure d'une fenêtre et seulement la partie non cachée du contenu
+des autres fenêtres. De plus, la dimension d'une fenêtre parent limite ce
+qui peut être vu de la fenêtre enfant.  </p><p>Le <b>serveur X</b> interprète les événements hardware (souris et
+touches de clavier) en fonction de sa configuration et leur attribue une
+sémantique [X <i>events</i>] . Par exemple, le serveur X transforme le fait
+d'avoir appuyé sur le bouton gauche de la souris en &lt;ButtonPress-1&gt;.
+De même, il gère d'autres types d'événements qui ne sont pas liés à des événements
+hardware, comme le redimensionnement d'une fenêtre, sa destruction, etc.
+Il utilise ces événements pour informer les applications intéressées qui
+pourront alors prendre l'action appropriée. </p><p><b>X</b> n'impose ni une apparence (ou aspect particulier) pour une
+fenêtre, ni la façon dont l'application doit réagir à un événement donné.
+<b>X</b> ne fournit pas de support pour un aspect ou un design particulier [<i>look and feel</i>] et ne fournit aucun bouton ou menu pour le contrôle de l'application. C'est le rôle des boîtes à outils [<i>toolkit</i>] de fournir tout cela. Tk en est une au même titre que Xm (de OSF/Motif), AUIS (Andrew Toolkit), etc. 
+</p><p>Afin de gérer les <i>toplevels</i> de façon uniforme, on va faire appel à une <b>window manager</b> [wm], application particulière qui dialogue avec le serveur X et les autres applications, gérant:
+
+</p><ul>
+<p></p><li>position et taille des fenêtres, avec ou sans redimensionnement possible,
+<br>
+<p></p></li><li>encadrement et titre des fenêtres, avec barre de menus,
+<br>
+<p></p></li><li>iconification et type d'icone,
+<br>
+<p></p></li><li>destruction des fenêtres, etc.
+<br></li></ul>
+
+
+<p>Il existe un protocole qui définit les interactions entre les applications et le <i>window manager</i>: ICCCM [Inter-Client Communication Convention Manual). <b>Tk</b> respecte ce protocole et devrait donc être compatible avec tous les <i>window managers</i> qui le respectent. Les window managers courants sont mwm, twm, tvtwm, olwm, olvwm et ctwm.
+</p><p>Dans un environnement <b>X</b>, on a donc 3 processus en coopération:
+
+</p><ul>
+<p></p><li>le <b>serveur X</b> qui gère le hardware de l'écran, la hiérarchie
+des fenêtres, et le protocole réseau; il dessine le graphique et génère les
+événements, <br>
+<p></p></li><li>les <b>applications</b> telles que par exemple <i>xterm</i>, un éditeur, un outil de messagerie ..., qui communiquent avec le serveur X et le <i>window manager</i>,
+<br>
+<p></p></li><li>le <b>window manager</b>, application particulière, qui permet de manipuler les fenêtres de façon uniforme.
+<br></li></ul>
+
+
+<h3><a name="HDR1"> 2.    Les widgets</a></h3>
+<h4><a name="HDR2"> 2.1.   Introduction</a></h4>
+<p>La partie graphique d'une application utilisateur est communément appelée <b>GUI</b> [<i>Graphical User Interface</i>]. Les différentes fenêtres de l'applications sont appelées <i>widgets</i> (raccourci de <i>window gadget</i>). On utilise souvent indifféremment <i>widget</i> et fenêtre [<i>window</i>]. Ces widgets sont aussi ce qu'on a appelé plus haut les <i>internal windows</i> mais aussi les éventuelles différentes <i>toplevel windows</i> d'une même application.
+</p><p>Les widgets sont donc les fenêtres qui correspondent à des boutons, menus, barres de défilement, etc.
+</p><p>Le système <b>X</b> a une structure hiérarchique pour les widgets (au même titre que les fichiers dans un <i>file system</i>),
+chaque fenêtre pouvant contenir des sous-fenêtres et ainsi de suite. Cette
+structure hiérarchique permet, comme nous le verrons, des actions à différents
+niveaux. </p><h4><a name="HDR3"> 2.2.   Tk et les widgets</a></h4>
+<p>La boîte à outils Tk fournit un ensemble de commandes Tcl pour la création et la manipulation des widgets.
+</p><p>La structure hiérarchique des widgets est reflétée dans la façon utilisée
+par Tk pour nommer l'enchaînement des widgets, le point servant de séparateur
+et ayant donc un sens de filiation. Par exemple, </p><pre>.w.frame.button1
+.w.frame.button2
+.w.frame.canvas
+.w.label
+
+</pre>
+<p>signifie que dans la fenêtre .w on a mis un <i>label</i> et un <i>frame</i> qui contient 2 boutons et une toile de fond.
+</p><p>Tk fournit l'ensemble des widgets suivants:
+</p><ul><dl><dt><b>button</b> un bouton de commande
+</dt><dt><b>checkbutton</b> un bouton logique lié à une variable Tcl
+</dt><dt><b>radiobutton</b> un bouton parmi un ensemble de boutons pour choisir une option liée à une variable
+</dt><dt><b>menubutton</b> un bouton qui propose un menu
+</dt><dt><b>menu </b>un menu
+</dt><dt><b>canvas </b>une toile de fond pour y dessiner et y inclure des bitmaps
+</dt><dt><b>label </b>une ligne pour afficher du texte (lecture seulement)
+</dt><dt><b>entry </b>une ligne pour insérer du texte (lecture et écriture)
+</dt><dt><b>message </b>une fenêtre pour afficher du texte (lecture seulement)
+</dt><dt><b>listbox </b>une fenêtre pour énumération et action
+</dt><dt><b>text </b>une fenêtre de texte (lecture et écriture)
+</dt><dt><b>scrollbar </b>une barre de défilement
+</dt><dt><b>scale </b>une échelle qui indique la valeur d'une variable Tcl
+</dt><dt><b>frame </b>une fenêtre pour en contenir d'autres (contrôle de la géométrie et de la logique)
+</dt><dt><b>toplevel </b>une fenêtre qui correspond à une nouvelle fenêtre pour X
+</dt></dl></ul>
+<p>Chacun de ces noms est aussi celui de la <b>commande</b> qui crée le <i>widget</i> correspondant. Ces mêmes noms, avec la première lettre en majuscule, se réfèrent à la classe du <i>widget</i> correspondant.
+</p><p>Chaque <i>widget</i> a plusieurs attributs dont on peu modifier la
+valeur. Tous les attributs ont des valeurs par défaut, ce qui est bien confortable
+pour éviter d'écrire beaucoup de code. Les attributs dépendent du type de
+widget mais un grand nombre d'entre eux sont communs. Tous ces attributs
+sont extrêmement bien résumés dans le <b>Tcl/Tk Reference Guide</b>.
+</p><p>Le programme <i>wish</i>, fourni avec la distribution de Tk, ouvre par défaut une fenêtre <i>toplevel</i> dont le nom hiérarchique est ".".
+</p><h4><a name="HDR4"> 2.3.   Construction d'un widget, tour d'horizon</a></h4>
+<p>La construction d'un widget utilisable comprend deux étapes: sa création
+et son positionnement. Ces deux actions vont déterminer l'aspect du <i>widget</i> au sein de la fenêtre principale de l'application. Depuis la version Tk4, les widgets de Tk ont un <i>look</i> Motif.
+</p><h5><a name="HDR5"> 2.3.1.   Création</a></h5>
+<p>La création d'un widget se fait en appelant la commande qui porte le nom
+du widget (voir supra), suivie du nom hiérarchique du widget, puis d'options
+pour les attributs et leur valeurs, toujours donnés par paires, suivant le
+schéma : <i>-attribut valeur</i>.
+</p><p>Par exemple, la commande suivante:
+</p><pre>button .hello -text "Hello" -command {puts stdout "Hello World!"}
+</pre>
+
+<ul>
+<p></p><li>crée un bouton,
+<br>
+<p></p></li><li>dont le nom est .hello (donc dans la toplevel window . créée par <i>wish</i>),
+<br>
+<p></p></li><li>dont le texte qui sera affiché sur le bouton est Hello,
+<br>
+<p></p></li><li>dont l'action, quand on activera le bouton, sera d'afficher "Hello World" sur le <i>standard output</i>.
+<br>
+</li></ul>
+
+
+<h5><a name="HDR6"> 2.3.2.   Le responsable de la géométrie: le packer</a></h5>
+<p>Aussi longtemps que le <i>geometry manager</i> n'a pas pris connaissance de l'existence du widget, il n'apparaîtra pas à l'écran.
+</p><p>Tk possède plusieurs <i>geometry managers</i> mais nous nous limiterons au plus utilisé, le <b>packer</b>. C'est à lui que nous allons dire où le <i>widget</i>
+va être placé dans la fenêtre parent et quels seront ses liens géométriques
+avec cette fenêtre, notamment lors du redimensionnement. De même que pour
+la création, les options sont toujours données par apires, suivant le shéma:
+-<i>attribut</i> <i>valeur</i>.
+</p><p>Suivant notre exemple, il suffira de passer la commande suivante au packer (on a choisi ici toutes les options par défaut):
+</p><pre>pack .hello
+</pre>
+<h5><a name="HDR7"> 2.3.3.   Actions possibles sur les widgets, y compris la configuration</a></h5>
+<p>Tk utilise un système basé objet pour créer et nommer les <i>widgets</i>. A chaque classe d'objet est associée une <b>commande</b> qui crée des instances pour cette classe d'objets. Aussitôt qu'un <i>widget</i>
+est créé, une nouvelle commande Tcl est créée, qui porte le nom hiérarchique
+du widget et qui agit sur les instances de ce widgets. Les instances possibles
+dépendent donc de la classe du widget et sont résumées dans le <i>Reference Guide</i> mentionné.
+</p><p>Par exemple, on pourra maintenant agir sur le bouton .hello qu'on
+vient de créer avec la nouvelle commande .hello et certaines options. </p><pre>.hello flash
+.hello invoke
+.hello configure -background blue
+</pre>
+<p>Ainsi, tous les attributs qui ont pu être donnés, y compris par défaut,
+lors de la création d'un widget peuvent être modifiés par la suite à l'aide
+de la commande: </p><pre>widget_name configure -attribut value
+</pre>
+<p>L'option <b>configure</b> a aussi pour but de pouvoir renseigner sur la valeur d'un attribut:
+</p><pre>.hello configure -background
+=&gt; -background background Background #d9d9d9 blue
+</pre>
+<p>Depuis la version TK4, on dispose aussi de l'option <b>cget</b>(qui équivaut à <i>lindex [widget_name configure -attribute] 4</i>):
+</p><pre>.hello cget -background
+=&gt; blue
+</pre>
+<p>L'option configure permet enfin de se renseigner sur l'ensemble des attributs
+possibles du widgets considéré (la liste peut être longue!): </p><pre>.hello configure
+=&gt; {-activebackground activeBackground Foreground #ececec #ececec} {-activeforeground activeFore
+ground Background Black Black} {-anchor anchor Anchor center center} {-background background Back
+ground #d9d9d9 blue} {-bd borderWidth} {-bg background} {-bitmap bitmap Bitmap {} {}} {-borderwidth 
+borderWidth BorderWidth 2 2} {-command command Command {} {puts stdout "Hello World!"}} {-cursor 
+cursor Cursor {} {}} {-disabledforeground disabledForeground DisabledForeground #a3a3a3 #a3a3a3} {-fg 
+foreground} {-font font Font -Adobe-Helvetica-Bold-R-Normal--*-120-*-*-*-*-*-* fixed} {-foreground fore
+ground Foreground Black Black} {-height height Height 0 0} {-highlightbackground highlightBackground 
+HighlightBackground #d9d9d9 #d9d9d9} {-highlightcolor highlightColor HighlightColor Black Black} {-high
+lightthickness highlightThickness HighlightThickness 2 2} {-image image Image {} {}} {-justify justify Justify 
+center center} {-padx padX Pad 3m 11} {-pady padY Pad 1m 4} {-relief relief Relief raised raised} {-state 
+state State normal normal} {-takefocus takeFocus TakeFocus {} {}} {-text text Text {} Hello} {-textvariable 
+textVariable Variable {} {}} {-underline underline Underline -1 -1} {-width width Width 0 0} {-wraplength wra
+pLength WrapLength 0 0}
+
+</pre>
+<h3><a name="HDR8"> 3.    Le window manager</a></h3>
+<p>Pour communiquer avec le window manager, la liste des options possibles est longue, toujours documentée dans le <i>Reference Guide</i>. Contentons nous de mentionner les plus fréquemment utilisées:
+
+</p><ul>
+<p></p><li><b>title</b>: pour donner un titre à la fenêtre gérée par le window manager
+<br>
+<p></p></li><li><b>minsize</b> et <b>maxsize</b>: pour fixer les dimensions minimales et maximales de la fenêtre;
+<br>
+<p></p></li><li><b>iconify</b> et <b>deiconify</b>: pour iconifier ou déiconifier la fenêtre
+<br></li></ul>
+
+
+<p>Un exemple:
+</p><pre>wm title . "Premier essai"
+wm minsize . 100 50
+wm maxsize . 200 100
+wm iconify .
+</pre>
+<h3><a name="HDR9"> 4.    Le packer et sa stratégie</a></h3>
+<p>Les attributs du <b>packer</b> les plus fréquemment utilisés sont:
+
+</p><ul>
+<p></p><li>-side left/right/top/bottom
+<br>cet attribut dit si on accroche le nouveau widget dans la fenêtre parent par la gauche ou la droite ou le haut ou le bas (<i>top</i> est la valeur par défaut).
+<br>
+<p></p></li><li>-fill none/x/y/both
+<br>cet attribut dit si on souhaite que toute la largeur possible du rectangle réservée pour un widget soit ou non remplie (<i>none</i> est la valeur par défaut).
+<br>
+<p></p></li><li>-expand true/false
+<br>cet attribut est important pour dire si le <i>widget</i> devra ou non être étendu lorsque la fenêtre parent sera agrandie (il est mis à <i>false</i> par défaut).
+<br></li></ul>
+
+
+<p>Si vous ne vous souvenez pas du nom des attributs ou d'une valeur possible, vous verrez qu'en tapant interactivement dans <i>wish</i>, en cas d'erreur, les attributs possibles ou les valeurs admises vous seront proposées.
+</p><p>La commande <b>pack info</b> <i>widget_name</i> permet de connaître les conditions de <i>packing</i> d'un <i>widget</i>:
+</p><pre>pack info .hello
+=&gt; -in . -anchor center -expand 0 -fill none -ipadx 0 -ipady 0 -padx 0 -pady 0 -side top
+</pre>
+<p>Pour bien comprendre la stratégie de positionnement du <i>packer</i> (l'option -side), il faut raisonner en <b>rectangle disponible</b>. A tout moment, seul un <b>rectangle</b> est la surface restante sur laquelle on va pouvoir placer un nouveau <i>widget</i>.
+Si on place un widget en l'attachant par le haut (-side top), le rectangle
+disponible pour la suite sera vers le bas. Si on ajoute un widget dans ce
+rectangle en l'attachant par la gauche, le rectangle disponible sera maintenant
+sous le premier <i>widget</i> (qui réserve toute la largeur) et à droite
+du second widget (qui réserve toute la hauteur restant sous le premier widget).
+Et ainsi de suite. On se rendra ainsi compte qu'il n'est pas possible de
+mettre 4 boutons en carré sans passer par des <i>frames</i> intermédiaires,
+mais qu'une spirale serait possible... On peut se construire des formes hybrides
+des types suivants (j'utilise une notation ou le numéro indique l'ordre dans
+lequel le <i>packer</i> a été invoqué et un nom pour dire quel valeur a été donnée à l'option side; l'option -<i>fill both</i> a toujours été utilisée):
+
+</p><p><a href="http://software.audela.free.fr/possoz/fig13.ps"><img src="tcltk_cours_tk_fichiers/fig13.gif"> </a> 
+</p><p>Pour éviter des résultats inattendus, il est conseillé d'utiliser des <i>frames</i> différents dès qu'on veut grouper des widgets qui ne sont plus en ligne ou en colonne.
+</p><h3><a name="HDR10"> 5.    Associer les commandes aux événements X: le binding</a></h3>
+<p>Les événements X (<i>X events</i>), tels que enfoncer/relâcher une touche
+du clavier ou de la souris, faire entrer ou sortir le curseur d'une fenêtre,
+changer la dimension d'une fenêtre <i>toplevel</i>, iconifier, déiconifier, détruire un <i>widget</i>, etc, peuvent être reliés aux commandes Tcl: c'est ce qu'on appelle le <b>binding</b>.
+</p><p>Les événements X les plus souvent considérés sont
+
+</p><ul>
+<p></p><li>KeyPress, Key: enfoncer une touche
+<br>
+<p></p></li><li>KeyRelease: relâcher une touche
+<br>
+<p></p></li><li>ButtonPress, Button: enfoncer un bouton de la souris
+<br>
+<p></p></li><li>ButtonRelease: le relâcher
+<br>
+<p></p></li><li>FocusIn: le <i>focus</i> est arrivé dans la fenêtre
+<br>
+<p></p></li><li>FocusOut: il en est sorti
+<br>
+<p></p></li><li>Motion: le curseur a bougé dans la fenêtre
+<br>
+<p></p></li><li>Enter: le curseur est entré dans la fenêtre
+<br>
+<p></p></li><li>Leave: il en est sorti
+<br></li></ul>
+
+
+<p>Une liste plus complète se trouve dans le <i>Reference Guide</i>.
+</p><p>La commande <b>bind</b> peut soit donner des informations sur des <i>bindings</i> existants, soit en définir d'autres. Elle peut être appliquée à un <i>widget</i> ou une classe de <i>widgets</i>. Une classe de <i>widgets</i> porte le même nom que la commande pour créer ce type de <i>widget</i>, sauf que la première lettre est une majuscule, par exemple Button. Si le widget correspond à une <i>toplevel window</i>, le <i>binding</i> s'applique à tous les <i>widgets</i> de cette fenêtre. On peut aussi utiliser <i>all</i> qui correspond à tous les <i>widgets</i>.
+
+</p><ul>
+<p></p><li>si on utilise <i>bind</i> avec un seul argument, on obtient en retour la liste des séquences d'action [<i>key sequences</i>] pour lesquels des <i>bindings</i> existent
+<br><pre></pre></li></ul>
+
+
+bind Button
+=&gt; &lt;Key-Return&gt; &lt;Key-space&gt; &lt;ButtonRelease-1&gt; &lt;Button-1&gt; &lt;Leave&gt; &lt;Enter&gt;
+
+
+<ul>
+<p></p><li>si on utilise <i>bind</i> avec 2 argument, le second étant une séquence d'action, on obtient la commande Tcl associée à cette action
+<br><pre>
+</pre></li></ul>
+
+
+bind Button &lt;Button-1&gt;
+=&gt; tkButtonDown %W
+
+<h4><a name="HDR11"> 5.1.   Syntaxe spécifique à la commande bind: %</a></h4>
+<p>Pour communiquer entre X et Tcl, la syntaxe suivante est utilisée dans la commande <i>bind</i>: un <b>%</b>
+suivi d'une lettre est remplacé par sa valeur avant l'évaluation de la commande
+par Tcl. Par exemple, %W correspond au nom hiérarchique du widget en cours
+et %y à la coordonnée y relative de l'événement par rapport au <i>widget</i>. La liste complète se trouve toujours dans le <i>Reference Guide</i>.
+</p><h4><a name="HDR12"> 5.2.   Syntaxe pour décrire un événement X</a></h4>
+<p>La syntaxe générale pour décrire un événement X est
+</p><pre>&lt;modifier-modifier-type-detail&gt;
+</pre>
+<p>par exemple, &lt;Button-1&gt;, &lt;Shift-Key-a&gt;
+</p><p>Si un détail est donné pour l'événement Key, des abréviations sont possibles et les 4 lignes suivantes sont équivalentes:
+</p><pre>&lt;KeyPress r&gt;
+&lt;Key r&gt;
+&lt;r&gt;
+r
+</pre>
+<p>Pour les touches de claviers, le détail est aussi connu sous le nom de <i>keysym</i> (terme technique de X).
+</p><p>De même pour l'événement Button, les 3 lignes suivantes sont équivalentes:
+</p><pre>&lt;ButtonPress-1&gt;
+&lt;Button-1&gt;
+&lt;1&gt;
+</pre>
+<p>On peut mentionner ici que &lt;1&gt; correspond à la souris et 1 au clavier.
+Mais ces raccourcis extrêmes ne simplifient pas la relecture! </p><h4><a name="HDR13"> 5.3.   Quelques exemples simples de binding</a></h4>
+<p>A titre d'exercice, faites les quelques essais suivants
+</p><pre>bind .hello &lt;Enter&gt; {puts stdout "Entered %W at %x %y"}
+bind .hello &lt;Leave&gt; {puts stdout "Left %W at %x %y"}
+</pre>
+<p>et regardez ce qui se passe lorsque le curseur passe devant le bouton .hello puis s'en va.
+</p><h3><a name="HDR14"> 6.    Utilisation des ressources X</a></h3>
+<h4><a name="HDR15"> 6.1.   Hiérarchie d'attribution des ressources X</a></h4>
+<p>L'attribution des ressources X pour un widget donné est faite suivant la hiérarchie:
+
+</p><ul>
+<p></p><li>les attributs et leur valeur dans le code proprement dit, lors de la création ou lors de configuration ultérieure du <i>widget
+<br>
+</i><p></p></li><li><i></i>si un attribut n'a pas été spécifié, Tk attribue la valeur de sa <i>Xresource database
+<br>
+</i><p></p></li><li><i></i>et si un attribut donné ne se trouve pas non plus dans la <i>Xresource database</i>,
+Tk lui donnera une valeur par défaut (les valeurs par défaut attribuées aux
+widgets Tk sont souvent judicieuses et ce sont elles aussi qui donnent le
+look Motif) <br>
+</li></ul>
+
+
+<h4><a name="HDR16"> 6.2.   Xresources database de Tk</a></h4>
+<p>La base de donnée des ressources X de Tk (<i>Xresource database</i>) est maintenue en mémoire par Tk. Il est possible d'y ajouter des ressources de 3 manières:
+
+</p><ul>
+<p></p><li>soit par le contenu du fichier $HOME/.Xdefaults ou xrdb (suivant ce que l'on utilise)
+<br>
+<p></p></li><li>soit en lisant un fichier à l'aide de la commande
+<br><pre></pre></li></ul>
+
+
+option readfile <i>filename
+
+
+</i><ul><i>
+</i><p></p><li><i></i>soit en ajoutant explicitement une option par la commande
+<br><pre></pre></li></ul>
+
+
+option add <i>Xresource
+
+<h4><a name="HDR17"> 6.3.   Spécification d'une ressource X pour la Xresources database de Tk</a></h4>
+</i><p><i></i>Pour spécifier une ressource X, la clef est la structure hiérarchique du widget
+
+</p><ul>
+<p></p><li>suivie du nom de l'attribut
+<br>
+<p></p></li><li>en utilisant * pour n'importe quelle chaîne de caractères
+<br>
+<p></p></li><li>éventuellement précédée du nom de l'application
+<br>Le nom de l'application est le nom du programme qui a été exécuté (soit
+le nom du script, soit wish si on travaille interactivement). Pour fixer
+le nom de l'application, on peut utiliser la commande <i>tk</i> <i>appname</i> qui fixera le nom de façon univoque. Par exemple:
+<br><pre></pre></li></ul>
+
+
+tk appname Essai
+
+<h4><a name="HDR18"> 6.4.   Exemple</a></h4>
+<p>Supposons que l'on veuille que par défaut la couleur de fond soit rose:
+</p><pre>option add *background pink ;# peu importe le nom de l'application
+option add Essai*background pink ;# si l'application s'appelle Essai, que ce soit pas <i>tk</i> <i>appname</i> ou le nom 
+de l'exécutable
+</pre>
+<p>Si on veut que tous les <i>widgets</i> qui terminent par exit soient jaune:
+</p><pre>option add *exit.background yellow ;# peu importe le nom de l'application
+option add Essai*exit.background yellow ;# si l'application s'appelle Essai
+</pre>
+<p>Si on veut que tous les <i>widgets</i> qui appartiennent au frame .top soient vert:
+</p><pre>option add *top*background green ;# peu importe le nom de l'application
+option add Essai.top*background green # si l'application s'appelle Essai
+</pre>
+<h4><a name="HDR19"> 6.5.   Remarques</a></h4>
+
+<ul>
+<p></p><li>si plusieurs options peuvent s'appliquer au même <i>widget</i>, c'est la <b>dernière</b> entrée qui s'applique (contrairement à Xt)
+<br>
+<p></p></li><li>le nom de l'application compris par <i>Xresource database</i>
+est le suivant: si l'on utilise $HOME/.Xdefaults (ou xrdb), le nom de l'application
+est le nom du programme exécuté (puisque Tk charge ces valeurs au départ),
+tandis que pour la commande <i>option</i>, ce sera le nom donné par <i>tk appname</i> (si cette commande est utilisée) et sinon le nom du programme exécuté
+<br>
+<p></p></li><li>apparemment il n'est pas possible de mettre un point juste á côté d'une astérisque
+<br>
+</li></ul>
+
+
+<h3><a name="HDR20"> 7.    Résumé de quelques commandes et quelques conseils</a></h3>
+<h4><a name="HDR21"> 7.1.   Pour l'information</a></h4>
+
+<ul>
+<p></p><li><b>winfo children</b><i> widget_name</i>: pour connaître la hiérarchie des widgets créés sous widget_name
+<br>
+<p></p></li><li><b>pack info</b><i> widget_name</i>: pour connaître les conditions de packing de widget_name
+<br>
+<p></p></li><li><i>widget_name</i><b> config</b> ?<i>-option</i>?: pour connaître les conditions de configuration d'un widget
+<br>
+<p></p></li><li><i>widget_name</i> <b>cget</b> -<i>option</i>: pour connaître la valeur d'une option d'un widget
+<br>
+<p></p></li><li><b>bind</b> <i>Class</i> ?&lt;<i>event</i>&gt;?: pour connaître tous les événements liés à une classe de widgets et leur action si l'événement est précisé.
+<br></li></ul>
+
+
+<h4><a name="HDR22"> 7.2.   Pour le déplacement ou la destruction</a></h4>
+
+<ul>
+<p></p><li><b>pack forget</b> <i>widget_name</i>: supprimera l'ancrage de <i>widget_name</i> et de tous ses descendants mais ils pourront être réancrés à un autre endroit
+<br>
+<p></p></li><li><b>destroy</b> <i>widget_name</i>: pour détruire complètement un widget et tous ces descendants
+<br></li></ul>
+
+
+<h4><a name="HDR23"> 7.3.   Quelques conseils</a></h4>
+
+<ul>
+<p></p><li>ne pas hésiter à ajouter des <i>frames</i> intermédiaires pour regrouper ce qui est conceptuellement associé
+<br>
+<p></p></li><li>si on met une barre de déroulement, toujours la <i>packer</i> en premier lieu pour qu'elle ne puisse pas disparaître lors du redimensionnement
+<br>
+<p></p></li><li>l'ordre de création des widgets a de l'importance puisque c'est le dernier créé qui est au dessus
+<br>
+<p></p></li><li>si vous souhaitez une application avec une barre d'outils
+toujours de même aspect, il peut être utile de le faire dans une procédure
+personnalisée. <br></li></ul>
+
+
+
+<a name="ENDFILE"><pre> </pre></a>
+</body></html>

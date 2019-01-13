@@ -1,0 +1,96 @@
+
+set camItem "A"
+set camNo 0
+set visuNo 1
+set bufNo [::confVisu::getBufNo $visuNo]
+
+#-------------------------------------------------------------------------------
+test WEBCAM_RGB_create {creation de la camera RGB} {WEBCAM_RGB} {
+   set camNo [cam::create webcam USB -channel 0) \
+      -lpport "" -name WEBCAM -ccd "ICX098BQ-A" ]
+   update
+   cam$camNo buf $bufNo
+   return $camNo
+} "1"
+
+#-------------------------------------------------------------------------------
+test WEBCAM_RGB_getccd {get CCD & celldim} {WEBCAM_RGB} {
+   cam$camNo ccd
+} "ICX098BQ-A"
+
+#-------------------------------------------------------------------------------
+test WEBCAM_RGB_getpixdim {get celldim} {WEBCAM_RGB} {
+   cam$camNo pixdim
+} "5.6e-006 5.6e-006"
+
+#-------------------------------------------------------------------------------
+test WEBCAM_RGB_hasWindow {mode fenetree} {WEBCAM_RGB} {
+   ::confCam::getPluginProperty $camItem hasWindow
+} "0"
+
+#-------------------------------------------------------------------------------
+test WEBCAM_RGB_acq {acquisition 1s RGB} {WEBCAM_RGB} {
+   #--- je vide le buffer de la camera
+   cam$camNo debug 4
+   buf$bufNo clear
+   #--- je fais une acquisition
+   cam$camNo exptime 0
+   cam$camNo acq
+   set statusVariableName "::status_cam$camNo"
+   update
+   while { [set $statusVariableName] != "stand" } {
+      vwait $statusVariableName
+   }
+   #--- je verifie que le buffer contient une image
+   if { [buf$bufNo imageready] != 1 } { return "image not ready" }
+   if { [buf$bufNo getnaxis] != 3 } { return "naxis=[buf$bufNo getnaxis]" }
+
+   return 1
+
+} "1"
+
+#-------------------------------------------------------------------------------
+test WEBCAM_RGB_delete {suppression camera RGB} {WEBCAM_RGB} {
+   cam::delete $camNo
+   update
+   #--- je verifie qu'il n'y a plus de camera
+   return [cam::list]
+} ""
+
+#-------------------------------------------------------------------------------
+test WEBCAM_NB_create {creation de la camera NB} {WEBCAM_NB} {
+   set camNo [cam::create webcam USB -channel 0) -sensorcolor 0 \
+      -lpport "" -name WEBCAM -ccd "ICX098BQ-A" ]
+   update
+   cam$camNo buf $bufNo
+   return $camNo
+} "1"
+
+#-------------------------------------------------------------------------------
+test WEBCAM_NB_acq {acquisition 1s NB} {WEBCAM_NB} {
+   #--- je vide le buffer de la camera
+   buf$bufNo clear
+   #--- je fais une acquisition
+   cam$camNo exptime 0
+   cam$camNo acq
+   update
+   set statusVariableName "::status_cam$camNo"
+   while { [set $statusVariableName] != "stand" } {
+      vwait $statusVariableName
+   }
+   #--- je verifie que le buffer contient une image
+   if { [buf$bufNo imageready] != 1 } { return "image not ready" }
+   if { [buf$bufNo getnaxis] != 2 } { return "naxis=[buf$bufNo getnaxis]" }
+
+   return 1
+
+} "1"
+
+#-------------------------------------------------------------------------------
+test WEBCAM_NB_delete {suppression camera NB} {WEBCAM_NB} {
+   cam::delete $camNo
+   update
+   #--- je verifie qu'il n'y a plus de camera
+   return [cam::list]
+} ""
+

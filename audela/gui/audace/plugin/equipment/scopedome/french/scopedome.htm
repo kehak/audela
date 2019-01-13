@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>ScopeDome</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 25 novembre 2014</p>
+<h1>ScopeDome</h1>
+<p>Les informations sur le d&ocirc;me <img src=
+"images/dome.gif" /> les &eacute;quipements <img src=
+"images/PlugAndPlay_With_Box.gif" />,<br />
+et le driver sont sur le site de <a href=
+"http://www.scopedome.com/en/default.aspx">ScopeDome</a>.<br />
+Jacek Pala, &agrave; contacter en anglais &agrave; l'adresse mail
+<b>info@scopedome.com</b> peut fournir les r&eacute;ponses aux
+questions.</p>
+<p>Une vid&eacute;o est disponible sur <a href=
+"http://www.youtube.com/watch?v=2X9R81hymrI">YouTube</a></p>
+<p>Le driver, &eacute;crit en VBS, est <b>ASCOM compliant</b>
+(n&eacute;cessite ASCOM 6-SP1) et fonctionne uniquement sous
+<b>Windows</b>.<br />
+Le driver dispose d'un mode simulation permettant de tester les
+fonctions sans d&eacute;bourser un sou pour le d&ocirc;me ou le
+mat&eacute;riel d'automatisation. Le driver est <a href=
+"http://www.scopedome.com/en/download_program.aspx">ici</a> (CF
+ci-dessous Simulation).</p>
+<p>L'interface ScopeDome de AudeLA est &eacute;crite en tcltk
+comme il se doit.<br />
+Le driver <b>ScopeDome LS</b>, version sup&eacute;rieure &agrave;
+5.0, peut &ecirc;tre lanc&eacute;, lu, command&eacute; et
+arr&ecirc;t&eacute; par cette interface.<br />
+La configuration du driver devra &ecirc;tre
+r&eacute;alis&eacute;e en direct dans le driver.</p>
+<p><img src="images/driver.gif" /></p>
+<h2>Usages de l'interface</h2>
+<h3>Lancement effectif du driver</h3>
+<p>Il faut indiquer le nom de l'ex&eacute;cutable et son chemin.
+Si le chemin est incorrect l'interface ne pourra pas &ecirc;tre
+lanc&eacute;e. Ces deux param&egrave;tres sont conserv&eacute;s
+en m&eacute;moire.</p>
+<p><img src="images/interface.gif" /></p>
+<p>Lors de l'appui sur le bouton <b>Appliquer</b> la version du
+driver est affich&eacute;e, le driver est lanc&eacute; et les
+commandes sont lib&eacute;r&eacute;es. Le driver peut aussi
+&ecirc;tre lanc&eacute; automatiquement au d&eacute;marrage
+d&egrave;s lors que le nom et le chemin sont corrects.</p>
+<p><img src="images/interface2.gif" /></p>
+<h3>Suivi du t&eacute;lescope</h3>
+<p>Le d&ocirc;me peut suivre les &eacute;volutions du
+t&eacute;lescope pilot&eacute; par une interface Aud'ACE : il
+suffit de cocher la case <b>Suivre le t&eacute;lescope</b> et les
+coordonn&eacute;es actuelles sont transmises au driver ScopeDome
+LS qui doit &ecirc;tre configur&eacute; correctement, onglet
+<b>Telescope</b> :</p>
+<p><img src="images/suivi.gif" /></p>
+<ul>
+<li>Scope Scan Interval : fr&eacute;quence de
+refra&icirc;chissment (en secondes); rappel les
+coordonn&eacute;es affich&eacute;es dans le panneau
+t&eacute;lescope sont rafraichies environ toutes les
+secondes,</li>
+<li>ScopeType : s&eacute;lection de FileSystem,</li>
+<li>chemin complet du fichier :
+C:\ScopeDome\ScopeDomeCurrentTelescopeStatus.txt (laisser
+inchang&eacute;) : c'est le chemin du fichier &eacute;crit pour
+communiquer les coordonn&eacute;es au d&ocirc;me.</li>
+</ul>
+<p>Il faut &eacute;galement activer le bouton <b>Scope Sync
+OFF</b> qui bascule en <b>Scope Sync ON</b>.</p>
+<h3>Commandes en Tcl</h3>
+<p>Les commandes dupliqu&eacute;es dans l'interface sont
+regroup&eacute;es en 4 lots :</p>
+<table>
+<tr>
+<td>Titre de la ligne</td>
+<td>Nom de la variable du s&eacute;lecteur</td>
+<td>Param&egrave;tre de la variable principale</td>
+<td>Valeur asssoci&eacute;e &agrave; la variable</td>
+</tr>
+<tr>
+<td><b>Valeur du senseur</b></td>
+<td>widget(property)</td>
+<td>Azimuth AtHome AtPark Card_Power_Get_State Connected<br />
+ShutterStatus Slaved Slewing Dome_Scope_Is_Connected<br />
+Dome_Scope_Ra Dome_Scope_Dec Dome_Scope_Alt Dome_Scope_Az<br />
+Rel_Scope_Get_State Rel_CCD_Get_State<br />
+Rel_Light_Get_State Rel_Fan_Get_State<br />
+Rel_REL_1_Get_State Rel_REL_2_Get_State<br />
+Rel_REL_3_Get_State Rel_REL_4_Get_State<br />
+Rel_Shutter_1_Open_Get_State Rel_Shutter_1_Close_Get_State<br />
+Rel_Shutter_2_Open_Get_State Rel_Shutter_2_Close_Get_State<br />
+Rel_Dome_CW_Get_State Rel_Dome_CCW_Get_State<br />
+Temperature_In_Dome Temperature_Outside_Dome<br />
+Temperature_Humidity_Sensor Humidity_Humidity_Sensor<br />
+Temperature_In_From_Weather_Station Temperature_Out_From_Weather_Station<br />
+Shutter_Link_Strength Internal_Sensor_Observatory_Safe<br />
+Pressure Dew_Point Wind_Speed Wind_Direction<br />
+Cloud_Sensor_Day_Night Cloud_Sensor_Clear_Cloudy Cloud_Sensor_Rain<br />
+Internal_Sensor_Clouds Internal_Sensor_Rain<br />
+Internal_Sensor_Power_Failure Internal_Sensor_Free_Input<br />
+Internal_Sensor_Scope_At_Home Dome_Error<br />
+Analog_Input_Shutter Analog_Input_Main</td>
+<td>widget(propertyResult) : valeur lue</td>
+</tr>
+<tr>
+<td><b>Commande switch</b></td>
+<td>widget(switch)</td>
+<td>Scope_Sync Sky_Sync Wind_Sync Weather_Protect Slaved</td>
+<td>widget(switchValue) : { On | Off | Toggle }</td>
+</tr>
+<tr>
+<td><b>Commande+double</b></td>
+<td>widget(cmd)</td>
+<td>GoTo Enc_GoTo SyncToAzimuth SlewToAltitude SlewToAzimuth Dome_Relative_Rotate</td>
+<td>widget(cmdValue) : valeur (double)</td>
+</tr>
+<tr>
+<td><b>Commande</b></td>
+<td>widget(action)</td>
+<td>AbortSlew CloseShutter OpenShutter<br />
+Card_Power_Off Card_Power_On<br />
+Dome_Scope_Connect Dome_Scope_DisConnect<br />
+Park Rel_Scope_On Rel_Scope_Off Rel_CCD_On Rel_CCD_Off<br />
+Rel_Light_On Rel_Light_Off Rel_Fan_On Rel_Fan_Off<br />
+Rel_1_On Rel_1_Off Rel_2_On Rel_2_Off<br />
+Rel_3_On Rel_3_Off Rel_4_On Rel_4_Off<br />
+Dome_Derotate Reset_Dome_Rotate_Encoder<br />
+Dome_Find_Home Stop Dome_Wait_1000ms<br />
+Switch_All_On Switch_All_Off Stop<br />
+Shutter_1_Open Shutter_1_Close<br />
+Shutter_2_Open Shutter_2_Close<br /></td>
+<td></td>
+</tr>
+</table>
+<h3>Synchronisation du d&ocirc;me avec le t&eacute;lescope</h3>
+<p>Si la case <b>Suivre le t&eacute;lescope</b> est coch&eacute;e l'interface envoie les cordonn&eacute;es au d&ocirc;me. Il faut aussi activer la fonction <b>Use SideOfPier from Scope</b> dans l'onglet <b>Config/Telescope</b> du driver ScopeDome LS.</p>
+<h3>Param&egrave;tres m&eacute;t&eacute;o</h3>
+<p>L'onglet <b>Config/Wheater</b> permet de s&eacute;lectionner la station (dont Sentinel ou Cumulus) et le mode de surveillance du ciel notamment avec <b>AAG CloudWatcher</b>. Ce dernier peut g&eacute;rer la fermeture automatique du d&ocirc;me en lieu et place d'AudeLA.<p>
+<h3>Transfert des param&egrave;tres par ftp</h3>
+<p>L'onglet <b>Config/wwww</b> permet de transf&eacute;rer et mettre &agrave; jour une page html par <b>ftp</b> avec un grand nombre de param&egrave;tres &agrave l'exemple de la page ci_dessous :</p>
+<p><img src="images/ftp.gif" /></p>
+<p>La structure de la page est donn&eacute;e soit par des pages fournies avec le logiciel soit construite par l'utilisateur.</p>
+<h3>Commandes</h3>
+<p>Une commande console ou un script permet de passer des
+commandes au driver, par exemple :</p>
+<pre>
+set ::scopedome::widget(scopedome,property) Dome_Scope_Is_Connected ; ::scopedome::cmd property ; # $widget(propertyValue) contient la valeur
+set ::scopedome::widget(switchValue) On ; set ::scopedome::widget(scopedome,switch) Scope_Sync ; ::scopedome::cmd switch ; #-- active le suivi du t&eacute;lescope par le d&ocirc;me
+set ::scopedome::widget(cmdValue) 245.5 ; set ::scopedome::widget(scopedome,cmd) GoTo ; ::scopedome::cmd cmd ; #-- demande au d&ocirc;me d'aller en position azimuth 245&deg;30"
+set ::scopedome::widget(scopedome,action) Rel_Scope_On ; ::scopedome::cmd action ; #-- active le relai permettant d'alimenter le t&eacute;lescope
+</pre>
+<h3>Arr&ecirc;t du driver</h3>
+<p>L'appui sur le bouton <b>Arr&ecirc;ter</b> ou la fermeture
+d'Aud'ACE provoque la d&eacute;connection du driver et sa
+fermeture. Il est bon de v&eacute;rifier si la carte est en mode
+<b>StandBy</b> ou normal (la carte reste active en local).</p>
+<h2>Simulation</h2>
+<p>Normalement en l'absence de connection USB, le driver se met
+en mode <b>Simulator</b>. Si ce n'est pas le cas,
+s&eacute;lectionner ce mode dans <b>Config/Card/Card type</b></p>
+<p><img src="images/simulator.gif" /></p>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Acquisition (T1M) : Bddimages </title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 01 mai 2013</p>
+
+<h1>Base de données des Images du Pic</h1>
+
+     <h3>Intro</h3>
+     <pre>
+     Il faut se referer de toute facon a la documentation de Bddimages pour tout
+     ce qui concerne son fonctionnement.
+     Les informations qui suivent ont pour but de faciliter l'installation des 
+     PC de traitement et d acquisition, il est preferable de suivre chaque 
+     etape pour plus de simplicité et de rapidité.
+
+     </pre>
+
+     <h3>Preparation des Bases SQL</h3>
+
+     <pre>
+     == PHPMYADMIN ==
+     Firefox -> http://localhost/phpmyadmin/
+
+     == Creer la base ==
+     Cliquer sur Databases -> Create database
+     Taper : <b>bdi_pic</b>
+
+     == Gerer les utilisateurs ==
+     Cliquer sur Users
+     
+     Cocher tous les utilisateurs sauf root @ localhost
+     puis supprimer tout le monde dans la partie "Remove selected users"
+     Go
+     
+     Add user
+     user name : bdi
+     Host : Any host
+     password : XXX
+     
+     Dans "Global privileges"
+     cocher "Reload"
+     
+     cliquer sur Add user
+
+     == Gerer les droits de l utilisateur bdi ==
+     Cliquer sur Users
+     Puis Edit Privileges correspondant a 'bdi'
+     Dans la partie "Database-specific privileges"
+     
+     Add privileges on the following database : 
+     taper dans la case a cette effet : bdi_%
+     
+     Puis dans la page qui vient de s afficher : 
+     "Database-specific privileges"
+     
+     cliquer sur "Check All"
+
+     == Voir les privileges utilisateurs ==
+     Cliquer sur Users
+     
+     la liste doit ressembler a ca : 
+     <b>
+     User   Host       Password  Global privileges  Grant
+     bdi    %          Yes       RELOAD             No   
+     root   localhost  Yes       ALL PRIVILEGES     Yes  
+     </b>
+     
+     </pre>
+
+     <h3>Preparation des Disques Durs</h3>
+
+     <pre>
+     == Yast2 ==
+     si les partitions ne sont pas toutes bien identifiées et montable par l utilisateur,
+     aller dans Yast2 -> Partitionnement -> mode expert et gerer comme il se doit 
+     
+     == La partition bddimages ==
+     sur bronto, /dev/sdc1 doit pointer sur /bddimages
+     cette partition de 2 To peut accueillir plusieurs archives de donnees.
+     
+     == La partition d'image Audela ==
+     la partition /dev/sdb1 pointant sur /raw accueille les images dites "brutes"
+     dans laquelle on peut voir chaque repertoire qui sont les nuits d'observation.
+     Durant chaque nuit d observation le logiciel Audela va creer un nouveau repertoire
+     du nom de la nuit qui va suivre.
+     Pour se faire <b>chaque jour apres midi, il faut redemarrer Audela.</b>
+     </pre>
+
+</body>
+
+</html>

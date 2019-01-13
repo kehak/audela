@@ -1,0 +1,147 @@
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head>
+  <title>images on the fly: Frequently Asked Questions
+ </title>
+  <link rev="made" href="mailto:martin@gleeson.com" />
+  <link rel="stylesheet" href="style.css" media="screen" />
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta name="description"
+     content="FAQs and Future Plans." />
+
+  <meta name="robots"
+     content="nofollow" />
+</head>
+ <body>
+ <table class="maintable">
+  <tr>
+   <td class="maincontent">
+     <!-- ====================================================================== -->
+     <hr class="divider" />
+     <h1>fly: frequently asked questions</h1>
+     <!-- ====================================================================== -->
+     <hr class="divider" />
+    <ol>
+<li><p><b>Q: Can you send me a copy of fly via email?</b></p>
+    <p>A: Not right now. Maybe later.
+    </p>
+</li>
+<li><p><b>Q: All these different copies of fly are confusing. I'm using a
+       Windoze 99 computer and my ISP has Lunix. What version of fly do I
+       need?</b></p>
+    <p>A: Check with your Internet Service Provider to see what version of
+       unix and on what platform they are running. You should then be able
+       to <a href="installation.html">download</a> the appropriate
+       pre-compiled copy of fly. You might even like to ask them to install
+       it for you. If no pre-compiled copy is available, you should ask them
+       to compile and install it.
+    </p>
+</li>
+<li><p><b>Q: I'm using a Silicone Picture RSA4500 computer running Lunix.
+          Do you have a copy of fly compiled for my platform?</b></p>
+    <p>A: If it's not on the <a
+       href="installation.html">Download
+       and Installation</a> page, the answer is no. Check with your
+       Internet Service Provider or System Administrator to see if they will
+       compile it for you.
+</p>
+</li>
+<li><p><b>Q: How can I create animated GIFs with fly?</b></p>
+    <p>A: You can create the still images with fly, and then join them
+       together with a tool like <a href="http://www.msg.net/utility/whirlgif/"
+       >whirlgif</a>.</p>
+</li>
+<li><p><b>Q: I can't get this counter program to work. What's wrong?</b></p>
+    <p>A: Probably nothing is wrong with fly. To check that fly is working,
+       change to the directory where it is located and type <kbd>./fly -h</kbd>
+       and you should get a 'Quick Reference to Directives' screen.
+    </p>
+    <p>Please note that I am not the author of any counter program. In fact,
+       I strongly recommend against using them. Use a web log analysis program
+       like <a href="http://martin.gleeson.com/pwebstats/">pwebstats.</a> At
+       any rate, I can not offer any support for a program that was written by
+       someone else. Please do not email me asking to get your counter
+       working, because all you will get is the URL of this page.
+       Contact the author of the counter program, or try to work out the
+       problem yourself. General CGI debugging information is available at
+       &lt;<a href="http://www.cgi-resources.com/"
+       >http://www.cgi-resources.com/</a>&gt;.
+    </p>
+</li>
+<li><p><b>Q: I'm using fly on Windows and the images are corrupted.
+       What's wrong?</b></p>
+    <p>A: Windows needs to have output files opened in binary mode. See the
+    following perl example from the Perl for Win32 FAQ
+    <a href="http://www.activestate.com/support/faqs/win32/perlwin32faq7.html"
+    >http://www.activestate.com/support/faqs/win32/perlwin32faq7.html.</a>
+</p>
+<pre>
+7.3. How do I return a graphics file from a CGI script?
+
+One of the big differences between UNIX and Win32 platforms is
+that on Win32 there's a difference between text or ASCII files
+and binary file. To return a graphics file, you need to specify
+that the file is a binary file, and that the standard output
+stream should accept binary data. Try something like this: 
+
+    $MY_FILE_NAME = 'Penelope.jpg';
+    $CHUNK_SIZE = 4096;
+
+    open( MY_FILE, &quot;&lt;$MY_FILE_NAME&quot; )
+         or die( &quot;Can't open $MY_FILE_NAME: $!\n&quot; );
+
+    print &quot;Content-type: image/jpeg\r\n&quot;;
+    print &quot;\r\n&quot;;
+
+<b>    binmode( MY_FILE ); # These are crucial!
+    binmode( STDOUT ); </b>
+
+    while ( $cb = read( MY_FILE, $data, $CHUNK_SIZE ) )
+    {
+        print $data;
+    }
+
+    close( MY_FILE );
+</pre>
+</li>
+</ol>
+  </td>
+   <td class="mainmenutop">
+    <p class="navigation-centred"><a href="http://martin.gleeson.com/fly/"><img
+         src="fly-logo.gif" class="borderless" alt=" [fly] " width="157" height="52" /></a>
+   </p>
+    <ul class="navigation">
+     <li><a class="navigation" href="index.html">Home</a> </li>
+     <li><a class="navigation" href="installation.html">Download &amp; Installation.</a> </li>
+     <li><a class="navigation" href="using.html">How to use fly.</a> </li>
+     <li><a class="navigation" href="examples.html">Examples.</a> </li>
+     <li><a class="navigation" href="outthere.html">Fly on the Web.</a> </li>
+     <li><a class="navigation" href="FAQ.html">Frequently Asked Questions.</a> </li>
+     <li><a class="navigation" href="release-notes.html">Contributors and Release notes.</a> </li>
+     <li><a class="navigation" href="feedback.html">Feedback &amp; Mailing Lists.</a> </li>
+     <li><a class="navigation" href="copyright.html">Credits &amp; Copyright Information.</a></li>
+    </ul>
+   </td>
+ </tr>
+  <tr>
+   <td class="mainmenubottom">
+   <p class="pagedetails"><tt>Created: 21 June 1995<br />
+    Last modified: 24 November 2001<br />
+    Copyright &#169; 1995-2001 <a href="http://martin.gleeson.com/"
+    class="writtenurl">Martin Gleeson.</a></tt><br />
+    <small>&lt;URL:<a href="http://martin.gleeson.com/fly/FAQ.html"
+    class="writtenurl">http://martin.gleeson.com/fly/FAQ.html</a>&gt;</small>
+   </p>
+  </td>
+   <td>
+     <p class="rightfooter"><a href="http://validator.w3.org/check/referer"><img
+       src="http://www.w3.org/Icons/valid-xhtml10" class="borderless"
+       alt="[Valid XHTML 1.0!]" height="31" width="88" /></a>
+    </p>
+  </td>
+ </tr>
+</table>
+</body>
+</html>

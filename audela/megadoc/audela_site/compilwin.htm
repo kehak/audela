@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Compilation sur Windows</title>
+</head>
+
+<body>
+<h3>T&eacute;l&eacute;chargement de Microsoft Visual C++ 2008 Express SP1</h3
+<ul>
+   <li>installation en ligne : t&eacute;l&eacute;charger et ex&eacute;cuter <b>vcsetup.exe</b> sur <a href="http://go.microsoft.com/?linkid=7729279">Microsoft</a>,</li>
+   <li>ou t&eacute;l&eacute;charger le fichier ISO ( &agrave; d&eacute;zipper avec par exemple <b>7zip</b> puis lancer <b>Setup.hta</b>
+     http://download.microsoft.com/download/3/6/0/36027A58-BEEF-440C-B835-C8A53EDD1D42/VS2008ExpressWithSP1FRAx1504731.iso</li>
+</ul>
+<p>Puis activer Windows Update pour installer d'éventuelles mises à jour de Windows.</p>
+
+<h3>Installation de Visual C++ Express 2008</h3>
+<p>S&eacute;lectionner VisualC++ 2008 Express Edition, puis :</p>
+<ul>
+   <li>d&eacute;cocher "Allow Visual studio to receive and display online RSS content",</li>
+   <li>décocher Microsoft SQL Server Express Edition",</li>
+   <li>installer  dans <b >C:\Program Files\Microsoft Visual Studio 9.0\</b> (par d&eacute;faut),</li>
+</ul>
+<h3>Liste des produits install&eacute;s (total 824 Mo)</h3>
+<p> On peut voir les nouveaux produits avec le menu de Windows <b>D&eacute;marrer>Para&egrave;tres>Panneau de configuration>Ajout/suppression de programmes</b> :</p>
+<ul>
+   <li>Configuration Runtime pour Visual C++</li>
+   <li>Microsoft .NET FrameWork 3.5 SP1</li>
+   <li>Microsoft .NET FrameWork 3.5LP SP1</li>
+   <li>Kit de développement Microsoft Windows pour Visual Studio 2008</li>
+   <li>Headers and libraries</li>
+   <li>Kit de développement Microsoft Windows pour  Visual Studio 2008</li>
+   <li>SP1 Express tools Express Tools for .NET Frameword 4 Mo</li>
+   <li>Kit de développement Microsoft Windows pour Visual Studio 2008</li>
+   <li>Express Tools for Win32 2Mo</li>
+   <li>Microsoft Visual C++ 2008 Express Express Edition with SP11001 Mo</li>
+   <li>Types CLR dus système SQL Server</li>
+   <li>Objets de gestion partagés</li>
+</ul>
+
+<h3>Compilation de AudeLA</h3>
+<p>Pré-requis : récupérer les sources de AUDELA ( voir [[fr:dev:svnusage | Utilisation de TortoiseSVN ]] )</p>
+<ul>
+   <li>ouvrir le fichier <b>src\audela.sln</b> avec le menu <b>Fichier>Ouvrir>Projet/Solution</b>,</li>
+   <li>s&eacute;lectionner la configuration <b>Release</b> dans la barre d'outils,</li>
+   <li>lancer la compilation avec le menu <b>Générer>Générer la solution</b> (Raccourci F7),</li>
+   <li>&agrave; la fin de la compilation, s&eacute;lectionner l'onglet <b>Sortie</b> dans la barre de menu au base de la page et v&eacute;rifier que le nombre de <b>projets échou&eacute;s</b> vaut zéro.</li>
+</ul>
+<p>En cas d'erreur , il faut analyser les traces de la compilation :</p>
+<ul>
+   <li>s&eacute;lectionner en haut de la fen&ecirc;tre de sortie <b>Afficher la sortie</b> &agrave; partir de <b>Ordre de la génération</b> pour ordonner les traces par projet,</li>
+   <li>copier le contenu de la fen&ecirc;tre en cliquant avec le <b>bouton droit de la souris</b> et en s&eacute;lectionnant le menu <b>Copier</b>,</li>
+   <li>coller le texte dans un mail à envoyer à la liste audeladev.</li>
+</ul>
+<p align="center"><img src="images/compil/compilwin.png" alt="" /></p>
+<p>Lancer <b>bin\audela.exe</b> pour d&eacute;marrer <b>Audela</b></p>
+
+</body>
+</html>

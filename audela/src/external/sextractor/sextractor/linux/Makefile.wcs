@@ -1,0 +1,26 @@
+# Custom makefile for the WCS library
+# E. Bertin 27/05/97
+#
+#
+# where to put the result
+DEST	= .
+include ../src/Macrodefs.$(SEXMACHINE)
+DEFINES = # -DCOPYSIGN -DSIGNBIT
+LIBS	= -lm
+SRC     = ../src/wcs
+SOURCES	= $(SRC)/cel.c $(SRC)/lin.c $(SRC)/proj.c $(SRC)/sph.c $(SRC)/wcs.c $(SRC)/wcstrig.c
+OBJECTS	= $(SOURCES:.c=.o)
+INCLUDES= $(SRC)/cel.h $(SRC)/lin.h $(SRC)/proj.h $(SRC)/wcs.h $(SRC)/wcstrig.h
+LIBRARY = $(DEST)/libwcs_c.a
+
+$(LIBRARY): $(OBJECTS)
+	$(RM) $@
+	ar rc $@ $(OBJECTS)
+	-ranlib $@
+
+.c.o: $(INCLUDES)
+	$(CC) $(COPTS) $(DEFINES) -o $@ -c $*.c
+
+clean:
+	$(RM) $(OBJECTS) $(LIBRARY)
+

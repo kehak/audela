@@ -1,0 +1,178 @@
+#
+# Fichier : confeqt.cap
+# Mise a jour $Id: confeqt.cap 7476 2011-07-14 14:08:58Z robertdelmas  $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(confeqt,equipement)             "Equipment:"
+set caption(confeqt,config)                 "Equipment Setup"
+set caption(confeqt,ok)                     "OK"
+set caption(confeqt,appliquer)              "Apply"
+set caption(confeqt,fermer)                 "Close"
+set caption(confeqt,aide)                   "Help"
+set caption(confeqt,configurer)             "Set up"
+
+set caption(confeqt,pas_equipement)         "No Equipment."
+set caption(confeqt,pas_focuser)            "No Focuser"
+
+set caption(confeqt,attention)              "Warning"
+set caption(confeqt,connexion_texte1)       "Equipment Connection in Progress..."
+set caption(confeqt,connexion_texte2)       "Please wait a few seconds."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(confeqt,equipement)          "Equipement :"
+   set caption(confeqt,config)              "Configuration de l'équipement"
+   set caption(confeqt,ok)                  "OK"
+   set caption(confeqt,appliquer)           "Appliquer"
+   set caption(confeqt,fermer)              "Fermer"
+   set caption(confeqt,aide)                "Aide"
+   set caption(confeqt,configurer)          "Configurer"
+
+   set caption(confeqt,pas_equipement)      "Il n'y a pas d'équipement présent."
+   set caption(confeqt,pas_focuser)         "Pas de focuser"
+
+   set caption(confeqt,attention)           "Attention"
+   set caption(confeqt,connexion_texte1)    "Veuillez patienter quelques secondes"
+   set caption(confeqt,connexion_texte2)    "pendant la connexion de votre équipement."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(confeqt,equipement)          "Equipaggiamento:"
+   set caption(confeqt,config)              "Configurazione equipaggiamento"
+   set caption(confeqt,ok)                  "OK"
+   set caption(confeqt,appliquer)           "Applicare"
+   set caption(confeqt,fermer)              "Chiudere"
+   set caption(confeqt,aide)                "Aiuto"
+   set caption(confeqt,configurer)          "Configurare"
+
+   set caption(confeqt,pas_equipement)      "Nessun equipaggiamento."
+   set caption(confeqt,pas_focuser)         "Nessun focheggiatore"
+
+   set caption(confeqt,attention)           "Attenzione"
+   set caption(confeqt,connexion_texte1)    "Attendere qualche secondo per la"
+   set caption(confeqt,connexion_texte2)    "connessione del equipaggiamento."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(confeqt,equipement)          "Equipamiento:"
+   set caption(confeqt,config)              "Configuración del equipamiento"
+   set caption(confeqt,ok)                  "OK"
+   set caption(confeqt,appliquer)           "Aplicar"
+   set caption(confeqt,fermer)              "Cerrar"
+   set caption(confeqt,aide)                "Ayuda"
+   set caption(confeqt,configurer)          "Configurar"
+
+   set caption(confeqt,pas_equipement)      "No hay equipamiento."
+   set caption(confeqt,pas_focuser)         "No hay enfocador"
+
+   set caption(confeqt,attention)           "!Cuidado¡"
+   set caption(confeqt,connexion_texte1)    "Conectando con al equipamiento..."
+   set caption(confeqt,connexion_texte2)    "Por favor, espere unos segundos."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(confeqt,equipement)          "Einrichtung:"
+   set caption(confeqt,config)              "Einrichtung Konfiguration"
+   set caption(confeqt,ok)                  "OK"
+   set caption(confeqt,appliquer)           "Anwenden"
+   set caption(confeqt,fermer)              "Schließen"
+   set caption(confeqt,aide)                "Hilfe"
+   set caption(confeqt,configurer)          "Konfigurieren"
+
+   set caption(confeqt,pas_equipement)      "Keine Einrichtung."
+   set caption(confeqt,pas_focuser)         "Keine Scharfeinstellung"
+
+   set caption(confeqt,attention)           "Achtung"
+   set caption(confeqt,connexion_texte1)    "Bitte, einige Sekunden warten"
+   set caption(confeqt,connexion_texte2)    "während das Ausrüstung Anschluß."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(confeqt,equipement)          "Equipamento:"
+   set caption(confeqt,config)              "Configuração do equipamento"
+   set caption(confeqt,ok)                  "OK"
+   set caption(confeqt,appliquer)           "Aplicar"
+   set caption(confeqt,fermer)              "Fechar"
+   set caption(confeqt,aide)                "Ajuda"
+   set caption(confeqt,configurer)          "Configurar"
+
+   set caption(confeqt,pas_equipement)      "Sem equipamento."
+   set caption(confeqt,pas_focuser)         "Sem focador"
+
+   set caption(confeqt,attention)           "Atenção"
+   set caption(confeqt,connexion_texte1)    "A conectar-se ao equipamento..."
+   set caption(confeqt,connexion_texte2)    "Por favor, aguarde uns segundos."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(confeqt,equipement)          "Equipement:"
+   set caption(confeqt,config)              "Equipment Setup"
+   set caption(confeqt,ok)                  "OK"
+   set caption(confeqt,appliquer)           "Apply"
+   set caption(confeqt,fermer)              "Close"
+   set caption(confeqt,aide)                "Help"
+   set caption(confeqt,configurer)          "Set up"
+
+   set caption(confeqt,pas_equipement)      "No Equipment."
+   set caption(confeqt,pas_focuser)         "No Focuser"
+
+   set caption(confeqt,attention)           "Warning"
+   set caption(confeqt,connexion_texte1)    "Equipment Connection in Progress..."
+   set caption(confeqt,connexion_texte2)    "Please wait a few seconds."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(confeqt,equipement)          "Equipment:"
+   set caption(confeqt,config)              "Equipment Setup"
+   set caption(confeqt,ok)                  "OK"
+   set caption(confeqt,appliquer)           "Apply"
+   set caption(confeqt,fermer)              "Close"
+   set caption(confeqt,aide)                "Help"
+   set caption(confeqt,configurer)          "Set up"
+
+   set caption(confeqt,pas_equipement)      "No Equipment."
+   set caption(confeqt,pas_focuser)         "No Focuser"
+
+   set caption(confeqt,attention)           "Warning"
+   set caption(confeqt,connexion_texte1)    "Equipment Connection in Progress..."
+   set caption(confeqt,connexion_texte2)    "Please wait a few seconds."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(confeqt,equipement)          "Equipment:"
+   set caption(confeqt,config)              "Equipment Setup"
+   set caption(confeqt,ok)                  "OK"
+   set caption(confeqt,appliquer)           "Apply"
+   set caption(confeqt,fermer)              "Close"
+   set caption(confeqt,aide)                "Help"
+   set caption(confeqt,configurer)          "Set up"
+
+   set caption(confeqt,pas_equipement)      "No Equipment."
+   set caption(confeqt,pas_focuser)         "No Focuser"
+
+   set caption(confeqt,attention)           "Warning"
+   set caption(confeqt,connexion_texte1)    "Equipment Connection in Progress..."
+   set caption(confeqt,connexion_texte2)    "Please wait a few seconds."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

@@ -1,0 +1,806 @@
+# Microsoft Developer Studio Generated NMAKE File, Based on fitstcl.dsp
+!IF "$(CFG)" == ""
+CFG=fitstcl - Win32 Debug
+!MESSAGE No configuration specified. Defaulting to fitstcl - Win32 Debug.
+!ENDIF 
+
+!IF "$(CFG)" != "fitstcl - Win32 Release" && "$(CFG)" != "fitstcl - Win32 Debug"
+!MESSAGE Invalid configuration "$(CFG)" specified.
+!MESSAGE You can specify a configuration when running NMAKE
+!MESSAGE by defining the macro CFG on the command line. For example:
+!MESSAGE 
+!MESSAGE NMAKE /f "fitstcl.mak" CFG="fitstcl - Win32 Debug"
+!MESSAGE 
+!MESSAGE Possible choices for configuration are:
+!MESSAGE 
+!MESSAGE "fitstcl - Win32 Release" (based on "Win32 (x86) Dynamic-Link Library")
+!MESSAGE "fitstcl - Win32 Debug" (based on "Win32 (x86) Dynamic-Link Library")
+!MESSAGE 
+!ERROR An invalid configuration is specified.
+!ENDIF 
+
+!IF "$(OS)" == "Windows_NT"
+NULL=
+!ELSE 
+NULL=nul
+!ENDIF 
+
+CPP=cl.exe
+MTL=midl.exe
+RSC=rc.exe
+
+!IF  "$(CFG)" == "fitstcl - Win32 Release"
+
+OUTDIR=.
+INTDIR=.
+# Begin Custom Macros
+OutDir=.
+# End Custom Macros
+
+ALL : "$(OUTDIR)\fitstcl.dll"
+
+
+CLEAN :
+	-@erase "$(INTDIR)\buffers.obj"
+	-@erase "$(INTDIR)\cfileio.obj"
+	-@erase "$(INTDIR)\checksum.obj"
+	-@erase "$(INTDIR)\compress.obj"
+	-@erase "$(INTDIR)\drvrfile.obj"
+	-@erase "$(INTDIR)\drvrmem.obj"
+	-@erase "$(INTDIR)\editcol.obj"
+	-@erase "$(INTDIR)\edithdu.obj"
+	-@erase "$(INTDIR)\eval_f.obj"
+	-@erase "$(INTDIR)\eval_l.obj"
+	-@erase "$(INTDIR)\eval_y.obj"
+	-@erase "$(INTDIR)\fitsCmds.obj"
+	-@erase "$(INTDIR)\fitscore.obj"
+	-@erase "$(INTDIR)\fitsInit.obj"
+	-@erase "$(INTDIR)\fitsIO.obj"
+	-@erase "$(INTDIR)\fitsTcl.obj"
+	-@erase "$(INTDIR)\fitsUtils.obj"
+	-@erase "$(INTDIR)\fvTcl.obj"
+	-@erase "$(INTDIR)\getcol.obj"
+	-@erase "$(INTDIR)\getcolb.obj"
+	-@erase "$(INTDIR)\getcold.obj"
+	-@erase "$(INTDIR)\getcole.obj"
+	-@erase "$(INTDIR)\getcoli.obj"
+	-@erase "$(INTDIR)\getcolj.obj"
+	-@erase "$(INTDIR)\getcolk.obj"
+	-@erase "$(INTDIR)\getcoll.obj"
+	-@erase "$(INTDIR)\getcols.obj"
+	-@erase "$(INTDIR)\getcolui.obj"
+	-@erase "$(INTDIR)\getcoluj.obj"
+	-@erase "$(INTDIR)\getcoluk.obj"
+	-@erase "$(INTDIR)\getkey.obj"
+	-@erase "$(INTDIR)\group.obj"
+	-@erase "$(INTDIR)\grparser.obj"
+	-@erase "$(INTDIR)\histo.obj"
+	-@erase "$(INTDIR)\iraffits.obj"
+	-@erase "$(INTDIR)\listhead.obj"
+	-@erase "$(INTDIR)\modkey.obj"
+	-@erase "$(INTDIR)\putcol.obj"
+	-@erase "$(INTDIR)\putcolb.obj"
+	-@erase "$(INTDIR)\putcold.obj"
+	-@erase "$(INTDIR)\putcole.obj"
+	-@erase "$(INTDIR)\putcoli.obj"
+	-@erase "$(INTDIR)\putcolj.obj"
+	-@erase "$(INTDIR)\putcolk.obj"
+	-@erase "$(INTDIR)\putcoll.obj"
+	-@erase "$(INTDIR)\putcols.obj"
+	-@erase "$(INTDIR)\putcolu.obj"
+	-@erase "$(INTDIR)\putcolui.obj"
+	-@erase "$(INTDIR)\putcoluj.obj"
+	-@erase "$(INTDIR)\putcoluk.obj"
+	-@erase "$(INTDIR)\putkey.obj"
+	-@erase "$(INTDIR)\region.obj"
+	-@erase "$(INTDIR)\scalnull.obj"
+	-@erase "$(INTDIR)\swapproc.obj"
+	-@erase "$(INTDIR)\tclShared.obj"
+	-@erase "$(INTDIR)\imcompress.obj"
+	-@erase "$(INTDIR)\ricecomp.obj"
+	-@erase "$(INTDIR)\quantize.obj"
+	-@erase "$(INTDIR)\pliocomp.obj"
+        -@erase "$(INTDIR)\drvrnet.obj"
+        -@erase "$(INTDIR)\drvrsmem.obj"
+        -@erase "$(INTDIR)\getcolsb.obj"
+        -@erase "$(INTDIR)\putcolsb.obj"
+        -@erase "$(INTDIR)\wcssub.obj"
+        -@erase "$(INTDIR)\wcsutil.obj"
+        -@erase "$(INTDIR)\vc60.idb"
+	-@erase "$(INTDIR)\wcsutil.obj"
+	-@erase "$(OUTDIR)\fitstcl.dll"
+	-@erase "$(OUTDIR)\fitstcl.exp"
+	-@erase "$(OUTDIR)\fitstcl.lib"
+
+"$(OUTDIR)" :
+    if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
+
+CPP_PROJ=/nologo /MT /W3 /GX /O2 /D "__WIN32__" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "FITSTCL_EXPORTS" /Fp"$(INTDIR)\fitstcl.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /win32 
+BSC32=bscmake.exe
+BSC32_FLAGS=/nologo /o"$(OUTDIR)\fitstcl.bsc" 
+BSC32_SBRS= \
+	
+LINK32=link.exe
+LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"$(OUTDIR)\fitstcl.pdb" /machine:I386 /def:"fitstcl.def" /out:"$(OUTDIR)\fitstcl.dll" /implib:"$(OUTDIR)\fitstcl.lib" 
+DEF_FILE= \
+	"fitstcl.def"
+LINK32_OBJS= \
+	"$(INTDIR)\fitsCmds.obj" \
+	"$(INTDIR)\fitsInit.obj" \
+	"$(INTDIR)\fitsIO.obj" \
+	"$(INTDIR)\fitsTcl.obj" \
+	"$(INTDIR)\fitsUtils.obj" \
+	"$(INTDIR)\fvTcl.obj" \
+	"$(INTDIR)\tclShared.obj" \
+        "$(INTDIR)\imcompress.obj" \
+        "$(INTDIR)\ricecomp.obj" \
+        "$(INTDIR)\quantize.obj" \
+        "$(INTDIR)\pliocomp.obj" \
+	"$(INTDIR)\wcsutil.obj" \
+	"$(INTDIR)\cfileio.obj" \
+	"$(INTDIR)\checksum.obj" \
+	"$(INTDIR)\compress.obj" \
+	"$(INTDIR)\drvrfile.obj" \
+	"$(INTDIR)\drvrmem.obj" \
+	"$(INTDIR)\editcol.obj" \
+	"$(INTDIR)\edithdu.obj" \
+	"$(INTDIR)\eval_f.obj" \
+	"$(INTDIR)\eval_l.obj" \
+	"$(INTDIR)\eval_y.obj" \
+	"$(INTDIR)\fitscore.obj" \
+	"$(INTDIR)\getcol.obj" \
+	"$(INTDIR)\getcolb.obj" \
+	"$(INTDIR)\getcold.obj" \
+	"$(INTDIR)\getcole.obj" \
+	"$(INTDIR)\getcoli.obj" \
+	"$(INTDIR)\getcolj.obj" \
+	"$(INTDIR)\getcolk.obj" \
+	"$(INTDIR)\getcoll.obj" \
+	"$(INTDIR)\getcols.obj" \
+	"$(INTDIR)\getcolui.obj" \
+	"$(INTDIR)\getcoluj.obj" \
+	"$(INTDIR)\getcoluk.obj" \
+	"$(INTDIR)\getkey.obj" \
+	"$(INTDIR)\group.obj" \
+	"$(INTDIR)\grparser.obj" \
+	"$(INTDIR)\histo.obj" \
+	"$(INTDIR)\iraffits.obj" \
+	"$(INTDIR)\listhead.obj" \
+	"$(INTDIR)\modkey.obj" \
+	"$(INTDIR)\putcol.obj" \
+	"$(INTDIR)\putcolb.obj" \
+	"$(INTDIR)\putcold.obj" \
+	"$(INTDIR)\putcole.obj" \
+	"$(INTDIR)\putcoli.obj" \
+	"$(INTDIR)\putcolj.obj" \
+	"$(INTDIR)\putcolk.obj" \
+	"$(INTDIR)\putcoll.obj" \
+	"$(INTDIR)\putcols.obj" \
+	"$(INTDIR)\putcolu.obj" \
+	"$(INTDIR)\putcolui.obj" \
+	"$(INTDIR)\putcoluj.obj" \
+	"$(INTDIR)\putcoluk.obj" \
+	"$(INTDIR)\putkey.obj" \
+	"$(INTDIR)\region.obj" \
+	"$(INTDIR)\scalnull.obj" \
+	"$(INTDIR)\swapproc.obj" \
+        "$(INTDIR)\drvrnet.obj" \
+        "$(INTDIR)\drvrsmem.obj" \
+        "$(INTDIR)\getcolsb.obj" \
+        "$(INTDIR)\putcolsb.obj" \
+        "$(INTDIR)\wcssub.obj" \
+        "$(INTDIR)\wcsutil.obj" \
+	"$(INTDIR)\buffers.obj"
+
+
+"$(OUTDIR)\fitstcl.dll" : "$(OUTDIR)" $(LINK32_OBJS) $(DEF_FILE)
+    $(LINK32) @<<
+  $(LINK32_FLAGS) $(LINK32_OBJS)
+<<
+
+$(DEF_FILE):
+	..\tcl8.2.2\win\Release\DUMPEXTS -o $(DEF_FILE) fitstcl.dll $(LINK32_OBJS)
+
+
+!ELSEIF  "$(CFG)" == "fitstcl - Win32 Debug"
+
+OUTDIR=.
+INTDIR=.
+# Begin Custom Macros
+OutDir=.
+# End Custom Macros
+
+ALL : "$(OUTDIR)\fitstcl.dll"
+
+
+CLEAN :
+	-@erase "$(INTDIR)\buffers.obj"
+	-@erase "$(INTDIR)\cfileio.obj"
+	-@erase "$(INTDIR)\checksum.obj"
+	-@erase "$(INTDIR)\compress.obj"
+	-@erase "$(INTDIR)\drvrfile.obj"
+	-@erase "$(INTDIR)\drvrmem.obj"
+	-@erase "$(INTDIR)\editcol.obj"
+	-@erase "$(INTDIR)\edithdu.obj"
+	-@erase "$(INTDIR)\eval_f.obj"
+	-@erase "$(INTDIR)\eval_l.obj"
+	-@erase "$(INTDIR)\eval_y.obj"
+	-@erase "$(INTDIR)\fitsCmds.obj"
+	-@erase "$(INTDIR)\fitscore.obj"
+	-@erase "$(INTDIR)\fitsInit.obj"
+	-@erase "$(INTDIR)\fitsIO.obj"
+	-@erase "$(INTDIR)\fitsTcl.obj"
+	-@erase "$(INTDIR)\fitsUtils.obj"
+	-@erase "$(INTDIR)\fvTcl.obj"
+	-@erase "$(INTDIR)\getcol.obj"
+	-@erase "$(INTDIR)\getcolb.obj"
+	-@erase "$(INTDIR)\getcold.obj"
+	-@erase "$(INTDIR)\getcole.obj"
+	-@erase "$(INTDIR)\getcoli.obj"
+	-@erase "$(INTDIR)\getcolj.obj"
+	-@erase "$(INTDIR)\getcolk.obj"
+	-@erase "$(INTDIR)\getcoll.obj"
+	-@erase "$(INTDIR)\getcols.obj"
+	-@erase "$(INTDIR)\getcolui.obj"
+	-@erase "$(INTDIR)\getcoluj.obj"
+	-@erase "$(INTDIR)\getcoluk.obj"
+	-@erase "$(INTDIR)\getkey.obj"
+	-@erase "$(INTDIR)\group.obj"
+	-@erase "$(INTDIR)\grparser.obj"
+	-@erase "$(INTDIR)\histo.obj"
+	-@erase "$(INTDIR)\iraffits.obj"
+	-@erase "$(INTDIR)\listhead.obj"
+	-@erase "$(INTDIR)\modkey.obj"
+	-@erase "$(INTDIR)\putcol.obj"
+	-@erase "$(INTDIR)\putcolb.obj"
+	-@erase "$(INTDIR)\putcold.obj"
+	-@erase "$(INTDIR)\putcole.obj"
+	-@erase "$(INTDIR)\putcoli.obj"
+	-@erase "$(INTDIR)\putcolj.obj"
+	-@erase "$(INTDIR)\putcolk.obj"
+	-@erase "$(INTDIR)\putcoll.obj"
+	-@erase "$(INTDIR)\putcols.obj"
+	-@erase "$(INTDIR)\putcolu.obj"
+	-@erase "$(INTDIR)\putcolui.obj"
+	-@erase "$(INTDIR)\putcoluj.obj"
+	-@erase "$(INTDIR)\putcoluk.obj"
+	-@erase "$(INTDIR)\putkey.obj"
+	-@erase "$(INTDIR)\region.obj"
+	-@erase "$(INTDIR)\scalnull.obj"
+	-@erase "$(INTDIR)\swapproc.obj"
+	-@erase "$(INTDIR)\tclShared.obj"
+	-@erase "$(INTDIR)\imcompress.obj"
+	-@erase "$(INTDIR)\ricecomp.obj"
+	-@erase "$(INTDIR)\quantize.obj"
+	-@erase "$(INTDIR)\pliocomp.obj"
+        -@erase "$(INTDIR)\drvrnet.obj"
+        -@erase "$(INTDIR)\drvrsmem.obj"
+        -@erase "$(INTDIR)\getcolsb.obj"
+        -@erase "$(INTDIR)\putcolsb.obj"
+        -@erase "$(INTDIR)\wcssub.obj"
+        -@erase "$(INTDIR)\wcsutil.obj"
+	-@erase "$(INTDIR)\vc60.idb"
+	-@erase "$(INTDIR)\vc60.pdb"
+	-@erase "$(INTDIR)\wcsutil.obj"
+	-@erase "$(OUTDIR)\fitstcl.dll"
+	-@erase "$(OUTDIR)\fitstcl.exp"
+	-@erase "$(OUTDIR)\fitstcl.ilk"
+	-@erase "$(OUTDIR)\fitstcl.lib"
+	-@erase "$(OUTDIR)\fitstcl.pdb"
+
+"$(OUTDIR)" :
+    if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
+
+CPP_PROJ=/nologo /MTd /W3 /Gm /GX /ZI /Od /I "d:\fv_src\tcl8.2.2\generic" /I "d:\fv_src\tk8.2.2\generic" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "FITSTCL_EXPORTS" /Fp"$(INTDIR)\fitstcl.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /GZ  /c 
+MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /win32 
+BSC32=bscmake.exe
+BSC32_FLAGS=/nologo /o"$(OUTDIR)\fitstcl.bsc" 
+BSC32_SBRS= \
+	
+LINK32=link.exe
+LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib d:\fv_src\tk8.2.2\win\Release\tk82.lib d:\fv_src\tcl8.2.2\win\Release\tcl82.lib /nologo /dll /incremental:yes /pdb:"$(OUTDIR)\fitstcl.pdb" /debug /machine:I386 /def:"fitstcl.def" /out:"$(OUTDIR)\fitstcl.dll" /implib:"$(OUTDIR)\fitstcl.lib" /pdbtype:sept 
+DEF_FILE= \
+	"fitstcl.def"
+LINK32_OBJS= \
+	"$(INTDIR)\fitsCmds.obj" \
+	"$(INTDIR)\fitsInit.obj" \
+	"$(INTDIR)\fitsIO.obj" \
+	"$(INTDIR)\fitsTcl.obj" \
+	"$(INTDIR)\fitsUtils.obj" \
+	"$(INTDIR)\fvTcl.obj" \
+	"$(INTDIR)\tclShared.obj" \
+        "$(INTDIR)\imcompress.obj" \
+        "$(INTDIR)\ricecomp.obj" \
+        "$(INTDIR)\quantize.obj" \
+        "$(INTDIR)\pliocomp.obj" \
+	"$(INTDIR)\wcsutil.obj" \
+	"$(INTDIR)\cfileio.obj" \
+	"$(INTDIR)\checksum.obj" \
+	"$(INTDIR)\compress.obj" \
+	"$(INTDIR)\drvrfile.obj" \
+	"$(INTDIR)\drvrmem.obj" \
+	"$(INTDIR)\editcol.obj" \
+	"$(INTDIR)\edithdu.obj" \
+	"$(INTDIR)\eval_f.obj" \
+	"$(INTDIR)\eval_l.obj" \
+	"$(INTDIR)\eval_y.obj" \
+	"$(INTDIR)\fitscore.obj" \
+	"$(INTDIR)\getcol.obj" \
+	"$(INTDIR)\getcolb.obj" \
+	"$(INTDIR)\getcold.obj" \
+	"$(INTDIR)\getcole.obj" \
+	"$(INTDIR)\getcoli.obj" \
+	"$(INTDIR)\getcolj.obj" \
+	"$(INTDIR)\getcolk.obj" \
+	"$(INTDIR)\getcoll.obj" \
+	"$(INTDIR)\getcols.obj" \
+	"$(INTDIR)\getcolui.obj" \
+	"$(INTDIR)\getcoluj.obj" \
+	"$(INTDIR)\getcoluk.obj" \
+	"$(INTDIR)\getkey.obj" \
+	"$(INTDIR)\group.obj" \
+	"$(INTDIR)\grparser.obj" \
+	"$(INTDIR)\histo.obj" \
+	"$(INTDIR)\iraffits.obj" \
+	"$(INTDIR)\listhead.obj" \
+	"$(INTDIR)\modkey.obj" \
+	"$(INTDIR)\putcol.obj" \
+	"$(INTDIR)\putcolb.obj" \
+	"$(INTDIR)\putcold.obj" \
+	"$(INTDIR)\putcole.obj" \
+	"$(INTDIR)\putcoli.obj" \
+	"$(INTDIR)\putcolj.obj" \
+	"$(INTDIR)\putcolk.obj" \
+	"$(INTDIR)\putcoll.obj" \
+	"$(INTDIR)\putcols.obj" \
+	"$(INTDIR)\putcolu.obj" \
+	"$(INTDIR)\putcolui.obj" \
+	"$(INTDIR)\putcoluj.obj" \
+	"$(INTDIR)\putcoluk.obj" \
+	"$(INTDIR)\putkey.obj" \
+	"$(INTDIR)\region.obj" \
+        "$(INTDIR)\drvrnet.obj" \
+        "$(INTDIR)\drvrsmem.obj" \
+        "$(INTDIR)\getcolsb.obj" \
+        "$(INTDIR)\putcolsb.obj" \
+        "$(INTDIR)\wcssub.obj" \
+        "$(INTDIR)\wcsutil.obj" \
+	"$(INTDIR)\scalnull.obj" \
+	"$(INTDIR)\swapproc.obj" \
+	"$(INTDIR)\buffers.obj"
+
+"$(OUTDIR)\fitstcl.dll" : "$(OUTDIR)"  $(LINK32_OBJS) $(DEF_FILE)
+    $(LINK32) @<<
+  $(LINK32_FLAGS) $(LINK32_OBJS)
+<<
+
+$(DEF_FILE):
+	..\tcl8.2.2\win\Release\DUMPEXTS -o $(DEF_FILE) fitstcl.dll $(LINK32_OBJS)
+
+
+!ENDIF 
+
+.c{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cpp{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cxx{$(INTDIR)}.obj::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.c{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cpp{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+.cxx{$(INTDIR)}.sbr::
+   $(CPP) @<<
+   $(CPP_PROJ) $< 
+<<
+
+
+!IF "$(NO_EXTERNAL_DEPS)" != "1"
+!IF EXISTS("fitstcl.dep")
+!INCLUDE "fitstcl.dep"
+!ELSE 
+!MESSAGE Warning: cannot find "fitstcl.dep"
+!ENDIF 
+!ENDIF 
+
+
+!IF "$(CFG)" == "fitstcl - Win32 Release" || "$(CFG)" == "fitstcl - Win32 Debug"
+SOURCE=cfitsio\buffers.c
+
+"$(INTDIR)\buffers.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\cfileio.c
+
+"$(INTDIR)\cfileio.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\checksum.c
+
+"$(INTDIR)\checksum.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\compress.c
+
+"$(INTDIR)\compress.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\drvrfile.c
+
+"$(INTDIR)\drvrfile.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\drvrmem.c
+
+"$(INTDIR)\drvrmem.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\editcol.c
+
+"$(INTDIR)\editcol.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\edithdu.c
+
+"$(INTDIR)\edithdu.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\eval_f.c
+
+"$(INTDIR)\eval_f.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\eval_l.c
+
+"$(INTDIR)\eval_l.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\eval_y.c
+
+"$(INTDIR)\eval_y.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=fitsCmds.c
+
+"$(INTDIR)\fitsCmds.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\fitscore.c
+
+"$(INTDIR)\fitscore.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=fitsInit.c
+
+"$(INTDIR)\fitsInit.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=fitsIO.c
+
+"$(INTDIR)\fitsIO.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=fitsTcl.c
+
+"$(INTDIR)\fitsTcl.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=fitsUtils.c
+
+"$(INTDIR)\fitsUtils.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=fvTcl.c
+
+"$(INTDIR)\fvTcl.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\getcol.c
+
+"$(INTDIR)\getcol.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\getcolb.c
+
+"$(INTDIR)\getcolb.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\getcold.c
+
+"$(INTDIR)\getcold.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\getcole.c
+
+"$(INTDIR)\getcole.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\getcoli.c
+
+"$(INTDIR)\getcoli.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\getcolj.c
+
+"$(INTDIR)\getcolj.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\getcolk.c
+
+"$(INTDIR)\getcolk.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\getcoll.c
+
+"$(INTDIR)\getcoll.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\getcols.c
+
+"$(INTDIR)\getcols.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\getcolui.c
+
+"$(INTDIR)\getcolui.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\getcoluj.c
+
+"$(INTDIR)\getcoluj.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\getcoluk.c
+
+"$(INTDIR)\getcoluk.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\getkey.c
+
+"$(INTDIR)\getkey.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\group.c
+
+"$(INTDIR)\group.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\grparser.c
+
+"$(INTDIR)\grparser.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\histo.c
+
+"$(INTDIR)\histo.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\iraffits.c
+
+"$(INTDIR)\iraffits.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\listhead.c
+
+"$(INTDIR)\listhead.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\modkey.c
+
+"$(INTDIR)\modkey.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\putcol.c
+
+"$(INTDIR)\putcol.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\putcolb.c
+
+"$(INTDIR)\putcolb.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\putcold.c
+
+"$(INTDIR)\putcold.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\putcole.c
+
+"$(INTDIR)\putcole.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\putcoli.c
+
+"$(INTDIR)\putcoli.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\putcolj.c
+
+"$(INTDIR)\putcolj.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\putcolk.c
+
+"$(INTDIR)\putcolk.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\putcoll.c
+
+"$(INTDIR)\putcoll.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\putcols.c
+
+"$(INTDIR)\putcols.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\putcolu.c
+
+"$(INTDIR)\putcolu.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\putcolui.c
+
+"$(INTDIR)\putcolui.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\putcoluj.c
+
+"$(INTDIR)\putcoluj.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\putcoluk.c
+
+"$(INTDIR)\putcoluk.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\putkey.c
+
+"$(INTDIR)\putkey.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\region.c
+
+"$(INTDIR)\region.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\scalnull.c
+
+"$(INTDIR)\scalnull.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\swapproc.c
+
+"$(INTDIR)\swapproc.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=tclShared.c
+
+"$(INTDIR)\tclShared.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=cfitsio\wcsutil.c
+
+"$(INTDIR)\wcsutil.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+SOURCE=cfitsio\imcompress.c
+
+"$(INTDIR)\imcompress.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+SOURCE=cfitsio\ricecomp.c
+
+"$(INTDIR)\ricecomp.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+SOURCE=cfitsio\quantize.c
+
+"$(INTDIR)\quantize.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+SOURCE=cfitsio\pliocomp.c
+
+"$(INTDIR)\pliocomp.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+SOURCE=cfitsio\drvrnet.c
+
+"$(INTDIR)\drvrnet.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+SOURCE=cfitsio\drvrsmem.c
+
+"$(INTDIR)\drvrsmem.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+SOURCE=cfitsio\getcolsb.c
+
+"$(INTDIR)\getcolsb.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+SOURCE=cfitsio\putcolsb.c
+
+"$(INTDIR)\putcolsb.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+SOURCE=cfitsio\wcssub.c
+
+"$(INTDIR)\wcssub.obj" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+!ENDIF 
+

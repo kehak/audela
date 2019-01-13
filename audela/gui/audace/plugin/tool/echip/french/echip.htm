@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Param&#232;tres &#233;lectroniques</title>
+</head>
+
+<body>
+<p class="date">Date de mise &#224; jour : 21 octobre 2012</p>
+<h1>Param&#232;tres &#233;lectroniques</h1>
+<h2>1. Fonctions</h2>
+<p>Cet outil constitue l'interface de la fonction electronic_chip
+qui permet de d&#233;finir les param&#232;tres
+&#233;lectroniques, notamment le gain, le bruit de lecture et le
+coefficient thermique d'une cam&#233;ra.</p>
+<h2>2. Interface</h2>
+<table summary="" align="center">
+<tbody><tr>
+<td><img style="width: 424px; height: 416px;" alt="" src="images/echip0.gif" /></td>
+<td>
+<p>L'interface comprend une ligne pour indiquer le nom
+g&#233;n&#233;rique des images de pr&#233;charge (offset), de
+noir (dark) et de P.L.U. (flat) n&#233;cessaires pour effectuer
+les calculs.<br />
+Le plus simple est de d&#233;signer l'image avec le bouton '...'
+: Le nom g&#233;n&#233;rique et le nombre d'images sont
+affich&#233;s automatiquement apr&#232;s v&#233;rification qu'il
+s'agit bien d'une s&#233;rie.</p>
+<p>Pour &#233;viter un &#233;chec, il convient de veiller &#224;
+ce que :</p>
+<ul>
+<li>Les mots cl&#233;s EXPTIME ou EXPOSURE figurent dans les
+en-t&#234;tes des images, faute de quoi le temps d'exposition
+sera pris &#233;gal &#224; 1 seconde.</li>
+<li>Toutes les images concern&#233;es soient dans le m&#234;me
+r&#233;pertoire.</li>
+<li>Ce r&#233;pertoire doit &#234;tre d&#233;sign&#233; dans le
+menu <b>Configuration/R&#233;pertoires</b>.</li>
+<li><b>Configuration/Fichiers image</b> doit d&#233;signer
+l'extension des images.</li>
+</ul>
+<p>Rappel : Il faut au moins deux images de pr&#233;charge, deux
+images de P.L.U. et une quinzaine de noir. Il est conseill&#233; de v&#233;rifier l'absence d'anomalies sur les images.</p>
+<p>Pour d&#233;finir le temps de pose maximum, il faut renseigner
+la <b>Capacit&#233; maxi d'un photosite</b>. Si elle est
+exprim&#233;e en &#233;lectrons il faut la diviser par le gain pour
+l'obtenir en ADU.</p>
+<p>Si la cam&#233;ra dispose d'un obturateur m&#233;canique et si
+l'on veut visualiser son effet, il faut cocher la case
+correspondante. Dans ce cas il est pr&#233;f&#233;rable d'avoir
+une quinzaine d'images de P.L.U.</p>
+</td>
+</tr>
+<tr>
+<td><img style="width: 424px; height: 416px;" alt="" src="images/echip1.gif" /></td>
+<td>Les r&#233;sultats sont affich&#233;s automatiquement et le
+d&#233;tail des calculs est indiqu&#233; dans la Console.
+<p>Le <b>Temps de pose critique</b> est celui en-dessous duquel
+le bruit de lecture pr&#233;domine et au-dessus duquel le bruit
+thermique l'emporte sur le bruit de lecture : Il y aurait
+avantage &#224; refroidir la cam&#233;ra.</p>
+<p>Le <b>Temps de pose maximum</b> correspond au temps
+n&#233;cessaire pour saturer le dark, il n'y a donc plus de place
+pour de l'information.</p>
+<p>La <b>Dynamique</b> correspond &#224; la capacit&#233; &#224;
+distinguer les nuances.</p>
+</td>
+</tr>
+</tbody></table>
+<h2>3. Quelques r&#233;sultats</h2>
+<h3>Canon EOS 60D d&#233;filtr&#233;</h3>
+<ul>
+<li>Conditions de prises de vue : Temp&#233;rature ambiante
+(18&#176;C), ISO 100, r&#233;glage sur <b>M</b>anuel.</li>
+<li>Offset : Temps de pose de 1/8000.</li>
+<li>Dark : Temps de pose : 0.5 - 1 - 2 - 2.5 - 4 - 5 - 6 - 8 - 10
+- 13 - 15 - 20 - 25 - 30 secondes.</li>
+<li>Flat : Temps de pose de 1 seconde avec un &#233;cran &#233;lectro-luminescent.</li>
+<li>Conversion RAW vers FITS avec Aud'ACE (menu
+<b>Images/Convertir/Convertir RAW--&gt;FITS...</b>).</li>
+<li>(cf. illustration ci-dessus) Le niveau de noir est conforme
+aux observations et aux indications de Canon. Le temps de pose
+critique calcul&#233; est un peu sup&#233;rieur au temps de pose
+maximum (30 sec) accessible en mode manuel.</li>
+</ul>
+<h3>Cam&#233;ra Basler ACA 1300-306M</h3>
+<ul>
+<li>Conditions de prises de vue : Temp&#233;rature ambiante
+(18&#176;C), gain au minimum, conversion sur 12 bits.</li>
+<li>Offset : Temps de pose de 16 microsecondes.</li>
+<li>Dark : Temps de pose : 0.5 - 1 - 2 - 3 - 4 - 5 - 6 - 7- 8 - 9
+- 10 secondes.</li>
+<li>Flat : Temps de pose de 0.2 seconde avec un &#233;cran &#233;lectro-luminescent.</li>
+<li>Conversion SER vers FITS.</li>
+<li>Gain : 0.22 e/ADU - Bruit de lecture : 4.89 e (contre 8.8
+AiryLab) - Niveau du noir : 12.35 ADU - Coefficient thermique : 3.10
+ADU/sec.</li>
+<li>Le niveau de noir permet de fonctionner en mode 8 bits sans
+grande perte d'information.</li>
+</ul>
+</body></html>

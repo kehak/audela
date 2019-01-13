@@ -1,0 +1,2 @@
+LIBRARY libwebcam
+EXPORTS Webcam_Init @1

@@ -1,0 +1,580 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Collector</title>
+</head>
+
+<body>
+<p class="date">Date de mise &#224; jour : 27 d&eacute;cembre 2015.</p>
+<h1>Collector</h1>
+<h2>1. Fonctions</h2>
+<p><b>Collector</b> collecte, calcule et met en forme des
+informations issues soit d'une image affich&#233;e, soit de la
+configuration d'Aud'ACE, soit de saisies. Il synth&#233;tise des
+images avec les fonctions de etc_tools et de simulimage.</p>
+<p>Il se pr&#233;sente sous la forme d'une note-book comportant
+diff&#233;rents onglets d&#233;taill&#233;s ci-apr&#232;s.<br />
+Le format ou l'unit&#233; d'un param&#232;tre est signal&#233;
+par des [ ].</p>
+<p><b>Pr&#233;cautions</b> pour un bon fonctionnement : Pour
+&#233;viter les valeurs par d&#233;faut, configurer <b>Position
+de l'observateur</b> et <b>Optique</b> dans le menu
+d&#233;roulant <b>Configuration</b>.</p>
+<h2>2. Onglet <b>Cible</b></h2>
+<table valign="middle" summary="">
+<tbody>
+<tr>
+<td><img style="width: 597px; height: 337px;" alt="" src=
+"images/cible.gif" /></td>
+<td style="padding-left: 1em;">Ce panneau regroupe les
+coordonn&#233;es &#233;quatoriales vis&#233;es ainsi que leurs
+&#233;quivalences azimutales apr&#232;s correction de la
+pr&#233;cession, de la nutation, de l'aberration diurne et de la
+r&#233;fraction :
+<ul>
+<li>Coordonn&#233;es AD et DEC du centre de l'image,
+&#233;quinoxe J2000.0</li>
+<li>Coordonn&#233;es AD, DEC, azimut, hauteur et angle horaire du
+t&#233;lescope.</li>
+</ul>
+Lorsqu'une monture est connect&#233;e ce panneau refl&#232;te les
+informations de l'outil <b>T&#233;lescope</b>. Par d&#233;faut
+les coordonn&#233;es sont celles du z&#233;nith local &#224;
+l'instant de l'ouverture de l'outil. Si une image est
+affich&#233;e, ce sont les coordonn&#233;es figurant dans les
+mots cl&#233;s qui sont prises en compte.</td>
+</tr>
+</tbody>
+</table>
+<h2>3. Onglet <b>Dynamique</b></h2>
+<table summary="">
+<tbody>
+<tr>
+<td><img style="width: 597px; height: 337px;" alt="" src=
+"images/dynamic.gif" /></td>
+<td style="padding-left: 1em;">Ce panneau regroupe les variables
+de la dynamique de la prise de vue :
+<ul>
+<li>Magnitude apparente limite.</li>
+<li>Incertitude sur la magnitude : Valeur calcul&#233;e.</li>
+<li>Rapport Signal/Bruit : audace(etc,input,constraint,snr).</li>
+<li>Temps d'exposition : audace(etc,input,ccd,t) en
+secondes.</li>
+<li>Choix de la priorit&#233; : <b>{ Exposition | Magnitude |
+Signal/Bruit }</b>.</li>
+</ul>
+<p>Les valeurs par d&#233;faut sont celles de etc_tools avec
+priorit&#233; &#224; Exposition.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>4. Onglet <b>Vue</b></h2>
+<table summary="">
+<tbody>
+<tr>
+<td><img style="width: 597px; height: 337px;" alt="" src=
+"images/vue.gif" /></td>
+<td style="padding-left: 1em;">Cet onglet fournit les
+informations sur le binning (valeur par d&#233;faut 1). Les
+autres param&#232;tres sont ceux de la cam&#233;ra
+s&#233;lectionn&#233;e (cf. onglet Cam&#233;ra) et l'angle de
+rotation (valeur par d&#233;faut &#224; 0&#176;).
+L'&#233;chantillonnage conserve le signe du coefficient
+CDELT.</td>
+</tr>
+</tbody>
+</table>
+<h2>5. Onglet <b>Local</b></h2>
+<table>
+<tbody>
+<tr>
+<td><img style="width: 597px; height: 337px;" alt="" src=
+"images/local.gif" /></td>
+<td style="padding-left: 1em;">Cet onglet rassemble 7
+param&#232;tres. Seuls la position GPS et le temps TU sont
+modifiables, les autres sont calcul&#233;s :
+<ul>
+<li>Position GPS : Position GPS de l'image ou de l'observateur,
+modifiable dans le menu d&#233;roulant <b>Configuration --&gt;
+Position de l'observateur</b>.</li>
+<li>Temps TU (format iso 8601) : Temps TU de l'image, saisi par
+l'utilisateur ou, par d&#233;faut, l'instant d'ouverture de
+l'outil Collector.<br /></li>
+<li>Temps Jour Julien.<br /></li>
+<li>TSL.</li>
+<li>Phase de la Lune.</li>
+<li>El&#233;vation de la Lune en degr&#233;s.</li>
+<li>Age de la Lune : audace(etc,param,local,moon_age).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>6. Onglet <b>M&#233;t&#233;o</b></h2>
+<table summary="">
+<tbody>
+<tr>
+<td><img style="width: 597px; height: 337px;" alt="" src=
+"images/meteo.gif" /></td>
+<td style="padding-left: 1em;">Cet onglet comporte dix
+param&#232;tres caract&#233;risant les conditions
+atmosph&#233;riques au moment de la prise de vue. La
+temp&#233;rature ext&#233;rieure, la pression atmosph&#233;rique
+(qui influent sur SECZ et les corrections de position) et le
+seeing sont modifiables. Ces informations proviennent soit de
+l'en-t&#234;te de l'image, soit d'une station m&#233;t&#233;o,
+soit d'une saisie directe (temp&#233;rature, pression, seeing) :
+<ul>
+<li>Temp&#233;rature : En &#176;C, valeur par d&#233;faut de
+$audace(meteo,obs,temperature) &#233;gale &#224;
+16.85&#176;C,</li>
+<li>Temp&#233;rature de ros&#233;e : En &#176;C, valeur par
+d&#233;faut "-",</li>
+<li>Hygrom&#233;trie ext&#233;rieure : En %, valeur par
+d&#233;faut $audace(meteo,obs,humidity) &#233;gale &#224;
+40%,</li>
+<li>Pression atmosph&#233;rique relative (corrig&#233;e de
+l'altitude): En Pa, valeur par d&#233;faut de
+$audace(meteo,obs,pressure) 101325 Pa (1013.25 hPa),</li>
+<li>Vent, direction : En degr&#233;s, valeur par d&#233;faut
+"-",</li>
+<li>Vent, vitesse : En m/s, valeur par d&#233;faut "-",</li>
+<li>Seeing : En arcsec, valeur par d&#233;faut
+$audace(etc,param,local,seeing).</li>
+<li>Fwhm : En pixels.</li>
+<li>SECZ.</li>
+<li>Vent, direction : En degr&#233;s, valeur par d&#233;faut
+0&#176;.</li>
+<li>Vent, vitesse : En m/s, valeur par d&#233;faut 0 m/s.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td colspan="2">Note : Le point de ros&#233;e et
+l'hygrom&#233;trie sont &#224; leur valeur par d&#233;faut "-"
+sauf si une station m&#233;t&#233;o alimente les donn&#233;es. Si
+elles sont &#224; leur valeur par d&#233;faut elles
+n'apparaissent pas dans les mot cl&#233;s.</td>
+</tr>
+</tbody>
+</table>
+<h2>7. Onglet <b>Optique</b></h2>
+<table summary="">
+<tbody>
+<tr>
+<td><img style="width: 597px; height: 337px;" alt="" src=
+"images/optique.gif" /></td>
+<td style="padding-left: 1em;">Cet onglet rassemble les variables
+et les informations du syst&#232;me optique (cf. Configuration
+Optique A ou des mots cl&#233;s ou de etc_tools), ainsi que la
+valeur de la <b>Zone critique du focus</b> :
+<ul>
+<li>Nom du syst&#232;me, diam&#232;tre en m, focale
+r&#233;sultante,rapport F/D et pouvoir s&#233;parateur. Le bouton
+<b>Modifier</b> ouvre le panneau <b>Configuration/Optique</b> et
+permet de modifier ces valeurs. Le rapport F/D et le pouvoir
+s&#233;parateur sont recalcul&#233;s.</li>
+<li>Position du focaliseur. Le bouton <b>Modifier</b> ouvre le
+panneau de s&#233;lection du focaliseur ou du focaliseur actif si
+c'est le cas.</li>
+<li>R&#233;ponse Impulsionnelle Optique (RIO) :
+audace(etc,param,optic,Fwhm_psf_opt) affich&#233;s en
+microns.</li>
+<li>Filtre utilis&#233; : audace(etc,param,object,band), la
+s&#233;lection est &#224; faire parmi les valeurs {C U B V R I J
+H K z}. La s&#233;lection de la configuration Optique d'Aud'ACE
+ne comporte pas d'information sur le filtre. Par d&#233;faut, le
+filtre retenu est "C" (Clear), il appartient &#224; l'utilisateur
+de sp&#233;cifier un filtre diff&#233;rent.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>8. Onglet <b>Cam&#233;ra</b></h2>
+<p>Cet onglet rassemble les informations ayant trait au nom de la
+cam&#233;ra et au capteur utilis&#233;.<br />
+La liste des cam&#233;ras est &#233;tablie &#224; partir des
+cam&#233;ras figurant dans etc_tools et d'une liste
+utilisateur.<br />
+Le nom s&#233;lectionn&#233; dans la liste est celui figurant
+dans l'en-t&#234;te FITS de l'image du buffer, d'une cam&#233;ra
+connect&#233;e {A|B|C}, celui s&#233;lectionn&#233; par
+l'utilisateur ou, par d&#233;faut, le premier de la liste.<br />
+A l'exception de la <b>Sensibilit&#233; ISO de l'APN</b> les
+autres valeurs des variables sont celles de etc_tools :</p>
+<ul>
+<li><b>Attention</b> : Le changement de cam&#233;ra provoque le
+changement de la taille de l'image (onglet Vue), celle-ci
+s'alignant sur la taille du capteur.</li>
+<li>Taille des pixels, largeur : audace(etc,param,ccd,photocell1)
+ou [cam$camNo celldim] en m, mais affich&#233;s en microns.</li>
+<li>Taille des pixels, hauteur : audace(etc,param,ccd,photocell2)
+ou [cam$camNo celldim] en m, mais affich&#233;s en microns.</li>
+<li>Rendement quantique : audace(etc,param,ccd,eta).</li>
+<li>Bruit de lecture : audace(etc,param,ccd,N_ro).</li>
+<li>Coefficient thermique : audace(etc,param,ccd,C_th).</li>
+<li>Gain : audace(etc,param,ccd,G).</li>
+<li>Amplification &#233;lectronique : audace(etc,param,ccd,Em) {
+0 | 1 }.</li>
+<li>Sensibilit&#233; ISO : si la cam&#233;ra n'est pas un APN,
+laisser la valeur par d&#233;faut "-" ; si c'est un APN, la
+valeur sp&#233;cifi&#233;e sera m&#233;moris&#233;e dans le mot
+cl&#233; ISOSPEED.</li>
+</ul>
+<b>Si le nom la cam&#233;ra est connu mais ne figure pas dans
+liste des cam&#233;ras</b> son nom sera affich&#233;.<br />
+<b>Si le nom la cam&#233;ra n'est pas sp&#233;cifi&#233;</b>, il
+sera remplac&#233; par <b>Nouvelle cam&#233;ra</b>.<br />
+Dans ces deux cas, tous les anciens param&#232;tres, y compris
+les dimensions des pixels, sont inchang&#233;s et apparaissent en
+rouge pour signaler &#224; l'utilisateur qu'il convient de les
+adapter
+<table summary="">
+<tbody>
+<tr>
+<td><img style="width: 597px; height: 337px;" alt="" src=
+"images/camera.gif" /></td>
+<td style="padding-left: 1em;"><b>Si la cam&#233;ra figure dans
+la liste des cam&#233;ras</b>, toutes les caract&#233;ristiques
+sont affich&#233;es.</td>
+</tr>
+<tr>
+<td style="padding-left: 1em;"><img style=
+"width: 597px; height: 337px;" alt="" src=
+"images/cam_ni_etc.gif" /></td>
+<td><b>Si la cam&#233;ra connect&#233;e est reconnue par Aud'ACE
+mais ne figure pas dans la liste des cam&#233;ras</b> (cl.
+l'exemple ci-contre avec une WEBCAM), seules les dimensions du
+capteur (Onglet Vue) et les dimensions des cellules sont mises
+&#224; jour. Les anciens param&#232;tres &#233;lectroniques sont
+conserv&#233;s mais apparaissent en rouge pour signaler &#224;
+l'utilisateur qu'il convient de les adapter.</td>
+</tr>
+<tr>
+<td><img style="width: 597px; height: 337px;" alt="" src=
+"images/cam_ni_audace.gif" /></td>
+</tr>
+<tr>
+<td>La liste des cam&#233;ras comporte un libell&#233;
+<b>Nouvelle cam&#233;ra</b>. Sa s&#233;lection provoque
+l'ouverture d'une fen&#234;tre de saisie permettant de
+sp&#233;cifier un nom &#224; ajouter ou &#224; supprimer de la
+liste.<br />
+Si une cam&#233;ra a &#233;t&#233; d&#233;tect&#233;e (exemple
+WEBCAM ou Nouvelle cam&#233;ra), la fen&#234;tre de saisie
+comporte ce nom par d&#233;faut.<br />
+Note 1 : Le nom des cam&#233;ras etc_tools peut &#234;tre
+supprim&#233; jusqu'au prochain lancement de Collector.<br />
+Note 2 : Le nom de la cam&#233;ra &#224; supprimer doit &#234;tre
+identique &#224; celui de la liste.<br />
+Note 3 : <b>Nouvelle cam&#233;ra</b> ne peut pas &#234;tre
+supprim&#233;e.</td>
+<td><img style="width: 238px; height: 96px;" alt="" src=
+"images/cam_new.gif" /></td>
+</tr>
+<tr>
+<td><img style="width: 597px; height: 337px;" alt="" src=
+"images/new_list.gif" /></td>
+<td style="padding-left: 1em;">Avant d'appuyer sur le bouton
+<b>Ajouter</b>, v&#233;rifier/modifier les valeurs des
+param&#232;tres signal&#233;s en rouge. Cette nouvelle
+cam&#233;ra est ajout&#233;e &#224; la liste et est prise en
+compte avec les valeurs affich&#233;es. La liste des cam&#233;ras
+ajout&#233;es par l'utilisateur est sauv&#233;e lors de la
+fermeture et rappel&#233;e lors de l'ouverture de
+Collector.<br />
+Note 1 : Les dimensions du capteur (naxis1 et naxis2) sont
+secondaires.<br />
+Note 2 : Cette fonction permet &#233;galement d'identifier une
+cam&#233;ra avec un autre nom, par exemple <b>Audine</b> au lieu
+de <b>Audine Kaf401ME</b>.</td>
+</tr>
+</tbody>
+</table>
+<p>Pour v&#233;rifier ou &#233;valuer les caract&#233;ristiques
+d'une cam&#233;ra, utiliser la commande du menu d&#233;roulant
+<b>Analyse --&gt;Param&#232;tres &#233;lectroniques</b>. Voir
+aussi certains r&#233;sultats de <a href=
+"http://www.astrosurf.com/buil/isis/noise/result.htm"><b>C.
+Buil</b></a>.</p>
+<h2>9. Onglet <b>Mot cl&#233;s</b></h2>
+<table summary="">
+<tbody>
+<tr>
+<td><img style="width: 597px; height: 337px;" alt="" src=
+"images/kwd.gif" /></td>
+<td style="padding-left: 1em;">Cet onglet refl&#232;te les noms
+de l'observateur et de l'observatoire sp&#233;cifi&#233;s dans
+l'en-t&#234;te FITS de l'image ou dans le menu d&#233;roulant
+<b>Configuration --&gt; Position de l'observateur</b>. (Le bouton
+<b>Modifier</b> donne acc&#232;s &#224; ce panneau) et font
+partie des mots cl&#233;s susceptibles d'&#234;tre d&#233;finis
+et int&#233;gr&#233;s dans l'en-t&#234;te d'une image.<br />
+Il permet &#233;galement de d&#233;finir le type d'image et le
+nom de l'objet vis&#233;.
+<p>Un bouton permet d'&#233;diter les mots cl&#233;s dans une
+fen&#234;tre s&#233;par&#233;e (CF ci-dessous) et un second
+d'incorporer ces mots cl&#233;s dans l'en-t&#234;te de l'image
+pr&#233;sente dans le buffer. Ce dernier n'est actif que si
+l'image dans le buffer n'est ni une image de synth&#232;se ni une
+image DSS.</p>
+<p>La fonction d'incorporation des mots cl&#233;s peut &#234;tre
+utile pour compl&#233;ter des mots cl&#233; manquants, pour
+&#233;liminer les accents et c&#233;dilles qui conduisent &#224;
+des erreurs, pour renseigner des images issues de cam&#233;ras ne
+figurant pas dans le menu. La liste des mots cl&#233;s ne
+recouvre pas totalement celle d&#233;finie dans la configuration
+des cam&#233;ras mais en apporte d'autres.</p>
+<p>Si <b>Collector</b> est ouvert, la fonction d'incorporation
+des mots cl&#233;s peut &#234;tre appel&#233;e dans un script par
+<b>::collector::setKeywords $bufNo</b>.</p>
+</td>
+</tr>
+<tr>
+<td><img style="width: 591px; height: 289px;" alt="" src=
+"images/editkwds.gif" /></td>
+<td style="padding-left: 1em;">La fen&#234;tre d'&#233;dition des
+mots cl&#233;s est enti&#232;rement reconfigurable.<br />
+<b>Note 1</b> : si la valeur d'un mot cl&#233; est ind&#233;finie
+(exemple Code IAU) ou &#224; sa valeur par d&#233;faut (exemple
+hygrom&#233;trie) ce mot cl&#233; n'est pas incorpor&#233; dans
+la liste.<br />
+<b>Note 2</b> : le changement d'une valeur ne peut se faire que
+dans l'onglet correspondant.</td>
+</tr>
+</tbody>
+</table>
+<h2>10. Onglet <b>Configuration</b></h2>
+<table summary="">
+<tbody>
+<tr>
+<td><img style="width: 597px; height: 337px;" alt="" src=
+"images/config.gif" /></td>
+<td style="padding-left: 1em;">Cet onglet comporte les
+param&#232;tres suivants :
+<ul>
+<li>Nom du catalogue {USNO|MICROCAT}, valeur par d&#233;faut
+MICROCAT. Son r&#233;glage est indispensable pour les fonctions
+<b>Synth&#233;tiser</b> et <b>Baguette magique</b>.</li>
+<li>Le chemin du r&#233;pertoire peut &#234;tre modifi&#233; par
+la commande du menu <b>Configuration/R&#233;pertoires</b> ou
+&#224; l'aide du bouton <b>Modifier</b>.</li>
+<li>Le choix du catalogue d'&#233;toiles est
+m&#233;moris&#233;.</li>
+</ul>
+<p>Il comporte &#233;galement deux boutons :</p>
+<ul>
+<li><b>Editer les param&#232;tres etc_tools</b>,</li>
+<li><b>Aide de simulimage</b> : Ouvre le fichier
+1030tutoriel_simulimage1.htm.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>11. Onglet <b>Monture</b></h2>
+<p>Cet onglet rassemble les informations ayant trait au
+t&#233;lescope et appara&#238;t seulement si une monture est
+active : Son nom est indiqu&#233; ainsi que le mod&#232;le (s'il
+y a lieu).</p>
+<table summary="">
+<tbody>
+<tr>
+<td><img style="width: 597px; height: 337px;" alt="" src=
+"images/tslcp_temma.gif" /></td>
+<td style="padding-left: 1em;">Des informations et des commandes
+suppl&#233;mentaires apparaissent en fonction des
+caract&#233;ristiques du t&#233;lescope :
+<ul>
+<li>Propri&#233;t&#233; "hasControlSuivi" &#233;gale &#224; 1
+(possibilit&#233; de commander le suivi) : L'&#233;tat du suivi
+est affich&#233; {On = Diode verte | Off = Diode rouge}.</li>
+<li>Propri&#233;t&#233; "hasCoordinates" &#233;gale &#224; 1 (le
+t&#233;lescope renvoie les coordonn&#233;es) : Les vitesses de
+d&#233;placement en AD, en DEC, en X et en Y sont calcul&#233;es
+et affich&#233;es.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>12. Monture &#233;quatoriale allemande</h2>
+<p>Cet onglet appara&#238;t exclusivement pour une monture
+&#233;quatoriale allemande (si la propri&#233;t&#233; de la
+monture "isGermanMount" est &#233;gale &#224; 1) disposant des
+coordonn&#233;es et de la commande du suivi (telle que
+Temma).</p>
+<p>La repr&#233;sentation est une projection du cercle
+d'Ascension Droite sur un plan perpendiculaire &#224; l'axe
+polaire, comme si l'observateur &#233;tait derri&#232;re le
+t&#233;lescope, exactement comme derri&#232;re un viseur polaire.
+La ligne pointill&#233;e verticale repr&#233;sente le
+M&#233;ridien. Dans l'h&#233;misph&#232;re Nord, l'observateur a
+l'Ouest &#224; sa gauche et l'Est &#224; sa droite. Le cercle est
+gradu&#233; en heures (positivement vers l'Ouest et
+n&#233;gativement vers l'Est).</p>
+<table summary="">
+<tbody>
+<tr>
+<td><img style="width: 612px; height: 350px;" alt="" src=
+"images/equat_non_init.gif" /></td>
+<td style="padding-left: 1em;">
+<p>Tant que la position du t&#233;lescope n'a pas &#233;t&#233;
+initialis&#233;e le symbole du t&#233;lescope est remplac&#233;
+par un point d'interrogation (cf. illustration de gauche).</p>
+<p>Deux but&#233;es logicielles (une &#224; l'Ouest et une &#224;
+l'Est) peuvent &#234;tre r&#233;gl&#233;es ind&#233;pendamment
+par l'utilisateur de mani&#232;re &#224; d&#233;finir un secteur
+interdit. Le suivi du t&#233;lescope est arr&#234;t&#233; si
+l'Ascension Droite rentre dans ce secteur.<br />
+Le r&#233;glage est effectu&#233; avec la pointe de la souris
+(clic gauche). Le d&#233;placement est refus&#233; si la position
+finale est en dehors du quadrant autoris&#233; :</p>
+<ul>
+<li>But&#233;e Ouest : Dans le quadrant 180&#176;-270&#176; (sens
+r&#233;trograde).</li>
+<li>But&#233;e Est : Dans le quadrant 270&#176;-360&#176; (sens
+r&#233;trograde).</li>
+</ul>
+<p>Le r&#233;glage peut &#234;tre effectu&#233; &#224; tout
+moment.</p>
+<p>Une autre but&#233;e logicielle ne figure pas sur cette
+repr&#233;sentation : Le t&#233;lescope ne peut pas viser en
+dessous de l'Horizon (&#233;l&#233;vation inf&#233;rieure &#224;
+1&#176;).</p>
+<p>Les couleurs du sch&#233;ma peuvent &#234;tre red&#233;finies
+&#224; l'aide des boutons figurant &#224; droite.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<table summary="">
+<tbody>
+<tr>
+<td><img style="width: 612px; height: 350px;" alt="" src=
+"images/equat_zenith_W.gif" /></td>
+<td style="padding-left: 1em;">
+<p>D&#232;s que la position du t&#233;lescope est
+initialis&#233;e, sa position actuelle est mise &#224; jour au
+m&#234;me rythme que le rafra&#238;chissement des
+coordonn&#233;es d'Ascension Droite et de D&#233;clinaison. Le
+sch&#233;ma de gauche illustre une position "Z&#233;nith, tube
+c&#244;t&#233; Ouest". Le triangle symbolise sch&#233;matiquement
+une lunette.</p>
+<p>Les donn&#233;es figurant dans la partie gauche sont les
+suivantes (de haut en bas) :</p>
+<ul>
+<li>Rappel des hauteurs limites (en degr&#233;s).</li>
+<li>Position des but&#233;es logicielles &#224; l'Ouest et &#224;
+l'Est, exprim&#233;es en heures.</li>
+<li>Position du tube.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>13. Boutons</h2>
+<p>Des boutons lancent les commandes suivantes :</p>
+<ul>
+<li><b>Synth&#233;tiser</b> : Lance simulimage (une image doit
+exister dans le buffer), cf. l'aide accessible sous l'onglet
+<b>Configuration</b>.<br />
+Pour que cette commande soit accessible, les mots cl&#233;s
+suivants doivent &#234;tre d&#233;finis : diam&#232;tre, focale
+et ratio F/D du t&#233;lescope, une cam&#233;ra doit &#234;tre
+s&#233;lectionn&#233;e ainsi que les param&#232;tres de la
+Dynamique.<br />
+L'image produite est calibr&#233;e astrom&#233;triquement.
+L'outil <b>Carte de champ</b> permet d'avoir les informations
+(position et magnitudes) sur les &#233;toiles du champ.</li>
+<li><b>Baguette magique</b> : Cr&#233;e une image centr&#233;e
+sur la cible RaDec indiqu&#233;e dans l'onglet <b>Cible</b> en
+tenant compte des param&#232;tres d&#233;finis dans les autres
+onglets. Patienter durant la fabrication d'images de grandes
+dimensions : Le temps cro&#238;t comme le produit Largeur x
+Hauteur de l'image. Cette image est calibr&#233;e
+astrom&#233;triquement. L'outil <b>Carte de champ</b> permet
+d'avoir les informations (position et magnitudes) sur les
+&#233;toiles du champ.</li>
+<li><b>Image DSS</b> : T&#233;l&#233;charge l'image DSS
+correspondant aux donn&#233;es (NAXIS, CRPIX, CRVAL, FOV et
+CROTA2). Les dimensions sont &#233;ventuellement recalcul&#233;es
+avec naxis1 &lt; = 768 pour limiter la taille de l'image et le
+temps de t&#233;l&#233;chargement. Cette image est calibr&#233;e
+astrom&#233;triquement. L'outil <b>Carte de champ</b> permet
+d'avoir les informations (position et magnitudes) sur les
+&#233;toiles du champ.</li>
+<li><b>Aide</b> de cet outil,</li>
+<li><b>Fermer</b> : La fen&#234;tre.</li>
+</ul>
+<h2>14. Validation des saisies</h2>
+<p>Le format des saisies est v&#233;rifi&#233;. Un message
+explicite une erreur &#233;ventuelle. La valeur ant&#233;rieure
+est r&#233;tablie apr&#232;s acquit de ce message.</p>
+<h2>15. Quelques essais simples</h2>
+<p>Sans image affich&#233;e dans la visu, ni t&#233;lescope, ni
+cam&#233;ra connect&#233;s mais param&#232;tres optiques
+renseign&#233;s :</p>
+<ul>
+<li>Appuyer sur le bouton <b>Image DSS</b> : Apr&#232;s quelques
+secondes l'image DSS de votre z&#233;nith s'affiche.
+S&#233;lectionner <b>Analyse --&gt; Carte</b> : Si le logiciel de
+carte est ouvert (sinon il est propos&#233; de le lancer) le
+champ est affich&#233;.</li>
+<li>Effacer l'image pr&#233;c&#233;dente pour activer le bouton
+<b>Baguette magique</b>. Dans l'onglet <b>Cam&#233;ra</b>
+s&#233;lectionner <b>Audine Kaf401ME</b> puis appuyer sur le
+bouton <b>Baguette magique</b> : Apr&#232;s quelques instants
+l'image du z&#233;nith appara&#238;t, telle qu'elle serait
+captur&#233;e par cette cam&#233;ra. Il est possible de modifier
+le temps d'exposition dans l'onglet <b>Dynamique</b> ou encore
+les coordonn&#233;es vis&#233;es dans l'onglet <b>Cible</b>.</li>
+<li>Quelle est la magnitude des &#233;toiles apparaissant sur
+l'image ? S&#233;lectionner le menu d&#233;roulant <b>Analyse
+--&gt; Carte de champ</b> puis <b>R&#233;cup&#233;rer les
+param&#232;tres de l'image</b> puis <b>OK</b> : Le passage de la
+souris sur l'un des points rouges donne la r&#233;ponse.</li>
+<li>Quelle serait l'image du z&#233;nith dans un an ? Dans
+l'onglet <b>Local</b> modifier la date TU.</li>
+<li>Quelle serait l'image avec plus de pixels ? Dans l'onglet
+<b>Vue</b> modifier le nombre de pixels en largeur et en
+hauteur.</li>
+<li>Quelle serait l'image si votre optique b&#233;n&#233;ficiait
+d'un r&#233;ducteur de champ ou d'une Barlow ? Modifier les
+param&#232;tres optiques dans <b>Configuration --&gt;
+Optique</b>.</li>
+</ul>
+<p>Un peu plus complexe : Les mots cl&#233;s de certaines images
+ne sont pas complets mais les informations sont disponibles,
+modifier les param&#232;tres dans Collector. V&#233;rifier en
+s&#233;lectionnant, dans l'onglet <b>Mots cl&#233;s</b>, la
+fonction <b>Editer les mots cl&#233;s dans la Console</b> et si
+tout est conforme <b>Actualiser l'en-t&#234;te de l'image</b>.
+C'est bien pratique si les images sont acquises avec un APN ou
+une cam&#233;ra non reconnues par Aud'ACE.</p>
+<h2>16. Th&#232;mes</h2>
+<p>Le style (couleurs, caract&#232;res) d&#233;pend du
+syst&#232;me (Linux, Windows, Mac) ; &#224; titre d'exemple voir
+le style Linux ci-dessous :</p>
+<img style="width: 597px; height: 337px;" alt="" src=
+"images/collector_linux.gif" />
+<p>Bien entendu le fonctionnement est ind&#233;pendant du style.</p>
+<h2>17. R&eacute;cup&eacute;ration des valeurs des variables</h2>
+<p>Les valeurs sont stock&eacute;es dans des variables de la forme ::collector::private(nom_de_variable).</p>
+<p><i>#--   liste des variables de chaque onglet, affichees dans cet ordre<br>
+onglet <b>Cible</b> : equinox ra dec raTel decTel azTel elevTel haTel<br>
+onglet <b>Dybamique</b> : m error snr t prior<br>
+onglet <b>Vue</b> : bin1 bin2 cdelt1 cdelt2 naxis1 naxis2 fov1 fov2 crota2<br>
+onglet <b>Local</b> : gps tu jd tsl moonphas moonalt<br>
+onglet <b>M&eacute;t&eacute;o</b> : temperature temprose humidity pressure winddir windsp seeing fwhm secz airmass<br>
+onglet <b>Optique</b> : telescop aptdia foclen fond resolution ncfz focus_pos psf filter<br>
+onglet <b>Cam&eacute;ra</b> : detnam photocell1 photocell2 eta noise therm gain ampli isospeed<br>
+onglet <b>Mots Cl&eacute;s</b> : observer sitename origin iau_code imagetyp objname<br>
+onglet <b>Configuration</b> : catname catAcc simulimage<br>
+onglet <b>Monture</b> : telname vra vdec vxPix vyPix</i></p>
+</body>
+</html>

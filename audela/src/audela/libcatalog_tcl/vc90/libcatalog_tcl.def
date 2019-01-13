@@ -1,0 +1,6 @@
+LIBRARY libcatalog_tcl
+EXPORTS Catalog_tcl_Init
+      
+
+
+

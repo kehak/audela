@@ -1,0 +1,2 @@
+LIBRARY libdigicam
+EXPORTS Digicam_Init @1

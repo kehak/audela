@@ -1,0 +1,28 @@
+CP= copy
+RM= -@del /f /q
+
+SOURCE=.
+EXTERNAL_INCLUDE=..\include
+EXTERNAL_LIB=..\lib
+
+build:
+
+install: build
+	if not exist $(EXTERNAL_INCLUDE)  mkdir $(EXTERNAL_INCLUDE)
+	if not exist $(EXTERNAL_LIB)      mkdir $(EXTERNAL_LIB)
+	$(CP) $(SOURCE)\include\Alims.h $(EXTERNAL_INCLUDE)
+	$(CP) $(SOURCE)\include\CarteADLink.h $(EXTERNAL_INCLUDE)
+	$(CP) $(SOURCE)\include\controleur.h $(EXTERNAL_INCLUDE)
+	$(CP) $(SOURCE)\include\Dask.h $(EXTERNAL_INCLUDE)
+	$(CP) $(SOURCE)\include\port.h $(EXTERNAL_INCLUDE)
+	$(CP) $(SOURCE)\lib\CID_HL.lib   $(EXTERNAL_LIB)
+
+clean:
+	$(RM) $(EXTERNAL_INCLUDE)\Alims.h
+	$(RM) $(EXTERNAL_INCLUDE)\CarteADLink.h
+	$(RM) $(EXTERNAL_INCLUDE)\controleur.h
+	$(RM) $(EXTERNAL_INCLUDE)\Dask.h
+	$(RM) $(EXTERNAL_INCLUDE)\port.h
+	$(RM) $(EXTERNAL_LIB)\CID_HL.lib
+
+

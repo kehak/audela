@@ -1,0 +1,139 @@
+# Tkhtml test file
+proc sourcefile {file} {
+  set fname [file join [file dirname [info script]] $file] 
+  uplevel #0 [list source $fname]
+}
+sourcefile common.tcl
+
+set ::script_handler_count 0
+proc scriptHandler {data} {
+  incr ::script_handler_count
+  return ""
+}
+
+proc get_tree {{indent 0} {node ""}} {
+  if {$node eq ""} {
+    set node [.h node]
+  }
+
+  set output [string repeat " " $indent]
+
+  set tag [$node tag]
+  if {$tag eq ""} {
+    append output "[$node text -tokens]\n"
+  } else {
+    append output "<${tag}>\n"
+  }
+
+  foreach child [$node children] {
+    append output [get_tree [expr $indent + 2] $child]
+  }
+
+  if {$tag ne ""} {
+    append output [string repeat " " $indent]
+    append output "</${tag}>\n"
+  }
+
+  return $output
+}
+
+#--------------------------------------------------------------------------
+# Test cases tree-1.* test the [widget handler script ...] command,
+# including in conjunction with incremental document parsing.
+#
+tcltest::test tree-1.0 {} -body {
+  html .h
+  .h handler script script scriptHandler 
+  set ::script_handler_count
+} -result 0
+
+tcltest::test tree-1.1 {} -body {
+  .h parse -final [string trim {
+    <html>
+    <body>
+    <p>Hello World
+    <script>
+      A whole bunch of script!!!
+      A whole bunch of script!!!
+      A whole bunch of script!!!
+    </script>
+    <p>Hello Again World
+    </body>
+    </html>
+  }]
+  set ::script_handler_count
+} -result 1
+
+tcltest::test tree-1.2 {} -body {
+  string trim [get_tree]
+} -result [string trim {
+<html>
+  NEWLINE SPACE(4)
+  <body>
+    NEWLINE SPACE(4)
+    <p>
+      TEXT(Hello) SPACE(1) TEXT(World) NEWLINE SPACE(4) NEWLINE SPACE(4)
+    </p>
+    <p>
+      TEXT(Hello) SPACE(1) TEXT(Again) SPACE(1) TEXT(World) NEWLINE SPACE(4)
+    </p>
+  </body>
+  NEWLINE SPACE(4)
+</html>
+}]
+
+tcltest::test tree-1.3 {} -body {
+  .h reset
+  .h parse [string trim {
+    <html>
+    <body>
+    <p>Hello World
+    <script>
+      A whole bunch of script!!!
+      A whole bunch of script!!!
+  }]
+
+  .h parse -final [string trim {
+      A whole bunch of script!!!
+    </script>
+    <p>Hello Again World
+    </body>
+    </html>
+  }]
+  set ::script_handler_count
+} -result 2
+
+tcltest::test tree-1.4 {} -body {
+  string trim [get_tree]
+} -result [string trim {
+<html>
+  NEWLINE SPACE(4)
+  <body>
+    NEWLINE SPACE(4)
+    <p>
+      TEXT(Hello) SPACE(1) TEXT(World) NEWLINE SPACE(4) NEWLINE SPACE(4)
+    </p>
+    <p>
+      TEXT(Hello) SPACE(1) TEXT(Again) SPACE(1) TEXT(World) NEWLINE SPACE(4)
+    </p>
+  </body>
+  NEWLINE SPACE(4)
+</html>
+}]
+
+#--------------------------------------------------------------------------
+# Test cases tree-2.* test that ticket #12 has been fixed.
+#
+tcltest::test tree-2.1 {} -body {
+  .h reset
+  .h parse -final {<html><body>Hello World}
+  string trim [get_tree]
+} -result [string trim {
+<html>
+  <body>
+    TEXT(Hello) SPACE(1) TEXT(World)
+  </body>
+</html>
+}]
+
+finish_test

@@ -1,0 +1,429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Construire sa propre interface (2)</title>
+</head>
+
+<body>
+<h3>  Ajouter des gadgets graphiques</h3>
+<p>Cette page fait suite &agrave; celle qui permet d'&eacute;crire <a href="script7.htm">l'interface test.tcl</a>. Nous allons modifier ce script pour ajouter des fonctionnalit&eacute;s utiles pour visualiser et analyser les images affich&eacute;es : barres de d&eacute;filement, coordonn&eacute;es du curseur, r&eacute;glage des seuils de visualisation et draguer une fen&ecirc;tre sur l'image.
+<p>Rappelons que les exemples de cette page font appara&icirc;tre des &eacute;l&eacute;ments graphiques &agrave; des endroits pr&eacute;cis de l'interface. Si vous d&eacute;sirez changer leur positionnement, r&eacute;f&eacute;rez vous chapitre du <a href="possoz/tcltk_cours_tk.html#HDR9">packer du cours d'Anne Possoz</a>.</p>
+<h3> <a name="bardefil"></a>1. Barres de d&eacute;filement</h3>
+<p>Nous allons d&eacute;crire la marche &agrave; suivre pour ajouter les barres de d&eacute;filement sur la zone image du script test.tcl :</p>
+<p align="center"><img src="images/interface/test2-fr.jpg" height="427" width="608" /> </p>
+<p>La zone image comportera donc deux barres (appel&eacute;es scrollbars en anglais) afin de pouvoir naviger sur l'ensemble de l'image. Ces barres ont un int&eacute;r&ecirc;t si l'image est plus grande que la zone d'affichage. Par exemple, afficher une image 768x512 dans la zone d'affichage de test.tcl n'est possible que si on a effectivement la pr&eacute;sence des barres de d&eacute;filement.</p>
+<h3> 1.1. Modifications du script test.tcl</h3>
+<p>Sur le listing ci dessous, nous indiquons, en rouge, les lignes &agrave; rajouter dans le fichier test.tcl (les lignes restant intactes sont &eacute;crites en italique) :</p>
+<pre>#--- definition des couleurs</pre>
+<pre>set color(back) #123456</pre>
+<pre>set color(back_image) #000000</pre>
+<pre>set color(scroll) #BBBBBB</pre>
+<pre># --- initialisation de variables de zone</pre>
+<pre>set zone(naxis1) 0</pre>
+<pre>set zone(naxis2) 0</pre>
+<pre># --- charge des proc utilitaires pour Tk</pre>
+<pre>source tkutil.tcl</pre>
+<pre>#--- cache la fenetre racine</pre>
+<pre>wm withdraw .</pre>
+<p>On d&eacute;finit une couleur grise correspondant &agrave; la couleur des barres de d&eacute;filement (#BBBBBB est un gris clair). Les deux variables de l'array zone, servent &agrave; d&eacute;finir le format de l'image affich&eacute;e. Au d&eacute;part, il n'y a pas d'image et donc le format est 0 sur chaque axe. La ligne 'source tkutil.tcl' va ex&eacute;cuter le script Tcl contenu dans le fichier tkutil.tcl. Nous d&eacute;crirons en d&eacute;tail ce fichier plus loin. Il va ajouter la fonction Scrolled_Canvas qui permet de cr&eacute;er les barres de d&eacute;filement presque automatiquement.</p>
+<p>Toujours dans le fichier test.tcl, ajouter les lignes (rouges) suivantes :</p>
+<pre>#--- cree le bouton 'quitter'</pre>
+<pre>button .test.frame1.but_exit \</pre>
+<pre> -text $caption(exit) -borderwidth 4 \</pre>
+<pre> -command { testexit }</pre>
+<pre>pack .test.frame1.but_exit \</pre>
+<pre> -in .test.frame1 -side left -anchor w \</pre>
+<pre> -padx 3 -pady 3</pre>
+<pre>set zone(exit) .test.frame1.but_exit</pre>
+<pre>#--- cree le nouveau canevas pour l'image</pre>
+<pre>Scrolled_Canvas .test.image1 -borderwidth 0 -relief flat \</pre>
+<pre> -width 300 -height 200 -scrollregion {0 0 0 0} -cursor crosshair</pre>
+<pre>pack .test.image1 \</pre>
+<pre> -in .test -expand 1 -side top -anchor center -fill both</pre>
+<pre>.test.image1.canvas configure -bg $color(back_image)</pre>
+<pre>.test.image1.canvas configure -borderwidth 0</pre>
+<pre>.test.image1.canvas configure -relief flat</pre>
+<pre>.test.image1 configure -bg $color(scroll)</pre>
+<pre>set zone(image1) .test.image1.canvas</pre>
+<pre>#--- detruit la fenetre principale avec la croix en haut a droite</pre>
+<pre>bind .test &lt;Destroy> { destroy .test; exit }</pre>
+<p>Il s'agit ici de remplacer la d&eacute;finition originelle du canvas d'affichage par un ensemble de widgets d&eacute;finis par la fonction Scrolled_Canvas. Le widget .test.image1 n'est plus le canevas de l'image mais le support de ce canevas (maintenant appel&eacute; .test.image1.canvas) et aux barres de d&eacute;filement (.test.image.xscroll et .test.image.yscroll d&eacute;finies dans la fonction Scrolled_Canvas du fichier tkutil.tcl). Noter que, parmi les options de la fonction Scrolled_Canvas, on trouve -cursor crosshair. Ceci permet d'avoir un curseur de forme de croix lorsque l'on place la souris sur la zone image. Enfin, .test.image1.canvas configure, permet de modifier et d'ajouter des attributs au canevas d'affichage de l'image.</p>
+<p>Enfin, il faut modifier les fonctions d'affichage de l'image. visu1 disp ne suffit plus car il faut aussi reconfigurer la dimension des barres de d&eacute;filement si la taille de l'image a chang&eacute;. Nous allons donc cr&eacute;er une nouvelle fonction 'testvisu' afin de rassembler ces op&eacute;rations. Il conviendra aussi de remplacer les appels &agrave; la fonction 'visu1 disp' par 'testvisu' dans les fonctions 'testacq' et 'testload' :</p>
+<pre>proc testacq { } {</pre>
+<pre> #--- acquisition de l'image</pre>
+<pre> cam1 exptime 15</pre>
+<pre> cam1 bin {2 2}</pre>
+<pre> cam1 acq</pre>
+<pre> vwait status_cam1</pre>
+<pre> #--- statistiques pour calculer les seuils de visu</pre>
+<pre> set mystatistics [buf1 stat]</pre>
+<pre> set mycuts [lrange $mystatistics 0 1]</pre>
+<pre> #--- seuils de visu et affichage</pre>
+<pre> visu1 cut $mycuts</pre>
+<pre> testvisu</pre>
+<pre>}</pre>
+<pre>proc testload { } {</pre>
+<pre> global caption</pre>
+<pre> set filename [tk_getOpenFile -title $caption(load) \</pre>
+<pre> -filetypes {{{Images FITS} {.fit}}} \</pre>
+<pre> -initialdir .. ]</pre>
+<pre> if {$filename!=""} {</pre>
+<pre> buf1 load $filename</pre>
+<pre> testvisu</pre>
+<pre> }</pre>
+<pre>}</pre>
+<pre>proc testvisu { } {</pre>
+<pre> global zone</pre>
+<pre> set zone(naxis1) [lindex [buf1 getkwd NAXIS1] 1]</pre>
+<pre> set zone(naxis2) [lindex [buf1 getkwd NAXIS2] 1]</pre>
+<pre> $zone(image1) configure -scrollregion [list 0 0 $zone(naxis1) $zone(naxis2)]</pre>
+<pre> visu1 disp</pre>
+<pre>}</pre>
+<h3> 1.2. Ecrire le fichier tkutil.tcl</h3>
+<p>Un nouveau fichier texte, appel&eacute; tkutil.tcl qui va contenir des fonctions utilitaires g&eacute;n&eacute;ralistes pour le graphisme. Ce fichier existe d&eacute;j&agrave; dans le dossier test de la version de distribution de Audela. Le fichier tkutil.tcl doit &ecirc;tre plac&eacute; dans le m&ecirc;me dossier que test.tcl. Pour le moment, ce fichier va contenir la seule fonction Scrolled_Canvas :</p>
+<pre>#</pre>
+<pre># Scrolled_Canvas --</pre>
+<pre># Cree un canvas scrollable, ainsi que les deux scrollbars</pre>
+<pre># pour le deplacer.</pre>
+<pre># ref: Brent Welsh, Practical Programming in TCL/TK, rev.2, page 392</pre>
+<pre>#</pre>
+<pre>proc Scrolled_Canvas { c args } {</pre>
+<pre> frame $c</pre>
+<pre> eval {canvas $c.canvas \</pre>
+<pre> -xscrollcommand [list $c.xscroll set] \</pre>
+<pre> -yscrollcommand [list $c.yscroll set] \</pre>
+<pre> -highlightthickness 0 \</pre>
+<pre> -borderwidth 0} $args</pre>
+<pre> scrollbar $c.xscroll -orient horizontal -command [list $c.canvas xview]</pre>
+<pre> scrollbar $c.yscroll -orient vertical -command [list $c.canvas yview]</pre>
+<pre> grid $c.canvas $c.yscroll -sticky news</pre>
+<pre> grid $c.xscroll -sticky ew</pre>
+<pre> grid rowconfigure $c 0 -weight 1</pre>
+<pre> grid columnconfigure $c 0 -weight 1</pre>
+<pre> return $c.canvas</pre>
+<pre>}</pre>
+<p>La fonction Scrolled_Canvas a &eacute;t&eacute; reprise telle qu'elle est &eacute;crite dans l'excellent livre de Brent Welsh, consacr&eacute; au Tcl/Tk. On peut la voir comme une macro qui cr&eacute;e le canevas d'affichage avec les options d&eacute;finies par le param&egrave;tre d'entr&eacute;e 'args' (c'est une liste d'options de canvas) et qui cr&eacute;&eacute; deux barres de d&eacute;filement (scrollbar). Dans cette fonction, il convient de noter que la variable 'c' ($c) contient le nom du widget parent : .test.image1 dans notre cas. Les barres de d&eacute;filement sont des widgets de type scrollbar. L'une est horizontale ($c.xcroll, c'est &agrave; dire, en clair, .test.image1.xscroll) et l'autre est verticale (.test.image1.yscroll).</p>
+<p>Pour que le canvas d'affichage .test.image1.canvas puisse monter ou descendre en fonction de la position de l'ascenseur de la barre de d&eacute;filement, le scrollbar .test.image1.yscroll appelle la commande 'yview' qui s'applique &agrave; .test.image1. Cette commande &eacute;tablit le lien entre la position de l'ascenseur et la partie visible de l'image dans le canvas. M&ecirc;me chose pour l'ascenseur horizontal.</p>
+<p>La fonction grid, permet d'arranger les widgets concern&eacute;s en ligne et en colonne dans une fen&ecirc;tre "ma&icirc;tre". Consulter la documentation de Tk pour plus de pr&eacute;cision.</p>
+<h3> <a name="coordcurs"></a>2. Coordonn&eacute;es du curseur</h3>
+<p> L'imagerie num&eacute;rique permet d'avoir une image cod&eacute;e par des nombres. Il est souvent utile de conna&icirc;tre la valeur de certains pixels. La fa&ccedil;on la plus rapide est de balader la souris sur l'image et de faire afficher la valeur du pixel sous le curseur. Rappelons que lors de la cr&eacute;ation des barres de d&eacute;filement, nous avons choisi de transformer l'aspect du curseur de la souris sous la forme d'une croix, afin de bien pointer le pixel &agrave; mesurer.</p>
+<p align="center"><img src="images/interface/test3-fr.jpg" height="427" width="608" /> </p>
+<h3> 2.1. Modifications du script test.tcl</h3>
+<p>Sur le listing ci dessous, nous indiquons, en rouge, les lignes &agrave; rajouter dans le fichier test.tcl :</p>
+<pre>#--- execute une commande a partir de la ligne de commande</pre>
+<pre>bind $zone(command_line) &lt;Key-Return> {</pre>
+<pre> set resultat [eval $command_line]</pre>
+<pre> if { [string compare $resultat ""] != 0 } {</pre>
+<pre> $zone(status_list) insert end "$resultat"</pre>
+<pre> }</pre>
+<pre> set $command_line ""</pre>
+<pre>}</pre>
+<pre># --- affiche la valeur du pixel pointe dans l'image</pre>
+<pre>bind $zone(image1) &lt;Motion> {</pre>
+<pre> global zone</pre>
+<pre> # --- Transforme les coordonnees de la souris (%x,%y) en coordonnees canvas (x,y)</pre>
+<pre> set xy [screen2Canvas [list %x %y]]</pre>
+<pre> # --- Transforme les coordonnees  canvas (x,y) en coordonnees image (xi,yi)</pre>
+<pre> set xyi [canvas2Picture $xy]</pre>
+<pre> set xi [lindex $xyi 0]</pre>
+<pre> set yi [lindex $xyi 1]</pre>
+<pre> # --- Intens contiendra l'intensite du pixel pointe</pre>
+<pre> set intens -</pre>
+<pre> catch {set intens [buf1 getpix [list $xi $yi]]}</pre>
+<pre> # --- Affichage des coordonnees</pre>
+<pre> wm title .test "($xi,$yi)=$intens "</pre>
+<pre>}</pre>
+<pre>#--- declare un buffer pour placer les images en m&eacute;moire</pre>
+<pre>buf::create 1</pre>
+<p>Le pixel, point&eacute; par la souris, est rep&eacute;r&eacute; par une liaison (binding) avec le mouvement de la souris (&lt;Motion>) dans le canevas de l'image $zone(image1), c'est &agrave; dire le widget de type canvas qui porte le nom .test.image1.canvas. Si la souris se trouve dans ce canevas, on entre dans l'ex&eacute;cution des commandes du binding. Les coordonn&eacute;es de la souris sont dans les variables %x et %y (ces deux variables "sp&eacute;ciales" sont toujours associ&eacute;es aux bindings relatif &agrave; la souris). Comme l'image peut avoir subie un scroll, la fonction screen2Canvas permet donc de convertir les coordonn&eacute;es de la souris dans le syst&egrave;me de coordonn&eacute;es &eacute;cran du widget affich&eacute; (%x,%y) vers les coordonn&eacute;es correspondantes (x,y) dans le canvas. La fonction screen2Canvas va &ecirc;tre d&eacute;finie dans le fichier tkutil.tcl.</p>
+<p>Par d&eacute;finition des images informatiques, les coordonn&eacute;es (0,0) sont en haut &agrave; gauche alors que la d&eacute;finition (0,0) des images astronomiques est en bas &agrave; gauche. La fonction canvas2Picture permet donc de convertir les coordonn&eacute;es de l'image canvas (x,y) vers les coordonn&eacute;es correspondantes (xi,yi) de l'image dans le buffer 1. La fonction canvas2Picture va &ecirc;tre d&eacute;finie dans le fichier tkutil.tcl.</p>
+<p>La fonction 'buf1 getpix' permet de lire la valeur num&eacute;rique associ&eacute;e au pixel de coordonn&eacute;es (xi,yi). Si les coordonn&eacute;es (xi,yi) d&eacute;passent les limites de l'image, la fonction 'buf1 getpix' retourne une erreur. Il faut donc d&eacute;tourner le message d'erreur pour &eacute;viter qu'il ne s'affiche &agrave; l'&eacute;cran et qu'il arr&ecirc;te le programme. C'est le r&ocirc;le de la fonction Tcl catch.</p>
+<p>Le message d'information, contenant la valeur du pixel, est affich&eacute; dans la barre de titre de la fen&ecirc;tre principale de test.tcl. Les images pouvant &ecirc;tre cod&eacute;es avec des nombres &agrave; virgule, nous affichons tous les chiffres de la valeur de l'intensit&eacute;. toutefois, si l'on ne veut afficher que la partie enti&egrave;re, on remplacera la derni&egrave;re ligne par :</p>
+<pre>wm title .test "($xi,$yi)=[format "%d" $intens] "</pre>
+<p>La commande Tcl format transforme une cha&icirc;ne de caract&egrave;res en une autre format&eacute;e par un symbole sp&eacute;cial. Ici le symbole %d singifie de garder la partie enti&egrave;re. Le symbole %8.2f signifierait de garder 8 chiffres significatifs et de placer 2 chiffres apr&egrave;s la virgule. La liste de ces symboles est identique &agrave; la syntaxe de la fonction printf du langage C.</p>
+<h3> 2.2. Modifications du fichier tkutil.tcl</h3>
+<p>Ouvrir le fichier texte tkutil.tcl (cr&eacute;&eacute; pr&eacute;c&eacute;demment) et ajouter les lignes suivantes apr&egrave;s la fonction Scrolled_Canvas :</p>
+<pre>#</pre>
+<pre># Transforme des coordonnees ecran en coordonnees canvas. L'argument</pre>
+<pre># est une liste de deux entiers, et retourne &eacute;galement une liste de</pre>
+<pre># deux entiers.</pre>
+<pre>#</pre>
+<p><a name="screen2Canvas"></a></p>
+<pre>proc screen2Canvas {coord} {</pre>
+<pre> global zone</pre>
+<pre> set x [$zone(image1) canvasx [lindex $coord 0]]</pre>
+<pre> set y [$zone(image1) canvasy [lindex $coord 1]]</pre>
+<pre> return [list $x $y]</pre>
+<pre>}</pre>
+<p>Les fonctions canvasx et canvasy permettent de retourner les positions absolues (x,y) du pixel point&eacute; dans le canevas.</p>
+<pre>#</pre>
+<pre># Transforme des coordonnees canvas en coordonnees image. L'argument</pre>
+<pre># est une liste de deux entiers, et retourne &eacute;galement une liste de</pre>
+<pre># deux entiers.</pre>
+<pre>#</pre>
+<p><a name="canvas2Picture"></a></p>
+<pre>proc canvas2Picture {coord} {</pre>
+<pre> global zone</pre>
+<pre> set xx [expr [lindex $coord 0] + 1]</pre>
+<pre> set point [string first . $xx]</pre>
+<pre> if {$point!=-1} {</pre>
+<pre> set xx [string range $xx 0 [incr point -1]]</pre>
+<pre> }</pre>
+<pre> set yy [expr $zone(naxis2) - [lindex $coord 1]]</pre>
+<pre> set point [string first . $yy]</pre>
+<pre> if {$point!=-1} {</pre>
+<pre> set yy [string range $yy 0 [incr point -1]]</pre>
+<pre> }</pre>
+<pre> return [list $xx $yy]</pre>
+<pre>}</pre>
+<p>Cette fonction convertit automatiquement les coordonn&eacute;es en nombres entiers. "string first . $xx" recherche la premi&egrave;re occurrence "." dans la cha&icirc;ne de caract&egrave;res contenue dans la variable "xx". La fonction retourne -1 si l'occurrence n'est pas trouv&eacute;e, sinon elle retourne l'indice de l'occurrence dans la cha&icirc;ne. Dans ce dernier cas, on ne garde uniquement que les caract&egrave;res pr&eacute;c&eacute;dent strictement le point ".".</p>
+<h3> <a name="barseuil"></a>3. Barres de seuil</h3>
+<p> Le r&eacute;glage de la luminosit&eacute; et du contraste des images se r&eacute;alise avec deux barres de r&eacute;glages. L'usage, pour les images astronomiques, veut que l'on utilise les seuils bas et haut pour d&eacute;finir les pixels respectivement color&eacute;s en noir et en blanc. Les pixels de valeur interm&eacute;diaire entre les seuil bas et haut sont gris&eacute;s de plus en plus clair a mesure que l'on se rapproche du seuil haut. Nous allons donc cr&eacute;er deux glissi&egrave;res (scales) qui permettent de r&eacute;gler les seuils bas (&agrave; gauche) et haut (&agrave; droite) :</p>
+<p align="center"><img src="images/interface/test4-fr.jpg" height="427" width="608" /></p>
+<h3> 3.1. Modifications du script test.tcl</h3>
+<p>Sur le listing ci dessous, nous indiquons, en rouge, les lignes &agrave; rajouter dans le fichier test.tcl :</p>
+<pre>#--- cree le bouton 'quitter'</pre>
+<pre>button .test.frame1.but_exit \</pre>
+<pre> -text $caption(exit) -borderwidth 4 \</pre>
+<pre> -command { testexit }</pre>
+<pre>pack .test.frame1.but_exit \</pre>
+<pre> -in .test.frame1 -side left -anchor w \</pre>
+<pre> -padx 3 -pady 3</pre>
+<pre>set zone(exit) .test.frame1.but_exit</pre>
+<pre>#--- cree un frame pour y mettre des glissieres</pre>
+<pre>frame .test.frame2 \</pre>
+<pre> -borderwidth 0 -cursor arrow -bg $color(back)</pre>
+<pre>pack .test.frame2 \</pre>
+<pre> -in .test -anchor s -side bottom -expand 0 -fill x</pre>
+<pre># --- cree la glissiere de seuil bas</pre>
+<pre>scale .test.frame2.sca1 -orient horizontal -from 0 -to 32767 -length 200 \</pre>
+<pre> -borderwidth 1 -showvalue 0 -width 10 -sliderlength 20 \</pre>
+<pre> -troughcolor $color(back) -background $color(back) \</pre>
+<pre> -relief raised -activebackground $color(back) -command changeLoCut1</pre>
+<pre>pack .test.frame2.sca1 \</pre>
+<pre> -in .test.frame2 -anchor s -side left -expand 0 -padx 10 -pady 3</pre>
+<pre>set zone(sb1) .test.frame2.sca1</pre>
+<pre># --- cree la glissiere de seuil haut</pre>
+<pre>scale .test.frame2.sca2 -orient horizontal -from 0 -to 32767 -length 200 \</pre>
+<pre> -borderwidth 1 -showvalue 0 -width 10 -sliderlength 20 \</pre>
+<pre> -troughcolor $color(back) -background $color(back) \</pre>
+<pre> -relief raised -activebackground $color(back) -command changeHiCut1</pre>
+<pre>pack .test.frame2.sca2 \</pre>
+<pre> -in .test.frame2 -anchor s -side right -expand 0 -padx 10 -pady 3</pre>
+<pre>set zone(sh1) .test.frame2.sca2</pre>
+<pre>#--- cree le nouveau canevas pour l'image</pre>
+<pre>Scrolled_Canvas .test.image1 -borderwidth 0 -relief flat \</pre>
+<p>Le frame .test.frame2 va accueillir les deux glissi&egrave;res. Ces glissi&egrave;res sont cr&eacute;es comme des widgets de type scale. Leurs nom de widget sont assign&eacute;es dans les variables globales zone(sb1) pour le seuil bas et zone(sh1) pour le seuil haut. Il est important de noter que l'action sur les glissi&egrave;res appelle les fonctions changeLoCut1 et changeHiCut1 qui vont &ecirc;tre d&eacute;finies dans le fichier tkutil.tcl. Ces fonctions changent les valeurs des seuils mais n'affichent pas l'image. On souhaite afficher l'image seulement lorsque l'on rel&acirc;che le pointeur de souris de la glissi&egrave;re. Il faut donc ajouter des liaisons sur les &eacute;v&eacute;nements de type &lt;ButtonRelease> associ&eacute;s aux glissi&egrave;res :</p>
+<pre>#--- detruit la fenetre principale avec la croix en haut a droite</pre>
+<pre>bind .test &lt;Destroy> { destroy .test; exit }</pre>
+<pre># --- re-affiche l'image si on relache les curseurs des glissieres</pre>
+<pre>bind $zone(sh1) &lt;ButtonRelease> {catch {visu1 disp}}</pre>
+<pre>bind $zone(sb1) &lt;ButtonRelease> {catch {visu1 disp}}</pre>
+<pre>#--- execute une commande a partir de la ligne de commande</pre>
+<pre>bind $zone(command_line) &lt;Key-Return> {</pre>
+<pre> set resultat [eval $command_line]</pre>
+<p>La fonction catch permet de d&eacute;tourner le message d'erreur &eacute;ventuel et continuer le d&eacute;roulement normal du script.</p>
+<p>Lorsqu'une image est visualis&eacute;e, suite &agrave; une acquisition ou a un chargement, il faut actualiser la position des curseurs sur les glissi&egrave;res des barres de seuil. Il faut donc ajouter des lignes dans la fonction testvisu :</p>
+<pre><font color="#000000">proc testvisu { } {</pre>
+<pre><font color="#000000"> global zone</pre>
+<pre><font color="#000000"> set zone(naxis1) [lindex [buf1 getkwd NAXIS1] 1]</pre>
+<pre><font color="#000000"> set zone(naxis2) [lindex [buf1 getkwd NAXIS2] 1]</pre>
+<pre><font color="#000000"> $zone(image1) configure -scrollregion [list 0 0 $zone(naxis1) $zone(naxis2)]</pre>
+<pre><font color="#000000"> visu1 disp</pre>
+<pre> # --- place les curseurs des barres de seuil au bon endroit</pre>
+<pre> set shb [testgetseuils]</pre>
+<pre> $zone(sb1) set [lindex $shb 1]</pre>
+<pre> $zone(sh1) set [lindex $shb 0]</pre>
+<pre> # --- definit les limites de seuils bas et haut.</pre>
+<pre> set hi [buf1 getkwd MIPS-HI]</pre>
+<pre> set lo [buf1 getkwd MIPS-LO]</pre>
+<pre> buf1 stat</pre>
+<pre> set maxi [lindex [buf1 getkwd DATAMAX] 1]</pre>
+<pre> set mini [lindex [buf1 getkwd DATAMIN] 1]</pre>
+<pre> set range [expr $maxi-$mini]</pre>
+<pre> set mini [expr $mini-$range]</pre>
+<pre> set maxi [expr $maxi+$range]</pre>
+<pre> $zone(sb1) configure -from $mini -to $maxi</pre>
+<pre> $zone(sh1) configure -from $mini -to $maxi</pre>
+<pre> if {[lindex $hi 1]!=""} {buf1 setkwd $hi }</pre>
+<pre> if {[lindex $lo 1]!=""} {buf1 setkwd $lo }</pre>
+<pre><font color="#000000">}</pre>
+<pre>proc testgetseuils { } {</pre>
+<pre> # --- retourne un liste contenant le seuil haut et bas de l'image</pre>
+<pre> global zone</pre>
+<pre> # --- on recherche la valeur du mot cle MIPS-HI</pre>
+<pre> set hi [lindex [buf1 getkwd MIPS-HI] 1]</pre>
+<pre> if {$hi==""} {</pre>
+<pre> # --- sinon on recherche la valeur du mot cle DATAMAX</pre>
+<pre> set hi [lindex [buf1 getkwd DATAMAX] 1]</pre>
+<pre> }</pre>
+<pre> if {$hi==""} {</pre>
+<pre> # --- sinon on fait une stat sur l'image</pre>
+<pre> buf1 stat</pre>
+<pre> set hi [lindex [buf1 getkwd MIPS-HI] 1]</pre>
+<pre> set lo [lindex [buf1 getkwd MIPS-LO] 1]</pre>
+<pre> }</pre>
+<pre> # --- on recherche la valeur du mot cle MIPS-LO</pre>
+<pre> set lo [lindex [buf1 getkwd  MIPS-LO] 1]</pre>
+<pre> if {$lo==""} {</pre>
+<pre> # --- sinon on recherche la valeur du mot cle DATAMIN</pre>
+<pre> set lo [lindex [buf1 getkwd DATAMIN] 1]</pre>
+<pre> }</pre>
+<pre> if {$lo==""} {</pre>
+<pre> set lo 0</pre>
+<pre> }</pre>
+<pre> return [list $hi $lo]</pre>
+<pre>}</pre>
+<p>La fonction testvisu comprend deux nouvelles parties. La premi&egrave;re place les curseurs des barres de seuil au bon endroit. La seconde partie redimensionne les valeurs limites (mini,maxi) des barres de seuils. Ces valeurs sont calcul&eacute;es de fa&ccedil;on &agrave; pouvoir effectuer des r&eacute;glages fins dans l'&eacute;tendue correspondant &agrave; la dynamique de l'image.</p>
+<p>La fonction testgetseuils retourne la valeur des seuils haut et bas et les calculs si besoin est.</p>
+<h3> 3.2. Modifications du fichier tkutil.tcl</h3>
+<p> Ouvrir le fichier texte tkutil.tcl (cr&eacute;e pr&eacute;c&eacute;demment) et ajouter les lignes suivantes &agrave; la fin du fichier :</p>
+<pre>#</pre>
+<pre># Nouvelle valeur de seuil haut</pre>
+<pre>#</pre>
+<pre>proc changeHiCut1 {foo} {</pre>
+<pre> set sbh [visu1 cut]</pre>
+<pre> visu1 cut [list $foo [lindex $sbh 1]]</pre>
+<pre>}</pre>
+<pre>#</pre>
+<pre># Nouvelle valeur de seuil bas</pre>
+<pre>#</pre>
+<pre>proc changeLoCut1 {foo} {</pre>
+<pre> set sbh [visu1 cut]</pre>
+<pre> visu1 cut [list [lindex $sbh 0] $foo]</pre>
+<pre>}</pre>
+<p>Ces deux fonctions permettent d'enregistrer les nouvelles valeurs de seuils de l'image en fonction des valeurs retourn&eacute;es par la position des curseurs dans les widgets scale.</p>
+<h3> <a name="cadresouris"></a>4. D&eacute;finir un cadre sur l'image avec la souris</h3>
+<p>Il est tr&egrave;s utile de pouvoir dessiner un cadre sur l'image affich&eacute;e afin de d&eacute;finir une zone dans laquelle sera effectu&eacute;e une analyse : largeur d'une &eacute;toile, statistiques locales, etc.</p>
+<h3> 4.1. Modifications du script test.tcl</h3>
+<p>Ajouter la d&eacute;finition d'une nouvelle variable globale</p>
+<pre>infos</pre>
+<p>au d&eacute;but de test.tcl :</p>
+<pre><font color="#000000">#--- definition des variables globales (arrays)</pre>
+<pre><font color="#000000">global caption</pre>
+<pre><font color="#000000">global color</pre>
+<pre><font color="#000000">global zone</pre>
+<pre>global infos</pre>
+<pre># --- initialisation de variables d'infos</pre>
+<pre>set infos(MouseState) rien</pre>
+<pre>set infos(box) {1 1 1 1}</pre>
+<pre>set infos(point) {1 1}</pre>
+<pre><font color="#000000">#--- description du texte a placer sur l'ecran</pre>
+<pre><font color="#000000">set caption(main_title) "test"</pre>
+<p>La variable info(MouseState) donne l'&eacute;tat actuel de la souris : rien (on n'est pas en train de draguer en cliquant) ou dragging (on est en train de draguer un cadre). La variable info(box) contient les coordonn&eacute;es (x,y) de d&eacute;but et de fin de cadre sous forme d'une liste. C'est cette liste qui pourra &ecirc;tre utilis&eacute;e ult&eacute;rieurement pour traiter des actions sp&eacute;cifiques &agrave; l'int&eacute;rieur de ce cadre. Enfin, la variable infos(point) va contenir la liste des coordonn&eacute;es (x,y) sur l'image du dernier point cliqu&eacute; par la souris.</p>
+<p>Il faut aussi d&eacute;finir la couleur du cadre qui va se superposer &agrave; l'image. Nous donnons ici l'exemple d'un cadre bleu (#0000EE signifie 00 00 EE o&ugrave; les deux premiers chiffres sont la composante rouge (00=z&eacute;ro), les deux chiffres suivants sont la composante verte (00=z&eacute;ro) et les deux derniers chiffres sont la composante rouge (EF=239 d&eacute;cimal). EE est une notation hexad&eacute;cimale (base 16). Pour faire la conversion d&eacute;cimale, utiliser la r&egrave;gle suivante : remplacer les lettres A,B,C,D,E,F par 10,11,12,13,14,15 respectivement et appliquer la formule : E*16+F=14*16+15=239.</p>
+<pre>#--- definition des couleurs</pre>
+<pre>set color(back) #123456</pre>
+<pre>set color(back_image) #000000</pre>
+<pre>set color(rectangle) #0000EF</pre>
+<p>Afin de pouvoir draguer un cadre sur l'image, il faut d&eacute;finir des liaisons associ&eacute;es aux &eacute;v&eacute;nements de la souris avec la zone d'affichage de l'image. Il est &eacute;vident qu'il y a trois types d'&eacute;v&eacute;nements &agrave; g&eacute;rer : l'appui sur le bouton gauche de la souris (ButtonPress-1) pour d&eacute;finir le d&eacute;but du cadre, le mouvement avec le bouton gauche appuy&eacute; (B1-Motion) pour dessiner le cadre sur l'image et pour commencer &agrave; draguer. Enfin le l&acirc;ch&eacute; du bouton gauche de la souris (ButtonRelease-1) pour terminer la d&eacute;finition du cadre. Pour g&eacute;rer ces trois &eacute;v&eacute;nements, nous allons ajouter les trois bindings correspondants (dans la partie du listing de test.tcl qui contient les bindings) :</p>
+<pre><font color="#000000">#--- detruit la fenetre principale avec la croix en haut a droite</pre>
+<pre><font color="#000000">bind .test &lt;Destroy> { destroy .test; exit }</pre>
+<pre>bind $zone(image1) &lt;ButtonPress-1> {</pre>
+<pre> global infos</pre>
+<pre> if { [string compare $infos(MouseState) rien] == 0 } {</pre>
+<pre> set liste [screen2Canvas [list %x %y]]</pre>
+<pre> if {[info exists zone(naxis1)]==1} {</pre>
+<pre> if {[lindex $liste 0]&lt;$zone(naxis1) &amp;&amp; [lindex $liste 1]&lt;$zone(naxis2)} {</pre>
+<pre> boxBegin [list %x %y]</pre>
+<pre> set infos(MouseState) dragging</pre>
+<pre> }</pre>
+<pre> }</pre>
+<pre> } else {</pre>
+<pre> if { [string compare $infos(MouseState) context] == 0 } {</pre>
+<pre> #[MenuGet "$caption(audace,menu,analyse)"] unpost</pre>
+<pre> set infos(MouseState) rien</pre>
+<pre> }</pre>
+<pre> }</pre>
+<pre>}</pre>
+<pre>bind $zone(image1) &lt;B1-Motion> {</pre>
+<pre> global infos</pre>
+<pre> if { [string compare $infos(MouseState) dragging] == 0 } {</pre>
+<pre> #--- Affichage des coordonnees</pre>
+<pre> # displayCursorCoord [list %x %y]</pre>
+<pre> #--- On n'oublie pas de dragger eventuellement la boite</pre>
+<pre> boxDrag [list %x %y]</pre>
+<pre> }</pre>
+<pre>}</pre>
+<pre>bind $zone(image1) &lt;ButtonRelease-1> {</pre>
+<pre> global infos</pre>
+<pre> if { [string compare $infos(MouseState) dragging] == 0 } {</pre>
+<pre> set infos(MouseState) rien</pre>
+<pre> catch {boxEnd [list %x %y] }</pre>
+<pre> }</pre>
+<pre>}</pre>
+<p>Rappelons que la variable $zone(image1) correspond au canevas d'affichage de l'image.</p>
+<h3> 4.2. Modifications du fichier tkutil.tcl</h3>
+<p>Les bindings d&eacute;finis pr&eacute;c&eacute;demment font appel &agrave; des fonctions qui doivent g&eacute;rer le d&eacute;but, l'agrandissement et la fin du cadre &agrave; d&eacute;finir. C'est pour cela que nous pr&eacute;sentons ces actions sous la forme des trois fonctions boxBegin, boxDrag et boxEnd. Ouvrir le fichier texte tkutil.tcl (cr&eacute;e pr&eacute;c&eacute;demment) et ajouter les lignes suivantes &agrave; la fin du fichier :</p>
+<pre>#</pre>
+<pre># !! Les coordonnees coord sont des coordonnees canvas, et non ecran.</pre>
+<pre>#</pre>
+<pre>proc boxBegin {coord} {</pre>
+<pre> global infos</pre>
+<pre> catch {unset infos(box)}</pre>
+<pre> set infos(box,1) [screen2Canvas $coord]</pre>
+<pre> set infos(point) [canvas2Picture $infos(box,1)]</pre>
+<pre>}</pre>
+<pre>#</pre>
+<pre># !! Les coordonnees x et y sont des coordonnees  canvas, et non ecran.</pre>
+<pre>#</pre>
+<pre>proc boxDrag {coord} {</pre>
+<pre> global infos</pre>
+<pre> global zone</pre>
+<pre> global color</pre>
+<pre> catch {$zone(image1) delete $infos(hBox)}</pre>
+<pre> set x [lindex $coord 0]</pre>
+<pre> if {$x&lt;0} {set coord [lreplace $coord 0 0 0]}</pre>
+<pre> if {$x>=$zone(naxis1)} {</pre>
+<pre> set coord [lreplace $coord 0 0 [expr $zone(naxis1)-1]]</pre>
+<pre> }</pre>
+<pre> set y [lindex $coord 1]</pre>
+<pre> if {$y&lt;0} {set coord [lreplace  $coord 1 1 0]}</pre>
+<pre> if {$y>=$zone(naxis2)} {</pre>
+<pre> set coord [lreplace $coord 1 1 [expr $zone(naxis2)-1]]</pre>
+<pre> }</pre>
+<pre> set infos(box,2) [screen2Canvas $coord]</pre>
+<pre> set infos(hBox) [eval {$zone(image1) create rect} $infos(box,1) \</pre>
+<pre> $infos(box,2) -outline $color(rectangle) -tag selBox]</pre>
+<pre>}</pre>
+<pre>#</pre>
+<pre># !! Les coordonnees x et y sont des coordonnees  canvas, et non ecran.</pre>
+<pre>#</pre>
+<pre>proc boxEnd {coord} {</pre>
+<pre> global infos</pre>
+<pre> global zone</pre>
+<pre> boxDrag $coord</pre>
+<pre> if { $infos(box,1) == $infos(box,2)} {</pre>
+<pre> catch {unset infos(box)}</pre>
+<pre> $zone(image1) delete $infos(hBox)</pre>
+<pre> } else {</pre>
+<pre> set coord1 [canvas2Picture $infos(box,1)]</pre>
+<pre> set coord2 [canvas2Picture $infos(box,2)]</pre>
+<pre> set x1 [lindex $coord1 0]</pre>
+<pre> set y1 [lindex $coord1 1]</pre>
+<pre> set x2 [lindex $coord2 0]</pre>
+<pre> set y2 [lindex $coord2 1]</pre>
+<pre> if {$x1>$x2} {</pre>
+<pre> set a $x1</pre>
+<pre> set x1 $x2</pre>
+<pre> set x2 $a</pre>
+<pre> }</pre>
+<pre> if {$y1>$y2} {</pre>
+<pre> set a $y1</pre>
+<pre> set y1 $y2</pre>
+<pre> set y2 $a</pre>
+<pre> }</pre>
+<pre> catch {unset infos(box)}</pre>
+<pre> set infos(box) [list $x1 $y1 $x2 $y2]</pre>
+<pre> }</pre>
+<pre>}</pre>
+<p>Ces trois fonctions appellent les fonctions <a href="#canvas2Picture">canvas2Picture</a> et <a href="#screen2Canvas">screen2Canvas</a>, d&eacute;finies dans la <a href="#coordcurs">cr&eacute;ation d'un curseur image</a>.</p>
+<p>La fonction boxBegin, calcule la variable infos(box,1) qui contient la position du premier point cliqu&eacute; par la souris. La fonction boxDrag, calcule la variable infos(box,2) qui contient la position du dernier point dragu&eacute; par la souris. De plus, la fonction redessine un rectangle d&eacute;limitant la zone dragu&eacute;e. Il s'agit d'un <a href="images/tk7.gif">widget Tk de type canvas rectangle</a>. Enfin, la fonction boxEnd va calculer les coordonn&eacute;es de la boite dragu&eacute;e.</p>
+<h3> 5. D&eacute;finir un graphique</h3>
+<p>Le dossier profil, de la distribution de Audela, contient des scripts reprenant et compl&eacute;tant test.tcl et tkutil.tcl. Cet ensemble de scripts permet de compl&eacute;ter la zone de visualisation d&eacute;finie dans les paragraphes ci-dessus par une zone graphique auto-dimensionn&eacute;e. Le contenu de la box dragu&eacute;e par la souris est analys&eacute; en termes d'intensit&eacute; des pixels en lignes ou en colonnes. L'analyse graphique donne la r&eacute;partition de l'intensit&eacute; dans l'image.</p>
+<p align="center"><img src="images/interface/profil1-fr.jpg" height="427" width="648" /></p>
+<p> On pourra ex&eacute;cuter ce script &agrave; partir de la fen&ecirc;tre Audela de choix de l'interface. Ex&eacute;cuter ../profil profil.tcl. </p>
+</body>
+</html>

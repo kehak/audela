@@ -1,0 +1,277 @@
+#
+# Fichier : andorusb.cap
+# Mise a jour $Id: andorusb.cap 6914 2011-03-11 15:59:18Z robertdelmas  $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(andorusb,camera)                       "AndorUSB"
+
+set caption(andorusb,obtu_ouvert)                  "Open"
+set caption(andorusb,obtu_ferme)                   "Closed"
+set caption(andorusb,obtu_synchro)                 "Synchro"
+
+set caption(andorusb,config)                       "Folder Containing Setup Files"
+set caption(andorusb,parcourir)                    "..."
+set caption(andorusb,dossier)                      "From Folder:"
+set caption(andorusb,miroir_x)                     "Top/Bottom Reversal"
+set caption(andorusb,miroir_y)                     "Left/Right Reversal"
+set caption(andorusb,refroidissement)              "Cooling to Temperature"
+set caption(andorusb,refroidissement_1)            "°C"
+set caption(andorusb,temperature_CCD)              "CCD Temperature:"
+set caption(andorusb,deg_c)                        "°C"
+set caption(andorusb,fonc_obtu)                    "Shutter Operation"
+set caption(andorusb,ouvert_obtu)                  "Shutter Opening Delay"
+set caption(andorusb,ferm_obtu)                    "Shutter Closing Delay"
+set caption(andorusb,ms)                           "ms"
+
+set caption(andorusb,port_camera)                  "AndorUSB Port"
+set caption(andorusb,2points)                      ":"
+
+set caption(andorusb,titre_site_web)               "Reference Web Site:"
+set caption(andorusb,site_web_ref)                 "http://www.andor-tech.com"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(andorusb,camera)                    "AndorUSB"
+
+   set caption(andorusb,obtu_ouvert)               "Ouvert"
+   set caption(andorusb,obtu_ferme)                "Fermé"
+   set caption(andorusb,obtu_synchro)              "Synchro"
+
+   set caption(andorusb,config)                    "Répertoire contenant les fichiers de configuration"
+   set caption(andorusb,parcourir)                 "..."
+   set caption(andorusb,dossier)                   "A partir du dossier :"
+   set caption(andorusb,miroir_x)                  "Inverser Haut/Bas"
+   set caption(andorusb,miroir_y)                  "Inverser Gauche/Droite"
+   set caption(andorusb,refroidissement)           "Refroidissement à la température de"
+   set caption(andorusb,refroidissement_1)         "°C"
+   set caption(andorusb,temperature_CCD)           "Température du CCD :"
+   set caption(andorusb,deg_c)                     "°C"
+   set caption(andorusb,fonc_obtu)                 "Fonctionnement de l'obturateur"
+   set caption(andorusb,ouvert_obtu)               "Délai d'ouverture de l'obturateur"
+   set caption(andorusb,ferm_obtu)                 "Délai de fermeture de l'obturateur"
+   set caption(andorusb,ms)                        "ms"
+
+   set caption(andorusb,port_camera)               "Port AndorUSB"
+   set caption(andorusb,2points)                   ":"
+
+   set caption(andorusb,titre_site_web)            "Site Web de référence :"
+   set caption(andorusb,site_web_ref)              "http://www.andor-tech.com"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(andorusb,camera)                    "AndorUSB"
+
+   set caption(andorusb,obtu_ouvert)               "Aperto"
+   set caption(andorusb,obtu_ferme)                "Chiuso"
+   set caption(andorusb,obtu_synchro)              "Sincronizza"
+
+   set caption(andorusb,config)                    "Cartella contenente i file di configurazione"
+   set caption(andorusb,parcourir)                 "..."
+   set caption(andorusb,dossier)                   "Dalla cartella:"
+   set caption(andorusb,miroir_x)                  "Inversione Alto/Basso"
+   set caption(andorusb,miroir_y)                  "Inversione Sinistra/Destra"
+   set caption(andorusb,refroidissement)           "Raffreddamento alla temperatura di"
+   set caption(andorusb,refroidissement_1)         "°C"
+   set caption(andorusb,temperature_CCD)           "CCD Temperatura:"
+   set caption(andorusb,deg_c)                     "°C"
+   set caption(andorusb,fonc_obtu)                 "Funzionamento otturatore"
+   set caption(andorusb,ouvert_obtu)               "Ritardo apertura otturatore"
+   set caption(andorusb,ferm_obtu)                 "Ritardo di chiusura otturatore"
+   set caption(andorusb,ms)                        "ms"
+
+   set caption(andorusb,port_camera)               "Porta AndorUSB"
+   set caption(andorusb,2points)                   ":"
+
+   set caption(andorusb,titre_site_web)            "Sito Web di riferimento:"
+   set caption(andorusb,site_web_ref)              "http://www.andor-tech.com"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(andorusb,camera)                    "AndorUSB"
+
+   set caption(andorusb,obtu_ouvert)               "Abierto"
+   set caption(andorusb,obtu_ferme)                "Cerrado"
+   set caption(andorusb,obtu_synchro)              "Sincro"
+
+   set caption(andorusb,config)                    "Doirectorio que contiene los ficheros de configuracion"
+   set caption(andorusb,parcourir)                 "..."
+   set caption(andorusb,dossier)                   "Desde la carpeta:"
+   set caption(andorusb,miroir_x)                  "Invertir Arriba/Abajo"
+   set caption(andorusb,miroir_y)                  "Invertir Izquierda/Derecha"
+   set caption(andorusb,refroidissement)           "Enfriar hasta temperatura"
+   set caption(andorusb,refroidissement_1)         "°C"
+   set caption(andorusb,temperature_CCD)           "Temperatura CCD:"
+   set caption(andorusb,deg_c)                     "°C"
+   set caption(andorusb,fonc_obtu)                 "Funcionamiento del obturador"
+   set caption(andorusb,ouvert_obtu)               "Retardo de apertura de obturador"
+   set caption(andorusb,ferm_obtu)                 "Retardo de cerrado de obturador"
+   set caption(andorusb,ms)                        "ms"
+
+   set caption(andorusb,port_camera)               "Puerto AndorUSB"
+   set caption(andorusb,2points)                   ":"
+
+   set caption(andorusb,titre_site_web)            "Sitio Web de referencia:"
+   set caption(andorusb,site_web_ref)              "http://www.andor-tech.com"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(andorusb,camera)                    "AndorUSB"
+
+   set caption(andorusb,obtu_ouvert)               "Offen"
+   set caption(andorusb,obtu_ferme)                "Geschlossen"
+   set caption(andorusb,obtu_synchro)              "Synchro"
+
+   set caption(andorusb,config)                    "Register der die setup Dateien enthaltet"
+   set caption(andorusb,parcourir)                 "..."
+   set caption(andorusb,dossier)                   "Vom Unterlagen:"
+   set caption(andorusb,miroir_x)                  "Oben/Unten umkehren"
+   set caption(andorusb,miroir_y)                  "Links/Rechts umkehren"
+   set caption(andorusb,refroidissement)           "Temperatur bis zu"
+   set caption(andorusb,refroidissement_1)         "°C kühlen"
+   set caption(andorusb,temperature_CCD)           "Temperatur CCD:"
+   set caption(andorusb,deg_c)                     "°C"
+   set caption(andorusb,fonc_obtu)                 "Verschluss Arbeiten"
+   set caption(andorusb,ouvert_obtu)               "Verschluss Öffnung Verspätung"
+   set caption(andorusb,ferm_obtu)                 "Verschluss Schließen Verspätung"
+   set caption(andorusb,ms)                        "ms"
+
+   set caption(andorusb,port_camera)               "AndorUSB Port"
+   set caption(andorusb,2points)                   ":"
+
+   set caption(andorusb,titre_site_web)            "Referenz Webseite:"
+   set caption(andorusb,site_web_ref)              "http://www.andor-tech.com"
+
+# *************** Version portugaise ***************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(andorusb,camera)                    "AndorUSB"
+
+   set caption(andorusb,obtu_ouvert)               "Aberto"
+   set caption(andorusb,obtu_ferme)                "Fechado"
+   set caption(andorusb,obtu_synchro)              "Sincro"
+
+   set caption(andorusb,config)                    "Pasta que contém os ficheiros de configuração"
+   set caption(andorusb,parcourir)                 "..."
+   set caption(andorusb,dossier)                   "Da Pasta:"
+   set caption(andorusb,miroir_x)                  "Inverter Cima/Baixo"
+   set caption(andorusb,miroir_y)                  "Inverter Esquerda/Direita"
+   set caption(andorusb,refroidissement)           "Arrefecendo até Temperatura"
+   set caption(andorusb,refroidissement_1)         "°C"
+   set caption(andorusb,temperature_CCD)           "Temperatura do CCD:"
+   set caption(andorusb,deg_c)                     "°C"
+   set caption(andorusb,fonc_obtu)                 "Operação do obturador"
+   set caption(andorusb,ouvert_obtu)               "Atraso de Abertura do obturador"
+   set caption(andorusb,ferm_obtu)                 "Atraso de encerramento do obturador"
+   set caption(andorusb,ms)                        "ms"
+
+   set caption(andorusb,port_camera)               "Porta AndorUSB"
+   set caption(andorusb,2points)                   ":"
+
+   set caption(andorusb,titre_site_web)            "Site Web de referência:"
+   set caption(andorusb,site_web_ref)              "http://www.andor-tech.com"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(andorusb,camera)                    "AndorUSB"
+
+   set caption(andorusb,obtu_ouvert)               "Open"
+   set caption(andorusb,obtu_ferme)                "Closed"
+   set caption(andorusb,obtu_synchro)              "Synchro"
+
+   set caption(andorusb,config)                    "Folder Containing Setup Files"
+   set caption(andorusb,parcourir)                 "..."
+   set caption(andorusb,dossier)                   "From Folder:"
+   set caption(andorusb,miroir_x)                  "Top/Bottom Reversal"
+   set caption(andorusb,miroir_y)                  "Left/Right Reversal"
+   set caption(andorusb,refroidissement)           "Cooling to Temperature"
+   set caption(andorusb,refroidissement_1)         "°C"
+   set caption(andorusb,temperature_CCD)           "CCD Temperature:"
+   set caption(andorusb,deg_c)                     "°C"
+   set caption(andorusb,fonc_obtu)                 "Shutter Operation"
+   set caption(andorusb,ouvert_obtu)               "Shutter Opening Delay"
+   set caption(andorusb,ferm_obtu)                 "Shutter Closing Delay"
+   set caption(andorusb,ms)                        "ms"
+
+   set caption(andorusb,port_camera)               "AndorUSB Port"
+   set caption(andorusb,2points)                   ":"
+
+   set caption(andorusb,titre_site_web)            "Reference Web Site:"
+   set caption(andorusb,site_web_ref)              "http://www.andor-tech.com"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(andorusb,camera)                    "AndorUSB"
+
+   set caption(andorusb,obtu_ouvert)               "Open"
+   set caption(andorusb,obtu_ferme)                "Closed"
+   set caption(andorusb,obtu_synchro)              "Synchro"
+
+   set caption(andorusb,config)                    "Folder Containing Setup Files"
+   set caption(andorusb,parcourir)                 "..."
+   set caption(andorusb,dossier)                   "From Folder:"
+   set caption(andorusb,miroir_x)                  "Top/Bottom Reversal"
+   set caption(andorusb,miroir_y)                  "Left/Right Reversal"
+   set caption(andorusb,refroidissement)           "Cooling to Temperature"
+   set caption(andorusb,refroidissement_1)         "°C"
+   set caption(andorusb,temperature_CCD)           "CCD Temperature:"
+   set caption(andorusb,deg_c)                     "°C"
+   set caption(andorusb,fonc_obtu)                 "Shutter Operation"
+   set caption(andorusb,ouvert_obtu)               "Shutter Opening Delay"
+   set caption(andorusb,ferm_obtu)                 "Shutter Closing Delay"
+   set caption(andorusb,ms)                        "ms"
+
+   set caption(andorusb,port_camera)               "AndorUSB Port"
+   set caption(andorusb,2points)                   ":"
+
+   set caption(andorusb,titre_site_web)            "Reference Web Site:"
+   set caption(andorusb,site_web_ref)              "http://www.andor-tech.com"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(andorusb,camera)                    "AndorUSB"
+
+   set caption(andorusb,obtu_ouvert)               "Open"
+   set caption(andorusb,obtu_ferme)                "Closed"
+   set caption(andorusb,obtu_synchro)              "Synchro"
+
+   set caption(andorusb,config)                    "Folder Containing Setup Files"
+   set caption(andorusb,parcourir)                 "..."
+   set caption(andorusb,dossier)                   "From Folder:"
+   set caption(andorusb,miroir_x)                  "Top/Bottom Reversal"
+   set caption(andorusb,miroir_y)                  "Left/Right Reversal"
+   set caption(andorusb,refroidissement)           "Cooling to Temperature"
+   set caption(andorusb,refroidissement_1)         "°C"
+   set caption(andorusb,temperature_CCD)           "CCD Temperature:"
+   set caption(andorusb,deg_c)                     "°C"
+   set caption(andorusb,fonc_obtu)                 "Shutter Operation"
+   set caption(andorusb,ouvert_obtu)               "Shutter Opening Delay"
+   set caption(andorusb,ferm_obtu)                 "Shutter Closing Delay"
+   set caption(andorusb,ms)                        "ms"
+
+   set caption(andorusb,port_camera)               "AndorUSB Port"
+   set caption(andorusb,2points)                   ":"
+
+   set caption(andorusb,titre_site_web)            "Reference Web Site:"
+   set caption(andorusb,site_web_ref)              "http://www.andor-tech.com"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

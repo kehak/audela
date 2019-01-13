@@ -1,0 +1,118 @@
+/*! 
+
+\mainpage Bddimages 1.x - Documentation
+
+   \em BDDImages, (Base de donn&eacute;e d'images) est un outil de <em>Audela</em> d&eacute;di&eacute; 
+   au traitement des images astronomiques &agrave; travers la manipulation de l'archive des donn&eacuteees 
+   par un moteur de base de donn&eacutee;s (MySQL).
+
+\authors F. Vachier <fv@imcce.fr>, J. Berthier <berthier@imcce.fr>
+
+\version 1.0
+\date 2006-2016
+
+\section news Nouveautes
+
+   Fonctionnalites (mai 2016)
+
+   \li Traitements d'images habituel, correction dark, offset, flat, 
+   \li Geometrie de l'image...
+   \li Gestion des mots cles. 
+   \li Ajout de WCS, 
+   \li Reconnaissance des champs,  
+   \li Extraction des sources stellaires et systeme solaire identifiees de l'image.
+   \li Analyse photometrique differentielle pour effectuer des courbes de lumieres d asteroides.
+   \li Analyse astrometrique de l'image. 
+   \li Generation et association d'un fichier catalogue votable XML de la liste des sources de l images. comprenant une table pour les header fits, 
+       puis autant de table que de catalogues identifies dans l'image.
+   \li Verification de la structure des donnees en recherchant les sources qui ne sont pas pertinentes.
+   \li Analyse des sources par une gestion des catalogues et des sources.
+   \li Gestion des catalogues globalement pour un traitement automatique par lot.
+   \li Astrometrie
+   \li Ephemerides IMCCE et JPL,
+   \li Soumission de rapport MPC.
+
+\section dependance Dependances
+
+   \li Un serveur MySQL doit etre installe sur la machine.
+   \li la librairie Eproc est necessaire pour le calcul des ephemerides de l'IMCCE, et l'ajustement de la geometrie de l'image.
+       Se referer a la documentation d'Eproc pour son installation
+   \li le programme FAMOUS (ecrit par F. Mignard, OCA) est necessaire pour l'analyse des donnees
+
+\section documentation Documentation
+ 
+ Ce document fourni tous les elements de documentation necessaire au developpeur pour exploiter les modules 
+ et les fonctions de Bddimages. La librairie est structuree par themes ou fonctionnalitees selon une hierarchie
+ en niveau de dependance: En majorite on trouvera un namespace par fichier dont le nom de base est BDI_TOOLS ou BDI_GUI.
+ La couche GUI s'appuie sur les TOOLS et apporte une interface homme machine. La couche TOOLS apporte toutes 
+ les routines necessaire pour faire le travail en mode console afin d'obtenir des traitements automatiques sur les images.
+
+ \dot
+ graph bddimages {
+
+   fontsize=13;
+   fontcolor=blue;
+   fontname="Arial";
+   nodesep=.05;
+   rankdir=TB;
+
+   node [shape=box,style=filled,color=white,fontsize=9,fontname=Helvetica,fillcolor=snow];
+
+   subgraph cluster0 {
+     label = "Eproc-4.x lib";
+
+     subgraph cluster4 {
+       style=filled;
+       color=slategray3;
+       lib41 [ label="gaia" ];
+       lib42 [ label="impressions" ];
+       lib43 [ label="ephemerides" ];
+       lib41 -- lib42 -- lib43 [ style="dotted" ];
+       label = "Niveau 3";
+     }
+     subgraph cluster3 {
+       style=filled;
+       color=slategray2;
+       lib31 [ label="interpla" ];
+       lib32 [ label="anis" ];
+       lib33 [ label="meca_celeste" ];
+       lib34 [ label="theo_planetaires" ];
+       lib35 [ label="astro_adv" ];
+       lib36 [ label="refraction" ];
+       lib37 [ label="astro_data" ];
+       lib31 -- lib32 -- lib33 -- lib34 -- lib35 -- lib36 -- lib37 [ style="dotted" ];
+       label = "Niveau 2";
+     }
+     subgraph cluster2 {
+       style=filled;
+       color=slategray3;
+       lib21 [ label="xml" ];
+       lib22 [ label="eop" ];
+       lib23 [ label="astro_physique" ];
+       lib24 [ label="atmosphere" ];
+       lib25 [ label="astro_fondamentale" ];
+       lib26 [ label="time_scales" ];
+       lib27 [ label="interpla" ];
+       lib21 -- lib22 -- lib23 -- lib24 -- lib25 --lib26 -- lib27 [ style="dotted" ];
+       label = "Niveau 1";
+     }
+     subgraph cluster1 {
+       style=filled;
+       color=slategray2;
+       lib11 [ label="variables" URL="\ref variables" ];
+       lib12 [ label="ftools" ];
+       lib13 [ label="maths" ];
+       lib14 [ label="system" ];
+       lib15 [ label="ajustement" ];
+       lib16 [ label="sofa_iau2000" ];
+       lib17 [ label="prec_nut" ];
+       lib11 -- lib12 -- lib13 -- lib14 -- lib15 -- lib16 -- lib17 [ style="dotted" ];
+       label = "Niveau 0";
+     }
+   }
+ }
+ \enddot
+
+
+*/
+

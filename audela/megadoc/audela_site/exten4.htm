@@ -1,0 +1,413 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/dev_template.dwt" codeOutsideHTMLIsLocked="false" -->
+<!-- DW6 -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Ecrire une extension standard pour Audela</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="keywords" content="astronomy, astronomie, software, Audace, audace, Audela, audela, CCD, ccd, association Aude, association AUDE, amateur astronomer, image, sky, ciel, telescope, télescope, star, étoile, galaxy, ccd camera, camera CCD, astrophotography, Audine, Christian Jasinski, logiciel d'astronomie, astronomy software, astronomie numérique, CCD sensor, astronome amateur">
+<meta name="description" content="Audela : un logiciel d'astronomie CCD libre et gratuit pour tous.  Audela is a free and open-source CCD astronomy software">
+<link rel="stylesheet" href="3col_leftNav.css" type="text/css">
+</head>
+<body> 
+<table id="topTable" cellspacing="0" cellpadding="0"> 
+  <tr> 
+    <td width="85%" valign="middle" id="pageTopLeft"><div align="left" class="style1">Audela</div></td> 
+    <td width="15%"><div align="right"><img src="images/background_a.gif" alt="Audela" width="50" height="50" align="middle"></div></td> 
+</table> 
+<div id="masthead"> 
+  <div id="globalNav"> <a href="index.htm">Accueil</a> | <a href="copi_interfa.htm">Copies d'&eacute;cran</a> | <a href="version_actu.htm">T&eacute;l&eacute;charger</a> | <a href="bug.php">Support</a> | <a href="dev.htm">Documentation</a> | <a href="english.htm">English Version </a></div> 
+  <h2 id="pageName"><!-- InstanceBeginEditable name="Page Title" -->Ecrire une extension standard pour Audela<!-- InstanceEndEditable --></h2> 
+  <div id="breadCrumb"> <!-- InstanceBeginEditable name="Breadcrumb" --><a href="index.htm">Home page </a> / <a href="dev.htm">Le coin des développeurs</a> / <a href="exten4.htm">Ecrire une extension standard pour Audela </a> / <!-- InstanceEndEditable --></div> 
+</div> 
+<!--begin content --> 
+<div class="devContent"> <!-- InstanceBeginEditable name="MainContent" --><h2 align="center">Ecrire une extension standard pour Audela</h2>
+<p>Les scripts Tcl/Tk permettent de personnaliser les applications astronomiques en fonction de l'usage que l'on compte en faire. N&eacute;anmoins, le langage Tcl est interpr&eacute;t&eacute; et il est impossible de programmer des fonctions calculs puissants en Tcl. C'est pour cela que Audela ajoute des fonctions sp&eacute;cifiques &agrave; Tcl. Ces fonctions sont programm&eacute;es en langage C ou C++ pour atteindre la vitesse maximale d'ex&eacute;cution. N&eacute;anmoins, Audela n'ajoute pas un ensemble complet de fonctions pour l'astronomie. Il en manque, c'est certain. Nous invitons les programmeurs exp&eacute;riment&eacute;s &agrave; participer au d&eacute;velopement de Audela en &eacute;crivant des fonctions C/C++. Ces fonctions peuvent &ecirc;tre ajout&eacute;es &agrave; Audela sous la forme de librairies d'extension Tcl. </p>
+<p>Ce chapitre expose les r&egrave;gles de compatibilit&eacute; entre le C/C++ et Audela. Il y a deux fa&ccedil;ons de programmer : soit de cr&eacute;er une nouvelle librairie, soit de participer au d&eacute;veloppement de librairies existantes. Dans les deux cas, nous cherchons des partenaires. Cette page explique, en d&eacute;tails, comment programmer une librairie d'entension pour Audela. L'objet de ce texte est d'expliquer comment utiliser les fichiers de la librairie libxx afin de les transformer en une librairie personnalis&eacute;e. Dans le principe, il suffit de t&eacute;l&eacute;charger le fichier <a href="libxx.zip">libxx.zip</a> qui contient tous les fichiers utiles et de le placer dans le dossier nomm&eacute; dev qui accueille les fichiers sources de Audela. Ces fichiers contiennent tous les ingr&eacute;dients de base d'une extension Tcl compilable indiff&eacute;remment sous Windows (avec Visual C++) ou sous Linux (avec gcc). Dans un soucis de simplification, l'ensemble de la librairie est &eacute;crite en C et non en C++. L'extension .c des fichiers correpond donc &agrave; du C ANSI. </p>
+<p>Les fichiers sources ont &eacute;t&eacute; nomm&eacute;s de fa&ccedil;on &agrave; garder une grande claret&eacute; de lecture et pour garder une logique certaine. Il est n&eacute;cessaire de garder cette architechture pour contruire une librairie de grande taille en ne s'y perdant pas. C'est pour cette raison que les conseils donn&eacute;s ici sont d&eacute;crits comme des consignes &agrave; respecter. </p>
+<h3> 1. Qu'est-ce qu'une extension ?</h3>
+<p>Une extension est une librairie externe qui est charg&eacute;e &agrave; la demande par un interpr&eacute;teur Tcl, pour augmenter le nombre de fonctions utilisables depuis cet interpr&eacute;teur. Cela permet de r&eacute;partir tr&egrave;s facilement un travail de programmation entre plusieurs personnes, de mani&egrave;re compl&egrave;tement parall&egrave;le. La commande native Tcl</p>
+<pre>load</pre>
+<p>servira &agrave; charger une librairie dans l'interpr&eacute;teur Tcl et enregistre automatiquement les nouvelles fonctions.</p>
+<pre>load libxx[info sharedlibextension]</pre>
+<p>La commande [info sharedlibextension] signifie &agrave; l'interpr&eacute;teur Tcl d'ajouter, automatiquement, les lettres correspondant au suffixe .dll ou .so en fonction du syst&egrave;me d'exploitation. </p>
+<h3> 2. Architechture d'une extension</h3>
+<p>Un fichier d'extension est donc une librairie, c'est &agrave; dire une DLL sous Windows, ou une librairie partag&eacute;e SO sous les syst&egrave;mes UNIX / UNIX. Le sch&eacute;ma ci dessous pr&eacute;cise le m&eacute;canisme adopt&eacute; pour construire les librairies d'extension dans le cadre du projet Audela. Ces librairies sont, de fait, des extensions de n'importe quel interpr&eacute;teur Tcl.</p>
+<div align="center"><img src="images/development/archi2_fr.gif" alt="archi2"
+ width="567" height="237"> </div>
+<p>Le fichier d'extension doit contenir : </p>
+<ul> 
+  <li> obligatoirement une fonction particuli&egrave;re, dite point d'entr&eacute;e, qui sera la seule connue de l'ext&eacute;rieur, et qui sera appell&eacute;e par l'interpr&eacute;teur, au cours de l'ex&eacute;cution de la commande
+    <pre>load</pre> 
+    (cf. fichier libxx.c, interface avec Tcl).</li> 
+  <li> un ensemble de fonctions qui correspondra directement aux fonctionnalit&eacute;s que l'on souhaite proposer &agrave; l'interpr&eacute;teur appelant (cf. fichier xxtcl1.c, m&eacute;lange C/Tcl).</li> 
+  <li> &eacute;ventuellement un ensemble de fonctions qui seront internes &agrave; la librairie, et qui seront laiss&eacute;es au bon gr&eacute; du programmeur (cf. fichier xx1.c, sources C pur).</li> 
+</ul>
+<h3> 2.1. Le point d'entr&eacute;e</h3>
+<p>Le nom du point d'entr&eacute;e (&eacute;quivalent &agrave; la fonction main qui n'existe pas ici) doit s'appeller obligatoirement</p>
+<pre>Xx_Init</pre>
+<p>o&ugrave; Xx est le nom de la librairie, avec une majuscule obligatoire pour la premi&egrave;re lettre (noter aussi le I majuscule dans Init). Le prototype de cette fonction est le suivant :</p>
+<p>Sous Windows : </p>
+<pre> __declspec(dllexport) int __cdecl Xx_Init(Tcl_Interp *interp);</pre>
+<p>Sous Unix :</p>
+<pre>extern int Xx_Init(Tcl_Interp *interp);</pre>
+<p>Cette fonction recoit l'interpr&eacute;teur Tcl qui l'a appel&eacute;e (c'est donc l'interpr&eacute;teur de Audela). C'est par cet argument qu'on enregistrera les nouvelles fonctions de la librairie. La fonction Xx_Init retourne un entier qui peut valoir entre autres TCL_OK ou TCL_ERROR. Cela donne des informations, &agrave; l'interpr&eacute;teur appelant, du d&eacute;roulement des op&eacute;rations, pour &eacute;ventuellement les r&eacute;percuter &agrave; un niveau sup&eacute;rieur (arr&ecirc;t de l'ex&eacute;cution d'un script par exemple). </p>
+<p>Le r&ocirc;le du point d'entr&eacute;e est d'enregistrer, aupr&egrave;s de l'interpr&eacute;teur, les fonctions que l'on souhaite ajouter &agrave; l'interpr&eacute;teur, via notamment la fonction de la librairie Tcl :</p>
+<pre>Tcl_CreateCommand</pre>
+<p>. Le point d'entr&eacute;e sert aussi &agrave; initialiser la librarie, en chargeant par exemple les librairies Tcl et Tk. </p>
+<h3> 2.2. Chargement des librairies Tcl et Tk</h3>
+<p>Nous consid&eacute;rons ici que les librairies Tcl et Tk utilis&eacute;es sont de version sup&eacute;rieur ou &eacute;gale &agrave; 8.3. A partir de la version Tcl/Tk 8.1 a &eacute;t&eacute; introduit la notion de stub. C'est un petit module qui permet d'apporter une compatibilit&eacute; ascendante des fonctions Tcl et Tk &agrave; mesure que de nouvelles versions sortent. Ainsi, il n'est pas n&eacute;cessaire de recompiler les librairies lorsque l'on change de version (except&eacute; l'ex&eacute;cutable audela.exe qu'il faudra recompiler avec les nouvelles librairies). Le code C correspondant au chargement des stubs est cod&eacute; dans la fonction Xx_Init :</p>
+<p> if(Tcl_InitStubs(interp,"8.3",0)==NULL) { Tcl_SetResult(interp,"Tcl Stubs initialization failed in libxx.",TCL_VOLATILE); return TCL_ERROR; } if(Tk_InitStubs(interp,"8.3",0)==NULL) { Tcl_SetResult(interp,"Tk Stubs initialization failed in libxx.",TCL_VOLATILE); return TCL_ERROR; }</p>
+<p>Sous Linux, nous consid&eacute;rons que Tcl/Tk 8.3 a &eacute;t&eacute; install&eacute;. Ainsi, le chargement des librairies dynamiques tcl.so et tk.so sont-ils effectu&eacute;s automatiquement sans ajouter de code source dans la librairie d'extension. La directive de chargement est cod&eacute;e au moment du link gr&acirc;ce aux options -ltclstub8.3 et -ltkstub8.3 de gcc. Pour s'assurer que Tcl/Tk est install&eacute; convenablement sous Linux, il faut trouver les fichiers suivants /usr/lib/tcl.so et /usr/lib/tk.so. En g&eacute;n&eacute;ral, ces fichiers sont des liens pointant sur les fichiers tcl83.so et tk83.so. Enfin, s'assurer que les stubs de Tcl/Tk sont install&eacute; en trouvant les fichiers /user/lib/tclstub8.3.a et /user/lib/tkstub8.3.a. Noter que les fichiers .so sont des librairies dynamiques (&eacute;quivalent aux DLL de Windows) alors que les fichiers .a sont des librairies statiques (&eacute;quivalent aux LIB de Windows). </p>
+<p>Sous Windows, il faut compiler les fichiers en d&eacute;finissant les symboles USE_TCL_STUBS et USE_TK_STUBS au niveau de la ligne de compilation (option /D). De plus, il faut lier les codes objets avec les librairies ..\..\common\lib_vc40\tclstub83.lib et ..\..\common\lib_vc40\tclstub83.lib. </p>
+<p>Le code C de la librairie d'extension peux donc utiliser n'importe quelle des fonctions commen&ccedil;ant par Tcl_ ou par Tk_ (cf. manuel d'utilisation disponible sur le net). </p>
+<h3> 2.3. D&eacute;claration d'une nouvelle fonction</h3>
+<p>Ce sont les fonctions qui seront directement int&eacute;gr&eacute;es &agrave; l'interpr&eacute;teur qui sollicitera la librairie. Elle doivent suivre un typage particulier, qui est le m&ecirc;me que celui qui a &eacute;t&eacute; utilis&eacute; pour les librairies Tcl/Tk. L'exemple suivant montre comment l'extension enregistre la nouvelle fonction xx_julianday dans l'interpr&eacute;teur Tcl :</p>
+<pre>Tcl_CreateCommand(interp,"xx_julianday",Cmd_xxtcl_julianday,(ClientData)NULL,(Tcl_CmdDeleteProc*)NULL);</pre>
+<p>Le premier arguement (interp) est donc l'interpr&eacute;teur Tcl courant de Audela dans lequel la nouvelle fonction va &ecirc;tre enregistr&eacute;e. Le deuxi&egrave;me argument est le nom de la fonction tel qu'il sera connu par l'utilisateur de Audela. Le troisi&egrave;me arguement est le nom de la fonction C de la librairie d'extension qui va effectuer les calculs relatifs &agrave; ce que doit faire la nouvelle fonction Tcl "xx_julianday". Les deux derniers arguments sont g&eacute;n&eacute;ralement &eacute;gaux au pointeur NULL mais peuvent &ecirc;tre utilis&eacute;s pour passer des param&egrave;tres particuliers (une structure de donn&eacute;es par exemple). Noter le choix des noms de fonctions. Ils commencent tous par le nom de la librairie (xx_) afin d'assurer de ne pas d&eacute;truire des fonctions d'autres librairies qui auraient le m&ecirc;me nom. </p>
+<p>L'interpr&eacute;teur Tcl (variable interp) est une sctructure C qui contient un &eacute;l&eacute;ment nom&eacute; result et qui va contenir une cha&icirc;ne de caract&egrave;res correspondant au r&eacute;sultat retourn&eacute; &agrave; l'issu du calcul effectu&eacute; par la fonction C (Cmd_xxtcl_julianday dans notre exemple). </p>
+<h3> 2.4. Architecture g&eacute;n&eacute;rale d'une nouvelle fonction</h3>
+<p>Une nouvelle fonction est toujours de type int. Pour avoir une syntaxe coh&eacute;rante, nous avons l'habitude de commencer le nom d'une nouvelle fonction par Cmd_ pour bien sp&eacute;cifier qu'il s'agit du "point d'entr&eacute;e" d'une nouvelle fonction &agrave; enregistrer dans l'interpr&eacute;teur Tcl. Ensuite, le nom continue par xxtcl_ pour signifier que le source C contiendra des fonctions des librairies Tcl ou Tk (ces fonctions commencent toutes par le pr&eacute;fixe Tcl_ ou Tk_). Enfin, on ajoute le nom de la fonction tel qu'il appara&icirc;tra dans l'interpr&eacute;teur Tcl. Ainsi, toutes les fonctions de "point d'entr&eacute;e" de la librairie d'extension xx commenceront par Cmd_xxtcl_ et finiront par le nom de la fonction Tcl elle m&ecirc;me. Dans le cas de la fonction Tcl xx_julianday, la fonction C associ&eacute;e est bien Cmd_xxtcl_julianday. Nous rappelons que cet usage n'est pas obligatoire mais permet de s'y retrouver lorsque plusieurs programmeurs travaillent sur une m&ecirc;me extnesion.
+<p>Analysons le d&eacute;but du listing C de Cmd_xxtcl_julianday : </p>
+<pre>int Cmd_xxtcl_julianday(ClientData clientData, Tcl_Interp *interp, int argc, char *argv[])</pre>
+<pre>/****************************************************************************/</pre>
+<pre>/* Retourne le jour julien a partir des la date en clair. */</pre>
+<pre>/****************************************************************************/</pre>
+<pre>/****************************************************************************/</pre>
+<pre>{</pre>
+<pre> int result,retour;</pre>
+<pre> Tcl_DString dsptr;</pre>
+<pre> char s[100];</pre>
+<pre> double y=0.,m=0.,d=0.,hh=0.,mm=0.,ss=0.,jd=0.;</pre>
+<p>On remarque la pr&eacute;sence du type Tcl_DString. Il s'agit d'une cha&icirc;ne de caract&egrave;res dynamique d&eacute;finie dans &lt;tcl.h&gt;. Ce type est tr&egrave;s utile car il n'est pas utile de conna&icirc;tre la longueur de la cha&icirc;ne par avance. Associ&eacute; aux fonctions</p>
+<pre>Tcl_DStringInit</pre>
+<p>,</p>
+<pre>Tcl_DStringFree</pre>
+<p>,</p>
+<pre>Tcl_DStringAppend </pre>
+<p>et</p>
+<pre>Tcl_DStringResul</pre>
+<p>nous allons voir que le type Tcl_DString permet une gestion tr&egrave;s simple de la cha&icirc;ne de carat&egrave;res qui sera retourn&eacute;e en sortie de la fonction. </p>
+<p>Les premi&egrave;res lignes de C, concernant une fonction d'extension, vont &ecirc;tre consacr&eacute;es &agrave; la v&eacute;rification du nombre d'arguments attendus par la fonction : </p>
+<pre> if(argc&lt;4) {</pre>
+<pre> sprintf(s,"Usage: %s year month day ?hour min sec?", argv[0]);</pre>
+<pre> Tcl_SetResult(interp,s,TCL_VOLATILE);</pre>
+<pre> result = TCL_ERROR;</pre>
+<p>Dans cet exemple, la fonction admet trois mots obligatoires (year month day) et trois autres facultatifs (la syntaxe entre les deux ? est une r&egrave;gle d'usage de Tcl pour d&eacute;signer les arguments facultatifs). La fonction Cmd_xxtcl_julianday re&ccedil;oit les arguements Tcl sous la forme du pointeur de cha&icirc;nes *argv[]. L'entier argc contient le nombre de cha&icirc;nes contenues dans *argv[]. Le nom de la fonction elle m&ecirc;me (xx_julianday) est le premier argument et les trois autres suivant montrent que argc doit &ecirc;tre au moins &eacute;gal &agrave; 4 pour v&eacute;rifier qu'il y ait 3 arguments apr&egrave;s le nom de la fonction. Si ce n'est pas le cas alors on retourne le code TCL_ERROR et on stocke l'aide de la fonction en tant que cha&icirc;ne de retour. La cha&icirc;ne de retour de la fonction est remplie par la fonction Tcl_SetResult. </p>
+<p>La suite du listing C montre le traitement de la fonction dans le cas o&ugrave; au moins trois arguements ont &eacute;t&eacute; trouv&eacute;s. Il s'agit maintenant de transformer ces arguments en valeurs num&eacute;riques pour le langage C. Pour cela, on se sert des fonctions de type Tcl_GetDouble, Tcl_GetInt, etc. </p>
+<pre> } else {</pre>
+<pre> /* --- decode les parametres obligatoires  ---*/</pre>
+<pre> retour = Tcl_GetDouble(interp,argv[1],&amp;y);</pre>
+<pre> if(retour!=TCL_OK) return retour;</pre>
+<pre> retour = Tcl_GetDouble(interp,argv[2],&amp;m);</pre>
+<pre> if(retour!=TCL_OK) return retour;</pre>
+<pre> retour = Tcl_GetDouble(interp,argv[3],&amp;d);</pre>
+<pre> if(retour!=TCL_OK) return retour;</pre>
+<pre> /* --- decode les parametres facultatifs ---*/</pre>
+<pre> if (argc&gt;=5) {</pre>
+<pre> retour = Tcl_GetDouble(interp,argv[4],&amp;hh);</pre>
+<pre> if(retour!=TCL_OK) return retour;</pre>
+<pre> }</pre>
+<pre> if (argc&gt;=6) {</pre>
+<pre> retour = Tcl_GetDouble(interp,argv[5],&amp;mm);</pre>
+<pre> if(retour!=TCL_OK) return retour;</pre>
+<pre> }</pre>
+<pre> if (argc&gt;=7) {</pre>
+<pre> retour = Tcl_GetDouble(interp,argv[6],&amp;ss);</pre>
+<pre> if(retour!=TCL_OK) return retour;</pre>
+<pre> }</pre>
+<p>Il devient d&eacute;sormais possible d'effectuer les calculs propres &agrave; la fonction C. Ces calculs ne font pas intervenir de fonctions Tcl. Il est donc pr&eacute;f&eacute;rable d'&eacute;crire les fonctions qui ne contiennent pas de Tcl dans un fichier &agrave; part. Le but est de concentrer, dans certains fichiers, du C m&eacute;lang&eacute; avec des fonctions Tcl et dans d'autres des fonctions de C pur. On comprend mieux cette d&eacute;marche si on prend le probl&egrave;me &agrave; l'envers. En g&eacute;n&eacute;ral, on part de fonctions C pur qui effectuent du calcul. On a envie alors de construire une librairie d'extension Tcl en "enrobant" ces fonctions par les fonctions qui font le lien entre C et Tcl. Ainsi, on peut distinguer clairement les probl&egrave;mes venant de l'int&eacute;raction C/Tcl et les probl&egrave;mes propres aux calculs en C pur. Dans notre exmple, le calcul du jour julien est effectu&eacute; dans une fonction sp&eacute;cifique, &eacute;crite en C pur. Dans la fonction Cmd_xxtcl_julianday, on se contente d'appeler cette fonction : </p>
+<pre> /* --- calcule le jour julien ---*/</pre>
+<pre> xx_date2jd(y,m,d,hh,mm,ss,&amp;jd);</pre>
+<p>La valeur du jour julien doit maintenant &ecirc;tre transform&eacute;e dans l'autre sens : d'une variable num&eacute;rique C vers une cha&icirc;ne de caract&egrave;res. C'est &agrave; ce moment l&agrave; que l'on utilise le type Tcl_DString : </p>
+<pre> /* --- allocation memoire de la dynamic string ---*/</pre>
+<pre> Tcl_DStringInit(&amp;dsptr);</pre>
+<pre> /* --- met en forme le resultat dans une chaine de caracteres classique ---*/</pre>
+<pre> sprintf(s,"%lf",jd);</pre>
+<pre> /* --- on ajoute cette chaine a la dynamic string ---*/</pre>
+<pre> Tcl_DStringAppend(&amp;dsptr,s,-1);</pre>
+<pre> /* --- a la fin, on envoie le contenu de la dynamic string dans */</pre>
+<pre> /* --- le Result qui sera retourne a l'utilisateur. */</pre>
+<pre> Tcl_DStringResult(interp,&amp;dsptr);</pre>
+<pre> /* --- desaloue la dynamic string. */</pre>
+<pre> Tcl_DStringFree(&amp;dsptr);</pre>
+<p>Il reste encore &agrave; sp&eacute;cifier que la fonction a &eacute;t&eacute; effectu&eacute;e sans probl&egrave;me avec la variable TCL_OK : </p>
+<pre> /* --- retourne le code de succes a
+       l'interpreteur Tcl */</pre>
+<pre> result = TCL_OK;</pre>
+<pre> }</pre>
+<p>Enfin, on retourne le code erreur pour sortir de la fonction : </p>
+<pre> return result;</pre>
+<pre>}</pre>
+<p>L'architechture des fonctions d'extension est toujours calqu&eacute;e sur ce qui vient d'&ecirc;tre pr&eacute;sent&eacute;. La librairie xx ne sert qu'&agrave; montrer le canevas de ce qu'il faut &eacute;crire. A vous de la modifier pour cr&eacute;er votre propre librairie d'extension Tcl pour Audela. </p>
+<h3>3. L'exemple de la librairie xx</h3>
+<p>Nous allons &eacute;tudier la librairie nomm&eacute;e xx. Elle peut se <a href="libxx.zip">t&eacute;l&eacute;charger</a>. Une fois d&eacute;compress&eacute;e, la structure des dossiers est la suivante :</p>
+<ul> 
+  <li> html : contient des fichiers au format HTML (manuel d'instructions, etc.). linux : contient le fichier Makefile pour construire la librairie sous Linux avec gcc (faire make). vc40 : contient le fichier projet libxx..mdp pour construire sous Windows avec Visual C++ 4.0. Ce fichier est compatibles pour les version de Visual C++ plus r&eacute;centes. src : contient les fichiers source,</li> 
+  <li> libxx.c : point d'entr&eacute;e dans la librairie et initialisations. libxx.h : ent&ecirc;te pour le fichier libxx.c xxtcl_1.c : fonctions d'interfacage entre le l'interpr&eacute;teur Tcl et le C. xxtcl.h : ent&ecirc;te pour les fichiers xxtcl_*.c xx_1.c : fonctions C de la librairie. xx.h : ent&ecirc;te pour les fichiers xx_*.c</li> 
+</ul>
+</ul> 
+<p>Il n'est pas utile d'avoir compris en d&eacute;tail les explications du paragraphe pr&eacute;c&eacute;dent pour continuer &agrave; lire ce texte. En effet, nous allons nous contenter de comprendre ce qu'il faut changer dans les fichiers de la librairie xx pour ajouter de nouvelles fonctions.</p>
+<p>Pour cr&eacute;er une nouvelle librairie, il suffit de changer tous les xx en le nom de la librairie que l'on souhaite. N&eacute;anmoins, l'usage veut que, sous Unix, les librairies commencent par les trois lettres lib. Bien que cette fa&ccedil;on de faire ne soit nullement obligatoire, nous reconseillons de l'utiliser afin de garder une coh&eacute;rence. Pour cr&eacute;er la librairie libmagic, il suffit de prendre tous les fichiers de la libxx et de remplacer xx par magic. </p>
+<p><a name="projet"></a>Sous windows, il faut aussi recr&eacute;er un nouveau projet si l'on utilise le compilateur Visual C++ 4.0. Dans la cas du projet libxx, on proc&egrave;dera ainsi, dans l'ordre suivant pour cr&eacute;er le fichier projet libxx.mdp (et libxx.mak) : </p>
+<ul> 
+  <li> Ouvrir VC++40</li> 
+  <li> File-&gt;New-&gt;Project Workspace</li> 
+  <ul> 
+    <li> Type : dynamic-Link Library</li> 
+    <li> Name : libxx</li> 
+    <li> Location : D:\AUDELA\DEV\libxx</li> 
+    <li> OK</li> 
+  </ul> 
+  <li> File-&gt;Close Workspace</li> 
+  <li> Fermer VC++40</li> 
+  <li> Copier les deux fichiers libxx.mak, libxx.mdp dans d:/audela/dev/libxx/vc40. Effacer le fichier libxx.ncb.</li> 
+  <li> Double cliquer sur d:/audela/dev/libxx/vc40/libxx.mdp. VC++40 s'ouvre tout seul.</li> 
+  <li> Insert-&gt; Files into project</li> 
+  <ul> 
+    <li> vc40/libxx.def</li> 
+  </ul> 
+  <li> Insert-&gt; Files into project</li> 
+  <ul> 
+    <li> src/*.c</li> 
+  </ul> 
+  <li>Build-&gt;Settings</li> 
+  <ul> 
+    <li> Onglet C/C++ :</li> 
+    <ul> 
+      <li> Processor definitions : , USE_TCL_STUBS, USE_TK_STUBS</li> 
+    </ul> 
+    <ul> 
+      <li> Release Project options ajouter : /I "../../common" /I " ../../common/hwin" </li> 
+    </ul> 
+    <ul> 
+      <li>Release Project options effacer : /Fp"Release/libxx.pch" /YX </li> 
+    </ul> 
+    <ul> 
+      <li>Debug Project options ajouter : /I "../../common" /I " ../../common/hwin" </li> 
+    </ul> 
+    <ul> 
+      <li> Debug Project options effacer : /Fp"Debug/libxx.pch" /YX</li> 
+    </ul> 
+    <li> Onglet link :</li> 
+    <ul> 
+      <li> Output file name : ../../../binwin/libxx.dll</li> 
+    </ul> 
+    <ul> 
+      <li> Object/library modules : ..\..\common\lib_vc40\tclstub83.lib ..\..\common\lib_vc40\tkstub83.lib</li> 
+    </ul> 
+    <ul> 
+      <li> Category : Input, &agrave; la ligne "Ignore libraries", ajouter msvcrt.lib</li> 
+    </ul> 
+    <li> OK</li> 
+  </ul> 
+  <li> File-&gt;Save All</li> 
+</ul>
+<p>Sous Linux, il suffit d'&eacute;diter le fichier Makefile et de remplacer xx par le nom de la librairie.</p>
+<h3>3.1. Ajouter une fonction &agrave; la librairie</h3>
+<p>L'architecture g&eacute;n&eacute;rale des fichiers de libxx est organis&eacute;e pour ajouter facilement une nouvelle fonction. Si la fonction xx_julianday n'&eacute;tait pas encore programm&eacute;e, voici comment il faudrait proc&eacute;der:</p>
+<ul> 
+  <li>Fichier libxx.c : ajouter la ligne
+    <pre>Tcl_CreateCommand(interp,"xx_julianday",Cmd_xxtcl_julianday,(ClientData)NULL,(Tcl_CmdDeleteProc
+             *)NULL);</pre> 
+  </li> 
+  <li> Fichier xxtcl_1.c : ajouter le corps de la fonction
+    <pre>int Cmd_xxtcl_julianday(ClientData clientData, Tcl_Interp *interp,
+         int argc, char *argv[])
+      {
+ ...corps de la fonction...
+      }</pre> 
+  </li> 
+  <li>Fichier xxtcl.h : ajouter la d&eacute;claration de la fonction</li> 
+</ul>
+<blockquote> 
+  <pre>int Cmd_xxtcl_julianday(ClientData clientData, Tcl_Interp
+       *interp, int argc, char *argv[]);</pre> 
+</blockquote>
+<ul> 
+  <li>Fichier xx_1.c : ajouter la fonction en C qui effectue le calcul</li> 
+</ul>
+<blockquote> 
+  <p>void xx_date2jd(double annee, double mois, double jour, double heure, double minute, double seconde, double *jj){ ...corps de la fonction...}</p> 
+</blockquote>
+<ul> 
+  <li>Fichier xx_1.h : ajouter la d&eacute;claration de la fonction
+    <p>void xx_date2jd(double annee, double mois, double jour, double heure, double minute, double seconde, double *jj);</p> 
+  </li> 
+</ul>
+Il faut noter que les deux derni&egrave;res &eacute;tapes ne sont toujours indispensables. Certaines fonctions simples n'exigent pas d'appel autre qu'&agrave; la fonction "C/Tcl".
+<h3> 4. Quelles fonctions sont d&eacute;j&agrave; disponibles dans libxx ?</h3>
+<p>Deux fonctions ont &eacute;t&eacute; impl&eacute;ment&eacute;es dans libxx de fa&ccedil;on &agrave; montrer deux exemples de programmation. Le premier exemple concerne une routine de calcul, le deuxi&egrave;me concerne la manipulation du pointeur d'image de Audela.</p>
+<h3> 4.1. La fonction xx_julianday</h3>
+<p>La fonction xx_julianday est jointe &agrave; l'interpr&eacute;teur Tcl dans le fichier libxx.c &agrave; la ligne suivante :</p>
+<pre>Tcl_CreateCommand(interp,"xx_julianday",Cmd_xxtcl_julianday,(ClientData)NULL,(Tcl_CmdDeleteProc*)NULL);</pre>
+<p>Le prototype de cette fonction se trouve dans le fichier libxx.h. Pour changer le nom de la fonction, vu de l'utilisateur de l'interpr&eacute;teur, il suffirait de changer "xx_julianday" en une autre cha&icirc;ne de carat&egrave;res. La ligne ci-dessus signifie &agrave; l'interpr&eacute;teur d'aller &agrave; la fonction Cmd_xxtcl_julianday, lorsqu'il voit le mot xx_julianday comme premier argument de la ligne Tcl &agrave; &eacute;valuer. </p>
+<p>La fonction Cmd_xxtcl_julianday est &eacute;crite dans le fichier xxtcl_1.c et son prototype dans xxtcl.h : </p>
+<pre>int Cmd_xxtcl_julianday(ClientData clientData, Tcl_Interp *interp, int argc, char *argv[])</pre>
+<pre>/****************************************************************************/</pre>
+<pre>/* Retourne le jour julien a partir des la date en clair. */</pre>
+<pre>/****************************************************************************/</pre>
+<pre>/****************************************************************************/</pre>
+<pre>{</pre>
+<pre> int result,retour;</pre>
+<pre> Tcl_DString dsptr;</pre>
+<pre> char s[100];</pre>
+<pre> double y=0.,m=0.,d=0.,hh=0.,mm=0.,ss=0.,jd=0.;</pre>
+<pre> if(argc&lt;4) {</pre>
+<pre> sprintf(s,"Usage: %s year month day ?hour min sec?", argv[0]);</pre>
+<pre> Tcl_SetResult(interp,s,TCL_VOLATILE);</pre>
+<pre> result = TCL_ERROR;</pre>
+<pre> } else {</pre>
+<pre> /* --- decode les parametres obligatoires ---*/</pre>
+<pre> retour = Tcl_GetDouble(interp,argv[1],&amp;y);</pre>
+<pre> if(retour!=TCL_OK) return retour;</pre>
+<pre> retour = Tcl_GetDouble(interp,argv[2],&amp;m);</pre>
+<pre> if(retour!=TCL_OK) return retour;</pre>
+<pre> retour = Tcl_GetDouble(interp,argv[3],&amp;d);</pre>
+<pre> if(retour!=TCL_OK) return retour;</pre>
+<pre> /* --- decode les parametres facultatifs ---*/</pre>
+<pre> if (argc&gt;=5) {</pre>
+<pre> retour = Tcl_GetDouble(interp,argv[4],&amp;hh);</pre>
+<pre> if(retour!=TCL_OK) return retour;</pre>
+<pre> }</pre>
+<pre> if (argc&gt;=6) {</pre>
+<pre> retour = Tcl_GetDouble(interp,argv[5],&amp;mm);</pre>
+<pre> if(retour!=TCL_OK) return retour;</pre>
+<pre> }</pre>
+<pre> if (argc&gt;=7) {</pre>
+<pre> retour = Tcl_GetDouble(interp,argv[6],&amp;ss);</pre>
+<pre> if(retour!=TCL_OK) return retour;</pre>
+<pre> }</pre>
+<pre> /* --- le type DString (dynamic string) est une fonction de */</pre>
+<pre> /* --- l'interpreteur Tcl. Elle est tres utile pour remplir */</pre>
+<pre> /* --- une chaine de caracteres dont on ne connait pas longueur */</pre>
+<pre> /* --- a l'avance. On s'en sert ici pour stocker le resultat */</pre>
+<pre> /* --- qui sera retourne. */</pre>
+<pre> Tcl_DStringInit(&amp;dsptr);</pre>
+<pre> /* --- calcule le jour julien ---*/</pre>
+<pre> xx_date2jd(y,m,d,hh,mm,ss,&amp;jd);</pre>
+<pre> /* --- met en forme le resultat dans une chaine de caracteres ---*/</pre>
+<pre> sprintf(s,"%lf",jd);</pre>
+<pre> /* --- on ajoute cette chaine a la dynamic string ---*/</pre>
+<pre> Tcl_DStringAppend(&amp;dsptr,s,-1);</pre>
+<pre> /* --- a la fin, on envoie le contenu  de la dynamic string dans */</pre>
+<pre> /* --- le Result qui sera retourne a l'utilisateur. */</pre>
+<pre> Tcl_DStringResult(interp,&amp;dsptr);</pre>
+<pre> /* --- desaloue la dynamic string. */</pre>
+<pre> Tcl_DStringFree(&amp;dsptr);</pre>
+<pre> /* --- retourne le code de succes a l'interpreteur  Tcl */</pre>
+<pre> result = TCL_OK;</pre>
+<pre> }</pre>
+<pre> return result;</pre>
+<pre>}</pre>
+<p>A un moment donn&eacute;e, le calcul par lui m&ecirc;me est appel&eacute; par la fonction xx_date2jd &eacute;crite dans le fichier xx_1.c (et son prototype dans xx.h). La fonction xx_date2jd ne contient aucune fonction venant du Tcl/Tk (c'est &agrave; dire ne n&eacute;cessitant les includes tcl.h et tk.h) : </p>
+<pre>void xx_date2jd(double annee, double mois, double jour, double heure, double minute, double seconde, double *jj)</pre>
+<pre>/***************************************************************************/</pre>
+<pre>/* Donne le jour juliene correspondant a la date */</pre>
+<pre>/***************************************************************************/</pre>
+<pre>/***************************************************************************/</pre>
+<pre>{</pre>
+<pre> double a,m,j,aa,bb,jd;</pre>
+<pre> a=annee;</pre>
+<pre> m=mois;</pre>
+<pre> j=jour+((((seconde/60.)+minute)/60.)+heure)/24.;</pre>
+<pre> if (m&lt;=2) {</pre>
+<pre> a=a-1;</pre>
+<pre> m=m+12;</pre>
+<pre> }</pre>
+<pre> aa=floor(a/100);</pre>
+<pre> bb=2-aa+floor(aa/4);</pre>
+<pre> jd=floor(365.25*(a+4716))+floor(30.6001*(m+1))+j+bb-1524.5;</pre>
+<pre> *jj=jd;</pre>
+<pre>}</pre>
+<p>En conclusion, la fonction xx_julianday est &eacute;crite selon trois niveaux hi&eacute;rarchiques : </p>
+<ul> 
+  <li>dans libxx.c : d&eacute;finition du nom de la fonction dans l'interpr&eacute;teur Tcl</li> 
+  <li>dans xxtcl_1.c : d&eacute;finition de la fonction utilisant le pointeur de l'interpr&eacute;teur Tcl et ses fonctionnalit&eacute;s. </li> 
+  <li>dans xx_1.c : d&eacute;finition du calcul par lui m&ecirc;me, ne faisant pas appel &agrave; Tcl.</li> 
+</ul>
+<p>De cette fa&ccedil;on, il devient facile de transformer une librarie C standard en une librairie d'extension Tcl. Il suffit d'&eacute;crire les fonctions d'interfa&ccedil;age C/Tcl en cr&eacute;eant des fichiers de type xxtcl_*.c (ou xx sera remplac&eacute; par le nom de la librairie). Enfin, le fichier de type libxx.c contiendra les appels accessibles depuis l'interpr&eacute;teur Tcl.</p>
+<p>Enfin, derni&egrave;re r&egrave;gle, les fonctions &eacute;crites dans un fichier donn&eacute;e ont leur prototype dans le fichier .h qui a le m&ecirc;me nom (sans les indices). Par exemple, une fonction &eacute;crite dans un hypoth&eacute;tique fichier xx_3.c aurait son prototype dans xx.h. </p>
+<h3> 4.2. La fonction xx_infoimage</h3>
+<p>La fonction xx_infoimage est jointe &agrave; l'interpr&eacute;teur Tcl dans le fichier libxx.c &agrave; la ligne suivante :</p>
+<pre>Tcl_CreateCommand(interp,"xx_infoimage",Cmd_xxtcl_infoimage,(ClientData)NULL,(Tcl_CmdDeleteProc*)NULL);</pre>
+<p>Le prototype de cette fonction se trouve dans le fichier libxx.h. La ligne ci-dessus signifie &agrave; l'interpr&eacute;teur d'aller &agrave; la fonction Cmd_xxtcl_infoimage, lorsqu'il voit le mot xx_infoimage comme premier argument de la ligne Tcl &agrave; &eacute;valuer. </p>
+<p>La fonction Cmd_xxtcl_image est &eacute;crite dans le fichier xxtcl_1.c et son prototype dans xxtcl.h : </p>
+<pre>int Cmd_xxtcl_infoimage(ClientData clientData, Tcl_Interp *interp, int argc, char *argv[])</pre>
+<pre>/****************************************************************************/</pre>
+<pre>/* Retourne des infos sur l'image presente dans un buffer de Audela */</pre>
+<pre>/****************************************************************************/</pre>
+<pre>/****************************************************************************/</pre>
+<pre>{</pre>
+<pre> int result,retour;</pre>
+<pre> Tcl_DString dsptr;</pre>
+<pre> char s[100];</pre>
+<pre> xx_image image;</pre>
+<pre> int numbuf;</pre>
+<pre> if(argc&lt;2) {</pre>
+<pre> sprintf(s,"Usage: %s numbuf", argv[0]);</pre>
+<pre> Tcl_SetResult(interp,s,TCL_VOLATILE);</pre>
+<pre> result = TCL_ERROR;</pre>
+<pre> } else {</pre>
+<pre> result = TCL_OK;</pre>
+<pre> /* --- decode le parametre obligatoire ---*/</pre>
+<pre> retour = Tcl_GetInt(interp,argv[1],&amp;numbuf);</pre>
+<pre> if(retour!=TCL_OK) return retour;</pre>
+<pre> /*--- initialise la dynamic string ---*/</pre>
+<pre> Tcl_DStringInit(&amp;dsptr);</pre>
+<pre> /* --- recherche les infos ---*/</pre>
+<pre> result=xxtcl_getinfoimage(interp,numbuf,&amp;image);</pre>
+<pre> /* --- met en forme le resultat dans une chaine de caracteres ---*/</pre>
+<pre> sprintf(s,"%p %ld %ld %s",image.ptr_audela,image.naxis1,image.naxis2,image.dateobs);</pre>
+<pre> /* --- on ajoute cette chaîne à la dynamic string ---*/</pre>
+<pre> Tcl_DStringAppend(&amp;dsptr,s,-1);</pre>
+<pre> /* --- a la fin, on envoie le contenu de la dynamic string dans */</pre>
+<pre> /* --- le Result qui sera retourne a l'utilisateur. */</pre>
+<pre> Tcl_DStringResult(interp,&amp;dsptr);</pre>
+<pre> /* --- desaloue la dynamic string. */</pre>
+<pre> Tcl_DStringFree(&amp;dsptr);</pre>
+<pre> }</pre>
+<pre> return result;</pre>
+<pre>}</pre>
+<p>A un moment donn&eacute;e, le calcul par lui m&ecirc;me est appel&eacute; par la fonction xxtcl_getinfoimage. Contrairement &agrave; xx_date2jd, xxtcl_getinfoimage est &eacute;crite dans xxtcl_1.c (et son prototype dans xxtcl.h). En effet, xxtcl_getinfoimage a le pointeur de l'interpr&eacute;teur Tcl comme argument (*interp). Ainsi xxtcl n'&eacute;tant pas une fonction &eacute;crite en C ANSI pur, elle appara&icirc;t dans le fichier xxtcl_1.c. Dans ce fichier on voit donc deux types de fonctions, dont les pr&eacute;fixes sont : </p>
+<p> Cmd_xxtcl_ : pour les fonctions appel&eacute;es directement par l'interpr&eacute;teur Tcl &agrave; partir du fichier libxx.c.
+<p>xxtcl_ : pour les fonctions m&eacute;langeant C et Tcl mais n'&eacute;tant pas appel&eacute;es par libxx.c.</p>
+<p>Le pointeur d'un buffer image Audela ne doit pas &ecirc;tre manipil&eacute; n'importe comment. L'adresse</p>
+<pre>p</pre>
+<p>(toujours de type *float) du pointeur de l'image en buffer 1 est retourn&eacute; par:</p>
+<pre>Tcl_Eval(interp,"buf1 pointer");</pre>
+<pre>Tcl_GetInt(interp,interp-&gt;result,&amp;ptr);</pre>
+<pre>p=(float*)ptr;</pre>
+<p>Il ne faut surtout pas faire un free sur le pointeur de l'image. En effet, le free effectu&eacute; dans votre librairie ne pourra pas n&eacute;cessairement &ecirc;tre ex&eacute;cut&eacute; si votre librairie et Audela sont situ&eacute;s dans des segments m&eacute;moires diff&eacute;rents (risque de blocage g&eacute;n&eacute;ral dans Windows et d'un fichier core sous Linux). Si l'on veut effacer l'image du buffer 1, alors on utilisera : </p>
+<pre>Tcl_Eval(interp,"::buf::delete 1");</pre>
+<p>Pour cr&eacute;er un nouveau buffer (de dimension 768 512 pixels), on utlisera : </p>
+<pre>Tcl_Eval(interp,"::buf::create 1");</pre>
+<pre>Tcl_Eval(interp,"buf1 format 768 512");</pre>
+<p>La fonction xxtcl_getinfoimage retourne les informations de l'image dans une structure interne &agrave; la librarie xx. Ce cette fa&ccedil;on, on peut effectuer des traitements d'images, sans passer par Tcl, &agrave; l'int&eacute;rieur des fichiers de type xx_*.c.</p>
+<!-- #BeginLibraryItem "/Library/modification date.lbi" --><p style="text-align: right;">
+<script language="javascript">
+<!-- Code after this will be ignored by older browsers
+
+// Assign the last modified date to the variable lastModDate
+	var lastModDate = document.lastModified;
+
+//Create an if statement to test the value of lastModDate
+if (lastModDate == 0) {
+	document.writeln("Dernière modification : date inconnue");
+}
+else {
+	document.writeln("Dernière modification : " + lastModDate);
+}
+
+// Stop hiding the code here -->
+</script>
+</p><!-- #EndLibraryItem --><!-- InstanceEndEditable --></div> 
+<!--end content --> 
+<div id="siteInfo"> 
+  <script language="JavaScript" src="email.js" type="text/javascript"></script> 
+  | <a href="#">English Version </a> | <a href="mailto:audeladev-subscribe@egroups.com">Mailing List Audela</a> | &copy;2004 Audela | <a href="http://www.technospeak.com">Design TechnoSpeak</a> </div> 
+<br> 
+</body>
+<!-- InstanceEnd --></html>

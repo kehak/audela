@@ -1,0 +1,581 @@
+WM_CAP_GET_VIDEOFORMAT
+
+    The WM_CAP_GET_VIDEOFORMAT message retrieves a copy of the video format in use or
+    the size required for the video format. You can send this message explicitly or by using the
+    capGetVideoFormat and capGetVideoFormatSize macros.
+
+    WM_CAP_GET_VIDEOFORMAT 
+    wParam = (WPARAM) (wSize); 
+    lParam = (LPARAM) (LPVOID) (psVideoFormat); 
+
+    Parameters
+
+    wSize 
+              Size, in bytes, of the structure referenced by s. 
+    psVideoFormat 
+              Pointer to a BITMAPINFO structure. You can also specify NULL to retrieve the number
+              of bytes needed by BITMAPINFO. 
+
+    Return Values
+
+    Returns the size, in bytes, of the video format or zero if the capture window is not connected
+    to a capture driver. For video formats that require a palette, the current palette is also
+    returned.
+
+    Remarks
+
+    Because compressed video formats vary in size requirements applications must first retrieve
+    the size, then allocate memory, and finally request the video format data.
+
+    Requirements 
+
+      Windows NT/2000/XP: Included in Windows NT 3.1 and later.
+      Windows 95/98/Me: Included in Windows 95 and later.
+      Header: Declared in Vfw.h.
+
+    See Also
+
+    Video Capture Overview, Video Capture Messages, BITMAPINFO, capGetVideoFormat,
+    capGetVideoFormatSize
+
+
+
+
+capGetVideoFormat
+
+    The capGetVideoFormat macro retrieves a copy of the video format in use. You can use this
+    macro or explicitly call the WM_CAP_GET_VIDEOFORMAT message.
+
+    DWORD capGetVideoFormat(
+      hwnd,           
+      psVideoFormat,  
+      wSize           
+    );
+
+    Parameters
+
+    hwnd 
+              Handle to a capture window. 
+    psVideoFormat 
+              Pointer to a BITMAPINFO structure. You can also specify NULL to retrieve the number
+              of bytes needed by BITMAPINFO. 
+    wSize 
+              Size, in bytes, of the structure referenced by s. 
+
+    Return Values
+
+    Returns the size, in bytes, of the video format or zero if the capture window is not connected
+    to a capture driver. For video formats that require a palette, the current palette is also
+    returned.
+
+    Remarks
+
+    Because compressed video formats vary in size requirements applications must first retrieve
+    the size, then allocate memory, and finally request the video format data.
+
+    Requirements 
+
+      Windows NT/2000/XP: Included in Windows NT 3.1 and later.
+      Windows 95/98/Me: Included in Windows 95 and later.
+      Header: Declared in Vfw.h.
+
+    See Also
+
+    Video Capture Overview, Video Capture Macros, BITMAPINFO,
+    WM_CAP_GET_VIDEOFORMAT
+
+
+capSetVideoFormat
+
+    The capSetVideoFormat macro sets the format of captured video data. You can use this
+    macro or explicitly call the WM_CAP_SET_VIDEOFORMAT message.
+
+    BOOL capSetVideoFormat(
+      hwnd,           
+      psVideoFormat,  
+      wSize           
+    );
+
+    Parameters
+
+    hwnd 
+              Handle to a capture window. 
+    psVideoFormat 
+              Pointer to a BITMAPINFO structure. 
+    wSize 
+              Size, in bytes, of the structure referenced by s. 
+
+    Return Values
+
+    Returns TRUE if successful or FALSE otherwise.
+
+    Remarks
+
+    Because video formats are device-specific, applications should check the return value from
+    this function to determine if the format is accepted by the driver.
+
+    Requirements 
+
+      Windows NT/2000/XP: Included in Windows NT 3.1 and later.
+      Windows 95/98/Me: Included in Windows 95 and later.
+      Header: Declared in Vfw.h.
+
+    See Also
+
+    Video Capture Overview, Video Capture Macros, BITMAPINFO,
+    WM_CAP_SET_VIDEOFORMAT
+
+Windows GDI
+
+
+    BITMAPINFO
+
+    The BITMAPINFO structure defines the dimensions and color information for a DIB. 
+
+    typedef struct tagBITMAPINFO { 
+      BITMAPINFOHEADER bmiHeader; 
+      RGBQUAD          bmiColors[1]; 
+    } BITMAPINFO, *PBITMAPINFO; 
+
+    Members
+
+    bmiHeader 
+              Specifies a BITMAPINFOHEADER structure that contains information about the
+              dimensions of color format. 
+
+              . 
+
+    bmiColors 
+              The bmiColors member contains one of the following: 
+                        An array of RGBQUAD. The elements of the array that make up the color table. 
+                        An array of 16-bit unsigned integers that specifies indexes into the currently
+                        realized logical palette. This use of bmiColors is allowed for functions that use
+                        DIBs. When bmiColors elements contain indexes to a realized logical palette,
+                        they must also call the following bitmap functions: 
+
+                        CreateDIBitmap 
+
+                        CreateDIBPatternBrush 
+
+                        CreateDIBSection 
+
+                        The iUsage parameter of CreateDIBSection must be set to DIB_PAL_COLORS. 
+
+              The number of entries in the array depends on the values of the biBitCount and
+              biClrUsed members of the BITMAPINFOHEADER structure. 
+
+    The colors in the bmiColors table appear in order of importance. For more information, see
+    the Remarks section.
+
+    Remarks
+
+    A DIB consists of two distinct parts: a BITMAPINFO structure describing the dimensions and
+    colors of the bitmap, and an array of bytes defining the pixels of the bitmap. The bits in the
+    array are packed together, but each scan line must be padded with zeroes to end on a LONG
+    data-type boundary. If the height of the bitmap is positive, the bitmap is a bottom-up DIB and
+    its origin is the lower-left corner. If the height is negative, the bitmap is a top-down DIB and
+    its origin is the upper left corner. 
+
+    A bitmap is packed when the bitmap array immediately follows the BITMAPINFO header.
+    Packed bitmaps are referenced by a single pointer. For packed bitmaps, the biClrUsed
+    member must be set to an even number when using the DIB_PAL_COLORS mode so that the
+    DIB bitmap array starts on a DWORD boundary. 
+
+    Note  The bmiColors member should not contain palette indexes if the bitmap is to be stored
+    in a file or transferred to another application. 
+
+    Unless the application has exclusive use and control of the bitmap, the bitmap color table
+    should contain explicit RGB values. 
+
+    Requirements 
+
+      Windows NT/2000/XP: Included in Windows NT 3.1 and later.
+      Windows 95/98/Me: Included in Windows 95 and later.
+      Header: Declared in Wingdi.h; include Windows.h.
+
+    See Also
+
+    Bitmaps Overview, Bitmap Structures, BITMAPINFOHEADER, CreateDIBitmap,
+    CreateDIBPatternBrush, CreateDIBSection, RGBQUAD 
+
+
+
+Video Capture Macros
+
+    The following macros are used with video capture.
+
+    capCaptureAbort
+    capCaptureGetSetup
+    capCaptureSequence
+    capCaptureSequenceNoFile
+    capCaptureSetSetup
+    capCaptureSingleFrame
+    capCaptureSingleFrameClose
+    capCaptureSingleFrameOpen
+    capCaptureStop
+    capDlgVideoCompression
+    capDlgVideoDisplay
+    capDlgVideoFormat
+    capDlgVideoSource
+    capDriverConnect
+    capDriverDisconnect
+    capDriverGetCaps
+    capDriverGetName
+    capDriverGetVersion
+    capEditCopy
+    capFileAlloc
+    capFileGetCaptureFile
+    capFileSaveAs
+    capFileSaveDIB
+    capFileSetCaptureFile
+    capFileSetInfoChunk
+    capGetAudioFormat
+    capGetAudioFormatSize
+    capGetMCIDeviceName
+    capGetStatus
+    capGetUserData
+    capGetVideoFormat
+    capGetVideoFormatSize
+    capGrabFrame
+    capGrabFrameNoStop
+    capOverlay
+    capPaletteAuto
+    capPaletteManual
+    capPaletteOpen
+    capPalettePaste
+    capPaletteSave
+    capPreview
+    capPreviewRate
+    capPreviewScale
+    capSetAudioFormat
+    capSetCallbackOnCapControl
+    capSetCallbackOnError
+    capSetCallbackOnFrame
+    capSetCallbackOnStatus
+    capSetCallbackOnVideoStream
+    capSetCallbackOnWaveStream
+    capSetCallbackOnYield
+    capSetMCIDeviceName
+    capSetScrollPos
+    capSetUserData
+    capSetVideoFormat
+
+http://msdn.microsoft.com/library/default.asp?url=/library/en-us/multimed/avicap_9cxf.asp
+
+capDriverDisconnect
+
+    The capDriverDisconnect macro disconnects a capture driver from a capture window. You can use
+    this macro or explicitly send the WM_CAP_DRIVER_DISCONNECT message.
+
+    BOOL capDriverDisconnect(
+      hwnd  
+    );
+
+    Parameters
+
+    hwnd 
+              Handle to a capture window. 
+
+    Return Values
+
+    Returns TRUE if successful or FALSE if the capture window is not connected to a capture driver.
+
+
+capCaptureGetSetup
+
+    The capCaptureGetSetup macro retrieves the current settings of the streaming capture
+    parameters. You can use this macro or explictly send the WM_CAP_GET_SEQUENCE_SETUP
+    message.
+
+    BOOL capCaptureGetSetup(
+      hwnd,  
+      s,     
+      wSize  
+    );
+
+    Parameters
+
+    hwnd 
+              Handle to a capture window. 
+    s 
+              Pointer to a CAPTUREPARMS structure. 
+    wSize 
+              Size, in bytes, of the structure referenced by s. 
+
+    Return Values
+
+    Returns TRUE if successful or FALSE otherwise.
+
+    Remarks
+
+    For information about the parameters used to control streaming capture, see the
+    CAPTUREPARMS structure.
+
+    Requirements 
+
+      Windows NT/2000/XP: Included in Windows NT 3.1 and later.
+      Windows 95/98/Me: Included in Windows 95 and later.
+      Header: Declared in Vfw.h.
+
+    See Also
+
+    Video Capture Overview, Video Capture Macros, CAPTUREPARMS,
+    WM_CAP_GET_SEQUENCE_SETUP
+
+CAPTUREPARMS
+
+    The CAPTUREPARMS structure contains parameters that control the streaming video capture
+    process. This structure is used to get and set parameters that affect the capture rate, the
+    number of buffers to use while capturing, and how capture is terminated.
+
+    typedef struct { 
+        DWORD dwRequestMicroSecPerFrame; 
+        BOOL  fMakeUserHitOKToCapture; 
+        UINT  wPercentDropForError; 
+        BOOL  fYield; 
+        DWORD dwIndexSize; 
+        UINT  wChunkGranularity; 
+        BOOL  fUsingDOSMemory; 
+        UINT  wNumVideoRequested; 
+        BOOL  fCaptureAudio; 
+        UINT  wNumAudioRequested; 
+        UINT  vKeyAbort; 
+        BOOL  fAbortLeftMouse; 
+        BOOL  fAbortRightMouse; 
+        BOOL  fLimitEnabled; 
+        UINT  wTimeLimit; 
+        BOOL  fMCIControl; 
+        BOOL  fStepMCIDevice; 
+        DWORD dwMCIStartTime; 
+        DWORD dwMCIStopTime; 
+        BOOL  fStepCaptureAt2x; 
+        UINT  wStepCaptureAverageFrames; 
+        DWORD dwAudioBufferSize; 
+        BOOL  fDisableWriteCache; 
+        UINT  AVStreamMaster; 
+    } CAPTUREPARMS; 
+     
+
+    Members
+
+    dwRequestMicroSecPerFrame 
+              Requested frame rate, in microseconds. The default value is 66667, which corresponds
+              to 15 frames per second. 
+    fMakeUserHitOKToCapture 
+              User-initiated capture flag. If this member is TRUE, AVICap displays a dialog box
+              prompting the user to initiate capture. The default value is FALSE. 
+    wPercentDropForError 
+              Maximum allowable percentage of dropped frames during capture. Values range from 0
+              to 100. The default value is 10. 
+    fYield 
+              Yield flag. If this member is TRUE, the capture window spawns a separate background
+              thread to perform step and streaming capture. The default value is FALSE. 
+
+              Applications that set this flag must handle potential reentry issues because the
+              controls in the application are not disabled while capture is in progress. 
+    dwIndexSize 
+              Maximum number of index entries in an AVI file. Values range from 1800 to 324,000. If
+              set to 0, a default value of 34,952 (32K frames plus a proportional number of audio
+              buffers) is used. 
+
+              Each video frame or buffer of waveform-audio data uses one index entry. The value of
+              this entry establishes a limit for the number of frames or audio buffers that can be
+              captured. 
+    wChunkGranularity 
+              Logical block size, in bytes, of an AVI file. The value 0 indicates the current sector size is
+              used as the granularity. 
+    fUsingDOSMemory 
+              Not used in Win32 applications. 
+    wNumVideoRequested 
+              Maximum number of video buffers to allocate. The memory area to place the buffers is
+              specified with fUsingDOSMemory. The actual number of buffers allocated might be
+              lower if memory is unavailable. 
+    fCaptureAudio 
+              Capture audio flag. If this member is TRUE, audio is captured during streaming capture.
+              This is the default value if audio hardware is installed. 
+    wNumAudioRequested 
+              Maximum number of audio buffers to allocate. The maximum number of buffers is 10. 
+    vKeyAbort 
+              Virtual keycode used to terminate streaming capture. The default value is VK_ESCAPE.
+              You must call the RegisterHotKey function before specifying a keystroke that can abort
+              a capture session. 
+
+              You can combine keycodes that include CTRL and SHIFT keystrokes by using the logical
+              OR operator with the keycodes for CTRL (0x8000) and SHIFT (0x4000). 
+    fAbortLeftMouse 
+              Abort flag for left mouse button. If this member is TRUE, streaming capture stops if the
+              left mouse button is pressed. The default value is TRUE. 
+    fAbortRightMouse 
+              Abort flag for right mouse button. If this member is TRUE, streaming capture stops if the
+              right mouse button is pressed. The default value is TRUE. 
+    fLimitEnabled 
+              Time limit enabled flag. If this member is TRUE, streaming capture stops after the
+              number of seconds in wTimeLimit has elapsed. The default value is FALSE. 
+    wTimeLimit 
+              Time limit for capture, in seconds. This parameter is used only if fLimitEnabled is TRUE. 
+    fMCIControl 
+              MCI device capture flag. If this member is TRUE, AVICap controls an 
+              MCI-compatible video source during streaming capture. MCI-compatible video sources
+              include VCRs and laserdiscs. 
+    fStepMCIDevice 
+              MCI device step capture flag. If this member is TRUE, step capture using an MCI device
+              as a video source is enabled. If it is FALSE, real-time capture using an MCI device is
+              enabled. (If fMCIControl is FALSE, this member is ignored.) 
+    dwMCIStartTime 
+              Starting position, in milliseconds, of the MCI device for the capture sequence. (If
+              fMCIControl is FALSE, this member is ignored.) 
+    dwMCIStopTime 
+              Stopping position, in milliseconds, of the MCI device for the capture sequence. When
+              this position in the content is reached, capture ends and the MCI device stops. (If
+              fMCIControl is FALSE, this member is ignored.) 
+    fStepCaptureAt2x 
+              Double-resolution step capture flag. If this member is TRUE, the capture hardware
+              captures at twice the specified resolution. (The resolution for the height and width is
+              doubled.) 
+
+              Enable this option if the hardware does not support hardware-based decimation and
+              you are capturing in the RGB format. 
+    wStepCaptureAverageFrames 
+              Number of times a frame is sampled when creating a frame based on the average
+              sample. A typical value for the number of averages is 5. 
+    dwAudioBufferSize 
+              Audio buffer size. If the default value of zero is used, the size of each buffer will be the
+              maximum of 0.5 seconds of audio or 10K bytes. 
+    fDisableWriteCache 
+              Not used in Win32 applications. 
+    AVStreamMaster 
+              Indicates whether the audio stream controls the clock when writing an AVI file. If this
+              member is set to AVSTREAMMASTER_AUDIO, the audio stream is considered the master
+              stream and the video stream duration is forced to match the audio duration. If this
+              member is set to AVSTREAMMASTER_NONE, the durations of audio and video streams
+              can differ. 
+
+    Remarks
+
+    The WM_CAP_GET_SEQUENCE_SETUP message or capCaptureGetSetup macro is used to
+    retrieve the current capture parameters. The WM_CAP_SET_SEQUENCE_SETUP message or
+    capCaptureSetSetup macro is used to set the capture parameters.
+
+    The WM_CAP_GET_SEQUENCE_SETUP message or capCaptureGetSetup macro is used to
+    retrieve the current capture parameters. The WM_CAP_SET_SEQUENCE_SETUP message or
+    capCaptureSetSetup macro is used to set the capture parameters.
+
+    Requirements 
+
+      Windows NT/2000/XP: Included in Windows NT 3.1 and later.
+      Windows 95/98/Me: Included in Windows 95 and later.
+      Header: Declared in Vfw.h.
+
+    See Also
+
+    Video Capture Overview, Video Capture Structures, capCaptureGetSetup,
+    capCaptureSetSetup, RegisterHotKey, WM_CAP_GET_SEQUENCE_SETUP,
+    WM_CAP_SET_SEQUENCE_SETUP 
+
+capCaptureSingleFrame
+
+    The capCaptureSingleFrame macro appends a single frame to a capture file that was opened
+    using the capCaptureSingleFrameOpen macro. You can use this macro or explicitly send the
+    WM_CAP_SINGLE_FRAME message.
+
+    BOOL capCaptureSingleFrame(
+      hwnd  
+    );
+
+    Parameters
+
+    hwnd 
+              Handle to a capture window. 
+
+    Return Values
+
+    Returns TRUE if successful or FALSE otherwise.
+
+    Requirements 
+
+      Windows NT/2000/XP: Included in Windows NT 3.1 and later.
+      Windows 95/98/Me: Included in Windows 95 and later.
+      Header: Declared in Vfw.h.
+
+    See Also
+
+    Video Capture Overview, Video Capture Macros, capCaptureSingleFrameOpen,
+    WM_CAP_SINGLE_FRAME
+
+capDriverConnect
+
+    The capDriverConnect macro connects a capture window to a capture driver. You can use
+    this macro or explicitly send the WM_CAP_DRIVER_CONNECT message.
+
+    BOOL capDriverConnect(
+      hwnd,  
+      iIndex 
+    );
+
+    Parameters
+
+    hwnd 
+              Handle to a capture window. 
+    iIndex 
+              Index of the capture driver. The index can range from 0 through 9. 
+
+    Return Values
+
+    Returns TRUE if successful or FALSE if the specified capture driver cannot be connected to the
+    capture window.
+
+    Remarks
+
+    Connecting a capture driver to a capture window automatically disconnects any previously
+    connected capture driver.
+
+    Requirements 
+
+      Windows NT/2000/XP: Included in Windows NT 3.1 and later.
+      Windows 95/98/Me: Included in Windows 95 and later.
+      Header: Declared in Vfw.h.
+
+    See Also
+
+    Video Capture Overview, Video Capture Macros, WM_CAP_DRIVER_CONNECT
+
+capCaptureSetSetup
+
+    The capCaptureSetSetup macro sets the configuration parameters used with streaming
+    capture. You can use this macro or explicitly send the WM_CAP_SET_SEQUENCE_SETUP
+    message.
+
+    BOOL capCaptureSetSetup(
+      hwnd,        
+      psCapParms,  
+      wSize        
+    );
+
+    Parameters
+
+    hwnd 
+              Handle to a capture window. 
+    psCapParms 
+              Pointer to a CAPTUREPARMS structure. 
+    wSize 
+              Size, in bytes, of the structure referenced by s. 
+
+    Return Values
+
+    Returns TRUE if successful or FALSE otherwise.
+
+    Remarks
+
+    For information about the parameters used to control streaming capture, see the
+    CAPTUREPARMS structure.
+
+    Requirements 
+
+      Windows NT/2000/XP: Included in Windows NT 3.1 and later.
+      Windows 95/98/Me: Included in Windows 95 and later.
+      Header: Declared in Vfw.h.
+
+    See Also
+
+    Video Capture Overview, Video Capture Macros, CAPTUREPARMS,
+    WM_CAP_SET_SEQUENCE_SETUP

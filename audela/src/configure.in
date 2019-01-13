@@ -1,0 +1,315 @@
+dnl (c) Denis Marchais 2005-2010
+
+
+dnl INIT
+dnl
+AC_INIT
+DEV_ROOT=`pwd`
+AC_SUBST(DEV_ROOT)
+
+
+dnl Version de audela (a mettre a jour avant chaque release)
+dnl
+MAJOR=3
+MINOR=0
+PATCH=0
+EXTRA=b4
+REL_DATE=17/04/2018
+
+AC_SUBST(MAJOR)
+AC_SUBST(MINOR)
+AC_SUBST(PATCH)
+AC_SUBST(EXTRA)
+AC_SUBST(REL_DATE)
+
+dnl Check for TCL
+dnl
+SC_PATH_TCLCONFIG
+SC_LOAD_TCLCONFIG
+SC_PATH_TKCONFIG
+SC_LOAD_TKCONFIG
+SC_ENABLE_THREADS
+dnl Visiblement les 8.3 ne declarent pas TCl_INCLUDE_SPEC, il faut
+dnl donc le reconstruire a partir de TCL_INC_DIR / TK_INC_DIR...
+if test x"${TCL_INCLUDE_SPEC}" = x ; then
+   if test x"${TCL_INC_DIR}" = x; then
+      exit 0
+   else
+      TCL_INCLUDE_SPEC="-I${TCL_INC_DIR} -I${TK_INC_DIR}"
+   fi
+fi
+AC_SUBST(TCL_INCLUDE_SPEC)
+AC_SUBST(TCL_PREFIX)
+AC_SUBST(TK_XINCLUDES)
+AC_SUBST(TK_LIB_SPEC)
+AC_SUBST(TK_STUB_LIB_SPEC)
+
+AC_MSG_RESULT([TCL_BIN_DIR=$TCL_BIN_DIR])
+AC_MSG_RESULT([TK_BIN_DIR=$TK_BIN_DIR])
+
+dnl Check for GSL
+dnl
+AM_PATH_GSL
+if test "$no_gsl" = "yes" ; then
+AC_MSG_RESULT([GSL not found])
+  GSL_FOUND=0
+else
+AC_MSG_RESULT([GSL found])
+  GSL_FOUND=1
+fi
+AC_SUBST(GSL_FOUND)
+
+
+CXXFLAGS=""
+LDFLAGS=""
+dnl Checking for --enable args
+dnl
+SC_ENABLE_DEBUG
+CXXFLAGS=$CFLAGS_DEFAULT
+LDFLAGS=$LDFLAGS_DEFAULT
+
+
+dnl AutoChecks
+dnl
+
+
+dnl
+dnl Checks for programs.
+dnl
+AC_PROG_CC
+AC_PROG_CXX
+
+
+dnl Checks for libraries.
+dnl
+DL_LIB=
+AC_CHECK_FUNCS(dlopen,,[
+AC_CHECK_LIB(dl, dlopen, DL_LIB="-ldl",[
+AC_CHECK_LIB(dld, shl_load, DL_LIB="-ldld",[
+AC_CHECK_FUNCS(dlopen, DL_LIB="",
+AC_MSG_ERROR(Dynamic linking is not available on this platform.
+))
+])])])
+AC_SUBST(DL_LIB)
+
+
+dnl Checks for header files.
+dnl
+AC_HEADER_STDC
+AC_MSG_CHECKING(for kernel headers)
+if test ! -f /usr/include/asm/system.h ; then
+    if test -f /usr/src/linux-headers-`uname -r`/include/asm/system.h ; then
+        CXXFLAGS+="-I /usr/src/linux-headers-`uname -r`/include "
+        msg="yes (/usr/src/linux-headers-`uname -r`)"
+        AC_MSG_RESULT($msg)
+    fi
+    if test -f /usr/src/linux-`uname -r`/include/asm/system.h ; then
+        CXXFLAGS+="-I /usr/src/linux-`uname -r`/include "
+        msg="yes (/usr/src/linux-`uname -r`)"
+        AC_MSG_RESULT($msg)
+    fi
+fi
+
+dnl Check for Video4Linux headers presence
+dnl
+WEBCAM_ENABLE=1
+AC_CHECK_HEADER([linux/videodev.h],,[WEBCAM_ENABLE=0])
+AC_CHECK_HEADER([linux/ppdev.h],,[WEBCAM_ENABLE=0])
+AC_CHECK_HEADER([linux/parport.h],,[WEBCAM_ENABLE=0])
+AC_MSG_CHECKING([if Video4Linux webcams are supported])
+if test x"$WEBCAM_ENABLE" = x"1" ; then
+        AC_MSG_RESULT([yes.])
+else
+        AC_MSG_RESULT([no, disabling libwebcam driver.])
+fi
+AC_SUBST(WEBCAM_ENABLE)
+
+dnl Check for Video4Linux2 headers presence
+dnl
+V4L2_ENABLE=1
+AC_CHECK_HEADER([linux/videodev2.h],,[V4L2_ENABLE=0])
+AC_MSG_CHECKING([if Video4Linux2 (V4L2) webcams and grabbers are supported])
+if test x"$V4L2_ENABLE" = x"1" ; then
+        AC_MSG_RESULT([yes.])
+else
+        AC_MSG_RESULT([no, disabling the libgrabber interface.])
+fi
+AC_SUBST(V4L2_ENABLE)
+
+
+
+dnl libqsi dependencies
+QSI_ENABLE=1
+AC_CHECK_HEADERS([tiff.h ftdi.h],,[QSI_ENABLE=0])
+AC_MSG_CHECKING([if QSI cameras are supported])
+if test x"$QSI_ENABLE" = x"1" ; then
+        AC_MSG_RESULT([yes.])
+else
+        AC_MSG_RESULT([no, disabling the libqsi interface.])
+fi
+AC_SUBST(QSI_ENABLE)
+
+dnl libdigicam dependencies (libgphoto2)
+LIBGPHOTO2_ENABLE=1
+AC_CHECK_HEADERS([gphoto2/gphoto2-camera.h ],,[LIBGPHOTO2_ENABLE=0])
+AC_MSG_CHECKING([if LIBGPHOTO2 is present ])
+if test x"$LIBGPHOTO2_ENABLE" = x"1" ; then
+        AC_MSG_RESULT([yes.])
+else
+        AC_MSG_RESULT([no, disabling the libdigicam camera.])
+fi
+AC_SUBST(LIBGPHOTO2_ENABLE)
+
+dnl libindi dependencies
+LIBINDI_ENABLE=1
+AC_CHECK_HEADERS([libindi/indiapi.h],,[LIBINDI_ENABLE=0])
+AC_MSG_CHECKING([if LIBINDI is present ])
+if test x"$LIBINDI_ENABLE" = x"1" ; then
+        AC_MSG_RESULT([yes.])
+else
+        AC_MSG_RESULT([no, disabling the indi camera and telescope.])
+fi
+AC_SUBST(LIBINDI_ENABLE)
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+dnl
+
+
+dnl Checks for library functions.
+dnl
+
+
+dnl Check the platform and preconfigure CXXFLAGS and LDFLAGS
+ARCHITECTURE=`uname -m`
+echo "Found architecture $ARCHITECTURE"
+
+TARGET=`uname -s`
+echo "Found target $TARGET"
+if test $TARGET = "Darwin"; then
+    CXXFLAGS += "-fno-common "
+    LDFLAGS += "-dynamiclib "
+fi
+if test $TARGET = "Linux"; then
+    CXXFLAGS=$CXXFLAGS" -fPIC "
+    LDFLAGS=$LDFLAGS" -shared "
+fi
+
+if test x"${TCL_THREADS}" = x"1" ; then
+    CXXFLAGS=$CXXFLAGS" -DTCL_THREADS "
+fi
+
+AC_SUBST(CXXFLAGS)
+AC_SUBST(LDFLAGS)
+
+GCC_STACK_PROTECT_DISABLE_CC
+GCC_STACK_PROTECT_DISABLE_CXX
+
+dnl
+dnl Configure the modules to be compiled.
+dnl
+
+EXTERNAL="andor blt cfitsio fitstcl gzip jpeg6b libdcjpeg libdcraw libftd2xx libusb oscadine porttalk sbig sextractor sofa tcl tkhtml"
+if test -f /usr/bin/mysql_config ; then
+    EXTERNAL="$EXTERNAL mysqltcl"
+fi
+if test x"$QSI_ENABLE" = x"1" ; then
+    EXTERNAL="$EXTERNAL qsi"
+fi
+AC_ARG_WITH([tls],
+            [AS_HELP_STRING([--with-tls],
+              [compile external/tls @<:@default=no@:>@])],
+            [],
+            [with_tls=no])
+AS_IF([test "x$with_tls" != xno], [EXTERNAL="$EXTERNAL tls"])
+AC_ARG_WITH([ffmpeg],
+            [AS_HELP_STRING([--with-ffmpeg],
+              [compile external/ffmpeg @<:@default=no@:>@])],
+            [],
+            [with_ffmpeg=no])
+AS_IF([test "x$with_ffmpeg" != xno], [EXTERNAL="$EXTERNAL ffmpeg"])
+
+CONTRIB="ethernaude libgs av4l"
+if test x"$GSL_FOUND" = x"1" ; then
+    CONTRIB="$CONTRIB libbm"
+fi
+dnl CONTRIB="$CONTRIB quicka"
+dnl quicka only works on Windows for the moment.
+
+AUDELA="audela libtt libtcltt libaudela libaudelatk libgzip libmc librgb"
+if test x"$GSL_FOUND" = x"1" ; then
+    AUDELA="$AUDELA libak libgsltcl libjm libml libros libyd libcatalog libcatalog_tcl"
+fi
+
+LIBCAMS="libethernaude"
+if test x"$TARGET" = x"Linux" ; then
+    LIBCAMS="$LIBCAMS libaudine libcagire liboscadine libquicka"
+fi
+if test x"$WEBCAM_ENABLE" = x"1" ; then
+    LIBCAMS="$LIBCAMS libwebcam"
+fi
+if test x"$V4L2_ENABLE" = x"1" ; then
+    LIBCAMS="$LIBCAMS libgrabber"
+fi
+if test x"$QSI_ENABLE" = x"1" ; then
+    LIBCAMS="$LIBCAMS libqsi"
+fi
+
+dnl modified by Benjamin Mauclaire
+SBIG_ENABLE=1
+if test x"$SBIG_ENABLE" = x"1" ; then
+    LIBCAMS="$LIBCAMS libsbig"
+fi
+
+if test x"$LIBGPHOTO2_ENABLE" = "x1"; then
+    LIBCAMS="$LIBCAMS libdigicam"
+fi
+
+
+LIBTELS="libaudecom libcelestron libcombit libdeltatau libcsi libdfm libeqmod liblx200 libmcmt libouranos libtemma libtelscript"
+
+LIBLINKS="libparallelport libserialport libquickremote"
+
+ASTROBRICK="libabcommon libabaudela libabmc libabsimple"
+ASTROBRICK_TCL="abaudela libtclcommon libtclmc libtclaudela libtclaudelatk libtclsimple"
+LIBCAMAB="libcamcommon libcamsimulator"
+LIBTELAB="libtelcommon libtelsimulator"
+
+if test x"$LIBINDI_ENABLE" = "x1"; then
+    LIBCAMAB="$LIBCAMAB libcamindi"
+    LIBTELAB="$LIBTELAB libtelindi"
+fi
+
+AC_MSG_RESULT([CXXFLAGS = $CXXFLAGS])
+AC_MSG_RESULT([LDFLAGS  = $LDFLAGS])
+AC_MSG_RESULT([EXTERNAL = $EXTERNAL])
+AC_MSG_RESULT([CONTRIB  = $CONTRIB])
+AC_MSG_RESULT([AUDELA   = $AUDELA])
+AC_MSG_RESULT([LIBCAMS  = $LIBCAMS])
+AC_MSG_RESULT([LIBTELS  = $LIBTELS])
+AC_MSG_RESULT([LIBLINKS = $LIBLINKS])
+AC_MSG_RESULT([ASTROBRICK  = $ASTROBRICK])
+AC_MSG_RESULT([ASTROBRICK_TCL = $ASTROBRICK_TCL])
+AC_MSG_RESULT([LIBCAMAB  = $LIBCAMAB])
+AC_MSG_RESULT([LIBTELAB  = $LIBTELAB])
+
+AC_SUBST(EXTERNAL)
+AC_SUBST(CONTRIB)
+AC_SUBST(AUDELA)
+AC_SUBST(LIBCAMS)
+AC_SUBST(LIBTELS)
+AC_SUBST(LIBLINKS)
+AC_SUBST(ASTROBRICK)
+AC_SUBST(ASTROBRICK_TCL)
+AC_SUBST(LIBCAMAB)
+AC_SUBST(LIBTELAB)
+
+dnl Output
+dnl
+AC_OUTPUT([
+Makefile1
+Makefile.defs
+include/version.h
+../bin/version.tcl
+../bin/pkgIndex.tcl
+])
+

@@ -1,0 +1,23 @@
+Aide à l'utilisateur pour la fenêtre "Imagerie avec déplacement du télescope"
+
+Ce script est destiné à faciliter l'acquisition d'images nécessitant un déplacement du télescope entre les différentes poses (par exemple, si vous voulez faire une mosaïque d'images).
+
+Partie "Paramètres des poses" :
+Rien à dire ici car cela va de soi !
+
+Partie "Imagerie" :
+1) "Image normale" : désigne la procédure dans laquelle vous voulez prendre plusieurs images d'un même objet tout en décalant très légèrement le télescope entre chaque pose. Dans ce script, le télescope est ici décalé de 30 pixels entre les poses.
+
+2) "PLU sur ciel nocturne" :  désigne la procédure grâce à laquelle vous pouvez faire des "flat fields" (Plages de Lumière Uniforme - PLU) non pas sur le ciel crépusculaire mais sur le fond du ciel étoilé pendant la nuit. Le télescope est ici déplacé de 3000 pixels de façon aléatoire de sorte que les étoiles peuvent ensuite, par traitement, être éliminées des images. Il ne reste alors plus que les défauts optiques de l'instrument sur ces images et elles peuvent donc servir de "flat fields".
+
+3) "Mosaïque de 4 images" : vous pointez un objet, vous le centrez et lancez la mosaïque de 4 images alors que le télescope est centré sur cet objet. Le script se chargera alors de décaler le télescope de sorte que l'objet soit au centre de la mosaïque des 4 images. Le nombre d'images total qui sera réalisé par le script correspond au nombre de poses que vous indiquez multiplié par 4 puisqu'il s'agit d'une mosaïque de 4 images. 
+
+4) "Mosaïque de 9 images" : idem que précédemment mais avec 9 images.
+
+Partie "Nom de base du fichier image" : 
+Précisez ici le nom de base du fichier qui sera copié sur votre disque dur, sachant qu'un chiffre différent lui sera ajouté pour chaque image de la série. Par exemple, si vous choisissez M81- comme nom de base et que vous décidiez de faire 9 poses, le script copiera sur votre disque dur 9 fichiers ayant pour nom : M81-1, M81-2, ..., M81-9.
+Dans le cas des mosaïques, 2 indices seront ajoutés au nom de base du fichier. Par exemple, toujours dans le cas de M81, et pour une mosaïque à 4 images avec 2 poses par image, cela donnera : M81-1-1, M81-1-2, M81-2-1, M81-2-2, M81-3-1, M81-3-2, ... Le premier indice correspond au numéro d'image de la mosaïque (donc 1, 2, 3 et 4 dans notre exemple puisqu'il s'agit d'une mosaïque à 4 images) et le deuxième indice correspond au numéro de la pose pour chaque image (donc 1 et 2 dans notre exemple puisqu'on fait 2 poses par image de la mosaïque).
+
+Je vous souhaite de faire de bonnes images :-)
+
+Vous pouvez me contacter à l'adresse : chris.jasinski@wanadoo.fr

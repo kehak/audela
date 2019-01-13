@@ -1,0 +1,21 @@
+'cdl.dat'            input file with the data  
+  1                           field with time data in input file
+  2                           field with observation data in input file
+'solu.res'               ouptut file with the frequencies and power
+  6                           numf : number of lines searched 
+.true.                        flmulti : flag for the multi or simply periodic decomposition.
+.true.                        flauto : flag for the frequency range .true. = automatic .false. : with preset frequencies
+   0.01d0                     frbeg  : lowest  frequency analysed in the periodograms (disabled if flauto =true)
+   0.45d0                     frend  : largest frequency analysed in the periodograms (disabled if flauto =true)
+.true.                        fltime : flag for the origin of time  :: .true. : automatic  .false. : with preset value
+  2455656.d0                     tzero  : your origin of time if fltime = .false. in unit of the time signal read in the input file
+ 3.0d0                        Threshold in S/N to reject non statistically significant lines
+.false.                        Flag for the output of the  periodograms and successive residuals (true = output)
+ 0                            iprint in freqsearch : 0 : setting and results, 1 : intermediate results, 2 : extended with correlations
+ 1                            iresid : = 1 residuals are printed. 0 : not printed
+ .true.                       flagdeg : uniform degree for the mixed term (.true.) or not (.false.)
+ 5                           idm : Value of the degree in terms like a +bt + ... ct^idm (used if flagdeg = .true.)
+ 1  1  1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  ideg(k) k=0..numf  loaded if flagdeg = .false.
+ 
+ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30   (just to see the columns numbers to ease the editing of the above array)
+

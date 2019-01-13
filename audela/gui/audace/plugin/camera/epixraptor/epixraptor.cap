@@ -1,0 +1,241 @@
+#
+# Fichier : epixraptor.cap
+# Mise a jour $Id: epixraptor.cap 9717 2013-07-09 16:29:32Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(epixraptor,camera)                       "EPIX - Raptor"
+
+set caption(epixraptor,config)                       "Video Format File"
+set caption(epixraptor,extconfig)                    "External Video Format File"
+set caption(epixraptor,browse)                       "..."
+set caption(epixraptor,folder)                       "From Folder:"
+set caption(epixraptor,mirror_x)                     "Top/Bottom Reversal"
+set caption(epixraptor,mirror_y)                     "Left/Right Reversal"
+set caption(epixraptor,ROI)                          "ROI"
+set caption(epixraptor,x1)                           "x1"
+set caption(epixraptor,y1)                           "y1"
+set caption(epixraptor,x2)                           "x2"
+set caption(epixraptor,y2)                           "y2"
+set caption(epixraptor,binning)                      "Binning"
+set caption(epixraptor,temperature_CCD)              "CMOS Temperature:"
+set caption(epixraptor,deg_c)                        "°C"
+
+set caption(epixraptor,framerate)                    "Frame Rate"
+set caption(epixraptor,exposure)                     "Exposure Time"
+set caption(epixraptor,hdr)                          "High Dynamic Range"
+set caption(epixraptor,videomode)                    "Video Mode"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(epixraptor,camera)                    "EPIX - Raptor"
+
+   set caption(epixraptor,config)                    "Fichier du format vidéo"
+   set caption(epixraptor,extconfig)                 "Fichier externe du format vidéo"
+   set caption(epixraptor,browse)                    "..."
+   set caption(epixraptor,folder)                    "A partir du dossier :"
+   set caption(epixraptor,mirror_x)                  "Inverser Haut/Bas"
+   set caption(epixraptor,mirror_y)                  "Inverser Gauche/Droite"
+   set caption(epixraptor,ROI)                       "ROI"
+   set caption(epixraptor,x1)                        "x1"
+   set caption(epixraptor,y1)                        "y1"
+   set caption(epixraptor,x2)                        "x2"
+   set caption(epixraptor,y2)                        "y2"
+   set caption(epixraptor,binning)                   "Binning"
+   set caption(epixraptor,temperature_CCD)           "Température du CMOS :"
+   set caption(epixraptor,deg_c)                     "°C"
+
+   set caption(epixraptor,framerate)                 "Images par seconde"
+   set caption(epixraptor,exposure)                  "Temps d'exposition"
+   set caption(epixraptor,hdr)                       "Grande dynamique"
+   set caption(epixraptor,videomode)                 "Mode vidéo"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(epixraptor,camera)                    "EPIX - Raptor"
+
+   set caption(epixraptor,config)                    "File formato video"
+   set caption(epixraptor,extconfig)                 "File esterno del formato video"
+   set caption(epixraptor,browse)                    "..."
+   set caption(epixraptor,folder)                    "Dalla cartella:"
+   set caption(epixraptor,mirror_x)                  "Inversione Alto/Basso"
+   set caption(epixraptor,mirror_y)                  "Inversione Sinistra/Destra"
+   set caption(epixraptor,ROI)                       "ROI"
+   set caption(epixraptor,x1)                        "x1"
+   set caption(epixraptor,y1)                        "y1"
+   set caption(epixraptor,x2)                        "x2"
+   set caption(epixraptor,y2)                        "y2"
+   set caption(epixraptor,binning)                   "Binning"
+   set caption(epixraptor,temperature_CCD)           "CMOS Temperatura:"
+   set caption(epixraptor,deg_c)                     "°C"
+
+   set caption(epixraptor,framerate)                 "Immagini al secondo"
+   set caption(epixraptor,exposure)                  "Tempo di esposizione"
+   set caption(epixraptor,hdr)                       "Ampia dinamica"
+   set caption(epixraptor,videomode)                 "Modalità video"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(epixraptor,camera)                    "EPIX - Raptor"
+
+   set caption(epixraptor,config)                    "Formato de archivo de vídeo"
+   set caption(epixraptor,extconfig)                 "Formato externo de archivo de vídeo"
+   set caption(epixraptor,browse)                    "..."
+   set caption(epixraptor,folder)                    "Desde la carpeta:"
+   set caption(epixraptor,mirror_x)                  "Invertir Arriba/Abajo"
+   set caption(epixraptor,mirror_y)                  "Invertir Izquierda/Derecha"
+   set caption(epixraptor,ROI)                       "ROI"
+   set caption(epixraptor,x1)                        "x1"
+   set caption(epixraptor,y1)                        "y1"
+   set caption(epixraptor,x2)                        "x2"
+   set caption(epixraptor,y2)                        "y2"
+   set caption(epixraptor,binning)                   "Binning"
+   set caption(epixraptor,temperature_CCD)           "Temperatura CMOS:"
+   set caption(epixraptor,deg_c)                     "°C"
+
+   set caption(epixraptor,framerate)                 "Imágenes por segundo"
+   set caption(epixraptor,exposure)                  "Tiempo de exposición"
+   set caption(epixraptor,hdr)                       "Rango dinámico alto"
+   set caption(epixraptor,videomode)                 "Modo vídeo"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(epixraptor,camera)                    "EPIX - Raptor"
+
+   set caption(epixraptor,config)                    "Video Datei Format"
+   set caption(epixraptor,extconfig)                 "Externe Video Datei Format"
+   set caption(epixraptor,browse)                    "..."
+   set caption(epixraptor,folder)                    "Vom Unterlagen:"
+   set caption(epixraptor,mirror_x)                  "Oben/Unten umkehren"
+   set caption(epixraptor,mirror_y)                  "Links/Rechts umkehren"
+   set caption(epixraptor,ROI)                       "ROI"
+   set caption(epixraptor,x1)                        "x1"
+   set caption(epixraptor,y1)                        "y1"
+   set caption(epixraptor,x2)                        "x2"
+   set caption(epixraptor,y2)                        "y2"
+   set caption(epixraptor,binning)                   "Binning"
+   set caption(epixraptor,temperature_CCD)           "Temperatur CMOS:"
+   set caption(epixraptor,deg_c)                     "°C"
+
+   set caption(epixraptor,framerate)                 "Bildfrequenz"
+   set caption(epixraptor,exposure)                  "Belichtungszeit"
+   set caption(epixraptor,hdr)                       "Hohen Dynamikumfang"
+   set caption(epixraptor,videomode)                 "Video Modus"
+
+# *************** Version portugaise ***************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(epixraptor,camera)                    "EPIX - Raptor"
+
+   set caption(epixraptor,config)                    "# Video Format File"
+   set caption(epixraptor,extconfig)                 "# External Video Format File"
+   set caption(epixraptor,browse)                    "..."
+   set caption(epixraptor,folder)                    "Da Pasta:"
+   set caption(epixraptor,mirror_x)                  "Inverter Cima/Baixo"
+   set caption(epixraptor,mirror_y)                  "Inverter Esquerda/Direita"
+   set caption(epixraptor,ROI)                       "ROI"
+   set caption(epixraptor,x1)                        "x1"
+   set caption(epixraptor,y1)                        "y1"
+   set caption(epixraptor,x2)                        "x2"
+   set caption(epixraptor,y2)                        "y2"
+   set caption(epixraptor,binning)                   "Binning"
+   set caption(epixraptor,temperature_CCD)           "Temperatura do CMOS:"
+   set caption(epixraptor,deg_c)                     "°C"
+
+   set caption(epixraptor,framerate)                 "# Frame Rate"
+   set caption(epixraptor,exposure)                  "Tempo de exposição"
+   set caption(epixraptor,hdr)                       "# High Dynamic Range"
+   set caption(epixraptor,videomode)                 "Modo video"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(epixraptor,camera)                    "EPIX - Raptor"
+
+   set caption(epixraptor,config)                    "Video Format File"
+   set caption(epixraptor,extconfig)                 "External Video Format File"
+   set caption(epixraptor,browse)                    "..."
+   set caption(epixraptor,folder)                    "From Folder:"
+   set caption(epixraptor,mirror_x)                  "Top/Bottom Reversal"
+   set caption(epixraptor,mirror_y)                  "Left/Right Reversal"
+   set caption(epixraptor,ROI)                       "ROI"
+   set caption(epixraptor,x1)                        "x1"
+   set caption(epixraptor,y1)                        "y1"
+   set caption(epixraptor,x2)                        "x2"
+   set caption(epixraptor,y2)                        "y2"
+   set caption(epixraptor,binning)                   "Binning"
+   set caption(epixraptor,temperature_CCD)           "CMOS Temperature:"
+   set caption(epixraptor,deg_c)                     "°C"
+
+   set caption(epixraptor,framerate)                 "Frame Rate"
+   set caption(epixraptor,exposure)                  "Exposure Time"
+   set caption(epixraptor,hdr)                       "High Dynamic Range"
+   set caption(epixraptor,videomode)                 "Video Mode"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(epixraptor,camera)                    "EPIX - Raptor"
+
+   set caption(epixraptor,config)                    "Video Format File"
+   set caption(epixraptor,extconfig)                 "External Video Format File"
+   set caption(epixraptor,browse)                    "..."
+   set caption(epixraptor,folder)                    "From Folder:"
+   set caption(epixraptor,mirror_x)                  "Top/Bottom Reversal"
+   set caption(epixraptor,mirror_y)                  "Left/Right Reversal"
+   set caption(epixraptor,ROI)                       "ROI"
+   set caption(epixraptor,x1)                        "x1"
+   set caption(epixraptor,y1)                        "y1"
+   set caption(epixraptor,x2)                        "x2"
+   set caption(epixraptor,y2)                        "y2"
+   set caption(epixraptor,binning)                   "Binning"
+   set caption(epixraptor,temperature_CCD)           "CMOS Temperature:"
+   set caption(epixraptor,deg_c)                     "°C"
+
+   set caption(epixraptor,framerate)                 "Frame Rate"
+   set caption(epixraptor,exposure)                  "Exposure Time"
+   set caption(epixraptor,hdr)                       "High Dynamic Range"
+   set caption(epixraptor,videomode)                 "Video Mode"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(epixraptor,camera)                    "EPIX - Raptor"
+
+   set caption(epixraptor,config)                    "Video Format File"
+   set caption(epixraptor,extconfig)                 "External Video Format File"
+   set caption(epixraptor,browse)                    "..."
+   set caption(epixraptor,folder)                    "From Folder:"
+   set caption(epixraptor,mirror_x)                  "Top/Bottom Reversal"
+   set caption(epixraptor,mirror_y)                  "Left/Right Reversal"
+   set caption(epixraptor,ROI)                       "ROI"
+   set caption(epixraptor,x1)                        "x1"
+   set caption(epixraptor,y1)                        "y1"
+   set caption(epixraptor,x2)                        "x2"
+   set caption(epixraptor,y2)                        "y2"
+   set caption(epixraptor,binning)                   "Binning"
+   set caption(epixraptor,temperature_CCD)           "CMOS Temperature:"
+   set caption(epixraptor,deg_c)                     "°C"
+
+   set caption(epixraptor,framerate)                 "Frame Rate"
+   set caption(epixraptor,exposure)                  "Exposure Time"
+   set caption(epixraptor,hdr)                       "High Dynamic Range"
+   set caption(epixraptor,videomode)                 "Video Mode"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

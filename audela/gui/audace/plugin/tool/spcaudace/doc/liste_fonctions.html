@@ -1,0 +1,1391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content=
+"text/html; charset=UTF-8" />
+<title>SpcAudace : l&#39;interface d&#39;analyse spectrale
+d&#39;AudeLA</title>
+
+
+
+<style type="text/css">
+table
+{
+margin:0 ; 
+padding: 0; 
+border: 1px solid #4783AD; 
+border-collapse:collapse;
+font-size: 80%;
+}
+
+caption 
+{ 
+font:1.3em Arial, Helvetica, sans-serif;
+padding: 1.5em 0 0 0;
+color: #136096;
+font-weight: bold;
+text-align: left;
+}
+	
+ul.table , li.normal
+{
+margin: 0;
+padding: 0;
+}
+span.tabul , span.litab
+{
+
+font-weight: bold;
+color:#2D363A;
+}
+p.tabul
+{margin: 0;
+padding: 1em 0 0 0;
+
+} 
+td , th
+{text-align: left;
+border-bottom: 1px solid #D3D3DB ;	
+
+
+}
+
+td
+{
+padding:10px 5px; 
+
+}
+th{
+font-size: 1em ; 
+line-height: 1.3em;
+padding-left:  5px;
+}
+th.dev , span.dev
+{font-weight: normal;
+}
+
+
+tr.thead { 
+
+background-color: #CBDCE8;
+}
+tr.gr{ 
+background-color: #CBDCE8;
+}
+td
+{
+border: 1px solid #B0CADC ;
+}
+th
+{border: 1px solid #B0CADC;
+}
+
+p.tab 
+{
+margin: 0 0 2em 10px;
+padding: 0;	
+font-weight: bold;
+font-size: 90%;
+
+}
+h2
+{
+font-size: 1.7em;
+line-height: 1.8em;	 
+text-align: center;
+color: #136096;
+}
+#extra
+{
+margin: 10px;
+padding: 10px;
+border: 1px solid #CBDCE8;
+}
+
+</style>
+
+</head>
+<body>
+<div id="extra"> 
+<h2>Liste des fonctions disponibles dans SpcAudace</h2>
+<table cellspacing="0">
+<caption>Commandes diverses et utiles :</caption>
+<tr class="thead">
+<th>Nom</th>
+<th>Fonctionnalité</th>
+<th>Arguments</th>
+<th>Date de création</th>
+</tr>
+<tr>
+<th>spc_version</th>
+<td>Indique la version d&#39;SpcAudACE</td>
+<td>aucun</td>
+<td>11-03-2007</td>
+</tr>
+<tr class="gr">
+<th>spc_help</th>
+<td>Lance le navigateur paramétré dans AudACE et affiche la liste
+des fonctions disponible localement ou sinon sur le site
+d&#39;SpcAudACE.</td>
+<td>aucun</td>
+<td>11-03-2007</td>
+</tr>
+</table>
+<table cellspacing="0">
+<caption>Commandes de traitements géométriques :</caption>
+<tr class="thead">
+<th>Nom</th>
+<th>Fonctionnalité</th>
+<th>Arguments</th>
+<th>Date de création</th>
+</tr>
+<tr>
+<th>spc_rot180</th>
+<td>Rotation de 180° d&#39;un spectre 1D ou 2D au format fits
+(utile pour avoir le bleu à gauche).</td>
+<td>image fits.</td>
+<td>18-02-2005</td>
+</tr>
+<tr class="gr">
+<th>spc_flip</th>
+<td>Inversion gauche-droite d&#39;une image</td>
+<td>image fits.</td>
+<td></td>
+</tr>
+<tr>
+<th>spc_hcrop</th>
+<td>Découpage de l&#39;image 2D pour y&gt;y_bas.</td>
+<td>image fits, y_bas.</td>
+<td>26/08/2005</td>
+</tr>
+<tr class="gr">
+<th>spc_vcrop</th>
+<td>Découpage de l&#39;image 2D pour x&gt;x_gauche.</td>
+<td>image fits, x_gauche.</td>
+<td>03/12/05</td>
+</tr>
+<tr>
+<th>spc_crop</th>
+<td>Découpage de l&#39;image 2D pour x&gt;x_gauche et
+y&gt;y_bas.</td>
+<td>image fits, x_gauche, y_bas.</td>
+<td>03/12/05</td>
+</tr>
+<tr class="gr">
+<th>spc_tilt</th>
+<td>Rotation d&#39;un spectre 2D au format fits d&#39;un angle
+donné.</td>
+<td>image fits, x1, y1, x2, y2 des deux points choisis sur
+l&#39;axe à mettre à l&#39;orizontale.</td>
+<td>18-02-2005</td>
+</tr>
+<tr>
+<th>spc_tiltauto</th>
+<td>Redressement par rotation d&#39;un spectre 2D au format fits.
+Calcul <span class="c1">automatiquement</span> l&#39;angle de
+rotation.</td>
+<td>spectre 2D fits.</td>
+<td>26-08-2005</td>
+</tr>
+<tr class="gr">
+<th>spc_tiltautoimgs</th>
+<td>Redressement par rotation d&#39;une série de spectres 2D au
+format fits. Calcul <span class="c1">automatiquement</span>
+l&#39;angle de rotation.</td>
+<td>nom spectre 2D fits ou nom générique des spectres 2D
+fits.</td>
+<td>16-06-2006</td>
+</tr>
+<tr>
+<th>spc_findtilt</th>
+<td>Détermine l&#39;angle et le centre de redressement d&#39;un
+spectre.</td>
+<td>nom spectre 2D fits</td>
+<td>25-03-2007</td>
+</tr>
+<tr class="gr">
+<th>spc_tilt2</th>
+<td>Rotation d&#39;un spectre à l&#39;aide d&#39;un angle et des
+coordonnées du centre.</td>
+<td>nom spectre 2D fits</td>
+<td>25-03-2007</td>
+</tr>
+<tr>
+<th>spc_register</th>
+<td>Effectue une régistration de spectres 2D par translation
+verticale.</td>
+<td>image fits.</td>
+<td>26-08-2005</td>
+</tr>
+<tr class="gr">
+<th>spc_smilex</th>
+<td>Procédure de correction de raies courbées (lampe de
+calibration) par rapport à l&#39;axe vertical : smile selon
+l&#39;axe x.</td>
+<td>spectre 2D fits d&#39;une lampe de calibration (raies de
+grande hauteur).</td>
+<td>28-05-2006</td>
+</tr>
+<tr>
+<th>spc_smiley</th>
+<td>Procédure de correction des spectres courbés (stellaire)par
+rapport à l&#39;axe horizontal : smile selon l&#39;axe y.</td>
+<td>spectre 2D fits.</td>
+<td>06-06-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_slant</th>
+<td>Procédure de correction du raies inclinées dans le spectre :
+translations de lignes. Il faut spectre où les raies sont bien
+discernable à l&#39;oeil nu (ex. : lampe de calibration,
+Lune...).</td>
+<td>spectre 2D fits avec de longues raies, type de raies (a/e)
+absorption/émission.</td>
+<td>08-06-2006</td>
+</tr>
+<tr>
+<th>spc_slant2img</th>
+<td>Procédure de correction du raies inclinées dans le spectre :
+translations de lignes et l&#39;applique à un spectre
+déformé.</td>
+<td>spectre 2D lampe calibration/Lune, spectre 2D fits à
+traiter.</td>
+<td>08-06-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_slant2imgs</th>
+<td>Procédure de correction du raies inclinées dans le spectre :
+application à une série de spectres 2D.</td>
+<td>nom générique de la série de spectre 2D, pente du slant.</td>
+<td>28-12-2006</td>
+</tr>
+<tr>
+<th class="dev">spc_slantauto</th>
+<td>Procédure de correction du raies inclinées dans le spectre :
+translations de lignes avec choix automatique des raies dans une
+zone. Ne fonctionne que si les raies ne se superposent pas.</td>
+<td>spectre 2D fits.</td>
+<td></td>
+</tr>
+<tr class="gr">
+<th>spc_smilex2img</th>
+<td>Procédure de correction du raies courbées (lampe de
+calibration) : smile selon l&#39;axe x et l&#39;applique au
+spectre 2D à traiter avec ces paramètres.</td>
+<td>spectre_lampe_calibration 2D, spectre_a_traiter 2D.</td>
+<td>28-05-2006</td>
+</tr>
+<tr>
+<th>spc_smileximgs</th>
+<td>Procédure de correction du raies courbées (lampe de
+calibration) : applique les paramètres stockés dans le header
+d&#39;un spectre de référence 2D à un autre spectre 2D.</td>
+<td></td>
+<td>07-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_smilex2imgs</th>
+<td>Procédure de correction du raies courbées (lampe de
+calibration) : smile selon l&#39;axe x et l&#39;applique au
+spectre 2D à traiter avec ces paramètres.</td>
+<td>spectre_lampe_calibration 2D, nom_spectre_a_traiter 2D ou nom
+générique spectres à traiter.</td>
+<td>13-06-2006</td>
+</tr>
+</table>
+<p class="tab">Ces commandes se trouvent dans le fichier
+spc_geom.tcl de SpcAudace.</p>
+<table cellspacing="0">
+<caption>Commandes de création de profil de raies :</caption>
+<tr class="thead">
+<th>Nom</th>
+<th>Fonctionnalité</th>
+<th>Arguments</th>
+<th>Date de création</th>
+</tr>
+<tr>
+<th>spc_profil_zone</th>
+<td>Crée un fichier texte et fits contenant le profil de raie de
+la zone sélectionnée ; il néttoyé du fond du ciel.</td>
+<td>image fits du spectre spatial.<br />
+Fonctionnement en mode graphique.</td>
+<td>04/03/2006</td>
+</tr>
+<tr class="gr">
+<th>spc_extract_<br />
+profil_zone</th>
+<td>Crée un fichier texte et fits contenant le profil de raie de
+la zone sélectionnée ; il est moyenné et néttoyé du fond du ciel
+pris dessus et dessous la zone sélectionnée.</td>
+<td>fichier fits 2D</td>
+<td>17/08/2004</td>
+</tr>
+<tr>
+<th>spc_extract_zone</th>
+<td>Extrait la zone sélectionnée à la souris.</td>
+<td>fichier fits 2D</td>
+<td>04/03/2006</td>
+</tr>
+<tr class="gr">
+<th>spc_profil</th>
+<td>Extraction du profil a partir du spectre 2D en mode texte et
+<span class="c1">autosélection de zone</span> à 3 sigma (large)
+ou 1,9 FWHM (serre) dépaisseur. Permet de soustraire <span class=
+"c1">automatiquement</span> le fond de ciel si demandé. Par
+défaut : soustraction du fond de ciel par &quot;moy&quot; et
+détection du profil par spc_detect.</td>
+<td>fichier fits du spectre 2D ?méthode soustraction fond de ciel
+(moy, moy2, med, sup, inf, none, back)? ?méthode de détection du
+profil (large, serre)? ?méthode bining (add, rob, horne)?<br />
+<span class="tabul">Méthode de sosutraction du fond de ciel
+:</span>
+<ul class="table">
+<li class="normal"><span class="litab">moy</span> : effectue la
+somme moyenne de 2 zones prises dessus et dessous le spectre et
+la retranche au spectre ;</li>
+<li class="normal"><span class="litab">moy2</span> : détermine le
+fond de ciel dans 2 zones (dessus et dessous) le spectre et
+retranche la valeur moyenne au spectre ;</li>
+<li class="normal"><span class="litab">med</span> : détermine la
+somme médian</li>
+</ul>
+</td>
+</tr>
+<tr>
+<th>spc_calibredecal</th>
+<td>Décalage de la longureur d&#39;onde (de départ).</td>
+<td>profil de raies fit déjà calibré,</td>
+<td>04-01-2007</td>
+</tr>
+<tr class="gr">
+<th class="dev">spc_calibre_lpe</th>
+<td>Étalonnage en longueur d&#39;onde d&#39;un profil de raie
+spatial à l&#39;aide d&#39;un spectre de lampe de
+calibration.</td>
+<td>image fits stellaire, image fits lampe, x1, lambda1, x2,
+lambda2.</td>
+<td></td>
+</tr>
+<tr>
+<th class="dev">spc_calibrel</th>
+<td>Étalonnage en longueur d&#39;onde d&#39;un profil de raie
+spatial.</td>
+<td>fichier du profil de raie, méthode d&#39;étalonnage.</td>
+<td></td>
+</tr>
+<tr class="gr">
+<th class="dev">spc_calibref</th>
+<td>Étalonnage en flux d&#39;un profil de raie calibré
+préalablement en longueur d&#39;onde.</td>
+<td>fichier du profil de raies brut, fichier du profil de raies
+de la lampe étalon.</td>
+<td></td>
+</tr>
+<tr>
+<th>spc_calibre3pil</th>
+<td>Calibration d&#39;un profil de raies par une loi polynomiale
+de degré 2 à l&#39;aide de 3 couples x, lambda.</td>
+<td>profil_de_raies_fits x1 L1 x2 L2 x3 L3</td>
+<td>07-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_calibren</th>
+<td>Calibration d&#39;un profil de raies par une loi polynomaile
+de degré 2 à l&#39;aide de N couples x, lambda.</td>
+<td>profil_de_raies_fits x1 L1 x2 L2 ... xn Ln</td>
+<td>07-2006</td>
+</tr>
+<tr>
+<th>spc_calibren_deg3</th>
+<td>Calibration d&#39;un profil de raies par une loi polynomaile
+de degré 3 à l&#39;aide de N couples x, lambda.</td>
+<td>profil_de_raies_fits x1 L1 x2 L2 ... xn Ln</td>
+<td>07-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_calibre</th>
+<td>Effectue la calibration en longueur d&#39;onde d&#39;un
+spectre avec N raies et interface graphique.</td>
+<td>profil_de_raies_fits x1 L1 x2 L2 ... xn Ln</td>
+<td>07-2006</td>
+</tr>
+<tr>
+<th>spc_autocalibrehaeau</th>
+<td>Recalibration <span class="c1">automatique</span> d&#39;un
+profil déjà calibré plus ou moins précisément à partir de raies
+(6) telluriques dans la zone autour de la raie H&alpha;. La loi
+de calibration est un polynôme de degré et un RMS (estimation de
+l&#39;écart type) est calculé pour évaluer la validité de la
+calibration.</td>
+<td>profil_de_raies_fits</td>
+<td>07-2006</td>
+</tr>
+<tr class="gr">
+<th class="dev">spc_calibreeau</th>
+<td>Recalibration <span class="c1">automatique</span> d&#39;un
+profil déjà calibré plus ou moins précisément à partir de raies
+(6) telluriques correspodant à la plage de longueurs d&#39;ondes
+du spectre étudié. La loi de calibration est un polynôme de degré
+et un RMS (estimation de l&#39;écart type) est calculé pour
+évaluer la validité de la calibration.</td>
+<td>profil_de_raies_fits</td>
+<td></td>
+</tr>
+<tr>
+<th>spc_vhelio<br />
+<span class="dev">(voir fonctions astrophysiques)</span></th>
+<td>Calcul de la correction héliocentrique</td>
+<td>profil_de_raies_fits_calibré lambda_calage ?[[?RA_d RA_m RA_s
+DEC_h DEC_m DEC_s?] ?JJ MM AAAA?]?-A</td>
+<td>08-02-2007</td>
+</tr>
+<tr class="gr">
+<th>spc_corrvhelio</th>
+<td>Recalage en longueur d&#39;onde du spectre par calcul de la
+correction de la vitesse héliocentrique.</td>
+<td>profil_raies_étalonné lambda_calage ?[[?RA_d RA_m RA_s DEC_h
+DEC_m DEC_s?] ?JJ MM AAAA?]?-A</td>
+<td>05-03-2007</td>
+</tr>
+<tr>
+<td colspan="4" class="c2">Fonctions relatives à la réponse
+instrumentale</td>
+</tr>
+<tr class="gr">
+<th>spc_rinstrum</th>
+<td>Détermine la réponse instrumentale d&#39;un spectre.Effectue
+automatiquement le découpage, rééchantillonnage si nécessaires,
+puis la division.</td>
+<td>fichier .fit du profil de raies, profil de raies de
+référence.</td>
+<td>07-2006</td>
+</tr>
+<tr>
+<th>spc_rinstrumcorr</th>
+<td>Détermine la réponse instrumentale d&#39;un spectre et
+l&#39;applique au spectre de l&#39;image étudiée.</td>
+<td>fichier .fit du profil de raies, profil de raies de
+référence, profil de raies de la cible étudiée à corriger.</td>
+<td>07-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_rinstrumeau</th>
+<td>Calcul la réponse instrumentale contenant les raies
+telluriques qui seront ainsi enlvées ultérieurement.</td>
+<td>profil_de_raies_fits</td>
+<td>07-2006</td>
+</tr>
+<tr>
+<th>spc_rinstrumeaucorr</th>
+<td>Effectue le calcul puis la division par la réponse contenant
+les raies telluriques.</td>
+<td>profil_de_raies_fits</td>
+<td>07-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_ajustrid1</th>
+<td>Ajustement polynômial de degré 1 du continuum.</td>
+<td>profil_de_raies_fits</td>
+<td>26-02-2007</td>
+</tr>
+<tr>
+<th>spc_ajustrid2</th>
+<td>Ajustement polynômial de degré 2 du continuum.</td>
+<td>profil_de_raies_fits</td>
+<td>26-02-2007</td>
+</tr>
+<tr class="gr">
+<th>spc_ajustripbas</th>
+<td>Ajustement du continuum par filtrages passe-bas.</td>
+<td>profil_de_raies_fits</td>
+<td>03-03-2007</td>
+</tr>
+</table>
+<p class="tab">Ces commandes se trouvent dans le fichier
+spc_calibrage.tcl de SpcAudace.</p>
+<table cellspacing="0">
+<caption>Commandes des opérations sur les profils de
+raies</caption>
+<tr class="thead">
+<th>Nom</th>
+<th>Fonctionnalité</th>
+<th>Arguments</th>
+<th>Date de création</th>
+</tr>
+<tr>
+<th>spc_pretrait</th>
+<td>Prétraitement classique des images CCD contenant les spectres
+2D.</td>
+<td>nom_generique_images_objet (sans extension)<br /> nom_dark nom_plu
+nom_dark_plu ?effacement des masters (O/n)?</td>
+<td>27-08-2005</td>
+</tr>
+<tr class="gr">
+<th>spc_div</th>
+<td>Division de 2 profils de raies<br /> gérant la division par des
+valeurs nulles.</td>
+<td>profil de raies 1, profil de raies 2</td>
+<td>30-03-2006</td>
+</tr>
+<tr>
+<th>spc_divri</th>
+<td>Division de 2 profils de raies gérant<br /> la division par des
+valeurs nulles et les effets de bords <br />(intensités anormalement
+importantes par rapport à 1.0).</td>
+<td>profil_a_corriger, profil_reponse_instrumentale</td>
+<td>21-10-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_echant</th>
+<td>Rééchantillonne les valeurs d&#39;un spectre.</td>
+<td>profil.fit à rééchantillonner,<br /> profil_modele.fit modèle d&#39;échantilonnage</td>
+<td>28-03-2006</td>
+</tr>
+<tr>
+<th>spc_echantlin</th>
+<td>Rééchantillonne linéairement les valeurs d&#39;un
+spectre.</td>
+<td>profil.fit à rééchantillonner</td>
+<td>25-04-2007</td>
+</tr>
+<tr class="gr">
+<th>spc_norma<br />
+(en développement)</th>
+<td>Normalise un profil de raies <br />à un continuum avoisinant1.</td>
+<td>profil de raies fits</td>
+<td>15/08/2005</td>
+</tr>
+<tr>
+<th>spc_autonorma</th>
+<td>Normalisation <span class="c1">automatique</span> d&#39;un
+profil de raies<br /> à un continuum avoisinant 1.</td>
+<td>profil de raies fits</td>
+<td>15/12/2005</td>
+</tr>
+<tr class="gr">
+<th>spc_normaraie</th>
+<td>Normalisation d&#39;un profil sur le continuum au voisinage
+d&#39;une raie.</td>
+<td>fichier .fit du profil de raie, x_debut<br /> (wavelength), x_fin
+(wavelength), a/e (renseigne sur raie emission ou
+absorption)</td>
+<td>24-03-2006</td>
+</tr>
+<tr>
+<th>spc_autonormaraie</th>
+<td>Effectue la normalisation <span class="c1">automatique</span>
+d&#39;un profil de raies à partir du continuum <br />pris autour
+d&#39;une raie d&#39;émission ou d&#39;absorption recherhée
+automatique.</td>
+<td>&nbsp;</td>
+<td>07-2006</td>
+</tr>
+<tr class="gr">
+<th class="dev">spc_localnormah</th>
+<td>Normalisation locale d&#39;un profil sur<br /> le continuum pris
+dans un intervalle à préciser.</td>
+<td>profil_de_raies lambda_déb lambda_fin</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<th>spc_linear</th>
+<td>Adoucissement de profil de raies.</td>
+<td>profil_de_raies_fits ?largeur de raie?</td>
+<td>15/08/2005</td>
+</tr>
+<tr class="gr">
+<th>spc_smooth</th>
+<td>Adoucissement de profil de raies par<br /> convolution par une
+gaussienne : coefficient=sigma de la <br />raie de convolution.</td>
+<td>profil de raies fits, ?coefficient?</td>
+<td>21/12/2005</td>
+</tr>
+<tr>
+<th>spc_bigsmooth</th>
+<td>Linéarise un profil de raies pour <br />obtenir le continuum du
+profil.</td>
+<td>profil de raies fits, ?coefficient?</td>
+<td>28/03/2006</td>
+</tr>
+<tr class="gr">
+<th>spc_select</th>
+<td>Sélection (crop) d&#39;une partie d&#39;un profil de
+raie.</td>
+<td>profil de raies fits, lambda_1,<br /> lambda_2 des extrémités de la
+sélection (en angstroms).</td>
+<td>21-12-2005</td>
+</tr>
+<tr>
+<th class="dev">spc_merge</th>
+<td>Assemblage <span class="c1">automatique</span> de 2 profils
+de raie (exemple :<br /> A est le côté bleu et B est le côté rouge)
+ayant une plage commune.</td>
+<td>profil de raies fits n°1, profil de raies fits n°2.</td>
+<td></td>
+</tr>
+<tr class="gr">
+<th>spc_smooth2</th>
+<td>Linéarise un profil de raies basé sur la fonction BACK.</td>
+<td>profil de raies fits, ?coefficient?</td>
+<td>28/03/2006</td>
+</tr>
+<tr>
+<th>spc_bigsmooth2</th>
+<td>Linéarise un profil de raies <br />pour obtenir le continuum du
+profil basé sur la fonction BACK.</td>
+<td>profil de raies fits, ?coefficient?</td>
+<td>28/03/2006</td>
+</tr>
+<tr class="gr">
+<th>spc_derive</th>
+<td>Calcul la dérivée numérique d&#39;un profil de raies.</td>
+<td></td>
+<td>07-2006</td>
+</tr>
+<tr>
+<th>spc_passebas</th>
+<td>Filtrage passe bas d&#39;un profil de raies.</td>
+<td>fichier fits, ?largeur du motif à gommer?</td>
+<td>05-12-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_smoothsg</th>
+<td>Filtrage passe bas d&#39;un profil de raies par
+l&#39;algorithme de Savitzky-Golay.</td>
+<td>profil_de_raies_fits ?<br />[[?largeur_filtre?] ?ordre_filtrage
+(2,4)?]?</td>
+<td>03-03-2007</td>
+</tr>
+</table>
+<p class="tab">Ces commandes se trouvent dans le fichier spc_operations.tcl
+de SpcAudace.</p>
+<table cellspacing="0">
+<caption>Commandes d&#39;analyse des spectres :</caption>
+<tr class="thead">
+<th>Nom</th>
+<th>Fonctionnalité</th>
+<th>Arguments</th>
+<th>Date de création</th>
+</tr>
+<tr>
+<th>spc_info</th>
+<td>Retourne les informations d&#39;un spectre : date de prise de
+vue, Lambda début, dispersion, etc.</td>
+<td>fichier .fit du profil de raies</td>
+<td>12/08/2005</td>
+</tr>
+<tr class="gr">
+<th>spc_compare</th>
+<td>Procedure de comparaison de 2 profils de raies. Basée sur
+spc_info.</td>
+<td>profil de raies 1, profil de raies 2</td>
+<td>30/03/2006</td>
+</tr>
+<tr>
+<th>spc_centergrav</th>
+<td>Détermination du centre (en pixels) d&#39;une raie
+d&#39;absorption ou d&#39;émission par calcul du centre de
+gravité.</td>
+<td>profil de raies fits, x1, x2 des points entourant la raie (en
+pixels).</td>
+<td>30-08-2005</td>
+</tr>
+<tr class="gr">
+<th>spc_centergauss</th>
+<td>Détermination du centre (en pixels) d&#39;une raie
+d&#39;absorption ou d&#39;émission au profil gaussien.</td>
+<td>profil de raies fits, x1, x2 des points entourant la raie (en
+pixels), a/e (raie en absorption, emission).</td>
+<td>12-08-2005</td>
+</tr>
+<tr>
+<th>spc_centergaussl</th>
+<td>Détermination du centre (en anstroms) d&#39;une raie
+d&#39;absorption ou d&#39;émission au profil gaussien.</td>
+<td>profil de raies fits, lambda1, lambda2 des points entourant
+la raie (en angstroms), a/e (raie en absorption, emission).</td>
+<td>12-08-2005</td>
+</tr>
+<tr class="gr">
+<th class="dev">spc_gaussfind</th>
+<td>Trouve le centre et les extrémités d&#39;une raie modélisée
+par une gaussienne à partir d&#39;une abscisse contenue dans la
+raie.</td>
+<td>profil de raies fits, abscisse dans la gaussienne, a/e (raie
+en absorption, emission).</td>
+<td></td>
+</tr>
+<tr>
+<th>spc_autocentergaussl</th>
+<td>Détermination automatique du centre d&#39;une raie spectrale
+modelisee par une gaussienne.</td>
+<td>profil_raies_fits_calibré lambda_approchée type_raie (a/e)
+?largeur_raie?</td>
+<td>08-02-2007</td>
+</tr>
+<tr class="gr">
+<th class="dev">spc_maxcol</th>
+<td>Détermination de l&#39;ordonnée du pixel le plus brillant
+dans d&#39;un ensemble n colonnes de hauteur h du point
+selectionné.</td>
+<td>abscisse x du point sélectionné, hauteur h de la colonne
+d&#39;étude.</td>
+<td></td>
+</tr>
+<tr>
+<th class="dev">spc_maxpoint</th>
+<td>Détermination de l&#39;ordonnée du pixel le plus brillant
+dans d&#39;un ensemble n colonnes de hauteur h du point
+selectionné.</td>
+<td>abscisse x du point sélectionné, nombre n de colonnes,
+hauteur h de la colonne d&#39;étude.</td>
+<td></td>
+</tr>
+<tr class="gr">
+<th class="dev">spc_centerp</th>
+<td>Détermination du photocentre autour d&#39;un point d&#39;une
+image.</td>
+<td>image fits, x1, y1, longueur d&#39;un coté du carré de la
+zone d&#39;étude.</td>
+<td></td>
+</tr>
+<tr>
+<th>spc_fwhm</th>
+<td>Détermine la largeur à mi-hauteur d&#39;une raie d&#39;un
+spectre étalonné en longueur d&#39;onde.</td>
+<td>profil de raies fits, x1(Angstroms), x2 (Angstroms), e/a
+(raie en absorption, emission).</td>
+<td>12-08-2005</td>
+</tr>
+<tr class="gr">
+<th>spc_intensity</th>
+<td>Détermine l&#39;intensité d&#39;une raie d&#39;un spectre
+étalonné en longueur d&#39;onde.</td>
+<td>profil de raies fits, lambda1, lambda2 des points entourant
+la raie (en angstroms), a/e (raie en absorption, emission).</td>
+<td>12-08-2005</td>
+</tr>
+<tr>
+<th>spc_findbiglines</th>
+<td>Trouve automatiquement la positions des raies les plus
+intenses dans un profil de raies. Fiabilité de 85%.</td>
+<td>.</td>
+<td>07-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_icontinuum</th>
+<td>Retourne la valeur du continuum (partie la plus
+&quot;lisse&quot;).</td>
+<td>profil de raies fits</td>
+<td>25-03-2007</td>
+</tr>
+</table>
+<p class="tab">Ces commandes se trouvent dans le fichier
+spc_analyse.tcl de SpcAudace.</p>
+<table cellspacing="0">
+<caption>Commandes de calcul de grandeurs astrophysiques
+:</caption>
+<tr class="thead">
+<th>Nom</th>
+<th>Fonctionnalité</th>
+<th>Arguments</th>
+<th>Date de création</th>
+</tr>
+<tr>
+<th class="dev">spc_findatomes</th>
+<td>Recherche <span class="c1">automatique</span> des espèces
+chimiques présente dans le spectre.</td>
+<td>non défini.</td>
+<td></td>
+</tr>
+<tr class="gr">
+<th>spc_ew</th>
+<td>Largeur équivalente d&#39;une raie d&#39;émission ou
+d&#39;absorption d&#39;un profil de raies <span class=
+"c1"><span class="c6"><span class="c5"><span class=
+"c4"><span class=
+"c3">normalisé</span></span></span></span></span> en utilisant le
+calcul d&#39;intensité d&#39;une raie issu d&#39;un fitting
+gaussien.</td>
+<td>profil de raies fits_normalisé x1(Angstroms) x2 (Angstroms)
+e/a (raie en absorption/émission).</td>
+<td>12-08-2005</td>
+</tr>
+<tr>
+<th>spc_ew2</th>
+<td>
+<p>Largeur équivalente d&#39;une raie d&#39;émission ou
+d&#39;absorption d&#39;un profil de raies <span class=
+"c1"><span class="c3">normalisé</span></span> avec une méthode
+d&#39;integration par les trapèzes. Renvoie le calcul de
+l&#39;écart type sur la mesure.</p>
+</td>
+<td>nom_profil_raies_normalisé lambda_deb lambda_fin</td>
+<td>01-09-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_ew3</th>
+<td>Retourne la largeur équivalente d&#39;une raie quelque soit
+le profil calibré.</td>
+<td>nom_profil_raies_calibré lambda_approché_raie</td>
+<td>25-03-2007</td>
+</tr>
+<tr>
+<th>spc_autoew</th>
+<td>Détermine <span class="c7">automatique</span> la largeur
+équivalente d&#39;une raie (utilise spc_ew3) juste à partir de sa
+longueur d&#39;onde approchée. Renvoie le calcul de l&#39;écart
+type sur la mesure.</td>
+<td>nom_profil_raies_calibré lambda_approché_raie</td>
+<td>01-09-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_ewdirw</th>
+<td>crée un fichier texte avec les champs suivants sur tous les
+fichiers FITS du répertoire de travail.</td>
+<td>lambda_approchée_raie</td>
+<td>25-03-2007</td>
+</tr>
+<tr>
+<th>spc_ewcourbe</th>
+<td><span class="c1">Trace de façon autonome</span> la courbe de
+la largeur équivalente (ew) en fonction du temps (Jours Juliens
+pris dans l&#39;entête fits) de tous les fichiers du répertoire
+de travail.</td>
+<td>lambda_approchée_raie</td>
+<td>04-08-2005</td>
+</tr>
+<tr class="gr">
+<th>spc_ewcoube_opt</th>
+<td>Trace de façon autonome la courbe de la largeur équivalente
+(ew) en fonction du temps (Jours Juliens pris dans l&#39;entête
+fits) de tous les fichiers du répertoire de travail.</td>
+<td>nom_générique_profils_fits (caractère * autorisé) lambda_raie
+largeur_raie (A)</td>
+<td>25-03-2007</td>
+</tr>
+<tr>
+<th>spc_vdoppler</th>
+<td>Calcul la vitesse Doppler.</td>
+<td>delta_lambda, lambda_raie_référence</td>
+<td>13-07-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_vhelio</th>
+<td>Vitesse issue de la correction héliocentrique.</td>
+<td>profil_raies_étalonné ?coordonnées_objet (RA_h RA_m RA_s
+DEC_d DEC_m DEC_s)? ?date_de_prise_de_vue (JJ MM AAAA)?</td>
+<td>08-02-2007</td>
+</tr>
+<tr>
+<th>spc_vradiale</th>
+<td>Calcul la vitesse radiale en tenant compte de la correction
+héliocentrique.</td>
+<td>profil_raies_étalonné, lambda_raie_approchée, type_raie
+(a/e), lambda_raie_référence, ?coordonnées_objet (RA_h RA_m RA_s
+DEC_d DEC_m DEC_s)? ?date_de_prise_de_vue (JJ MM AAAA)?</td>
+<td>08-02-2007</td>
+</tr>
+<tr class="gr">
+<th class="tab">spc_vexp</th>
+<td>Calcul la vitesse d&#39;expansion à partir de la FWHM de la
+raie modélisée par une gaussienne.</td>
+<td>profil de raies fits, x1, x2 des points entourant la raie (en
+angstroms), a/e (raie en absorption, emission).</td>
+<td></td>
+</tr>
+<tr>
+<th class="dev">spc_vrot</th>
+<td>Calcul la vitesse de rotation (v.sin(i)) à partir de la FWHM
+de la raie modélisée par une gaussienne.</td>
+<td>profil de raies fits, x1, x2 des points entourant la raie (en
+angstroms), a/e (raie en absorption, emission).</td>
+<td></td>
+</tr>
+<tr class="gr">
+<th>spc_te</th>
+<td>Calcul de la température électronique. Modèle tiré de A.
+Acker, Astronomie, méthodes et calculs, MASSON, p.104.</td>
+<td>profil_de_raies_etalonne, largeur_raie</td>
+<td>23-01-2007</td>
+</tr>
+<tr>
+<th>spc_npte</th>
+<td>Calcul de la température électronique à partir de
+l&#39;intensité des raies données. Fonction applicable pour les
+nébuleuses à spectre d&#39;émission.<br />
+Le modèle de A. Acker, Astronomie, méthodes et calculs, MASSON,
+p.104 utilise les raies de [OIII].</td>
+<td>I_5007 I_4959 I_4363 ?dI1 dI2 dI3?</td>
+<td>13-08-2005</td>
+</tr>
+<tr class="gr">
+<th>spc_ne</th>
+<td>Calcul de la densité électronique. Fonction applicable pour
+les nébuleuses à spectre d&#39;émission. Le modèle utilisé est de
+A. Acker, Astronomie, méthodes et calculs, MASSON, p.105.</td>
+<td>profil_de_raies_etalonne, Te, largeur_raie</td>
+<td>23-01-2007</td>
+</tr>
+<tr>
+<th>spc_ne2</th>
+<td>Calcul de la densité électronique. Fonction applicable pour
+les nébuleuses à spectre d&#39;émission.<br />
+Le modèle utilisé est de Practical Amateur Spectroscopy, Stephen
+F. TONKIN, Springer, p.164 utilise les raies de [NII].</td>
+<td>Te I_6584, I_6548, I_5755</td>
+<td>13-08-2005</td>
+</tr>
+<tr class="gr">
+<th>spc_npne</th>
+<td>Calcul de la densité électronique avec calcul
+d&#39;incertitude. Le modèle utilisé est de Practical Amateur
+Spectroscopy, Stephen F. TONKIN, Springer, p.164.</td>
+<td>Te, I_6717, I_6731, ?dTe dI6717 dI6731?</td>
+<td>23-01-2007</td>
+</tr>
+<tr>
+<th class="dev">spc_neteauto</th>
+<td>Calcul de la température et la densité électronique à
+l&#39;aide des fonctions spc_npte et spc_npne <span class=
+"c1">sans paramètres d&#39;entrée</span>.</td>
+<td>profil de raies fits (calibré en longueur d&#39;onde et
+corrigé de la réponse intrumentale).</td>
+<td></td>
+</tr>
+</table>
+<p class="tab">Ces commandes se trouvent dans le fichier
+spc_astrophys.tcl de SpcAudace.</p>
+<table cellspacing="0">
+<caption>Commandes d&#39;import et d&#39;export de fichiers
+:</caption>
+<tr class="thead">
+<th>Nom</th>
+<th>Fonctionnalité</th>
+<th>Arguments</th>
+<th>Date de création</th>
+</tr>
+<tr>
+<th>spc_dat2fits</th>
+<td>Conversion d&#39;un spectre (profil de raie) au format ascii
+vers un fichier fits.</td>
+<td>fichier texte du profil de raies, ?fichier_sortie.fit?.</td>
+<td>31-01-2005</td>
+</tr>
+<tr class="gr">
+<th>spc_dats2fits</th>
+<td>Conversion d&#39;une série de fichiers profil de raies .dat
+en .fit</td>
+<td>répertoire contenant les fichiers .dat.</td>
+<td>02-04-2006</td>
+</tr>
+<tr>
+<th>spc_fits2dat</th>
+<td>Conversion d&#39;un spectre (profil de raie) au format fits
+vers un fichier ascii.</td>
+<td>fichier fits du profil de raies, ?fichier_sortie.dat?.</td>
+<td>29-01-2005</td>
+</tr>
+<tr class="gr">
+<th>spc_data2fits</th>
+<td>Création d&#39;un fichier profil de raie fits à partir des
+données x et y.</td>
+<td>nom fichier fit de sortie, une liste de coordonnées contenant
+la liste des x suivie de la liste des y, ?unité des données?
+(float/double).</td>
+<td>15-12-2005</td>
+</tr>
+<tr>
+<th>spc_fits2data</th>
+<td>Conversion de fichier profil de raies fits en une liste
+contenant les listes valeurs X et Y.</td>
+<td>fichier .fit du profil de raies.</td>
+<td>20-12-2005</td>
+</tr>
+<tr class="gr">
+<th>spc_spc2fits</th>
+<td>Conversion d&#39;un spectre (profil de raies) au format ascii
+vers un fichier fits.</td>
+<td>fichier spc du profil de raies.</td>
+<td>10-12-2005</td>
+</tr>
+<tr>
+<th>spc_spcs2fits</th>
+<td>Conversion d&#39;un spectre (profil de raies) au format ascii
+vers un fichier fits.</td>
+<td>nom du répertoire contenant des fichiers .spc à
+convertir.</td>
+<td>10-12-2005</td>
+</tr>
+<tr class="gr">
+<th>spc_fit2png</th>
+<td>Exportation d&#39;un profil de raies fits au format PNG à
+l&#39;aide Gnuplot.</td>
+<td>fichier .fit du profil de raies, &quot;titre&quot;, ?xdébut,
+xfin?.</td>
+<td>14-08-2005</td>
+</tr>
+<tr>
+<th>spc_fit2pngbat</th>
+<td>Créée un fichier batch permettant de converti un profil de
+raies format fits en une image format png en appelant
+gnuplot.</td>
+<td>fichier .fit du profil de raies, &quot;titre&quot;, ?xdébut,
+xfin?.</td>
+<td>03-09-2005</td>
+</tr>
+<tr class="gr">
+<th>spc_fit2pngman</th>
+<td>Converti un profil de raies format fits en une image format
+png avec gnuplot gradué selon les options précisées en
+argument.</td>
+<td>fichier fits du profil de raie, &quot;titre&quot;,
+&quot;X_légende&quot;, &quot;Y_légende&quot;, pas.</td>
+<td>14-08-2005</td>
+</tr>
+<tr>
+<th>spc_dat2png</th>
+<td>Exportation d&#39;un profil de raies dat au format PNG à
+l&#39;aide Gnuplot.</td>
+<td>fichier .dat du profil de raies, &quot;titre&quot;, ?xdébut,
+xfin?.</td>
+<td>27-04-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_dat2pngman</th>
+<td>Converti un profil de raies format dat en une image format
+png avec gnuplot gradué selon les options précisées en
+argument.</td>
+<td>fichier dat du profil de raie, &quot;titre&quot;,
+&quot;X_légende&quot;, &quot;Y_légende&quot;, pas.</td>
+<td>27-04-2006</td>
+</tr>
+<tr>
+<th>openspc</th>
+<td>Ouvre un profil de raies et renvoie valeurs de
+l&#39;intensité, NAXIS1 puis gère si il est calibré ou non.<br />
+Rem. : utilise loadima.</td>
+<td>fichier fits du profil de raie.</td>
+<td>15-02-2005</td>
+</tr>
+<tr class="gr">
+<th>spc_fit2pngopt</th>
+<td>Exportation d&#39;un profil de raies fits au format PNG à
+l&#39;aide Gnuplot avec personnalisation de la légende et des
+limites de l&#39;axe horizontal.</td>
+<td>fichier_fits &quot;Titre&quot; ?[[[?legende_x legende_y?]
+?xdeb xfin?] ?ydeb yfin?]?</td>
+<td>03-01-2007</td>
+</tr>
+<tr>
+<th>spc_fit2ps</th>
+<td>Exportation d&#39;un profil de raies fits au format
+Postscript à l&#39;aide Gnuplot.</td>
+<td>fichier_fits \&quot;Titre\&quot; ?legende_x lende_y? ?xdeb
+xfin?</td>
+<td>03-01-2007</td>
+</tr>
+<tr class="gr">
+<th>spc_autofit2png</th>
+<td>Exportation d&#39;un profil de raies fits au format PNG à
+l&#39;aide Gnuplot avec génération <span class=
+"c7">automatisée</span> du titre à l&#39;aide de l&#39;entête
+FITS.</td>
+<td>profil_de_raies_à_tracer.fit &quot;Nom objet&quot;</td>
+<td>03-01-2007</td>
+</tr>
+<tr>
+<th>spc_autofit2pngps</th>
+<td>Exportation d&#39;un profil de raies fits aux formats PNG et
+Postscript à l&#39;aide Gnuplot avec génération <span class=
+"c7">automatisée</span> du titre à l&#39;aide de l&#39;entête
+FITS.</td>
+<td>profil_de_raies_à_tracer.fit &quot;Nom objet&quot;</td>
+<td>03-01-2007</td>
+</tr>
+<tr class="gr">
+<th>spc_readchemfiles</th>
+<td>Lecture d&#39;un fichier ascii et les transforme en liste de
+données.</td>
+<td>.</td>
+<td>07-2006</td>
+</tr>
+<tr>
+<th>spc_multifit2png</th>
+<td>Tracé de plusieurs profils de raies dans un seul graphe au
+format PNG pour représenter par exemple l&#39;évolution de la
+forme d&#39;une raie au cours du temps.</td>
+<td>fichier_fits1 fichier_fits2 ... fichier_fits</td>
+<td>29-01-2007</td>
+</tr>
+<tr class="gr">
+<th>spc_fit2colors</th>
+<td>Converti un spectre au format FITS vers un fichier JPEG
+couleur correspondant aux longueurs d&#39;onde. Utilise
+l&#39;entête FITS pour déterminer les limites par défaut.</td>
+<td>fichier_fits ?lambda_début lambda_fin?</td>
+<td>03-03-2007</td>
+</tr>
+<tr>
+<th>spc_export2png</th>
+<td>Exportation d&#39;un profil de raies fits au format PNG à
+l&#39;aide Gnuplot via une interface graphique de saisie des
+paramètres.</td>
+<td>profil_de_raies_fits</td>
+<td>05-03-2007</td>
+</tr>
+</table>
+<p class="tab">Ces commandes se trouvent dans le fichier
+spc_io.tcl de SpcAudace.</p>
+<table cellspacing="0">
+<caption>Commandes des métafonctions effectuant une série de
+traitement :</caption>
+<tr class="thead">
+<th>Nom</th>
+<th>Fonctionnalité</th>
+<th>Arguments</th>
+<th>Date de création</th>
+</tr>
+<tr>
+<th>spc_traitea</th>
+<td>Traitement <span class="c1">automatique</span> de spectres 2D
+: prétraitement, vcrop, régistration, sadd, tilt, spcprofil. Pas
+de calibration en longueur d&#39;onde ni en flux. Utilise
+bm_pretrait de <span class="c8">mauclaire.tcl</span>.<br /></td>
+<td>nom_generique_images_objet (sans extension) nom_dark nom_plu
+nom_dark_plu [yinf_crop]</td>
+<td>05/12/2005</td>
+</tr>
+<tr class="gr">
+<th>spc_traiteaopt</th>
+<td>Traitement <span class="c1">automatique</span> de spectres 2D
+: prétraitement, vcrop, régistration, sadd, tilt, spcprofil. Pas
+de calibration en longueur d&#39;onde ni en flux. Utilise
+bm_pretrait de <span class="c8">mauclaire.tcl</span>.<br /></td>
+<td>nom_generique_images_objet (sans extension) nom_dark nom_plu
+nom_dark_plu xinf_crop yinf_crop méthode_fond_de_ciel (no, auto)
+méthode régistration (reg, spc, no) méthode_tilt (no, auto, man)
+méthode_profil (none, auto, all, sup)</td>
+<td>21/12/2005</td>
+</tr>
+<tr>
+<th>spc_traiteb</th>
+<td>Procède à la calibration en longueur d&#39;onde et en flux.
+Nécessite des paramètres donnés par l&#39;utilisateur.</td>
+<td>image fits du profil de raie, puis réponse aux questions
+posées par l&#39;interface.</td>
+<td></td>
+</tr>
+<tr class="gr">
+<th>spc_geom2calibre</th>
+<td>Procédure de traitement de spectres 2D : correction
+géométriques, régistration, sadd, spc_profil, calibration en
+longeur d&#39;onde, smooth.</td>
+<td>.</td>
+<td>07-2006</td>
+</tr>
+<tr>
+<th>spc_geom2rinstrum</th>
+<td>Procédure de traitement de spectres 2D : correction
+géométriques, régistration, sadd, spc_profil, calibration en
+longeur d&#39;onde, normalisation.</td>
+<td>.</td>
+<td>07-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_traite2calibre</th>
+<td>Procédure de traitement de spectres 2D : prétraitement,
+correction géométriques, régistration, sadd, spc_profil,
+calibration en longeur d&#39;onde, smooth.</td>
+<td></td>
+<td>07-2006</td>
+</tr>
+<tr>
+<th>spc_traite2scalibre</th>
+<td>Procédure de traitement de spectres 2D : prétraitement,
+correction géométriques, régistration, sadd, spc_profil,
+calibration en longeur d&#39;onde, normalisation. Elle utilisant
+les paramètres de calibration et de géométrie calculés
+antérieurement et stoqués dans le header du profil de raies de la
+lampe de calibration.</td>
+<td>.</td>
+<td>07-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_traite2rinstrum</th>
+<td>Procédure de traitement de spectres 2D : prétraitement,
+correction géométriques, régistration, sadd, spc_profil,
+calibration en longueur d&#39;onde, correction réponse
+instrumentale, normalisation. Elle utilisant les paramètres de
+calibration et de géométrie calculés antérieurement et stoqués
+dans le header du profil de raies de la lampe de
+calibration.</td>
+<td>nom_générique_images_objet (sans extension) nom_dark nom_plu
+nom_dark_plu nom_offset spectre_2D_lampe profil_étoile_catalogue
+méthode_appariement (reg, spc, n) uncosmic (o/n)
+méthode_détection_spectre (large, serre) méthode_sub_sky (moy,
+moy2, med, inf, sup, back, none) mirrorx (o/n) méthode_binning
+(add, rober, horne) normalisation (o/n) adoucissement (o/n)
+rejet_bad_spectres (o/n) rejet_rotation_importante (o/n)
+sélection_manuelle_raie_géométrie (o/n) effacer_masters
+(o/n)-A</td>
+<td>07-2006</td>
+</tr>
+<tr>
+<th>spc_traite2srinstrum</th>
+<td>Procédure de traitement de spectres 2D : prétraitement,
+correction géométriques, régistration, sadd, spc_profil,
+calibration en longueur d&#39;onde, correction réponse
+instrumentale, normalisation. Elle utilisant les paramètres de
+calibration et de géométrie calculés antérieurement et stoqués
+dans le header du profil de raies de la lampe de
+calibration.</td>
+<td>nom_générique_images_objet (sans extension) nom_dark nom_plu
+nom_dark_plu nom_offset spectre_2D_lampe
+spectre_réponse_instrumentale méthode_appariement (reg, spc, n)
+uncosmic (o/n) méthode_détection_spectre (large, serre)
+méthode_sub_sky (moy, moy2, med, inf, sup, back, none) mirrorx
+(o/n) méthode_binning (add, rober, horne) normalisation (o/n)
+adoucissement (o/n) rejet_mauvais_spectres (o/n)
+rejet_rotation_importante (o/n) effacer_masters (o/n)
+?fen-Aêtre_binning {x1 y1 x2 y2}?</td>
+<td>07-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_traitestellaire</th>
+<td></td>
+<td>nom_lampe nom_générique_images_objet (sans extension)
+nom_dark nom_plu nom_dark_plu nom_offset
+spectre_réponse_instrumentale sélection_manuelle_raies
+méthode_appariement (reg, spc, n) uncosmic (o/n)
+méthode_détection_spectre (large, serre) méthode_sub_sky (moy,
+moy2, med, inf, sup, back, none) mirrorx (o/n) méthode_binning
+(add, rober, horne) normalisation (o/n) adoucissement (o/n)
+efface_pretraitement (o/n) export_png (o/n)</td>
+<td></td>
+</tr>
+<tr>
+<th class="dev">spc_traitenebula</th>
+<td></td>
+<td>nom_lampe nom_générique_images_objet (sans extension)
+nom_dark nom_plu nom_dark_plu nom_offset
+spectre_réponse_instrumentale sélection_manuelle_raies
+méthode_appariement (reg, spc, n) uncosmic (o/n)
+méthode_détection_spectre (large, serre) méthode_sub_sky (moy,
+moy2, med, inf, sup, back, none) mirrorx (o/n) méthode_binning
+(add, rober, horne) normalisation (o/n) adoucissement (o/n)
+efface_pretraitement (o/n) export_png (o/n)</td>
+<td></td>
+</tr>
+</table>
+<p class="tab">Ces commandes se trouvent dans le fichier
+spc_metaf.tcl de SpcAudace.</p>
+<table cellspacing="0">
+<caption>Commandes de calcul numérique :</caption>
+<tr class="thead">
+<th>Nom</th>
+<th>Fonctionnalité</th>
+<th>Arguments</th>
+<th>Date de création</th>
+</tr>
+<tr>
+<th>bm_lmax</th>
+<td>Détermination de la valeur maximum contenue dans une
+liste.</td>
+<td>liste de valeurs.</td>
+<td>11-12-2005</td>
+</tr>
+<tr class="gr">
+<th>bm_pil2</th>
+<td>Calcul les coéfficients du polynôme interpolateur de Lagrange
+de degré 2.</td>
+<td>3 couples (x,y).</td>
+<td>29-01-2005</td>
+</tr>
+<tr>
+<th>bm_pil3c</th>
+<td>Calcul la valeur du polynôme interpolateur de Lagrange de
+degré 3 au point x.</td>
+<td>4 couples (x,y) et x.</td>
+<td>25-02-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_ajust</th>
+<td>Procédure d&#39;ajustement (gsl_mfitmultilin) d&#39;un nuage
+de points.</td>
+<td>fichier .fit du profil de raie à ajuster, erreur.</td>
+<td>15-12-2005</td>
+</tr>
+<tr>
+<th>spc_ajustfin</th>
+<td>Procédure d&#39;ajustement d&#39;un nuage de points en
+enlèvant les valeurs abérantes de la différence et ajoute la
+différence au continuum.</td>
+<td>fichier .fit du profil de raie, erreur.</td>
+<td>20-12-2005</td>
+</tr>
+<tr class="gr">
+<th>spc_ajustdeg2</th>
+<td>Procédure d&#39;ajustement polynomial du second degré
+(gsl_mfitmultilin) d&#39;un nuage de points.</td>
+<td>liste abscisses, liste ordonnees, erreur (ex. 1).</td>
+<td>26-05-2005</td>
+</tr>
+<tr>
+<th>spc_ajustdeg3</th>
+<td>Procédure d&#39;ajustement polynomial de degré 3
+(gsl_mfitmultilin) d&#39;un nuage de points.</td>
+<td>liste abscisses, liste ordonnees, erreur (ex. 1).</td>
+<td>26-05-2005</td>
+</tr>
+<tr class="gr">
+<th>spc_spline</th>
+<td>Linératisation par spline cubique (blt::spline natural).</td>
+<td>liste abscisses et liste ordonnées à rééchantillonner, liste
+absisses modèle d&#39;échantilonnage, (o/n) représentation
+graphique.</td>
+<td>28-03-2006</td>
+</tr>
+<tr>
+<th>spc_reglin</th>
+<td>Calcul la fonction de régression linéaire d&#39;un nuage de
+points.</td>
+<td>.</td>
+<td>07-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_gaussienne</th>
+<td>Calcule les instensites d&#39;une gaussienne synthétique à
+partir de sa FWHM, Imax.</td>
+<td>.</td>
+<td>07-2006</td>
+</tr>
+<tr>
+<th>spc_aire</th>
+<td>Calcul l&#39;aire entre 2 points et délimitée par un ensemble
+d&#39;ordonnée.</td>
+<td>.</td>
+<td>07-2006</td>
+</tr>
+<tr class="gr">
+<th>spc_derivation</th>
+<td>Calcul la dérivée numérique d&#39;un ensemble de couple de
+points.</td>
+<td>.</td>
+<td>07-2006</td>
+</tr>
+<tr>
+<th>spc_dispveriftd&gt;</th>
+<td>Effectue le calcul de l&#39;écart entre 2 listes de valeurs à
+comparer deux à deux.</td>
+<td>.</td>
+<td>07-2006</td>
+</tr>
+</table>
+<p class="tab">Ces commandes se trouvent dans le fichier
+spc_numeric.tcl de SpcAudace.</p>
+</div>
+</body>
+</html>
+

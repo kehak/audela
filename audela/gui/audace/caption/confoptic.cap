@@ -1,0 +1,322 @@
+#
+# Fichier : confoptic.cap
+# Mise a jour $Id: confoptic.cap 9698 2013-07-07 14:20:44Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(confoptic,camera_A)              "A Camera"
+set caption(confoptic,camera_B)              "B Camera"
+set caption(confoptic,camera_C)              "C Camera"
+
+set caption(confoptic,config_optique)        "Optical System Setup"
+set caption(confoptic,modele_instrument)     "Instrument Model:"
+set caption(confoptic,sans_accessoire)       "without barlow-reducer"
+set caption(confoptic,reducteur)             "Focal Reducer"
+set caption(confoptic,barlow)                "Barlow"
+set caption(confoptic,instrument)            "Instrument:"
+set caption(confoptic,diametre)              "Its diameter (m):"
+set caption(confoptic,focale)                "Its focal length (m):"
+set caption(confoptic,barlow_reduc)          "Barlow/Focal Reducer:"
+set caption(confoptic,focale_result)         "Resulting Focal Length (m):"
+set caption(confoptic,rapport_ouverture)     "F/D Ratio:"
+set caption(confoptic,pouvoir_separateur)    "Resolving Power ( '' ):"
+set caption(confoptic,camera)                "Camera:"
+set caption(confoptic,nocam)                 "No Camera"
+set caption(confoptic,capteur_ccd)           "CCD Sensor:"
+set caption(confoptic,cell_dim)              "Size of a sensor cell (mum):"
+set caption(confoptic,binning)               "Binning:"
+set caption(confoptic,pix_dim)               "Size of a pixel (mum):"
+set caption(confoptic,champ)                 "CCD Field ( ' ):"
+set caption(confoptic,echantillonnage)       "Sampling (''/pixel):"
+set caption(confoptic,calcul)                "Calculate"
+
+set caption(confoptic,ok)                    "OK"
+set caption(confoptic,appliquer)             "Apply"
+set caption(confoptic,fermer)                "Close"
+set caption(confoptic,aide)                  "Help"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(confoptic,camera_A)           "Caméra A"
+   set caption(confoptic,camera_B)           "Caméra B"
+   set caption(confoptic,camera_C)           "Caméra C"
+
+   set caption(confoptic,config_optique)     "Configuration du système optique"
+   set caption(confoptic,modele_instrument)  "Modèle de l'instrument :"
+   set caption(confoptic,sans_accessoire)    "sans barlow-réducteur"
+   set caption(confoptic,reducteur)          "Réducteur de focale"
+   set caption(confoptic,barlow)             "Barlow"
+   set caption(confoptic,instrument)         "Instrument :"
+   set caption(confoptic,diametre)           "Son diamètre (m) :"
+   set caption(confoptic,focale)             "Sa longueur focale (m) :"
+   set caption(confoptic,barlow_reduc)       "Barlow/Réducteur de focale :"
+   set caption(confoptic,focale_result)      "Longueur focale résultante (m) :"
+   set caption(confoptic,rapport_ouverture)  "Rapport F/D :"
+   set caption(confoptic,pouvoir_separateur) "Pouvoir séparateur ( '' ) :"
+   set caption(confoptic,camera)             "Caméra :"
+   set caption(confoptic,nocam)              "Pas de caméra"
+   set caption(confoptic,capteur_ccd)        "Capteur CCD :"
+   set caption(confoptic,cell_dim)           "Dimensions d'un photosite (mum) :"
+   set caption(confoptic,binning)            "Binning :"
+   set caption(confoptic,pix_dim)            "Dimensions d'un pixel (mum) :"
+   set caption(confoptic,champ)              "Champ du CCD ( ' ) :"
+   set caption(confoptic,echantillonnage)    "Echantillonnage (''/pixel) :"
+   set caption(confoptic,calcul)             "Calculer"
+
+   set caption(confoptic,ok)                 "OK"
+   set caption(confoptic,appliquer)          "Appliquer"
+   set caption(confoptic,fermer)             "Fermer"
+   set caption(confoptic,aide)               "Aide"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(confoptic,camera_A)           "Camera A"
+   set caption(confoptic,camera_B)           "Camera B"
+   set caption(confoptic,camera_C)           "Camera C"
+
+   set caption(confoptic,config_optique)     "Configurazione del sistema ottico"
+   set caption(confoptic,modele_instrument)  "Modello dello strumento:"
+   set caption(confoptic,sans_accessoire)    "senza barlow-riduttore"
+   set caption(confoptic,reducteur)          "Riduttore di focale"
+   set caption(confoptic,barlow)             "Barlow"
+   set caption(confoptic,instrument)         "Strumento:"
+   set caption(confoptic,diametre)           "Suo diametro (m):"
+   set caption(confoptic,focale)             "Sua lunghezza focale (m):"
+   set caption(confoptic,barlow_reduc)       "Barlow/Riduttore di focale:"
+   set caption(confoptic,focale_result)      "Lunghezza focale risultante (m):"
+   set caption(confoptic,rapport_ouverture)  "Rapporto F/D:"
+   set caption(confoptic,pouvoir_separateur) "Potere separatore ( '' ):"
+   set caption(confoptic,camera)             "Camera:"
+   set caption(confoptic,nocam)              "Nessuna camera"
+   set caption(confoptic,capteur_ccd)        "Sensore CCD:"
+   set caption(confoptic,cell_dim)           "Dimensione di una cella (mum):"
+   set caption(confoptic,binning)            "Binning:"
+   set caption(confoptic,pix_dim)            "Dimensione di un pixel (mum):"
+   set caption(confoptic,champ)              "Campo del CCD ( ' ):"
+   set caption(confoptic,echantillonnage)    "Campionamento (''/pixel):"
+   set caption(confoptic,calcul)             "Calcolàre"
+
+   set caption(confoptic,ok)                 "OK"
+   set caption(confoptic,appliquer)          "Applicare"
+   set caption(confoptic,fermer)             "Chiudere"
+   set caption(confoptic,aide)               "Aiuto"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(confoptic,camera_A)           "A Cámara"
+   set caption(confoptic,camera_B)           "B Cámara"
+   set caption(confoptic,camera_C)           "C Cámara"
+
+   set caption(confoptic,config_optique)     "Configuración del sistema óptico"
+   set caption(confoptic,modele_instrument)  "Modelo del instrumento:"
+   set caption(confoptic,sans_accessoire)    "sin barlow-reductor"
+   set caption(confoptic,reducteur)          "Reductor de focal"
+   set caption(confoptic,barlow)             "Barlow"
+   set caption(confoptic,instrument)         "Instrumento:"
+   set caption(confoptic,diametre)           "Su diámtro (m):"
+   set caption(confoptic,focale)             "Su distancia focal (m):"
+   set caption(confoptic,barlow_reduc)       "Barlow/Reductor de focal:"
+   set caption(confoptic,focale_result)      "Distancia focal resultante (m):"
+   set caption(confoptic,rapport_ouverture)  "Relacion F/D:"
+   set caption(confoptic,pouvoir_separateur) "Poder separador ( '' ):"
+   set caption(confoptic,camera)             "Cámara:"
+   set caption(confoptic,nocam)              "No hay cámara"
+   set caption(confoptic,capteur_ccd)        "Sensor CCD:"
+   set caption(confoptic,cell_dim)           "Dimensión de un fotosito (mum):"
+   set caption(confoptic,binning)            "Binning:"
+   set caption(confoptic,pix_dim)            "Dimensión de un pixel (mum):"
+   set caption(confoptic,champ)              "Campo de la CCD ( ' ):"
+   set caption(confoptic,echantillonnage)    "Resolución (''/píxel):"
+   set caption(confoptic,calcul)             "Calcular"
+
+   set caption(confoptic,ok)                 "OK"
+   set caption(confoptic,appliquer)          "Aplicar"
+   set caption(confoptic,fermer)             "Cerrar"
+   set caption(confoptic,aide)               "Ayuda"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(confoptic,camera_A)           "A Kamera"
+   set caption(confoptic,camera_B)           "B Kamera"
+   set caption(confoptic,camera_C)           "C Kamera"
+
+   set caption(confoptic,config_optique)     "Optisches System Konfiguration"
+   set caption(confoptic,modele_instrument)  "Instrument Modell:"
+   set caption(confoptic,sans_accessoire)    "ohne Barlow-Verkleinerter"
+   set caption(confoptic,reducteur)          "Brennweite Verkleinerter"
+   set caption(confoptic,barlow)             "Barlow"
+   set caption(confoptic,instrument)         "Instrument:"
+   set caption(confoptic,diametre)           "Sein Durchmesser (m):"
+   set caption(confoptic,focale)             "Ihres Brennweite (m):"
+   set caption(confoptic,barlow_reduc)       "Barlow/Brennweite Verkleinerter:"
+   set caption(confoptic,focale_result)      "Folgende Brennweite (m):"
+   set caption(confoptic,rapport_ouverture)  "F/D Verhältnis:"
+   set caption(confoptic,pouvoir_separateur) "Auflösung Fähigkeit ( '' ):"
+   set caption(confoptic,camera)             "Kamera:"
+   set caption(confoptic,nocam)              "Keine Kamera"
+   set caption(confoptic,capteur_ccd)        "CCD Sensor:"
+   set caption(confoptic,cell_dim)           "Sensor Zelle Größe (mum):"
+   set caption(confoptic,binning)            "Binning:"
+   set caption(confoptic,pix_dim)            "Pixel Größe (mum):"
+   set caption(confoptic,champ)              "CCD Feld ( ' ):"
+   set caption(confoptic,echantillonnage)    "Entnehmung (''/Rasterpunkt):"
+   set caption(confoptic,calcul)             "Rechnen"
+
+   set caption(confoptic,ok)                 "OK"
+   set caption(confoptic,appliquer)          "Anwenden"
+   set caption(confoptic,fermer)             "Schließen"
+   set caption(confoptic,aide)               "Hilfe"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(confoptic,camera_A)           "Câmara A"
+   set caption(confoptic,camera_B)           "Câmara B"
+   set caption(confoptic,camera_C)           "Câmara C"
+
+   set caption(confoptic,config_optique)     "Configuração do sistema óptico"
+   set caption(confoptic,modele_instrument)  "Modelo de instrumento:"
+   set caption(confoptic,sans_accessoire)    "Sem barlow-redutor focal"
+   set caption(confoptic,reducteur)          "Redutor focal"
+   set caption(confoptic,barlow)             "Barlow"
+   set caption(confoptic,instrument)         "Instrumento:"
+   set caption(confoptic,diametre)           "Diâmetro (m):"
+   set caption(confoptic,focale)             "Distância focal (m):"
+   set caption(confoptic,barlow_reduc)       "Barlow/Redutor focal:"
+   set caption(confoptic,focale_result)      "Distância focal resultante (m):"
+   set caption(confoptic,rapport_ouverture)  "Razão F/D:"
+   set caption(confoptic,pouvoir_separateur  "Poder resolvente (''):"
+   set caption(confoptic,camera)             "Câmara:"
+   set caption(confoptic,nocam)              "Sem Câmara"
+   set caption(confoptic,capteur_ccd)        "Sensor CCD:"
+   set caption(confoptic,cell_dim)           "Dimensões de um foto-sensor (mum):"
+   set caption(confoptic,binning)            "Binning:"
+   set caption(confoptic,pix_dim)            "Dimensões de um pixel (mum):"
+   set caption(confoptic,champ)              "Campo do CCD (' x '):"
+   set caption(confoptic,echantillonnage)    "Amostragem (''/pixel):"
+   set caption(confoptic,calcul)             "Calcular"
+
+   set caption(confoptic,ok)                 "OK"
+   set caption(confoptic,appliquer)          "Aplicar"
+   set caption(confoptic,fermer)             "Fechar"
+   set caption(confoptic,aide)               "Ajuda"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(confoptic,camera_A)           "Kamera A"
+   set caption(confoptic,camera_B)           "Kamera B"
+   set caption(confoptic,camera_C)           "Kamera C"
+
+   set caption(confoptic,config_optique)     "Opsætning af det optiske system"
+   set caption(confoptic,modele_instrument)  "Instrument type:"
+   set caption(confoptic,sans_accessoire)    "uden Barlow-Focalreducering"
+   set caption(confoptic,reducteur)          "Focalreducering"
+   set caption(confoptic,barlow)             "Barlow"
+   set caption(confoptic,instrument)         "Instrument:"
+   set caption(confoptic,diametre)           "Instrumentets åbning (m):"
+   set caption(confoptic,focale)             "Dets brændvidde (m):"
+   set caption(confoptic,barlow_reduc)       "Barlow/Focalreducering:"
+   set caption(confoptic,focale_result)      "Resulterende brændvidde (m):"
+   set caption(confoptic,rapport_ouverture)  "F/D forhold:"
+   set caption(confoptic,pouvoir_separateur) "Opløsningsevne ( '' ):"
+   set caption(confoptic,camera)             "Kamera:"
+   set caption(confoptic,nocam)              "Ingen kamera!"
+   set caption(confoptic,capteur_ccd)        "CCD-sensor:"
+   set caption(confoptic,cell_dim)           "Fotocellens dimensioner (mum):"
+   set caption(confoptic,binning)            "Binning:"
+   set caption(confoptic,pix_dim)            "Pixel-dimensioner (mum):"
+   set caption(confoptic,champ)              "CCD-felt ( ' ):"
+   set caption(confoptic,echantillonnage)    "Sampling (''/pixel):"
+   set caption(confoptic,calcul)             "Beregn"
+
+   set caption(confoptic,ok)                 "OK"
+   set caption(confoptic,appliquer)          "Anvend"
+   set caption(confoptic,fermer)             "Luk"
+   set caption(confoptic,aide)               "Hjælp"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(confoptic,camera_A)           "A Camera"
+   set caption(confoptic,camera_B)           "B Camera"
+   set caption(confoptic,camera_C)           "C Camera"
+
+   set caption(confoptic,config_optique)     "Optical System Setup"
+   set caption(confoptic,modele_instrument)  "Instrument Model:"
+   set caption(confoptic,sans_accessoire)    "without barlow-reducer"
+   set caption(confoptic,reducteur)          "Focal Reducer"
+   set caption(confoptic,barlow)             "Barlow"
+   set caption(confoptic,instrument)         "Instrument:"
+   set caption(confoptic,diametre)           "Its diameter (m):"
+   set caption(confoptic,focale)             "Its focal length (m):"
+   set caption(confoptic,barlow_reduc)       "Barlow/Focal Reducer:"
+   set caption(confoptic,focale_result)      "Resulting Focal Length (m):"
+   set caption(confoptic,rapport_ouverture)  "F/D Ratio:"
+   set caption(confoptic,pouvoir_separateur) "Resolving Power ( '' ):"
+   set caption(confoptic,camera)             "Camera:"
+   set caption(confoptic,nocam)              "No Camera"
+   set caption(confoptic,capteur_ccd)        "CCD Sensor:"
+   set caption(confoptic,cell_dim)           "Size of a sensor cell (mum):"
+   set caption(confoptic,binning)            "Binning:"
+   set caption(confoptic,pix_dim)            "Size of a pixel (mum):"
+   set caption(confoptic,champ)              "CCD Field ( ' ):"
+   set caption(confoptic,echantillonnage)    "Sampling (''/pixel):"
+   set caption(confoptic,calcul)             "Calculate"
+
+   set caption(confoptic,ok)                 "OK"
+   set caption(confoptic,appliquer)          "Apply"
+   set caption(confoptic,fermer)             "Close"
+   set caption(confoptic,aide)               "Help"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(confoptic,camera_A)           "A Camera"
+   set caption(confoptic,camera_B)           "B Camera"
+   set caption(confoptic,camera_C)           "C Camera"
+
+   set caption(confoptic,config_optique)     "Optical System Setup"
+   set caption(confoptic,modele_instrument)  "Instrument Model:"
+   set caption(confoptic,sans_accessoire)    "without barlow-reducer"
+   set caption(confoptic,reducteur)          "Focal Reducer"
+   set caption(confoptic,barlow)             "Barlow"
+   set caption(confoptic,instrument)         "Instrument:"
+   set caption(confoptic,diametre)           "Its diameter (m):"
+   set caption(confoptic,focale)             "Its focal length (m):"
+   set caption(confoptic,barlow_reduc)       "Barlow/Focal Reducer:"
+   set caption(confoptic,focale_result)      "Resulting Focal Length (m):"
+   set caption(confoptic,rapport_ouverture)  "F/D Ratio:"
+   set caption(confoptic,pouvoir_separateur) "Resolving Power ( '' ):"
+   set caption(confoptic,camera)             "Camera:"
+   set caption(confoptic,nocam)              "No Camera"
+   set caption(confoptic,capteur_ccd)        "CCD Sensor:"
+   set caption(confoptic,cell_dim)           "Size of a sensor cell (mum):"
+   set caption(confoptic,binning)            "Binning:"
+   set caption(confoptic,pix_dim)            "Size of a pixel (mum):"
+   set caption(confoptic,champ)              "CCD Field ( ' ):"
+   set caption(confoptic,echantillonnage)    "Sampling (''/pixel):"
+   set caption(confoptic,calcul)             "Calculate"
+
+   set caption(confoptic,ok)                 "OK"
+   set caption(confoptic,appliquer)          "Apply"
+   set caption(confoptic,fermer)             "Close"
+   set caption(confoptic,aide)               "Help"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

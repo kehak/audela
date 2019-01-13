@@ -1,0 +1,187 @@
+#
+# Fichier : telscript.cap
+# Mise a jour $Id: telscript.cap 9940 2013-08-10 07:56:40Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(telscript,monture)                    "TelScript"
+set caption(telscript,script)                     "Script"
+set caption(telscript,parcourir)                  "..."
+set caption(telscript,dossier)                    "From Folder:"
+set caption(telscript,telname)                    "Name"
+set caption(telscript,debug)                      "Debug Graphical Interface for T940"
+set caption(telscript,raquette_tel)               "Hand controller on screen"
+
+set caption(telscript,install_1)                  "End of TelScript plugin installation"
+set caption(telscript,install_2)                  "libtelscript.dll library updated."
+
+set caption(telscript,2points)                    ":"
+
+set caption(telscript,titre_site_web)             "Reference Web Site:"
+set caption(telscript,site_telscript)             "Does not exist"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(telscript,monture)                 "TelScript"
+   set caption(telscript,script)                  "Script"
+   set caption(telscript,parcourir)               "..."
+   set caption(telscript,dossier)                 "A partir du dossier :"
+   set caption(telscript,telname)                 "Nom"
+   set caption(telscript,debug)                   "Interface graphique de débug du T940"
+   set caption(telscript,raquette_tel)            "Raquette à l'écran"
+
+   set caption(telscript,install_1)               "Fin de l'installation du plugin TelScript"
+   set caption(telscript,install_2)               "La librairie libtelscript.dll a été mise à jour."
+
+   set caption(telscript,2points)                 ":"
+
+   set caption(telscript,titre_site_web)          "Site Web de référence :"
+   set caption(telscript,site_telscript)          "N'existe pas"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(telscript,monture)                 "TelScript"
+   set caption(telscript,script)                  "Script"
+   set caption(telscript,parcourir)               "..."
+   set caption(telscript,dossier)                 "Dalla cartella:"
+   set caption(telscript,telname)                 "Nome"
+   set caption(telscript,debug)                   "Interfaccia grafica di debug per T940"
+   set caption(telscript,raquette_tel)            "Pulsantiera a schermo"
+
+   set caption(telscript,install_1)               "Fine installazione del plugin TelScript"
+   set caption(telscript,install_2)               "La libreria libtelscript.dll è stata aggiornata."
+
+   set caption(telscript,2points)                 ":"
+
+   set caption(telscript,titre_site_web)          "Sito Web di riferimento:"
+   set caption(telscript,site_telscript)          "Non esiste"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(telscript,monture)                 "TelScript"
+   set caption(telscript,script)                  "Script"
+   set caption(telscript,parcourir)               "..."
+   set caption(telscript,dossier)                 "Desde la carpeta:"
+   set caption(telscript,telname)                 "Nombre"
+   set caption(telscript,debug)                   "Interface gráfica de debug del T940"
+   set caption(telscript,raquette_tel)            "Controlador virtual"
+
+   set caption(telscript,install_1)               "Fin de la instalación del plugin TelScript"
+   set caption(telscript,install_2)               "Libreria libtelscript.dll actualizada."
+
+   set caption(telscript,2points)                 ":"
+
+   set caption(telscript,titre_site_web)          "Sitio Web de referencia:"
+   set caption(telscript,site_telscript)          "No existe"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(telscript,monture)                 "TelScript"
+   set caption(telscript,script)                  "Script"
+   set caption(telscript,parcourir)               "..."
+   set caption(telscript,dossier)                 "Vom Unterlagen:"
+   set caption(telscript,telname)                 "Namen"
+   set caption(telscript,debug)                   "Debug Grafische Interface für T940"
+   set caption(telscript,raquette_tel)            "Hand Kontroller am Bildschirm"
+
+   set caption(telscript,install_1)               "Ende der TelScript-Plugin-Installation"
+   set caption(telscript,install_2)               "Die libtelscript.dll Bibliothek ist aktualisiert."
+
+   set caption(telscript,2points)                 ":"
+
+   set caption(telscript,titre_site_web)          "Referenz Webseite:"
+   set caption(telscript,site_telscript)          "Existiert nicht"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(telscript,monture)                 "TelScript"
+   set caption(telscript,script)                  "Script"
+   set caption(telscript,parcourir)               "..."
+   set caption(telscript,dossier)                 "Da Pasta:"
+   set caption(telscript,telname)                 "Nome"
+   set caption(telscript,debug)                   "# Interface graphique de débug du T940"
+   set caption(telscript,raquette_tel)            "Controlador de mão no ecrã"
+
+   set caption(telscript,install_1)               "Fin da instalação do plugin TelScript"
+   set caption(telscript,install_2)               "A livraria libtelscript.dll foi actualizada."
+
+   set caption(telscript,2points)                 ":"
+
+   set caption(telscript,titre_site_web)          "Site Web de referência:"
+   set caption(telscript,site_telscript)          "Não existe"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(telscript,monture)                 "TelScript"
+   set caption(telscript,script)                  "Script"
+   set caption(telscript,parcourir)               "..."
+   set caption(telscript,dossier)                 "From Folder:"
+   set caption(telscript,telname)                 "Name"
+   set caption(telscript,debug)                   "Debug Graphical Interface for T940"
+   set caption(telscript,raquette_tel)            "Hand controller on screen"
+
+   set caption(telscript,install_1)               "End of TelScript plugin installation"
+   set caption(telscript,install_2)               "libtelscript.dll library updated."
+
+   set caption(telscript,2points)                 ":"
+
+   set caption(telscript,titre_site_web)          "Reference Web Site:"
+   set caption(telscript,site_telscript)          "Does not exist"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(telscript,monture)                 "TelScript"
+   set caption(telscript,script)                  "Script"
+   set caption(telscript,parcourir)               "..."
+   set caption(telscript,dossier)                 "From Folder:"
+   set caption(telscript,telname)                 "Name"
+   set caption(telscript,debug)                   "Debug Graphical Interface for T940"
+   set caption(telscript,raquette_tel)            "Hand controller on screen"
+
+   set caption(telscript,install_1)               "End of TelScript plugin installation"
+   set caption(telscript,install_2)               "libtelscript.dll library updated."
+
+   set caption(telscript,2points)                 ":"
+
+   set caption(telscript,titre_site_web)          "Reference Web Site:"
+   set caption(telscript,site_telscript)          "Does not exist"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(telscript,monture)                 "TelScript"
+   set caption(telscript,script)                  "Script"
+   set caption(telscript,dossier)                 "From Folder:"
+   set caption(telscript,parcourir)               "..."
+   set caption(telscript,telname)                 "Name"
+   set caption(telscript,debug)                   "Debug Graphical Interface for T940"
+   set caption(telscript,raquette_tel)            "Hand controller on screen"
+
+   set caption(telscript,install_1)               "End of TelScript plugin installation"
+   set caption(telscript,install_2)               "libtelscript.dll library updated."
+
+   set caption(telscript,2points)                 ":"
+
+   set caption(telscript,titre_site_web)          "Reference Web Site:"
+   set caption(telscript,site_telscript)          "Does not exist"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

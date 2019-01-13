@@ -1,0 +1,2 @@
+LIBRARY libgs
+EXPORTS Gs_Init @1

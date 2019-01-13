@@ -1,0 +1,7 @@
+USEUNIT("..\mbgdevio_demo.c");
+USELIB("..\..\..\mbglib\lib\bc\mbgutil.lib");
+USELIB("..\..\..\mbglib\lib\bc\mbgdevio.lib");
+//---------------------------------------------------------------------------
+Diese Datei wird nur vom Projekt-Manager verwendet und sollte wie die Projektdatei behandelt werden
+
+main

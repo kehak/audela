@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/dev_template.dwt" codeOutsideHTMLIsLocked="false" -->
+<!-- DW6 -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Les extensions standard de Audela</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="keywords" content="astronomy, astronomie, software, Audace, audace, Audela, audela, CCD, ccd, association Aude, association AUDE, amateur astronomer, image, sky, ciel, telescope, télescope, star, étoile, galaxy, ccd camera, camera CCD, astrophotography, Audine, Christian Jasinski, logiciel d'astronomie, astronomy software, astronomie numérique, CCD sensor, astronome amateur">
+<meta name="description" content="Audela : un logiciel d'astronomie CCD libre et gratuit pour tous.  Audela is a free and open-source CCD astronomy software">
+<link rel="stylesheet" href="3col_leftNav.css" type="text/css">
+</head>
+<body> 
+<table id="topTable" cellspacing="0" cellpadding="0"> 
+  <tr> 
+    <td width="85%" valign="middle" id="pageTopLeft"><div align="left" class="style1">Audela</div></td> 
+    <td width="15%"><div align="right"><img src="images/background_a.gif" alt="Audela" width="50" height="50" align="middle"></div></td> 
+</table> 
+<div id="masthead"> 
+  <div id="globalNav"> <a href="index.htm">Accueil</a> | <a href="copi_interfa.htm">Copies d'&eacute;cran</a> | <a href="version_actu.htm">T&eacute;l&eacute;charger</a> | <a href="bug.php">Support</a> | <a href="dev.htm">Documentation</a> | <a href="english.htm">English Version </a></div> 
+  <h2 id="pageName"><!-- InstanceBeginEditable name="Page Title" -->Les extensions standard de Audela<!-- InstanceEndEditable --></h2> 
+  <div id="breadCrumb"> <!-- InstanceBeginEditable name="Breadcrumb" --><a href="index.htm">Home page </a> / <a href="dev.htm">Le coin des développeurs</a> / <a href="exten2.htm">Les extensions standard de Audela </a> / <!-- InstanceEndEditable --></div> 
+</div> 
+<!--begin content --> 
+<div class="devContent"> <!-- InstanceBeginEditable name="MainContent" --><center> 
+  <h2 align="center">Les extensions standard de Audela</h2> 
+</center>
+<p>Pour un programmeur, Audela n'est qu'un paquet d'extensions du langage Tcl apportant des fonctions pour les applications &agrave; l'astronomie. Rappelons qu'une extension est un fichier de librairie (.dll sous Windows et .so sous Linux) qui peut &ecirc;tre charg&eacute; par un interpr&eacute;teur Tcl afin de l'enrichir de nouvelles fonctions. Plut&ocirc;t que d'avoir cr&eacute;e une seule &eacute;norme librairie, nous avons volontairement divis&eacute; Audela en plusieurs extensions afin d'&ecirc;tre plus modulaire. Cela permet aussi une meilleure maintenance et laisse la possiblit&eacute; &agrave; chacun de programmer une nouvelle librairie d'extension.</p>
+<p>Les extensions de Audela peuvent &ecirc;tre class&eacute;es en trois cat&eacute;gories : </p>
+<ul> 
+  <li> Les extensions standard (util) : Ce sont les extensions utiles ou indispensables pour faire fonctionner correctement le logiciel. Seules les librairies : libaudela et libmc sont indispensables. Les autres librairies utiles sont : libgzip, librgb, libjm, libgsltcl, libsext et libgs. Certaines librairies n'existent que pour certaines plate formes (ex. libgs pour Windows seulement). </li> 
+</ul>
+<ul> 
+  <li>Les extensions de cam&eacute;ras (libcam) : Ce sont les extensions associ&eacute;es au pilotage de cam&eacute;ras CCD. Elles sont d&eacute;sign&eacute;es par le terme g&eacute;n&eacute;rique libcam. </li> 
+</ul>
+<ul> 
+  <li>Les extensions de t&eacute;lescopes (libtel) : Ce sont les extensions associ&eacute;es au pilotage de montures de t&eacute;lescopes automatis&eacute;s. Elles sont d&eacute;sign&eacute;es par le terme g&eacute;n&eacute;rique libtel. </li> 
+  <li> Les extensions personnelles : cr&eacute;es par divers auteurs, elles enrichissent les fonctions de Audela. Certaines font partie de la distribution standard de Audela. On peut, bien-s&ucirc;r, ajouter n'importe quelle librairie d'extension Tcl &agrave; Audela. Ainsi, les librairies dp (communication r&eacute;seau), BLT (graphiques), ddp (communication DDP pour Windows) et com (objets COM de Windows) sont livr&eacute;es avec les fichiers de distribution de Audela. </li> 
+</ul>
+<p>Le choix de laisser le code source de la librairie publique ou non est laiss&eacute; au libre arbitre de l'auteur. C'est pour cette raison que certaines librairies sont publiques (GNU) et d'autres non. Nous rappelons rapidement ici d'o&ugrave; viennent les diff&eacute;rentes fonctions standards de Audela. En esp&eacute;rant y trouver bient&ocirc;t les v&ocirc;tres... Le sch&eacute;ma ci-dessous dresse les modules fondamentaux du logiciel Audela. Les bo&icirc;tes vertes et bleues concernent des fichiers d'extension Tcl. Les bo&icirc;tes rouges sont des fichiers ex&eacute;cutables. La boite jaune concerne une librairie C standard.</p>
+<p align="center"><img src="images/development/archi1_fr.gif" alt="archi"
+ width="543" height="360"> </p>
+<p>La librairie d'extension Tcl libaudela est le point central du logiciel. Il peut &ecirc;tre adress&eacute; par l'ex&eacute;cutable audela (.exe sous Windows) ou par Wish (version sup&eacute;rieure ou &eacute;gale &agrave; 8.3). Il est possible d'utiliser libaudela <a href="#dll">&agrave; partir d'un logiciel quelconque</a> en utilisant quelques fonctions export&eacute;es par libaudela pour ce besoin. La couche du coeur contient la librairie libaudela et les librairies de Tcl et Tk. Enfin, libaudela charge la librairie libtt. Libtt n'est pas une extension Tcl. C'est une librairie classique &agrave; un seul point d'entr&eacute;e qui permet la gestion des images au format FITS, entre autres. La couche des extensions contient toutes les extensions Tcl susceptibles d'apporter de nouvelles fonctions pour Audela. On y remarquera les deux familles libcam et libtel qui concernent les pilotes d'instruments.</p>
+<h3>1. Extensions standard</h3>
+<h3>1.1. Libaudela : les objets de Audela</h3>
+<p>La librairie libaudela est le coeur de Audela. Elle contient les fonctions de base pour l'imagerie en astronomie.</p>
+<p>Libaudela apporte apporte des familles de nouvelles fonctions. ces familles sont appel&eacute;es "objets" et sont les suivantes : </p>
+<ul> 
+  <li> <a href="interfa5a.htm">buffer</a> : les fonction de buffer permettent de charger une image en m&eacute;moire, la sauver sur le disque et permet quelques traitement d'images. </li> 
+  <li> <a href="interfa5a.htm">cam&eacute;ra</a> : les fonctions de cam&eacute;ra permettent de param&eacute;trer l'acquisition d'image par des cam&eacute;ras CCD. </li> 
+  <li> <a href="interfa5a.htm">visualisation</a> : les fonctions de visualisation permettent de param&eacute;trer l'affichage des images dans une fen&ecirc;tre du logiciel. </li> 
+  <li> <a href="interfa5a.htm">t&eacute;lescope</a> : les fonctions de t&eacute;lescope permettent de param&eacute;trer le pointage et le suivi de t&eacute;lescopes. </li> 
+</ul>
+<p>Libaudela apporte des fonctions individuelles telles que : </p>
+<ul> 
+  <li> 
+    <p><a href="interfa5a.htm">ttscript2</a> : pour effectuer un traitement d'image par lot avec la syntaxe de libtt. libtt est une librairie classique qui compl&egrave;te libaudela. Les <a href="http://alain.klotz.free.fr/audela/libtt">sources de la librairie</a> sont publiques. Il est possible d'y programmer des fonctions de traitement d''image suppl&eacute;mentaires (langage C).</p> 
+  </li> 
+</ul>
+<h3>1.2. Libmc : m&eacute;canique c&eacute;leste</h3>
+<p><a href="interfa5a.htm">Libmc</a> permet d'effectuer des calculs d'&eacute;ph&eacute;m&eacute;rides, de pr&eacute;voir la position d'objets (&eacute;toiles, ast&eacute;ro&iuml;des, etc.) pr&eacute;sents dans un champ CCD, de convertir des dates et des angles entre divers formats, ainsi que de nombreuses autres fonctionnalit&eacute;s associ&eacute;es &agrave; la m&eacute;canique c&eacute;leste.</p>
+<h3>1.3. Libgzip : compression de fichiers </h3>
+<p>Libgzip permet de compresser ou de d&eacute;compresser un ou plusieurs fichiers au format .gz. </p>
+<h3>1.4. Librgb : imagerie couleur </h3>
+<p>Librgb permet de s&eacute;parer des plans couleurs dans une image et de visualiser trois plans images (rouge, vert, bleu) en une image couleur &agrave; l'&eacute;cran. </p>
+<h3>1.5. Libjm : photom&eacute;trie </h3>
+<p>Libjm est d&eacute;velopp&eacute;e par Jacques Michelet qui a d&eacute;velopp&eacute; des scripts Tcl pour la photom&eacute;trie. La librairies libjm apporte donc des fonctions utiles dans ce domaine. </p>
+<h3>1.6. Libgsltcl : calcul scientifique</h3>
+<p>Libgsltcl permet d'utiliser quelques fonctions de la GNU Scientific Library (GSL). On pourra ainsi effectuer des calculs matriciels, des optimisations aux moindres carr&eacute;s ou bien des transform&eacute;es de Fourier.</p>
+<h3>1.7. Libsext : sextractor</h3>
+<p>Libsext permet d'appeler l'ex&eacute;cutable Sextractor. C'est un logiciel sp&eacute;cialis&eacute; dans la d&eacute;tection d'&eacute;toiles dans une image. </p>
+<h3>1.8. Libgs : logiciel Guide</h3>
+<p>Libgs est d&eacute;velopp&eacute;e par Guillaume Spitzer. Libgs apporte des fonctions qui permettent de piloter le logiciel de plan&eacute;tarium Guide (existe pour Windows seulement). </p>
+<h3>2. Extensions libcam</h3>
+<p>Les extensions de pilotage de cam&eacute;ras sont d&eacute;crites <a href="exten5.htm">dans une page d&eacute;di&eacute;e</a>. </p>
+<h3>3. Extensions libtel</h3>
+<p>Les extensions de pilotage de montures de t&eacute;lescopes sont d&eacute;crites <a href="exten5.htm">dans une page d&eacute;di&eacute;e</a>. </p>
+<h3>4. Extensions personnelles</h3>
+<h3> 4.1. DP : communication r&eacute;seau haut niveau</h3>
+<p><a href="dp1.htm">Libdp</a> permet d'acc&eacute;der &agrave; la notion de client/serveur. N'h&eacute;sitez pas &agrave; consulter le le site WEB <a href="http://www.cs.cornell.edu/zeno/projects/tcldp/">http://www.cs.cornell.edu/zeno/projects/tcldp/</a> . </p>
+<h3>4.2. BLT : fonctions graphiques </h3>
+<p><a href="blt1.htm">BLT</a> permet l'affichage de graphe de type Y fonction de X. Tr&egrave;s utile pour l'analyse de donn&eacute;es. N'h&eacute;sitez pas &agrave; consulter le site WEB <a href="http://www.tcltk.com/blt">http://www.tcltk.com/blt</a>. </p>
+<h3>4.3. ddp : communication logiciels sous Windows</h3>
+<p>Cette extension permet de communiquer entre logiciels sous Windows en utilisant le protocole DDP. </p>
+<h3>4.4. com : objets com de Windows</h3>
+<p>Cette extension permet d'utiliser les objets com sous Windows. </p>
+<h3><a name="dll"></a>5. Utiliser Audela depuis un autre logiciel</h3>
+<p>Ce paragraphe concerne les d&eacute;veloppeurs de logiciels sous Windows qui veulent se servir de AudeLa comme une simple librairie.La fa&ccedil;on la plus simple est de regarder le code de test.cpp qui est une application basique. Pour cela, t&eacute;l&eacute;charger les fichiers suivants : </p>
+<ul> 
+  <li><a href="Telecharger/test.cpp">test.cpp</a> : Le programme C de test.</li> 
+  <li> <a href="Telecharger/sysexp.h">sysexp.h</a> : D&eacute;finition du syst&egrave;me d'exploitation</li> 
+  <li> <a href="Telecharger/audela.h">audela.h</a> : header qui d&eacute;finit les fonctions export&eacute;es de libaudela.</li> 
+</ul>
+<p>Il y a 6 fonctions &agrave; importer depuis l'application :</p>
+<pre>void* CALLMETHOD audela_open();</pre> 
+<p>La fonction audela_open open ouvre une session Audela et retourne l'adresse for le handler audela.</p>
+<p>Exemple : </p>
+<pre>void *session;</pre> 
+<pre>session=audela_open();</pre> 
+<pre>int CALLMETHOD audela_close(void *handle);</pre> 
+<p>La fonction audela_close ferme une session Audela d&eacute;finie par son handler.</p>
+<p>Exemple : </p>
+<pre>audela_close(session);</pre>
+</p> 
+<pre>int CALLMETHOD audela_eval(void *handle, char *s, int *reslen);</pre> 
+<p>La fonction audela_eval soumet une cha&icirc;ne de caract&egrave;res *s de syntaxe Tcl &agrave; &eacute;valuer par l'interpr&eacute;tautr Tcl de Audela. La valeur de reslen retourne le nombre de caract&egrave;res de la cha&icirc;ne (termin&eacute;e par NULL) du r&eacute;sultat.</p>
+<p>Exemple : </p>
+<pre>int reslen;</pre> 
+<pre>audela_eval(session,"source myscript.tcl",&amp;reslen);</pre> 
+<pre>int CALLMETHOD audela_getresult(void *handle, int maxchar, char *s);</pre> 
+<p>La fonction audela_getresult demande &agrave; l'interpr&eacute;teur Tcl de Audela de retourner le dernier r&eacute;sultat d'&eacute;valuation dans la cha&icirc;ne de caract&egrave;res *s. La valeur maxchar permet de limiter la longueur de la cha&icirc;ne retourn&eacute;e dans *s.</p>
+<pre>const int maxchar;</pre> 
+<pre>char s[maxchar];</pre> 
+<pre>audela_getresult(session,maxchar,s);</pre> 
+<pre>int CALLMETHOD audela_putbuf(void *handle, int bufno, int type, int w, int h, void *buffer);</pre> 
+<p>La fonction audela_putbuf permet de tranf&eacute;rer les valeurs d'un pointeur image *buffer (largeur=w, hauteur=h) vers le buffer num&eacute;ro bufno de Audela. Le buffer C est de type type :</p>
+<p>unsigned char = AUDELA_TYPE_BYTE short = AUDELA_TYPE_SHORT unsigned short = AUDELA_TYPE_USHORT long = AUDELA_TYPE_LONG unsigned long = AUDELA_TYPE_ULONG float = AUDELA_TYPE_FLOAT double = AUDELA_TYPE_DOUBLE </p>
+<p>Exemple : </p>
+<pre>const int w = 10, h = 10;</pre> 
+<pre>short buf[h][w]; int n=0;</pre> 
+<pre>for(int j=0;j&lt;h;j++) for(int i=0;i&lt;w;i++) buf[j][i] = (short)(n++);</pre> 
+<pre>audela_putbuf(session,1,AUDELA_TYPE_SHORT,w,h,buf);</pre> 
+<pre>int CALLMETHOD audela_getbuf(void *handle, int bufno, int type, int w, int h, void *buffer);</pre> 
+<p>La fonction audela_getbuf permet de tranf&eacute;rer les valeurs du buffer num&eacute;ro bufno de Audela vers un pointeur image*buffer (largeur=w, hauteur=h). Le buffer C est de type type :</p>
+<p>Exemple : </p>
+<pre>const int w = 10, h = 10;</pre> 
+<pre>short buf[h][w]; int n=0;</pre> 
+<pre>audela_putbuf(session,1,AUDELA_TYPE_SHORT,w,h,buf);</pre><!-- #BeginLibraryItem "/Library/modification date.lbi" --><p style="text-align: right;">
+<script language="javascript">
+<!-- Code after this will be ignored by older browsers
+
+// Assign the last modified date to the variable lastModDate
+	var lastModDate = document.lastModified;
+
+//Create an if statement to test the value of lastModDate
+if (lastModDate == 0) {
+	document.writeln("Dernière modification : date inconnue");
+}
+else {
+	document.writeln("Dernière modification : " + lastModDate);
+}
+
+// Stop hiding the code here -->
+</script>
+</p><!-- #EndLibraryItem --><!-- InstanceEndEditable --></div> 
+<!--end content --> 
+<div id="siteInfo"> 
+  <script language="JavaScript" src="email.js" type="text/javascript"></script> 
+  | <a href="#">English Version </a> | <a href="mailto:audeladev-subscribe@egroups.com">Mailing List Audela</a> | &copy;2004 Audela | <a href="http://www.technospeak.com">Design TechnoSpeak</a> </div> 
+<br> 
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,32 @@
+---------------------------
+-- ERREUR :
+libusb couldn't open USB device /dev/bus/usb/002/007: Permission denied.
+libusb requires write access to USB device nodes.
+libusb couldn't open USB device /dev/bus/usb/002/007: Permission denied.
+libusb requires write access to USB device nodes.
+./audela.sh : ligne 8 :  1486 Erreur de segmentation  ./audela $*
+
+-- REPONSE :
+Selon distrib evidemment, le fonctionnement du montage des peripheriques usb
+est different. 
+A linstallation du driver andor. cela cree une nouvelle regle dans /etc/udev/rules.d/
+et ajoute le fichier andor.rules
+dans lequel se trouve la ligne suivante: 
+SYSFS{idVendor}=="136e", MODE="0666"
+
+sous Archlinux :
+il faut modifier en :
+ATTR{idVendor}=="136e", MODE="0666", GROUP="users", OWNER="t1m"
+
+pour savoir ca, il a fallu tapper les commandes suivantes :
+
+> udevadm info -q path -n /dev/bus/usb/002/007
+/devices/pci0000:00/0000:00:1d.7/usb2/2-6/2-6.1
+
+> udevadm info -a -p /devices/pci0000:00/0000:00:1d.7/usb2/2-6/2-6.1
+et la on voit toutes les infos qui appartiennent au peripherique. 
+et c est la qu on voit que SYSFS s est transforme en ATTR.
+---------------------------
+-- ERREUR :
+
+-- REPONSE :

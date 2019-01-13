@@ -1,0 +1,97 @@
+
+[Version]
+Signature=$CHICAGO$
+Class=AndorTechnology
+ClassGuid={BA4CEDC2-41ED-4D3F-898D-1EE1F2C8E1CC}
+Provider=%String0%
+DriverVer=11/07/2001, 4.11.0.0
+
+[ClassInstall]
+AddReg=class.registry
+
+[DestinationDirs]
+DefaultDestDir=10,System32\Drivers
+CopyFiles98=11
+
+[Manufacturer]
+%String1%=DeviceList
+
+[DeviceList]
+%String2%=DriverInstall,PCI\VEN_149A&DEV_0001
+
+;------------------------------------------------------------------------------
+;  Windows 95/98 Sections
+;------------------------------------------------------------------------------
+
+[DriverInstall]
+CopyFiles=CopyFiles98
+AddReg=DriverAddReg
+DriverVer=11/07/2001, 4.11.0.0
+
+[CopyFiles98]
+atmcd95.vxd,,,2
+
+[class.registry]
+HKR,,ICON,0,-5
+
+[DriverInstall.hw]
+AddReg=DriverHwAddReg
+
+
+;------------------------------------------------------------------------------
+;  Windows 2000 Sections
+;------------------------------------------------------------------------------
+[DriverInstall.NT]
+CopyFiles=DriverCopyFiles
+DriverVer=11/07/2001, 4.11.0.0
+; TODO Add a LogConfig command and section if this is a legacy device
+
+[DriverCopyFiles]
+atmcdwdm.sys,,,2
+
+[DriverInstall.NT.Services]
+AddService=AndorWDM,2,DriverService
+
+[DriverService]
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%10%\system32\drivers\atmcdwdm.sys
+Addreg = AddReg_Andor_Service_Inst
+
+[DriverInstall.nt.hw]
+AddReg=DriverHwAddReg
+
+[DriverHwAddReg]
+HKR,,FriendlyName,,"Andor Technology PCI driver"
+
+[ClassInstall32]
+AddReg=ATMCDWDMClassReg
+
+[ATMCDWDMClassReg]
+HKR,,,0,Andor
+HKR,,Icon,,-5
+
+;------------------------------------------------------------------------------
+;  Common Sections
+;------------------------------------------------------------------------------
+
+[SourceDisksNames]
+1=%INSTDISK%,,
+
+[SourceDisksFiles]
+atmcdwdm.sys=1
+atmcd95.vxd=1
+
+[Strings]
+String0="Andor Technology"
+String1="Andor Technology"
+String2="Andor Technology - Driver for PCI Device."
+INSTDISK="AndorMCD"
+
+[AddReg_Andor_Service_Inst]
+HKR,Parameters,DMASizeBYTES,0x00010001 ,0x01000000
+
+[DriverAddReg]
+HKLM,System\CurrentControlSet\Services\Class\AndorTechnology,DMASizeBYTES,1,00,00,00,01
+HKR,,DevLoader,0,atmcd95.vxd

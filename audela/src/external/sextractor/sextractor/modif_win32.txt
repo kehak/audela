@@ -1,0 +1,110 @@
+************ Carole Thiebaut et Alain Klotz **********
+			Le 14/06/2002
+
+Modifications à apporter à Sextractor pour assurer un
+fonctionnement optimal avec un interpréteur Tcl.
+
+-> Dans main.c
+
+   char		**argkey, **argval, *str;
+/* Debut Ajout Carole Thiebaut */
+FILE *fsignal;
+remove("signal.sex");
+/* Fin Ajout Carole Thiebaut */
+...
+/* Debut Ajout Carole Thiebaut */
+if ((fsignal=fopen("signal.sex","w"))!=NULL) { close(fsignal); }
+/* Fin Ajout Carole Thiebaut */
+  return EXIT_SUCCESS;
+
+-> Dans misc.c
+
+/* Debut Ajout Carole Thiebaut */
+FILE *fsignal;
+/* Fin Ajout Carole Thiebaut */
+  fprintf(stderr, "\n> %s%s\n\n",msg1,msg2);
+/* Debut Ajout Carole Thiebaut */
+if ((fsignal=fopen("signal.sex","w"))!=NULL) { close(fsignal); }
+/* Fin Ajout Carole Thiebaut */
+  exit(num);
+
+
+************************************************************
+Modifications apportées au programme de Bertin pour un Système Windows
+			Le 14/06/2002
+
+N.B. les fichiers default.* sont a copier dans le dossier courant
+de sextractor.
+
+--- > modifications obligatoires
+
+Il faut commencer à remplacer toutes les fonctions
+wcsset par wcssett et wcsrev par wcsrevv dans tous
+les fichiers soucres. Pour cela, on peut utiliser
+l'utiltaire win32.tcl qui fait cela automatiquement.
+Ouvrir un interpréteur Tcl et se placer dans le
+dossier courant où se trouve win32.tcl (cd ...).
+source win32.tcl pour démarrer la conversion.
+
+-> Dans proj. et sphec.c 
+Remplacer ifdef COPYSIGN par ifndef COPYSIGN
+
+-> Dans wcs.c 
+Remplacer ifdef SIGNBIT par ifndef SIGNBIT
+
+-> Dans fitscat.h 
+Ajouter #define BSWAP 1 pour que la fonction swapbytes(pour PC) puisse être prise en compte.
+
+
+--- > modifications facultatives
+
+On peut ajouter les lignes suivantes 
+afin de libérer proprement la mémoire 
+avant la sortie du programme.
+
+-> Dans pref.c
+
+#include	"prefs.h"
+
+/* Debut ajout Thiebaut */
+typedef struct {
+	int nkey;
+	int i;
+} NKEYI;
+/* Fin ajout Thiebaut */
+
+...
+
+#ifndef	NO_ENVVAR
+   static char	value2[MAXCHAR],envname[MAXCHAR];
+   char		*dolpos;
+#endif
+/* Debut ajout Thiebaut */
+	NKEYI nkeyi[100];
+	int k,ktot;
+	ktot=0;
+/* Fin ajout Thiebaut */
+
+...
+              QMALLOC(((char **)key[nkey].ptr)[i], char, MAXCHAR);
+/* Debut ajout Thiebaut */
+		nkeyi[ktot].nkey=nkey;
+		nkeyi[ktot].i=i;
+		ktot++;
+/* Fin ajout Thiebaut */
+
+...
+  for (i=0; key[i].name[0]; i++)
+    if (!key[i].flag)
+      error(EXIT_FAILURE, key[i].name, " configuration keyword missing");
+  fclose(infile);
+/* Debut ajout Thiebaut */
+	for (k=0;k<ktot;k++) {
+	  nkey=nkeyi[k].nkey;
+          i=nkeyi[k].i;
+	  if (((char **)key[nkey].ptr)[i]!=NULL) {
+             sext_free2(((char **)key[nkey].ptr)[i]);
+	     ((char **)key[nkey].ptr)[i]=NULL;
+	  }
+	}
+/* Fin ajout Thiebaut */

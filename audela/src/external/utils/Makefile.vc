@@ -1,0 +1,23 @@
+CP= copy
+RM= -@del /f /q
+
+SOURCE=.
+AUDELA_BIN=..\..\..\bin
+
+build:
+
+install: build
+	if not exist $(AUDELA_BIN)         mkdir $(AUDELA_BIN)
+	$(CP) $(SOURCE)\bin\bifsconv.exe   $(AUDELA_BIN)
+	$(CP) $(SOURCE)\bin\cal_afr.exe    $(AUDELA_BIN)
+	$(CP) $(SOURCE)\bin\scriptis.exe   $(AUDELA_BIN)
+	$(CP) $(SOURCE)\bin\CCD_Driver.dll $(AUDELA_BIN)
+	$(CP) $(SOURCE)\bin\cygwin1.dll    $(AUDELA_BIN)
+
+clean:
+	$(RM) $(AUDELA_BIN)\bifsconv.exe
+	$(RM) $(AUDELA_BIN)\cal_afr.exe
+	$(RM) $(AUDELA_BIN)\scriptis.exe
+	$(RM) $(AUDELA_BIN)\CCD_Driver.dll
+	$(RM) $(AUDELA_BIN)\cygwin1.dll
+	

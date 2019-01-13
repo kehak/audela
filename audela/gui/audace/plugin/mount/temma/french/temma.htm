@@ -1,0 +1,385 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Monture Temma (2 Jr)</title>
+</head>
+
+<body>
+<p class="date">Date de mise &#224; jour : 05 avril 2016</p>
+<h1>Monture Temma</h1>
+<h2>1. Pr&#233;ciser la position de l'observateur</h2>
+<p>La position de l'observateur est une donn&#233;e importante
+pour l'affichage des coordonn&#233;es, le pointage, etc. Si ce
+n'est pas d&#233;j&#224; fait, lancer <b>Aud'ACE</b> et choisir
+le menu <b>Configuration/Position de l'observateur</b> et
+indiquer la position g&#233;ographique du t&#233;lescope. Cette
+position est &#233;galement n&#233;cessaire pour la mise en
+station (cf. ci-dessous).</p>
+<h2>2. Mettre la monture en station</h2>
+<ol>
+<li>Positionner le tr&#233;pied et la monture de mani&#232;re
+&#224; ce que l'axe polaire pointe approximativement vers le
+P&#244;le Nord, serrer la vis d'attache de l'embase pour
+&#233;viter les vibrations tout en laissant un jeu suffisant pour
+le r&#233;glage ult&#233;rieur de l'azimut. Le tr&#233;pied n'a
+pas besoin d'&#234;tre parfaitement horizontal.</li>
+<li>Mettre en place le c&#226;ble s&#233;rie entre la monture et
+le PC, la raquette et le c&#226;ble d'alimentation.</li>
+<li>Mettre au moins <b>Computer stand by</b> sur <b>On</b> de
+mani&#232;re &#224; ce que la PC puisse communiquer avec la
+monture et initialiser la position ; le bouton <b>Motor</b>
+permet d'alimenter les moteurs, faute de quoi la monture
+n'effectuera aucun d&#233;placement.
+<p><img alt="" src="images/commande.gif" /></p>
+</li>
+<li>Calculer l'&#233;cart de longitude par rapport au
+m&#233;ridien central du fuseau horaire du lieu (0&#176; pour La
+France). L'&#233;cart est compt&#233; positivement vers l'ouest
+et n&#233;gativement vers l'est : Exemple pour une position de
+4&#176; E la diff&#233;rence est &#233;gale &#224; 0&#176; -
+4&#176; = -4&#176;. Faire tourner la bague supportant le niveau
+&#224; bulle jusqu'&#224; faire co&#239;ncider le rep&#232;re
+fixe de l'axe d'ascension droite avec l'&#233;cart de longitude
+(l'&#233;chelle N(ord) est gradu&#233;e en degr&#233;s de
++15&#176; &#224; -15&#176;). Serrez la vis &#224; gauche de
+l'&#233;chelle.
+<p><img alt="" src="images/reglage_longitude.gif" /></p>
+</li>
+<li>Tourner le t&#233;lescope selon l'axe d'ascension droite
+jusqu'&#224; ce que le niveau &#224; bulle soit horizontal.
+Amener pr&#233;cis&#233;ment la bulle au centre du rep&#232;re
+avec la raquette.
+<p><img alt="" src="images/niveau.gif" /></p>
+</li>
+<li>Arr&#234;ter les moteurs (Motor off) sans couper
+l'alimentation (qui alimente aussi la diode rouge du viseur
+polaire).</li>
+<li>Tourner le t&#233;lescope autour de l'axe des
+d&#233;clinaisons pour l'amener &#224; l'horizontale, ce qui
+d&#233;gage le viseur polaire.</li>
+<li>R&#233;gler la luminosit&#233; de la diode rouge avec le
+potentiom&#232;tre P. Light Control situ&#233; &#224;
+c&#244;t&#233; du t&#233;moin de tension (Power) de mani&#232;re
+&#224; laisser appara&#238;tre La Polaire (en masquant les
+&#233;toiles plus faibles).</li>
+<li>Amener La Polaire dans le champ du viseur polaire en agissant
+sur le r&#233;glage de latitude et de d'azimut, si
+n&#233;cessaire r&#233;orienter le tr&#233;pied.</li>
+<li>Faire co&#239;ncider la graduation correspondant au temps TU
+avec celle de la date en tournant l'oculaire du viseur polaire :
+Ceci a pour effet de faire tourner le champ rectangulaire dans
+lequel devra se trouver La Polaire.
+<p><img alt="" src="images/date_tu.gif" /></p>
+</li>
+<li>Affiner les r&#233;glages de latitude et d'azimut de
+mani&#232;re &#224; amener La Polaire dans le champ
+rectangulaire, &#224; la position correspondante &#224;
+l'ann&#233;e.</li>
+<li>Serrer la vis d'attache de l'embase.</li>
+</ol>
+<h2>2. Pr&#233;parer la connexion dans le panneau Temma</h2>
+<p>Dans <b>Aud'ACE</b> choisir le menu
+<b>T&#233;lescope/T&#233;lescope</b> puis
+<b>Configuration/Monture</b> et s&#233;lectionner l'onglet
+<b>Temma</b> ; le panneau suivant s'affiche :</p>
+<p><img alt="" src="images/panneau_temma.gif" /></p>
+<ol>
+<li>V&#233;rifier le port s&#233;rie et le mod&#232;le de la
+monture.</li>
+<li>S&#233;lectionner la vitesse de suivi (sid&#233;rale,
+solaire, objet mobile comme un ast&#233;ro&#239;de ou une
+com&#232;te) avec le bouton <b>Contr&#244;le de la vitesse de
+suivi</b>. Dans ce dernier cas il faudra indiquer les
+d&#233;rives en AD en et D&#233;c conform&#233;ment aux
+unit&#233;s pr&#233;cis&#233;es dans la fen&#234;tre.</li>
+<li>R&#233;gler les vitesses de correction lentes. Ce
+r&#233;glage peut &#234;tre :<br />
+<b>commun aux 2 axes</b> :
+<p><img alt="" src="images/corrections_liees.gif" /></p>
+ou <b>ind&#233;pendant sur chaque axe</b> :
+<p><img alt="" src="images/corrections_independantes.gif" /></p>
+<p>Les valeurs de corrections sont transmises au t&#233;lescope
+lors <b>de l'initialisation ou lors d'une modification de ce
+r&#233;glage</b> (t&#233;lescope d&#233;j&#224;
+connect&#233;).</p>
+</li>
+<li>S&#233;lectionner les positions d'initialisation, &#224;
+savoir la direction point&#233;e par le tube optique et le
+c&#244;t&#233; (Est ou Ouest) o&#249; il se trouve par rapport
+&#224; la monture :
+<p><img alt="" src="images/unpark_temma.gif" /></p>
+</li>
+<li>La case &#224; cocher <b>Traces dans la console</b> est
+r&#233;serv&#233; au d&#233;boggage.</li>
+<li>Si <b>Carte du Ciel V3</b> est utilis&#233;, v&#233;rifier
+que les r&#233;glages de Carte du Ciel et de Aud'ACE, et
+notamment ceux du port, sont conformes &#224; l'<b><a href=
+"../../../../plugin/chart/carteducielv3/french/carteducielv3.htm">aide</a></b>.
+Dans l'onglet <b>Temma</b> s&#233;lectionner <b>Raquette &#224;
+l'&#233;cran</b> et l'option <b>superpad</b> par exemple.</li>
+</ol>
+<h2>3. Connecter la monture</h2>
+<ul>
+<li>Cliquer sur <b>Appliquer</b> et attendre l'affichage du
+message de confirmation sur la Console :
+<p>La communication est &#233;tablie si <b>Version</b> et
+<b>Latitude</b> sont renseign&#233;s :</p>
+<p><img alt="" src="images/confirmation.gif" /></p>
+<p>Si la <b>Version</b> n'est pas renseign&#233;e et que la
+<b>Latitude</b> est &#233;gale &#224; <b>N 0&#176; 0' 0.0"</b>
+c'est que la communication n'est pas &#233;tablie (cf.
+l'alimentation par exemple ou le c&#226;ble s&#233;rie).</p>
+<p><img alt="" src="images/pas_connecte.gif" /></p>
+</li>
+<li>L'appui sur <b>Appliquer</b> a &#233;tabli la communication
+avec la monture et son initialisation compl&#232;te
+(coordonn&#233;es, prise en compte des encodeurs et mise ne
+marche des moteurs). Un message dans la console confirme
+l'initialisation :
+<p><img alt="" src="images/msg_unpark.gif" /></p>
+Elle est pr&#234;te pour un GOTO.</li>
+<li>Eventuellement, v&#233;rifier que l'indicateur de <b>Position
+du t&#233;lescope</b> est conforme <b>{ Ouest | Est }</b> sinon
+utiliser le bouton <b>Changer la position d'origine du
+t&#233;lescope</b>.<br />
+Note : l'indicateur indique la nouvelle position lorsque le
+t&#233;lescope change de c&#244;t&#233;.</li>
+<li>Si l'outil <b>T&#233;lescope</b> est ouvert avant la
+connexion il affichera la direction vis&#233;e et les
+coordonn&#233;es correspondantes. Si l'outil
+<b>T&#233;lescope</b> est ouvert apr&#232;s la connexion ces
+informations ne sont pas affich&#233;es.</li>
+</ul>
+<ul>
+<li>Il est &#233;galement possible de lancer l'initialisation au
+z&#233;nith &#224; partir de l'outil <b>T&#233;lescope</b> en
+s&#233;lectionnant <b>Z&#233;nith</b> et en appuyant sur le
+bouton <b>MATCH</b>.</li>
+</ul>
+<p><img alt="" src="images/panneau_telescope.gif" /></p>
+<ul>
+<li>Si le mod&#232;le supporte l'arr&#234;t du suivi. Un simple
+clic avec le bouton gauche de la souris sur la mention "Suivi On"
+ou "Suivi Off" (sous la raquette virtuelle) bascule l'&#233;tat
+du suivi :</li>
+</ul>
+<p><img alt="" src="images/suivi.gif" /></p>
+<ul>
+<li>Le bouton <b>Arr&#234;ter</b> provoque non seulement la
+d&#233;connexion du t&#233;lescope mais aussi, par mesure de
+s&#233;curit&#233;, l'<b>arr&#234;t des moteurs</b>. Un message
+sur la console indique la position de parquage et l'&#233;tat des
+moteurs.</li>
+</ul>
+<h2>4. Les positions d'initialisation</h2>
+<p>Le constructeur recommande l'<b>initialisation au
+z&#233;nith</b> (Est ou Ouest) en raison de la facilit&#233; avec
+laquelle on peut v&#233;rifier la position du tube (avec un
+simple niveau &#224; bulle). C'est donc la positionpar
+d&#233;faut propos&#233;ee dans le s&#233;lecteur.</p>
+<p><img alt="" src="images/telescope_ouest.gif" /></p>
+Le microcontr&#244;leur de la monture coordonne les mouvements en
+AD et DEC de mani&#232;re &#224; &#233;viter de pointer sous
+l'horizon, pour &#233;viter d'endommager les miroirs. Malgr&#233;
+tout on peut essayer :
+<ul>
+<li>direction vis&#233;ee : <b>Horizon Ouest</b>, contrepoids en
+bas, tube &#224; l'<b>Est</b>,</li>
+<li>direction vis&#233;ee : <b>Horizon Est</b>, contrepoids en
+bas, tube &#224; l'<b>Ouest</b>,</li>
+</ul>
+Ces deux directions sont celles du tube optique permettant de
+d&#233;gager le viseur polaire et sont faciles &#224;
+v&#233;rifier avec un niveau &#224; bulle si le tube est
+cylindrique. Enfin les accessoires (oculaires et cam&#233;ra)
+sont &#224; bonne port&#233;e et ne risquent pas de heurter le
+tr&#233;pied contrairement aux positions z&#233;nithales.<br />
+<ul>
+<li>direction vis&#233;ee : <b>Horizon Sud</b>, tube
+c&#244;t&#233; Est ou Ouest,</li>
+<li>direction vis&#233;ee : <b>Horizon Nord</b>, tube c&#244;te
+Est ou Ouest,</li>
+</ul>
+La monture offre ainsi le profile le plus bas dans un abri.
+<ul>
+<li>direction vis&#233;ee : n'importe laquelle si on en
+conna&#238;t les coordonn&#233;es car c'est un <b>MATCH</b>.</li>
+<li>direction vis&#233;ee : pour Takahashi le <b>P&#244;le</b> se
+trouve avec le tube est &#224; l'Est, la barre des contrepoids
+&#224; l'horizontale &#224; l'Ouest ! Le <b>P&#244;le</b> avec le
+contrepoids en bas (donc sur le m&#233;ridien) souffre d'une
+ambigu&#239;t&#233; par rapport au c&#244;t&#233; et le viseur
+polaire n'est pas accessible dans cette position.</li>
+</ul>
+<h2>5. Commandes Tcl (non exhaustif, pour les programmeurs)</h2>
+<p>Voir aussi l'aide <b><a href=
+"../../../../doc_html/french/02programmation/tel.htm">Fonctions
+de pilotage des t&#233;lescopes</a></b> et la <b><a href=
+"protocole_temma.pdf">notice</a></b> au format pdf.</p>
+<ol>
+<li>
+<h3>Pour collecter des informations</h3>
+<ul>
+<li>Num&#233;ro du port s&#233;rie : <code>set port
+$::temma::private(port)</code> ---&gt; COMx</li>
+<li>Num&#233;ro du t&#233;lescope : <code>set telNo
+$::temma::private(telNo)</code> ---&gt; 1</li>
+<li>Temporisation en ms : <code>[ tel$telNo tempo ]</code>
+---&gt; 250 ms<code><br /></code></li>
+<li>Monture : <code>[ tel$telNo product ] ---&gt;
+temma</code></li>
+<li>Nom : <code>[ tel$telNo name ]</code> ---&gt; Temma</li>
+<li>Driver : <code>[ tel$telNo drivername ]</code> ---&gt;
+libtemma {Jun 13 2011}</li>
+<li>Firmware : <code>[ tel$telNo firmware ]</code> ---&gt;
+NTP-020J-100250-T4A--2508 (pour la motorisation test&#233;e)</li>
+<li>Date : <code>[ tel$telNo date ]</code></li>
+<li>Position Home : <code>[ tel$telNo home ]</code></li>
+<li>Type de monture : <code>[ tel$telNo alignmentmode ]</code>
+---&gt; EQUATORIAL</li>
+<li>Position du t&#233;lescope par rapport &#224; la monture :
+<code>[ tel$telNo german ]</code> ---&gt; E ou W</li>
+<li>Coordonn&#233;es courantes : <code>[ tel$telNo radec coord
+]</code></li>
+<li>Fonctionnement des encodeurs : <code>[ tel$telNo encoder
+]</code> ---&gt; 0 ou 1</li>
+<li>Op&#233;ration en cours : <code>[ tel$telNo radec state
+]</code> ---&gt; stopped, tracking ou pointing (GOTO en
+cours)</li>
+<li>Etat des moteurs (sp&#233;cifique &#224; cette monture) :
+<code>[ tel$telNo motorstate ]</code> ---&gt; -1 (inconnu), 0
+(arr&#234;t) ou 1 (en marche). Cette commande est inop&#233;rante
+durant un pointage.</li>
+<li>Temps Sid&#233;ral Local (en degr&#233;s) : <code>[ tel$telNo
+getlst ]</code></li>
+<li>Latitude (en degr&#233;s) : <code>[ tel$telNo getlatitude
+]</code></li>
+<li>Vitesse actuelle : <code>[ tel$telNo speed ]</code> ---&gt;
+slew</li>
+<li>Vitesses de correction AD-D&#233;c. : <code>[ tel$telNo
+correctionspeed ]</code> ---&gt; 50 50 (r&#233;glage par
+d&#233;faut)</li>
+<li>D&#233;rive AD-D&#233;c. quotidienne : <code>[ tel$telNo
+driftspeed ] --&gt; 0 0</code> (pour lire les d&#233;rives
+actuelles, r&#233;glage par d&#233;faut)</li>
+<li>Rattrapage des jeux m&#233;caniques <code>[ tel$telNo
+mechanicalplay ]</code> ---&gt; ex 0.000000 0.000000</li>
+</ul>
+<br /></li>
+<li>
+<h3>Pour donner des ordres</h3>
+<ul>
+<li>Initialisation au z&#233;nith : <code>tel$telNo
+initzenith</code></li>
+<li>Changer la position du t&#233;lescope par rapport &#224; la
+monture : <code>tel$telNo german W ou</code> <code>tel$telNo
+german</code> <code>E</code></li>
+<li>Changer la temporisation : <code>tel$telNo tempo 100 ---&gt;
+Pour la fixer &#224; 100 ms<br /></code></li>
+<li>Changer les vitesses de d&#233;rive quotidienne :
+<code>tel$telNo driftspeed 2120 156 ---&gt;</code> Pour imposer
+une vitesse de d&#233;rive en AD (2120) et en D&#233;c. (156)
+:<br /></li>
+<li style=
+"list-style-type: none; list-style-image: none; list-style-position: outside;">
+<ul>
+<li>Indiquer sous la forme d'un entier la vitesse de
+d&#233;placement de votre objet (com&#232;te,
+ast&#233;ro&#239;de, etc.).</li>
+<li>AD : R&#233;glage du suivi sid&#233;ral en secondes par
+jour.</li>
+<li>R&#233;glage de la vitesse sid&#233;rale : Combien de
+secondes sont ajout&#233;es ou soustraites par p&#233;riode de 24
+heures.</li>
+<li>D&#233;c. : R&#233;glage du suivi sur la d&#233;clinaison en
+minutes par jour.</li>
+<li>R&#233;glage du suivi sur la d&#233;clinaison : Combien de
+minutes par p&#233;riode de 24 heures.<br /></li>
+<li>Valeurs limites : +/-21541 en Ascension Droite et +/-600 en
+D&#233;clinaison.</li>
+<li>-21541 : Suivi sid&#233;ral ralenti &#224; 0,75x la vitesse
+sid&#233;rale : (86164 - 21541) / 86164 = 0,75.</li>
+<li>+21541 : Suivi sid&#233;ral acc&#233;l&#233;r&#233; &#224;
+1,25x la vitesse sid&#233;rale : (86164 + 21541) / 86164 =
+1,25.</li>
+<li>-600 : Mouvement &#224; +10&#176;/jour dans la direction nord
+: (-600 / 60) x (-1) = 10&#176;/jour.<br /></li>
+<li>+600 : Mouvement &#224; -10&#176;/jour dans la direction sud
+: (600 / 60) x (-1) = -10&#176;/jour.<br /></li>
+<li>Exemple :</li>
+<li style=
+"list-style-type: none; list-style-image: none; list-style-position: outside; display: inline;">
+<ul>
+<li>AD = -120, ralentit la vitesse sid&#233;rale &#224; (86164 -
+120) / 86164 = 86044 / 86164 = 0,9986.<br /></li>
+<li>D&#233;c. = +30, la vitesse sur la d&#233;clinaison est de 30
+minutes par jour.<br /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Changer la position Home : <code>tel$telNo home
+$::audace(posobs,observateur,gps)<br /></code></li>
+<li>Mise en marche des moteurs : <code>tel$telNo radec motor
+on</code></li>
+<li>Arr&#234;t des moteurs : <code>tel$telNo radec motor
+off</code></li>
+<li>Prise en compte des encodeurs : <code>tel$telNo encoder
+1</code></li>
+<li>Prise en compte des corrections de la vitesse normale en AD
+et en D&#233;c. : <code>tel$telNo correctionspeed
+$conf(temma,correc_AD) $conf(temma,correc_Dec)</code></li>
+<li>Mise en mouvement : <code>tel$telNo radec move {n|e|w|s}
+{0|1}</code></li>
+<li>Arr&#234;t du mouvement : <code>tel$telNo radec
+stop</code></li>
+<li>Initialisation sur une position : <code>tel$telNo radec init
+{$ra $dec}</code></li>
+<li>GOTO : <code>tel$telNo radec goto {$ra $dec} -rate {0|1}
+-blocking {0|1}</code></li>
+</ul>
+<br /></li>
+<li>
+<h3>Messages d'erreur</h3>
+<div style="margin-left: 2em;">Les erreurs &#233;ventuellement
+rencontr&#233;es par la monture dans un MATCH ou un GOTO sont
+signal&#233;es dans une fen&#234;tre d'erreur, comme par exemple
+la tentative de pointer sous l'horizon :
+<p><img alt="" src="images/error.gif" /></p>
+<p>Le GOTO n'est pas ex&#233;cut&#233; car le
+microcontr&#244;leur de la monture est programm&#233; pour
+coordonner les d&#233;placements en AD et DEC et pour refuser les
+d&#233;placements qui ameneraient &#224; pointer sous l'horizon,
+ce qui peut entra&#238;ner des dommages sur les miroirs.</p>
+</div>
+</li>
+</ol>
+<h2>6. Informations diverses sur la monture Temma</h2>
+<ul>
+<li>La latitude est r&#233;glable entre 20&#176; et 50&#176; et
+&#224; partir de 0&#176; en enlevant le pointeau d'azimut.</li>
+<li>L'azimut est r&#233;glable entre plus et moins 15&#176;
+autour de l'axe polaire.</li>
+<li>La vitesse de pointage d&#233;pend de la tension
+d'alimentation (12V &#224; 24V) et du mod&#232;le (Temma 2 Jr) ou
+(Temma 2).</li>
+<li>Le d&#233;marrage et l'arr&#234;t des moteurs sont
+progressifs.</li>
+<li>Le firmware ne corrige pas la r&#233;fraction
+atmosph&#233;rique.</li>
+<li>Sur la monture test&#233;e, la tension minimale de
+fonctionnement est de 12V (batterie). En de&#231;&#224; le
+pointage ne fonctionne plus. L'absence d'alarme induit que la
+suite d'un programme sera erron&#233;e, notamment en mode
+<b>Remote</b>.</li>
+<li>Le brochage du port s&#233;rie est le suivant
+<p><img alt="" src="images/cable-temma_RS232c.gif" /></p>
+et celui du port de guidage ( en parall&#232;le &#224; la
+raquette) est
+<p><img alt="" src="images/autoguide_new.gif" /></p>
+</li>
+</ul>
+</body>
+</html>

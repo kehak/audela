@@ -1,0 +1,745 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Int&eacute;grer Audela dans un serveur Internet</title>
+</head>
+
+<body>
+<p> Cette page est destin&eacute;e &agrave; pr&eacute;senter l'utilisation du logiciel Audela dans le cadre d'observations &agrave; grandes distances via le r&eacute;seau Internet. Il est tout &agrave; fait possible d'appliquer cette m&eacute;thode &agrave; un r&eacute;seau local. Nous allons d'abord faire le point sur trois fa&ccedil;ons de piloter un observatoire distant. </p>
+<p>L'utilisation la plus simple d'un r&eacute;seau informatique, pour l'observation astronomique, consiste &agrave; se servir d'un logiciel qui capture l'&eacute;cran de l'ordinateur de l'observatoire (celui qui pilote le t&eacute;lescope et la cam&eacute;ra) et transmet l'image sur l'&eacute;cran d'un ordinateur plac&eacute; dans une pi&egrave;ce au chaud. Parmi ces logiciels de contr&ocirc;le de PC distants, citons: </p>
+<ul>
+  <li> Virtual Network Computing (VNC) : <a
+ href="http://www.uk.research.att.com/vnc/index.html">http://www.uk.research.att.com/vnc/index.html</a> : freeware</li>
+  <li> NetMeeting : livr&eacute; avec Windows : freeware (il faut activer la fonction 'partage')</li>
+  <li> DataSet RemoteControl : <a href="http://www.dataset.fr/">http://www.dataset.fr/</a> : payant apr&egrave;s une p&eacute;riode d'essai</li>
+  <li> Remote Administrator : <a href="http://www.famatech.com">http://www.famatech.com</a> : 35$ apr&egrave;s la p&eacute;riode d'essai (pr&eacute;tend &ecirc;tre beaucoup plus rapide que VNC)</li>
+</ul>
+<p>Ce type de logiciel permet de prendre en main l'ordinateur distant comme si l'on &eacute;tait sur place. La copie d'&eacute;cran peut s'afficher sur l'&eacute;cran du navigateur et le clavier agit directement sur le PC distant. Ces logiciels ont fr&eacute;quence de rafra&icirc;chissement lente. Plus probl&eacute;matique est que l'utilisateur peut effectuer n'importe quelle op&eacute;ration sur le PC distant sans aucune s&eacute;curit&eacute;. L'usage de ces logiciels est donc r&eacute;serv&eacute; &agrave; une utilisation locale ou bien simplement pour un groupe ferm&eacute; d'utilisateurs.</p>
+<p>La deuxi&egrave;me fa&ccedil;on d'effectuer des observations automatiques, consiste &agrave; piloter l'observatoire (t&eacute;lescope, CCD, etc.) avec Audela install&eacute; sur un ordinateur proche de l'observatoire (= ordinateur Jardin). Un second ordinateur (= ordinateur Maison), plac&eacute; dans une pi&egrave;ce chaude situ&eacute;e &agrave; quelques dizaines de m&egrave;tres, permet de contr&ocirc;ler l'observatoire &agrave; distance. Dans ce cadre, on peut utiliser <a
+ href="script4.htm">deux logiciels Audela qui vont &eacute;changer des commandes avec le protocole RPC</a> d&eacute;fini &agrave; la page pr&eacute;c&eacute;dente: </p>
+<center>
+  <p><img src="images/serveur/waudela2.gif" height="138" width="711" /> Sch&eacute;ma d'utilisation d'un contr&ocirc;le &agrave; distance par un r&eacute;seau local </p>
+</center>
+<p>Si l'on souhaite piloter un observatoire tr&egrave;s distant, il devient difficile d'avoir une connexion permanente. De plus, la quantit&eacute; de donn&eacute;es &agrave; transf&eacute;rer peut ralentir consid&eacute;rablement le contr&ocirc;le. Dans ce cas, on pr&eacute;f&egrave;re utiliser un navigateur Web pour envoyer les ordres de commandes &agrave; l'observatoire. C'est ce troisi&egrave;me mode de fonctionnement qui va &ecirc;tre d&eacute;crit en d&eacute;tail dans cette page. La technique utilis&eacute;e consiste &agrave; transmettre, &agrave; l'observatoire, les donn&eacute;es du formulaire Web. L'ordinateur de l'observatoire est &eacute;quip&eacute; d'un logiciel nomm&eacute; d&eacute;mon HTTPD (cf. description d&eacute;taill&eacute; plus bas) dont le r&ocirc;le est d'ex&eacute;cuter un logiciel sp&eacute;cialis&eacute;, capable de transformer la requ&ecirc;te du formulaire en une commande pour Audela. Ce logiciel de transformation peut &ecirc;tre Audela lui m&ecirc;me, on le nomme Audela CGI. </p>
+<center>
+  <p><img src="images/serveur/waudela3.gif" height="331" width="712" /> Sch&eacute;ma d'utilisation d'un contr&ocirc;le &agrave; distance par un r&eacute;seau Internet </p>
+</center>
+<p>Cette m&eacute;thode a des avantages: le fonctionnement asynchrone permet une plus grande s&eacute;curit&eacute; en cas de coupure de r&eacute;seau et l'analyse du formulaire permet de rejeter des requ&ecirc;tes mal formul&eacute;es (temps de pose prohibitif, coordonn&eacute;es erronn&eacute;es, etc.). De plus, le navigateur Web peut &ecirc;tre utilis&eacute; &agrave; partir de n'importe quel ordinateur situ&eacute; en n'importe quel endroit de la Terre. N&eacute;anmoins, on perd l'int&eacute;ractivit&eacute; du r&eacute;seau local. Dans tous les cas, il peut &ecirc;tre utile d'&eacute;quiper l'ordinateur de l'observatoire d'un logiciel de contr&ocirc;le de PC distant (VNC, etc.) qui sera utilis&eacute; par l'administrateur afin d'effectuer la maintenance logiciel p&eacute;riodiquement. </p>
+<p>Enfin, nous signalons aussi le projet de <a
+ href="http://es.geocities.com/astrorafael/audela/proposal.html">client/serveur pour Audela</a> propos&eacute; par Rafael Gonzalez Fuentetaja. Ce projet propose l'&eacute;criture de scripts orient&eacute;s objets pour Audela. </p>
+<h3> 1. Qu'est-ce qu'un CGI ?</h3>
+<p>D'un point de vue utilisateur, un CGI (Common Gateway Interface) est un logiciel qui est activ&eacute; par un bouton d'une page WEB. En cr&eacute;ant une interface WEB adapt&eacute;e (formulaire, etc.) qui appelle des CGI, il devient possible d'actionner un observatoire &agrave; distance. Le logiciel Audela peut &ecirc;tre utilis&eacute; en tant que CGI sp&eacute;cialement optimis&eacute; pour des applications d'astronomie. En utilisant Audela en tant que CGI sur un serveur Web, il devient possible de g&eacute;n&eacute;rer des &eacute;ph&eacute;m&eacute;rides, de cr&eacute;er un script Tcl pour une observation &agrave; pr&eacute;voir ou bien piloter un observatoire en direct, tout cela &agrave; partir d'un navigateur Internet &agrave; plusieurs centaines de kilom&egrave;tres de distance. L'observatoire automatique <a href="http://tarot.cesr.fr">TAROT-1</a>, situ&eacute; &agrave; l'observatoire de la C&ocirc;te d'Azur, fonctionne sur ce principe avec Audela en tant que CGI.</p>
+<p>Techniquement, l'ordinateur de l'observatoire doit &ecirc;tre reli&eacute; a un r&eacute;seau Internet. On peut <a href="script4a.htm">cr&eacute;er facilement un tel r&eacute;seau localement chez soi</a> pour piloter l'observatoire qui se trouve au fond du jardin &agrave; partir d'un ordinateur plac&eacute; dans la maison. Enfin, il faut installer un serveur HTTPD (=d&eacute;mon pour le protocole de transfert hyper texte) sur l'ordinateur qui est plac&eacute; pr&egrave;s de l'observatoire. Le serveur HTTPD est un logiciel qu'il faut rajouter et lancer (en t&acirc;che de fond). C'est lui qui va transformer votre ordinateur en serveur WEB et permet d'utiliser le navigateur avec le protocole http. Ainsi, l'ordinateur &eacute;quip&eacute; d'un serveur HTTPD a pour mission d'attendre qu'un client se connecte &agrave; lui et lui demande un service. Le client est un navigateur WEB qui peut &ecirc;tre install&eacute; sur un ordinateur distant (dans la maison). C'est en g&eacute;n&eacute;ral la configuration classique d'utilisation. </p>
+<p>Voici une liste de bon serveurs HTTPD gratuits : </p>
+<ul>
+  <li> Xitami : <a href="http://www.imatix.com">http://www.imatix.com</a></li>
+  <li> Apache : <a href="http://www.apache.org">http://www.apache.org</a></li>
+</ul>
+<p>Les syst&egrave;mes d'exploitation Windows 2000 et NT disposent du serveur HTTPD IIS que l'on peut installer directement. Les distributions de Linux sont g&eacute;n&eacute;ralement fournies avec Apache. La distribution de Audela contient une archive sp&eacute;ciale pour installer facilement le serveur Xitami pour Windows.</p>
+<p>Pour un observatoire tr&egrave;s distant, l'ordinateur de l'observatoire, &eacute;quip&eacute; du d&eacute;mon HTTPD, doit pouvoir &ecirc;tre reconu sur l'Internet, soit par un num&eacute;ro IP fixe, soit par un nom de domaine. Il existe des organismes qui peuvent attribuer un nom de domaine fixe pour un ordinateur qui poss&egrave;de des num&eacute;ros IP variables (ce qui est le cas lorsque l'on transite par un fournisseur d'acc&egrave;s). Citons le logiciel WinIP (freeware) <a href="http://www.algenta.com/software/winip/">http://www.algenta.com/software/winip/</a> qui transmet le num&eacute;ro IP, attribu&eacute; par le fournisseur d'acc&egrave;s, et le nom de domaine choisi, &agrave; l'organisme ODS (<a href="http://www.ods.org/">http://www.ods.org/</a>). Le nom de domaine est alors imm&eacute;diatement utilisable pour se connecter au serveur HTTPD. </p>
+<h3> 2. Installer Audela-CGI</h3>
+<p>Si l'on souhaite utiliser le serveur Xitami livr&eacute; avec la distribution de Audela, <a href="#xitami">passer directement au paragraphe 2.2</a>.</p>
+<h3> 2.1 G&eacute;n&eacute;ralit&eacute;s</h3>
+<p>A partir de l'installation classique de Audela, effectuer les op&eacute;rations suivantes :</p>
+<ul>
+  <li> copier l'ensemble du contenu de binwin (ou binlinux pour Linux) dans le dossier cgi-bin du serveur HTTPD. Ce dossier s'appelle 'Inetpub/Scripts' dans les serveurs IIS.</li>
+  <li> cr&eacute;er un dossier lib au m&ecirc;me niveau que le dossier cgi-bin et y placer le contenu du dossier lib de Audela. Dans le cas du serveur IIS, le dossier lib doit &ecirc;tre fils de Inetpub.</li>
+  <li> mettre en route le serveur HTTPD</li>
+</ul>
+<p>On v&eacute;rifiera le bon fonctionnement du serveur HTTPD en connectant un client (Netscape ou IE) sur le m&ecirc;me ordinateur que celui qui contient le serveur. Entrer l'adresse URL suivante : <a
+ href="http://127.0.0.1/">http://127.0.0.1/</a> et constater qu'il y a bien une page d'accueil qui s'affiche. Le num&eacute;ro IP 127.0.0.1 est le num&eacute;ro IP de la machine locale, m&ecirc;me si elle porte un autre num&eacute;ro IP.</p>
+<h3> <a name="xitami"></a>2.2. Installation de la distribution de Audela pour Windows</h3>
+<p>Dans la distribution du logiciel Audela, le fichier archive cgi-1.2.zip doit &ecirc;tre d&eacute;compact&eacute;. Il g&eacute;n&egrave;re le dossier audela-1.2/cgiwin qui a les sous dossiers suivants:</p>
+<ul>
+  <li> audela-1.2/cgiwin/cgi-bin</li>
+  <li> audela-1.2/cgiwin/errors</li>
+  <li> audela-1.2/cgiwin/ftproot</li>
+  <li> audela-1.2/cgiwin/webpages</li>
+</ul>
+<p>Les version plus r&eacute;centes du serveur Xitami contiennent d'autres dossiers inutilis&eacute;s dans notre cas. Il faut compl&eacute;ter l'installation en copiant divers fichiers (attention &agrave; ne pas effacer les fichiers de leur emplacement d'origine afin de continuer &agrave; utiliser Audela de fa&ccedil;on "classique") :</p>
+<ul>
+  <li> Copier tous les fichiers de type audela-1.2/binwin/*.dll dans audela-1.2/cgiwin/cgi-bin</li>
+  <li> Copier tous les fichiers de type audela-1.2/binwin/*.exe dans audela-1.2/cgiwin/cgi-bin</li>
+  <li> Copier audela-1.2/lib et tout son contenu dans audela-1.2/cgiwin</li>
+</ul>
+<p>Premiers tests:</p>
+<ul>
+  <li> V&eacute;rifier que <a href="script4a.htm#numeroip">votre ordinateur poss&egrave;de une adresse IP</a>.</li>
+  <li> Lancer le d&eacute;mon HTTPD Xitami en ex&eacute;cutant le fichier audela-1.2/cgiwin/xiwin32.exe (une ic&ocirc;ne en forme de X jaune sur fond bleu appara&icirc;t dans la barre des t&acirc;ches de Windows).</li>
+  <li> Lancer un navigateur Web sur le m&ecirc;me ordinateur et demander l'URL http://127.0.0.1/</li>
+  <li> Une page de formulaires Web doit normalement appara&icirc;tre sur le navigateur.</li>
+</ul>
+<center>
+  <p><img src="images/serveur/waudela4.jpg" height="514" width="526" /> Cette page de formulaire HTML est g&eacute;n&eacute;r&eacute;e par le fichier index.htm situ&eacute; dans le dossier cgiwin/webpages. Cet emplacement correspond &agrave; l'adresse de base du serveur Xitami (http://127.0.0.1)</p>
+</center>
+<p>L'acc&egrave;s &agrave; cette page, depuis un autre ordinateur, n&eacute;cessite de remplacer l'adresse 127.0.0.1 par l'adresse IP de l'ordinateur de l'observatoire (ou bien son nom de domaine symbolique) qui fait fonctionner le serveur HTTPD. </p>
+<p>Pour les formulaires de d&eacute;p&ocirc;t de requ&ecirc;te et de la visionneuse, il est conseill&eacute; d'&eacute;diter <a
+ href="#cfgcgi">le fichier cfgcgi.tcl</a> afin de changer les noms de dossiers pour enregistrer les fichiers de requ&ecirc;te et d'images. </p>
+<h3> 3. Exemple d'utilisation</h3>
+<h3> 3.1. Un cas simple, l'affichage des donn&eacute;es du formulaire</h3>
+Prenons un exemple simple. Le client remplit un formulaire HTML et d&eacute;sire que le CGI lui retourne simplement le contenu des donn&eacute;es du formulaire sur une nouvelle page de son navigateur (c'est un exemple classique car il permet de tester le bon fonctionnement du serveur HTTPD). Cette page n'a pas vocation d'apprendre le langage HTML (de nombreux cours sont accessibles sur le Web) mais nous allons d&eacute;couvrir ici la syntaxe de base des formulaires. Le formulaire HTML pourrait ressembler &agrave; cela par exemple :
+<center>
+  <form method="post" action="/cgi-bin/audela.exe" target="_blank">
+     Entrer votre message
+    <input name="message"
+ value="vive audela">
+    <input type="submit" value="test"
+ name="SUBMIT">
+    <input name="mode" type="hidden" value="test1">
+  </form>
+</center>
+<p>Apparemment, ce formulaire est compos&eacute; d'une phrase, suivie d'un champ d'entr&eacute;e de texte et d'un bouton pour d&eacute;marrer l'ex&eacute;cution du script CGI. Derri&egrave;re ce formulaire, se "cachent" les lignes HTML suivantes : </p>
+<pre>&lt;form METHOD="POST" ACTION="/cgi-bin/audela.exe" TARGET="_blank"&gt;</pre>
+<pre> Entrer votre message &lt;input NAME="message" VALUE="vive audela"&gt;</pre>
+<pre> &lt;input TYPE=SUBMIT VALUE="test"&gt;</pre>
+<pre> &lt;input NAME="mode" TYPE=HIDDEN VALUE="test1"&gt;</pre>
+<pre>&lt;/form&gt;&lt;/center&gt;</pre>
+<p>Le formulaire commence par la balise FORM qui sert &agrave; d&eacute;finir son commencement. </p>
+<p>METHOD d&eacute;finit la fa&ccedil;on dont les donn&eacute;es seront transmises au script CGI. Il existe deux m&eacute;thodes : POST et GET. La m&eacute;thode POST est g&eacute;n&eacute;ralement employ&eacute;e car elle ne contient pas de limitation sur la longueur des donn&eacute;es transmises au CGI. </p>
+<p>ACTION d&eacute;finit le chemin d'acc&egrave;s au script CGI &agrave; ex&eacute;cuter. Ici , le logiciel audela.exe est install&eacute; dans le dossier cgi-bin du serveur HTTPD (&agrave; changer en audela tout court sous Linux). Changer cgi-bin en Scripts pour un d&eacute;mon IIS. </p>
+<p>TARGET d&eacute;finit sur quel &eacute;cran du navigateur seront envoy&eacute;es les r&eacute;ponses du script CGI. L'argument "_blank" ouvre une nouvelle fen&ecirc;tre du navigateur et le CGI peut donc y inscrire ses r&eacute;ponses. Attention, il y existe un bug dans Netscape6.0 qui ne permet pas d'employer normalement TARGET="_blank" et METHOD="post" ensemble. </p>
+<p>La deuxi&egrave;me ligne du formulaire montre la phrase qui est affich&eacute;e &agrave; l'&eacute;cran suivi de la balise INPUT qui sert &agrave; d&eacute;finir un champ du formulaire. Le nom du champ est d&eacute;fini par NAME et sa valeur par d&eacute;faut avec VALUE. Cela permet donc de montrer une zone de saisie de texte dans laquelle il y a un texte &eacute;crit par d&eacute;faut. Il est &eacute;videmment possible d'effacer ce texte ou d'en placer un autre. </p>
+<p>La troisi&egrave;me ligne d&eacute;finit un champ de TYPE SUBMIT. Il s'agit d'un champ tr&egrave;s particulier puisqu'il va g&eacute;n&eacute;rer, sur l'&eacute;cran du navigateur, un bouton qui lancera le script. L'argument VALUE sert &agrave; d&eacute;corer le bouton avec un texte. </p>
+<p>La quatri&egrave;me ligne, d&eacute;finit un champ de TYPE HIDDEN (= cach&eacute; en fran&ccedil;ais). Il s'agit d'un champ cach&eacute; &agrave; l'utilisateur et qui contient une donn&eacute;e qui sera pass&eacute;e au script CGI sans jamais appara&icirc;tre sur l'&eacute;cran du navigateur. Le nom de ce champ s'appelle 'mode' et sa valeur est 'test1'. Nous utilisons habituellement le champ nomm&eacute; 'mode' pour permettre &agrave; audela de savoir sur quel bouton l'utilisateur a appuy&eacute;. En effet, il peut y avoir plusieurs formulaires qui appellent le script CGI audela.exe sur une m&ecirc;me page (ce qui est le cas de cette page !). </p>
+<p>A pr&eacute;sent, un appui sur le bouton 'test' active le logiciel audela CGI qui lance automatiquement le script Tcl nomm&eacute; audela.tcl (principe g&eacute;n&eacute;ral de audela.exe). Ce fichier audela.tcl est plac&eacute; dans le dossier cgiwin/cgi-bin. Il n'a rien &agrave; voir avec celui situ&eacute; dans le dossier binwin utilis&eacute; par Audela de fa&ccedil;on classique. Examinons le contenu de cgiwin/cgi-bin/audela.tcl: </p>
+<pre>#</pre>
+<pre># Fichier : audela.tcl</pre>
+<pre>#</pre>
+<pre># --- recupere les donnees du formulaire</pre>
+<pre># --- dans les arrays :</pre>
+<pre># --- cgiaudela(names)</pre>
+<pre># --- cgiaudela(values)</pre>
+<pre>set numerror [ catch {</pre>
+<pre> source cgiutil.tcl</pre>
+<pre> # --- Verifie si le nom 'mode' existe</pre>
+<pre> # --- et execute le script test_1.tcl s'il vaut 'test1'.</pre>
+<pre> # --- Cela est code dans le formulaire de la page HTML</pre>
+<pre> # --- par la ligne &lt;input NAME="mode" TYPE=HIDDEN VALUE="test1"&gt;</pre>
+<pre> set num [lsearch $cgiaudela(names) mode]</pre>
+<pre> if {$num&gt;=0} {</pre>
+<pre> set value [lindex $cgiaudela(values) $num]</pre>
+<pre> if {$value=="test1"} {</pre>
+<pre> source test_1.tcl</pre>
+<pre> } elseif {$value=="ephem1"} {</pre>
+<pre> source ephem_1.tcl</pre>
+<pre> <a name="audelatclreq1"></a></pre>
+<pre> } elseif {$value=="req1"} {</pre>
+<pre> source req_1.tcl</pre>
+<pre> } elseif {$value=="visio1"} {</pre>
+<pre> source visio_1.tcl</pre>
+<pre> } else {</pre>
+<pre> cgiaudela_entete</pre>
+<pre> puts "&lt;BODY&gt;"</pre>
+<pre> puts "Le mode $value n'est pas disponible"</pre>
+<pre> puts "&lt;/BODY&gt;"</pre>
+<pre> cgiaudela_fin</pre>
+<pre> }</pre>
+<pre> }</pre>
+<pre>} msgerror ]</pre>
+<pre>if {$numerror==1} {</pre>
+<pre> # --- Identificateur de l'entete de la page HTML pour le client</pre>
+<pre> puts -nonewline "Content-type: text/html\n\n\n"</pre>
+<pre> puts "&lt;HTML&gt;"</pre>
+<pre> puts "&lt;HEADER&gt;"</pre>
+<pre> puts "&lt;/HEADER&gt;"</pre>
+<pre> puts "&lt;BODY&gt;"</pre>
+<pre> puts "Tarot CGI error&lt;br&gt;"</pre>
+<pre> puts "Report : $msgerror &lt;br&gt;"</pre>
+<pre> puts "&lt;/BODY&gt;"</pre>
+<pre> puts "&lt;/HTML&gt;"</pre>
+<pre>}</pre>
+<pre># --- Fin du CGI</pre>
+<pre>exit</pre>
+<p>Ce script Tcl produit une page HTML qui s'affichera sur l'&eacute;cran du navigateur qui a appel&eacute; le CGI. Ce script pour audela ne montre aucune fonction graphique. Audela fonctionne donc sans interface lorsqu'il est employ&eacute; ainsi en tant que CGI (il n'y pas pas besoin d'interface graphique puisque le code graphique est la page HTML g&eacute;n&eacute;r&eacute;e pour le navigateur). Les param&egrave;tres du formulaire HTML sont d&eacute;cod&eacute;s gr&acirc;ce au script cgiutil.tcl, appel&eacute; syst&eacute;matiquement au d&eacute;but de audela.tcl. En effet, les donn&eacute;es de tous les champs du formulaire sont cod&eacute;es dans une seule cha&icirc;ne de caract&egrave;re. Le script cgiutil.tcl retrouve cette cha&icirc;ne, la transcode en clair et la d&eacute;compose en deux listes cgiaudela(names) et cgiaudela(values) qui contiennent respectivement les noms et les valeurs du formulaire. Le principe du transcodage est tr&egrave;s bien d&eacute;crit au chapitre 17 du livre "HTML et la programmation de serveurs WEB" P. Chal&eacute;at et D. Charnay &eacute;dition Eyrolles (1996). Le listing du script <a href="#cgiutil">cgiutil.tcl</a> est donn&eacute;e &agrave; la fin de cette page. </p>
+<p>La suite du script audela.tcl sert &agrave; ex&eacute;cuter d'autres scripts Tcl en fonction de la valeur du champ 'mode'. Ainsi, le m&ecirc;me programme CGI audela.exe est capable d'ex&eacute;cuter des fonctions tr&egrave;s diff&eacute;rentes en fonction de la valeur du champ 'mode'. Dans le cas pr&eacute;sent, le champ de mode aura pour valeur test1. Le fichier du script test_1.tcl est pr&eacute;sent dans le dossier cgiwin/cgi-bin. Voici son listing : </p>
+<pre>#</pre>
+<pre># Fichier : test_1.tcl</pre>
+<pre>#</pre>
+<pre># --- entete HTML</pre>
+<pre>cgiaudela_entete</pre>
+<pre>puts "&lt;BODY&gt;"</pre>
+<pre># --- affiche la liste des champs NAME</pre>
+<pre>puts "$cgiaudela(names) &lt;BR&gt;"</pre>
+<pre># --- affiche la liste des champs VALUE</pre>
+<pre>puts "$cgiaudela(values) &lt;BR&gt;"</pre>
+<pre># --- fin HTML</pre>
+<pre>puts "&lt;/BODY&gt;"</pre>
+<pre>cgiaudela_fin</pre>
+<p>Le texte HTML doit &ecirc;tre &eacute;crit entre les balises &lt;BODY&gt; et &lt;/BODY&gt;. Le script gciutil.tcl d&eacute;finit les fonctions cgiaudela_entete et cgiaudela_fin. L'envoi des donn&eacute;es sur l'&eacute;cran du navigateur est r&eacute;alis&eacute; gr&acirc;ce &agrave; la fonction Tcl puts. Cette fonction, envoie la cha&icirc;ne de caract&egrave;res sp&eacute;cifi&eacute;e sur le port stdout. Le r&eacute;sultat de ce script est le suivant : </p>
+<p>message mode {vive audela} test1 </p>
+<p>Ces deux lignes sont normalement inscrites sur une nouvelle page du navigateur. On y retrouve le contenu des deux listes cgiaudela(names) et cgiaudela(values). Le script test_1.tcl tcl n'a qu'une utilit&eacute; p&eacute;dagogique pour permettre de montrer les grands principes de fonctionnement du logiciel audela utilis&eacute; en CGI. Les exemples qui vont suivre sont beaucoup plus utiles que test_1.tcl. </p>
+<p>Notons que l'ensemble de l'ex&eacute;cution du script audela.tcl est enchass&eacute; dans une fonction catch. Cette fonction Tcl est tr&egrave;s importante car elle a pour mission de d&eacute;tourner les erreurs et d'&eacute;viter un arr&ecirc;t brutal de audela.exe suite &agrave; une erreur provoqu&eacute;e par l'interpr&eacute;teur Tcl (erreur dans le script par exemple). L'emploi de la fonction catch permet de tuer proprement le process audela.exe en cas d'erreur. En effet, dans le cas de Windows NT le process CGI ne peut m&ecirc;me pas &ecirc;tre tu&eacute; par l'administrateur et il peut donc, &agrave; terme, saturer la m&eacute;moire du PC ! </p>
+<h3> 3.2. Les &eacute;ph&eacute;m&eacute;rides en ligne</h3>
+<p>Si l'utilisateur d&eacute;sire les &eacute;ph&eacute;m&eacute;rides de toutes les plan&egrave;tes du syst&egrave;me solaire pour la date actuelle, il appuiera sur le bouton ci dessous :</p>
+<center>
+  <form method="post" action="/cgi-bin/audela.exe" target="_blank">
+    <input type="submit" value="Ephemerides" name="SUBMIT">
+    <input name="mode" type="hidden" value="ephem1">
+  </form>
+</center>
+<p>Derri&egrave;re ce bouton, se "cachent" les lignes HTML suivantes :</p>
+<pre>&lt;form METHOD="POST" ACTION="/cgi-bin/audela.exe" TARGET="_blank"&gt;</pre>
+<pre> &lt;input TYPE=SUBMIT VALUE="Ephemerides"&gt;</pre>
+<pre> &lt;input NAME="mode" TYPE=HIDDEN VALUE="ephem1"&gt;</pre>
+<pre>&lt;/form&gt;</pre>
+<p>Ce formulaire est encore plus simple que celui du test pr&eacute;c&eacute;dent. Il appelle encore audela.exe et entre dans audela.tcl tel qu'il a &eacute;t&eacute; d&eacute;fini pr&eacute;c&eacute;demment. Le champ 'mode' contient la valeur 'ephem1'. Le listing de audela.tcl comporte une ligne conditionnelle (
+<pre>if {$value=="ephem1"}</pre>
+) qui ex&eacute;cute le script ephem_1.tcl si le 'mode' vaut 'ephem1'. Le fichier du script &eacute;phem_1.tcl est pr&eacute;sent dans le dossier cgiwin/cgi-bin. Analysons son listing:
+   </p>
+   <pre>#</pre>
+   <pre># Fichier : ephem_1.tcl</pre>
+   <pre>#</pre>
+   <pre># --- entete HTML</pre>
+   <pre>cgiaudela_entete</pre>
+   <pre>puts "&lt;BODY&gt;"</pre>
+   <pre># --- calcule et affiche la date ---</pre>
+   <pre>set d [mc_date2ymdhms now]</pre>
+   <pre>puts "Nous sommes le [lindex $d 2]/[lindex $d 1]/[lindex $d 0]\</pre>
+   <pre>[lindex $d 3]h[lindex $d 4]min&lt;BR&gt;&lt;BR&gt;"</pre>
+   <pre># --- calcule et affiche les ephemerides ---</pre>
+   <pre>set liste_ephem [mc_ephem * now {OBJENAME RAH RAM.M DECD DECM.M MAG}]</pre>
+   <pre>set n [expr [llength $liste_ephem]-1]</pre>
+   <pre>puts "&lt;PRE&gt;"</pre>
+   <pre>for {set k 0} {$k&lt;$n} {incr k} {</pre>
+   <pre> set ephem [lindex $liste_ephem $k]</pre>
+   <pre> set planete [format "%7s" [lindex $ephem 0] ]</pre>
+   <pre> set rah [format "%02d" [lindex $ephem 1] ]</pre>
+   <pre> set ram [format "%05.2f" [lindex $ephem 2] ]</pre>
+   <pre> set decd [format "%+03d" [lindex $ephem 3] ]</pre>
+   <pre> set decm [format "%05.2f" [lindex $ephem 4] ]</pre>
+   <pre> set mag [format "%+5.1f" [lindex $ephem 5] ]</pre>
+   <pre> puts "${planete} ${rah}h${ram}m ${decd}&amp;deg;${decm}'${mag}"</pre>
+   <pre>}</pre>
+   <pre>puts "&lt;/PRE&gt;"</pre>
+   <pre># --- fin HTML</pre>
+   <pre>puts "&lt;/BODY&gt;"</pre>
+   <pre>cgiaudela_fin</pre>
+   <p>Pour calculer les &eacute;ph&eacute;m&eacute;rides, nous utilisons la fonction Tcl mc_ephem de la librairie d'extension <a
+ href="mcusr_fr.htm#mc_ephem">libmc</a>. Il n'y a aucune difficult&eacute; dans ce script si l'on ma&icirc;trise, bien s&ucirc;r, la syntaxe du langage HTML. Rappelons que les fonctions Tcl puts envoient une cha&icirc;ne de caract&egrave;re (ici du code HTML) qui sera retourn&eacute;e vers le navigateur qui a appel&eacute; le script. Normalement, le script retourne le r&eacute;sultat sous la forme suivante : </p>
+   <pre>Nous sommes le 4/1/2002 16h34min</pre>
+   <pre> Sun 19h01.33m -22&deg;41.44' -26.9</pre>
+   <pre> Moon 11h48.93m +06&deg;55.67' -10.6</pre>
+   <pre>Mercury 20h15.13m -21&deg;38.33' -0.8</pre>
+   <pre> Venus 18h51.46m -23&deg;27.31' -3.9</pre>
+   <pre> Mars 23h22.43m -04&deg;44.12' +0.8</pre>
+   <pre>Jupiter 06h44.08m +23&deg;03.93' -2.7</pre>
+   <pre>Saturn 06h08.56m +21&deg;36.00' -0.2</pre>
+   <pre>Uranus 21h40.73m -14&deg;38.64' +5.9</pre>
+   <pre>Neptune 20h39.80m -18&deg;16.63' +8.0</pre>
+   <pre> Pluto 17h03.87m -12&deg;54.06' +13.9</pre>
+   <p>Les fonctions de la librairie libmc sont suffisamment nombreuses pour permettre d'am&eacute;liorer ces &eacute;ph&eacute;m&eacute;rides. </p>
+   <h3> 3.3 G&eacute;rer un observatoire automatique distant</h3>
+   <p>Observer &agrave; distance n&eacute;cessite au moins un t&eacute;lescope automatique et une cam&eacute;ra CCD. On cherchera aussi probablement &agrave; assurer la couverture de l'instrument (abri, coupole, etc.) et un syst&egrave;me de gardiennage (m&eacute;t&eacute;o, intrusions, etc.), le tout automatis&eacute;. Nous allons nous int&eacute;resser uniquement au transfert des informations &agrave; caract&egrave;re astronomiques qui doivent entrer et sortir de l'observatoire distant, &agrave; savoir : les ordres d'observation et la r&eacute;cup&eacute;ration des images acquises.</p>
+   <h3> 3.3.1. Principes</h3>
+   <p>Nous allons mettre en place une utilisation via une page WEB. Ceci apporte un acc&egrave;s ais&eacute; et quasi universel, ce qui permet de consulter les donn&eacute;es de son observatoire &agrave; partir de n'importe quelle borne internet. Le sch&eacute;ma ci dessous permet d'avoir une vue synoptique du syst&egrave;me logiciel :</p>
+   <center>
+  <p><img src="images/serveur/waudela1.gif" height="366" width="527" /> Sch&eacute;ma de principe de la gestion d'observations par une interface Web. Ce sch&eacute;ma n'inclut pas les fonctions de gardiennage de l'observatoire (ouverture du toit, etc.) qui peuvent &ecirc;tre r&eacute;alis&eacute;es par un logiciel ind&eacute;pendant. </p>
+</center>
+   <p>Au d&eacute;part, l'utilisateur va remplir un formulaire HTML pour d&eacute;poser une requ&ecirc;te d'observation : </p>
+   <a name="reqhtm"></a>
+   <table width="100%" bgcolor="#ffffcc">
+  <tbody>
+       <tr>
+      <td> <center>
+          <h3> Formulaire de depot de requete</h3>
+        </center>
+           <form method="post" action="/cgi-bin/audela.exe">
+          <input name="mode" type="hidden" value="req1">
+          Entrer votre nom de user
+          <input name="user" value="">
+          Entrer votre mot de passe
+          <input
+ name="password" type="password" value="">
+          Coordonnee RA
+          <input name="rq_ra"
+ type="text" size="10" value="3h45m23s">
+          Coordonnee DEC
+          <input name="rq_dec"
+ type="text" size="10" value="10d5m23s">
+          Temps de pose
+          <input
+ name="rq_exptime" type="text" size="2" value="10">
+          secondes Binning
+          <select name="rq_binning" size="1">
+               <option value="1">1x1 </option>
+               <option value="2" selected="selected">2x2 </option>
+               <option value="4">4x4 </option>
+             </select>
+          <input type="submit" value="Deposer la requete"
+ name="SUBMIT">
+        </form></td>
+    </tr>
+     </tbody>
+</table>
+   <p></p>
+   <p>Le code HTML de ce formulaire est le suivant et peut &ecirc;tre inclus dans n'importe quelle page Web (nous avons volontairement omis les caract&egrave;res accentu&eacute;s pour all&eacute;ger la syntaxe du code HTML) : </p>
+   <pre>&lt;center&gt;&lt;h2&gt;Formulaire de depot de requete&lt;/h2&gt;&lt;/center&gt;</pre>
+   <pre>&lt;form METHOD="POST" ACTION="/cgi-bin/audela.exe"&gt;</pre>
+   <pre> &lt;input NAME="mode" TYPE=HIDDEN VALUE="req1"&gt;</pre>
+   <pre> Entrer votre nom de user &lt;input NAME="user" VALUE=""&gt; &lt;BR&gt;</pre>
+   <pre> Entrer votre mot de passe &lt;input NAME="password" TYPE=PASSWORD VALUE=""&gt; &lt;BR&gt;</pre>
+   <pre> Coordonnee RA &lt;input NAME="rq_ra" TYPE=TEXT SIZE=10 VALUE="3h45m23s"&gt; &lt;BR&gt;</pre>
+   <pre> Coordonnee DEC &lt;input NAME="rq_dec" TYPE=TEXT SIZE=10 VALUE="10d5m23s"&gt; &lt;BR&gt;</pre>
+   <pre> Temps de pose &lt;input NAME="rq_exptime" TYPE=TEXT SIZE=2 VALUE="10"&gt;&amp;nbsp; secondes &lt;BR&gt;</pre>
+   <pre> Binning &lt;SELECT NAME="rq_binning" SIZE=1&gt;</pre>
+   <pre> &lt;OPTION VALUE="1" &gt; 1x1</pre>
+   <pre> &lt;OPTION VALUE="2" SELECTED&gt; 2x2</pre>
+   <pre> &lt;OPTION VALUE="4"&gt; 4x4</pre>
+   <pre> &lt;/SELECT&gt;&amp;nbsp;&lt;BR&gt;</pre>
+   <pre> &lt;input TYPE=SUBMIT VALUE="Deposer la requete"&gt;</pre>
+   <pre>&lt;/form&gt;</pre>
+   <p>Par appui sur le bouton d'envoi, ce formulaire est d&eacute;cod&eacute; par le D&eacute;mon HTTPD qui ex&eacute;cute alors Audela en tant que CGI. Le CGI Audela ex&eacute;cute &agrave; son tour le script audela.tcl pr&eacute;c&eacute;demment d&eacute;crit. Le formulaire de requ&ecirc;te contient l'entr&eacute;e :
+   <pre>&lt;input
+   NAME="mode" TYPE=HIDDEN VALUE="req1"&gt;</pre>
+   . Ainsi, le script <a
+ href="#audelatclreq1">audela.tcl va ex&eacute;cuter le script req_1.tcl</a>. C'est ce dernier script qui va r&eacute;ellement traiter et mettre en forme l'information. Le but est de transformer les champs du formulaire HTML, exprim&eacute;s en langage "humain" sous la forme de mots "op&eacute;rationnels" pour l'observation. Concr&egrave;tement, le r&ocirc;le de req_1.tcl consiste &agrave; traduire les donn&eacute;es du formulaire sous forme de variables Tcl qui seront utilis&eacute;es lors de l'observation. Par exemple, le formulaire ci dessus sera converti sous la forme suivante:
+   </p>
+   <pre># --- requete</pre>
+   <pre>set user robert</pre>
+   <pre>set ra 3h45m23s</pre>
+   <pre>set dec 10d5m23s</pre>
+   <pre>set exptime 10</pre>
+   <pre>set binning 2</pre>
+   <p>Ce script Tcl peut alors &ecirc;tre stock&eacute; sous la forme d'un fichier &agrave; un endroit pr&eacute;cis du disque dur dans lequel on trouvera l'ensemble des fichiers de requ&ecirc;tes. Nous discuterons en d&eacute;tail du nom &agrave; donner &agrave; ces fichiers dans le paragraphe consacr&eacute; au <a
+ href="#depotreq">d&eacute;p&ocirc;t d'une requ&ecirc;te d'observation</a>. En fin d'ex&eacute;cution, le script req_1.tcl va g&eacute;n&eacute;rer un message HTML sur la page du navigateur, informant que la requ&ecirc;te a bien &eacute;t&eacute; d&eacute;pos&eacute;e. A la fin du script req_1.tcl, Audela CGI est tu&eacute; par la fonction exit pr&eacute;sente &agrave; la fin du script audela.tcl </p>
+   <p>De fa&ccedil;on ind&eacute;pendante, un autre logiciel Audela fonctionne en permanence sur l'ordinateur qui pilote les instruments de l'observatoire (il peut fonctionner sur le m&ecirc;me ordinateur que celui qui contient le serveur HTTPD et les scripts CGI ou bien il peut fonctionner sur un autre ordinateur reli&eacute; &agrave; celui du serveur HTTPD par un r&eacute;seau local). Lorsqu'il n'est pas en train de r&eacute;aliser une observation, ce logiciel Audela va consulter les requ&ecirc;tes encore non effectu&eacute;es et va en choisir une. Les crit&egrave;res de choix sont nombreux et vari&eacute;s (visibilit&eacute;, contrainte de temps, etc.). Le syst&egrave;me de gardiennage (m&eacute;t&eacute;o, etc.) doit toujours &ecirc;tre consult&eacute; avant de d&eacute;marrer l'observation de la requ&ecirc;te choisie. L'ex&eacute;cution d'une requ&ecirc;te peut ressembler &agrave; la s&eacute;quence de commandes suivantes: </p>
+   <pre># --- script d'observation</pre>
+   <pre>tel1 goto [list $ra $dec]</pre>
+   <pre>cam1 exptime $exptime</pre>
+   <pre>cam1 bin [list $binning $binning]</pre>
+   <pre>cam1 acq</pre>
+   <pre>vwait status_cam1</pre>
+   <pre>buf1 save image</pre>
+   <p>A la fin de l'observation, Audela a "transform&eacute;" la requ&ecirc;te en une image (les requ&ecirc;tes de cet exemple constituent des demandes de cette nature mais on pourrait compliquer la proc&eacute;dure d'observation pour r&eacute;pondre &agrave; d'autres besoins). Afin d'assurer une gestion efficace, on peut cr&eacute;er aussi un catalogue des images en pr&eacute;cisant la requ&ecirc;te associ&eacute;e, le nom de l'objet observ&eacute;, etc. Dans l'exemple de cette page, nous n'utiliserons pas de tels catalogues afin de simplifier les choses. </p>
+   <p>La troisi&egrave;me et derni&egrave;re phase de notre observation &agrave; distance, consiste &agrave; utiliser un formulaire HTML qui va servir &agrave; visualiser les images avec le navigateur Web. </p>
+   <table cols="1" width="100%" bgcolor="#ccffff">
+  <tbody>
+       <tr>
+      <td> <center>
+          <h3> Visionneuse</h3>
+        </center>
+           <form method="post" action="/cgi-bin/audela.exe">
+          <input name="mode" type="hidden" value="visio1">
+          Entrer votre nom de user
+          <input name="user" value="">
+          Entrer votre mot de passe
+          <input
+ name="password" type="password" value="">
+          <input type="submit" value="Liste des images"
+ name="SUBMIT">
+        </form></td>
+    </tr>
+     </tbody>
+</table>
+   <p></p>
+   <p>Le code HTML de ce formulaire est le suivant et peut &ecirc;tre inclus dans n'importe quelle page Web : </p>
+   <pre>&lt;form METHOD="POST" ACTION="/cgi-bin/audela.exe"&gt;</pre>
+   <pre> &lt;input NAME="mode" TYPE=HIDDEN VALUE="visio1"&gt;</pre>
+   <pre> Entrer votre nom de user &lt;input NAME="user" VALUE=""&gt; &lt;BR&gt;</pre>
+   <pre> Entrer votre mot de passe &lt;input NAME="password" TYPE=PASSWORD VALUE=""&gt; &lt;BR&gt;</pre>
+   <pre> &lt;input TYPE=SUBMIT VALUE="Liste des images"&gt;</pre>
+   <pre>&lt;/form&gt;</pre>
+   <p>Ce formulaire comporte l'entr&eacute;e
+   <pre>&lt;input NAME="mode" TYPE=HIDDEN
+       VALUE="visio1"&gt;</pre>
+   . Ainsi, le script audela.tcl va ex&eacute;cuter le script visio_1.tcl. Ce script va consulter les noms de fichiers images, puis va afficher les noms dans un formulaire sur une autre page HTML.
+   </p>
+   <center>
+  <h3> Visionneuse</h3>
+</center>
+   <form method="post" action="/cgi-bin/audela.exe">
+  <input
+ name="mode" type="hidden" value="visio1">
+  <input name="user"
+ type="hidden" value="">
+  <input name="password" type="hidden"
+ value="">
+  <input type="submit" value="Visualiser" name="SUBMIT">
+  <select name="name" size="1">
+       <option value="20011124_222314_20011016_181654_robert.fit">20011124_222314_20011016_181654_robert.fit </option>
+       <option value="20011124_222635_20011016_193412_robert.fit">20011124_222635_20011016_193412_robert.fit </option>
+     </select>
+</form>
+   <p>L'appui sur le bouton "Visualiser" va appeler une seconde fois le script visio_1.tcl. Cette fois, son comportement sera diff&eacute;rent car on a assign&eacute; le nom de l'image &agrave; visualiser (on le r&eacute;alise techniquement gr&acirc;ce aux valeurs de mots cl&eacute;s du formulaire HTML interpr&eacute;t&eacute;s diff&eacute;remment par le script). Ainsi, visio_1.tcl va charger l'image FITS en m&eacute;moire puis va enregistrer une copie au format JPEG. Le d&eacute;tail du script est donn&eacute; au <a
+ href="#visionneuse">paragraphe consacr&eacute; &agrave; la visionneuse</a>. A la fin de son ex&eacute;cution, le script visio_1.tcl g&eacute;n&egrave;re une page HTML dans laquelle le fichier JPEG va &ecirc;tre ins&eacute;r&eacute;. </p>
+   <center>
+  <p><img src="images/serveur/m78.jpg" height="256" width="384" /> </p>
+</center>
+   <p>Nous venons de parcourir rapidement le chemin g&eacute;n&eacute;ral des informations qui permettent de piloter un observatoire distant. La suite de l'expos&eacute; consiste &agrave; d&eacute;crire, en d&eacute;tail, les scripts de d&eacute;p&ocirc;t de requ&ecirc;te, le traitement de l'observation et la visionneuse. Nous allons rester dans un cadre simple. Le formulaire permettra de d&eacute;poser une requ&ecirc;te constitu&eacute;e de coordonn&eacute;es &agrave; pointer et la r&eacute;alisation d'une seule image sur le champ comme dans le cas d&eacute;crit dans ce paragraphe. Il est &eacute;videmment possible de modifier ces scripts afin de permettre des strat&eacute;gies d'observations plus compliqu&eacute;es. Dans ce cadre, on pourra s'int&eacute;resser aussi au <a
+ href="http://sunra.lbl.gov/rtml2/rtml2-def.html">Remote Telescope Markup Language</a> (RTML) d&eacute;fini pour Hands On Universe (HOU). </p>
+   <h3> <a name="depotreq"></a>3.3.2 Le d&eacute;p&ocirc;t d'une requ&ecirc;te d'observation</h3>
+   <p></p>
+   Dans le contexte clients-serveur, il est pr&eacute;f&eacute;rable de ne pas permettre aux clients de faire n'importe quoi avec le t&eacute;lescope. Pour &eacute;viter cela, on peut utiliser le syst&egrave;me de requ&ecirc;tes. Dans ce cas le serveur propose au client un cadre d'observation.
+ </p>
+ <p>Concr&egrave;tement, on a vu que cette demande est faite par <a
+ href="#reqhtm">le formulaire HTML</a> qui appelle audela.exe en tant que CGI. Le client n'a qu'&agrave; remplir les champs du formulaire pour d&eacute;poser la requ&ecirc;te. Si l'on s'en r&eacute;f&egrave;re &agrave; ce qui a &eacute;t&eacute; pr&eacute;sent&eacute; concernant les &eacute;ph&eacute;m&eacute;rides, audela.exe va toujours lancer le script audela.tcl. Dans le cas pr&eacute;sent, le formulaire contient la valeur req1 pour le nom mode. Ainsi, va s'ex&eacute;cuter le script req_1.tcl.</p>
+ <p>Le but du script req_1.tcl est d'examiner les valeurs que le client a &eacute;crites dans les champs du formulaire, de v&eacute;rifier si l'observation demand&eacute;e est possible et enfin, de g&eacute;n&eacute;rer un script TCL de requ&ecirc;te qui pourra &ecirc;tre ex&eacute;cut&eacute; par le second programme audela.exe qui pilote l'observatoire. Le fichier du script req_1.tcl est pr&eacute;sent dans le dossier cgiwin/cgi-bin. Notons que nous n'avons pas mis de caract&egrave;res accentu&eacute;s dans ces fichiers de scripts CGI de mani&egrave;re &agrave; ce qu'ils puissent &ecirc;tre utilis&eacute;s sur des ordinateurs de langue non fran&ccedil;aise qui ne supportent pas les accents. </p>
+ <pre>#</pre>
+ <pre># req_1.tcl</pre>
+ <pre>#</pre>
+ <pre># --- entete HTML</pre>
+ <pre>cgiaudela_entete</pre>
+ <pre># --- Decode les parametres du formulaire HTML</pre>
+ <pre>set names $cgiaudela(names)</pre>
+ <pre>set values $cgiaudela(values)</pre>
+ <pre>set num [lsearch $names "user"] ; if {$num&gt;=0} { set req(user) [lindex $values $num] }</pre>
+ <pre>set num [lsearch $names "password"] ; if {$num&gt;=0} { set req(password) [lindex $values $num] }</pre>
+ <pre>set num [lsearch $names "rq_ra"] ; if {$num&gt;=0} { set req(rq_ra) [lindex $values $num] }</pre>
+ <pre>set num [lsearch $names "rq_dec"] ; if {$num&gt;=0} { set req(rq_dec) [lindex $values $num] }</pre>
+ <pre>set num [lsearch $names "rq_exptime"] ; if {$num&gt;=0} { set req(rq_exptime) [lindex $values $num] }</pre>
+ <pre>set num [lsearch $names "rq_binning"] ; if {$num&gt;=0} { set req(rq_binning)[lindex $values $num] }</pre>
+ <pre># - variables communes a tous les scripts</pre>
+ <pre>source cfgcgi.tcl</pre>
+ <pre># --- verifie que l'utilisateur est autorise</pre>
+ <pre>set k [lsearch $req(users) $req(user)]</pre>
+ <pre>if {$k=="-1"} {</pre>
+ <pre> puts "User not authorized&lt;BR&gt;"</pre>
+ <pre> puts "&lt;/BODY&gt;"</pre>
+ <pre> cgiaudela_fin</pre>
+ <pre> return</pre>
+ <pre>}</pre>
+ <pre>if {$req(password)!=[lindex $req(passwords) $k]} {</pre>
+ <pre> puts "User not authorized&lt;BR&gt;"</pre>
+ <pre> puts "&lt;/BODY&gt;"</pre>
+ <pre> cgiaudela_fin</pre>
+ <pre> return</pre>
+ <pre>}</pre>
+ <pre># - on limite le temps de pose entre 1 et 60 secondes</pre>
+ <pre>set req(rq_exptime) [expr int($req(rq_exptime))]</pre>
+ <pre>if {($req(rq_exptime)&lt;1)||($req(rq_exptime)&gt;60)} {</pre>
+ <pre> puts "Exptime between 1 and 60 seconds please !&lt;BR&gt;"</pre>
+ <pre> puts "&lt;/BODY&gt;"</pre>
+ <pre> cgiaudela_fin</pre>
+ <pre> return</pre>
+ <pre>}</pre>
+ <pre># - on limite le binning &agrave; entre 1 et 4</pre>
+ <pre>set req(rq_binning) [expr int($req(rq_binning))]</pre>
+ <pre>if {($req(rq_binning)&lt;1)||($req(rq_binning)&gt;4)} {</pre>
+ <pre> puts "Binning between 1 and 4 please !&lt;BR&gt;"</pre>
+ <pre> puts "&lt;/BODY&gt;"</pre>
+ <pre> cgiaudela_fin</pre>
+ <pre> return</pre>
+ <pre>}</pre>
+ <pre># - contenu de la requete</pre>
+ <pre>set text ""</pre>
+ <pre>append text "set user $req(user)\n"</pre>
+ <pre>append text "set ra [mc_angle2deg $req(rq_ra)]\n"</pre>
+ <pre>append text "set dec [mc_angle2deg $req(rq_dec)]\n"</pre>
+ <pre>append text "set exptime $req(rq_exptime)\n"</pre>
+ <pre>append text "set binning $req(rq_binning)\n"</pre>
+ <pre># - nom du fichier de requete : YYYYMMDD_hhmmss_user.req</pre>
+ <pre>set t [mc_date2iso8601 now]; # format YYYY-MM-DDThh:mm:ss</pre>
+ <pre>set name "[string range $t 0 3][string range $t 5 6][string range $t 8 9]_"</pre>
+ <pre>append name "[string range $t 11 12][string range $t 14 15][string range $t 17 18]_"</pre>
+ <pre>append name "$req(user).req"</pre>
+ <pre>set fullname "$rep(req)/$name"</pre>
+ <pre># - enregistre le fichier de requete sur le disque</pre>
+ <pre>set f [open "$fullname" w]</pre>
+ <pre>puts -nonewline $f "$text"</pre>
+ <pre>close $f</pre>
+ <pre># - message retourn&eacute; sur le navigateur</pre>
+ <pre>puts "Requete $name bien enregistre&lt;BR&gt;&lt;BR&gt;"</pre>
+ <pre>puts "&lt;PRE&gt;$text&lt;/PRE&gt;"</pre>
+ <pre>puts "&lt;/BODY&gt;"</pre>
+ <pre>cgiaudela_fin</pre>
+ <p>Ce script d&eacute;code les donn&eacute;es du <a href="#reqhtm">formulaire</a> et g&eacute;n&egrave;re un fichier de requ&ecirc;te. Le fichier de requ&ecirc;te prend un nom constitu&eacute; de la date de d&eacute;p&ocirc;t de la requ&ecirc;te suivi du nom de l'utilisateur. Cette fa&ccedil;on de proc&eacute;der permet de trier facilement les fichiers de requ&ecirc;te par ordre chronologique. </p>
+ <p><a name="cfgcgi"></a>L'appel au script
+ <pre>source cfgcgi.tcl</pre>
+ permet de configurer des variables qui seront communes aux scripts req_1.tcl, obscgi.tcl et visio_1.tcl. Voici son listing:
+ </p>
+ <pre>#</pre>
+ <pre># cfgcgi.tcl</pre>
+ <pre>#</pre>
+ <pre># --- repertoire de depot des requetes</pre>
+ <pre>set rep(req) d:/audela</pre>
+ <pre># --- repertoire des images</pre>
+ <pre>set rep(visu) d:/audela</pre>
+ <pre># --- definition du site d'observation</pre>
+ <pre>if {[info exists audace]==0} {</pre>
+ <pre> # - Pas de contexte Audace</pre>
+ <pre> set site {gps 2.1383 e 45.1234 125}</pre>
+ <pre>} else {</pre>
+ <pre> # - Pour le contexte Audace</pre>
+ <pre> set site "$audace(posobs,observateur,gps)"</pre>
+ <pre>}</pre>
+ <pre># --- liste des utilisateurs autorises</pre>
+ <pre>set req(users) {robert alain}</pre>
+ <pre>set req(passwords) {audela audace}</pre>
+ <p>Dans ce fichier on trouve la variable rep(req) qui contient le nom du dossier qui accueille les fichiers de requ&ecirc;tes (d:\audela par d&eacute;faut). La requ&ecirc;te ne peut &ecirc;tre d&eacute;pos&eacute;e que si l'on a entr&eacute; un nom d'utilisateur (user) et un mot de passe (password). La liste des utilisateurs est cod&eacute;e dans le script cfgcgi.tcl par la liste Tcl req(users) et la liste des mots de passe respectifs par req(passwords). Dans cet exemple, on a deux utilisateurs: "robert" avec le mot de passe "audela" et "alain" avec le mot de passe "audace". Il est donc tr&egrave;s facile de les changer et d'en ajouter. </p>
+ <p>Le fichier cfgcgi.tcl doit &ecirc;tre dupliqu&eacute; dans le dossier scripts de Audela pour pouvoir &ecirc;tre utilis&eacute; par le fichier obscgi.tcl (cf. ci apr&egrave;s). </p>
+ <h3> 3.3.3 Le script d'ex&eacute;cution des observations</h3>
+ <p>Le logiciel Audela, pr&eacute;sent sur l'ordinateur de l'observatoire, et qui fonctionne en permanence, va choisir les requ&ecirc;tes en entr&eacute;e, et va g&eacute;n&eacute;rer les images correspondantes en sortie. Il convient donc d'&eacute;crire un script qui va effectuer l'analyse des requ&ecirc;tes &agrave; observer, ex&eacute;cuter la requ&ecirc;te choisie et mettre &agrave; jour les bases de donn&eacute;es des requ&ecirc;tes et des images. Normalement, ce logiciel devrait aussi surveiller l'environnement de l'observatoire (d&eacute;tecteur de pluie, etc.) afin de fermer la coupole le cas &eacute;ch&eacute;ant. Nous ne d&eacute;crirons pas cette partie dans cet expos&eacute;. Le fichier du script obscgi.tcl est pr&eacute;sent dans le dossier scripts. Ne pas oublier aussi de v&eacute;rifier que le fichier cfgcgi.tcl (configuration de variables communes aux diff&eacute;rents scripts CGI) soit pr&eacute;sent dans le dossier scripts et identique &agrave; celui pr&eacute;sent dans le dossier cgiwin/cgi-bin.</p>
+ <pre>#</pre>
+ <pre># obscgi.tcl</pre>
+ <pre>#</pre>
+ <pre># - variables communes a tous les scripts</pre>
+ <pre>source cfgcgi.tcl</pre>
+ <pre># - creation des instruments</pre>
+ <pre>if {[info exists audace]==0} {</pre>
+ <pre> # - Pas de contexte Audace</pre>
+ <pre> ::tel::create lx200 com2 -num 1</pre>
+ <pre> ::buf::create 1</pre>
+ <pre> ::cam::create audine lpt1 -num 1</pre>
+ <pre> cam1 buf 1</pre>
+ <pre>} else {</pre>
+ <pre> # - Pour le contexte Audace</pre>
+ <pre> if {[::tel::list]==""} {</pre>
+ <pre> ::confTel::run</pre>
+ <pre> tkwait window .confTel</pre>
+ <pre> update</pre>
+ <pre> }</pre>
+ <pre> if {[::cam::list]==""} {</pre>
+ <pre> ::confCam::run</pre>
+ <pre> tkwait window .confCam</pre>
+ <pre> update</pre>
+ <pre> }</pre>
+ <pre>}</pre>
+ <pre># - gestionnaire des observations</pre>
+ <pre>set sortie no</pre>
+ <pre>while {$sortie=="no"} {</pre>
+ <pre> after 1000</pre>
+ <pre> update</pre>
+ <pre> # - Analyse les requ&ecirc;tes pr&eacute;sentes sur le  disque</pre>
+ <pre> set list_file ""</pre>
+ <pre> catch {set list_file [lsort -increasing [glob "$rep(req)/*.req"]]} result</pre>
+ <pre> set observable no</pre>
+ <pre> if {[llength $list_file]!=0} {</pre>
+ <pre> foreach file $list_file {</pre>
+ <pre> source "$file"</pre>
+ <pre> set result [mc_radec2altaz $ra $dec {gps 2.1383 e 45.1234 125} now]</pre>
+ <pre> set h [lindex $result 2]</pre>
+ <pre> set alt [lindex $result 1]</pre>
+ <pre> if {((($h&lt;60)||($h&gt;300))&amp;&amp;($alt&gt;30)&amp;&amp;($dec&lt;50))} {</pre>
+ <pre> set observable yes</pre>
+ <pre> break</pre>
+ <pre> }</pre>
+ <pre> }</pre>
+ <pre> }</pre>
+ <pre> # - Traite la requete eventuellement choisie</pre>
+ <pre> if {$observable=="yes"} {</pre>
+ <pre> # - Nom du fichier image YYYMMDD_hhmmss_YYYMMDD_hhmmss_user.fit</pre>
+ <pre> # |- date obs -| |- date req -|</pre>
+ <pre> after 1000</pre>
+ <pre> set reqname [file rootname [file tail $file]]</pre>
+ <pre> set t [mc_date2iso8601 now]; # format YYYY-MM-DDThh:mm:ss</pre>
+ <pre> set obsname "[string range $t 0 3][string range $t 5 6][string range $t 8 9]_"</pre>
+ <pre> append obsname "[string range $t 11 12][string range $t 14 15][string range $t 17 18]_"</pre>
+ <pre> set name "$obsname$reqname"</pre>
+ <pre> set fullname "$rep(visu)/$name"</pre>
+ <pre> # - Pointe le t&eacute;lescope</pre>
+ <pre> tel1 goto [list $ra $dec]</pre>
+ <pre> # - R&eacute;alise l'image CCD</pre>
+ <pre> cam1 exptime $exptime</pre>
+ <pre> cam1 bin [list $binning $binning]</pre>
+ <pre> cam1 acq</pre>
+ <pre> vwait status_cam1</pre>
+ <pre> # - Enregistre l'image sur le disque</pre>
+ <pre> buf1 save "$fullname"</pre>
+ <pre> # - detruit le fichier requete ex&eacute;cut&eacute;</pre>
+ <pre> file delete "$file"</pre>
+ <pre> }</pre>
+ <pre>}</pre>
+ <pre>if {[info exists audace]==0} {</pre>
+ <pre> ::tel::delete 1</pre>
+ <pre> ::buf::delete 1</pre>
+ <pre> ::cam::delete 1</pre>
+ <pre>}</pre>
+ <p>Ce script analyse, toutes les secondes, l'ensemble des fichiers *.req pr&eacute;sents sur le disque dans le dossier sp&eacute;cifi&eacute; par la variable Tcl req(req) d&eacute;fini dans le script cfgcgi.tcl. Ces fichiers sont tri&eacute;s par ordre chronologique de d&eacute;p&ocirc;t de requ&ecirc;te. Pour chaque requ&ecirc;te, on calcule la hauteur et l'angle horaire th&eacute;orique actuel. Si l'angle horaire est situ&eacute; &agrave; moins de 60 degr&eacute;s du m&eacute;ridien et que la hauteur sur l'horizon est sup&eacute;rieure &agrave; 30 degr&eacute;s, alors on accepte de traiter la requ&ecirc;te (la variable observable prend la valeur "yes"). On a ajout&eacute; une condition suppl&eacute;mentaire sur la valeur de la d&eacute;clinaison afin tenir compte de la limitation m&eacute;canique en d&eacute;clinaison &agrave; cause de la fourche (cas d'un LX200). Pour que ce script fonctionne correctement, il est n&eacute;cessaire que l'heure du syst&egrave;me d'exploitation soit exprim&eacute;e en temps universel et non pas en temps l&eacute;gal. </p>
+ <p>Les fichiers images g&eacute;n&eacute;r&eacute;s ont pour nom la date de d&eacute;but d'observation, suivi du nom que la requ&ecirc;te associ&eacute;e. Cette fa&ccedil;on de proc&eacute;der permet de trier facilement les fichiers images en ordre chronologique. </p>
+ <h3> <a name="visionneuse"></a>3.3.4 La visionneuse</h3>
+ <p>L'acc&egrave;s aux images par une interface Web se fait par le format Jpeg. Le script visio_1.tcl permet donc de transformer un fichier FITS en un fichier Jpeg et de g&eacute;n&eacute;rer la page HTML qui affiche le Jpeg. Le fichier du script visio_1.tcl est pr&eacute;sent dans le dossier cgiwin/cgi-bin. </p>
+ <pre>#</pre>
+ <pre># visio_1.tcl</pre>
+ <pre>#</pre>
+ <pre># --- entete HTML</pre>
+ <pre>cgiaudela_entete</pre>
+ <pre># --- Decode les parametres du formulaire HTML</pre>
+ <pre>set names $cgiaudela(names)</pre>
+ <pre>set values $cgiaudela(values)</pre>
+ <pre>set num [lsearch $names "user"] ; if {$num&gt;=0} { set req(user) [lindex $values $num] }</pre>
+ <pre>set num [lsearch $names "password"] ; if {$num&gt;=0} { set req(password) [lindex $values $num] }</pre>
+ <pre>set num [lsearch $names "name"] ; if {$num&gt;=0} { set req(name) [lindex $values $num] }</pre>
+ <pre># - variables communes a tous les scripts</pre>
+ <pre>source cfgcgi.tcl</pre>
+ <pre># --- verifie que l'utilisateur est autorise</pre>
+ <pre>set k [lsearch $req(users) $req(user)]</pre>
+ <pre>if {$k=="-1"} {</pre>
+ <pre> puts "User not authorized&lt;BR&gt;"</pre>
+ <pre> puts "&lt;/BODY&gt;"</pre>
+ <pre> cgiaudela_fin</pre>
+ <pre> return</pre>
+ <pre>}</pre>
+ <pre>if {$req(password)!=[lindex $req(passwords) $k]} {</pre>
+ <pre> puts "User not authorized&lt;BR&gt;"</pre>
+ <pre> puts "&lt;/BODY&gt;"</pre>
+ <pre> cgiaudela_fin</pre>
+ <pre> return</pre>
+ <pre>}</pre>
+ <pre># - chemin Web d'acc&egrave;s aux images Jpeg</pre>
+ <pre>set rep(www) "."</pre>
+ <pre>if {[info exists req(name)]==1} {</pre>
+ <pre> # - Si un nom de fichier existe alors on fait la copie Jpeg</pre>
+ <pre> ::buf::create 1</pre>
+ <pre> buf1 load $rep(visu)/$req(name)</pre>
+ <pre> # - dimensions de l'image</pre>
+ <pre> set result [buf1 format]</pre>
+ <pre> set naxis1 [lindex $result 0]</pre>
+ <pre> set naxis2 [lindex $result 1]</pre>
+ <pre> # - seuils automatiques pour la visualisation</pre>
+ <pre> set result [buf1 autocuts]</pre>
+ <pre> set sh [lindex $result 0]</pre>
+ <pre> set sb [lindex $result 1]</pre>
+ <pre> # - on &eacute;limine tous les fichiers Jpeg dej&agrave; existants</pre>
+ <pre> set list_file ""</pre>
+ <pre> catch {set list_file [lsort -increasing [glob $rep(www)/*.jpg]]} result</pre>
+ <pre> if {[llength $list_file]!=0} {</pre>
+ <pre> foreach file $list_file {</pre>
+ <pre> file delete $file</pre>
+ <pre> }</pre>
+ <pre> }</pre>
+ <pre> # - cr&eacute;ation du nom pour le fichier Jpeg</pre>
+ <pre> set t [mc_date2iso8601 now]; # format YYYY-MM-DDThh:mm:ss</pre>
+ <pre> set jpgname "[string range $t 0 3][string range $t 5 6][string range $t 8 9]_"</pre>
+ <pre> append jpgname "[string range $t 11 12][string range $t 14 15][string range $t 17 18]"</pre>
+ <pre> set fullname "$rep(www)/$jpgname"</pre>
+ <pre> # - Enregistrement de l'image en format Jpeg (qualit&eacute;=85)</pre>
+ <pre> buf1 savejpeg $fullname 85 $sb $sh</pre>
+ <pre> ::buf::delete 1</pre>
+ <pre> puts "&lt;center&gt;&lt;h3&gt;$req(name)&lt;/h3&gt;&lt;/center&gt;&lt;BR&gt;"</pre>
+ <pre> puts "&lt;img SRC=\"$jpgname.jpg\" height=$naxis2 width=$naxis1&gt;"</pre>
+ <pre>} else {</pre>
+ <pre> catch {set list_file [lsort -increasing [glob $rep(visu)/*.fit]]} result</pre>
+ <pre> if {[llength $list_file]!=0} {</pre>
+ <pre> # - cr&eacute;e un formulaire contenant la liste des fichiers</pre>
+ <pre> puts "&lt;center&gt;&lt;h2&gt;Visionneuse&lt;/h2&gt;&lt;/center&gt;"</pre>
+ <pre> puts "&lt;form METHOD=\"POST\" ACTION=\"/cgi-bin/audela.exe\"&gt; "</pre>
+ <pre> puts "&lt;input NAME=\"mode\" TYPE=HIDDEN VALUE=\"visio1\"&gt; "</pre>
+ <pre> puts "&lt;input NAME=\"user\" TYPE=HIDDEN VALUE=\"$req(user)\"&gt; "</pre>
+ <pre> puts "&lt;input NAME=\"password\" TYPE=HIDDEN VALUE=\"$req(password)\"&gt;"</pre>
+ <pre> puts "&lt;input TYPE=SUBMIT VALUE=\"Visualiser\"&gt; "</pre>
+ <pre> puts "&lt;SELECT NAME=\"name\" SIZE=1&gt; "</pre>
+ <pre> foreach file $list_file {</pre>
+ <pre> set file [file rootname [file tail $file]]</pre>
+ <pre> puts " &lt;OPTION VALUE=\"$file.fit\" &gt; $file.fit "</pre>
+ <pre> }</pre>
+ <pre> puts "&lt;/SELECT&gt;"</pre>
+ <pre> puts "&lt;/form&gt;&lt;/center&gt;"</pre>
+ <pre> } else {</pre>
+ <pre> puts "There is no image acquired !"</pre>
+ <pre> }</pre>
+ <pre>}</pre>
+ <pre>puts "&lt;/BODY&gt;"</pre>
+ <pre>cgiaudela_fin</pre>
+ <p>Comme les navigateurs poss&egrave;dent des caches de fichiers, il faut toujours nommer le fichier Jpeg par un nouveau nom afin de rafra&icirc;chir l'image Jpeg affich&eacute;e dans la page Web. Dans le script, on supprime tous les fichiers Jpeg du disque avant de cr&eacute;er le nouveau fichier. </p>
+ <p>Les noms d'utilisateurs et les mots de passe sont identiques &agrave; ceux du script req_1.tcl. </p>
+ <h3> <a name="cgiutil"></a>4. Le listing du script cgiutil.tcl</h3>
+ <p>Ce script permet de transcoder les donn&eacute;es des formulaires CGI et retourne deux listes. De plus, ce script d&eacute;finit quelques petites fonctions utiles comme l'ent&ecirc;te d'une page HTML &eacute;crite par un CGI (c'est un peu diff&eacute;rent d'une page HTML classique).</p>
+ <pre>#</pre>
+ <pre># Fichier : gciutil.tcl</pre>
+ <pre>#</pre>
+ <pre>global cgiaudela</pre>
+ <pre># ================================</pre>
+ <pre># ==== PROC pour decodage CGI ====</pre>
+ <pre># ================================</pre>
+ <pre>proc cgiaudela_transcode { chaine } {</pre>
+ <pre> # --- remplace %XX par la valeur ASCII de l'hexadecimal XX</pre>
+ <pre> # par exemple : %2B est remplac&eacute; par le caractere ASCII decimal 43 (+)</pre>
+ <pre> set chaine_out ""</pre>
+ <pre> set n [string length $chaine]</pre>
+ <pre> for {set k 0} {$k&lt;$n} {incr k} {</pre>
+ <pre> set car [string index $chaine $k]</pre>
+ <pre> if {$car=="%"} {</pre>
+ <pre> set car [subst "\\x[string range $chaine [expr $k+1] [expr $k+2]]" ]</pre>
+ <pre> incr k 2</pre>
+ <pre> }</pre>
+ <pre> append chaine_out $car</pre>
+ <pre> }</pre>
+ <pre> return $chaine_out</pre>
+ <pre>}</pre>
+ <pre># ===============================</pre>
+ <pre># ==== PROC pour entete HTML ====</pre>
+ <pre># ===============================</pre>
+ <pre>proc cgiaudela_entete { } {</pre>
+ <pre> # --- Identification d'une page HTML pour le client</pre>
+ <pre> puts "Content-type: text/html\n\n\n"</pre>
+ <pre> # --- Debut du texte HTML</pre>
+ <pre> puts "&lt;HTML&gt;"</pre>
+ <pre>}</pre>
+ <pre># ===============================</pre>
+ <pre># ==== PROC pour entete HTML ====</pre>
+ <pre># ===============================</pre>
+ <pre>proc cgiaudela_fin { } {</pre>
+ <pre> # --- fin du texte HTML</pre>
+ <pre> puts "&lt;/HTML&gt;"</pre>
+ <pre>}</pre>
+ <pre># ================================================</pre>
+ <pre># ==== DECODAGE des donnees du formulaire CGI ====</pre>
+ <pre># ================================================</pre>
+ <pre>set cgiaudela(names) {}</pre>
+ <pre>set cgiaudela(values) {}</pre>
+ <pre>set cgiaudela(listenv) [array names env]</pre>
+ <pre># --- decode le type de methode ---</pre>
+ <pre>set cgiaudela(REQUEST_METHOD) ""</pre>
+ <pre>if {[lsearch $cgiaudela(listenv) REQUEST_METHOD]!=-1} {</pre>
+ <pre> set cgiaudela(REQUEST_METHOD) $env(REQUEST_METHOD)</pre>
+ <pre>}</pre>
+ <pre># --- s'il n'y a pas de methode alors on sort ---</pre>
+ <pre>if {$cgiaudela(REQUEST_METHOD)==""} {</pre>
+ <pre> return</pre>
+ <pre>}</pre>
+ <pre># --- detecte Netscape 6.0 pour signaler la presence du bug TARGET</pre>
+ <pre># --- qui change la methode POST en GET !</pre>
+ <pre>set cgiaudela(bug,target) "no"</pre>
+ <pre>catch {</pre>
+ <pre> if {[string first "Netscape6/6.0" $env(HTTP_USER_AGENT)]!=-1}{</pre>
+ <pre> set cgiaudela(bug,target) "yes"</pre>
+ <pre> }</pre>
+ <pre>}</pre>
+ <pre># --- extrait la chaine des champs d'entree selon la methode ---</pre>
+ <pre>set cgiaudela(QUERY_STRING) ""</pre>
+ <pre>if {$cgiaudela(REQUEST_METHOD)=="GET"} {</pre>
+ <pre> set cgiaudela(error) [catch { \</pre>
+ <pre> set cgiaudela(QUERY_STRING) $env(QUERY_STRING) \</pre>
+ <pre> } ]</pre>
+ <pre> if {$cgiaudela(error)==1} {</pre>
+ <pre> return</pre>
+ <pre> }</pre>
+ <pre>}</pre>
+ <pre>if {$cgiaudela(REQUEST_METHOD)=="POST"} {</pre>
+ <pre> set cgiaudela(CONTENT_LENGTH) $env(CONTENT_LENGTH)</pre>
+ <pre> catch {set cgiaudela(QUERY_STRING) \</pre>
+ <pre> [read stdin $cgiaudela(CONTENT_LENGTH)]} cgiaudela(error)</pre>
+ <pre> if {$cgiaudela(error)==1} {</pre>
+ <pre> catch {set cgiaudela(tty) [open "../stdin.txt" "r"]}</pre>
+ <pre> cgiaudela(error)</pre>
+ <pre> if {$cgiaudela(error)==1} {</pre>
+ <pre> return</pre>
+ <pre> }</pre>
+ <pre> catch {set cgiaudela(QUERY_STRING) [read $cgiaudela(tty) \</pre>
+ <pre> $cgiaudela(CONTENT_LENGTH)]}</pre>
+ <pre> cgiaudela(error)</pre>
+ <pre> close $cgiaudela(tty)</pre>
+ <pre> }</pre>
+ <pre>}</pre>
+ <pre>#set ttyf [open "env.txt" w]</pre>
+ <pre>#puts $ttyf "bug_target=$cgiaudela(bug,target)"</pre>
+ <pre>#foreach a $cgiaudela(listenv) {</pre>
+ <pre># puts $ttyf "$a = $env($a)"</pre>
+ <pre>#}</pre>
+ <pre>#close $ttyf</pre>
+ <pre># --- fractionne la chaine en une liste (separateur &amp;)</pre>
+ <pre>set cgiaudela(liste) [split $cgiaudela(QUERY_STRING) "&amp;"]</pre>
+ <pre># --- transcode tous les caracteres et genere les deux listes</pre>
+ <pre>foreach cgiaudela(champ) $cgiaudela(liste) {</pre>
+ <pre> # --- les + sont convertis en espaces</pre>
+ <pre> regsub -all {[+]} [lindex $cgiaudela(champ) 0] " " cgiaudela(champ)</pre>
+ <pre> # --- le champ est partage en deux</pre>
+ <pre> set cgiaudela(champ) [split $cgiaudela(champ) "="]</pre>
+ <pre> # --- les champs sont transcodes</pre>
+ <pre> lappend cgiaudela(names) [cgiaudela_transcode [lindex $cgiaudela(champ) 0]]</pre>
+ <pre> lappend cgiaudela(values) [cgiaudela_transcode [lindex $cgiaudela(champ) 1]]</pre>
+ <pre>}</pre>
+</body>
+</html>

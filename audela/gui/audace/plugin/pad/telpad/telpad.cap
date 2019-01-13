@@ -1,0 +1,133 @@
+#
+# Fichier : telpad.cap
+# Mise a jour $Id: telpad.cap 9483 2013-05-23 16:48:47Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(telpad,titre)            "TelPad"
+
+set caption(telpad,nord)             "N"
+set caption(telpad,sud)              "S"
+set caption(telpad,est)              "E"
+set caption(telpad,ouest)            "W"
+set caption(telpad,activeFleches)    "Enable\nArrow Keys"
+
+set caption(telpad,moteur_foc)       "Focusing Motor"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(telpad,titre)         "TelPad"
+
+   set caption(telpad,nord)          "N"
+   set caption(telpad,sud)           "S"
+   set caption(telpad,est)           "E"
+   set caption(telpad,ouest)         "O"
+   set caption(telpad,activeFleches) "Activer les flèches\ndu clavier"
+
+   set caption(telpad,moteur_foc)    "Moteur de la focalisation"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(telpad,titre)         "TelPad"
+
+   set caption(telpad,nord)          "N"
+   set caption(telpad,sud)           "S"
+   set caption(telpad,est)           "E"
+   set caption(telpad,ouest)         "O"
+   set caption(telpad,activeFleches) "Abilita i tasti\nfreccia"
+
+   set caption(telpad,moteur_foc)    "Motore della focheggiamento"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(telpad,titre)         "TelPad"
+
+   set caption(telpad,nord)          "N"
+   set caption(telpad,sud)           "S"
+   set caption(telpad,est)           "E"
+   set caption(telpad,ouest)         "W"
+   set caption(telpad,activeFleches) "Activar flechas\ndel teclado"
+
+   set caption(telpad,moteur_foc)    "Motor enfoque"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(telpad,titre)         "TelPad"
+
+   set caption(telpad,nord)          "N"
+   set caption(telpad,sud)           "S"
+   set caption(telpad,est)           "O"
+   set caption(telpad,ouest)         "W"
+   set caption(telpad,activeFleches) "Pfeiltasten\naktivieren"
+
+   set caption(telpad,moteur_foc)    "Fokussierung Motor"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(telpad,titre)         "TelPad"
+
+   set caption(telpad,nord)          "N"
+   set caption(telpad,sud)           "S"
+   set caption(telpad,est)           "E"
+   set caption(telpad,ouest)         "O"
+   set caption(telpad,activeFleches) "# Activer les flèches\ndu clavier"
+
+   set caption(telpad,moteur_foc)    "Motor de focagem"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(telpad,titre)         "TelPad"
+
+   set caption(telpad,nord)          "N"
+   set caption(telpad,sud)           "S"
+   set caption(telpad,est)           "Ø"
+   set caption(telpad,ouest)         "V"
+   set caption(telpad,activeFleches) "Aktiver\npiletasterne"
+
+   set caption(telpad,moteur_foc)    "Fokuseringsmotor"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(telpad,titre)         "TelPad"
+
+   set caption(telpad,nord)          "N"
+   set caption(telpad,sud)           "S"
+   set caption(telpad,est)           "E"
+   set caption(telpad,ouest)         "W"
+   set caption(telpad,activeFleches) "Enable\nArrow Keys"
+
+   set caption(telpad,moteur_foc)    "Focusing Motor"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(telpad,titre)         "TelPad"
+
+   set caption(telpad,nord)          "N"
+   set caption(telpad,sud)           "S"
+   set caption(telpad,est)           "E"
+   set caption(telpad,ouest)         "W"
+   set caption(telpad,activeFleches) "Enable\nArrow Keys"
+
+   set caption(telpad,moteur_foc)    "Focusing Motor"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

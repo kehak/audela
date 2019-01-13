@@ -1,0 +1,53 @@
+libjm.o: ../src/libjm.cpp \
+ /root/audela-code/audela/src/include/libaudela.h ../src/libjm.h \
+ /root/audela-code/audela/src/include/sysexp.h /usr/include/tcl8.6/tcl.h \
+ /usr/include/tcl8.6/tclDecls.h /usr/include/tcl8.6/tclPlatDecls.h \
+ ../src/divers.h ../src/calaphot.h ../src/horloge.h ../src/fourier.h
+erreur.o: ../src/erreur.cpp \
+ /root/audela-code/audela/src/include/libaudela.h ../src/erreur.h
+calaphot_tcl.o: ../src/calaphot_tcl.cpp \
+ /root/audela-code/audela/src/include/libaudela.h ../src/libjm.h \
+ /root/audela-code/audela/src/include/sysexp.h /usr/include/tcl8.6/tcl.h \
+ /usr/include/tcl8.6/tclDecls.h /usr/include/tcl8.6/tclPlatDecls.h \
+ ../src/divers.h ../src/calaphot.h
+calaphot.o: ../src/calaphot.cpp \
+ /root/audela-code/audela/src/include/libaudela.h ../src/libjm.h \
+ /root/audela-code/audela/src/include/sysexp.h /usr/include/tcl8.6/tcl.h \
+ /usr/include/tcl8.6/tclDecls.h /usr/include/tcl8.6/tclPlatDecls.h \
+ ../src/erreur.h ../src/divers.h ../src/calaphot.h
+horloge.o: ../src/horloge.cpp \
+ /root/audela-code/audela/src/include/sysexp.h ../src/libjm.h \
+ /usr/include/tcl8.6/tcl.h /usr/include/tcl8.6/tclDecls.h \
+ /usr/include/tcl8.6/tclPlatDecls.h ../src/horloge.h
+horloge_tcl.o: ../src/horloge_tcl.cpp ../src/libjm.h \
+ /root/audela-code/audela/src/include/sysexp.h /usr/include/tcl8.6/tcl.h \
+ /usr/include/tcl8.6/tclDecls.h /usr/include/tcl8.6/tclPlatDecls.h \
+ ../src/horloge.h
+divers.o: ../src/divers.cpp /root/audela-code/audela/src/include/sysexp.h \
+ ../src/libjm.h /usr/include/tcl8.6/tcl.h /usr/include/tcl8.6/tclDecls.h \
+ /usr/include/tcl8.6/tclPlatDecls.h ../src/divers.h
+divers_tcl.o: ../src/divers_tcl.cpp ../src/libjm.h \
+ /root/audela-code/audela/src/include/sysexp.h /usr/include/tcl8.6/tcl.h \
+ /usr/include/tcl8.6/tclDecls.h /usr/include/tcl8.6/tclPlatDecls.h \
+ ../src/divers.h
+fourier_services.o: ../src/fourier_services.cpp \
+ /root/audela-code/audela/src/include/sysexp.h \
+ /root/audela-code/audela/src/include/libaudela.h \
+ /root/audela-code/audela/src/include/libtt.h ../src/libjm.h \
+ /usr/include/tcl8.6/tcl.h /usr/include/tcl8.6/tclDecls.h \
+ /usr/include/tcl8.6/tclPlatDecls.h ../src/fourier.h
+fourier_calculs.o: ../src/fourier_calculs.cpp \
+ /root/audela-code/audela/src/include/sysexp.h \
+ /root/audela-code/audela/src/include/libaudela.h ../src/libjm.h \
+ /usr/include/tcl8.6/tcl.h /usr/include/tcl8.6/tclDecls.h \
+ /usr/include/tcl8.6/tclPlatDecls.h ../src/fourier.h
+fourier_images.o: ../src/fourier_images.cpp \
+ /root/audela-code/audela/src/include/libaudela.h ../src/libjm.h \
+ /root/audela-code/audela/src/include/sysexp.h /usr/include/tcl8.6/tcl.h \
+ /usr/include/tcl8.6/tclDecls.h /usr/include/tcl8.6/tclPlatDecls.h \
+ ../src/erreur.h ../src/fourier.h
+fourier_tcl.o: ../src/fourier_tcl.cpp \
+ /root/audela-code/audela/src/include/libaudela.h ../src/libjm.h \
+ /root/audela-code/audela/src/include/sysexp.h /usr/include/tcl8.6/tcl.h \
+ /usr/include/tcl8.6/tclDecls.h /usr/include/tcl8.6/tclPlatDecls.h \
+ ../src/fourier.h

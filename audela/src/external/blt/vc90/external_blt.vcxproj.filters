@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Graph">
+      <UniqueIdentifier>{3fc32ee4-4661-4340-b7cd-8c74e09ad2d9}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Source Tcl">
+      <UniqueIdentifier>{a42b8063-25e7-4cbf-b61f-e1be5c326b7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{8ede814c-3a03-44ee-8203-f289bdc6369b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Tk">
+      <UniqueIdentifier>{cfc0bacf-76fa-4b6a-ad18-7c6f68e56509}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{5d93fb62-a9aa-4e15-8023-cc6d5864d6fd}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\blt2.4z\src\bltGraph.c">
+      <Filter>Source Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltGrAxis.c">
+      <Filter>Source Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltGrBar.c">
+      <Filter>Source Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltGrElem.c">
+      <Filter>Source Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltGrGrid.c">
+      <Filter>Source Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltGrHairs.c">
+      <Filter>Source Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltGrLegd.c">
+      <Filter>Source Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltGrLine.c">
+      <Filter>Source Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltGrMarker.c">
+      <Filter>Source Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltGrMisc.c">
+      <Filter>Source Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltGrPen.c">
+      <Filter>Source Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltGrPs.c">
+      <Filter>Source Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltAlloc.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltArrayObj.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltBgexec.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltChain.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltDebug.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltHash.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltInit.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltList.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltNsUtil.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltParse.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltPool.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltSpline.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltSwitch.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltTree.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltTreeCmd.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltUtil.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltVecCmd.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltVecMath.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltVecObjCmd.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltVector.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltWatch.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltWinDde.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltWinPipe.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltWinUtil.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\pure_api.c">
+      <Filter>Source Tcl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltBeep.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltBind.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltBitmap.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltBusy.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltCanvEps.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltConfig.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltContainer.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltDragdrop.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltHierbox.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltHtext.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltImage.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltObjConfig.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltPs.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltTable.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltTabnotebook.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltTabset.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltText.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltTile.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltTreeView.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltTreeViewCmd.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltTreeViewColumn.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltTreeViewEdit.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltTreeViewStyle.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltWindow.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltWinDraw.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltWinImage.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltWinop.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltWinPrnt.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\bltTed.c">
+      <Filter>Source Tk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\tkButton.c">
+      <Filter>Source Tk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\tkFrame.c">
+      <Filter>Source Tk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\blt2.4z\src\tkScrollbar.c">
+      <Filter>Source Tk</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

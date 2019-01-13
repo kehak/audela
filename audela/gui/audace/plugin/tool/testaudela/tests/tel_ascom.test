@@ -1,0 +1,29 @@
+
+variable SETUP {
+
+}
+
+#-------------------------------------------------------------------------------
+test tel_ascom_create {telascom creation}  -constraints {ASTROBRICK} -setup $SETUP -body {
+   console::disp " absimple_producer debut \n"
+   set telNo [tel::create "ascom" "ASCOM.Simulator.Telescope"]
+   tel$telNo radec survey 1
+
+   set date [tel$telNo date]
+   console::disp "date=$date \n"
+   tel::delete $telNo
+   
+
+   return $telNo
+} -cleanup { 
+   
+} -result 1
+
+#-------------------------------------------------------------------------------
+test tel_ascom_date { telascom date} -constraints {ASTROBRICK} -setup $SETUP -body {
+
+   return 1
+} -cleanup { 
+   
+} -result 1
+

@@ -1,0 +1,403 @@
+#
+# Fichier : t193.cap
+# Mise a jour $Id: t193.cap 13616 2016-04-05 15:34:15Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(t193,monture)                    "T193"
+set caption(t193,port)                       "HP1000 Com Port"
+set caption(t193,configurer)                 "Set up..."
+set caption(t193,rappelAlpha)                "R.A. Guide Speed (arcsec/sec.)"
+set caption(t193,rappelDelta)                "Dec. Guide Speed (arcsec/sec.)"
+set caption(t193,mode)                       "Mode"
+set caption(t193,carteUSB)                   "NI USB Board"
+set caption(t193,ethernet)                   "Ethernet"
+set caption(t193,nom_carte)                  "Name of USB-6501 board"
+set caption(t193,minDelay)                   "Minimum Pulse (ms)"
+set caption(t193,host)                       "Host"
+set caption(t193,portNotification)           "Notification Port"
+set caption(t193,portCommand)                "Command Port"
+set caption(t193,raquette)                   "Hand Controller"
+set caption(t193,nord)                       "N"
+set caption(t193,sud)                        "S"
+set caption(t193,est)                        "E"
+set caption(t193,ouest)                      "W"
+set caption(t193,attenuateur)                "Fading"
+set caption(t193,duree)                      "Time to move\nbetween min\nand max (sec.)"
+set caption(t193,attenuateur-)               "-"
+set caption(t193,attenuateur+)               "+"
+set caption(t193,coordonnees)                "RA and DEC Coordinates"
+set caption(t193,AD)                         "Right Ascension"
+set caption(t193,Dec)                        "Declination"
+set caption(t193,controle)                   "Control"
+set caption(t193,raquette_tel)               "Hand controller on screen"
+set caption(t193,model,title)                "Aiming Model"
+set caption(t193,model,enabled)              "Enable"
+set caption(t193,model,date)                 "Date"
+
+set caption(t193,install_1)                  "End of T193 plugin installation"
+set caption(t193,install_2)                  "libt193.dll library updated."
+
+set caption(t193,port_t193)                  "HP1000 Com Port"
+set caption(t193,2points)                    ":"
+
+set caption(t193,titre_site_web)             "Reference Web Site:"
+set caption(t193,site_t193)                  "http://www.obs-hp.fr/guide/193-2.html"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(t193,monture)                 "T193"
+   set caption(t193,port)                    "Port Com HP1000"
+   set caption(t193,configurer)              "Configurer..."
+   set caption(t193,rappelAlpha)             "Vitesse de rappel en A.D. (arcsec/sec.)"
+   set caption(t193,rappelDelta)             "Vitesse de rappel en Déc. (arcsec/sec.)"
+   set caption(t193,mode)                    "Mode"
+   set caption(t193,carteUSB)                "Carte USB NI"
+   set caption(t193,ethernet)                "Ethernet"
+   set caption(t193,nom_carte)               "Nom de la carte USB-6501"
+   set caption(t193,minDelay)                "Impulsion minimale (ms)"
+   set caption(t193,host)                    "Host"
+   set caption(t193,portNotification)        "Port de notification"
+   set caption(t193,portCommand)             "Port de commande"
+   set caption(t193,raquette)                "Raquette"
+   set caption(t193,nord)                    "N"
+   set caption(t193,sud)                     "S"
+   set caption(t193,est)                     "E"
+   set caption(t193,ouest)                   "O"
+   set caption(t193,attenuateur)             "Atténuateur"
+   set caption(t193,duree)                   "Durée de\ndéplacement entre\nle mini et le maxi (sec.)"
+   set caption(t193,attenuateur-)            "-"
+   set caption(t193,attenuateur+)            "+"
+   set caption(t193,coordonnees)             "Coordonnées AD et Déc."
+   set caption(t193,AD)                      "Ascension droite"
+   set caption(t193,Dec)                     "Déclinaison"
+   set caption(t193,controle)                "Contrôle"
+   set caption(t193,raquette_tel)            "Raquette à l'écran"
+   set caption(t193,model,title)             "Modèle de pointage"
+   set caption(t193,model,enabled)           "Activer"
+   set caption(t193,model,date)              "Date"
+
+   set caption(t193,install_1)               "Fin de l'installation du plugin T193"
+   set caption(t193,install_2)               "La librairie libt193.dll a été mise à jour."
+
+   set caption(t193,port_t193)               "Port Com HP1000"
+   set caption(t193,2points)                 ":"
+
+   set caption(t193,titre_site_web)          "Site Web de référence :"
+   set caption(t193,site_t193)               "http://www.obs-hp.fr/guide/193-2.html"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(t193,monture)                 "T193"
+   set caption(t193,port)                    "Porta Com HP1000"
+   set caption(t193,configurer)              "Configurare..."
+   set caption(t193,rappelAlpha)             "Velocità guida in A.R. (arcsec/sec.)"
+   set caption(t193,rappelDelta)             "Velocità guida in Dec. (arcsec/sec.)"
+   set caption(t193,mode)                    "Modalita`"
+   set caption(t193,carteUSB)                "Scheda USB NI"
+   set caption(t193,ethernet)                "Ethernet"
+   set caption(t193,nom_carte)               "Nome di carta USB-6501"
+   set caption(t193,minDelay)                "Impulso minimo (ms)"
+   set caption(t193,host)                    "Host"
+   set caption(t193,portNotification)        "Porta di notifica"
+   set caption(t193,portCommand)             "Porta di comando"
+   set caption(t193,raquette)                "Pulsantiera"
+   set caption(t193,nord)                    "N"
+   set caption(t193,sud)                     "S"
+   set caption(t193,est)                     "E"
+   set caption(t193,ouest)                   "O"
+   set caption(t193,attenuateur)             "Attenuatore"
+   set caption(t193,duree)                   "Durata di\nposizionamento\nmin e max (sec.)"
+   set caption(t193,attenuateur-)            "-"
+   set caption(t193,attenuateur+)            "+"
+   set caption(t193,coordonnees)             "Coordinate AR e Dec."
+   set caption(t193,AD)                      "Ascensione Retta"
+   set caption(t193,Dec)                     "Declinazione"
+   set caption(t193,controle)                "Controllo"
+   set caption(t193,raquette_tel)            "Pulsantiera a schermo"
+   set caption(t193,model,title)             "Modello di puntamento"
+   set caption(t193,model,enabled)           "Abilita"
+   set caption(t193,model,date)              "Data"
+
+   set caption(t193,install_1)               "Fine installazione del plugin T193"
+   set caption(t193,install_2)               "La libreria libt193.dll è stata aggiornata."
+
+   set caption(t193,port_t193)               "Porta Com HP1000"
+   set caption(t193,2points)                 ":"
+
+   set caption(t193,titre_site_web)          "Sito Web di riferimento:"
+   set caption(t193,site_t193)               "http://www.obs-hp.fr/guide/193-2.html"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(t193,monture)                 "T193"
+   set caption(t193,port)                    "Puerto Com HP1000"
+   set caption(t193,configurer)              "Configurar..."
+   set caption(t193,rappelAlpha)             "Velocidad de guiado A.R. (arcsec/sec.)"
+   set caption(t193,rappelDelta)             "Velocidad de guiado Dec. (arcsec/sec.)"
+   set caption(t193,mode)                    "Modo"
+   set caption(t193,carteUSB)                "Tarjeta USB NI"
+   set caption(t193,ethernet)                "Ethernet"
+   set caption(t193,nom_carte)               "Nombre de la tarjeta USB-6501"
+   set caption(t193,minDelay)                "Pulso míninmo (ms)"
+   set caption(t193,host)                    "Host"
+   set caption(t193,portNotification)        "Puerto de notificación"
+   set caption(t193,portCommand)             "Puerto de comando"
+   set caption(t193,raquette)                "Controlador de mano"
+   set caption(t193,nord)                    "N"
+   set caption(t193,sud)                     "S"
+   set caption(t193,est)                     "E"
+   set caption(t193,ouest)                   "W"
+   set caption(t193,attenuateur)             "Atenuador"
+   set caption(t193,duree)                   "Duración del\ndesplazamiento entre\nel min. y el max. (seg.)"
+   set caption(t193,attenuateur-)            "-"
+   set caption(t193,attenuateur+)            "+"
+   set caption(t193,coordonnees)             "Coordenadas AR y Dec."
+   set caption(t193,AD)                      "Ascensión Recta"
+   set caption(t193,Dec)                     "Declinación"
+   set caption(t193,controle)                "Control"
+   set caption(t193,raquette_tel)            "Controlador virtual"
+   set caption(t193,model,title)             "Modelo de apuntado"
+   set caption(t193,model,enabled)           "Permitir"
+   set caption(t193,model,date)              "Fecha"
+
+   set caption(t193,install_1)               "Fin de la instalación del plugin T193"
+   set caption(t193,install_2)               "Libreria libt193.dll actualizada."
+
+   set caption(t193,port_t193)               "Puerto Com HP1000"
+   set caption(t193,2points)                 ":"
+
+   set caption(t193,titre_site_web)          "Sitio Web de referencia:"
+   set caption(t193,site_t193)               "http://www.obs-hp.fr/guide/193-2.html"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(t193,monture)                 "T193"
+   set caption(t193,port)                    "HP1000 Com Port"
+   set caption(t193,configurer)              "Konfigurieren..."
+   set caption(t193,rappelAlpha)             "R.A. Rückruf Geschwindigkeit (arcsek/Sek.)"
+   set caption(t193,rappelDelta)             "Dek. Rückruf Geschwindigkeit (arcsek/Sek.)"
+   set caption(t193,mode)                    "Modus"
+   set caption(t193,carteUSB)                "NI USB Karte"
+   set caption(t193,ethernet)                "Ethernet"
+   set caption(t193,nom_carte)               "USB-6501 Karte Namen"
+   set caption(t193,minDelay)                "Minimal Pulsschlag (ms)"
+   set caption(t193,host)                    "Host"
+   set caption(t193,portNotification)        "Benachrichtigten Port"
+   set caption(t193,portCommand)             "Befehl Port"
+   set caption(t193,raquette)                "Hand Kontroller"
+   set caption(t193,nord)                    "N"
+   set caption(t193,sud)                     "S"
+   set caption(t193,est)                     "O"
+   set caption(t193,ouest)                   "W"
+   set caption(t193,attenuateur)             "Abblender"
+   set caption(t193,duree)                   "Bewegung Zeit\nzwishen Min\nund Max (Sek.)"
+   set caption(t193,attenuateur-)            "-"
+   set caption(t193,attenuateur+)            "+"
+   set caption(t193,coordonnees)             "RA und Dek. Koordinaten"
+   set caption(t193,AD)                      "Rektaszension"
+   set caption(t193,Dec)                     "Deklination"
+   set caption(t193,controle)                "Kontroll"
+   set caption(t193,raquette_tel)            "Hand Kontroller am Bildschirm"
+   set caption(t193,model,title)             "Richtung Modell"
+   set caption(t193,model,enabled)           "Befähigen"
+   set caption(t193,model,date)              "Datum"
+
+   set caption(t193,install_1)               "Ende der T193-Plugin-Installation"
+   set caption(t193,install_2)               "Die libt193.dll Bibliothek ist aktualisiert."
+
+   set caption(t193,port_t193)               "HP1000 Com Port"
+   set caption(t193,2points)                 ":"
+
+   set caption(t193,titre_site_web)          "Referenz Webseite:"
+   set caption(t193,site_t193)               "http://www.obs-hp.fr/guide/193-2.html"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(t193,monture)                 "T193"
+   set caption(t193,port)                    "Porta Com HP1000"
+   set caption(t193,configurer)              "Configuração..."
+   set caption(t193,rappelAlpha)             "Velocidade de guia A.R. (arcsec/sec.)"
+   set caption(t193,rappelDelta)             "Velocidade de guia Dec. (arcsec/sec.)"
+   set caption(t193,mode)                    "Modo"
+   set caption(t193,carteUSB)                "Carta USB NI"
+   set caption(t193,ethernet)                "Ethernet"
+   set caption(t193,nom_carte)               "Nome da carta USB-6501"
+   set caption(t193,minDelay)                "Impulso mínimo (ms)"
+   set caption(t193,host)                    "Host"
+   set caption(t193,portNotification)        "Porto de notificação"
+   set caption(t193,portCommand)             "Porto de comando"
+   set caption(t193,raquette)                "Controlador de mão"
+   set caption(t193,nord)                    "N"
+   set caption(t193,sud)                     "S"
+   set caption(t193,est)                     "E"
+   set caption(t193,ouest)                   "O"
+   set caption(t193,attenuateur)             "Atenuador"
+   set caption(t193,duree)                   "Duração entre\nmin e max (seg.)"
+   set caption(t193,attenuateur-)            "-"
+   set caption(t193,attenuateur+)            "+"
+   set caption(t193,coordonnees)             "Coordenadas AR e Dec."
+   set caption(t193,AD)                      "Ascenção Recta"
+   set caption(t193,Dec)                     "Declinação"
+   set caption(t193,controle)                "Controlo"
+   set caption(t193,raquette_tel)            "Controlador de mão no ecrã"
+   set caption(t193,model,title)             "Modelo de apontamento"
+   set caption(t193,model,enabled)           "Activar"
+   set caption(t193,model,date)              "Data"
+
+   set caption(t193,install_1)               "Fin da instalação do plugin T193"
+   set caption(t193,install_2)               "A livraria libt193.dll foi actualizada."
+
+   set caption(t193,port_t193)               "Porta Com HP1000"
+   set caption(t193,2points)                 ":"
+
+   set caption(t193,titre_site_web)          "Site Web de referência:"
+   set caption(t193,site_t193)               "http://www.obs-hp.fr/guide/193-2.html"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(t193,monture)                 "T193"
+   set caption(t193,port)                    "HP1000 Com Port"
+   set caption(t193,configurer)              "Set up..."
+   set caption(t193,rappelAlpha)             "R.A. Guide Speed (arcsec/sec.)"
+   set caption(t193,rappelDelta)             "Dec. Guide Speed (arcsec/sec.)"
+   set caption(t193,mode)                    "Mode"
+   set caption(t193,carteUSB)                "NI USB Board"
+   set caption(t193,ethernet)                "Ethernet"
+   set caption(t193,nom_carte)               "Name of USB-6501 board"
+   set caption(t193,minDelay)                "Minimum Pulse (ms)"
+   set caption(t193,host)                    "Host"
+   set caption(t193,portNotification)        "Notification Port"
+   set caption(t193,portCommand)             "Command Port"
+   set caption(t193,raquette)                "Hand Controller"
+   set caption(t193,nord)                    "N"
+   set caption(t193,sud)                     "S"
+   set caption(t193,est)                     "E"
+   set caption(t193,ouest)                   "W"
+   set caption(t193,attenuateur)             "Fading"
+   set caption(t193,duree)                   "Time to move\nbetween min\nand max (sec.)"
+   set caption(t193,attenuateur-)            "-"
+   set caption(t193,attenuateur+)            "+"
+   set caption(t193,coordonnees)             "RA and DEC Coordinates"
+   set caption(t193,AD)                      "Right Ascension"
+   set caption(t193,Dec)                     "Declination"
+   set caption(t193,controle)                "Control"
+   set caption(t193,raquette_tel)            "Hand controller on screen"
+   set caption(t193,model,title)             "Aiming Model"
+   set caption(t193,model,enabled)           "Enable"
+   set caption(t193,model,date)              "Date"
+
+   set caption(t193,install_1)               "End of T193 plugin installation"
+   set caption(t193,install_2)               "libt193.dll library updated."
+
+   set caption(t193,port_t193)               "HP1000 Com Port"
+   set caption(t193,2points)                 ":"
+
+   set caption(t193,titre_site_web)          "Reference Web Site:"
+   set caption(t193,site_t193)               "http://www.obs-hp.fr/guide/193-2.html"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(t193,monture)                 "T193"
+   set caption(t193,port)                    "HP1000 Com Port"
+   set caption(t193,configurer)              "Set up..."
+   set caption(t193,rappelAlpha)             "R.A. Guide Speed (arcsec/sec.)"
+   set caption(t193,rappelDelta)             "Dec. Guide Speed (arcsec/sec.)"
+   set caption(t193,mode)                    "Mode"
+   set caption(t193,carteUSB)                "NI USB Board"
+   set caption(t193,ethernet)                "Ethernet"
+   set caption(t193,nom_carte)               "Name of USB-6501 board"
+   set caption(t193,minDelay)                "Minimum Pulse (ms)"
+   set caption(t193,host)                    "Host"
+   set caption(t193,portNotification)        "Notification Port"
+   set caption(t193,portCommand)             "Command Port"
+   set caption(t193,raquette)                "Hand Controller"
+   set caption(t193,nord)                    "N"
+   set caption(t193,sud)                     "S"
+   set caption(t193,est)                     "E"
+   set caption(t193,ouest)                   "W"
+   set caption(t193,attenuateur)             "Fading"
+   set caption(t193,duree)                   "Time to move\nbetween min\nand max (sec.)"
+   set caption(t193,attenuateur-)            "-"
+   set caption(t193,attenuateur+)            "+"
+   set caption(t193,coordonnees)             "RA and DEC Coordinates"
+   set caption(t193,AD)                      "Right Ascension"
+   set caption(t193,Dec)                     "Declination"
+   set caption(t193,controle)                "Control"
+   set caption(t193,raquette_tel)            "Hand controller on screen"
+   set caption(t193,model,title)             "Aiming Model"
+   set caption(t193,model,enabled)           "Enable"
+   set caption(t193,model,date)              "Date"
+
+   set caption(t193,install_1)               "End of T193 plugin installation"
+   set caption(t193,install_2)               "libt193.dll library updated."
+
+   set caption(t193,port_t193)               "HP1000 Com Port"
+   set caption(t193,2points)                 ":"
+
+   set caption(t193,titre_site_web)          "Reference Web Site:"
+   set caption(t193,site_t193)               "http://www.obs-hp.fr/guide/193-2.html"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(t193,monture)                 "T193"
+   set caption(t193,port)                    "HP1000 Com Port"
+   set caption(t193,configurer)              "Set up..."
+   set caption(t193,rappelAlpha)             "R.A. Guide Speed (arcsec/sec.)"
+   set caption(t193,rappelDelta)             "Dec. Guide Speed (arcsec/sec.)"
+   set caption(t193,mode)                    "Mode"
+   set caption(t193,carteUSB)                "NI USB Board"
+   set caption(t193,ethernet)                "Ethernet"
+   set caption(t193,nom_carte)               "Name of USB-6501 board"
+   set caption(t193,minDelay)                "Minimum Pulse (ms)"
+   set caption(t193,host)                    "Host"
+   set caption(t193,portNotification)        "Notification Port"
+   set caption(t193,portCommand)             "Command Port"
+   set caption(t193,raquette)                "Hand Controller"
+   set caption(t193,nord)                    "N"
+   set caption(t193,sud)                     "S"
+   set caption(t193,est)                     "E"
+   set caption(t193,ouest)                   "W"
+   set caption(t193,attenuateur)             "Fading"
+   set caption(t193,duree)                   "Time to move\nbetween min\nand max (sec.)"
+   set caption(t193,attenuateur-)            "-"
+   set caption(t193,attenuateur+)            "+"
+   set caption(t193,coordonnees)             "RA and DEC Coordinates"
+   set caption(t193,AD)                      "Right Ascension"
+   set caption(t193,Dec)                     "Declination"
+   set caption(t193,controle)                "Control"
+   set caption(t193,raquette_tel)            "Hand controller on screen"
+   set caption(t193,model,title)             "Aiming Model"
+   set caption(t193,model,enabled)           "Enable"
+   set caption(t193,model,date)              "Date"
+
+   set caption(t193,install_1)               "End of T193 plugin installation"
+   set caption(t193,install_2)               "libt193.dll library updated."
+
+   set caption(t193,port_t193)               "HP1000 Com Port"
+   set caption(t193,2points)                 ":"
+
+   set caption(t193,titre_site_web)          "Reference Web Site:"
+   set caption(t193,site_t193)               "http://www.obs-hp.fr/guide/193-2.html"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

@@ -1,0 +1,2 @@
+LIBRARY libt193
+EXPORTS T_Init @1

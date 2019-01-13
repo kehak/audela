@@ -1,0 +1,794 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="Author" content="Alain Klotz">
+  <meta name="GENERATOR"
+ content="Mozilla/4.75 [fr] (Win98; U) [Netscape]">
+  <meta name="ProgId" content="FrontPage.Editor.Document">
+  <title>Librairie TT : Calendrier des modifications</title>
+</head>
+<body>
+<center><b><font size="+3">LIB TT</font></b> <br>
+</center>
+<center>une librairie de pr&eacute;traitement d'images astronomiques </center>
+<br>
+<center> version 20130209 </center>
+<center>
+<p><b><font size="+3">Calendrier des modifications de LibTT</font></b></p>
+</center>
+<h3> </h3>
+<h3><small>2013-02-09 :</small></h3>
+<ul>
+  <li>Correction d'une limitation &agrave; 250 mots cl&eacute;s dans le
+header de l'image de sortie. Dans le fichier tt_fits1.c, ajout de la
+fonction tt_imareallocnewkey et modifications des fonctions
+tt_imanewkeychar et tt_imanewkeytt.</li>
+</ul>
+<h3><small>2011-11-01 :</small></h3>
+<ul>
+  <li>Correction d'un bug dans IMA/SERIES CATCHAR.&nbsp; </li>
+</ul>
+<h3><small>2009-04-08 :</small></h3>
+<ul>
+  <li>Correction d'un bug dans IMA/SERIES FILTER. Le code du filtre
+passe haut &eacute;tait le m&ecirc;me que celui du filtre passe
+bas.&nbsp; </li>
+</ul>
+<h3><small>2008-11-21 :</small></h3>
+<small> </small>
+<ul>
+  <li>Allocation dynamique des variables par lesquelles transitent les
+parametres de IMA/SERIES et IMA/STACK
+    <ul>
+      <li>tt_utils1.c :
+        <ul>
+          <li>tt_writelog : remplace chaine[TT_MAXLIGNE] par
+chaine=malloc(TT_MAXLIGNE + strlen(message)) </li>
+          <li>tt_writelog : remplace message_log[TT_MAXLIGNE] par
+message_log=malloc(TT_MAXLIGNE + strlen(message)) </li>
+          <li>tt_decodekeys : remplace lenkeys=500 par
+lenkeys=strlen(ligne)</li>
+        </ul>
+      </li>
+      <li>tt_seri1.c :
+        <ul>
+          <li>tt_ima_series_builder : remplace argu[1000] par
+argu=malloc(strlen(keys[k]));</li>
+        </ul>
+      </li>
+      <li>tt_stac1.c :
+        <ul>
+          <li>tt_ima_stack_builder : remplace mot[80] par
+libtt_main0(TT_UTIL_CALLOC_PTR,4,&amp;mot,&amp;nombre,&amp;taille,"mot")</li>
+          <li>tt_ima_stack_builder : remplace argu[80] par
+libtt_main0(TT_UTIL_CALLOC_PTR,4,&amp;argu,&amp;nombre,&amp;taille,"argu"))</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <ul>
+  </ul>
+  <li>Ajout de la fonction IMA/SERIES HOTPIXEL pour supprimer les
+pixels chauds dans une image</li>
+  <li>Ajout de la fonction IMA/SERIES COSMIC pour supprimer les
+cosmiques dans une image</li>
+  <li>Ajout des param&egrave;tres HOT_PIXEL_LIST et COSMIC_THRESHOLD
+dans les fonctions SUB et SUBDARK de IMA/SERIES </li>
+  <li>Ajout du parametre Y1 dans la fonction SMILEX de IMA/SERIES </li>
+</ul>
+<h3><small>2008-06-09 :</small></h3>
+<small> </small>
+<ul>
+  <li>Ajout de l'option dans IMA/SERIES et IMA/STACK pour traiter une
+s&eacute;rie de fichiers qui ont des noms d&eacute;pareill&eacute;s
+(Michel)</li>
+</ul>
+<h3><small>2008-01-23 :</small></h3>
+<small> </small>
+<ul>
+  <li>Ajout de la fonction IMA/STACK PYTHAGORE pour synth&eacute;tiser
+une
+image comme la formule de Pythagore g&eacute;n&eacute;ralis&eacute;e
+d'un
+lot d'images. Modifs dans tt_stac1.c, tt_stac2.c et&nbsp; tt.h.</li>
+  <li>Ajout de l'option powernorm dans la fonction IMA/STACK
+PROD.Modifs
+dans tt_stac1.c, tt_stac2.c et&nbsp; tt.h.<br>
+  </li>
+</ul>
+<h3><small>2007-12-27 :</small></h3>
+<small> </small>
+<ul>
+  <li>Ajout de la fonction IMA/SERIES FITELLIP pour synth&eacute;tiser
+l'ajustement d'ellipses sur une galaxie. Modifs dans tt_seri1.c, tt.dsp
+et&nbsp; tt.h. Cr&eacute;ation des fichiers tt_seri6.c et tt_util4.c.</li>
+</ul>
+<h3><small>2007-11-25 :</small></h3>
+<small> </small>
+<ul>
+  <li>Ajout de la fonction IMA/SERIES REGISTERFINE pour trouver la
+meilleur translation dans un lot d'images &agrave; rencentrer. Modifs
+dans tt_seri1.c, tt_seri4.c et&nbsp; tt.h.</li>
+  <li>Ajout de la fonction IMA/SERIES PROD pour faire multipmier une
+image &agrave; une s&eacute;rie. Modifs dans tt_seri1.c, tt_seri3.c
+et&nbsp; tt.h.</li>
+</ul>
+<h3><small>2007-08-24 :</small></h3>
+<small> </small>
+<ul>
+  <li>introduction de la d&eacute;finition TT_ESP_DOUBLE dans tt.h.
+Corrections des conditions (my_double==0) par
+(fabs(my_double)&lt;=TT_ESP_DOUBLE) dans tt_seri3.c, tt_seri4.c,
+tt_seri5.c et tt_stac2.c.</li>
+</ul>
+<h3><small>2007-03-17 :</small></h3>
+<small> </small>
+<ul>
+  <li>correction tt_ima_series_normgain_1 : remplace tt_util_statima(<b>p_out</b>,pseries-&gt;pixelsat_value
+...) par tt_util_statima(<b>p_in</b>,pseries-&gt;pixelsat_value ...)</li>
+</ul>
+<h3><small>2007-02-08 :</small></h3>
+<small> </small>
+<ul>
+  <li>ajout de deux nouvelles fonctions dans tt_user2.c &agrave; la
+demande de Benjamin Mauclaire : COLORSPECTRUM et SMOOTHSG. (Michel)</li>
+</ul>
+<h3>2007-01-11</h3>
+<ul>
+  <li>Ajout de la fonction IMA/STACK PROD pour effectuer le produit
+d'une pile d'images. Modifs dans tt_stac1.c, tt_stac2.c et&nbsp; tt.h.</li>
+</ul>
+<h3><small>2006-12-08 :</small></h3>
+<ul>
+  <li>ajout du message d'erreur "OBJEFILE %s too long (maxlen=%d)"
+dans la fonction tt_ima_series_saver_end() de tt_seri2.c dans le cas
+ou le nom du fichier &agrave; une longueur sup&eacute;rieure &agrave;
+FLEN_VALUE. (Michel)</li>
+  <li>ajout de "See tt.err" au message d'erreur retourn&eacute; par la
+fonction tt_errmessage2 dans le fichier tt_uti1.c (Michel)</li>
+</ul>
+<h3><small>2006-12-06 :</small></h3>
+<small> </small>
+<ul>
+  <li>Correction d'un bug avec BITPIX dans la fonction
+TT_PTR_SAVEIMAKEYDIM en mode pointeur. Des modifications ont
+&eacute;t&eacute; apport&eacute;es au fichier tt_poin1.c.</li>
+</ul>
+<h3><small>2006-12-01 :</small></h3>
+<small> </small>
+<ul>
+  <li>Ajout de la fonction IMA/STACK SHUTTER pour restituer la carte
+des delais d'ouverture d'un obturateur. Modifs dans tt_stac1.c,
+tt_stac2.c et tt.h.</li>
+</ul>
+<h3><small>2006-11-24 :</small></h3>
+<small> </small>
+<ul>
+  <li>Ajout de l'instruction fclose(out_file) dans la fonction
+tt_ima_series_catchart_2() du fichier tt_seri5.c (Michel)</li>
+</ul>
+<h3><small>2006-11-05 :</small></h3>
+<small> </small>
+<ul>
+  <li>Ajout de la fonction TT_PTR_SAVEIMAKEYDIM en mode pointeur. Cette
+fonction permet de sauver une image avec &nbsp;le mot cl&eacute; NAXIS
+tel qu'il est pass&eacute; dans la liste des mots cl&eacute;s.
+Tous les mots cl&eacute;s NAXIS* servent &agrave; dimensionner l'image
+de sortie. Des modifications ont &eacute;t&eacute; apport&eacute;es aux
+fichiers tt_poin1.c, tt.c, libtt.h.</li>
+</ul>
+<h3><small>2006-11-02 :</small></h3>
+<small> </small>
+<ul>
+  <li>Correction d'un bug dans IMA/SERIES STAT dans l'algorithme de
+Miller pour le cas d'un spectre d&eacute;passant 50000 pixels.
+Corrections faites dans la fonction tt_util_statima du fichier
+tt_util2.c par Michel Pujol (probleme de plus petite valeur de double
+atteinte major&eacute;e par la variable epsdouble).</li>
+</ul>
+<h3><small>2006-11-01 :</small></h3>
+<small> </small>
+<ul>
+  <li>Correction d'un bug dans IMA/SERIES RESAMPLE d&ucirc; &agrave;
+une mauvaise gestion des index des coefa. Modifs dans tt_util2.c et
+tt_seri4.c.</li>
+</ul>
+<h3><small>2006-08-24 :</small></h3>
+<small> </small>
+<ul>
+  <li>Correction d'un bug de division par z&eacute;ro dans la fonction
+tt_ima_series_lopt de tt_user2.c</li>
+  <li>Correction d'un bug de retour des valeurs des mots cl&eacute;
+NAXIS1 et NAXIS2 lors d'une transformation g&eacute;om&eacute;trique
+qui modifie les valeurs initiales. Modifications des fichiers
+tt_poin2.c
+et ttseri2.c.</li>
+</ul>
+<h3><small>2006-08-21 :</small></h3>
+<small> </small>
+<ul>
+  <li>Ajout de la fonctionnalit&eacute; de libtt pour les images
+NAXIS=1. Il a fallu ajouter des forcages de naxis &agrave; la valeur de
+l'image entrante. Dans le fichier tt_poin1.c, modifications dans
+loadima3d, saveima3d et saveima. Dans le fichier tt_poin2.c, tt_seri2.c
+modification de imaseries. Dans le fichier tt_seri3, modification des
+fonctions filter_1, back_1, trans_1, back_1, conv_1. Dans le fichier
+tt_util2, modifications dans tt_util_tranima1.</li>
+</ul>
+<h3><small>2006-07-26 :</small></h3>
+<small> </small>
+<ul>
+  <li>Ajout des user2 (Benjamin Mauclaire) et user5 (Myrtille Laas).
+Cr&eacute;ation des fichiers tt_user2.c, tt_user2.h, tt_user5.c,
+tt_user5.h, et modification des Makefiles Linux et VC60 (modifs
+compl&eacute;mentaires dans tt_seri1.c).</li>
+  <li>Ajout des fonctions IMA/SERIES PROFILE2 et LOPT pour la
+spectrographie dans tt_user2.c.</li>
+</ul>
+<h3><small>2006-06-14 :</small></h3>
+<small> </small>
+<ul>
+  <li>Correction d'un bug dans tt_poin2.c .dans le cas o&ugrave; les
+images ont NAXIS1=0 ou NAXIS2=0. Autres fichiers modifi&eacute;s : tt.h
+et tt_util1.c.</li>
+</ul>
+<h3>2006-05-25 :</h3>
+<ul>
+  <li>Mise &agrave; jour retard&eacute;e de la documentation.</li>
+  <li>Ajout des fonctions IMA/SERIES TILT, IMA/SERIES SMILEX,
+IMA/SERIES SMILEY pour les corrections g&eacute;om&eacute;triques
+d'images de spectrographie.</li>
+  <li>Ajout des fonctions IMA/SERIES_RADIAL pour enlever
+la contribution de la diffusion radiale dans le cas d'images
+d'&eacute;clipses totales de Soleil.</li>
+  <li>Ajout de la fonction TT_PTR_SAVEIMA1D en mode pointeur. Cette
+fonctions permet de sauver et de lire une image "vecteur" contenant un
+seul axe (NAXIS=1). Des modifications ont &eacute;t&eacute;
+apport&eacute;es aux fichier tt_poin1.c, tt.c, libtt.h.<br>
+  </li>
+</ul>
+<h3>2003-11-27 :</h3>
+<ul>
+  <li>Corrections de bug d'un pixel dans le calcul des
+anamorphoses lineaires (fonction tt_util_regima1 de tt_util2.c) et
+dans la fonction tt_ima_series_invert_1 de tt_seri3.c (corrections
+faites par Denis Marchais).</li>
+  <li>Correction d'un bug dans la fonction de macr_write_keys (fichier
+fs_macr2.c) concernant l'&eacute;criture d'un seul mot cl&eacute; dans
+une ent&ecirc;te FITS.<br>
+  </li>
+</ul>
+<h3>2003-11-23 :</h3>
+<ul>
+  <li>Dans la fonction IMA/SERIES ASTROMETRY, ajout du
+calcul des mots cl&eacute; PV*_7 &agrave; PV*_10 pour tenir compte
+des d&eacute;formations d'ordre 3.<br>
+  </li>
+</ul>
+<h3>2003-11-17 :</h3>
+<ul>
+  <li>Ajout de la fonction IMA/STACK SIG qui retourne l'image
+d'&eacute;cart type d'une pile d'images. Modifications dans tt_stac1.c,
+tt_stac2.c et tt.h.</li>
+  <li>Ajout de l'option [matchwcs] dans IMA/SERIES REGISTER.<br>
+  </li>
+</ul>
+<h3>2003-10-30 :</h3>
+<ul>
+  <li>Corrections de bug d'un demi pixel dans le calcul des mots
+cl&eacute; WCS. De nombreuses fonctions ont &eacute;t&eacute;
+corrig&eacute;es dans tt_seri*.c et tt_util2.c.</li>
+  <li>Dans la fonction IMA/SERIES ASTROMETRY, ajout
+du calcul des mots cl&eacute; PV1_1 &agrave; PV2_6 pour tenir compte
+des d&eacute;formations d'ordre 2.<br>
+  </li>
+</ul>
+<h3>2003-10-25 :</h3>
+<ul>
+  <li>Correction d'un bug lors de la cr&eacute;ation du message
+d'erreur de compatibilit&eacute; de dimension d'images dans le fichier
+tt_stac1.c.<br>
+  </li>
+</ul>
+<h3>2003-10-12 :</h3>
+<ul>
+  <li>La fonction IMA/SERIES ASTROMETRY a &eacute;t&eacute;
+acc&eacute;l&eacute;r&eacute;e et am&eacute;lior&eacute;e.
+L'acc&eacute;l&eacute;ration consiste en la transformation d'un
+algorithme d'assignation des
+appariements en nxn par un algorithme en n (n= nb d'&eacute;toiles).
+Les modifications on &eacute;t&eacute; apport&eacute;es dans
+focas_liste_commune
+du fichier tt_util3.c. L'am&eacute;lioration consiste en le trie selon
+les ascensions droites crissantes du fichier ASCII
+&eacute;ventuellement g&eacute;n&eacute;r&eacute; en fin de
+calibration. Les modifications on &eacute;t&eacute; apport&eacute;es
+dans&nbsp;tt_util_fichs_comdif du fichier tt_util3.c.<br>
+  </li>
+  <li>La fonction IMA/SERIES CATCHART a &eacute;t&eacute;
+am&eacute;lior&eacute;e. Il est maintenant possible d'employer un
+catalogue de coordonn&eacute;es personnel enregistr&eacute; dans un
+fichier ASCII. Les modifications de code ont &eacute;t&eacute;
+apport&eacute;es dans tt_ima_series_catchart_2 du fichier tt_seri5.c.</li>
+  <li>Un bug a &eacute;t&eacute; corrig&eacute;
+sur le calcul du mot cl&eacute; FOCLEN dans tt_util_getkey0_astrometry
+pour un cas tr&egrave;s particulier.&nbsp;</li>
+</ul>
+<h3>2003-09-10 :</h3>
+<ul>
+  <li>Ajout de la fonction IMA/SERIES GEOSTAT pour d&eacute;tecter des
+satellites geostationnaires Les modifications on &eacute;t&eacute;
+apport&eacute;es dans tt.h, tt_seri1.c, tt_seri4.c et tt_util2.c.</li>
+</ul>
+<h3>2003-08-30 :</h3>
+<ul>
+  <li>Modification des fonctions TT_PTR_SAVEIMA3D et TT_PTR_LOADIMA3D
+en mode pointeur afin de les rendre plus conviviales. Des modifications
+ont &eacute;t&eacute; approt&eacute;es aux fichier tt_poin1.c et
+libtt.h.<br>
+  </li>
+</ul>
+<h3>2003-07-02 :</h3>
+<ul>
+  <li>Supression de l'usage des fonctions tt_calloc afin de mieux
+g&eacute;rer le mouchard de pointeurs. Au cours
+de cette mise &agrave; jour, un bug a &eacute;t&eacute;
+r&eacute;v&eacute;l&eacute; et corrig&eacute; dans l'allocation
+pointeur des fonctions STACK/IMA (le pointeur index0 &eacute;tait
+dimensionn&eacute; selon la
+sizeof(double) alors qu'il s'agit d'un int). Ces modifications ont
+&eacute;t&eacute; r&eacute;alis&eacute;es dans les fichiers
+tt.h, tt_stac2.c, tt_stac1.c, tt_seri3.c, tt_user3.c et tt_user1.c.</li>
+  <li>Modification de la dimension TT_QSORT des tableaux qsort_r et
+qsort_l dans la fonction tt_util_qsort_double du fichier tt_util2.c.
+Dans ce m&ecirc;me fichier, on a ajout&eacute; des warnings dans la
+fonction tt_util_qsort_verif afin de cerner des probl&egrave;mes de
+d&eacute;passement d'indices dans les tableaux qsort_l et qsort_r.</li>
+</ul>
+<h3>2003-04-13 :</h3>
+<ul>
+  <li>Ajout des fonctions TT_PTR_SAVEIMA3D et
+TT_PTR_LOADIMA3D en mode pointeur. Ces fonctions permettent de
+sauver et de lire une image "cube" contenant trois axes. Des
+modifications
+ont &eacute;t&eacute; approt&eacute;es aux fichier tt_poin1.c,
+tt.c, libtt.h.<br>
+  </li>
+</ul>
+<h3>2003-03-11 :</h3>
+<ul>
+  <li>Corrections de lib&eacute;ration de pointeurs concernant les
+fonctions de sauvegarde Jpeg. Des fonctions tt_free ont
+&eacute;t&eacute; remplac&eacute;es par tt_free2. Ces modifications ont
+&eacute;t&eacute; r&eacute;alis&eacute;es dans les fichiers tt_poin1.c
+et fs_macr4.c &agrave; la suite d'une suggestion de Arkadiusz Kaliki.<br>
+  </li>
+</ul>
+<h3>2003-02-11 :</h3>
+<ul>
+  <li>Correction des mots cl&eacute; WCS dans de nombreuses fonctions
+de libTT. Des corrections ont &eacute;t&eacute; apport&eacute;es aux
+fichiers suivants : tt_util3.c, tt_seri5.c, tt.h, &nbsp;tt_user3.c,
+tt_util2.c, &nbsp;tt_seri4.c, tt_seri3.c. Ces corrections permettent
+une bonne calibration astrom&eacute;trique ainsi que la conservation
+des mots cl&eacute;s WCS dans toutes les op&eacute;rations
+g&eacute;om&eacute;triques de libtt.</li>
+</ul>
+<h3>2002-11-03 :</h3>
+<ul>
+  <li>Correction d'un bug dans la transformation des mots cl&eacute;
+d'astrom&eacute;trie CD en CDELT et CROTA2. La fonction C
+tt_util_cd2cdelt<br>
+a &eacute;t&eacute; ajout&eacute;e dans
+tt_util2.c pour faire cela. Cette fonction est maintenant
+appell&eacute;e &agrave; trois endroits dans tt_util2.c.</li>
+  <li>Am&eacute;lioration de la fonction macr_read_keys du fichier
+fs_macr2.c afin de d&eacute;tecter les mots cl&eacute; de type TDOUBLE
+(jusque l&agrave;, tous les mots cl&eacute;s en nombre r&eacute;el
+&eacute;taient consid&eacute;r&eacute;s uniquement comme TFLOAT, ce qui
+faisait perdre de la pr&eacute;cision).<br>
+  </li>
+</ul>
+<h3>2002-10-22 :</h3>
+<ul>
+  <li> Correction d'un bug dans la fonction CUT de IMA/SERIES. Dans le
+fichier tt_seri1.c, le d&eacute;codage de l'option hifrac &eacute;tait
+faux.</li>
+</ul>
+<h3>2002-10-18 :</h3>
+<ul>
+  <li> Modifications dans la gestion des mots cl&eacute;s pour
+l'astrom&eacute;trie (fichiers tt_fits1.c et tt_util2.c).<br>
+  </li>
+</ul>
+<h3>2002-01-04 :</h3>
+<ul>
+  <li> Ajout de "cibles" sur la documentation HTML "Manuel de
+l'utilisateur" afin d'avoir un acc&egrave;s direct &agrave; la
+documentation d'une fonction donn&eacute;e (fichier ttus1-fr.htm).</li>
+</ul>
+<h3> 2001-11-27 :</h3>
+<ul>
+  <li> Corrections mineures dans divers fichiers tt*.c afin
+d'&eacute;liminer tous les avertissements de compilation sous Linux.</li>
+</ul>
+<h3> 2001-11-18 :</h3>
+<ul>
+  <li> Corrections d'un bug dans la fonction ASTROMETRY de IMA/SERIES.
+Ce bug provoquait un plantage grave dans des cas tr&egrave;s
+particuliers de fichiers d'observations sans &eacute;toiles. Dans ce
+cas, la source du plantage venait du contenu du fichier pointzero.lst
+qui pouvait contenir un nombre diff&eacute;rent d'&eacute;toiles que
+obs.lst. Le bug a &eacute;t&eacute; corrig&eacute; dans le fichier
+tt_util3.c en initialisant le
+fichier pointzero.lst par obs.lst au d&eacute;but de la fonction
+tt_util_focas0. D'autres modifications mineures ont &eacute;t&eacute;
+apport&eacute;es dans la fonction tt_util_fichs_comdif (quelques
+fonctions fclose mal plac&eacute;es).</li>
+</ul>
+<h3> 2001-11-17 :</h3>
+<ul>
+  <li> Corrections d'un bug d'analyse des noms de fichiers complets et
+de leur s&eacute;pration en dossier/nom.extension. Ce bug provoquait un
+plantage grave lorsque le nom du r&eacute;pertoire contenait un point
+et que le nom complet n'avait pas d'extension. La correction a
+&eacute;t&eacute; effectu&eacute;e dans la fonction
+tt_imafilenamespliter du fichier tt_fits1.c.</li>
+</ul>
+<h3> 2001-11-04 :</h3>
+<ul>
+  <li> Corrections d'un bug dans la fonction REGISTER de IMA/SERIES.
+Dans la fonction int focas_best_corresp2 de tt_util3.c, on a
+corrig&eacute; plusieurs lignes concernant le tableau disterr.
+Introduction d'un nouveau tableau disterr0 et r&eacute;assignation des
+indices pour ces tableaux ainsi que pour les tableaux dist1 et dist2.
+Cette correction compl&egrave;te celle du 2001-09-30.</li>
+</ul>
+<h3> 2001-11-03 :</h3>
+<ul>
+  <li> Ajouts d'un param&egrave;tre optionnel [pixint] dans la fonction
+STAT de IMA/SERIES. Si ce param&egrave;tre est pr&eacute;sent alors le
+calcul des positions (x,y) d objets est effectu&eacute; avec des
+valeurs enti&egrave;res de pixel. Cette modification a eu lieu dans les
+fichiers tt.h, tt_seri1.c, tt_util2.c (fonction tt_util_listpixima2).
+Cette ajout vient compl&eacute;ter ce qui avait &eacute;t&eacute;
+r&eacute;alis&eacute; le 2001-04-04.</li>
+</ul>
+<h3> 2001-10-12 :</h3>
+<ul>
+  <li> Ajouts de flags internes pour ne pas prendre en compte les
+&eacute;toiles non valides dans la fonction tt_astrometry1 de
+tt_seri4.c et dans la fonction tt_util_fichs_comdif de tt_utli3.c
+(Carole Thiebaut).</li>
+</ul>
+<h3> 2001-09-30 :</h3>
+<ul>
+  <li> Corrections d'un bug dans la fonction REGISTER de IMA/SERIES.
+Dans la fonction int focas_best_corresp2 de tt_util3.c, on a
+corrig&eacute; plusieurs lignes qui menaient &agrave; un
+d&eacute;passement de pointeur !</li>
+  <li> Am&eacute;lioration de la trace du mouchard de pointeur en
+effectuant des modifications dans les fichiers tt_fits1.c, tt_fits2.c,
+tt_fits4.c, tt_fits5.c, fs_fsio2.c, fs_macr2.c, fs_macr4.c, tt_seri1.c,
+tt_seri3.c et tt_util2.c. Les modifications portent essentiellement sur
+le nom pass&eacute; au second param&egrave;tre des fonctions
+tt_util_free_ptrptr2 et tt_free2.</li>
+</ul>
+<h3> 2001-09-21 :</h3>
+<ul>
+  <li> Corrections d'un bug dans la fonction FILTER de IMA/SERIES. Dans
+la fonction tt_ima_series_filter_1 de tt_seri3.c, on a corrig&eacute;
+la ligne "imax=p_in-&gt;naxis1-1" par "imax=p_in-&gt;naxis1". Idem pour
+"jmax=p_in-&gt;naxis2". Cela provoquait l'apparition d'artefacts sur
+une ou plusieurs
+lignes diagonales de l'image.</li>
+  <li> Correction d'un bug dans la fonction tt_util_transima1
+(tt_util2.c) qui anihilait l'effet de nullpixel sur la fonction TRANS
+de IMA/SERIES.</li>
+  <li> Ajout de la fonction SORTX de IMA/SERIES pour extraire une image
+par trie sur les colonnes.</li>
+  <li> Ajout de la fonction SORTY de IMA/SERIES pour extraire une image
+par trie sur les lignes.</li>
+</ul>
+<h3> 2001-07-17 :</h3>
+<ul>
+  <li> Corrections du manuel du Guide de
+l'Utilisateur d'apr&egrave;s les remarques de Michel Espoto.</li>
+  <li> Correction d'un bug dans la fonction tt_dateobs_release du
+fichier tt_time1.c. Ce bug concernait le cas d'un mot cl&eacute; de
+type EXPTIME d&eacute;fini avec
+une unit&eacute; diff&eacute;rente que les secondes. La correction
+&agrave; &eacute;t&eacute; r&eacute;alis&eacute;e dans les "else if"
+du&nbsp; "if (ind_exptime0!=-1)".</li>
+</ul>
+<h3> 2001-07-04 :</h3>
+<ul>
+  <li> Ajout du #define OS_WIN32 ou OS_UNIX dans le fichier libtt.h
+pour rendre facile l'utilisation de libtt par un autre logiciel. En
+cons&eacute;quence, quelques corrections ont &eacute;t&eacute;
+apport&eacute;es dans le Manuel du programmeur (Utiliser libTT dans un
+logiciel).</li>
+</ul>
+<h3> 2001-06-13 :</h3>
+<ul>
+  <li> Ajout du param&egrave;tre [objefile] dans la fonction ASTROMETRY
+de IMA/SERIES pour apparier avec un fichier sortant de Sextractor.</li>
+  <li> Correction de bugs dans le fichier tt_util3.c de la fonction
+tt_util_fichs_comdif qui g&eacute;n&egrave;re un fichier ASCII de
+toutes les sources appari&eacute;es ou non (bug signal&eacute; le
+2001-01-19).</li>
+  <li> Correction d'un bug dans les fonctions d'appariements concernant
+le cas d'une image sans &eacute;toiles. Fichier tt_util3.c, fonctions
+focas*.</li>
+</ul>
+<h3> 2001-05-28 :</h3>
+<ul>
+  <li> Ajout de la fonction MULT de IMA/SERIES pour multiplier une
+image par une valeur constante.</li>
+</ul>
+<h3> 2001-05-24 :</h3>
+<ul>
+  <li> Modification de la documentation de la page "Manuel du
+programmeur - Utiliser libTT dans un logiciel". Ajout de la
+proc&eacute;dure de chargement de la librairie libtt.</li>
+</ul>
+<h3> 2001-04-04 :</h3>
+<ul>
+  <li> Corrections dans la fonction STAT
+de IMA/SERIES. Dans la fonction tt_util_listpixima2 (tt_util2.c), le
+calcul de la fwhm a &eacute;t&eacute; r&eacute;vis&eacute; (la formule
+&eacute;tait fausse !) et le calcul du centro&iuml;de des
+&eacute;toiles est effectu&eacute; avec des pixels fractionnaires.</li>
+</ul>
+<h3> 2001-04-02 :</h3>
+<ul>
+  <li> Correction de bug dans IMA/SERIES. Le param&egrave;tre
+"skylevel" n'&eacute;tait plus pris en compte (tt_seri2.c).</li>
+</ul>
+<h3> 2001-02-19 :</h3>
+<ul>
+  <li> Correction de bugs dans la fonction CUTS de IMA/SERIES. Ajout de
+param&egrave;tres [cutscontrast], [hifrac] et [lofrac].</li>
+  <li> Correction de bugs de la fonction TT_PRT_CUTS en mode pointeur.</li>
+  <li> Correction d'un bug dans la fonction tt_ima_series_catchart_2 de
+tt_seri5.c. CRVAL1 et CRVAL2
+&eacute;tait pris comme coordonn&eacute;es du centre de l'image,
+ce qui n'est pas n&eacute;cessairement le cas. Le calcul du centre
+r&eacute;el a donc &eacute;t&eacute; ajout&eacute;.</li>
+</ul>
+<h3> 2001-02-10 :</h3>
+<ul>
+  <li> Int&eacute;gration r&eacute;usie de la librairie FITSIO v2.037
+(en revanche, grosse erreur de
+pointeur avec FITSIO v2.2). La longueur des cha&icirc;nes de
+carat&egrave;res des mots cl&eacute;s FITS et de leur valeur est
+chang&eacute;e (cf. libtt.h) afin de supporter les nouveaux mots
+cl&eacute; de type HIERARCH.</li>
+  <li> Ajout de la fonction TT_PRT_CUTS
+en mode pointeur. On peut ainsi calculer les seuils de visualisation
+sans faire toutes les statistiques de l'image. De plus, la
+m&eacute;thode de d&eacute;termination des seuils reste rapide pour des
+grandes images.</li>
+  <li> D&eacute;buggage de la fonction TT_PRT_IMASERIES du mode
+pointeur. Corrections d'allocations du pointeur de
+sortie lorsqu'il est diff&eacute;rent de celui d'entr&eacute;e.</li>
+</ul>
+<h3> 2001-02-09 :</h3>
+<ul>
+  <li> Ajout de la fonction CUTS de IMA/SERIES qui calcule les seuils
+haut et bas de visualisation. Il est possible de sp&eacute;cifier le
+nom des mots cl&eacute;s FITS qui seront ajout&eacute;s &agrave;
+l'ent&ecirc;te.</li>
+  <li> Ajout de l'option [nbsubseries] dans la fonction COPY de
+IMA/SERIES. Permet de g&eacute;n&eacute;rer une suite d'images
+index&eacute;es pour synth&eacute;tiser un superflat dans certaines
+conditions.</li>
+</ul>
+<h3> 2001-01-19 :</h3>
+<ul>
+  <li> Ajout du mot-cl&eacute; TMPFILE/EXT utilisable dans les scripts
+TT. Assigne un mot qui sera ajout&eacute; au nom des fichiers
+temporaires (extensions .lst). Ceci afin de ne pas &eacute;craser des
+fichiers temporaires dans le cas o&ugrave; libtt est lanc&eacute;e
+plusieurs fois en m&ecirc;me temps.</li>
+  <li> Ajout de l'option [file_ascii] dans la fonction ASTROMETRY de
+IMA/SERIES. Cette option a &eacute;t&eacute; debugg&eacute;e le 13 juin
+2001.</li>
+</ul>
+<h3> 2001-01-14 :</h3>
+<ul>
+  <li> Ajout du param&egrave;tre [jpeg_quality] pour sauver des images
+JPEG en fixant le niveau de qualit&eacute; (entre 5 et 100). Plus la
+qualit&eacute; est faible, plus fort est compress&eacute; le fichier.
+Ce param&egrave;tre fonctionne en combinaison avec le param&egrave;tre
+[jpeg_file], [jpegfile_chart] ou [jpegfile_chart2].</li>
+</ul>
+<h3> 2001-01-13 :</h3>
+<ul>
+  <li> Nombreuses modifications dans les
+fichiers fs*.c et tt*.c afin de corriger les erreurs
+d'allocation/lib&eacute;ration de pointeurs trouv&eacute;es gr&acirc;ce
+au mouchard intall&eacute; le 2001-01-09. A &eacute;t&eacute;
+corrig&eacute;e, notamment, une erreur grave dans IMA/SERIES qui ne
+lib&eacute;rait pas
+toute la m&eacute;moire &agrave; la fin des calculs. Il est possible
+que les plantages mentionn&eacute;s le 2000-10-23 venaient de l&agrave;.</li>
+  <li> Ajout de la fonction RESAMPLE dans IMA/SERIES. Permet de faire
+toutes les transformations lin&eacute;raires 2D.</li>
+  <li> Modification des fonctions ROT, INVERT, TRANS, REGISTER et
+WINDOW pour leur permettre de mettre &agrave; jour la valeur des mots
+cl&eacute; d'astrom&eacute;trie (WCS) apr&egrave;s la transformation.
+Ajout de la possibilit&eacute; de normaliser le flux sois m&ecirc;me
+lors de la transformation (param&egrave;tre [normaflux]).</li>
+  <li> Ajout de la possibilit&eacute; de sauver la liste des
+&eacute;toiles appari&eacute;es et non appari&eacute;es entre l'image
+et le catalogue lors de la calibration
+astrom&eacute;trique (fonction ASTROMETRY).</li>
+  <li> Ajout de la m&eacute;thode de calibration astrom&eacute;trique
+au second ordre dans l'<a href="astm1-fr.htm">annexe 2</a> de la
+documentation de libTT.</li>
+</ul>
+<h3> 2001-01-09 :</h3>
+<ul>
+  <li> Implantation d'un mouchard de pointeurs dans tt_fsio2.c afin de
+tracer l'historique des allocations et lib&eacute;rations des pointeurs
+de la libTT.</li>
+</ul>
+<h3> 2000-12-18 :</h3>
+<ul>
+  <li> D&eacute;claration d'un user4 : Carole Thi&eacute;bault.</li>
+  <li> Ajout d'une fonction de tt_user4
+: ASTROMETRY2, qui calcule les coefficients de d&eacute;formation au
+second ordre de la calibration astrom&eacute;trique. Les
+valeurs des coefficients trouv&eacute;s sont cod&eacute;es dans
+l'ent&ecirc;te FITS selon la norme standard (mots cl&eacute; PV*,
+d&eacute;finits dans l'<a href="astm1-fr.htm">annexe 2</a> de la
+documentation de libTT).</li>
+</ul>
+<h3> 2000-12-15 :</h3>
+<ul>
+  <li> Correction d'un bug introduit par
+la modification de FOCAS (tt_util3.c) du 2000-10-23.</li>
+</ul>
+<h3> 2000-10-26 :</h3>
+<ul>
+  <li> Ajout de la fonction IMA/SERIES BACK pour synth&eacute;tiser le
+fond de ciel d'une image.</li>
+</ul>
+<h3> 2000-10-23 :</h3>
+<ul>
+</ul>
+<ul>
+</ul>
+<ul>
+  <li>Implantation d'une modification de m&eacute;thode dans la
+fonction IMA/SERIES ASTROMETRY de fa&ccedil;on &agrave; &ecirc;tre
+beaucoup plus compatible avec la description de la m&eacute;thode
+FOCAS. Dans le fichier tt_util3.c, la fonction focas_best_corresp2
+remplace donc focas_best_corresp pour cette mise &agrave; jour.
+L'appariement devrait &ecirc;tre plus efficace.</li>
+  <li> Constatation d'une erreur fatale lors
+du chargement d'une image 1024x1024 BITPIX=-32 lorsque libtt
+est compil&eacute;e avec VC++. L'erreur fatale n'appara&icirc;t
+pas avec une compilation Borland !</li>
+  <li> Implantation des fichiers sources de la FITSIO version 2.0 du 20
+octobre 2000 (la FITSIO actuelle de libtt est la version 1.4 de Avril
+1998). Pour l'instant, cette FITSIO v2.0 n'est pas mise en service
+&agrave; cause d'une modification concernant les mots cl&eacute; la
+rendant incompatible avec l'ancienne. Quelques modifiations seront
+n&eacute;cessaires dans les fichiers fs*.c. L'organisation des fichiers
+sources a &eacute;t&eacute; modifi&eacute;e en cons&eacute;quence. Dans
+le dossier 'sources' on
+trouve maintenant les fichiers &eacute;clat&eacute;s dans 4 dossiers
+: 'fitsio_old', 'fitsio_new', 'tt', 'jpeg'. Pour l'instant, la libtt
+(avec la FITSIO v1.4) doit &ecirc;tre compil&eacute;e &agrave; partir
+du contenu de 'fitsio_old', 'tt', 'jpeg'.</li>
+  <li>Possibilit&eacute; de t&eacute;l&eacute;charger uniquement les
+sources de type tt* et fs* &agrave; partir du site Web.</li>
+</ul>
+<h3> 2000-10-15 :</h3>
+<blockquote>
+  <ul>
+    <li> Modification des fichiers tt_user3.c et tt_user3.h pour
+corriger d'un bug d'allocation de pointeur. Ce bug, pr&eacute;sent
+depuis la version du 2000-09-26 proquait une erreur fatale
+inopin&eacute;ment, mais tr&egrave;s rarement.</li>
+    <li> Ajout de la fonction HOUGH (transform&eacute;e de Hough) dans
+tt_seri4.c.</li>
+  </ul>
+</blockquote>
+<h3> 2000-10-06 :</h3>
+<blockquote>
+  <ul>
+    <li> Modification des noms de fichiers
+*.c pour n'avoir que des noms en minuscule afin d'assurer une
+compatibilit&eacute; totale avec Unix..</li>
+  </ul>
+</blockquote>
+<h3> 2000-09-26 :</h3>
+<blockquote>
+  <ul>
+    <li> Ajout des fonctions de tt_user3 :
+ROT, BINX, BINY, PROFIL, MATRIX, WINDOW, LOG, MEDIANX, MEDIANY,
+REC2POL, POL2REC.</li>
+  </ul>
+</blockquote>
+<h3> 2000-09-22 :</h3>
+<blockquote>
+  <ul>
+    <li> Constatation d'une erreur fatale dans la fonction IMA/SERIES
+OPT lors d'une nuit d'observation.
+A priori, le bug est arriv&eacute; lors de la lib&eacute;ration des
+pointeurs apr&egrave;s traitement sur une image toute satur&eacute;e
+(tous les pixels &agrave; 65537). Bug impossible &agrave; reproduire
+par la suite ! une protection de division par z&eacute;ro a
+&eacute;t&eacute; ajout&eacute;e dans la fonction tt_ima_series_opt_1
+(tt_seri3.c) mais il est peu probable que &ccedil;a vienne de l&agrave;
+!</li>
+  </ul>
+</blockquote>
+<h3> 2000-09-09 :</h3>
+<blockquote>
+  <ul>
+    <li> Am&eacute;lioration de la rapidit&eacute; de la m&eacute;thode
+de calcul des seuils de visualisation
+automatiques (tt_util2.c).</li>
+  </ul>
+</blockquote>
+<h3> 2000-09-07 :</h3>
+<blockquote>
+  <ul>
+    <li> Modification d'une grande partie des fichiers tt*.c et tt.h
+pour assurer la compilation avec Visual C++.</li>
+  </ul>
+</blockquote>
+<h3> 2000-08-24 :</h3>
+<blockquote>
+  <ul>
+    <li> D&eacute;claration d'un user3 : Delphine Vallot.</li>
+  </ul>
+</blockquote>
+<h3> 2000-08-12 :</h3>
+<blockquote>
+  <ul>
+    <li> Correction orthographique des pages de documentation par Jean
+Montann&eacute;.</li>
+  </ul>
+</blockquote>
+<h3> 2000-06-25 :</h3>
+<blockquote>
+  <ul>
+    <li> Programmation du gradient rotationnel (RGRADIENT) dans
+IMA/SERIES (tt_seri3.c).</li>
+    <li> Les fonctions de test pour la spectrographie ont
+&eacute;t&eacute; retrouv&eacute;es.</li>
+  </ul>
+</blockquote>
+<h3> 2000-06-15 :</h3>
+<blockquote>
+  <ul>
+    <li> Reprogrammation des modifications
+effecu&eacute;es dans la fonction STAT qui permettaient d'&eacute;vider
+un bug de division par z&eacute;ro (tt_util2.c).</li>
+  </ul>
+</blockquote>
+<h3> 2000-05-27 :</h3>
+<blockquote>
+  <ul>
+    <li> Reprogrammation de la fonction SUBDARK de IMA/SERIES.</li>
+  </ul>
+</blockquote>
+<h3> 2000-05-26 :</h3>
+<blockquote>A la suite d'une panne de disque dur :
+  <ul>
+    <li> Perte de la fonction SUBDARK de IMA/SERIES.</li>
+    <li> Perte des fonctions tests pour la spectroscopie.</li>
+    <li> Perte des modifications effecu&eacute;es dans la fonction STAT
+qui permettaient d'&eacute;vider un bug de division par z&eacute;ro
+(tt_util2.c).</li>
+  </ul>
+</blockquote>
+<br>
+</body>
+</html>

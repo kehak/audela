@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Libgzip</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 11 novembre 2004</p>
+<h1>Libgzip </h1>
+<h1>Librairie d'extension Tcl pour la compression de fichiers </h1>
+<h1> 1. Introduction</h1>
+<p>La librairie libgzip ajoute des fonctions de compression de fichiers &agrave; un interpr&eacute;teur Tcl. Cette librairie utilise l'algorithme Gzip. Les sources C de Gzip, ainsi que la description de l'algorithme, sont d&eacute;crites sur le site Web suivant :</p>
+<a href="http://www.gzip.org/">http://www.gzip.org/</a>
+<p>Le principe g&eacute;n&eacute;ral de libgzip est de transformer des fichiers en compressant leur contenu sans perte d'information.</p>
+<h1> 2. Manuel de l'utilisateur</h1>
+<h3> <a name="gzip" id="gzip"></a>gzip ?Files?</h3>
+<p>Compresse le ou les fichiers sp&eacute;cifi&eacute;s par l'argument Files. On peut utiliser les caract&egrave;res * ou ? comme l'instruction glob de Tcl. Par d&eacute;faut, si Files n'est pas sp&eacute;cifi&eacute;, Files vaut * et tous les fichiers du dossier courant sont compress&eacute;s. Les fichiers initiaux sont effac&eacute;s apr&egrave;s la cr&eacute;ation du fichier compress&eacute;. Le nom d'un fichier compress&eacute; est le m&ecirc;me que celui avant compression suivi de l'extension .gz. Par exemple, le fichier m57.fit compress&eacute; aura pour nom m57.fit.gz. A noter que les fichiers FITS compress&eacute;s par Gzip peuvent &ecirc;tre lus directement par la fonction de lecture FITSIO utilis&eacute; par le logiciel AudeLA.</p>
+<h3> <a name="gunzip" id="gunzip"></a>gunzip ?Files?</h3>
+<p>D&eacute;compresse le ou les fichiers sp&eacute;cifi&eacute;s par l'argument Files. On peut utiliser les caract&egrave;res * ou ? comme l'instruction glob de Tcl. Par d&eacute;faut, si Files n'est pas sp&eacute;cifi&eacute;, Files vaut * et tous les fichiers du dossier courant sont d&eacute;compress&eacute;s. Les fichiers initiaux .gz sont effac&eacute;s apr&egrave;s la cr&eacute;ation du fichier d&eacute;compress&eacute;. Le nom d'un fichier compress&eacute; est le m&ecirc;me que celui avant d&eacute;compression, sans l'extension .gz. Par exemple, le fichier m57.fit.gz d&eacute;compress&eacute; aura pour nom m57.fit.</p>
+</body>
+
+</html>

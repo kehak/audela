@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Acqu&eacute;rir des images en Ciel Profond</title>
+</head>
+
+<body>
+<p>L'une des applications de base des scripts en observation astronomique est d'encha&icirc;ner des images d'objets du ciel profond (galaxies, amas, n&eacute;buleuses). Par exemple, on peut programmer un marathon Messier. La m&eacute;thode couramment employ&eacute;e consiste &agrave; &eacute;crire un fichier texte qui contient la liste des objets &agrave; observer, ainsi que les caract&eacute;ristiques de la pose CCD &agrave; effectuer. On peut ainsi faire une petite balade dans le ciel profond.
+<p>Ce script fonctionne sous Audace sans interface graphique propre et constitue un exemple typique d'une application facile &agrave; programmer.</p>
+<h3> 1. Le fichier d'entr&eacute;e</h3>
+<p>Admettons que l'on veuille observer les objets Messier 2, 15 et 31. Le fichier texte peut ressembler &agrave; cela : </p>
+<pre>M2 21 33 30 -00 49 60 2 5</pre>
+<pre>M15 21 30 0 +12 10 30 1 7</pre>
+<pre>M31 0 42 42 +41 16 60 1 5</pre>
+<p>Appelons objs.txt ce fichier &agrave; placer dans le dossier audela. Pour chaque ligne, les champs sont les suivants : </p>
+<ul>
+  <li> 1 : nom de l'objet </li>
+  <li> 2 : heure de coordonn&eacute;e d'ascension droite </li>
+  <li> 3 : minute (de temps) de coordonn&eacute;e d'ascension droite </li>
+  <li> 4 : seconde (de temps) de coordonn&eacute;e d'ascension droite </li>
+  <li> 5 : degr&eacute; de coordonn&eacute;es de d&eacute;clinaison </li>
+  <li> 6 : minute (d'arc) de coordonn&eacute;es de d&eacute;clinaison </li>
+  <li> 7 : temps de pose en secondes </li>
+  <li> 8 : valeur du binning </li>
+  <li> 9 : nombre d'images &agrave; prendre </li>
+</ul>
+<h3> 2. Le script</h3>
+<p>Le script suivant montre l'encha&icirc;nement des fonctions pour observer automatiquement ces trois objets. Le fichier texte obj.txt doit &ecirc;tre plac&eacute; dans le dossier courant (utiliser la fonction pwd pour le conna&icirc;tre). Avant d'ex&eacute;cuter ce script, assurez vous bien qu'un t&eacute;lescope et une cam&eacute;ra sont connect&eacute;s : </p>
+<pre># === fichier tour.tcl ===</pre>
+<pre>#</pre>
+<pre># --- recupere la liste des objets dans le fichier texte</pre>
+<pre>set input [open "obj.txt" r]</pre>
+<pre>set contents [split [read $input] \n]</pre>
+<pre>close $input</pre>
+<pre># --- fait une boucle d'acquisition</pre>
+<pre>foreach obj $contents {</pre>
+<pre> # --- extrait les infos de l'objet</pre>
+<pre> set name [lindex $obj 0]</pre>
+<pre> set rah [lindex $obj 1]</pre>
+<pre> set ram [lindex $obj 2]</pre>
+<pre> set ras [lindex $obj 3]</pre>
+<pre> set decd [lindex $obj 4]</pre>
+<pre> set decm [lindex $obj 5]</pre>
+<pre> set expose [lindex $obj 6]</pre>
+<pre> set binning [lindex $obj 7]</pre>
+<pre> set nbposes [lindex $obj 8]</pre>
+<pre> # --- coordonnees de l'objet</pre>
+<pre> set ra "${rah}h${ram}m${ras}s"</pre>
+<pre> set dec "${decd}d${decm}m$"</pre>
+<pre> # --- pointe le telescope</pre>
+<pre> tel1 goto [list $ra $dec]</pre>
+<pre> # --- boucle sur le nombre de poses</pre>
+<pre> for {set k 1} {$k&lt;=$nbposes} {incr k} {</pre>
+<pre> # --- lance l'acquisition ---</pre>
+<pre> acq $expose $binning</pre>
+<pre> # --- sauve l'image</pre>
+<pre> saveima "$name-$k"</pre>
+<pre> }</pre>
+<pre>}</pre>
+<p>Il suffit de lancer le script tour.tcl par la ligne de commande de la console de Audace : </p>
+<pre>source tour.tcl</pre>
+<p>ou bien par le menu Script->Ex&eacute;cuter de l'interface Audace. </p>
+<h3> 2.1. Explications d&eacute;taill&eacute;es de construction du script</h3>
+<h3> 2.1.1. La conversion d'un fichier texte en liste Tcl</h3>
+<p>La fa&ccedil;on la plus simple de charger le fichier texte en m&eacute;moire est de charger tout le texte d'un seul coup dans une liste Tcl. Pour cela, il convient d'abord d'ouvrir le fichier texte : </p>
+<pre>set input [open "obj.txt" r]</pre>
+<p>La variable input contient l'identificateur Tcl du fichier ouvert. L'argument r signifie que le fichier est ouvert en lecture seule. Le contenu du fichier est lu par la fonction read : </p>
+<pre>set contents [split [read $input] \n]</pre>
+<p>De cette fa&ccedil;on, l'ensemble du contenu du fichier est lu (si on avait voulu lire qu'une partie du fichier on aurait ajout&eacute; un nombre de caract&egrave;res apr&egrave;s le mot $input et la fin du fichier aurait &eacute;t&eacute; d&eacute;tect&eacute;e en utilisant la fonction eof de Tcl). Apr&egrave;s la lecture, la fonction split va "d&eacute;couper" le texte en une liste dans laquelle chaque &eacute;l&eacute;ment repr&eacute;sente une ligne du fichier (\n est le symbole du passage &agrave; la ligne). La variable contents est donc une liste de trois &eacute;l&eacute;ments. A noter que chacun de ces &eacute;l&eacute;ments est lui m&ecirc;me constitu&eacute; d'une liste de neuf &eacute;l&eacute;ments. Si on demande la valeur de la variable contents (set contents) on aurait : </p>
+<p>{M2 21 33 30 -00 49 60 2 5} {M15 21 30 0 +12 10 30 1 7} {M31 0 42 42 +41 16 60 1 5} </p>
+<p>Le fichier est ferm&eacute; par la fonction close. </p>
+<pre>close $input</pre>
+<p>N'oubliez pas de fermer les fichiers. </p>
+<h3> 2.1.2. D&eacute;codage des informations</h3>
+<p>Il faut analyser les &eacute;l&eacute;ments de la liste des observations pour extraire les param&egrave;tres de pointage et de pose pour chaque objet. La boucle foreach permet d'analyser les &eacute;l&eacute;ments de la liste un par un : </p>
+<pre>foreach obj $contents {</pre>
+<p>La variable obj contient la liste des param&egrave;tres d'un objet donn&eacute;. Il convient maintenant de d&eacute;coder ces param&egrave;tres. Pour cela il faut isoler chaque &eacute;l&eacute;ment de la liste et le reporter dans une variable : </p>
+<pre> # --- extrait les infos de l'objet</pre>
+<pre> set name [lindex $obj 0]</pre>
+<pre> set rah [lindex $obj 1]</pre>
+<pre> set ram [lindex $obj 2]</pre>
+<pre> set ras [lindex $obj 3]</pre>
+<pre> set decd [lindex $obj 4]</pre>
+<pre> set decm [lindex $obj 5]</pre>
+<pre> set expose [lindex $obj 6]</pre>
+<pre> set binning [lindex $obj 7]</pre>
+<pre> set nbposes [lindex $obj 8]</pre>
+<p>On remarquera que le premier &eacute;l&eacute;ment (le nom dans notre cas) porte d'indice z&eacute;ro. C'est une convention des listes Tcl. Le neuvi&egrave;me &eacute;l&eacute;ment a l'indice 8. </p>
+<h3> 2.1.3. Le pointage du t&eacute;lescope</h3>
+<p>On met en forme les deux variables de coordonn&eacute;es (RA = Ascension Droite ; DEC = D&eacute;clinaison). La fonction tel1 goto est suivie d'une liste des deux &eacute;l&eacute;ments RA DEC : </p>
+<pre> # --- coordonnees de l'objet</pre>
+<pre> set ra "${rah}h${ram}m${ras}s"</pre>
+<pre> set dec "${decd}d${decm}m$"</pre>
+<pre> # --- pointe le telescope</pre>
+<pre> tel1 goto [list $ra $dec]</pre>
+<p>Normalement, le script ne continue que si le t&eacute;lescope a fini de pointer. Attention de penser &agrave; cr&eacute;er un t&eacute;lescope avant de lancer le script (fonction tel1 create dans Audela ou menu R&eacute;glage->T&eacute;lescope dans l'interface Audace). </p>
+<h3> 2.1.4. La s&eacute;rie de poses</h3>
+<p>Une fois le t&eacute;lescope point&eacute;, il devient possible de lancer les poses. Nous allons faire une boucle sur le nombre de poses &agrave; effectuer. La fonction for comporte quatre arguments : le premier concerne l'initialisation des variables de boucle, le deuxi&egrave;me concerne la condition de sortie de la boucle, le troisi&egrave;me indique l'incr&eacute;ment &agrave; donner &agrave; la variable de boucle (incr k augmente la valeur de k de une unit&eacute;) et le quatri&egrave;me argument contient ce qu'il faut ex&eacute;cuter dans la boucle. </p>
+<pre> # --- boucle sur le nombre de poses</pre>
+<pre> for {set k 1} {$k&lt;=$nbposes} {incr k} {</pre>
+<p>Il est donc maintenant possible de lancer la pose dans cette boucle : </p>
+<pre> # --- lance l'acquisition ---</pre>
+<pre> acq $expose $binning</pre>
+<p>La fonction acq est d&eacute;finie dans l'interface Audace pour effectuer un pose puis affiche l'image dans la zone image du logiciel. Si l'on d&eacute;sire utiliser le script dans un contexte ext&eacute;rieur &agrave; l'interface Audace, il faudrait remplacer cette ligne par : </p>
+<pre> # --- lance l'acquisition ---</pre>
+<pre> cam1 exptime $expose</pre>
+<pre> cam1 bin [list $binning $binning]</pre>
+<pre> cam1 acq</pre>
+<pre> # --- attend la fin de l'acquisition</pre>
+<pre> vwait status_cam1</pre>
+<p>La fonction vwait suspend l'ex&eacute;cution du script durant la pose : la fonction attend que la variable d'&eacute;tat de la cam&eacute;ra (status_cam1) change de valeur. Ce changement est r&eacute;alis&eacute; automatiquement par Audela en fin de pose. </p>
+<p>Il reste &agrave; enregistrer l'image sur le disque : </p>
+<pre> # --- sauve l'image</pre>
+<pre> saveima "${name}-$k"</pre>
+<pre> }</pre>
+<pre>}</pre>
+<p>L'avant derni&egrave;re accolade ferme la boucle des poses, la derni&egrave;re ferme la boucle foreach sur les objets. </p>
+<h3> 3. Pour aller plus loin</h3>
+<p>Ce script constitue une base &agrave; partir de laquelle on peut apporter de nombreux raffinements : </p>
+<ul>
+  <li> Optimiser l'ordre de s&eacute;quencement des objets en ascension droite croissante, (fonction lsort) </li>
+  <li> Ne pas pointer trop pr&egrave;s de la Lune (fonction mc_ephem et mc_sepangle) </li>
+  <li> Ne pas pointer trop pr&egrave;s du Soleil (fonction mc_ephem et mc_sepangle) </li>
+  <li> Arr&ecirc;ter les observation &agrave; partir d'une certaine hauteur du Soleil sous l'horizon (fonctions mc_ephem et mc_radec2altaz) </li>
+  <li> D&eacute;tecter la pr&eacute;sence de nuages apr&egrave;s l'acquisition des images (fonctions buf1 tt "STAT") </li>
+  <li> etc. </li>
+</ul>
+</body>
+</html>

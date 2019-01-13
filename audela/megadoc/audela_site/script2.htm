@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>D&eacute;buter en langage Tcl</title>
+</head>
+
+<body>
+<h3> 1. Qu'est-ce que Tcl ?</h3>
+<p>Tcl est un langage script interpr&eacute;t&eacute;, ce qui le distingue des langages courants tels que C, Java, etc. Le langage Tcl est tr&egrave;s efficace pour &eacute;crire des scripts, c'est &agrave; dire des encha&icirc;nements d'actions &agrave; faire. Or ces encha&icirc;nements d'actions &eacute;l&eacute;mentaires sont l&eacute;gions lorsque l'on observe en astronomie CCD. Ecrire un script Tcl sert donc, en premier lieu, &agrave; automatiser des s&eacute;quences r&eacute;p&eacute;titives. En second lieu, nous d&eacute;couvrirons aussi que Tk, la boite &agrave; outil de Tcl, permet aussi de dessiner enti&egrave;rement une interface. Cette derni&egrave;re partie sera abord&eacute;e dans une autre page. Comme tout langage, Tcl a sa syntaxe, ses avantages et ses inconv&eacute;nients. Ce texte a pour but de pr&eacute;senter le plus simplement possible les bases de ce langage. </p>
+<h3> 2. La philosophie de base</h3>
+<p>Le moteur de Tcl est son interpr&eacute;teur. L'interpr&eacute;teur Tcl analyse une ligne de texte, la d&eacute;code et l'ex&eacute;cute. Ces trois actions se font s&eacute;quentiellement. Prenons un exemple. La ligne suivante : </p>
+<pre>set a 5</pre>
+<p>est analys&eacute;e par l'interpr&eacute;teur Tcl de la fa&ccedil;on suivante : </p>
+<ul>
+  <li>
+    <p> La ligne est divis&eacute;e en mots s&eacute;par&eacute;s par des blancs,</p>
+  </li>
+  <li>
+    <p> Le premier mot d&eacute;signe le nom de la fonction. La fonction set existe bien dans l'interpr&eacute;teur Tcl et sert &agrave; assigner l'argument qui suit comme une variable dont la valeur sera celle du second argument.</p>
+  </li>
+  <li>
+    <p> Le deuxi&egrave;me mot, la lettre a, est d&eacute;sign&eacute; comme une nouvelle variable.</p>
+  </li>
+  <li>
+    <p> Le troisi&egrave;me mot, le caract&egrave;re 5 (et non pas le chiffre 5), est la valeur de la variable a.</p>
+  </li>
+  <li>
+    <p> Ainsi, le programmeur C aura compris que set a 5 est l'&eacute;quivalent de strcpy(a,"5");</p>
+  </li>
+</ul>
+<p>L'interpr&eacute;teur Tcl ne conna&icirc;t que les variables alphanum&eacute;riques (l'&eacute;quivalent des string ou char en d'autres langages de programmation). Pour transformer une variable Tcl en un nombre, on utilise la fonction expr : </p>
+<pre>expr $a+10</pre>
+<p>est analys&eacute;e par l'interpr&eacute;teur Tcl de la fa&ccedil;on suivante : </p>
+<ul>
+  <li>
+    <p> La ligne est divis&eacute;e en mots s&eacute;par&eacute;s par des blancs,</p>
+  </li>
+  <li>
+    <p> Le premier mot d&eacute;signe toujours le nom de la fonction. La fonction expr existe bien dans l'interpr&eacute;teur Tcl et sert &agrave; calculer l'expression num&eacute;rique qui suit. Le r&eacute;sultat sera retourn&eacute; comme une cha&icirc;ne de caract&egrave;res (toujours une variable alphanum&eacute;rique).</p>
+  </li>
+  <li>
+    <p> Le deuxi&egrave;me mot, $a+10, contient un symbole $.</p>
+  </li>
+  <li>
+    <p> L'interpr&eacute;teur Tcl va substituer le nom de la variable qui suit le symbole $a par sa valeur, c'est &agrave; dire le caract&egrave;re 5.</p>
+  </li>
+  <li>
+    <p> Ainsi, l'argument qui suit la fonction expr est le mot "5+10"</p>
+  </li>
+  <li>
+    <p> La fonction expr prend ce mot "5+10", le convertit en nombres et op&eacute;rateurs et effectue le calcul</p>
+  </li>
+</ul>
+<p>Le r&eacute;sultat de l'op&eacute;ration est le mot "15". Si l'on voulait stocker le mot 15 dans une variable on aurait &eacute;crit : </p>
+<pre>set b [expr $a+10]</pre>
+<p>L'usage des crochets signifie &agrave; l'interpr&eacute;teur d'effectuer le calcul de la fonction &agrave; l'int&eacute;rieur des crochets avant d'ex&eacute;cuter la fonction set. </p>
+<h3> 3. Equivalences BASIC - C- Tcl</h3>
+<p><a name="basic2tcl"></a>On rappelle que Tcl est un langage manipulant uniquement des variables de type cha&icirc;ne de caract&egrave;re. Le classique A$="Hello" en basic se traduit par set a Hello en Tcl. Voici quelques autres &eacute;quivalences BASIC - Tcl : </p>
+<table border width="100%" >
+  <tr>
+    <td> <center>
+         BASIC
+      </center></td>
+    <td> <center>
+         Tcl
+      </center></td>
+  </tr>
+  <tr>
+    <td>a$ = "toto titi"</td>
+    <td><a href="http://www.scriptics.com/man/tcl8.0/TclCmd/set.htm">set</a> a "toto titi"</td>
+  </tr>
+  <tr>
+    <td>b = c + cos(5)</td>
+    <td>set b [<a href="http://www.scriptics.com/man/tcl8.0/TclCmd/expr.htm">expr</a> $c+cos(5) ]</td>
+  </tr>
+  <tr>
+    <td>if (b&lt;5) then e$=a$+" tutu" endif</td>
+    <td><a href="http://www.scriptics.com/man/tcl8.0/TclCmd/if.htm">if </a>{$b&lt;5} { set e [<a href="http://www.scriptics.com/man/tcl8.0/TclCmd/append.htm">append</a> a " tutu"] }</td>
+  </tr>
+  <tr>
+    <td>for i=1 to imax f(i)=i endfor</td>
+    <td><a href="http://www.scriptics.com/man/tcl8.0/TclCmd/for.htm">for</a> {set i 1} {$i&lt;$imax} {incr i} { set f($i) $i }</td>
+  </tr>
+  <tr>
+    <td>l=len(a$) aa$=a$(i) a$=ucase$(a$)</td>
+    <td>set l [<a href="http://www.scriptics.com/man/tcl8.0/TclCmd/string.htm">string</a> length $a] set aa [<a href="http://www.scriptics.com/man/tcl8.0/TclCmd/string.htm">string</a> index $a $i] set a [<a href="http://www.scriptics.com/man/tcl8.0/TclCmd/string.htm">string</a> toupper $a]</td>
+  </tr>
+  <tr>
+    <td>call func1(a$)</td>
+    <td>func1 $a</td>
+  </tr>
+  <tr>
+    <td>sub func1(a$) print a$ endsub</td>
+    <td><a href="http://www.scriptics.com/man/tcl8.0/TclCmd/proc.htm">proc</a> func1 {a} { <a href="http://www.scriptics.com/man/tcl8.0/TclCmd/puts.htm">puts</a> $a }</td>
+  </tr>
+  <tr>
+    <td>open "toto.txt" for output as #1 print #1, a$ close #1</td>
+    <td>set handler [<a href="http://www.scriptics.com/man/tcl8.0/TclCmd/open.htm">open</a> "toto.txt" w] <a href="http://www.scriptics.com/man/tcl8.0/TclCmd/puts.htm">puts</a> $handler $a <a href="http://www.scriptics.com/man/tcl8.0/TclCmd/close.htm">close</a> $handler</td>
+  </tr>
+  <tr>
+    <td>files *</td>
+    <td><a href="http://www.scriptics.com/man/tcl8.0/TclCmd/glob.htm">glob</a> *</td>
+  </tr>
+</table>
+<p><a name="c2tcl"></a>De m&ecirc;me, les &eacute;quivalences C - Tcl : </p>
+<table border width="100%" >
+  <tr>
+    <td> <center>
+         C Ansi
+      </center></td>
+    <td> <center>
+         Tcl
+      </center></td>
+  </tr>
+  <tr>
+    <td>strcpy(a,"toto titi");</td>
+    <td><a href="http://www.scriptics.com/man/tcl8.0/TclCmd/set.htm">set</a> a "toto titi"</td>
+  </tr>
+  <tr>
+    <td>b = c + cos(5);</td>
+    <td>set b [<a href="http://www.scriptics.com/man/tcl8.0/TclCmd/expr.htm">expr</a> $c+cos(5) ]</td>
+  </tr>
+  <tr>
+    <td>if (b&lt;5) { sprintf(e,"%s tutu",a); }</td>
+    <td><a href="http://www.scriptics.com/man/tcl8.0/TclCmd/if.htm">if </a>{$b&lt;5} { set e [<a href="http://www.scriptics.com/man/tcl8.0/TclCmd/append.htm">append</a> a " tutu"] }</td>
+  </tr>
+  <tr>
+    <td>for (i=1;i&lt;imax;i++) { f[i]=i; }</td>
+    <td><a href="http://www.scriptics.com/man/tcl8.0/TclCmd/for.htm">for</a> {set i 1} {$i&lt;$imax} {incr i} { set f($i) $i }</td>
+  </tr>
+  <tr>
+    <td>l=strlen(a) ; aa=a[i]; a=strupr(a);</td>
+    <td>set l [<a href="http://www.scriptics.com/man/tcl8.0/TclCmd/string.htm">string</a> length $a] set aa [<a href="http://www.scriptics.com/man/tcl8.0/TclCmd/string.htm">string</a> index $a $i] set a [<a href="http://www.scriptics.com/man/tcl8.0/TclCmd/string.htm">string</a> toupper $a]</td>
+  </tr>
+  <tr>
+    <td>func1(a);</td>
+    <td>func1 $a</td>
+  </tr>
+  <tr>
+    <td>void func1(char *a) printf(&quot;%s",a); }</td>
+    <td><a href="http://www.scriptics.com/man/tcl8.0/TclCmd/proc.htm">proc</a> func1 {a} { <a href="http://www.scriptics.com/man/tcl8.0/TclCmd/puts.htm">puts</a> $a }</td>
+  </tr>
+  <tr>
+    <td>handler=fopen("toto.txt","wt"); fprintf(handler,"%s",a); fclose(handler);</td>
+    <td>set handler [<a href="http://www.scriptics.com/man/tcl8.0/TclCmd/open.htm">open</a> "toto.txt" w] <a href="http://www.scriptics.com/man/tcl8.0/TclCmd/puts.htm">puts</a> $handler $a <a href="http://www.scriptics.com/man/tcl8.0/TclCmd/close.htm">close</a> $handler</td>
+  </tr>
+  <tr>
+    <td><i>pas d'&eacute;quivalent en C Ansi</i></td>
+    <td><a href="http://www.scriptics.com/man/tcl8.0/TclCmd/glob.htm">glob</a> *</td>
+  </tr>
+</table>
+<h3> 4. Les principes &eacute;l&eacute;mentaires du langage Tcl</h3>
+<h3> 4.1. La ligne de commande</h3>
+<p>Une ligne de commande Tcl est compos&eacute;e de mots. Le premier mot est toujours le nom d'une fonction. Les mots suivants sont toujours les arguments. Il n'y a jamais d'exception &agrave; cette r&egrave;gle. L'espace ou le Tab constituent la s&eacute;paration entre les mots. Une ligne qui commence par # est suivie d'un commentaire qui ne sera pas interpr&eacute;t&eacute;. Le retour chariot ou le ; constituent la s&eacute;paration entre les lignes de commande. Par exemple, la ligne </p>
+<pre>set b 5 ; # blabla</pre>
+<p>est interpr&eacute;t&eacute;e comme deux lignes. La premi&egrave;re set b 5 et une seconde, # balbla qui est un commentaire. </p>
+<h3> 4.2. La substitution et l'&eacute;valuation</h3>
+<p>Chaque ligne d'un script Tcl subit une &eacute;tape de substitution avant d'&ecirc;tre interpr&eacute;t&eacute;e. Par exemple : </p>
+<pre>set b 5</pre>
+<pre>set c $b</pre>
+<p>La premi&egrave;re ligne affecte le mot "5" &agrave; la variable b. Dans la deuxi&egrave;me ligne, le symbole $ signifie qu'il faut substituer le mot qui suit par sa valeur : 5 dans le cas pr&eacute;sent. Ainsi, la ligne s'&eacute;crit set c 5 apr&egrave;s substitution. Etudions un cas un peu plus compliqu&eacute;: </p>
+<pre>set a set</pre>
+<pre>set b 5</pre>
+<pre>$a c $b</pre>
+<p>La premi&egrave;re ligne affecte le mot de trois lettres "set" &agrave; la variable a. La deuxi&egrave;me ligne affecte le mot "5" &agrave; la variable b. Dans la troisi&egrave;me ligne, les symboles $ signifient qu'il faut substituer les mots qui suivent par leur valeur : respectivement set et 5. Ainsi, la ligne s'&eacute;crit set c 5 apr&egrave;s substitution. L'interpr&eacute;tation est alors effectu&eacute;e et la variable c vaut 5. Le langage Tcl permet donc de substituer n'importe quel mot d'une ligne de commande, m&ecirc;me le mot de la fonction. Il faut donc se souvenir qu'une ligne de commande commence toujours par les substutions avant l'&eacute;valuation. Cette fa&ccedil;on de proc&eacute;der peut &ecirc;tre avantageusement exploit&eacute;e par l'utilisation des crochets []. </p>
+<p>Les crochets [] permettent d'&eacute;valuer le r&eacute;sultat de la cha&icirc;ne concern&eacute;e avant d'effectuer l'&eacute;valuation de la ligne. Ainsi, les trois lignes pr&eacute;c&eacute;dentes peuvent &ecirc;tre &eacute;crites sur deux lignes: </p>
+<pre>set a set</pre>
+<pre>$a c [$a b 5]</pre>
+<p>L'interpr&eacute;teur Tcl commence par sustituer les mots commen&ccedil;ant par $ par leur valeur. Apr&egrave;s la phase de subtitution, la ligne "$a c [$a b 5]" devient "set c [set b 5]". Avant d'&eacute;valuer la ligne substitu&eacute;e, l'interpr&eacute;teur analyse la pr&eacute;sence des crochets et traite chaque expression entre crochet comme une ligne de commande. Apr&egrave;s cette &eacute;tape, la ligne est devenue "set c 5" et elle est alors &eacute;valu&eacute;e. </p>
+<h3> 4.3. Toutes les variables sont du type cha&icirc;ne de caract&egrave;res</h3>
+<p>Le langage Tcl n'utilise qu'un seul type de variable: les cha&icirc;nes de caract&egrave;res. Ceci permet une manipulation tr&egrave;s simple. Par exemple : </p>
+<pre>set a hello</pre>
+<pre>set b Audela</pre>
+<pre>set c "$a $b"</pre>
+<p>La variable c est la concat&eacute;nation des mots "hello" et "Audela" (avec un espace entre les deux mots). Le langage Tcl permet d'&eacute;crire facilement du texte contenant des variables : </p>
+<pre>set infoversion "Vous utilisez Tcl version $tcl_patchLevel"</pre>
+<p>La variable tcl_patchLevel existe dans l'interpr&eacute;teur Tcl d&egrave;s sa cr&eacute;ation. D'autres variables contiennent diverses informations. </p>
+<p>Rappelons que l'on peut &eacute;valuer une expression math&eacute;matique en utilisant la fonction expr. Par exemple : </p>
+<pre>set b 5</pre>
+<pre>set d [expr sin($b)+2]</pre>
+<p>Les variables b et d sont des cha&icirc;nes de caract&egrave;res. La fonction expr traite ses arguments comme une expression math&eacute;matique &agrave; calculer num&eacute;riquement. </p>
+<h3> 4.4. Les listes</h3>
+<p>Tcl contient des fonctions tr&egrave;s puissantes pour traiter les cha&icirc;nes de caract&egrave;res. Il est souvent utile d'utiliser des listes de cha&icirc;nes. Par exemple : </p>
+<pre>set a [list "tata" "titi" "tutu"]</pre>
+<p>Cette ligne est interpr&eacute;t&eacute;e de la fa&ccedil;on suivante. L'interpr&eacute;teur va d'abord &eacute;valuer l'expression entre crochets
+<pre>list "tata" "titi" "tutu"</pre>
+<p>et va donc cr&eacute;er une liste contenant trois &eacute;l&eacute;ments. Le premier &eacute;l&eacute;ment est tata, le deuxi&egrave;me est titi et le troisi&egrave;me est tutu. Cette liste est ensuite stock&eacute;e dans la variable a (set a ). Les fonctions de liste permettent d'ajouter, de retirer, de trier, de remplacer, de rechercher, etc. Par exemple, la fonction lindex permet d'extraire un &eacute;l&eacute;ment &agrave; une liste :</p>
+  <pre>set b [lindex $a 0]</pre>
+  <p>Cette ligne applique la fonction lindex sur la liste $a. Le mot 0 (z&eacute;ro) repr&eacute;sente la valeur de l'indice de l'&eacute;l&eacute;ment &agrave; extraire : par convention 0 pour le premier &eacute;l&eacute;ment. Ainsi, la variable b prendra la valeur tata. Pour ajouter un &eacute;l&eacute;ment &agrave; la liste, on utilisera la fonction lappend : </p>
+  <pre>set a [lappend $a "tyty"]</pre>
+  <p>L'exemple ci dessous montre la puissance des fonctions de Tcl qui remplacent avantageusement (et sans bug !) de multiples lignes de Basic, </p>
+  <table border width="100%" >
+  <tr>
+      <td> <center>
+           BASIC
+        </center></td>
+      <td> <center>
+           Tcl
+        </center></td>
+    </tr>
+  <tr>
+      <td>a$ = "toto titi" nwords=1 for k=1 to len$(a$) if (a$(k)=" ") then nwords=nwords+1; endif endfor tosearch="titi" for k=1 to len$(a$)-len$(tosearch) if (a$(k)=" ") then nwords=nwords+1 endif if (mid$(a$,k,k+len$(tosearch))=tosearch$) then index=nwords break endif endfor</td>
+      <td>set a [list toto titi] set nwords [llength $a] set tosearch "titi" set index [lsearch $a $tosearch]</td>
+    </tr>
+</table>
+  <h3> 5. Pour en savoir plus</h3>
+  <p>Les fonctions Tcl sont tr&egrave;s nombreuses. Nous recommandons d'abord de lire les tutorials du site <a href="http://tcltk.free.fr">http://tcltk.free.fr</a> ainsi que<a href="possoz/tcltk_cours.html"> le cours d'Anne Possoz</a> qui permettent de comprendre le B-A BA du Tcl/Tk. Citons aussi un livre en fran&ccedil;ais : "Tcl/Tk pr&eacute;cis&amp;concis" &eacute;ditions O'Reilly (<a href="http://www.oreilly.fr">http://www.oreilly.fr</a>). </p>
+  <p>Sur le WEB, on peut consulter la liste exhaustive des fonctions disponibles </p>
+  <center>
+  <p><a href="http://www.scriptics.com/man/tcl8.0/contents.htm">http://www.scriptics.com/man/tcl8.0/contents.htm.</a></p>
+</center>
+  <p>Enfin, le Guide de r&eacute;f&eacute;rence Tcl/Tk (pages <a href="images/tk1.gif">1</a>, <a href="images/tk2.gif">2</a>, <a href="images/tk3.gif">3</a>, <a href="images/tk4.gif">4</a>, <a href="images/tk5.gif">5</a>, <a href="images/tk6.gif">6</a>, <a href="images/tk7.gif">7</a>, <a href="images/tk8.gif">8</a>, <a href="images/tk9.gif">9</a>, <a href="images/tk10.gif">10</a>, <a href="images/tk11.gif">11</a>, <a href="images/tk12.gif">12</a>, <a href="images/tk13.gif">13</a>) permet d'avoir la liste de toutes les fonctions dans un format tr&egrave;s pratique pour consulter pr&egrave;s du clavier. Attention il s'agit de la version 7.6. Audela utilise la version 8.0 qui est enrichie de quelques fonctions suppl&eacute;mentaires. </p>
+  <h3> 6. Compl&eacute;ments</h3>
+  <p>Lorsqu'un script devient complexe, il est utile de bien le structurer. Tcl permet de g&eacute;rer les variables et les fonctions des scripts. La liste qui permet d'assembler de multiples valeurs entres-elles. </p>
+  <p>Les arrays ont &agrave; peu pr&egrave;s la m&ecirc;me fonction que les listes &agrave; cela pr&egrave;s que l'indexation des &eacute;l&eacute;ments n'est pas ordinale (avec des chiffres) mais est nominale (avec des noms). Enfin, les fonctions peuvent elles aussi &ecirc;tre assembl&eacute;es sous forme de namespaces afin d'&ecirc;tre rep&eacute;rables facilement. </p>
+  <h3> 6.1. Les arrays</h3>
+  <p>Il est souvent utile de regrouper plusieurs variables dans une m&ecirc;me cat&eacute;gorie. Par exemple, on souhaite calculer la masse d'air &agrave; partir des informations contenues dans l'ent&ecirc;te FITS d'une image. Pour cela, on a besoin de la date de d&eacute;but de pose, du temps de pose, des coordonn&eacute;es c&eacute;lestes de l'objet point&eacute; et des coordonn&eacute;es g&eacute;ographiques du lieu d'observation. La fonction "calcul_masse_dair" va donc avoir 6 param&egrave;tres : </p>
+  <pre>proc calcul_masse_dair { date_obs exposure ra dec longitude latitude
+      } {</pre>
+  <pre> # --- date_obs : une liste {yyyy mm dd hh mm ss}en TU</pre>
+  <pre> # --- exposure : en secondes</pre>
+  <pre> # --- ra : en degr&eacute;s</pre>
+  <pre> # --- dec : en degr&eacute;s</pre>
+  <pre> # --- longitude : en degr&eacute;s (n&eacute;gatif vers l'est)</pre>
+  <pre> # --- latitude : en degr&eacute;s (n&eacute;gatif dans l'h&eacute;misph&egrave;re sud)</pre>
+  <pre> #</pre>
+  <pre> # --- jour julien de debut de pose</pre>
+  <pre> set jj_debut_de_pose [mc_date2jd $date_obs]</pre>
+  <pre> # --- jour julien du milieu de pose</pre>
+  <pre> set jj_milieu_de_pose [expr jj_debut_de_pose+$exposure/86400./2.]</pre>
+  <pre> # --- mise en forme du lieu</pre>
+  <pre> if {$longitude&lt;0} {</pre>
+  <pre> set longitude [expr -1.*$longitude]</pre>
+  <pre> set sens E</pre>
+  <pre> } else {</pre>
+  <pre> set sens W</pre>
+  <pre> }</pre>
+  <pre> set home "GPS $longitude $sens $latitude"</pre>
+  <pre> # --- calcul des param&egrave;tres altaz</pre>
+  <pre> set resultat [mc_radec2altaz $ra $dec $home $jj_milieu_de_pose]</pre>
+  <pre> # --- extrait la valeur de la hauteur sur l'horizon</pre>
+  <pre> set hauteur [lindex $resultat 1]</pre>
+  <pre> # --- calcul de la masse d'air</pre>
+  <pre> set masse_dair [expr 1./sin($hauteur)]</pre>
+  <pre> # --- retourne le r&eacute;sultat</pre>
+  <pre> return $masse_dair</pre>
+  <pre>}</pre>
+  <p>mc_radec2altaz est une fonction de la librairie d'extension libmc. Les 6 arguments d'entr&eacute;e sont lourds &agrave; manipuler. C'est pour soulager l'&eacute;criture que les "arrays" existent. Avant d'appeler la fonction, on enregistre la valeur des 6 param&egrave;tres dans un array que nous allons appeler info_image : </p>
+  <pre>set info_image(date_obs) {2000 10 8 14 05 21}</pre>
+  <pre>set info_image(exposure) 60</pre>
+  <pre>set info_image(ra) 34.5678</pre>
+  <pre>set info_image(dec) 83.1235</pre>
+  <pre>set info_image(longitude) -2.8763</pre>
+  <pre>set info_image(latitude) 48.5423</pre>
+  <pre>proc calcul_masse_dair { info_image } {</pre>
+  <pre> # --- jour julien de debut de pose</pre>
+  <pre> set jj_debut_de_pose [mc_date2jd $info_image(date_obs)]</pre>
+  <pre> # --- jour julien du milieu de pose</pre>
+  <pre> set jj_milieu_de_pose [expr jj_debut_de_pose+$info_image(exposure)/86400./2.]</pre>
+  <pre> # --- mise en forme du lieu</pre>
+  <pre> if {$info_image(longitude)&lt;0} {</pre>
+  <pre> set longitude [expr -1.*$info_image(longitude)]</pre>
+  <pre> set sens E</pre>
+  <pre> } else {</pre>
+  <pre> set longitude $info_image(longitude)</pre>
+  <pre> set sens W</pre>
+  <pre> }</pre>
+  <pre> set home "GPS $longitude $sens $info_image(latitude)"</pre>
+  <pre> # --- calcul des param&egrave;tres altaz</pre>
+  <pre> set resultat [mc_radec2altaz $info_image(ra) $info_image(dec)</pre>
+  <pre>$home $jj_milieu_de_pose]</pre>
+  <pre> # --- extrait la valeur de la hauteur sur l'horizon</pre>
+  <pre> set hauteur [lindex $resultat 1]</pre>
+  <pre> # --- calcul de la masse d'air</pre>
+  <pre> set masse_dair [expr 1./sin($hauteur)]</pre>
+  <pre> # --- retourne le r&eacute;sultat</pre>
+  <pre> return $masse_dair</pre>
+  <pre>}</pre>
+  <p>Le regroupement des 6 param&egrave;tres dans un seul param&egrave;tre simplifie l'&eacute;criture de la fonction de calcul de la masse d'air. Si un jour vous enregistrez la valeur de la pression et de la temp&eacute;rature ambiante dans l'ent&ecirc;te de l'image, il suffit d'ajouter deux &eacute;l&eacute;ments &agrave; l'array info_image, info_image(temperature) et info_image(pression) et de modifier le calcul de la masse d'air, &agrave; l'int&eacute;rieur de la fonction calcul_masse_dair sans avoir &agrave; changer le nombre de param&egrave;tres d'entr&eacute;e (ce qui &eacute;vite une source d'erreur). </p>
+  <p>Les arrays sont tr&egrave;s couramment employ&eacute;s dans l'interface Audace. </p>
+  <p>Pour les programmeurs C, les arrays s'apparentent beaucoup aux structures. Ainsi pourrait on transcrire l'array info_image sous la forme d'une structure en langage C : </p>
+  <pre>struct {</pre>
+  <pre> char date_obs[255];</pre>
+  <pre> double exposure;</pre>
+  <pre> double ra;</pre>
+  <pre> double dec;</pre>
+  <pre> double longitude;</pre>
+  <pre> double latitude;</pre>
+  <pre>} info_image ;</pre>
+  <h3> 6.2. Les namespaces</h3>
+  <p>Les arrays permettent de regrouper un ensemble coh&eacute;rent de variables.Un namespace permet de regrouper un ensemble coh&eacute;rent de fonctions de m&ecirc;me cat&eacute;gorie. Le nom du namespace est toujours suivi de :: pour le distinguer. Les fonctions Tcl de base (set, for list, etc.) font partie du namespace :: et on devrait donc, en toute rigueur, parler des fonctions ::set, ::for, ::list ,etc. Pour ne pas alourdir la syntaxe, l'interpr&eacute;teur Tcl accepte que l'on supprime les deux premiers double points. </p>
+  <p>Pour comprendre l'int&eacute;r&ecirc;t d'un namespace, prenons l'exemple de fonctions de traitement d'images que vous utilisez couramment : offset, sub, div, smedian, etc. Ces fonctions vous paraissent peut &ecirc;tre insuffisamment compl&egrave;tes et vous aimeriez les enrober un peu pour vos besoins personnels. Id&eacute;e recevable qui m&eacute;rite l'usage d'un namespace. Nommons le trt (pour traitements) : </p>
+  <pre>namespace eval ::trt {</pre>
+  <pre> proc subd { {filename dark.fit} } {</pre>
+  <pre> ::sub $filename 0</pre>
+  <pre> ::visu</pre>
+  <pre> }</pre>
+  <pre> proc divf { {filename flat.fit} } {</pre>
+  <pre> ::div $filename 10000</pre>
+  <pre> ::visu</pre>
+  <pre> }</pre>
+  <pre>}</pre>
+  <p>Nous venons ainsi de cr&eacute;er deux fonctions qui seront appel&eacute;es ::trt::subd et ::trt::divf (si on veut les utiliser depuis la console de Audace ou bien dans un script). En quoi ces fonctions ont-elles un int&eacute;r&ecirc;t ? </p>
+  <p>La fonction ::sub de l'interface Audace exige deux arguments d'entr&eacute;e : un nom de fichier et la valeur d'une constante &agrave; ajouter aux pixels. Or vous avez l'habitude de vous servir de la fonction sub pour soustraire une image dark &agrave; votre image et de ne pas ajouter de constante. Par d&eacute;faut, on a d&eacute;fini, dans le namespace, que la fonction ::trt::subd allait soustraire l'image "dark.fit" a celle en m&eacute;moire. Enfin, vous voulez visualiser l'image apr&egrave;s le traitement (fonction ::visu de l'interface Audace). La fonction subd du namespace trt est donc facile d'emploi : </p>
+  <pre>::trt::subd</pre>
+  <p>C'est tout ! la soustraction du dark est r&eacute;alis&eacute;e et l'image est affich&eacute;e &agrave; l'&eacute;cran. La fonction ::trt::divf permet de diviser par un flat bien connu. Ces deux fonctions reposent sur les m&ecirc;mes d&eacute;marches et m&eacute;ritent d'&ecirc;tre assembl&eacute;es dans la m&ecirc;me cat&eacute;gorie, c'est &agrave; dira au m&ecirc;me namespace.</p>
+  <p>Afin de structurer les diff&eacute;rentes fonctions d'un grand script, il est conseill&eacute; d'user des namespace. C'est ainsi que cela fonctionne dans les scripts de l'interface Audace.</p>
+  <p>Les programmeurs de C++ auront remarqu&eacute; que le namespace est assez proche de la notion d'objet &agrave; cela pr&egrave;s que la d&eacute;finition de la classe et l'instanciation de l'objet se passent en m&ecirc;me temps dans un namespace.</p>
+</body>
+</html>

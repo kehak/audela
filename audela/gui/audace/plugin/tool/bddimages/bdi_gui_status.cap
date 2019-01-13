@@ -1,0 +1,175 @@
+#
+# Fichier : bdi_status.cap
+# $Id: bdi_status.cap 6861 2011-03-07 01:03:58Z jberthier $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+set caption(bdi_status,main_title)      "BddImages - Status"
+set caption(bdi_status,titre)           "Database status"
+
+set caption(bdi_status,label_bdd)       "Information du Serveur Mysql"
+set caption(bdi_status,label_connect)   "Connexion Serveur................"
+set caption(bdi_status,label_nbimg)     "Nb images........................"
+set caption(bdi_status,label_nbheader)  "Nb header........................"
+set caption(bdi_status,label_nbemptyheader) "Nb empty header.................."
+
+set caption(bdi_status,label_rep)       "Information du système de fichiers"
+set caption(bdi_status,label_nbimgrep)  "Nb images sur disque............."
+set caption(bdi_status,label_nbimginc)  "Nb images dans incoming.........."
+set caption(bdi_status,label_nbimgerr)  "Nb images en erreur.............."
+
+set caption(bdi_status,raz)             "Reset db"
+set caption(bdi_status,verif)           "Check"
+set caption(bdi_status,aide)            "Help"
+set caption(bdi_status,fermer)          "Close"
+set caption(bdi_status,refresh)         "Refresh"
+set caption(bdi_status,cancelRAZ)       "Reset canceled"
+
+set caption(bdi_status,reparer)         "Repair"
+set caption(bdi_status,repairOpts)      "Repair options"
+set caption(bdi_status,repairDir)       "Destination path"
+set caption(bdi_status,repairActions)   "Repair actions"
+
+set caption(bdi_status,msg_erreur)      "Erreur"
+set caption(bdi_status,msg_internet)    "Reconnexion à la base."
+
+set caption(bdi_status,msg_prevent)     "Attention !"
+set caption(bdi_status,msg_prevent2)    "Cette action va reinitialiser la base de données. Toutes les données seront définitivement effacer du disque. Etes-vous sûr ?"
+set caption(bdi_status,efface)          "Effacement de la base de données"
+set caption(bdi_status,mdprootsql)      "Veuillez saisir le mot de passe root du serveur SQL"
+
+set caption(bdi_status,consoleTitre)    "*** Verification des donnees ***"
+set caption(bdi_status,consoleAct1a)    "* Obtention de la liste des images sur le disque..."
+set caption(bdi_status,consoleAct1b)    "* Obtention de la liste des catas sur le disque ..."
+set caption(bdi_status,consoleAct2a)    "* Obtention de la liste des images dans la base SQL..."
+set caption(bdi_status,consoleAct2b)    "* Obtention de la liste des catas dans la base SQL ..."
+set caption(bdi_status,consoleAct3)     "Comparaison des listes:"
+set caption(bdi_status,consoleAct4)     "Reparation ?"
+set caption(bdi_status,consoleErr1)     "Verif BDI: erreur de tri de la liste:"
+set caption(bdi_status,consoleErr2)     "Verif BDI: erreur de lecture de la liste par SQL:"
+set caption(bdi_status,consoleErr3)     "Verif BDI: Erreur SQL:"
+set caption(bdi_status,consoleMsg1a)    "Toutes les images dans la base SQL existent sur le disque"
+set caption(bdi_status,consoleMsg1b)    "Nombre d'images dans la base SQL qui n'existent pas sur le disque ="
+set caption(bdi_status,consoleMsg1c)    "Tous les catas dans la base SQL existent sur le disque"
+set caption(bdi_status,consoleMsg1d)    "Nombre de catas dans la base SQL qui n'existent pas sur le disque ="
+set caption(bdi_status,consoleMsg2a)    "Toutes les images sur le disque existent dans la base SQL"
+set caption(bdi_status,consoleMsg2b)    "Nombre d'images sur le disque qui n'existent pas dans la base SQL ="
+set caption(bdi_status,consoleMsg2c)    "Tous les catas sur le disque existent dans la base SQL"
+set caption(bdi_status,consoleMsg2d)    "Nombre de catas sur le disque qui n'existent pas dans la base SQL ="
+set caption(bdi_status,consoleMsg3)     "tables HEADER verifiées"
+set caption(bdi_status,consoleMsg4)     "Nombre d'images absentes dans la table images_ :"
+set caption(bdi_status,consoleMsg5)     "Nombre d'images absentes dans la table images  :"
+set caption(bdi_status,consoleMsg6a)    "Aucune image dans la base dont le nom de fichier est vide"
+set caption(bdi_status,consoleMsg6b)    "Nombre d'images dans la base dont le nom de fichier est vide:"
+set caption(bdi_status,consoleMsg7a)    "Toutes les images dans la base SQL ont la meme taille sur le disque"
+set caption(bdi_status,consoleMsg7b)    "Nombre d'images dans la base SQL dont la taille est differente sur le disque ="
+set caption(bdi_status,consoleMsg8a)    "Tous les catas dans la base SQL ont la meme taille sur le disque"
+set caption(bdi_status,consoleMsg8b)    "Nombre de catas dans la base SQL dont la taille est differente sur le disque ="
+
+set caption(bdi_status,consoleNoRepare) "Nothing to repair"
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(bdi_status,main_title)      "BddImages - Statut"
+   set caption(bdi_status,titre)           "Statut de la base de données"
+
+   set caption(bdi_status,label_bdd)       "Information du Serveur Mysql"
+   set caption(bdi_status,label_connect)   "Connexion Serveur................"
+   set caption(bdi_status,label_nbimg)     "Nb images........................"
+   set caption(bdi_status,label_nbheader)      "Nb header........................"
+   set caption(bdi_status,label_nbemptyheader) "Nb header vide..................."
+
+   set caption(bdi_status,label_rep)       "Information du système de fichiers"
+   set caption(bdi_status,label_nbimgrep)  "Nb images sur disque............."
+   set caption(bdi_status,label_nbimginc)  "Nb images dans incoming.........."
+   set caption(bdi_status,label_nbimgerr)  "Nb images en erreur.............."
+
+   set caption(bdi_status,raz)             "RAZ bdd"
+   set caption(bdi_status,verif)           "Vérification"
+   set caption(bdi_status,aide)            "Aide"
+   set caption(bdi_status,fermer)          "Fermer"
+   set caption(bdi_status,refresh)         "Recharger"
+   set caption(bdi_status,cancelRAZ)       "RAZ bdd annulé"
+
+   set caption(bdi_status,reparer)         "Réparer"
+   set caption(bdi_status,repairOpts)      "Options pour la réparation"
+   set caption(bdi_status,repairDir)       "Répertoire destination"
+   set caption(bdi_status,repairActions)   "Actions de réparation"
+
+   set caption(bdi_status,msg_erreur)      "Erreur"
+   set caption(bdi_status,msg_internet)    "Reconnexion à la base."
+
+   set caption(bdi_status,msg_prevent)     "Attention !"
+   set caption(bdi_status,msg_prevent2)    "Cette action va reinitialiser la base de données. Toutes les données seront définitivement effacer du disque. Etes-vous sûr ?"
+   set caption(bdi_status,efface)          "Effacement de la base de données"
+   set caption(bdi_status,mdprootsql)      "Veuillez saisir le mot de passe root du serveur SQL"
+
+   set caption(bdi_status,consoleTitre)    "*** Vérification des données ***"
+   set caption(bdi_status,consoleAct1a)    "* Obtention de la liste des images sur le disque ..."
+   set caption(bdi_status,consoleAct1b)    "* Obtention de la liste des catas sur le disque ..."
+   set caption(bdi_status,consoleAct2a)    "* Obtention de la liste des images dans la base SQL ..."
+   set caption(bdi_status,consoleAct2b)    "* Obtention de la liste des catas dans la base SQL ..."
+   set caption(bdi_status,consoleAct3)     "Comparaison des listes:"
+   set caption(bdi_status,consoleAct4)     "Reparation ?"
+   set caption(bdi_status,consoleErr1)     "Verif BDI: erreur de tri de la liste:"
+   set caption(bdi_status,consoleErr2)     "Verif BDI: erreur de lecture de la liste par SQL:"
+   set caption(bdi_status,consoleErr3)     "Verif BDI: Erreur SQL:"
+   set caption(bdi_status,consoleMsg1a)    "Toutes les images dans la base SQL existent sur le disque"
+   set caption(bdi_status,consoleMsg1b)    "Nombre d'images dans la base SQL qui n'existent pas sur le disque ="
+   set caption(bdi_status,consoleMsg2a)    "Toutes les images sur le disque existent dans la base SQL"
+   set caption(bdi_status,consoleMsg2b)    "Nombre d'images sur le disque qui n'existent pas dans la base SQL ="
+   set caption(bdi_status,consoleMsg3)     "tables HEADER verifiées"
+   set caption(bdi_status,consoleMsg4)     "Nombre d'images absentes dans la table images_ :"
+   set caption(bdi_status,consoleMsg5)     "Nombre d'images absentes dans la table images  :"
+   set caption(bdi_status,consoleMsg6a)    "Aucune image dans la base dont le nom de fichier est vide"
+   set caption(bdi_status,consoleMsg6b)    "Nombre d'images dans la base dont le nom de fichier est vide:"
+   set caption(bdi_status,consoleMsg6c)    "Aucun Cata dans la base dont le nom de fichier est vide"
+   set caption(bdi_status,consoleMsg6d)    "Nombre de catas dans la base dont le nom de fichier est vide:"
+   set caption(bdi_status,consoleMsg7a)    "Toutes les images dans la base SQL ont la meme taille sur le disque"
+   set caption(bdi_status,consoleMsg7b)    "Nombre d'images dans la base SQL dont la taille est differente sur le disque ="
+   set caption(bdi_status,consoleMsg8a)    "Tous les catas dans la base SQL ont la meme taille sur le disque"
+   set caption(bdi_status,consoleMsg8b)    "Nombre de catas dans la base SQL dont la taille est differente sur le disque ="
+
+   set caption(bdi_status,consoleNoRepare) "Rien a réparer"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{d0d56a5e-3820-4f82-aa15-264d4ec2aa60}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{2840019e-a46c-4ff3-a45f-65624f07e4b0}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{2c31db5c-62b7-4a4d-a46e-9ce231489c8f}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\cfitsio3340\adler32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\buffers.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\cfileio.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\checksum.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\crc32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\deflate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\drvrfile.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\drvrmem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\editcol.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\edithdu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\eval_f.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\eval_l.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\eval_y.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\f77_wrap1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\f77_wrap2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\f77_wrap3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\f77_wrap4.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\fits_hcompress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\fits_hdecompress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\fitscore.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\getcol.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\getcolb.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\getcold.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\getcole.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\getcoli.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\getcolj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\getcolk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\getcoll.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\getcols.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\getcolsb.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\getcolui.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\getcoluj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\getcoluk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\getkey.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\group.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\grparser.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\histo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\imcompress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\infback.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\inffast.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\inflate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\inftrees.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\iraffits.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\modkey.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\pliocomp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\putcol.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\putcolb.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\putcold.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\putcole.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\putcoli.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\putcolj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\putcolk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\putcoll.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\putcols.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\putcolsb.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\putcolu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\putcolui.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\putcoluj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\putcoluk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\putkey.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\quantize.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\region.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\ricecomp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\scalnull.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\swapproc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\trees.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\uncompr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\wcssub.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\wcsutil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\zcompress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\zuncompress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cfitsio3340\zutil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cfitsio.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\install.bat">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

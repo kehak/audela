@@ -1,0 +1,18 @@
+Montes Agricola           29.1N   54.2W   141.0   18                                              Georgius ; Naturaliste et médecin allemand (1494-1555)
+Montes Alpes              46.4N   0.8W    281.0   12                                              Alpes
+Montes Apenninus          18.9N   3.7W    401.0   21  22                                          Apennins
+Montes Archimedes         25.3N   4.6W    163.0   22                                              Nommé en fonction du cratère voisin
+Montes Carpatus           14.5N   24.4W   361.0   20  31                                          Carpates
+Montes Caucasus           38.4N   10.0E   445.0   13                                              Caucase
+Montes Cordillera         17.5S   81.6W   574.0   39  50                                  VII     Monts Cordillères
+Montes Haemus             19.9N   9.2E    560.0   23                                              Monts Hémus
+Montes Harbinger          27.0N   41.0W   90.0    19                                              Monts de l'Annonciation
+Montes Jura               47.1N   34.0W   422.0   10                                              Jura
+Montes Pyrenaeus          15.6S   41.2E   164.0   48  58                                          Pyrénées
+Montes Recti              48.0N   20.0W   90.0    11                                              Muraille droite
+Montes Riphaeus           7.7S    28.1W   189.0   41  42                                          Oural (aujourd'hui)
+Montes Rook               20.6S   82.5W   791.0   50                                      VII     Lawrence ; Astronome anglais (1622-1666)
+Montes Secchi             3.0N    43.0E   50.0    37                                              Nommé en fonction du cratère voisin
+Montes Spitzbergen        35.0N   5.0W    60.0    12                                              Monts Spitzberg
+Montes Taurus             28.4N   41.1E   172.0   25                                              Monts Taurus
+Montes Teneriffe          47.1N   11.8W   182.0   3   11                                          Monts Ténériffe

@@ -1,0 +1,61 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: mbgdevio_demo - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\admin\LOCALS~1\Temp\RSP94.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /I "..\..\..\mbglib\include" /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /FR"Release/" /Fp"Release/mbgdevio_demo.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\GPSMeinberg\SDK\c\demo\mbgdevio\mbgdevio_demo.c"
+]
+Creating command line "cl.exe @C:\DOCUME~1\admin\LOCALS~1\Temp\RSP94.tmp" 
+Creating temporary file "C:\DOCUME~1\admin\LOCALS~1\Temp\RSP95.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/mbgdevio_demo.pdb" /machine:I386 /out:"Release/mbgdevio_demo.exe" 
+.\Release\mbgdevio_demo.obj
+..\..\..\mbglib\lib\msc\mbgutil.lib
+..\..\..\mbglib\lib\msc\mbgdevio.lib
+]
+Creating command line "link.exe @C:\DOCUME~1\admin\LOCALS~1\Temp\RSP95.tmp"
+<h3>Output Window</h3>
+Compiling...
+mbgdevio_demo.c
+Linking...
+
+
+
+<h3>Results</h3>
+mbgdevio_demo.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: mbgdevio_demo - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\admin\LOCALS~1\Temp\RSP97.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /I "..\..\..\mbglib\include" /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/mbgdevio_demo.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\GPSMeinberg\SDK\c\demo\mbgdevio\mbgdevio_demo.c"
+]
+Creating command line "cl.exe @C:\DOCUME~1\admin\LOCALS~1\Temp\RSP97.tmp" 
+Creating temporary file "C:\DOCUME~1\admin\LOCALS~1\Temp\RSP98.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/mbgdevio_demo.pdb" /debug /machine:I386 /out:"Debug/mbgdevio_demo.exe" /pdbtype:sept 
+.\Debug\mbgdevio_demo.obj
+..\..\..\mbglib\lib\msc\mbgutil.lib
+..\..\..\mbglib\lib\msc\mbgdevio.lib
+]
+Creating command line "link.exe @C:\DOCUME~1\admin\LOCALS~1\Temp\RSP98.tmp"
+<h3>Output Window</h3>
+Compiling...
+mbgdevio_demo.c
+Linking...
+
+
+
+<h3>Results</h3>
+mbgdevio_demo.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

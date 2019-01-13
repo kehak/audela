@@ -1,0 +1,166 @@
+# TODOQUICK : 
+
+     RAPPORTS    : dans gestion de Rapport mettre une croix rouge ou vert si soumis
+     ASTROMETRIE : ajouter la liste des sources rejetees pour pouvoir les reinjectees
+
+
+
+
+# TODOLIGHT
+
+     Recherche : refaire les boutons d affichage:
+
+            I F D O ? 
+            i f d o T 
+
+            cocher I : on affiche les images corrigées
+            cocher f : on affiche les flats bruts
+            cocher ? : on affiche toutes les autres images qui ne sont ni :
+                       i I F f D d O o
+            cocher T   : coche tous les boutons 
+            decocher T : decoche tous les boutons
+
+            liste : presence du cata la colonne ne marche pas. c est aussi tres mal fait le fait 
+            de mettre des imagettes vertes et croix rouges. 
+
+     general : 
+
+         - commencer a enlever les affichages de la console (qui sont pas necessaires)
+
+     Voir : 
+         - il manque l affichage du catalogue ASTROID
+
+     création cata :
+         - lancement en mode console
+         - verifier qu on peut supprimer les chemin des catalogues de bddconf
+         - Chemin des catalogues utiliser les variables audace
+         - menu Astroid : verifier la photometrie par rapport au mode manuel de la gestion des cata
+         - bug exec: apres un certain temps, exec ne peut plus creer de subprocess 
+           par manque de memoire: pourquoi ? soluce ?
+
+     PSF MODE MANUEL
+         - mecanisme de rappel des conesearch
+
+     Gestion cata :
+
+         - renommage du champ "name" de astroid
+
+     ASTROMETRIE :
+         - ephemeride etoile
+         - tag envoi mail mpc dans header fits ?
+         - verifier iau_code egal a toutes les images.
+         - gerer limite Priam : mettre un message d erreur en cas de depassament des limites
+         - regler voir wcs
+         - supprimer source dans dse
+         - supprimer image dans dsp
+
+
+# BUGS
+
+       - Create cata: si liste contient des images avec un BIN different alors affichage cata pas bon
+       - Recherche -> liste intelligente: si 2 conditions "n'importe laquelle" alors filtre pas bon (a confirmer)
+
+
+# TODOLIST
+
+     partie 0 : Faire aparaitre la roadmap et todolist dans doxygen
+
+
+     ** partie : Configuration 
+
+         boutoun clicable : "Mode Expert" 
+         si la variable est active alors apparait les id, les boutons ressources/tests etc...
+
+     ** partie : Verification
+
+       - Comparaison des listes
+         verif:-- Nombre d'images absentes sur le disque : 1
+         ne dit pas quels sont les fichiers
+
+     ** partie : Insertion Bddimages
+
+     - Gerer le msg erreur a la sortie de l insrtion auto (bouton fermer)
+     - Empecher la compression des fichiers lors de la lecture des entetes
+     - Ajouter l action dans le menu clic droit : generer une image vide
+
+     - lier les images brutes aux images corrigees
+
+
+     partie 2 : Gestion fenetre Recherche
+
+     - Dans la fenetre recherche : nouvelle liste : 
+        Ajouter champs date :
+           depuis les X derniers jours
+
+     - Dans la fenetre recherche :
+          finir de faire des boutons de filtres suivant: ASTROID
+
+     - photom auto dans creation cata
+     - xerr yerr dans astrometrie
+     - usnao2 dans creation cata
+
+
+
+     partie 3 : Gestions des images
+
+      - ajouter : modif nom du fichier en commancant par l idbddimg
+      - ajouter des champs dans le header : 
+           BDIIFLAT  : Idbddimg
+           BDIFTYPE  : type d image : NULL, Flat, dark, offset, image brute, image corrigee
+           BDIFFLAT  : 0 si pas deflatï¿½ 1 si deflatï¿½ + offset
+           BDICFFLAT : nom du fichier de flat
+           BDICFFLAT : nom du fichier d offset
+           BDICFFLAT : nom du fichier de dark
+           BDICFBRUT : nom fichier brut
+           BDIFWCS   : 1 si WCS ok 0 sinon
+           BDIN      : Nombre de sources extraites
+           BDIN      : Nombre de source cata astrometrique
+           BDIN      : Nombre de source cata photometrique
+
+       1 : validation image (bdd + header)
+       2 : Faire Master Flat
+       3 : Deflat
+       4 : WCS + extraction cata astrometrique en meme temps et montrer sur des ronds vert dans la visu
+       5 : extraction sources image
+       6 : extraction sources cata autres (skybot, cata photom)
+       7 : Crossmatching
+
+     partie 4 : Astrometrie rapide
+
+      - une idee pour faire l astrometrie a l arrache sur la premiere image
+        d une serie, serait de creer une nouvelle visu audela
+        avec extraction d une image du dss. cliquer sur une etoile du dss, puis 
+        sur l image, pour que celle ci recoive la coordonnees d un catalogue (USNOA2 tres bien pour ca)
+        sinon nouvelle visu avec image du dss
+
+     partie 5 : get cds query
+
+      - recuperer la listes des sources catalogues de l image.
+
+     partie 6 : Objet Skybot
+
+     - recuperer bout decode dans astroid
+
+     partie 7 : cata votable
+
+     - transformateur catatxt -> catavotable
+     - transformateur catavotable -> catatxt 
+
+
+     partie 8 : Astroid
+
+     - faire le bouton astroid dans la fenetre recherche
+     - extraire le bout de code de ros/astroid
+
+     partie 9 :
+
+     - fournir le fichier catavotable
+
+     partie 10 :
+
+     - interface avec priam
+
+     partie 11 :
+
+
+

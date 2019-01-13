@@ -1,0 +1,357 @@
+set visuNo 1
+set bufNo [::confVisu::getBufNo $visuNo]
+#--   le nom de la tablelist des fichiers
+set w ".audace.prtr.usr.choix.tablelist"
+#--   le nom de la zone de cmd
+set z ".audace.prtr.usr.table"
+#--   memorise le format, l'extension, audace(rep_images)
+set dirInitial $::audace(rep_images)
+
+#--   tous les tests sont effectues sur des fichiers compresses pour gagner de la place
+#--   les offset, dark, flat et images brutes sont dans des repertoires separes
+#--   les images produites sont stockees dans un fichier test_result
+
+#-------------------------------------------------------------------------------
+#--   Nature du test audace_pretrait_init :
+#     -memorisation des réglages extension et compression
+#     -création des répertoires
+#     -transfert des images de test
+#     -definition des coordonnes de la mesure
+test audace_pretrait_init {initialisation} -constraints {AUDACE} -setup {
+   #--   configure l'extension et la compression
+   set ::conf(extension,defaut) ".fit"
+   set ::conf(fichier,compres) 1
+
+   #--   fixe le point de mesure
+   set coords [list 10 20]
+
+   #--   creation des repertoires et transfert des images
+   foreach rep [list offset dark flat] {
+      #--   cree les repertoires test_offset, test_dark, test_flat dans rep_images
+      set dir [file join $dirInitial test_$rep]
+      file mkdir $dir
+      for {set i 1} {$i <=3} {incr i} {
+         set fileName "rz_${rep}$i.fit.gz"
+         file copy -force [file join $::conf(testaudela,rep_images) $fileName] $dir
+      }
+
+      #--   initialise les vecteurs
+      ::blt::vector create vector$rep -watchunset 1
+      foreach file [list rz_${rep}1 rz_${rep}2 rz_${rep}3] {
+         loadima [file join $dir $file.fit.gz]
+         vector$rep append [lrange [buf$bufNo getpix $coords] 1 end]
+      }
+   }
+   ::blt::vector create mediane -watchunset 1
+   #--   cree le repertoire test_brut
+   set dir [file join $dirInitial test_brut]
+   file mkdir $dir
+
+   #--   recopie l'image rz_cfa_rgbr_8.fit.gz dans $::audace(rep_images)
+   file copy -force [file join $::conf(testaudela,rep_images) rz_cfa_rgbr_8.fit.gz] $dir
+
+   #--   cree le repertoire test_result
+   set dirOut [file join $dirInitial test_result]
+   file mkdir $dirOut
+}
+
+#-------------------------------------------------------------------------------
+test audace_pretrait_offset {faire un offset} -constraints {AUDACE} -setup {} -body {
+   #--   selectionne le repertoire des offset
+   set ::audace(rep_images) [file join $dirInitial test_offset]
+   #--- clic sur le menu faire un offset
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,maitre)" "$::caption(audace,menu,faire_offset)..."
+   #--   selectionne rz_offset1
+   set k [lsearch [$w getcolumns 1] rz_offset1]
+   ::testaudela::clicCheckButton [$w windowpath $k,0] 1
+   #--   selectionne l'option "Tout sélectionner"
+   ::testaudela::clicCheckButton $z.all.select "1"
+   #--   saisit le nom de sortie
+   set nom_offset [file join $dirOut offset]
+   ::testaudela::putLabelEntry $z.sortie.out $nom_offset
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   set result 0
+   #--   cherche la valeur obtenue
+   set mesure [lrange [buf$bufNo getpix $coords] 1 end]
+   mediane expr {median(vectoroffset)}
+   set attenduOffset $mediane(0)
+   #--   calcule la difference
+   set difference [expr {$attenduOffset-$mesure}]
+   if {$difference eq "0.0"} {incr result}
+   return $result
+} -cleanup {
+   #---  supprime le repertoire
+   file delete -force [file join $dirInitial test_offset]
+   #--   vide la visu
+   ::confVisu::clear $visuNo
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   ::blt::vector destroy vectoroffset
+} -result "1"
+
+#-------------------------------------------------------------------------------
+test audace_pretrait_dark_ligne_de_commande {faire un dark sans et avec offset} -constraints {AUDACE} -setup {} -body {
+   #--   selectionne le repertoire des dark
+   set ::audace(rep_images) [file join $dirInitial test_dark]
+   #--- clic sur le menu faire un dark
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,maitre)" "$::caption(audace,menu,faire_dark)..."
+
+   #--   test sans offset----------------------------------------
+   #--   selectionne rz_dark1
+   set k [lsearch [$w getcolumns 1] rz_dark1]
+   ::testaudela::clicCheckButton [$w windowpath $k,0] 1
+   #--   selectionne l'option "Tout sélectionner"
+   ::testaudela::clicCheckButton $z.all.select "1"
+   #--   saisit le nom de sortie
+   set nom_dark [file join $dirOut dark]
+   ::testaudela::putLabelEntry $z.sortie.out $nom_dark
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle sur le dark sans offset
+   set result 0
+   if {[file exists $nom_dark.fit.gz]} {incr result}
+   #--   cherche la valeur obtenue
+   set mesure [lrange [buf$bufNo getpix $coords] 1 end]
+   mediane expr {median(vectordark)}
+   set attenduDark $mediane(0)
+   #--   calcule la difference
+   set difference [expr {$attenduDark-$mesure}]
+   if {$difference eq "0.0"} {incr result}
+   #--   supprime l'image non compressee
+   file delete -force $nom_dark.fit.gz
+
+   #--   test avec offset----------------------------------------
+   #--- vide la visu
+   ::confVisu::clear $visuNo
+   #--   selectionne rz_dark1
+   set k [lsearch [$w getcolumns 1] rz_dark1]
+   ::testaudela::clicCheckButton [$w windowpath $k,0] 1
+   #--   selectionne l'option "Tout sélectionner"
+   ::testaudela::clicCheckButton $z.all.select "1"
+   #--   saisit le nom de l'offset
+   set nom_bias [file join $dirOut offset.fit.gz]
+   ::testaudela::putLabelEntry $z.funoptions.bias $nom_bias
+   #--   saisit le nom de sortie
+   set nom_dark [file join $dirOut dark]
+   ::testaudela::putLabelEntry $z.sortie.out $nom_dark
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle avec offset
+   if {[file exists $nom_dark.fit.gz]} {incr result}
+   #--   cherche la valeur obtenue
+   set mesure [lrange [buf$bufNo getpix $coords] 1 end]
+   mediane expr {median(vectordark-$attenduOffset)}
+   set attenduDark $mediane(0)
+   #--   calcule la difference
+   set difference [expr {$attenduDark -$mesure}]
+   if {$difference eq "0.0"} {incr result}
+   return $result
+} -cleanup {
+   #---  supprime le repertoire
+   file delete -force [file join $dirInitial test_dark]
+   #--   vide la visu
+   ::confVisu::clear $visuNo
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   ::blt::vector destroy vectordark
+} -result "4"
+
+#-------------------------------------------------------------------------------
+test audace_pretrait_flat {faire un flat sans/avec offset sans/avec dark} -constraints {AUDACE} -setup {} -body {
+   #--- clic sur le menu faire un PLU
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,maitre)" "$::caption(audace,menu,faire_flat_field)..."
+   #--   selectionne le repertoire des dark
+   set ::audace(rep_images) [file join $dirInitial test_flat]
+
+   #--   test sans offset ni dark----------------------------------------
+   #--   selectionne rz_flat1
+   set k [lsearch [$w getcolumns 1] rz_flat1]
+   ::testaudela::clicCheckButton [$w windowpath $k,0] 1
+   #--   selectionne l'option "Tout sélectionner"
+   ::testaudela::clicCheckButton $z.all.select "1"
+   #--   saisit le nom de sortie
+   set nom_flat [file join $dirOut flat]
+   ::testaudela::putLabelEntry $z.sortie.out $nom_flat
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   set result 0
+   if {[file exists $nom_flat.fit.gz]} {incr result}
+   #--   cherche la valeur obtenue
+   set mesure [lrange [buf$bufNo getpix $coords] 1 end]
+   mediane expr {median(vectorflat)}
+   set attenduFlat $mediane(0)
+   #--   calcule la difference
+   set difference [expr {$attenduFlat-$mesure}]
+   set difference [expr {fmod($difference,32768)}]
+   if {$difference eq "0.0"} {incr result}
+   file delete $nom_flat.fit.gz
+
+   #--   test avec offset sans dark----------------------------------------
+   #--- vide la visu
+   ::confVisu::clear $visuNo
+   #--   reselectionne rz_flat1
+   set k [lsearch [$w getcolumns 1] rz_flat1]
+   ::testaudela::clicCheckButton [$w windowpath $k,0] 1
+   #--   selectionne l'option "Tout sélectionner"
+   ::testaudela::clicCheckButton $z.all.select "1"
+   #--   saisit le nom de l'offset
+   ::testaudela::putLabelEntry $z.funoptions.bias $nom_offset.fit.gz
+   #--   saisit la valeur de normoffset_value
+   ::testaudela::putLabelEntry $z.funoptions.normoffset_value "0"
+   #--   saisit le nom de sortie
+   ::testaudela::putLabelEntry $z.sortie.out $nom_flat
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   if {[file exists $nom_flat.fit.gz]} {incr result}
+   #--   cherche la valeur obtenue
+   set mesure [lrange [buf$bufNo getpix $coords] 1 end]
+   set attenduFlat 0
+   #--   calcule la difference
+   set difference [expr {$attenduFlat-$mesure}]
+   if {$difference eq "0.0"} {incr result}
+   file delete $nom_flat.fit.gz
+
+   #--   test sans offset avec dark----------------------------------------
+   #--- vide la visu
+   ::confVisu::clear $visuNo
+   #--   reselectionne flat1
+   set k [lsearch [$w getcolumns 1] rz_flat1]
+   ::testaudela::clicCheckButton [$w windowpath $k,0] 1
+   #--   selectionne l'option "Tout sélectionner"
+   ::testaudela::clicCheckButton $z.all.select "1"
+   #--   vide le nom de l'offset
+   ::testaudela::putLabelEntry $z.funoptions.bias ""
+   #--   saisit le nom du dark
+   set nom_dark [file join $dirOut dark]
+   ::testaudela::putLabelEntry $z.funoptions.dark $nom_dark.fit.gz
+   #--   saisit le nom de sortie
+   ::testaudela::putLabelEntry $z.sortie.out $nom_flat
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   if {[file exists $nom_flat.fit.gz]} {incr result}
+   #--   cherche la valeur obtenue
+   set mesure [lrange [buf$bufNo getpix $coords] 1 end]
+   set attenduFlat "25.0"
+   #--   calcule la difference
+   set difference [expr {$attenduFlat-$mesure}]
+   if {$difference eq "0.0"} {incr result}
+   #--   supprime l'image cree
+   file delete -force $nom_flat.fit.gz
+
+   #--   test avec offset et dark----------------------------------------
+   #--- vide la visu
+   ::confVisu::clear $visuNo
+   #--   reselectionne flat1
+   set k [lsearch [$w getcolumns 1] rz_flat1]
+   ::testaudela::clicCheckButton [$w windowpath $k,0] 1
+   #--   selectionne l'option "Tout sélectionner"
+   ::testaudela::clicCheckButton $z.all.select "1"
+   #--   saisit le nom de l'offset
+   ::testaudela::putLabelEntry $z.funoptions.bias $nom_offset.fit.gz
+   #--   saisit le nom de sortie
+   ::testaudela::putLabelEntry $z.sortie.out $nom_flat
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   #--   cherche la valeur obtenue
+   if {[file exists $nom_flat.fit.gz]} {incr result}
+   set mesure [lrange [buf$bufNo getpix $coords] 1 end]
+   set attenduFlat "75.0"
+   set difference [expr {$attenduFlat-$mesure}]
+   if {$difference eq "0.0"} {incr result}
+   return $result
+} -cleanup {
+   #---  supprime le repertoire
+   file delete -force [file join $dirInitial test_flat]
+   #--   vide la visu
+   ::confVisu::clear $visuNo
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   ::blt::vector destroy mediane vectorflat
+} -result "8"
+
+#-------------------------------------------------------------------------------
+test audace_pretrait_pretraitee {faire une image avec/sans optimisation du noir} -constraints {AUDACE} -setup {} -body {
+   #--   selectionne le repertoire des images brutes
+   set ::audace(rep_images) [file join $dirInitial test_brut]
+   buf$bufNo load [file join $dirInitial test_brut rz_cfa_rgbr_8.fit.gz]
+   set brut [lrange [buf$bufNo getpix $coords] 1 end]
+   #--- clic sur le menu faire une image calibree
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,images)" "$::caption(audace,menu,pretraitee)"
+   #--   avec optimisation du noir
+   #--   selectionne rz_cfa_rgbr_8
+   ::testaudela::clicCheckButton [$w windowpath rz_cfa_rgbr_8,0] 1
+   #--   saisit le nom de l'offset
+   ::testaudela::putLabelEntry $z.funoptions.bias $nom_offset.fit.gz
+   #--   saisit le nom de du dark
+   ::testaudela::putLabelEntry $z.funoptions.dark $nom_dark.fit.gz
+   #--   selectionne l'option "opt_black"
+   ::testaudela::clicCheckButton $z.funoptions.opt_black "1"
+   #--   saisit le nom du flat
+   set nom_flat [file join $dirOut flat]
+   ::testaudela::putLabelEntry $z.funoptions.flat $nom_flat.fit.gz
+   #--   attente pour que la constante soit mise a jour
+   ::testaudela::putLabelEntry $z.funoptions.constant 5000
+   #--   saisit le nom de sortie
+   set nom_cal [file join $dirOut pretraitee]
+   ::testaudela::putLabelEntry $z.sortie.out $nom_cal
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   set result 0
+   if {[file exists $nom_cal.fit.gz]} {incr result}
+   #--   valeur obtenue par un traitement pas à pas
+   set attendu "32767"
+   #--   cherche la valeur obtenue
+   set mesure [lrange [buf$bufNo getpix $coords] 1 end]
+   #--   calcule la difference
+   set difference [expr {$attendu-$mesure}]
+   if {$difference eq "0.0"} {incr result}
+   #--   supprime l'image cree
+   file delete -force $nom_cal.fit.gz
+
+   #--   sans optimisation du noir
+   #--   selectionne rz_cfa_rgbr_8
+   set k [lsearch [$w getcolumns 1] rz_cfa_rgbr_8]
+   ::testaudela::clicCheckButton [$w windowpath $k,0] 1
+   #--   deselectionne l'option "opt_black"
+   ::testaudela::clicCheckButton $z.funoptions.opt_black "0"
+   ::testaudela::putLabelEntry $z.funoptions.constant 1000
+   #--   saisit le nom de sortie
+   ::testaudela::putLabelEntry $z.sortie.out $nom_cal
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   if {[file exists $nom_cal.fit.gz]} {incr result}
+   #--   valeur obtenue par un traitement pas à pas
+   set attendu 8000
+   #--   cherche la valeur obtenue
+   set mesure [lrange [buf$bufNo getpix $coords] 1 end]
+   #--   calcule la difference
+   set difference [expr {$attendu-$mesure}]
+   if {$difference eq "0.0"} {incr result }
+   return $result
+} -cleanup {
+   #--   vide la visu
+   ::confVisu::clear $visuNo
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   #---  supprime les repertoires
+   file delete -force $dirOut [file join $dirInitial test_brut]
+   set ::audace(rep_images) $dirInitial
+} -result "4"
+

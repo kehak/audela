@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <title>Webcam under Linux</title>
+</head>
+<body bgcolor="#ffffff" link="#0000ff" vlink="#800080">
+<p></p>
+<hr color="blue">
+<p></p>
+<font color="#ff0000" size="5"><b></b></font>
+<p align="center"><font color="#ff0000" size="5"><b>libgrabber </b></font><b><font
+ size="5">- Linux V4L2 interface<br>
+</font></b></p>
+<b><font size="5"></font></b>
+<p></p>
+<hr color="blue">
+<p></p>
+<br>
+<font style="font-family: Arial;">The Linux implementation may
+interface with any </font><font style="font-family: Arial;"><span
+ style="font-weight: bold; color: rgb(255, 0, 0);">V4L2</span> (<span
+ style="color: rgb(255, 0, 0);">Video for Linux 2</span>) compliant
+kernel driver</font><span style="font-family: Arial;">. The developper
+can find </span><a style="font-family: Arial;"
+ href="http://v4l2spec.bytesex.org/">here</a><span
+ style="font-family: Arial;"> some for details on the V4L2 API.</span><br
+ style="font-family: Arial;">
+<br style="font-family: Arial;">
+<span style="text-decoration: underline; font-family: Arial;"><span
+ style="font-weight: bold;">Disclaimer</span> : this is an experimental
+piece of code that has not been extensively tested.</span><br
+ style="font-family: Arial;">
+<br style="font-family: Arial;">
+<h3 style="font-family: Arial;">Main characteristics :</h3>
+<span style="font-family: Arial;">- Access modes : support of the </span><span
+ style="color: rgb(255, 0, 0); font-family: Arial;">Read</span><span
+ style="font-family: Arial;"> and the </span><span
+ style="color: rgb(255, 0, 0); font-family: Arial;">Memory Mapped</span><span
+ style="font-family: Arial;"> access modes. If the driver supports both
+modes, the Memory Mapped mode is chosen.</span><br
+ style="font-family: Arial;">
+<span style="font-family: Arial;">- Data format : for the Memory Mapped
+access mode, support of the <span style="color: rgb(255, 0, 0);">RGB24</span>,
+<span style="color: rgb(255, 0, 0);">YUV422</span> and <span
+ style="color: rgb(255, 0, 0);">YUV420</span> data formats. For the
+Read acces mode, <span style="color: rgb(255, 0, 0);">YUV422</span>
+data format.</span><br>
+<span style="font-family: Arial;">- No support for the long pose mode
+of modified Philips webcams.</span><br style="font-family: Arial;">
+<br style="font-family: Arial;">
+<h3 style="font-family: Arial;">Tested configuration (so far ...)</h3>
+<br>
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td
+ style="vertical-align: top; font-family: Arial; font-weight: bold;">Hardware
+description<br>
+      </td>
+      <td
+ style="vertical-align: top; font-family: Arial; font-weight: bold;">Bus
+ID<br>
+      </td>
+      <td
+ style="vertical-align: top; font-family: Arial; font-weight: bold;">Driver
+name<br>
+      </td>
+      <td
+ style="vertical-align: top; font-family: Arial; font-weight: bold;">version<br>
+      </td>
+      <td
+ style="vertical-align: top; font-family: Arial; font-weight: bold;">Acces
+mode<br>
+      </td>
+      <td
+ style="vertical-align: top; font-family: Arial; font-weight: bold;">Data
+formats<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: Arial;">Lindy
+grabber + Watec 120 N PAL camera<br>
+      </td>
+      <td style="vertical-align: top; font-family: Arial;">05e1:0408<br>
+      </td>
+      <td style="vertical-align: top; font-family: Arial;">easycap<br>
+      </td>
+      <td style="vertical-align: top; font-family: Arial;">0.9.0<br>
+      </td>
+      <td style="vertical-align: top; font-family: Arial;">memory mapped<br>
+      </td>
+      <td style="vertical-align: top; font-family: Arial;">RGB24 and
+YUV422<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: Arial;">Philips
+PCVC680K webcam<br>
+      </td>
+      <td style="vertical-align: top; font-family: Arial;">0471:0308<br>
+      </td>
+      <td style="vertical-align: top; font-family: Arial;">pwc<br>
+      </td>
+      <td style="vertical-align: top; font-family: Arial;">10.0.12<br>
+      </td>
+      <td style="vertical-align: top; font-family: Arial;">memory mapped<br>
+      </td>
+      <td style="vertical-align: top; font-family: Arial;">YUV420<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: Arial;">Generic UVC
+webcam<br>
+      </td>
+      <td style="vertical-align: top; font-family: Arial;">05ca:183d</td>
+      <td style="vertical-align: top; font-family: Arial;">uvcvideo<br>
+      </td>
+      <td style="vertical-align: top; font-family: Arial;">0.1.0<br>
+      </td>
+      <td style="vertical-align: top; font-family: Arial;">memory mapped<br>
+      </td>
+      <td style="vertical-align: top; font-family: Arial;">YUV422<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: Arial;">Grabby
+Terratec + Watec camera<br>
+      </td>
+      <td style="vertical-align: top; font-family: Arial;">0ccd:0096 ???<br>
+      </td>
+      <td style="vertical-align: top; font-family: Arial;">em28xx</td>
+      <td style="vertical-align: top; font-family: Arial;">???<br>
+      </td>
+      <td style="vertical-align: top; font-family: Arial;">read<br>
+      </td>
+      <td style="vertical-align: top; font-family: Arial;">YUV422<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+&nbsp;<br>
+<br>
+</body>
+</html>

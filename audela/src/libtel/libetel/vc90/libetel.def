@@ -1,0 +1,2 @@
+LIBRARY libetel
+EXPORTS Etel_Init @1

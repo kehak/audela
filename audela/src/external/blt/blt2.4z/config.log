@@ -1,0 +1,219 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:705: checking host system type
+configure:726: checking target system type
+configure:744: checking build system type
+configure:771: checking for wish
+configure:837: checking which C compiler
+configure:852: checking for gcc
+configure:965: checking whether the C compiler (gcc  ) works
+configure:981: gcc -o conftest    conftest.c  1>&5
+configure:1007: checking whether the C compiler (gcc  ) is a cross-compiler
+configure:1012: checking whether we are using GNU C
+configure:1021: gcc -E conftest.c
+configure:1040: checking whether gcc accepts -g
+configure:1095: checking how to run the C preprocessor
+configure:1116: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1210: checking default compiler flags
+configure:1240: checking for Cygwin environment
+configure:1256: gcc -c -g -O2 -fPIC  conftest.c 1>&5
+configure: In function 'main':
+configure:1250:20: error: '__CYGWIN32__' undeclared (first use in this function)
+ #define __CYGWIN__ __CYGWIN32__
+                    ^
+configure:1252:8: note: in expansion of macro '__CYGWIN__'
+ return __CYGWIN__;
+        ^
+configure:1250:20: note: each undeclared identifier is reported only once for each function it appears in
+ #define __CYGWIN__ __CYGWIN32__
+                    ^
+configure:1252:8: note: in expansion of macro '__CYGWIN__'
+ return __CYGWIN__;
+        ^
+configure: failed program was:
+#line 1245 "configure"
+#include "confdefs.h"
+
+int main() {
+
+#ifndef __CYGWIN__
+#define __CYGWIN__ __CYGWIN32__
+#endif
+return __CYGWIN__;
+; return 0; }
+configure:1302: checking for mawk
+configure:1343: checking for a BSD compatible install
+configure:1398: checking for ranlib
+configure:1426: checking whether ln -s works
+configure:1453: checking for main in -lsocket
+configure:1468: gcc -o conftest -g -O2 -fPIC   conftest.c -lsocket   1>&5
+/usr/bin/ld: cannot find -lsocket
+collect2: error: ld returned 1 exit status
+configure: failed program was:
+#line 1461 "configure"
+#include "confdefs.h"
+
+int main() {
+main()
+; return 0; }
+configure:1496: checking for main in -lnsl
+configure:1511: gcc -o conftest -g -O2 -fPIC   conftest.c -lnsl   1>&5
+configure:1539: checking for main in -lm
+configure:1554: gcc -o conftest -g -O2 -fPIC   conftest.c -lm  -lnsl  1>&5
+configure:1588: checking for ANSI C header files
+configure:1601: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1668: gcc -o conftest -g -O2 -fPIC   conftest.c -lm -lnsl  1>&5
+configure: In function 'main':
+configure:1663:67: warning: incompatible implicit declaration of built-in function 'exit'
+ if (XOR (islower (i), ISLOWER (i)) || toupper (i) != TOUPPER (i)) exit(2);
+                                                                   ^
+configure:1692: checking for sys/wait.h that is POSIX.1 compatible
+configure:1713: gcc -c -g -O2 -fPIC  conftest.c 1>&5
+configure:1734: checking whether time.h and sys/time.h may both be included
+configure:1748: gcc -c -g -O2 -fPIC  conftest.c 1>&5
+configure:1773: checking for inttypes.h
+configure:1783: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1820: checking for limits.h
+configure:1830: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1820: checking for sys/param.h
+configure:1830: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1860: checking for string.h
+configure:1870: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1860: checking for ctype.h
+configure:1870: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1900: checking for errno.h
+configure:1910: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1900: checking for float.h
+configure:1910: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1900: checking for math.h
+configure:1910: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1900: checking for ieeefp.h
+configure:1910: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1906:20: fatal error: ieeefp.h: No such file or directory
+ #include <$ac_hdr>
+                    ^
+compilation terminated.
+configure: failed program was:
+#line 1905 "configure"
+#include "confdefs.h"
+#include <ieeefp.h>
+configure:1940: checking for sys/time.h
+configure:1950: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1940: checking for waitflags.h
+configure:1950: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1946:23: fatal error: waitflags.h: No such file or directory
+ #include <$ac_hdr>
+                       ^
+compilation terminated.
+configure: failed program was:
+#line 1945 "configure"
+#include "confdefs.h"
+#include <waitflags.h>
+configure:1940: checking for sys/wait.h
+configure:1980: checking for malloc.h
+configure:1990: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1980: checking for memory.h
+configure:1990: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:2020: checking for setjmp.h
+configure:2030: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:2112: checking for stdlib.h
+configure:2122: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:2112: checking for unistd.h
+configure:2122: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:2155: checking for size_t
+configure:2188: checking for pid_t
+configure:2222: checking whether union wait is defined correctly
+configure:2245: gcc -c -g -O2 -fPIC  conftest.c 1>&5
+configure:2274: checking whether byte ordering is bigendian
+configure:2292: gcc -c -g -O2 -fPIC  conftest.c 1>&5
+configure:2307: gcc -c -g -O2 -fPIC  conftest.c 1>&5
+configure: In function 'main':
+configure:2302:2: error: unknown type name 'not'
+  not big endian
+  ^
+configure:2302:10: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'endian'
+  not big endian
+          ^
+configure: failed program was:
+#line 2296 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+#include <sys/param.h>
+int main() {
+
+#if BYTE_ORDER != BIG_ENDIAN
+ not big endian
+#endif
+; return 0; }
+configure:2364: checking size of int
+configure:2383: gcc -o conftest -g -O2 -fPIC   conftest.c -lm -lnsl  1>&5
+configure: In function 'main':
+configure:2377:11: warning: incompatible implicit declaration of built-in function 'exit'
+   if (!f) exit(1);
+           ^
+configure:2403: checking size of long
+configure:2422: gcc -o conftest -g -O2 -fPIC   conftest.c -lm -lnsl  1>&5
+configure: In function 'main':
+configure:2416:11: warning: incompatible implicit declaration of built-in function 'exit'
+   if (!f) exit(1);
+           ^
+configure:2442: checking size of long long
+configure:2461: gcc -o conftest -g -O2 -fPIC   conftest.c -lm -lnsl  1>&5
+configure: In function 'main':
+configure:2455:11: warning: incompatible implicit declaration of built-in function 'exit'
+   if (!f) exit(1);
+           ^
+configure:2481: checking size of void *
+configure:2500: gcc -o conftest -g -O2 -fPIC   conftest.c -lm -lnsl  1>&5
+configure: In function 'main':
+configure:2494:11: warning: incompatible implicit declaration of built-in function 'exit'
+   if (!f) exit(1);
+           ^
+configure:2538: checking for strdup
+configure:2566: gcc -o conftest -g -O2 -fPIC   conftest.c -lm -lnsl  1>&5
+configure:2550:6: warning: conflicting types for built-in function 'strdup'
+ char $ac_func();
+      ^
+configure:2538: checking for strcasecmp
+configure:2566: gcc -o conftest -g -O2 -fPIC   conftest.c -lm -lnsl  1>&5
+configure:2550:6: warning: conflicting types for built-in function 'strcasecmp'
+ char $ac_func();
+      ^
+configure:2538: checking for strncasecmp
+configure:2566: gcc -o conftest -g -O2 -fPIC   conftest.c -lm -lnsl  1>&5
+configure:2550:6: warning: conflicting types for built-in function 'strncasecmp'
+ char $ac_func();
+      ^
+configure:2538: checking for drand48
+configure:2566: gcc -o conftest -g -O2 -fPIC   conftest.c -lm -lnsl  1>&5
+configure:2538: checking for srand48
+configure:2566: gcc -o conftest -g -O2 -fPIC   conftest.c -lm -lnsl  1>&5
+configure:2538: checking for finite
+configure:2566: gcc -o conftest -g -O2 -fPIC   conftest.c -lm -lnsl  1>&5
+configure:2550:6: warning: conflicting types for built-in function 'finite'
+ char $ac_func();
+      ^
+configure:2538: checking for isnan
+configure:2566: gcc -o conftest -g -O2 -fPIC   conftest.c -lm -lnsl  1>&5
+configure:2550:6: warning: conflicting types for built-in function 'isnan'
+ char $ac_func();
+      ^
+configure:2593: checking for isfinite
+configure:2610: gcc -o conftest -g -O2 -fPIC   conftest.c -lm -lnsl  1>&5
+configure:2639: checking whether DBL_EPSILON is defined in float.h
+configure:2724: checking whether declaration is needed for strdup
+configure:2765: checking whether declaration is needed for drand48
+configure:2806: checking whether declaration is needed for srand48
+configure:2847: checking whether declaration is needed for j1
+configure:2897: checking for X
+configure:2964: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:3040: gcc -o conftest -g -O2 -fPIC   conftest.c -lXt -lm -lnsl  1>&5
+configure:3134: checking for tclConfig.sh
+configure:3230: checking for tkConfig.sh
+configure:3648: checking for XExtendedMaxRequestSize
+configure:3676: gcc -o conftest -g -O2 -fPIC   conftest.c  -L/usr/include/tcl8.6/tk-private/unix -ltk8.6 -L/usr/include/tcl8.6/tcl-private/unix -ltcl8.6 -lX11 -lm -lnsl  1>&5
+configure:3726: checking BLT_MAJOR_VERSION
+configure:3742: checking BLT_MINOR_VERSION
+configure:3784: checking TCL_VERSION in tcl.h
+configure:3805: checking TK_VERSION in tk.h

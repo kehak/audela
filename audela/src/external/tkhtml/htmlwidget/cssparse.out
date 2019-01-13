@@ -1,0 +1,1531 @@
+ State 0:
+          stylesheet ::= * ss_header ss_body
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          ss_header ::= * ws charset_opt imports_opt
+
+                         SPACE shift  33
+                    stylesheet accept
+                     ss_header shift  1
+                            ws shift  53
+                     {default} reduce 1
+
+State 1:
+          stylesheet ::= ss_header * ss_body
+          ss_body ::= * ss_body_item
+          ss_body ::= * ss_body ws ss_body_item
+          ss_body_item ::= * media
+          ss_body_item ::= * ruleset
+          ss_body_item ::= * font_face
+          media ::= * MEDIA_SYM ws medium_list LP ws ruleset_list RP
+          page ::= * page_sym ws pseudo_opt LP declaration_list RP
+          page_sym ::= * PAGE_SYM
+          font_face ::= * FONT_SYM LP declaration_list RP
+          ruleset ::= * selector_list LP declaration_list RP
+          ruleset ::= * page
+          selector_list ::= * selector
+          selector_list ::= * selector_list comma ws selector
+          selector ::= * simple_selector ws
+          selector ::= * simple_selector combinator selector
+          simple_selector ::= * tag simple_selector_tail
+          simple_selector ::= * simple_selector_tail
+          simple_selector ::= * tag
+          tag ::= * IDENT
+          tag ::= * STAR
+          tag ::= * SEMICOLON
+          simple_selector_tail ::= * simple_selector_tail_component
+          simple_selector_tail ::= * simple_selector_tail_component simple_selector_tail
+          simple_selector_tail ::= * error
+          simple_selector_tail_component ::= * HASH IDENT
+          simple_selector_tail_component ::= * DOT IDENT
+          simple_selector_tail_component ::= * LSP IDENT RSP
+          simple_selector_tail_component ::= * LSP IDENT EQUALS string RSP
+          simple_selector_tail_component ::= * LSP IDENT TILDE EQUALS string RSP
+          simple_selector_tail_component ::= * LSP IDENT PIPE EQUALS string RSP
+          simple_selector_tail_component ::= * COLON IDENT
+          simple_selector_tail_component ::= * COLON COLON IDENT
+
+                     SEMICOLON shift  150
+                     MEDIA_SYM shift  34
+                         IDENT shift  148
+                         COLON shift  70
+                      PAGE_SYM shift  127
+                      FONT_SYM shift  96
+                          STAR shift  149
+                          HASH shift  86
+                           DOT shift  87
+                           LSP shift  88
+                         error shift  136
+                       ss_body shift  27
+                  ss_body_item shift  157
+                         media shift  103
+                       ruleset shift  104
+                     font_face shift  105
+                          page shift  152
+                      page_sym shift  36
+                 selector_list shift  28
+                      selector shift  153
+               simple_selector shift  21
+                           tag shift  11
+          simple_selector_tail shift  147
+simple_selector_tail_component shift  12
+
+State 2:
+          ss_body ::= ss_body ws * ss_body_item
+          ss_body_item ::= * media
+          ss_body_item ::= * ruleset
+          ss_body_item ::= * font_face
+          media ::= * MEDIA_SYM ws medium_list LP ws ruleset_list RP
+          page ::= * page_sym ws pseudo_opt LP declaration_list RP
+          page_sym ::= * PAGE_SYM
+          font_face ::= * FONT_SYM LP declaration_list RP
+          ruleset ::= * selector_list LP declaration_list RP
+          ruleset ::= * page
+          selector_list ::= * selector
+          selector_list ::= * selector_list comma ws selector
+          selector ::= * simple_selector ws
+          selector ::= * simple_selector combinator selector
+          simple_selector ::= * tag simple_selector_tail
+          simple_selector ::= * simple_selector_tail
+          simple_selector ::= * tag
+          tag ::= * IDENT
+          tag ::= * STAR
+          tag ::= * SEMICOLON
+          simple_selector_tail ::= * simple_selector_tail_component
+          simple_selector_tail ::= * simple_selector_tail_component simple_selector_tail
+          simple_selector_tail ::= * error
+          simple_selector_tail_component ::= * HASH IDENT
+          simple_selector_tail_component ::= * DOT IDENT
+          simple_selector_tail_component ::= * LSP IDENT RSP
+          simple_selector_tail_component ::= * LSP IDENT EQUALS string RSP
+          simple_selector_tail_component ::= * LSP IDENT TILDE EQUALS string RSP
+          simple_selector_tail_component ::= * LSP IDENT PIPE EQUALS string RSP
+          simple_selector_tail_component ::= * COLON IDENT
+          simple_selector_tail_component ::= * COLON COLON IDENT
+
+                     SEMICOLON shift  150
+                     MEDIA_SYM shift  34
+                         IDENT shift  148
+                         COLON shift  70
+                      PAGE_SYM shift  127
+                      FONT_SYM shift  96
+                          STAR shift  149
+                          HASH shift  86
+                           DOT shift  87
+                           LSP shift  88
+                         error shift  136
+                  ss_body_item shift  102
+                         media shift  103
+                       ruleset shift  104
+                     font_face shift  105
+                          page shift  152
+                      page_sym shift  36
+                 selector_list shift  28
+                      selector shift  153
+               simple_selector shift  21
+                           tag shift  11
+          simple_selector_tail shift  147
+simple_selector_tail_component shift  12
+
+State 3:
+          media ::= MEDIA_SYM ws medium_list LP ws * ruleset_list RP
+          page ::= * page_sym ws pseudo_opt LP declaration_list RP
+          page_sym ::= * PAGE_SYM
+          ruleset_list ::= * ruleset ws
+          ruleset_list ::= * ruleset ws ruleset_list
+          ruleset ::= * selector_list LP declaration_list RP
+          ruleset ::= * page
+          selector_list ::= * selector
+          selector_list ::= * selector_list comma ws selector
+          selector ::= * simple_selector ws
+          selector ::= * simple_selector combinator selector
+          simple_selector ::= * tag simple_selector_tail
+          simple_selector ::= * simple_selector_tail
+          simple_selector ::= * tag
+          tag ::= * IDENT
+          tag ::= * STAR
+          tag ::= * SEMICOLON
+          simple_selector_tail ::= * simple_selector_tail_component
+          simple_selector_tail ::= * simple_selector_tail_component simple_selector_tail
+          simple_selector_tail ::= * error
+          simple_selector_tail_component ::= * HASH IDENT
+          simple_selector_tail_component ::= * DOT IDENT
+          simple_selector_tail_component ::= * LSP IDENT RSP
+          simple_selector_tail_component ::= * LSP IDENT EQUALS string RSP
+          simple_selector_tail_component ::= * LSP IDENT TILDE EQUALS string RSP
+          simple_selector_tail_component ::= * LSP IDENT PIPE EQUALS string RSP
+          simple_selector_tail_component ::= * COLON IDENT
+          simple_selector_tail_component ::= * COLON COLON IDENT
+
+                     SEMICOLON shift  150
+                         IDENT shift  148
+                         COLON shift  70
+                      PAGE_SYM shift  127
+                          STAR shift  149
+                          HASH shift  86
+                           DOT shift  87
+                           LSP shift  88
+                         error shift  136
+                       ruleset shift  46
+                  ruleset_list shift  73
+                          page shift  152
+                      page_sym shift  36
+                 selector_list shift  28
+                      selector shift  153
+               simple_selector shift  21
+                           tag shift  11
+          simple_selector_tail shift  147
+simple_selector_tail_component shift  12
+
+State 4:
+          page ::= * page_sym ws pseudo_opt LP declaration_list RP
+          page_sym ::= * PAGE_SYM
+          ruleset_list ::= * ruleset ws
+     (30) ruleset_list ::= ruleset ws *
+          ruleset_list ::= * ruleset ws ruleset_list
+          ruleset_list ::= ruleset ws * ruleset_list
+          ruleset ::= * selector_list LP declaration_list RP
+          ruleset ::= * page
+          selector_list ::= * selector
+          selector_list ::= * selector_list comma ws selector
+          selector ::= * simple_selector ws
+          selector ::= * simple_selector combinator selector
+          simple_selector ::= * tag simple_selector_tail
+          simple_selector ::= * simple_selector_tail
+          simple_selector ::= * tag
+          tag ::= * IDENT
+          tag ::= * STAR
+          tag ::= * SEMICOLON
+          simple_selector_tail ::= * simple_selector_tail_component
+          simple_selector_tail ::= * simple_selector_tail_component simple_selector_tail
+          simple_selector_tail ::= * error
+          simple_selector_tail_component ::= * HASH IDENT
+          simple_selector_tail_component ::= * DOT IDENT
+          simple_selector_tail_component ::= * LSP IDENT RSP
+          simple_selector_tail_component ::= * LSP IDENT EQUALS string RSP
+          simple_selector_tail_component ::= * LSP IDENT TILDE EQUALS string RSP
+          simple_selector_tail_component ::= * LSP IDENT PIPE EQUALS string RSP
+          simple_selector_tail_component ::= * COLON IDENT
+          simple_selector_tail_component ::= * COLON COLON IDENT
+
+                     SEMICOLON shift  150
+                         IDENT shift  148
+                         COLON shift  70
+                      PAGE_SYM shift  127
+                          STAR shift  149
+                          HASH shift  86
+                           DOT shift  87
+                           LSP shift  88
+                         error shift  136
+                       ruleset shift  46
+                  ruleset_list shift  128
+                          page shift  152
+                      page_sym shift  36
+                 selector_list shift  28
+                      selector shift  153
+               simple_selector shift  21
+                           tag shift  11
+          simple_selector_tail shift  147
+simple_selector_tail_component shift  12
+                     {default} reduce 30
+
+State 5:
+          selector_list ::= selector_list comma ws * selector
+          selector ::= * simple_selector ws
+          selector ::= * simple_selector combinator selector
+          simple_selector ::= * tag simple_selector_tail
+          simple_selector ::= * simple_selector_tail
+          simple_selector ::= * tag
+          tag ::= * IDENT
+          tag ::= * STAR
+          tag ::= * SEMICOLON
+          simple_selector_tail ::= * simple_selector_tail_component
+          simple_selector_tail ::= * simple_selector_tail_component simple_selector_tail
+          simple_selector_tail ::= * error
+          simple_selector_tail_component ::= * HASH IDENT
+          simple_selector_tail_component ::= * DOT IDENT
+          simple_selector_tail_component ::= * LSP IDENT RSP
+          simple_selector_tail_component ::= * LSP IDENT EQUALS string RSP
+          simple_selector_tail_component ::= * LSP IDENT TILDE EQUALS string RSP
+          simple_selector_tail_component ::= * LSP IDENT PIPE EQUALS string RSP
+          simple_selector_tail_component ::= * COLON IDENT
+          simple_selector_tail_component ::= * COLON COLON IDENT
+
+                     SEMICOLON shift  150
+                         IDENT shift  148
+                         COLON shift  70
+                          STAR shift  149
+                          HASH shift  86
+                           DOT shift  87
+                           LSP shift  88
+                         error shift  136
+                      selector shift  130
+               simple_selector shift  21
+                           tag shift  11
+          simple_selector_tail shift  147
+simple_selector_tail_component shift  12
+
+State 6:
+          selector ::= * simple_selector ws
+          selector ::= * simple_selector combinator selector
+          selector ::= simple_selector combinator * selector
+          simple_selector ::= * tag simple_selector_tail
+          simple_selector ::= * simple_selector_tail
+          simple_selector ::= * tag
+          tag ::= * IDENT
+          tag ::= * STAR
+          tag ::= * SEMICOLON
+          simple_selector_tail ::= * simple_selector_tail_component
+          simple_selector_tail ::= * simple_selector_tail_component simple_selector_tail
+          simple_selector_tail ::= * error
+          simple_selector_tail_component ::= * HASH IDENT
+          simple_selector_tail_component ::= * DOT IDENT
+          simple_selector_tail_component ::= * LSP IDENT RSP
+          simple_selector_tail_component ::= * LSP IDENT EQUALS string RSP
+          simple_selector_tail_component ::= * LSP IDENT TILDE EQUALS string RSP
+          simple_selector_tail_component ::= * LSP IDENT PIPE EQUALS string RSP
+          simple_selector_tail_component ::= * COLON IDENT
+          simple_selector_tail_component ::= * COLON COLON IDENT
+
+                     SEMICOLON shift  150
+                         IDENT shift  148
+                         COLON shift  70
+                          STAR shift  149
+                          HASH shift  86
+                           DOT shift  87
+                           LSP shift  88
+                         error shift  136
+                      selector shift  133
+               simple_selector shift  21
+                           tag shift  11
+          simple_selector_tail shift  147
+simple_selector_tail_component shift  12
+
+State 7:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          page ::= page_sym ws pseudo_opt LP * declaration_list RP
+          declaration_list ::= * declaration
+          declaration_list ::= * declaration_list SEMICOLON declaration
+          declaration_list ::= * declaration_list SEMICOLON ws
+          declaration ::= * ws IDENT ws COLON ws expr prio
+          declaration ::= * garbage
+          garbage ::= * garbage_token
+          garbage ::= * garbage garbage_token
+          garbage_token ::= * error
+          garbage_token ::= * LP garbage RP
+
+                         SPACE shift  33
+                            LP shift  13
+                         error shift  122
+                            ws shift  84
+              declaration_list shift  65
+                   declaration shift  125
+                       garbage shift  20
+                 garbage_token shift  123
+                     {default} reduce 1
+
+State 8:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          ruleset ::= selector_list LP * declaration_list RP
+          declaration_list ::= * declaration
+          declaration_list ::= * declaration_list SEMICOLON declaration
+          declaration_list ::= * declaration_list SEMICOLON ws
+          declaration ::= * ws IDENT ws COLON ws expr prio
+          declaration ::= * garbage
+          garbage ::= * garbage_token
+          garbage ::= * garbage garbage_token
+          garbage_token ::= * error
+          garbage_token ::= * LP garbage RP
+
+                         SPACE shift  33
+                            LP shift  13
+                         error shift  122
+                            ws shift  84
+              declaration_list shift  68
+                   declaration shift  125
+                       garbage shift  20
+                 garbage_token shift  123
+                     {default} reduce 1
+
+State 9:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          font_face ::= FONT_SYM LP * declaration_list RP
+          declaration_list ::= * declaration
+          declaration_list ::= * declaration_list SEMICOLON declaration
+          declaration_list ::= * declaration_list SEMICOLON ws
+          declaration ::= * ws IDENT ws COLON ws expr prio
+          declaration ::= * garbage
+          garbage ::= * garbage_token
+          garbage ::= * garbage garbage_token
+          garbage_token ::= * error
+          garbage_token ::= * LP garbage RP
+
+                         SPACE shift  33
+                            LP shift  13
+                         error shift  122
+                            ws shift  84
+              declaration_list shift  71
+                   declaration shift  125
+                       garbage shift  20
+                 garbage_token shift  123
+                     {default} reduce 1
+
+State 10:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          declaration_list ::= declaration_list SEMICOLON * declaration
+          declaration_list ::= declaration_list SEMICOLON * ws
+          declaration ::= * ws IDENT ws COLON ws expr prio
+          declaration ::= * garbage
+          garbage ::= * garbage_token
+          garbage ::= * garbage garbage_token
+          garbage_token ::= * error
+          garbage_token ::= * LP garbage RP
+
+                         SPACE shift  33
+                            LP shift  13
+                         error shift  122
+                            ws shift  75
+                   declaration shift  108
+                       garbage shift  20
+                 garbage_token shift  123
+                     {default} reduce 1
+
+State 11:
+          simple_selector ::= tag * simple_selector_tail
+     (55) simple_selector ::= tag *
+          simple_selector_tail ::= * simple_selector_tail_component
+          simple_selector_tail ::= * simple_selector_tail_component simple_selector_tail
+          simple_selector_tail ::= * error
+          simple_selector_tail_component ::= * HASH IDENT
+          simple_selector_tail_component ::= * DOT IDENT
+          simple_selector_tail_component ::= * LSP IDENT RSP
+          simple_selector_tail_component ::= * LSP IDENT EQUALS string RSP
+          simple_selector_tail_component ::= * LSP IDENT TILDE EQUALS string RSP
+          simple_selector_tail_component ::= * LSP IDENT PIPE EQUALS string RSP
+          simple_selector_tail_component ::= * COLON IDENT
+          simple_selector_tail_component ::= * COLON COLON IDENT
+
+                         COLON shift  70
+                          HASH shift  86
+                           DOT shift  87
+                           LSP shift  88
+                         error shift  136
+          simple_selector_tail shift  134
+simple_selector_tail_component shift  12
+                     {default} reduce 55
+
+State 12:
+          simple_selector_tail ::= * simple_selector_tail_component
+     (59) simple_selector_tail ::= simple_selector_tail_component *
+          simple_selector_tail ::= * simple_selector_tail_component simple_selector_tail
+          simple_selector_tail ::= simple_selector_tail_component * simple_selector_tail
+          simple_selector_tail ::= * error
+          simple_selector_tail_component ::= * HASH IDENT
+          simple_selector_tail_component ::= * DOT IDENT
+          simple_selector_tail_component ::= * LSP IDENT RSP
+          simple_selector_tail_component ::= * LSP IDENT EQUALS string RSP
+          simple_selector_tail_component ::= * LSP IDENT TILDE EQUALS string RSP
+          simple_selector_tail_component ::= * LSP IDENT PIPE EQUALS string RSP
+          simple_selector_tail_component ::= * COLON IDENT
+          simple_selector_tail_component ::= * COLON COLON IDENT
+
+                         COLON shift  70
+                          HASH shift  86
+                           DOT shift  87
+                           LSP shift  88
+                         error shift  136
+          simple_selector_tail shift  135
+simple_selector_tail_component shift  12
+                     {default} reduce 59
+
+State 13:
+          garbage ::= * garbage_token
+          garbage ::= * garbage garbage_token
+          garbage_token ::= * error
+          garbage_token ::= * LP garbage RP
+          garbage_token ::= LP * garbage RP
+
+                            LP shift  13
+                         error shift  122
+                       garbage shift  17
+                 garbage_token shift  123
+
+State 14:
+          imports_opt ::= imports_opt IMPORT_SYM ws term * medium_list_opt SEMICOLON ws
+          medium_list_opt ::= * medium_list
+     (10) medium_list_opt ::= *
+          medium_list_item ::= * IDENT
+          medium_list ::= * medium_list_item ws
+          medium_list ::= * medium_list_item ws COMMA ws medium_list
+
+                         IDENT shift  154
+               medium_list_opt shift  98
+                   medium_list shift  159
+              medium_list_item shift  51
+                     {default} reduce 10
+
+State 15:
+          declaration ::= ws IDENT ws COLON ws * expr prio
+          expr ::= * term ws
+          expr ::= * term operator expr
+          term ::= * IDENT
+          term ::= * STRING
+          term ::= * FUNCTION
+          term ::= * HASH IDENT
+          term ::= * DOT IDENT
+          term ::= * IDENT DOT IDENT
+          term ::= * PLUS IDENT
+          term ::= * PLUS DOT IDENT
+          term ::= * PLUS IDENT DOT IDENT
+
+                        STRING shift  115
+                         IDENT shift  77
+                          PLUS shift  67
+                          HASH shift  79
+                           DOT shift  80
+                      FUNCTION shift  116
+                          term shift  19
+                          expr shift  40
+
+State 16:
+          expr ::= * term ws
+          expr ::= * term operator expr
+          expr ::= term operator * expr
+          term ::= * IDENT
+          term ::= * STRING
+          term ::= * FUNCTION
+          term ::= * HASH IDENT
+          term ::= * DOT IDENT
+          term ::= * IDENT DOT IDENT
+          term ::= * PLUS IDENT
+          term ::= * PLUS DOT IDENT
+          term ::= * PLUS IDENT DOT IDENT
+
+                        STRING shift  115
+                         IDENT shift  77
+                          PLUS shift  67
+                          HASH shift  79
+                           DOT shift  80
+                      FUNCTION shift  116
+                          term shift  19
+                          expr shift  113
+
+State 17:
+          garbage ::= garbage * garbage_token
+          garbage_token ::= * error
+          garbage_token ::= * LP garbage RP
+          garbage_token ::= LP garbage * RP
+
+                            LP shift  13
+                            RP shift  124
+                         error shift  122
+                 garbage_token shift  121
+
+State 18:
+          media ::= MEDIA_SYM ws * medium_list LP ws ruleset_list RP
+          medium_list_item ::= * IDENT
+          medium_list ::= * medium_list_item ws
+          medium_list ::= * medium_list_item ws COMMA ws medium_list
+
+                         IDENT shift  154
+                   medium_list shift  72
+              medium_list_item shift  51
+
+State 19:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          expr ::= term * ws
+          expr ::= term * operator expr
+          operator ::= * ws COMMA ws
+          operator ::= * ws SLASH ws
+          operator ::= * SPACE ws
+
+                         SPACE shift  42
+                            ws shift  66
+                      operator shift  16
+                     {default} reduce 1
+
+State 20:
+     (41) declaration ::= garbage *
+          garbage ::= garbage * garbage_token
+          garbage_token ::= * error
+          garbage_token ::= * LP garbage RP
+
+                            LP shift  13
+                         error shift  122
+                 garbage_token shift  121
+                     {default} reduce 41
+
+State 21:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          selector ::= simple_selector * ws
+          selector ::= simple_selector * combinator selector
+          combinator ::= * ws PLUS ws
+          combinator ::= * ws GT ws
+          combinator ::= * SPACE ws
+
+                         SPACE shift  48
+                            ws shift  69
+                    combinator shift  6
+                     {default} reduce 1
+
+State 22:
+          medium_list_item ::= * IDENT
+          medium_list ::= * medium_list_item ws
+          medium_list ::= * medium_list_item ws COMMA ws medium_list
+          medium_list ::= medium_list_item ws COMMA ws * medium_list
+
+                         IDENT shift  154
+                   medium_list shift  155
+              medium_list_item shift  51
+
+State 23:
+          ss_header ::= ws charset_opt * imports_opt
+          imports_opt ::= * imports_opt IMPORT_SYM ws term medium_list_opt SEMICOLON ws
+      (7) imports_opt ::= *
+          imports_opt ::= * unknown_at_rule
+          unknown_at_rule ::= * UNKNOWN_SYM trash SEMICOLON ws
+          unknown_at_rule ::= * UNKNOWN_SYM trash LP trash RP ws
+
+                   UNKNOWN_SYM shift  24
+                   imports_opt shift  97
+               unknown_at_rule shift  160
+                     {default} reduce 7
+
+State 24:
+          unknown_at_rule ::= UNKNOWN_SYM * trash SEMICOLON ws
+          unknown_at_rule ::= UNKNOWN_SYM * trash LP trash RP ws
+     (13) trash ::= *
+          trash ::= * error
+          trash ::= * trash error
+
+                         error shift  164
+                         trash shift  32
+                     {default} reduce 13
+
+State 25:
+          unknown_at_rule ::= UNKNOWN_SYM trash LP * trash RP ws
+     (13) trash ::= *
+          trash ::= * error
+          trash ::= * trash error
+
+                         error shift  164
+                         trash shift  57
+                     {default} reduce 13
+
+State 26:
+          imports_opt ::= imports_opt IMPORT_SYM ws * term medium_list_opt SEMICOLON ws
+          term ::= * IDENT
+          term ::= * STRING
+          term ::= * FUNCTION
+          term ::= * HASH IDENT
+          term ::= * DOT IDENT
+          term ::= * IDENT DOT IDENT
+          term ::= * PLUS IDENT
+          term ::= * PLUS DOT IDENT
+          term ::= * PLUS IDENT DOT IDENT
+
+                        STRING shift  115
+                         IDENT shift  77
+                          PLUS shift  67
+                          HASH shift  79
+                           DOT shift  80
+                      FUNCTION shift  116
+                          term shift  14
+
+State 27:
+      (0) stylesheet ::= ss_header ss_body *
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          ss_body ::= ss_body * ws ss_body_item
+
+                             $ reduce 0
+                         SPACE shift  33
+                            ws shift  2
+                     {default} reduce 1
+
+State 28:
+          ruleset ::= selector_list * LP declaration_list RP
+          selector_list ::= selector_list * comma ws selector
+          comma ::= * COMMA
+
+                            LP shift  8
+                         COMMA shift  151
+                         comma shift  47
+
+State 29:
+          simple_selector_tail_component ::= LSP IDENT EQUALS * string RSP
+          string ::= * STRING
+          string ::= * IDENT
+
+                        STRING shift  141
+                         IDENT shift  142
+                        string shift  89
+
+State 30:
+          simple_selector_tail_component ::= LSP IDENT TILDE EQUALS * string RSP
+          string ::= * STRING
+          string ::= * IDENT
+
+                        STRING shift  141
+                         IDENT shift  142
+                        string shift  91
+
+State 31:
+          simple_selector_tail_component ::= LSP IDENT PIPE EQUALS * string RSP
+          string ::= * STRING
+          string ::= * IDENT
+
+                        STRING shift  141
+                         IDENT shift  142
+                        string shift  93
+
+State 32:
+          unknown_at_rule ::= UNKNOWN_SYM trash * SEMICOLON ws
+          unknown_at_rule ::= UNKNOWN_SYM trash * LP trash RP ws
+          trash ::= trash * error
+
+                     SEMICOLON shift  56
+                            LP shift  25
+                         error shift  163
+
+State 33:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          ws ::= SPACE * ws
+
+                         SPACE shift  33
+                            ws shift  101
+                     {default} reduce 1
+
+State 34:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          media ::= MEDIA_SYM * ws medium_list LP ws ruleset_list RP
+
+                         SPACE shift  33
+                            ws shift  18
+                     {default} reduce 1
+
+State 35:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          media ::= MEDIA_SYM ws medium_list LP * ws ruleset_list RP
+
+                         SPACE shift  33
+                            ws shift  3
+                     {default} reduce 1
+
+State 36:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          page ::= page_sym * ws pseudo_opt LP declaration_list RP
+
+                         SPACE shift  33
+                            ws shift  37
+                     {default} reduce 1
+
+State 37:
+          page ::= page_sym ws * pseudo_opt LP declaration_list RP
+          pseudo_opt ::= * COLON IDENT ws
+     (27) pseudo_opt ::= *
+
+                         COLON shift  85
+                    pseudo_opt shift  74
+                     {default} reduce 27
+
+State 38:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          declaration ::= ws IDENT * ws COLON ws expr prio
+
+                         SPACE shift  33
+                            ws shift  76
+                     {default} reduce 1
+
+State 39:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          declaration ::= ws IDENT ws COLON * ws expr prio
+
+                         SPACE shift  33
+                            ws shift  15
+                     {default} reduce 1
+
+State 40:
+          declaration ::= ws IDENT ws COLON ws expr * prio
+          prio ::= * IMPORTANT_SYM ws
+     (47) prio ::= *
+
+                 IMPORTANT_SYM shift  41
+                          prio shift  109
+                     {default} reduce 47
+
+State 41:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          prio ::= IMPORTANT_SYM * ws
+
+                         SPACE shift  33
+                            ws shift  110
+                     {default} reduce 1
+
+State 42:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          ws ::= SPACE * ws
+          operator ::= SPACE * ws
+
+                         SPACE shift  33
+                            ws shift  62
+                     {default} reduce 1
+
+State 43:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          operator ::= ws COMMA * ws
+
+                         SPACE shift  33
+                            ws shift  111
+                     {default} reduce 1
+
+State 44:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          operator ::= ws SLASH * ws
+
+                         SPACE shift  33
+                            ws shift  112
+                     {default} reduce 1
+
+State 45:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          pseudo_opt ::= COLON IDENT * ws
+
+                         SPACE shift  33
+                            ws shift  126
+                     {default} reduce 1
+
+State 46:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          ruleset_list ::= ruleset * ws
+          ruleset_list ::= ruleset * ws ruleset_list
+
+                         SPACE shift  33
+                            ws shift  4
+                     {default} reduce 1
+
+State 47:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          selector_list ::= selector_list comma * ws selector
+
+                         SPACE shift  33
+                            ws shift  5
+                     {default} reduce 1
+
+State 48:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          ws ::= SPACE * ws
+          combinator ::= SPACE * ws
+
+                         SPACE shift  33
+                            ws shift  63
+                     {default} reduce 1
+
+State 49:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          combinator ::= ws PLUS * ws
+
+                         SPACE shift  33
+                            ws shift  131
+                     {default} reduce 1
+
+State 50:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          combinator ::= ws GT * ws
+
+                         SPACE shift  33
+                            ws shift  132
+                     {default} reduce 1
+
+State 51:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          medium_list ::= medium_list_item * ws
+          medium_list ::= medium_list_item * ws COMMA ws medium_list
+
+                         SPACE shift  33
+                            ws shift  95
+                     {default} reduce 1
+
+State 52:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          medium_list ::= medium_list_item ws COMMA * ws medium_list
+
+                         SPACE shift  33
+                            ws shift  22
+                     {default} reduce 1
+
+State 53:
+          ss_header ::= ws * charset_opt imports_opt
+          charset_opt ::= * CHARSET_SYM ws STRING ws SEMICOLON ws
+      (5) charset_opt ::= *
+
+                   CHARSET_SYM shift  59
+                   charset_opt shift  23
+                     {default} reduce 5
+
+State 54:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          imports_opt ::= imports_opt IMPORT_SYM * ws term medium_list_opt SEMICOLON ws
+
+                         SPACE shift  33
+                            ws shift  26
+                     {default} reduce 1
+
+State 55:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          imports_opt ::= imports_opt IMPORT_SYM ws term medium_list_opt SEMICOLON * ws
+
+                         SPACE shift  33
+                            ws shift  158
+                     {default} reduce 1
+
+State 56:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          unknown_at_rule ::= UNKNOWN_SYM trash SEMICOLON * ws
+
+                         SPACE shift  33
+                            ws shift  161
+                     {default} reduce 1
+
+State 57:
+          unknown_at_rule ::= UNKNOWN_SYM trash LP trash * RP ws
+          trash ::= trash * error
+
+                            RP shift  58
+                         error shift  163
+
+State 58:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          unknown_at_rule ::= UNKNOWN_SYM trash LP trash RP * ws
+
+                         SPACE shift  33
+                            ws shift  162
+                     {default} reduce 1
+
+State 59:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          charset_opt ::= CHARSET_SYM * ws STRING ws SEMICOLON ws
+
+                         SPACE shift  33
+                            ws shift  99
+                     {default} reduce 1
+
+State 60:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          charset_opt ::= CHARSET_SYM ws STRING * ws SEMICOLON ws
+
+                         SPACE shift  33
+                            ws shift  100
+                     {default} reduce 1
+
+State 61:
+      (1) ws ::= *
+          ws ::= * SPACE ws
+          charset_opt ::= CHARSET_SYM ws STRING ws SEMICOLON * ws
+
+                         SPACE shift  33
+                            ws shift  165
+                     {default} reduce 1
+
+State 62:
+      (2) ws ::= SPACE ws *
+     (76) operator ::= SPACE ws *
+
+                     SEMICOLON reduce 2
+                            RP reduce 2
+                         COMMA reduce 2
+                 IMPORTANT_SYM reduce 2
+                         SLASH reduce 2
+                     {default} reduce 76
+
+State 63:
+      (2) ws ::= SPACE ws *
+     (52) combinator ::= SPACE ws *
+
+                            LP reduce 2
+                         COMMA reduce 2
+                          PLUS reduce 2
+                            GT reduce 2
+                     {default} reduce 52
+
+State 64:
+          simple_selector_tail_component ::= LSP IDENT * RSP
+          simple_selector_tail_component ::= LSP IDENT * EQUALS string RSP
+          simple_selector_tail_component ::= LSP IDENT * TILDE EQUALS string RSP
+          simple_selector_tail_component ::= LSP IDENT * PIPE EQUALS string RSP
+
+                           RSP shift  139
+                        EQUALS shift  29
+                         TILDE shift  90
+                          PIPE shift  92
+
+State 65:
+          page ::= page_sym ws pseudo_opt LP declaration_list * RP
+          declaration_list ::= declaration_list * SEMICOLON declaration
+          declaration_list ::= declaration_list * SEMICOLON ws
+
+                     SEMICOLON shift  10
+                            RP shift  107
+
+State 66:
+     (72) expr ::= term ws *
+          operator ::= ws * COMMA ws
+          operator ::= ws * SLASH ws
+
+                         COMMA shift  43
+                         SLASH shift  44
+                     {default} reduce 72
+
+State 67:
+          term ::= PLUS * IDENT
+          term ::= PLUS * DOT IDENT
+          term ::= PLUS * IDENT DOT IDENT
+
+                         IDENT shift  81
+                           DOT shift  83
+
+State 68:
+          ruleset ::= selector_list LP declaration_list * RP
+          declaration_list ::= declaration_list * SEMICOLON declaration
+          declaration_list ::= declaration_list * SEMICOLON ws
+
+                     SEMICOLON shift  10
+                            RP shift  129
+
+State 69:
+     (48) selector ::= simple_selector ws *
+          combinator ::= ws * PLUS ws
+          combinator ::= ws * GT ws
+
+                          PLUS shift  49
+                            GT shift  50
+                     {default} reduce 48
+
+State 70:
+          simple_selector_tail_component ::= COLON * IDENT
+          simple_selector_tail_component ::= COLON * COLON IDENT
+
+                         IDENT shift  145
+                         COLON shift  94
+
+State 71:
+          font_face ::= FONT_SYM LP declaration_list * RP
+          declaration_list ::= declaration_list * SEMICOLON declaration
+          declaration_list ::= declaration_list * SEMICOLON ws
+
+                     SEMICOLON shift  10
+                            RP shift  156
+
+State 72:
+          media ::= MEDIA_SYM ws medium_list * LP ws ruleset_list RP
+
+                            LP shift  35
+
+State 73:
+          media ::= MEDIA_SYM ws medium_list LP ws ruleset_list * RP
+
+                            RP shift  106
+
+State 74:
+          page ::= page_sym ws pseudo_opt * LP declaration_list RP
+
+                            LP shift  7
+
+State 75:
+     (39) declaration_list ::= declaration_list SEMICOLON ws *
+          declaration ::= ws * IDENT ws COLON ws expr prio
+
+                         IDENT shift  38
+                     {default} reduce 39
+
+State 76:
+          declaration ::= ws IDENT ws * COLON ws expr prio
+
+                         COLON shift  39
+
+State 77:
+     (77) term ::= IDENT *
+          term ::= IDENT * DOT IDENT
+
+                           DOT shift  78
+                     {default} reduce 77
+
+State 78:
+          term ::= IDENT DOT * IDENT
+
+                         IDENT shift  114
+
+State 79:
+          term ::= HASH * IDENT
+
+                         IDENT shift  117
+
+State 80:
+          term ::= DOT * IDENT
+
+                         IDENT shift  118
+
+State 81:
+     (83) term ::= PLUS IDENT *
+          term ::= PLUS IDENT * DOT IDENT
+
+                           DOT shift  82
+                     {default} reduce 83
+
+State 82:
+          term ::= PLUS IDENT DOT * IDENT
+
+                         IDENT shift  119
+
+State 83:
+          term ::= PLUS DOT * IDENT
+
+                         IDENT shift  120
+
+State 84:
+          declaration ::= ws * IDENT ws COLON ws expr prio
+
+                         IDENT shift  38
+
+State 85:
+          pseudo_opt ::= COLON * IDENT ws
+
+                         IDENT shift  45
+
+State 86:
+          simple_selector_tail_component ::= HASH * IDENT
+
+                         IDENT shift  137
+
+State 87:
+          simple_selector_tail_component ::= DOT * IDENT
+
+                         IDENT shift  138
+
+State 88:
+          simple_selector_tail_component ::= LSP * IDENT RSP
+          simple_selector_tail_component ::= LSP * IDENT EQUALS string RSP
+          simple_selector_tail_component ::= LSP * IDENT TILDE EQUALS string RSP
+          simple_selector_tail_component ::= LSP * IDENT PIPE EQUALS string RSP
+
+                         IDENT shift  64
+
+State 89:
+          simple_selector_tail_component ::= LSP IDENT EQUALS string * RSP
+
+                           RSP shift  140
+
+State 90:
+          simple_selector_tail_component ::= LSP IDENT TILDE * EQUALS string RSP
+
+                        EQUALS shift  30
+
+State 91:
+          simple_selector_tail_component ::= LSP IDENT TILDE EQUALS string * RSP
+
+                           RSP shift  143
+
+State 92:
+          simple_selector_tail_component ::= LSP IDENT PIPE * EQUALS string RSP
+
+                        EQUALS shift  31
+
+State 93:
+          simple_selector_tail_component ::= LSP IDENT PIPE EQUALS string * RSP
+
+                           RSP shift  144
+
+State 94:
+          simple_selector_tail_component ::= COLON COLON * IDENT
+
+                         IDENT shift  146
+
+State 95:
+     (23) medium_list ::= medium_list_item ws *
+          medium_list ::= medium_list_item ws * COMMA ws medium_list
+
+                         COMMA shift  52
+                     {default} reduce 23
+
+State 96:
+          font_face ::= FONT_SYM * LP declaration_list RP
+
+                            LP shift  9
+
+State 97:
+      (3) ss_header ::= ws charset_opt imports_opt *
+          imports_opt ::= imports_opt * IMPORT_SYM ws term medium_list_opt SEMICOLON ws
+
+                    IMPORT_SYM shift  54
+                     {default} reduce 3
+
+State 98:
+          imports_opt ::= imports_opt IMPORT_SYM ws term medium_list_opt * SEMICOLON ws
+
+                     SEMICOLON shift  55
+
+State 99:
+          charset_opt ::= CHARSET_SYM ws * STRING ws SEMICOLON ws
+
+                        STRING shift  60
+
+State 100:
+          charset_opt ::= CHARSET_SYM ws STRING ws * SEMICOLON ws
+
+                     SEMICOLON shift  61
+
+State 101:
+      (2) ws ::= SPACE ws *
+
+                     {default} reduce 2
+
+State 102:
+     (17) ss_body ::= ss_body ws ss_body_item *
+
+                     {default} reduce 17
+
+State 103:
+     (18) ss_body_item ::= media *
+
+                     {default} reduce 18
+
+State 104:
+     (19) ss_body_item ::= ruleset *
+
+                     {default} reduce 19
+
+State 105:
+     (20) ss_body_item ::= font_face *
+
+                     {default} reduce 20
+
+State 106:
+     (21) media ::= MEDIA_SYM ws medium_list LP ws ruleset_list RP *
+
+                     {default} reduce 21
+
+State 107:
+     (25) page ::= page_sym ws pseudo_opt LP declaration_list RP *
+
+                     {default} reduce 25
+
+State 108:
+     (38) declaration_list ::= declaration_list SEMICOLON declaration *
+
+                     {default} reduce 38
+
+State 109:
+     (40) declaration ::= ws IDENT ws COLON ws expr prio *
+
+                     {default} reduce 40
+
+State 110:
+     (46) prio ::= IMPORTANT_SYM ws *
+
+                     {default} reduce 46
+
+State 111:
+     (74) operator ::= ws COMMA ws *
+
+                     {default} reduce 74
+
+State 112:
+     (75) operator ::= ws SLASH ws *
+
+                     {default} reduce 75
+
+State 113:
+     (73) expr ::= term operator expr *
+
+                     {default} reduce 73
+
+State 114:
+     (82) term ::= IDENT DOT IDENT *
+
+                     {default} reduce 82
+
+State 115:
+     (78) term ::= STRING *
+
+                     {default} reduce 78
+
+State 116:
+     (79) term ::= FUNCTION *
+
+                     {default} reduce 79
+
+State 117:
+     (80) term ::= HASH IDENT *
+
+                     {default} reduce 80
+
+State 118:
+     (81) term ::= DOT IDENT *
+
+                     {default} reduce 81
+
+State 119:
+     (85) term ::= PLUS IDENT DOT IDENT *
+
+                     {default} reduce 85
+
+State 120:
+     (84) term ::= PLUS DOT IDENT *
+
+                     {default} reduce 84
+
+State 121:
+     (43) garbage ::= garbage garbage_token *
+
+                     {default} reduce 43
+
+State 122:
+     (44) garbage_token ::= error *
+
+                     {default} reduce 44
+
+State 123:
+     (42) garbage ::= garbage_token *
+
+                     {default} reduce 42
+
+State 124:
+     (45) garbage_token ::= LP garbage RP *
+
+                     {default} reduce 45
+
+State 125:
+     (37) declaration_list ::= declaration *
+
+                     {default} reduce 37
+
+State 126:
+     (26) pseudo_opt ::= COLON IDENT ws *
+
+                     {default} reduce 26
+
+State 127:
+     (28) page_sym ::= PAGE_SYM *
+
+                     {default} reduce 28
+
+State 128:
+     (31) ruleset_list ::= ruleset ws ruleset_list *
+
+                     {default} reduce 31
+
+State 129:
+     (32) ruleset ::= selector_list LP declaration_list RP *
+
+                     {default} reduce 32
+
+State 130:
+     (35) selector_list ::= selector_list comma ws selector *
+
+                     {default} reduce 35
+
+State 131:
+     (50) combinator ::= ws PLUS ws *
+
+                     {default} reduce 50
+
+State 132:
+     (51) combinator ::= ws GT ws *
+
+                     {default} reduce 51
+
+State 133:
+     (49) selector ::= simple_selector combinator selector *
+
+                     {default} reduce 49
+
+State 134:
+     (53) simple_selector ::= tag simple_selector_tail *
+
+                     {default} reduce 53
+
+State 135:
+     (60) simple_selector_tail ::= simple_selector_tail_component simple_selector_tail *
+
+                     {default} reduce 60
+
+State 136:
+     (61) simple_selector_tail ::= error *
+
+                     {default} reduce 61
+
+State 137:
+     (62) simple_selector_tail_component ::= HASH IDENT *
+
+                     {default} reduce 62
+
+State 138:
+     (63) simple_selector_tail_component ::= DOT IDENT *
+
+                     {default} reduce 63
+
+State 139:
+     (64) simple_selector_tail_component ::= LSP IDENT RSP *
+
+                     {default} reduce 64
+
+State 140:
+     (65) simple_selector_tail_component ::= LSP IDENT EQUALS string RSP *
+
+                     {default} reduce 65
+
+State 141:
+     (70) string ::= STRING *
+
+                     {default} reduce 70
+
+State 142:
+     (71) string ::= IDENT *
+
+                     {default} reduce 71
+
+State 143:
+     (66) simple_selector_tail_component ::= LSP IDENT TILDE EQUALS string RSP *
+
+                     {default} reduce 66
+
+State 144:
+     (67) simple_selector_tail_component ::= LSP IDENT PIPE EQUALS string RSP *
+
+                     {default} reduce 67
+
+State 145:
+     (68) simple_selector_tail_component ::= COLON IDENT *
+
+                     {default} reduce 68
+
+State 146:
+     (69) simple_selector_tail_component ::= COLON COLON IDENT *
+
+                     {default} reduce 69
+
+State 147:
+     (54) simple_selector ::= simple_selector_tail *
+
+                     {default} reduce 54
+
+State 148:
+     (56) tag ::= IDENT *
+
+                     {default} reduce 56
+
+State 149:
+     (57) tag ::= STAR *
+
+                     {default} reduce 57
+
+State 150:
+     (58) tag ::= SEMICOLON *
+
+                     {default} reduce 58
+
+State 151:
+     (36) comma ::= COMMA *
+
+                     {default} reduce 36
+
+State 152:
+     (33) ruleset ::= page *
+
+                     {default} reduce 33
+
+State 153:
+     (34) selector_list ::= selector *
+
+                     {default} reduce 34
+
+State 154:
+     (22) medium_list_item ::= IDENT *
+
+                     {default} reduce 22
+
+State 155:
+     (24) medium_list ::= medium_list_item ws COMMA ws medium_list *
+
+                     {default} reduce 24
+
+State 156:
+     (29) font_face ::= FONT_SYM LP declaration_list RP *
+
+                     {default} reduce 29
+
+State 157:
+     (16) ss_body ::= ss_body_item *
+
+                     {default} reduce 16
+
+State 158:
+      (6) imports_opt ::= imports_opt IMPORT_SYM ws term medium_list_opt SEMICOLON ws *
+
+                     {default} reduce 6
+
+State 159:
+      (9) medium_list_opt ::= medium_list *
+
+                     {default} reduce 9
+
+State 160:
+      (8) imports_opt ::= unknown_at_rule *
+
+                     {default} reduce 8
+
+State 161:
+     (11) unknown_at_rule ::= UNKNOWN_SYM trash SEMICOLON ws *
+
+                     {default} reduce 11
+
+State 162:
+     (12) unknown_at_rule ::= UNKNOWN_SYM trash LP trash RP ws *
+
+                     {default} reduce 12
+
+State 163:
+     (15) trash ::= trash error *
+
+                     {default} reduce 15
+
+State 164:
+     (14) trash ::= error *
+
+                     {default} reduce 14
+
+State 165:
+      (4) charset_opt ::= CHARSET_SYM ws STRING ws SEMICOLON ws *
+
+                     {default} reduce 4
+

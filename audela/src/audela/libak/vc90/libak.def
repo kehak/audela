@@ -1,0 +1,2 @@
+LIBRARY libak
+EXPORTS Ak_Init @1

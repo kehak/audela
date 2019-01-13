@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Mettre un t&eacute;lescope en parking</title>
+</head>
+
+<body>
+<h3>Question :</h3>
+<p>Utilisateur de Audela, je recherche la ligne de commande pour mettre en
+parking le t&eacute;lescope. Je n'ai malheureusement pas de connaissance en
+programmation. Je posséde un MCMTII piloté en ASCOM.<br />
+Merci d'avance pour votre aide</p>
+<h3>R&eacute;ponse :</h3>
+<p>Il faut d'abord d&eacute;finir quelle sera la position de parking en coordonn&eacute;es
+azimut (AZ) et &eacute;l&eacute;vation (ELEV).</p>
+<p>Si tu choisis le méridien sud à l'horizon, AZ=0 et ELEV=0.<br />
+Il faut ensuite convertir ces coordonnées en système équatorial (RA,DEC).<br />
+Dans la console de Aud'ACE :</p>
+<pre>
+  set az 0
+  set elev 0
+  set home $::audace(posobs,observateur,gps)
+  set date [mc_date2jd ::audace::date_sys2ut]
+  set res [mc_altaz2radec $az $elev $home $date]
+  set ra [lindex $res 0]
+  set dec [lindex $res 1]
+</pre>
+<p>Il ne reste plus qu'&agrave; envoyer les coordonn&eacute;es au télescope, puis arr&ecirc;ter les moteurs :</p>
+<pre>
+  tel1 radec goto [list $ra $dec] -blocking 1
+  tel1 radec motor off
+</pre>
+<p>On peut ainsi choisir les coordonn&eacute;es (az, elev) en fonction des contraintes de la coupole par exemple.</p>
+<h3>T&eacute;lescope avec fonction Park interne (LX200 seulement)</h3>
+<p>Pour les t&eacute;lescopes ayant une fonction Park interne, il faut d'abord configurer la position Park avec la raquette du t&eacute;lescope, puis connecter Audela au t&eacute;leescope et envoyer l'ordre Park avec la commande TCL
+<pre>::telescope::park 1</pre>
+ou la commande TCL unpark
+<pre>::telescope::park 0</pre>
+<p>ou utiliser le bouton <b>Park / Unpark</b> depuis la fen&ecirc;tre de configuration du t&eacute;lescope :</p>
+<pre><img src="images/park/telescope_park.png" /></pre>
+</body>
+</html>

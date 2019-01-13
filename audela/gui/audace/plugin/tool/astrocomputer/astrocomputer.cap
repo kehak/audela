@@ -1,0 +1,284 @@
+#
+# Fichier : astrocomputer.cap
+# Mise a jour $Id: astrocomputer.cap 13714 2016-04-16 17:34:14Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+# *************** Version anglaise ****************************
+
+set ::caption(astrocomputer,astrocomputer)           "Astronomical Calculator"
+set ::caption(astrocomputer,onglets)                 {"Conversion" "Cosmology" "Apparent Coordinates"}
+set ::caption(astrocomputer,formatinp1)              "Number Date Angle Distance"
+set ::caption(astrocomputer,formatnombreout1)        "Decimal Binary Octal Hexadecimal ASCII"
+set ::caption(astrocomputer,formatdateout1)          {"Julian Day" "Modified Julian Day" ISO8601 Calendar}
+set ::caption(astrocomputer,formatangleout1)         {degree "deg min sec" "hour min sec" "signed dms" radian}
+set ::caption(astrocomputer,formatdistanceout1)      {"Parsec" "Light-Years" "Astronomical Units" "Parallax (mas)" "Distance Modulus" "Meters"}
+set ::caption(astrocomputer,fermer)                  "Close"
+set ::caption(astrocomputer,aide)                    "Help"
+
+set ::caption(astrocomputer,conversion)              "Conversions"
+set ::caption(astrocomputer,exprConvertir)           "Expression to convert"
+set ::caption(astrocomputer,formatExpr)              "Expression Format"
+set ::caption(astrocomputer,formatConversion)        "Conversion Format"
+set ::caption(astrocomputer,resultConversion)        "Conversion Result"
+set ::caption(astrocomputer,copierResult)            "Copy the result as an expression"
+set ::caption(astrocomputer,cosmologie)              "Cosmology"
+set ::caption(astrocomputer,redshift)                "Redshift"
+set ::caption(astrocomputer,cteHubble)               "Hubble Constant (km/s/Mpc)"
+set ::caption(astrocomputer,omegaMatiere)            "Omega Matter (0-1)"
+set ::caption(astrocomputer,omegaVide)               "Omega Vaccuum (0-1)"
+set ::caption(astrocomputer,result)                  "Results"
+set ::caption(astrocomputer,coordApparentes)         "Apparent Coordinates"
+set ::caption(astrocomputer,coordRaDecEquinoxObj)    "Coordinates RA DEC EQUINOX or OBJECT"
+set ::caption(astrocomputer,dateUTC)                 "UTC Date (empty = now)"
+set ::caption(astrocomputer,site)                    "Observing Site"
+
+# *************** Version française ***************************
+if { [ string compare $::langage "french" ] == "0" } {
+
+   set ::caption(astrocomputer,astrocomputer)        "Calculatrice astronomique"
+   set ::caption(astrocomputer,onglets)              {"Conversion" "Cosmologie" "Coordonnées apparentes"}
+   set ::caption(astrocomputer,formatinp1)           "Nombre Date Angle Distance"
+   set ::caption(astrocomputer,formatnombreout1)     "Décimal Binaire Octal Hexadécimal ASCII"
+   set ::caption(astrocomputer,formatdateout1)       {"Jour julien" "Jour julien modifié" ISO8601 Calendrier}
+   set ::caption(astrocomputer,formatangleout1)      {degrés "deg min sec" "h min sec" "dms signés" radian}
+   set ::caption(astrocomputer,formatdistanceout1)   {"Parsec" "Années Lumières" "Unités Astronomiques" "Parallaxe (mas)" "Module de distance" "Mètres"}
+   set ::caption(astrocomputer,fermer)               "Fermer"
+   set ::caption(astrocomputer,aide)                 "Aide"
+
+   set ::caption(astrocomputer,conversion)           "Conversions"
+   set ::caption(astrocomputer,exprConvertir)        "Expression à convertir"
+   set ::caption(astrocomputer,formatExpr)           "Format de l'expression"
+   set ::caption(astrocomputer,formatConversion)     "Format de la conversion"
+   set ::caption(astrocomputer,resultConversion)     "Résultat de la conversion"
+   set ::caption(astrocomputer,copierResult)         "Copier le résultat comme expression"
+   set ::caption(astrocomputer,cosmologie)           "Cosmologie"
+   set ::caption(astrocomputer,redshift)             "Redshift"
+   set ::caption(astrocomputer,cteHubble)            "Constante de Hubble (km/s/Mpc)"
+   set ::caption(astrocomputer,omegaMatiere)         "Omega matière (0-1)"
+   set ::caption(astrocomputer,omegaVide)            "Omega vide (0-1)"
+   set ::caption(astrocomputer,result)               "Résultats"
+   set ::caption(astrocomputer,coordApparentes)      "Coordonnées apparentes"
+   set ::caption(astrocomputer,coordRaDecEquinoxObj) "Coordonnées AD DEC EQUINOXE ou OBJET"
+   set ::caption(astrocomputer,dateUTC)              "Date UTC (vide = actuel)"
+   set ::caption(astrocomputer,site)                 "Site d'observation"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $::langage "italian" ] == "0" } {
+
+   set ::caption(astrocomputer,astrocomputer)        "Calcolatrice astronomica"
+   set ::caption(astrocomputer,onglets)              {"Conversione" "Cosmologia" "Coordinate apparenti"}
+   set ::caption(astrocomputer,formatinp1)           "Numero Data Angolo Distanza"
+   set ::caption(astrocomputer,formatnombreout1)     "Decimale Binario Ottale Esadecimale ASCII"
+   set ::caption(astrocomputer,formatdateout1)       {"Giorno Giuliano" "Giorno Giuliano modificato" ISO8601 Calendario}
+   set ::caption(astrocomputer,formatangleout1)      {gradi "gra min sec" "ora min sec" "gms segnati" radianti}
+   set ::caption(astrocomputer,formatdistanceout1)   {"Parsec" "Anni luce" "Unità astronomiche" "Parallasse (mas)" "Modulo di distanza" "Metri"}
+   set ::caption(astrocomputer,fermer)               "Chiudere"
+   set ::caption(astrocomputer,aide)                 "Aiuto"
+
+   set ::caption(astrocomputer,conversion)           "Conversioni"
+   set ::caption(astrocomputer,exprConvertir)        "Espressione da convertire"
+   set ::caption(astrocomputer,formatExpr)           "Formato dell'espressione"
+   set ::caption(astrocomputer,formatConversion)     "Formato della conversione"
+   set ::caption(astrocomputer,resultConversion)     "Risultato della conversione"
+   set ::caption(astrocomputer,copierResult)         "Copiare il risultato come espressione"
+   set ::caption(astrocomputer,cosmologie)           "Cosmologia"
+   set ::caption(astrocomputer,redshift)             "Redshift"
+   set ::caption(astrocomputer,cteHubble)            "Costante di Hubble (km/s/Mpc)"
+   set ::caption(astrocomputer,omegaMatiere)         "Omega Matter (0-1)"
+   set ::caption(astrocomputer,omegaVide)            "Omega Vaccuum (0-1)"
+   set ::caption(astrocomputer,result)               "Risultati"
+   set ::caption(astrocomputer,coordApparentes)      "Coordinate apparenti"
+   set ::caption(astrocomputer,coordRaDecEquinoxObj) "Coordinate AR DEC EPOCA o OGGETTO"
+   set ::caption(astrocomputer,dateUTC)              "Data UTC (vuoto = ora)"
+   set ::caption(astrocomputer,site)                 "Sito di osservazione"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $::langage "spanish" ] == "0" } {
+
+   set ::caption(astrocomputer,astrocomputer)        "Calculador astonómico"
+   set ::caption(astrocomputer,onglets)              {"Conversión" "Cosmología" "Coordenadas aparentes"}
+   set ::caption(astrocomputer,formatinp1)           "Numero Fecha Angulo Distancia"
+   set ::caption(astrocomputer,formatnombreout1)     "Decimal Binario Octal Hexadecimal ASCII"
+   set ::caption(astrocomputer,formatdateout1)       {"Día Juliano" "Dia juinano modificado" ISO8601 Calendario}
+   set ::caption(astrocomputer,formatangleout1)      {grados "gra min seg" "h min seg" "signo de gms" radian}
+   set ::caption(astrocomputer,formatdistanceout1)   {"Parsec" "Año Luz" "Unidades Astronómicas" "Paralaje (mas)" "Modulo de distancia" "Metros"}
+   set ::caption(astrocomputer,fermer)               "Cerrar"
+   set ::caption(astrocomputer,aide)                 "Ayuda"
+
+   set ::caption(astrocomputer,conversion)           "Conversiones"
+   set ::caption(astrocomputer,exprConvertir)        "Expresión para convertir"
+   set ::caption(astrocomputer,formatExpr)           "Formato de la expresión"
+   set ::caption(astrocomputer,formatConversion)     "Formato de la conversión"
+   set ::caption(astrocomputer,resultConversion)     "Resultado de la conversión"
+   set ::caption(astrocomputer,copierResult)         "Copiar el resultado como expresión"
+   set ::caption(astrocomputer,cosmologie)           "Cosmología"
+   set ::caption(astrocomputer,redshift)             "Redshift"
+   set ::caption(astrocomputer,cteHubble)            "Constante de Hubble (km/s/Mpc)"
+   set ::caption(astrocomputer,omegaMatiere)         "Omega Matter (0-1)"
+   set ::caption(astrocomputer,omegaVide)            "Omega Vaccuum (0-1)"
+   set ::caption(astrocomputer,result)               "Resultados"
+   set ::caption(astrocomputer,coordApparentes)      "Coordenadas aparentes"
+   set ::caption(astrocomputer,coordRaDecEquinoxObj) "Coordenadas RA DEC EQUINOCCIO o OBJETO"
+   set ::caption(astrocomputer,dateUTC)              "Fecha UTC (vacío = ahora)"
+   set ::caption(astrocomputer,site)                 "Lugar de observación"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $::langage "german" ] == "0" } {
+
+   set ::caption(astrocomputer,astrocomputer)        "Astronomischen Rechner"
+   set ::caption(astrocomputer,onglets)              {"Umwandlung" "Kosmologie" "Offenbar Koordinaten"}
+   set ::caption(astrocomputer,formatinp1)           "Zahl Datum Winkel Entfernung"
+   set ::caption(astrocomputer,formatnombreout1)     "Dezimal Binär Octal Hexadezimal ASCII"
+   set ::caption(astrocomputer,formatdateout1)       {"Julian Tag" "Geändert Julian Tag" ISO8601 Kalender}
+   set ::caption(astrocomputer,formatangleout1)      {Grad "Gra Min Sek" "Zeit Min Sek" "Zeichnet GMS" Radian}
+   set ::caption(astrocomputer,formatdistanceout1)   {"Parsec" "Lichtjahren" "Astronomische Einheit" "Parallaxe (mas)" "Abstand Modul" "Meter"}
+   set ::caption(astrocomputer,fermer)               "Schließen"
+   set ::caption(astrocomputer,aide)                 "Hilfe"
+
+   set ::caption(astrocomputer,conversion)           "Umrechnungen"
+   set ::caption(astrocomputer,exprConvertir)        "Expression zu konvertieren"
+   set ::caption(astrocomputer,formatExpr)           "Expression Format"
+   set ::caption(astrocomputer,formatConversion)     "Umrechnung Format"
+   set ::caption(astrocomputer,resultConversion)     "Umrechnung Resultat"
+   set ::caption(astrocomputer,copierResult)         "Das Ergebnis als Ausdruck nachahmen"
+   set ::caption(astrocomputer,cosmologie)           "Kosmologie"
+   set ::caption(astrocomputer,redshift)             "Redshift"
+   set ::caption(astrocomputer,cteHubble)            "Hubble Konstant (km/s/Mpc)"
+   set ::caption(astrocomputer,omegaMatiere)         "Omega Matter (0-1)"
+   set ::caption(astrocomputer,omegaVide)            "Omega Vaccuum (0-1)"
+   set ::caption(astrocomputer,result)               "Ergebnisse"
+   set ::caption(astrocomputer,coordApparentes)      "Offenbar Koordinaten"
+   set ::caption(astrocomputer,coordRaDecEquinoxObj) "Koordinaten RA DEK EQUINOX oder OBJEKT"
+   set ::caption(astrocomputer,dateUTC)              "UTC Datum (leer = jetzt)"
+   set ::caption(astrocomputer,site)                 "Beobachtungsort"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $::langage "portuguese" ] == "0" } {
+
+   set ::caption(astrocomputer,astrocomputer)        "Calculadora astronómica"
+   set ::caption(astrocomputer,onglets)              {"Conversão" "Cosmologia" "Coordenadas aparentes"}
+   set ::caption(astrocomputer,formatinp1)           "Número Data Ângulo Distância"
+   set ::caption(astrocomputer,formatnombreout1)     "Decimal Binário Octal Hexadecimal ASCII"
+   set ::caption(astrocomputer,formatdateout1)       {"Dia Juliano" "Dia Juliano modificado" ISO8601 Calendário}
+   set ::caption(astrocomputer,formatangleout1)      {graus "gra min seg" "h min seg" "graus com sinal" radiano}
+   set ::caption(astrocomputer,formatdistanceout1)   {"Parsec" "Anos-Luz" "Unidades Astronómicas" "Paralaxe (mas)" "Módulo de distância" "Metros"}
+   set ::caption(astrocomputer,fermer)               "Fechar"
+   set ::caption(astrocomputer,aide)                 "Ajuda"
+
+   set ::caption(astrocomputer,conversion)           "Conversões"
+   set ::caption(astrocomputer,exprConvertir)        "Expressão a converter"
+   set ::caption(astrocomputer,formatExpr)           "Formato da expressão"
+   set ::caption(astrocomputer,formatConversion)     "Formato da conversão"
+   set ::caption(astrocomputer,resultConversion)     "Resultado da conversão"
+   set ::caption(astrocomputer,copierResult)         "Copiar o resultado como uma expressão"
+   set ::caption(astrocomputer,cosmologie)           "Cosmologia"
+   set ::caption(astrocomputer,redshift)             "Redshift"
+   set ::caption(astrocomputer,cteHubble)            "Contante de Hubble (km/s/Mpc)"
+   set ::caption(astrocomputer,omegaMatiere)         "Omega Matter (0-1)"
+   set ::caption(astrocomputer,omegaVide)            "Omega Vaccuum (0-1)"
+   set ::caption(astrocomputer,result)               "Resultados"
+   set ::caption(astrocomputer,coordApparentes)      "Coordenadas aparentes"
+   set ::caption(astrocomputer,coordRaDecEquinoxObj) "Coordenadas AR DEC EQUINOCIO ou OBJECTO"
+   set ::caption(astrocomputer,dateUTC)              "Data UTC (vazio = agora)"
+   set ::caption(astrocomputer,site)                 "Local de observação"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $::langage "danish" ] == "0" } {
+
+   set ::caption(astrocomputer,astrocomputer)        "Astronomical Calculator"
+   set ::caption(astrocomputer,onglets)              {"Conversion" "Cosmology" "Apparent Coordinates"}
+   set ::caption(astrocomputer,formatinp1)           "Number Date Angle Distance"
+   set ::caption(astrocomputer,formatnombreout1)     "Decimal Binary Octal Hexadecimal ASCII"
+   set ::caption(astrocomputer,formatdateout1)       {"Julian Day" "Modified Julian Day" ISO8601 Calendar}
+   set ::caption(astrocomputer,formatangleout1)      {degree "deg min sec" "hour min sec" "signed dms" radian}
+   set ::caption(astrocomputer,formatdistanceout1)   {"Parsec" "Light-Years" "Astronomical Units" "Parallax (mas)" "Distance Modulus" "Meters"}
+   set ::caption(astrocomputer,fermer)               "Close"
+   set ::caption(astrocomputer,aide)                 "Help"
+
+   set ::caption(astrocomputer,conversion)           "Conversions"
+   set ::caption(astrocomputer,exprConvertir)        "Expression to convert"
+   set ::caption(astrocomputer,formatExpr)           "Expression Format"
+   set ::caption(astrocomputer,formatConversion)     "Conversion Format"
+   set ::caption(astrocomputer,resultConversion)     "Conversion Result"
+   set ::caption(astrocomputer,copierResult)         "Copy the result as an expression"
+   set ::caption(astrocomputer,cosmologie)           "Cosmology"
+   set ::caption(astrocomputer,redshift)             "Redshift"
+   set ::caption(astrocomputer,cteHubble)            "Hubble Constant (km/s/Mpc)"
+   set ::caption(astrocomputer,omegaMatiere)         "Omega Matter (0-1)"
+   set ::caption(astrocomputer,omegaVide)            "Omega Vaccuum (0-1)"
+   set ::caption(astrocomputer,result)               "Results"
+   set ::caption(astrocomputer,coordApparentes)      "Apparent Coordinates"
+   set ::caption(astrocomputer,coordRaDecEquinoxObj) "Coordinates RA DEC EQUINOX or OBJET"
+   set ::caption(astrocomputer,dateUTC)              "UTC Date (empty = now)"
+   set ::caption(astrocomputer,site)                 "Observing Site"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $::langage "ukrainian" ] == "0" } {
+
+   set ::caption(astrocomputer,astrocomputer)        "Astronomical Calculator"
+   set ::caption(astrocomputer,onglets)              {"Conversion" "Cosmology" "Apparent Coordinates"}
+   set ::caption(astrocomputer,formatinp1)           "Number Date Angle Distance"
+   set ::caption(astrocomputer,formatnombreout1)     "Decimal Binary Octal Hexadecimal ASCII"
+   set ::caption(astrocomputer,formatdateout1)       {"Julian Day" "Modified Julian Day" ISO8601 Calendar}
+   set ::caption(astrocomputer,formatangleout1)      {degree "deg min sec" "hour min sec" "signed dms" radian}
+   set ::caption(astrocomputer,formatdistanceout1)   {"Parsec" "Light-Years" "Astronomical Units" "Parallax (mas)" "Distance Modulus" "Meters"}
+   set ::caption(astrocomputer,fermer)               "Close"
+   set ::caption(astrocomputer,aide)                 "Help"
+
+   set ::caption(astrocomputer,conversion)           "Conversions"
+   set ::caption(astrocomputer,exprConvertir)        "Expression to convert"
+   set ::caption(astrocomputer,formatExpr)           "Expression Format"
+   set ::caption(astrocomputer,formatConversion)     "Conversion Format"
+   set ::caption(astrocomputer,resultConversion)     "Conversion Result"
+   set ::caption(astrocomputer,copierResult)         "Copy the result as an expression"
+   set ::caption(astrocomputer,cosmologie)           "Cosmology"
+   set ::caption(astrocomputer,redshift)             "Redshift"
+   set ::caption(astrocomputer,cteHubble)            "Hubble Constant (km/s/Mpc)"
+   set ::caption(astrocomputer,omegaMatiere)         "Omega Matter (0-1)"
+   set ::caption(astrocomputer,omegaVide)            "Omega Vaccuum (0-1)"
+   set ::caption(astrocomputer,result)               "Results"
+   set ::caption(astrocomputer,coordApparentes)      "Apparent Coordinates"
+   set ::caption(astrocomputer,coordRaDecEquinoxObj) "Coordinates RA DEC EQUINOX or OBJET"
+   set ::caption(astrocomputer,dateUTC)              "UTC Date (empty = now)"
+   set ::caption(astrocomputer,site)                 "Observing Site"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $::langage "russian" ] == "0" } {
+
+   set ::caption(astrocomputer,astrocomputer)        "Astronomical Calculator"
+   set ::caption(astrocomputer,onglets)              {"Conversion" "Cosmology" "Apparent Coordinates"}
+   set ::caption(astrocomputer,formatinp1)           "Number Date Angle Distance"
+   set ::caption(astrocomputer,formatnombreout1)     "Decimal Binary Octal Hexadecimal ASCII"
+   set ::caption(astrocomputer,formatdateout1)       {"Julian Day" "Modified Julian Day" ISO8601 Calendar}
+   set ::caption(astrocomputer,formatangleout1)      {degree "deg min sec" "hour min sec" "signed dms" radian}
+   set ::caption(astrocomputer,formatdistanceout1)   {"Parsec" "Light-Years" "Astronomical Units" "Parallax (mas)" "Distance Modulus" "Meters"}
+   set ::caption(astrocomputer,fermer)               "Close"
+   set ::caption(astrocomputer,aide)                 "Help"
+
+   set ::caption(astrocomputer,conversion)           "Conversions"
+   set ::caption(astrocomputer,exprConvertir)        "Expression to convert"
+   set ::caption(astrocomputer,formatExpr)           "Expression Format"
+   set ::caption(astrocomputer,formatConversion)     "Conversion Format"
+   set ::caption(astrocomputer,resultConversion)     "Conversion Result"
+   set ::caption(astrocomputer,copierResult)         "Copy the result as an expression"
+   set ::caption(astrocomputer,cosmologie)           "Cosmology"
+   set ::caption(astrocomputer,redshift)             "Redshift"
+   set ::caption(astrocomputer,cteHubble)            "Hubble Constant (km/s/Mpc)"
+   set ::caption(astrocomputer,omegaMatiere)         "Omega Matter (0-1)"
+   set ::caption(astrocomputer,omegaVide)            "Omega Vaccuum (0-1)"
+   set ::caption(astrocomputer,result)               "Results"
+   set ::caption(astrocomputer,coordApparentes)      "Apparent Coordinates"
+   set ::caption(astrocomputer,coordRaDecEquinoxObj) "Coordinates RA DEC EQUINOX or OBJET"
+   set ::caption(astrocomputer,dateUTC)              "UTC Date (empty = now)"
+   set ::caption(astrocomputer,site)                 "Observing Site"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

@@ -1,0 +1,151 @@
+#
+# Fichier : horloge_astro.cap
+# Mise a jour $Id: horloge_astro.cap 9827 2013-07-23 21:18:52Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(horloge_astro,titre)                "The astronomer's clock"
+set caption(horloge_astro,tu)                   "Universal Time:"
+set caption(horloge_astro,tsl)                  "Local Sidereal Time:"
+set caption(horloge_astro,ad)                   "Right Ascension (h m s):"
+set caption(horloge_astro,dec)                  "Declination (+/- ° ' ''):"
+set caption(horloge_astro,valider)              "Enter"
+set caption(horloge_astro,angle_horaire)        "Hour Angle:"
+set caption(horloge_astro,azimut)               "Azimuth:"
+set caption(horloge_astro,hauteur)              "Elevation:"
+set caption(horloge_astro,secz)                 "sec z:"
+set caption(horloge_astro,horizon)              "The target is below the horizon."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(horloge_astro,titre)             "L'horloge de l'astronome"
+   set caption(horloge_astro,tu)                "Temps Universel :"
+   set caption(horloge_astro,tsl)               "Temps Sidéral Local :"
+   set caption(horloge_astro,ad)                "Ascension Droite (h m s) :"
+   set caption(horloge_astro,dec)               "Déclinaison (+/- ° ' '') :"
+   set caption(horloge_astro,valider)           "Valider"
+   set caption(horloge_astro,angle_horaire)     "Angle Horaire :"
+   set caption(horloge_astro,azimut)            "Azimut :"
+   set caption(horloge_astro,hauteur)           "Hauteur :"
+   set caption(horloge_astro,secz)              "sec z :"
+   set caption(horloge_astro,horizon)           "L'astre est sous l'horizon."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(horloge_astro,titre)             "Orologio astronomico"
+   set caption(horloge_astro,tu)                "Tempo Universale:"
+   set caption(horloge_astro,tsl)               "Tempo Siderale Locale:"
+   set caption(horloge_astro,ad)                "Ascensione Retta (h m s):"
+   set caption(horloge_astro,dec)               "Declinazione (+/- ° ' ''):"
+   set caption(horloge_astro,valider)           "Convalidare"
+   set caption(horloge_astro,angle_horaire)     "Angolo orario:"
+   set caption(horloge_astro,azimut)            "Azimut:"
+   set caption(horloge_astro,hauteur)           "Elevazione:"
+   set caption(horloge_astro,secz)              "sec z:"
+   set caption(horloge_astro,horizon)           "Il campo si trova sotto l'orizzonte."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(horloge_astro,titre)             "El reloj del astrónomo"
+   set caption(horloge_astro,tu)                "Tiempo Universal:"
+   set caption(horloge_astro,tsl)               "Tiempo Sideral Local:"
+   set caption(horloge_astro,ad)                "Ascensión Recta (h m s):"
+   set caption(horloge_astro,dec)               "Declinación (+/- ° ' ''):"
+   set caption(horloge_astro,valider)           "Validar"
+   set caption(horloge_astro,angle_horaire)     "Angulo horario:"
+   set caption(horloge_astro,azimut)            "Azimut:"
+   set caption(horloge_astro,hauteur)           "Elevación:"
+   set caption(horloge_astro,secz)              "sec z:"
+   set caption(horloge_astro,horizon)           "El astro está bajo el horizonte."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(horloge_astro,titre)             "Die Uhr vom Astronom"
+   set caption(horloge_astro,tu)                "Weltzeit:"
+   set caption(horloge_astro,tsl)               "Lokale Siderische Zeit:"
+   set caption(horloge_astro,ad)                "Rektaszension (h m s):"
+   set caption(horloge_astro,dec)               "Deklination (+/- ° ' ''):"
+   set caption(horloge_astro,valider)           "Eingeben"
+   set caption(horloge_astro,angle_horaire)     "Zeit Winkel:"
+   set caption(horloge_astro,azimut)            "Azimut:"
+   set caption(horloge_astro,hauteur)           "Höhe:"
+   set caption(horloge_astro,secz)              "sec z:"
+   set caption(horloge_astro,horizon)           "Das Gestirn ist unter dem Horizont."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(horloge_astro,titre)             "Relógio do astrónomo"
+   set caption(horloge_astro,tu)                "Tempo Universal:"
+   set caption(horloge_astro,tsl)               "Tempo Sideral Local:"
+   set caption(horloge_astro,ad)                "Ascenção Recta (h m s):"
+   set caption(horloge_astro,dec)               "Declinação (+/- ° ' ''):"
+   set caption(horloge_astro,valider)           "Validar"
+   set caption(horloge_astro,angle_horaire)     "Ângulo Horário:"
+   set caption(horloge_astro,azimut)            "Azimute:"
+   set caption(horloge_astro,hauteur)           "Altura:"
+   set caption(horloge_astro,secz)              "sec z:"
+   set caption(horloge_astro,horizon)           "O alvo é abaixo do horizonte."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(horloge_astro,titre)             "The astronomer's clock"
+   set caption(horloge_astro,tu)                "Universal Time:"
+   set caption(horloge_astro,tsl)               "Local Sidereal Time:"
+   set caption(horloge_astro,ad)                "Right Ascension (h m s):"
+   set caption(horloge_astro,dec)               "Declination (+/- ° ' ''):"
+   set caption(horloge_astro,valider)           "Enter"
+   set caption(horloge_astro,angle_horaire)     "Hour Angle:"
+   set caption(horloge_astro,azimut)            "Azimuth:"
+   set caption(horloge_astro,hauteur)           "Elevation:"
+   set caption(horloge_astro,secz)              "sec z:"
+   set caption(horloge_astro,horizon)           "The target is below the horizon."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(horloge_astro,titre)             "The astronomer's clock"
+   set caption(horloge_astro,tu)                "Universal Time:"
+   set caption(horloge_astro,tsl)               "Local Sidereal Time:"
+   set caption(horloge_astro,ad)                "Right Ascension (h m s):"
+   set caption(horloge_astro,dec)               "Declination (+/- ° ' ''):"
+   set caption(horloge_astro,valider)           "Enter"
+   set caption(horloge_astro,angle_horaire)     "Hour Angle:"
+   set caption(horloge_astro,azimut)            "Azimuth:"
+   set caption(horloge_astro,hauteur)           "Elevation:"
+   set caption(horloge_astro,secz)              "sec z:"
+   set caption(horloge_astro,horizon)           "The target is below the horizon."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(horloge_astro,titre)             "The astronomer's clock"
+   set caption(horloge_astro,tu)                "Universal Time:"
+   set caption(horloge_astro,tsl)               "Local Sidereal Time:"
+   set caption(horloge_astro,ad)                "Right Ascension (h m s):"
+   set caption(horloge_astro,dec)               "Declination (+/- ° ' ''):"
+   set caption(horloge_astro,valider)           "Enter"
+   set caption(horloge_astro,angle_horaire)     "Hour Angle:"
+   set caption(horloge_astro,azimut)            "Azimuth:"
+   set caption(horloge_astro,hauteur)           "Elevation:"
+   set caption(horloge_astro,secz)              "sec z:"
+   set caption(horloge_astro,horizon)           "The target is below the horizon."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

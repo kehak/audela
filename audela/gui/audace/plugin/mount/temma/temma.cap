@@ -1,0 +1,349 @@
+#
+# Fichier : temma.cap
+# Mise a jour $Id: temma.cap 13616 2016-04-05 15:34:15Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(temma,monture)                       "Temma"
+set caption(temma,port)                          "Port"
+set caption(temma,configurer)                    "Set up"
+set caption(temma,controle)                      "Control"
+set caption(temma,modele)                        "Model"
+set caption(temma,version)                       "Version:"
+set caption(temma,modele_1)                      "EM-10/200-Temma-PC-Jr"
+set caption(temma,modele_2)                      "EM-200/500-NJP-Temma-PC"
+set caption(temma,modele_3)                      "Series-Temma2"
+set caption(temma,init_module)                   "Temma Interface Setup:"
+set caption(temma,latitude)                      "Latitude:"
+set caption(temma,correc_AD)                     "Adjustment of RA Normal Speed"
+set caption(temma,correc_Dec)                    "Adjustment of Dec. Normal Speed"
+set caption(temma,liaison_AD_Dec)                "RA and Dec. Adjustments Linked"
+set caption(temma,init_zenith)                   "Zenith Initialization"
+set caption(temma,ctl_mobile)                    "Tracking Speed Control"
+set caption(temma,mobile_etoile)                 "Sidereal Tracking"
+set caption(temma,mobile_soleil)                 "Sun Tracking"
+set caption(temma,mobile_comete)                 "Cometary tracking"
+set caption(temma,mobile_ad)                     "RA Daily Drift"
+set caption(temma,mobile_dec)                    "Dec Daily Drift"
+set caption(temma,position_telescope)            "Telescope Position:"
+set caption(temma,change_position_telescope)     "Change the Telescope Initial Position:"
+set caption(temma,raquette_tel)                  "Hand controller on screen"
+
+set caption(temma,install_1)                     "End of Temma plugin installation"
+set caption(temma,install_2)                     "libtemma.dll library updated."
+
+set caption(temma,port_temma)                    "Temma Port"
+set caption(temma,2points)                       ":"
+
+set caption(temma,titre_site_web)                "Reference Web Site:"
+set caption(temma,site_temma)                    "Does not exist"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(temma,monture)                    "Temma"
+   set caption(temma,port)                       "Port"
+   set caption(temma,configurer)                 "Configurer"
+   set caption(temma,controle)                   "Contrôle"
+   set caption(temma,modele)                     "Modèle"
+   set caption(temma,version)                    "Version :"
+   set caption(temma,modele_1)                   "EM-10/200-Temma-PC-Jr"
+   set caption(temma,modele_2)                   "EM-200/500-NJP-Temma-PC"
+   set caption(temma,modele_3)                   "Série-Temma2"
+   set caption(temma,init_module)                "Initialisation de l'interface Temma :"
+   set caption(temma,latitude)                   "Latitude :"
+   set caption(temma,correc_AD)                  "Correction de la vitesse normale en AD"
+   set caption(temma,correc_Dec)                 "Correction de la vitesse normale en Déc."
+   set caption(temma,liaison_AD_Dec)             "Corrections AD et Déc. liées"
+   set caption(temma,init_zenith)                "Initialisation au zénith"
+   set caption(temma,ctl_mobile)                 "Contrôle de la vitesse de suivi"
+   set caption(temma,mobile_etoile)              "Suivi sidéral"
+   set caption(temma,mobile_soleil)              "Suivi solaire"
+   set caption(temma,mobile_comete)              "Suivi cométaire"
+   set caption(temma,mobile_ad)                  "Dérive quotidienne en AD"
+   set caption(temma,mobile_dec)                 "Dérive quotidienne en Déc."
+   set caption(temma,position_telescope)         "Position du télescope :"
+   set caption(temma,change_position_telescope)  "Changer la position d'origine du télescope :"
+   set caption(temma,raquette_tel)               "Raquette à l'écran"
+
+   set caption(temma,install_1)                  "Fin de l'installation du plugin Temma"
+   set caption(temma,install_2)                  "La librairie libtemma.dll a été mise à jour."
+
+   set caption(temma,port_temma)                 "Port Temma"
+   set caption(temma,2points)                    ":"
+
+   set caption(temma,titre_site_web)             "Site Web de référence :"
+   set caption(temma,site_temma)                 "N'existe pas"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(temma,monture)                    "Temma"
+   set caption(temma,port)                       "Porta"
+   set caption(temma,configurer)                 "Configurare"
+   set caption(temma,controle)                   "Controllo"
+   set caption(temma,modele)                     "Modello"
+   set caption(temma,version)                    "Versione:"
+   set caption(temma,modele_1)                   "EM-10/200-Temma-PC-Jr"
+   set caption(temma,modele_2)                   "EM-200/500-NJP-Temma-PC"
+   set caption(temma,modele_3)                   "Sequenza-Temma2"
+   set caption(temma,init_module)                "Inizializzazione dell'interfaccia Temma:"
+   set caption(temma,latitude)                   "Latitudine:"
+   set caption(temma,correc_AD)                  "Correzione della velocita` in AR"
+   set caption(temma,correc_Dec)                 "Correzione della velocita` in Dec."
+   set caption(temma,liaison_AD_Dec)             "Correzioni AR e Dec. collegate"
+   set caption(temma,init_zenith)                "Inizializzazione allo Zenit"
+   set caption(temma,ctl_mobile)                 "Controllo velocita` di inseguimento"
+   set caption(temma,mobile_etoile)              "Tracciamento siderale"
+   set caption(temma,mobile_soleil)              "Inseguimento solare"
+   set caption(temma,mobile_comete)              "Inseguimento cometa"
+   set caption(temma,mobile_ad)                  "Deriva giornaliera in AR"
+   set caption(temma,mobile_dec)                 "Deriva giornaliera in Dec."
+   set caption(temma,position_telescope)         "Posizione telescopio:"
+   set caption(temma,change_position_telescope)  "Cambiare la posizione iniziale del telescopio:"
+   set caption(temma,raquette_tel)               "Pulsantiera a schermo"
+
+   set caption(temma,install_1)                  "Fine installazione del plugin Temma"
+   set caption(temma,install_2)                  "La libreria libtemma.dll è stata aggiornata."
+
+   set caption(temma,port_temma)                 "Porta Temma"
+   set caption(temma,2points)                    ":"
+
+   set caption(temma,titre_site_web)             "Sito Web di riferimento:"
+   set caption(temma,site_temma)                 "Non esiste"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(temma,monture)                    "Temma"
+   set caption(temma,port)                       "Puerto"
+   set caption(temma,configurer)                 "Configurar"
+   set caption(temma,controle)                   "Control"
+   set caption(temma,modele)                     "Modelo"
+   set caption(temma,version)                    "Versión:"
+   set caption(temma,modele_1)                   "EM-10/200-Temma-PC-Jr"
+   set caption(temma,modele_2)                   "EM-200/500-NJP-Temma-PC"
+   set caption(temma,modele_3)                   "Serie-Temma2"
+   set caption(temma,init_module)                "Ajustes de la interfaz Temma:"
+   set caption(temma,latitude)                   "Latitud:"
+   set caption(temma,correc_AD)                  "Ajustes de AR. Velocidad Normal"
+   set caption(temma,correc_Dec)                 "Ajustes de Dec. Velocidad Normal"
+   set caption(temma,liaison_AD_Dec)             "Ajustes de AR. y Dec. ligados"
+   set caption(temma,init_zenith)                "Inicialización de Zenit"
+   set caption(temma,ctl_mobile)                 "Ctrl. de la velocidad de seguimiento"
+   set caption(temma,mobile_etoile)              "Seguimiento sidéreo"
+   set caption(temma,mobile_soleil)              "Seguimiento solar"
+   set caption(temma,mobile_comete)              "Seguimiento cometario"
+   set caption(temma,mobile_ad)                  "Deriva cotidiana en AR."
+   set caption(temma,mobile_dec)                 "Deriva cotidiana en Dec."
+   set caption(temma,position_telescope)         "Situación del Telescopio:"
+   set caption(temma,change_position_telescope)  "Cambiar la posición inicial del telescopio:"
+   set caption(temma,raquette_tel)               "Controlador virtual"
+
+   set caption(temma,install_1)                  "Fin de la instalación del plugin Temma"
+   set caption(temma,install_2)                  "Libreria libtemma.dll actualizada."
+
+   set caption(temma,port_temma)                 "Puerto Temma"
+   set caption(temma,2points)                    ":"
+
+   set caption(temma,titre_site_web)             "Sitio Web de referencia:"
+   set caption(temma,site_temma)                 "No existe"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(temma,monture)                    "Temma"
+   set caption(temma,port)                       "Port"
+   set caption(temma,configurer)                 "Konfigurieren"
+   set caption(temma,controle)                   "Kontroll"
+   set caption(temma,modele)                     "Modell"
+   set caption(temma,version)                    "Version:"
+   set caption(temma,modele_1)                   "EM-10/200-Temma-PC-Jr"
+   set caption(temma,modele_2)                   "EM-200/500-NJP-Temma-PC"
+   set caption(temma,modele_3)                   "Reihe-Temma2"
+   set caption(temma,init_module)                "Temma Interface Initialisation:"
+   set caption(temma,latitude)                   "Breite:"
+   set caption(temma,correc_AD)                  "Abstimmung der RA normale Tempo"
+   set caption(temma,correc_Dec)                 "Abstimmung der Dek. normale Tempo"
+   set caption(temma,liaison_AD_Dec)             "Gebundene RA und Dek."
+   set caption(temma,init_zenith)                "Am Zenit Initialisieren"
+   set caption(temma,ctl_mobile)                 "Folgung Tempo Kontrolle"
+   set caption(temma,mobile_etoile)              "Siderische Folgung"
+   set caption(temma,mobile_soleil)              "Sonnennachführung"
+   set caption(temma,mobile_comete)              "Kometen Folgung"
+   set caption(temma,mobile_ad)                  "RA Täglich Drift"
+   set caption(temma,mobile_dec)                 "Dek. Täglich Drift"
+   set caption(temma,position_telescope)         "Teleskop Stellung:"
+   set caption(temma,change_position_telescope)  "Die beginn Position des Teleskop ändern:"
+   set caption(temma,raquette_tel)               "Hand Kontroller am Bildschirm"
+
+   set caption(temma,install_1)                  "Ende der Temma-Plugin-Installation"
+   set caption(temma,install_2)                  "Die libtemma.dll Bibliothek ist aktualisiert."
+
+   set caption(temma,port_temma)                 "Temma Port"
+   set caption(temma,2points)                    ":"
+
+   set caption(temma,titre_site_web)             "Referenz Webseite:"
+   set caption(temma,site_temma)                 "Existiert nicht"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(temma,monture)                    "Temma"
+   set caption(temma,port)                       "Porta"
+   set caption(temma,configurer)                 "Configuração"
+   set caption(temma,controle)                   "Controlo"
+   set caption(temma,modele)                     "Modelo"
+   set caption(temma,version)                    "Versão:"
+   set caption(temma,modele_1)                   "EM-10/200-Temma-PC-Jr"
+   set caption(temma,modele_2)                   "EM-200/500-NJP-Temma-PC"
+   set caption(temma,modele_3)                   "Series-Temma2"
+   set caption(temma,init_module)                "Configuração do Interface Temma:"
+   set caption(temma,latitude)                   "Latitude:"
+   set caption(temma,correc_AD)                  "Ajuste da velocidade normal de ascenção recta (AR)"
+   set caption(temma,correc_Dec)                 "Ajuste da velocidade normal de declinação (DEC)"
+   set caption(temma,liaison_AD_Dec)             "Ajustes em AR e DEC efectuados"
+   set caption(temma,init_zenith)                "Inicialização Zenith"
+   set caption(temma,ctl_mobile)                 "Controlo da Velocidade de Guiagem"
+   set caption(temma,mobile_etoile)              "Seguimento sideral"
+   set caption(temma,mobile_soleil)              "Seguimento solar"
+   set caption(temma,mobile_comete)              "# Suivi cométaire"
+   set caption(temma,mobile_ad)                  "# Dérive quotidienne en AD"
+   set caption(temma,mobile_dec)                 "# Dérive quotidienne en Déc."
+   set caption(temma,position_telescope)         "Posição do Telescópio:"
+   set caption(temma,change_position_telescope)  "Mudar a Posição Inicial do Telescópio:"
+   set caption(temma,raquette_tel)               "Controlador de mão no ecrã"
+
+   set caption(temma,install_1)                  "Fin da instalação do plugin Temma"
+   set caption(temma,install_2)                  "A livraria libtemma.dll foi actualizada."
+
+   set caption(temma,port_temma)                 "Porta Temma"
+   set caption(temma,2points)                    ":"
+
+   set caption(temma,titre_site_web)             "Site Web de referência:"
+   set caption(temma,site_temma)                 "Não existe"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(temma,monture)                    "Temma"
+   set caption(temma,port)                       "Port"
+   set caption(temma,configurer)                 "Set up"
+   set caption(temma,controle)                   "Control"
+   set caption(temma,modele)                     "Model"
+   set caption(temma,version)                    "Version:"
+   set caption(temma,modele_1)                   "EM-10/200-Temma-PC-Jr"
+   set caption(temma,modele_2)                   "EM-200/500-NJP-Temma-PC"
+   set caption(temma,modele_3)                   "Series-Temma2"
+   set caption(temma,init_module)                "Temma Interface Setup:"
+   set caption(temma,latitude)                   "Latitude:"
+   set caption(temma,correc_AD)                  "Adjustment of RA Normal Speed"
+   set caption(temma,correc_Dec)                 "Adjustment of Dec. Normal Speed"
+   set caption(temma,liaison_AD_Dec)             "RA and Dec. Adjustments Linked"
+   set caption(temma,init_zenith)                "Zenith Initialization"
+   set caption(temma,ctl_mobile)                 "Tracking Speed Control"
+   set caption(temma,mobile_etoile)              "Sidereal Tracking"
+   set caption(temma,mobile_soleil)              "Sun Tracking"
+   set caption(temma,mobile_comete)              "Cometary tracking"
+   set caption(temma,mobile_ad)                  "RA Daily Drift"
+   set caption(temma,mobile_dec)                 "Dec Daily Drift"
+   set caption(temma,position_telescope)         "Telescope Position:"
+   set caption(temma,change_position_telescope)  "Change the Telescope Initial Position:"
+   set caption(temma,raquette_tel)               "Hand controller on screen"
+
+   set caption(temma,install_1)                  "End of Temma plugin installation"
+   set caption(temma,install_2)                  "libtemma.dll library updated."
+
+   set caption(temma,port_temma)                 "Temma Port"
+   set caption(temma,2points)                    ":"
+
+   set caption(temma,titre_site_web)             "Reference Web Site:"
+   set caption(temma,site_temma)                 "Does not exist"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(temma,monture)                    "Temma"
+   set caption(temma,port)                       "Port"
+   set caption(temma,configurer)                 "Set up"
+   set caption(temma,controle)                   "Control"
+   set caption(temma,modele)                     "Model"
+   set caption(temma,version)                    "Version:"
+   set caption(temma,modele_1)                   "EM-10/200-Temma-PC-Jr"
+   set caption(temma,modele_2)                   "EM-200/500-NJP-Temma-PC"
+   set caption(temma,modele_3)                   "Series-Temma2"
+   set caption(temma,init_module)                "Temma Interface Setup:"
+   set caption(temma,latitude)                   "Latitude:"
+   set caption(temma,correc_AD)                  "Adjustment of RA Normal Speed"
+   set caption(temma,correc_Dec)                 "Adjustment of Dec. Normal Speed"
+   set caption(temma,liaison_AD_Dec)             "RA and Dec. Adjustments Linked"
+   set caption(temma,init_zenith)                "Zenith Initialization"
+   set caption(temma,ctl_mobile)                 "Tracking Speed Control"
+   set caption(temma,mobile_etoile)              "Sidereal Tracking"
+   set caption(temma,mobile_soleil)              "Sun Tracking"
+   set caption(temma,mobile_comete)              "Cometary tracking"
+   set caption(temma,mobile_ad)                  "RA Daily Drift"
+   set caption(temma,mobile_dec)                 "Dec Daily Drift"
+   set caption(temma,position_telescope)         "Telescope Position:"
+   set caption(temma,change_position_telescope)  "Change the Telescope Initial Position:"
+   set caption(temma,raquette_tel)               "Hand controller on screen"
+
+   set caption(temma,install_1)                  "End of Temma plugin installation"
+   set caption(temma,install_2)                  "libtemma.dll library updated."
+
+   set caption(temma,port_temma)                 "Temma Port"
+   set caption(temma,2points)                    ":"
+
+   set caption(temma,titre_site_web)             "Reference Web Site:"
+   set caption(temma,site_temma)                 "Does not exist"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(temma,monture)                    "Temma"
+   set caption(temma,port)                       "Port"
+   set caption(temma,configurer)                 "Set up"
+   set caption(temma,controle)                   "Control"
+   set caption(temma,modele)                     "Model"
+   set caption(temma,version)                    "Version:"
+   set caption(temma,modele_1)                   "EM-10/200-Temma-PC-Jr"
+   set caption(temma,modele_2)                   "EM-200/500-NJP-Temma-PC"
+   set caption(temma,modele_3)                   "Series-Temma2"
+   set caption(temma,init_module)                "Temma Interface Setup:"
+   set caption(temma,latitude)                   "Latitude:"
+   set caption(temma,correc_AD)                  "Adjustment of RA Normal Speed"
+   set caption(temma,correc_Dec)                 "Adjustment of Dec. Normal Speed"
+   set caption(temma,liaison_AD_Dec)             "RA and Dec. Adjustments Linked"
+   set caption(temma,init_zenith)                "Zenith Initialization"
+   set caption(temma,ctl_mobile)                 "Tracking Speed Control"
+   set caption(temma,mobile_etoile)              "Sidereal Tracking"
+   set caption(temma,mobile_soleil)              "Sun Tracking"
+   set caption(temma,mobile_comete)              "Cometary tracking"
+   set caption(temma,mobile_ad)                  "RA Daily Drift"
+   set caption(temma,mobile_dec)                 "Dec Daily Drift"
+   set caption(temma,position_telescope)         "Telescope Position:"
+   set caption(temma,change_position_telescope)  "Change the Telescope Initial Position:"
+   set caption(temma,raquette_tel)               "Hand controller on screen"
+
+   set caption(temma,install_1)                  "End of Temma plugin installation"
+   set caption(temma,install_2)                  "libtemma.dll library updated."
+
+   set caption(temma,port_temma)                 "Temma Port"
+   set caption(temma,2points)                    ":"
+
+   set caption(temma,titre_site_web)             "Reference Web Site:"
+   set caption(temma,site_temma)                 "Does not exist"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

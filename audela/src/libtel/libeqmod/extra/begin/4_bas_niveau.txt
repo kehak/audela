@@ -1,0 +1,71 @@
+-----------------------
+
+audela\src\libtel\libeqmod\doc
+
+-------------------------
+
+tel1 put
+tel1 putread
+
+----------------
+fonction de codage hexa
+----------------
+
+# hexadecimal to decimal
+proc eqmod_decode {s} {
+   return [ expr int(0x[ string range $s 4 5 ][ string range $s 2 3 ][ string range $s 0 1 ]00) / 256 ]
+}
+
+# decimal to hexadecimal
+proc eqmod_encode {int} {
+   set s [ string range [ format %08X $int ] 2 end ]
+   return [ string range $s 4 5 ][ string range $s 2 3 ][ string range $s 0 1 ]
+}
+
+
+----------------
+# Stop les moteurs
+tel1 put :K1
+tel1 put :K2
+
+-----------------
+Initialisation de quelques variables
+
+set home {GPS 2.0 E 48.5 150.0}
+set now [clock format [clock seconds] -gmt 1 -format "%Y %m %d %H %M %S"]
+set tsl [mc_date2lst $now $home]
+set t [expr ([lindex $tsl 0] + [lindex $tsl 1]/60. + [lindex $tsl 2]/3600.)*15.]
+
+# Definir les coordonnees de l observateur
+tel1 home $home
+
+
+
+-----------------
+
+Initialise sur la Polaire :
+
+set polaris_ra [expr (2 + 50 /60. + 13.327/3600.) * 15.]
+set polaris_de [expr 89 + 19 /60. + 4.44/3600.]
+
+set now [clock format [clock seconds] -gmt 1 -format "%Y %m %d %H %M %S"]
+set tsl [mc_date2lst $now $home]
+set tdeg [expr ([lindex $tsl 0] + [lindex $tsl 1]/60. + [lindex $tsl 2]/3600.)*15.]
+set hdeg [expr $tdeg - $polaris_ra]
+set de1 [expr int($hdeg/360.*9024000)]
+set he1 [eqmod_encode $de1]
+::console::affiche_resultat "tel1 put :E1$he1\n"
+
+set de2 [expr int($polaris_de/360.*9024000)]
+set he2 [eqmod_encode $de2]
+::console::affiche_resultat "tel1 put :E2$he2\n"
+
+
+# tel1 put :E1BB5754
+# tel1 put :E26C2422
+
+
+set ha1 [tel1 putread :a1]
+set da1 [eqmod_decode $ha1]
+
+eqmod_decode [tel1 putread :j1]

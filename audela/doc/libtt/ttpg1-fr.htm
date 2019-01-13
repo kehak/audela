@@ -1,0 +1,427 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta name="Author" content="Alain Klotz">
+   <meta name="GENERATOR" content="Mozilla/4.51 [fr] (Win95; I) [Netscape]">
+   <title>Librairie TT : Manuel du programmeur</title>
+</head>
+<body>
+
+<center><b><font size=+3>LIB TT</font></b>
+<br>une librairie de pr&eacute;traitement d'images astronomiques
+<br>version 20000824
+<p><b><font size=+3>Manuel du programmeur</font></b>
+<br><b><font size=+2>Programmer dans libTT</font></b></center>
+
+<p><br>
+<h1>
+1. D&eacute;finition g&eacute;n&eacute;rale de TT</h1>
+
+<h2>
+1.1. Contraintes de programmation</h2>
+Le tableau suivant a pour but de r&eacute;sumer le choix des solutions
+que l'on peut adopter en fonction des contraintes de la librairie et des
+programmes d'appel :
+<br>&nbsp;
+<table BORDER COLS=2 WIDTH="100%" >
+<tr>
+<td>
+<center>Contraintes sur l'utilisation</center>
+</td>
+
+<td>
+<center>Solution pour un standard</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<ul>
+<li>
+facilit&eacute; de d&eacute;claration des fonctions externes dans le programme
+appellant.</li>
+
+<li>
+facilit&eacute; d'ajout de nouvelles fonctions dans la librairie.</li>
+</ul>
+</td>
+
+<td>
+<ul>
+<li>
+un seul point d'entr&eacute;e externe dans la librairie.</li>
+
+<li>
+num&eacute;ros de fonctions</li>
+
+<li>
+nombre variable d'arguments</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td>
+<ul>
+<li>
+programmation facile de la librairie</li>
+
+<li>
+p&eacute;r&eacute;nit&eacute; du langage de programmation de la librairie</li>
+
+<li>
+compilation Windows et Unix</li>
+</ul>
+</td>
+
+<td>
+<ul>
+<li>
+langage C ou C++ ANSI</li>
+
+<li>
+canevas avec directives conditionnelles de compilation.</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td>
+<ul>
+<li>
+all&egrave;gement du programme d'appel</li>
+
+<li>
+mise &agrave; jour de la librairie sans incidence sur les versions ant&eacute;rieures
+du programme d'appel.</li>
+</ul>
+</td>
+
+<td>
+<ul>
+<li>
+librairie dynamique</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td>
+<ul>
+<li>
+impossiblit&eacute; de d&eacute;finir de nom du fichier d'une librairie
+dynamique au cours de l'ex&eacute;cution du programme appelant.</li>
+</ul>
+</td>
+
+<td>
+<ul>
+<li>
+le nom de la fonction d'entr&eacute;e est diff&eacute;rent pour chaque
+librairie (pas de probl&egrave;me ici car il n'y en a qu'une).</li>
+</ul>
+</td>
+</tr>
+</table>
+
+<p>Libtt est une librairie remplissant une grande partie des exigences
+pos&eacute;es aux paragraphes pr&eacute;c&eacute;dents. Nous avons choisi
+de programmer en C Ansi. De nombreuses structures sont utilis&eacute;s
+comme des classes avec des constructeurs et des destructeurs. Ainsi, libtt
+est programm&eacute;e en C mais avec une large structuration objet.
+<h2>
+1.2. Compilation</h2>
+La compilation de libtt n&eacute;cessite d'indiquer le type de syst&egrave;me
+d'exploitation employ&eacute; en changeant la d&eacute;finition de <b>sysexp.h</b>.
+<p>OS_UNIX_CC pour ins&eacute;rer les fichiers C directement dans un programme
+compil&eacute; avec cc sous Unix.
+<br>OS_UNIX_CC_HP_SL pour g&eacute;n&eacute;rer libtt.sl avec un HP sous
+Unix et le compilateur cc.
+<br>OS_DOS_WATC pour ins&eacute;rer les fichiers C directement dans un
+programme compil&eacute; avec watcom sous DOS.
+<br>OS_UNIX_CC_DECBAG_SO_VADCL pour g&eacute;n&eacute;rer libtt.so avec
+la Dec Station de Bagn&egrave;re sous Unix et le compilateur cc.
+<br>OS_WIN_VCPP_DLL pour g&eacute;n&eacute;rer libtt.dll avec le compilateur
+Visual C++ sous Windows.
+<br>OS_WIN_BORLB_DLL pour g&eacute;n&eacute;rer libtt.dll avec le compilateur
+Borland Builder C++ sous Windows.
+<br>OS_WIN_BORL_DLL pour g&eacute;n&eacute;rer libtt.dll avec le compilateur
+Borland 5 C++ sous Windows.
+<br>OS_DOS_WATC_LIB pour g&eacute;n&eacute;rer libtt.lib avec le compilateur
+Watcom sous DOS.
+<br>OS_LINUX_GCC_SO pour g&eacute;n&eacute;rer libtt.so avec le compilateur
+gcc de Linux.
+<h1>
+2. Programmer une nouvelle fonction dans TT</h1>
+Il est possible de programmer sois m&ecirc;me une nouvelle fonction en
+C dans TT, dans le cadre des d&eacute;finitions <a href="ttus1-fr.htm#mode script">IMA/SERIES
+et IMA/STACK</a>. De plus, toute nouvelle fonction cr&eacute;e avec la
+proc&eacute;dure d&eacute;crite ici, est automatiquement vue par le mode
+pointeur et par le mode script.
+<h2>
+2.1. D&eacute;claration d'un user dans tt.h</h2>
+Pour programmer dans la librairie TT il faut d'abord se d&eacute;clarer
+un nouveau user dans le fichier tt.h. Il existe d&eacute;j&agrave; au moins
+un user1 d&eacute;clar&eacute; de fa&ccedil;on &agrave; montrer un exemple.
+Nous allons &eacute;tudier le cas de la d&eacute;claration d'un user2.
+<ul>
+<li>
+Dans le fichier tt.h chercher :</li>
+</ul>
+<b><tt>#ifndef __TTUSER1H__</tt></b>
+<br><b><tt>#include "tt_user1.h"</tt></b>
+<br><b><tt>#endif</tt></b>
+<p>juste apr&egrave;s ces lignes, ajouter :
+<p><b><tt>#ifndef __TTUSER2H__</tt></b>
+<br><b><tt>#include "tt_user2.h"</tt></b>
+<br><b><tt>#endif</tt></b>
+<ul>
+<li>
+Dans la d&eacute;finition de la structure TT_IMA_STACK, chercher :</li>
+</ul>
+<b><tt>TT_USER1_IMA_STACK user1;</tt></b>
+<p>juste aprr&egrave;s cette ligne, ajouter :
+<p><b><tt>TT_USER2_IMA_STACK user2;</tt></b>
+<ul>
+<li>
+Dans la d&eacute;finition de la structure TT_IMA_SERIES, chercher :</li>
+</ul>
+<b><tt>TT_USER1_IMA_SERIES user1;</tt></b>
+<p>juste aprr&egrave;s cette ligne, ajouter :
+<p><b><tt>TT_USER2_IMA_SERIES user2;</tt></b>
+<ul>
+<li>
+Dans la d&eacute;claration des fonctions, chercher :</li>
+</ul>
+<b><tt>int tt_user1_ima_series_builder1(char *keys10,TT_IMA_SERIES *pseries);</tt></b>
+<br><b><tt>int tt_user1_ima_series_builder2(TT_IMA_SERIES *pseries);</tt></b>
+<br><b><tt>int tt_user1_ima_series_builder3(char *mot,char *argu,TT_IMA_SERIES
+*pseries);</tt></b>
+<br><b><tt>int tt_user1_ima_series_dispatch1(TT_IMA_SERIES *pseries,int
+*fct_found, int *msg);</tt></b>
+<br><b><tt>int tt_user1_ima_stack_builder1(char *keys10,TT_IMA_STACK *pstack);</tt></b>
+<br><b><tt>int tt_user1_ima_stack_builder2(TT_IMA_STACK *pstack);</tt></b>
+<br><b><tt>int tt_user1_ima_stack_builder3(char *mot,char *argu,TT_IMA_STACK
+*pstack);</tt></b>
+<br><b><tt>int tt_user1_ima_stack_dispatch1(TT_IMA_STACK *pstack,int *fct_found,
+int *msg);</tt></b>
+<p>juste aprr&egrave;s cette ligne, ajouter :
+<p><b><tt>int tt_user2_ima_series_builder1(char *keys10,TT_IMA_SERIES *pseries);</tt></b>
+<br><b><tt>int tt_user2_ima_series_builder2(TT_IMA_SERIES *pseries);</tt></b>
+<br><b><tt>int tt_user2_ima_series_builder3(char *mot,char *argu,TT_IMA_SERIES
+*pseries);</tt></b>
+<br><b><tt>int tt_user2_ima_series_dispatch1(TT_IMA_SERIES *pseries,int
+*fct_found, int *msg);</tt></b>
+<br><b><tt>int tt_user2_ima_stack_builder1(char *keys10,TT_IMA_STACK *pstack);</tt></b>
+<br><b><tt>int tt_user2_ima_stack_builder2(TT_IMA_STACK *pstack);</tt></b>
+<br><b><tt>int tt_user2_ima_stack_builder3(char *mot,char *argu,TT_IMA_STACK
+*pstack);</tt></b>
+<br><b><tt>int tt_user2_ima_stack_dispatch1(TT_IMA_STACK *pstack,int *fct_found,
+int *msg);</tt></b>
+<h2>
+2.2. D&eacute;claration d'un user dans tt_seri1.c</h2>
+Pour programmer dans la librairie TT il faut aussi se d&eacute;clarer un
+nouveau user dans le fichier tt_seri1.c. Il existe d&eacute;j&agrave; au
+moins un user1 d&eacute;clar&eacute; de fa&ccedil;on &agrave; montrer un
+exemple. Nous allons &eacute;tudier le cas de la d&eacute;claration du
+user2.
+<ul>
+<li>
+Dans la fonction tt_ima_series_dispatch, chercher :</li>
+</ul>
+<b><tt>tt_user1_ima_series_dispatch1(pseries,&amp;fct_found,&amp;msg);</tt></b>
+<p>juste aprr&egrave;s cette ligne, ajouter :
+<p><b><tt>tt_user2_ima_series_dispatch1(pseries,&amp;fct_found,&amp;msg);</tt></b>
+<ul>
+<li>
+Dans la fonction tt_ima_series_builder, chercher :</li>
+</ul>
+<b><tt>tt_user1_ima_series_builder1(keys[10],pseries);</tt></b>
+<p>juste aprr&egrave;s cette ligne, ajouter :
+<p><b><tt>tt_user2_ima_series_builder1(keys[10],pseries);</tt></b>
+<ul>
+<li>
+Dans la fonction tt_ima_series_builder, chercher :</li>
+</ul>
+<b><tt>tt_user1_ima_series_builder2(pseries);</tt></b>
+<p>juste ap  rr&egrave;s cette ligne, ajouter :
+<p><b><tt>tt_user2_ima_series_builder2(pseries);</tt></b>
+<ul>
+<li>
+Dans la fonction tt_ima_series_builder, chercher :</li>
+</ul>
+<b><tt>tt_user1_ima_series_builder3(mot,argu,pseries);</tt></b>
+<p>juste aprr&egrave;s cette ligne, ajouter :
+<p><b><tt>tt_user2_ima_series_builder3(mot,argu,psees);</tt></b>
+<br>&nbsp;
+<h2>
+2.3. D&eacute;claration d'un user dans tt_stac1.c</h2>
+Pour programmer dans la librairie TT il faut aussi se d&eacute;clarer un
+nouveau user dans le fichier tt_stac1.c. Il existe d&eacute;j&agrave; au
+moins un user1 d&eacute;clar&eacute; de fa&ccedil;on &agrave; montrer un
+exemple. Nous allons &eacute;tudier le cas de la d&eacute;claration du
+user2.
+<center>
+<p>!!! actuellement le user n'est pas encore implant&eacute; dans tt_stac1.c
+!!!</center>
+
+<h2>
+2.4. Fichier .h</h2>
+Dans le cas du user2, le fichier d'ent&ecirc;te doit s'appeler tt_user2.h
+et contiendra, par exemple, les d&eacute;finitions suivantes, concernant
+l'ajout de deux nouvelles fonctions.
+<p><b><tt>/***************************************************************************/</tt></b>
+<br><b><tt>/* definitions perso du user1 visibles de tout libtt.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+*/</tt></b>
+<br><b><tt>/***************************************************************************/</tt></b>
+<br><b><tt>#ifndef __TTUSER2H__</tt></b>
+<br><b><tt>#define __TTUSER2H__</tt></b>
+<p><b><tt>/* --- autorized between 2001 and 2999 ---*/</tt></b>
+<br><b><tt>#define TT_IMASERIES_USER1_OFFSET_TOTO 2001</tt></b>
+<p><b><tt>/* --- autorized between 2001 and 2999 ---*/</tt></b>
+<br><b><tt>#define TT_IMASTACK_USER1_TUTU 2001</tt></b>
+<p><b><tt>/* --- Ajout de parametres pour la classe ima/series --- */</tt></b>
+<br><b><tt>typedef struct {</tt></b>
+<br><b><tt>&nbsp;&nbsp; double param1;</tt></b>
+<br><b><tt>} TT_USER2_IMA_SERIES;</tt></b>
+<p><b><tt>/* --- Ajout de parametres pour la classe ima/stack --- */</tt></b>
+<br><b><tt>typedef struct {</tt></b>
+<br><b><tt>&nbsp;&nbsp; double param1;</tt></b>
+<br><b><tt>} TT_USER2_IMA_STACK;</tt></b>
+<p><b><tt>#endif</tt></b>
+<p>Ici, TT_IMASERIES_USER2_OFFSET_TOTO est le num&eacute;ro de fonction,
+interne &agrave; TT, qui permettra de suivre la nouvelle fonction OFFSET_TOTO
+de IMA/SERIES. Pour le user 2, les num&eacute;ros autoris&eacute;s vont
+de 2001 &agrave; 2999, pour le user2 de 3001 &agrave; 3999, etc...
+<p>TT_IMASTACK_USER2_TUTU est le num&eacute;ro de fonction, interne &agrave;
+TT, qui permettra de suivre la nouvelle fonction TUTU de IMA/STACK.
+<p>La structure TT_USER2_IMA_SERIES contient les variables des options
+de IMA/SERIES (ici concerne la valeur de l'option param1 de la fonction
+OFFSET_TOTO.
+<p>La structure TT_USER2_IMA_STACK contient les variables des options de
+IMA/STACK (ici concerne la valeur de l'option param1 de la fonction TUTU.
+<h2>
+2.5. Fichier .c</h2>
+Dans le cas du user2, le fichier de source C doit s'appeler tt_user2.c.
+Continuons &agrave; analyser le m&ecirc;me exemple. Les premi&egrave;res
+lignes du fichier .c contiennent l'inclusion de tt.h et la d&eacute;clarations
+des deux fonctions appel&eacute;es concernant IMA/SERIES OFFSET_TOTO et
+IMA/STACK TUTU.
+<p><b><tt>#include "tt.h"</tt></b>
+<p><b><tt>/***** prototypes des fonctions internes du user1 ***********/</tt></b>
+<br><b><tt>int tt_ima_series_offset_toto(TT_IMA_SERIES *pseries);</tt></b>
+<br><b><tt>int tt_ima_stack_tutu(TT_IMA_STACK *pstack);</tt></b>
+<p>Toute nouvelle fonction doit apara&icirc;tre obligatoirement dans le
+constructeur builder1 suivant :
+<p><b><tt>int tt_user2_ima_series_builder1(char *keys10,TT_IMA_SERIES *pseries)</tt></b>
+<br><b><tt>/**************************************************************************/</tt></b>
+<br><b><tt>/* Definition du nom externe de la fonction et son lien interne
+a libtt.&nbsp; */</tt></b>
+<br><b><tt>/**************************************************************************/</tt></b>
+<br><b><tt>{</tt></b>
+<br><b><tt>&nbsp;&nbsp; if (strcmp(keys10,"OFFSET_TOTO")==0) { pseries->numfct=TT_IMASERIES_USER2_OFFSET_TOTO;
+}</tt></b>
+<br><b><tt>&nbsp;&nbsp; return(OK_DLL);</tt></b>
+<br><b><tt>}</tt></b>
+<p>Si la nouvelle fonction contient des options, alors il faut initiliser
+ses valeurs par d&eacute;faut dans le constructeur builder2 et convertir
+l'argument de cha&icirc;ne en son type interne avec le constructeur builder3.
+<p><b><tt>int tt_user2_ima_series_builder2(TT_IMA_SERIES *pseries)</tt></b>
+<br><b><tt>/**************************************************************************/</tt></b>
+<br><b><tt>/* Valeurs par defaut des parametres de la ligne de commande.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+*/</tt></b>
+<br><b><tt>/**************************************************************************/</tt></b>
+<br><b><tt>{</tt></b>
+<br><b><tt>&nbsp;&nbsp; pseries->user2.param1=0.;</tt></b>
+<br><b><tt>&nbsp;&nbsp; return(OK_DLL);</tt></b>
+<br><b><tt>}</tt></b>
+<p><b><tt>int tt_user2_ima_series_builder3(char *mot,char *argu,TT_IMA_SERIES
+*pseries)</tt></b>
+<br><b><tt>/**************************************************************************/</tt></b>
+<br><b><tt>/* Decodage de la valeur des parametres de la ligne de commande.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+*/</tt></b>
+<br><b><tt>/**************************************************************************/</tt></b>
+<br><b><tt>{</tt></b>
+<br><b><tt>&nbsp;&nbsp; if (strcmp(mot,"OFFSET_VALUE")==0) {</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pseries->user2.param1=(double)(atof(argu));</tt></b>
+<br><b><tt>&nbsp;&nbsp; }</tt></b>
+<br><b><tt>&nbsp;&nbsp; return(OK_DLL);</tt></b>
+<br><b><tt>}</tt></b>
+<p>Le distributeur dispatch1 permet d'assigner le nom de la fonction C
+concernant le calcul de la nouvelle fonction :
+<p><b><tt>int tt_user2_ima_series_dispatch1(TT_IMA_SERIES *pseries,int
+*fct_found, int *msg)</tt></b>
+<br><b><tt>/*****************************************************************************/</tt></b>
+<br><b><tt>/* Appel aux fonctions C qui vont effectuer le calcul des fonctions
+externes */</tt></b>
+<br><b><tt>/*****************************************************************************/</tt></b>
+<br><b><tt>{</tt></b>
+<br><b><tt>&nbsp;&nbsp; if (pseries->numfct==TT_IMASERIES_USER1_OFFSET_TOTO)
+{</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *msg=tt_ima_series_offset_toto(pseries);</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *fct_found=TT_YES;</tt></b>
+<br><b><tt>&nbsp;&nbsp; }</tt></b>
+<br><b><tt>&nbsp;&nbsp; return(OK_DLL);</tt></b>
+<br><b><tt>}</tt></b>
+<p>Dans notre cas, on remarque l'utilisateur conna&icirc;t la fonction
+OFFSET_TOTO (mot cl&eacute; d&eacute;finit dans le builder1) et que le
+programmeur lui associe la fonction C tt_ima_series_offset_toto pour effectuer
+les calculs. La fonction &eacute;crite en C peut &ecirc;tre la suivante
+:
+<p><b><tt>/**************************************************************************/</tt></b>
+<br><b><tt>/**************************************************************************/</tt></b>
+<br><b><tt>/* exemple de la fonction user OFFSET_TOTO implantee dans IMA/SERIES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+*/</tt></b>
+<br><b><tt>/**************************************************************************/</tt></b>
+<br><b><tt>/* Fonction Offset2 (equivalent a Qmips32)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+*/</tt></b>
+<br><b><tt>/**************************************************************************/</tt></b>
+<br><b><tt>int tt_ima_series_offset_toto(TT_IMA_SERIES *pseries)</tt></b>
+<br><b><tt>{</tt></b>
+<br><b><tt>&nbsp;&nbsp; TT_IMA *p_in,*p_out;</tt></b>
+<br><b><tt>&nbsp;&nbsp; long nelem;</tt></b>
+<br><b><tt>&nbsp;&nbsp; double value,offset;</tt></b>
+<br><b><tt>&nbsp;&nbsp; int kkk,index;</tt></b>
+<p><b><tt>&nbsp;&nbsp; /* --- intialisations ---*/</tt></b>
+<br><b><tt>&nbsp;&nbsp; p_in=pseries->p_in;</tt></b>
+<br><b><tt>&nbsp;&nbsp; p_out=pseries->p_out;</tt></b>
+<br><b><tt>&nbsp;&nbsp; nelem=pseries->nelements;</tt></b>
+<br><b><tt>&nbsp;&nbsp; index=pseries->index;</tt></b>
+<br><b><tt>&nbsp;&nbsp; offset=pseries->user1.param1;</tt></b>
+<p><b><tt>&nbsp;&nbsp; /* --- calcul de la fonction ---*/</tt></b>
+<br><b><tt>&nbsp;&nbsp; tt_imabuilder(p_out);</tt></b>
+<br><b><tt>&nbsp;&nbsp; tt_imacreater(p_out,p_in->naxis1,p_in->naxis2);</tt></b>
+<br><b><tt>&nbsp;&nbsp; for (kkk=0;kkk&lt;(int)(nelem);kkk++) {</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value=p_in->p[kkk]+offset;</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p_out->p[kkk]=(TT_PTYPE)(value);</tt></b>
+<br><b><tt>&nbsp;&nbsp; }</tt></b>
+<p><b><tt>&nbsp;&nbsp; /* --- calcul des temps (pour l'entete fits) ---*/</tt></b>
+<br><b><tt>&nbsp;&nbsp; pseries->jj_stack=pseries->jj[index-1];</tt></b>
+<br><b><tt>&nbsp;&nbsp; pseries->exptime_stack=pseries->exptime[index-1];</tt></b>
+<p><b><tt>&nbsp;&nbsp; return(OK_DLL);</tt></b>
+<br><b><tt>}</tt></b>
+<p>L'&eacute;tape d'initialisation consiste &agrave; r&eacute;cup&eacute;rer
+les informations utiles dans la structure TT_IMA_SERIES.
+<p>L'&eacute;tape de calcul montre que l'image de sortie doit &ecirc;tre
+&eacute;crite dans le pointeur pseries->p_out. Ce pointeur est lui m&ecirc;me
+est structure d'image qu'il faut construire avec la fonction tt_imabuilder.
+Il n'est pas besoin de d&eacute;truire pseries->p_out &agrave; la fin du
+calcul, cela est r&eacute;alis&eacute; automatiquement par libTT. Apr&egrave;s
+avoir construit le pointeur d'image de sortie, il faut le dimensionner
+avec tt_imacreater.
+<p>Le calcul lui m&ecirc;me ne pose pas de difficult&eacute;s. L'adressage
+en coordonn&eacute;es (x,y) du pointeur de l'image de dimension (naxis1,naxis2)
+est le suivant : p[y*naxis1+x].
+<p>Les deux derni&egrave;res lignes concernant les &eacute;lements jj_stack
+et exptime_stack de la structure TT_IMA_SERIES, doivent toujours &ecirc;tre
+&eacute;crites de cette fa&ccedil;on afin que libTT puisse g&eacute;rer
+correctement les mots cl&eacute;s Fits DATE-OBS et EXPTIME.
+<p>De la m&ecirc;me fa&ccedil;on que pour IMA/SERIES, il existe des constructeurs
+et un distributeur pour les fonctions de type IMA/STACK. Dans tous les
+cas, on consultera avec attention les fichiers tt_user1.h et tt_user1.c
+pr&eacute;sents dans les sources de libTT.
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

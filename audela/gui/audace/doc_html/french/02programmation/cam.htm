@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>Caméra</title>
+</head>
+
+<body>
+<p class="date">Date de mise à jour : 05 juin 2013</p>
+
+<h1>Caméra </h1>
+
+<p>Ces commandes permettent de contrôler l'acquisition d'images avec des
+caméras reconnues par AudeLA : Audine, Hi-SIS, ST7, CookBook 245, Starlight,
+Kitty, WebCam (port USB Windows uniquement), AudiNet (liaison Ethernet),
+EthernAude (liaison Ethernet), etc. Les commandes qui permettent de contrôler
+une caméra s'écrivent "<code>cam</code>" suivi d'un numéro. Ces commandes
+n'existent pas au démarrage de AudeLA, mais sont créées par la commande
+"<code>::cam::create ...</code>". Ainsi il est possible de piloter plusieurs
+caméras, mais il est laissé à l'utilisateur le soin de ne pas exécuter des
+commandes simultanément. Lors d'une acquisition, l'image est stockée dans un
+buffer (à renseigner avec la fonction <a href="#buf">cam1 buf</a>). En plus, si
+on précise à quel télescope (automatique) est reliée la caméra (à renseigner
+avec <a href="#tel">cam1 tel</a>), elle récupère automatiquement ses
+coordonnées, et les inscrit dans le header FITS si l'option <a
+href="#fromtel">cam1 radecfromtel</a> vaut 1. </p>
+
+<p>Il est important de savoir que les auteurs ne disposent pas personnellement
+de ces caméras, et donc qu'il peut y avoir des problèmes avec certaines
+caméras. </p>
+
+<p>Les commandes sont divisées en deux catégories : </p>
+<ul>
+  <li>Les commandes communes : Sont utilisables par toutes les caméras
+    supportées. </li>
+  <li>Les commandes spécifiques : Propres à chaque caméra en fonction de
+    fonctionnalités propres.</li>
+</ul>
+
+<h1>1. Commandes communes</h1>
+
+<h2>1.1. Commandes d'acquisition</h2>
+
+<h3><a name="acq" id="acq"></a>cam1 acq <i>?-blocking?</i></h3>
+
+<p>Cette commande déclenche l'acquisition d'une image avec les paramètres de
+vue courants (voir plus loin). Cette commande rend la main tout de suite, alors
+que la numérisation de l'image sera effectuée à la fin de la pose. Pour
+détecter le moment où la pose est terminée, cette commande modifie la variable
+globale status_cam1 (pour la caméra 1, status_cam5 pour la caméra 5). En fin de
+pose la valeur "stand" est ré-écrite dans la variable status_cam1. Ainsi il est
+possible grâce à un vwait d'attendre la fin de la pose pour continuer un
+script, mais il est également possible de faire autre chose pendant la prise de
+vue. </p>
+
+<p>Remarque : Les valeurs "read" et "exp" ne sont plus écrites dans la variable
+status_cam1. </p>
+
+<p><code>cam1 exptime 10</code> <br />
+<code>cam1 acq</code> <br />
+<code># traitement qui dure moins de 10 s</code> <br />
+<code>...</code> <br />
+<code>vwait status_cam1</code> <br />
+<code># la pose est terminée</code> <br />
+<code>...</code> </p>
+
+<p>Si <b>-blocking</b> est présente, la commande déclenche l'acquisition d'une
+image et rend la main seulement après la fin de l'acquisition car l'interpéteur
+TCL est bloqué pendant toute la durée de l'acquisition.</p>
+
+<p><code>cam1 exptime 10</code> <br />
+<code>cam1 acq</code> -blocking<br />
+<code># la pose est terminée</code> <br />
+<code>...</code> </p>
+
+<h3><a name="stop" id="stop"></a>cam1 stop</h3>
+
+<p>La fonction "stop" permet d'interrompre une pose en cours. Si aucune pose
+n'est en cours, le message d'erreur "No current exposure" est renvoyé. Sinon,
+la lecture du CCD est déclenchée tout de suite, et l'image est disponible dans
+le buffer d'acquisition dès que cette commande rend la main.</p>
+
+<h2>1.2. Informations de la caméra</h2>
+
+<h3><a name="debug" id="stop">cam1 debug ?<em>0|1|2|3|4</em>?
+(defaut=0)</a></h3>
+
+<p>Active (1|2|3|4) ou désactive (0) l'édition d'un fichier de traces
+pour les fonctions de la partie commune du driver. Il prendra le nom
+suivant : libcam.log. </p>
+
+<p>Attention le niveau de traces 1 ne crée le fichier "libcam.log" que
+si le fonctionnement de la caméra est perturbé par des erreurs.<br />
+</p>
+
+Les différents niveaux de traces sont les suivants :<br />
+
+<ul>
+
+  <li>1 : Correspond à LOG_ERROR, les traces sont précédées de
+&lt;ERROR&gt; (erreurs graves).<br />
+  </li>
+  <li>2 : Correspond à LOG_WARNING, les traces sont précédées de
+&lt;WARNING&gt; (erreurs bénignes).<br />
+</li>
+  <li>3 : Correspond à LOG_INFO, les traces sont précédées de
+&lt;INFO&gt; (informations).<br />
+</li>
+  <li>4 : Correspond à LOG_DEBUG, les traces sont précédées de
+&lt;DEBUG&gt; (informations détaillées pour débuggage).<br />
+</li>
+</ul>
+
+<p>La commande "cam1 debug" retourne le niveau de traces courant.<br />
+</p>
+
+<h3><a name="info" id="info"></a>cam1 info</h3>
+
+<p>Renvoie le type de caméra que pilote la commande cam1 (de même pour les
+autres commandes cam...).</p>
+
+<h3><a name="ccd" id="ccd"></a>cam1 ccd</h3>
+
+<p>Renvoie le nom du capteur CCD qui est installé dans la caméra que pilote la
+commande cam1.</p>
+
+<h3><a name="name" id="name"></a>cam1 name</h3>
+
+<p>Renvoie le nom de la caméra.</p>
+
+<h3><a name="nbpix" id="nbpix"></a>cam1 nbpix</h3>
+
+<p>Renvoie une liste de deux éléments. Le premier élément est le nombre de
+pixels sur l'axe x et le second élément est le nombre de pixels sur l'axe y.
+Attention, le nombre de pixels dépend du binning et de la fenêtre.</p>
+
+<h3><a name="nbcells" id="nbcells"></a>cam1 nbcells</h3>
+
+<p>Renvoie une liste de deux éléments. Le premier élément est le nombre de
+photosites sur l'axe x et le second élément est le nombre de photosites sur
+l'axe y. Attention, le nombre de photosites ne dépend pas du binning, ni de la
+fenêtre. Cela correspond au nombre de pixels en binning 1x1, fenêtre
+entière.</p>
+
+<h3><a name="celldim" id="celldim"></a>cam1 celldim</h3>
+
+<p>Renvoie une liste de deux éléments. Le premier élément est la dimension d'un
+photosite sur l'axe x et le second élément est la dimension d'un photosite sur
+l'axe y. L'unité de la dimension est le mètre.</p>
+
+<h3><a name="pixdim" id="pixdim"></a>cam1 pixdim</h3>
+
+<p>Renvoie une liste de deux éléments. Le premier élément est la dimension d'un
+pixel sur l'axe x et le second élément est la dimension d'un pixel sur l'axe y.
+L'unité de la dimension est le mètre. Les pixels sont définis comme des
+rassemblement de photosites en fonction de la valeur du binning.</p>
+
+<h3><a name="maxdyn" id="maxdyn"></a>cam1 maxdyn</h3>
+
+<p>Renvoie la valeur du nombre de pas codeurs maximal délivré par le
+convertisseur analogique numérique de la caméra. Il s'agit de la valeur du
+niveau de saturation.</p>
+
+<h3><a name="fillfactor" id="fillfactor"></a>cam1 fillfactor</h3>
+
+<p>Renvoie la valeur du facteur de remplissage des pixels. C'est une valeur
+comprise entre zéro et un.</p>
+
+<h3><a name="rgb" id="rgb"></a>cam1 rgb</h3>
+
+<p>Renvoie le type de codage du masque RGB pour une matrice CCD couleur. "none"
+pour une matrice noir &amp; blanc. "cfa" pour une matrice couleur codée CFA
+(Kaf-0400 couleur par exemple).</p>
+
+<h3><a name="timer" id="timer"></a>cam1 timer <em>?-countdown?</em></h3>
+
+<p>Renvoie le nombre de secondes écoulées depuis le début de pose. Si la pose
+n'est pas en cours, revoie la valeur -1. L'option -countdown permet de renvoyer
+le nombre de secondes qui reste avant la fin de la pose.</p>
+
+<h3><a name="gain" id="gain"></a>cam1 gain</h3>
+
+<p>Renvoie le gain théorique de la caméra en électrons par pas codeur
+(e-/adu).</p>
+
+<h3><a name="readnoise" id="readnoise"></a>cam1 readnoise</h3>
+
+<p>Renvoie le bruit de lecture théorique de la caméra, en électrons.</p>
+
+<h3><a name="temperature" id="temperature"></a>cam1 temperature</h3>
+
+<p>Renvoie la température du capteur CCD, en degrés Celsius.</p>
+
+<h2>1.3. Paramétrage de la caméra</h2>
+
+<h3><a name="exptime" id="exptime"></a>cam1 exptime <em>?duree?</em></h3>
+
+<p>Sans argument, cette commande renvoie le temps de pose qui sera utilisé pour
+réaliser les images. L'argument <em>duree</em> permet de régler cette valeur.
+Par exemple :</p>
+
+<p><code><font color="#000000">cam1 exptime 5.2</font></code> <br />
+<code><font color="#000000"># Ok</font></code> <br />
+<code><font color="#000000">cam1 exptime</font></code> <br />
+<code><font color="#000000"># 5.20</font></code></p>
+
+<h3><a name="bin" id="bin"></a>cam1 bin <em>?binning?</em></h3>
+
+<p>Cette commande permet de connaître ou de modifier le binning courant utilisé
+pour réaliser les images, suivant que l'on spécifie ou non l'argument. Celui-ci
+prend la forme d'une liste à deux éléments : les facteurs de binning suivant
+les deux axes du CCD.</p>
+
+<p><code><font color="#000000">cam1 bin [list 2 3]</font></code> <br />
+<code><font color="#000000"># Ok</font></code> <br />
+<code><font color="#000000">cam1 bin</font></code> <br />
+<code><font color="#000000"># 2 3</font></code></p>
+
+<p>Attention, certaines caméras ne permettent pas n'importe quelles valeurs de
+binning. Se renseigner.</p>
+
+<h3><a name="window" id="window"></a>cam1 window <em>?coords?</em></h3>
+
+<p>Réglage des coordonnées de la fenêtre de numérisation du CCD. Lorsque le
+paramètre optionnel est précisé, il doit s'agir d'une liste de 4 entiers qui
+correspondent à l'abscisse et l'ordonnée du coin inférieur gauche, et à
+l'abscisse et l'ordonnée du coin supérieur droit. Le système de coordonnées a
+pour origine le premier pixel dans le coin inférieur gauche, et a pour
+coordonnées (1,1). Les coordonnées de la fenêtre s'expriment hors de tout
+facteur de binning : par exemple, une image pleine trame en binning 2x2 a quand
+même un fenêtrage à (1,1)-(768,512) pour un CCD comme celui de Audine.</p>
+
+<h3><a name="port" id="port"></a>cam1 port</h3>
+
+<p>Retourne le nom du port de communication (LPT1:, USB, quickaudine0,
+etc.).</p>
+
+<h3><a name="buf" id="buf"></a>cam1 buf ?<em>bufNo</em>?</h3>
+
+<p>Cette commande permet de savoir, ou de modifier, le buffer dans lequel sera
+stockée l'image d'acquisition. L'argument optionnel, tout comme la valeur
+renvoyée est un nombre qui est le numéro du buffer. Ainsi, si "cam1 buf"
+renvoie 2, la commande qui permet d'avoir accès à l'image acquise est "buf2
+...".</p>
+
+<h3><a name="tel" id="tel"></a>cam1 tel ?<em>telNo</em>?</h3>
+
+<p>Réalise le même genre de lien que pour la fonction "buf", mais avec le
+télescope. S'il est informatisé, alors à chaque prise de vue le télescope est
+interrogé sur ses coordonnées, et elles sont inscrites dans le header FITS.</p>
+
+<h3><a name="fromtel" id="fromtel"></a>cam1 radecfromtel ?<em>1|0</em>?
+(defaut=0)</h3>
+
+<p>Active (1) ou désactive (0) l'inscription des coordonnées du télescope dans
+le header FITS de la prise de vue. </p>
+
+<p>La désactivation permet de gagner du temps ( 1,2 seconde pour un LX200 )
+dans le cas d'une série d'acquisitions rapides où les coordonnées dans le
+header ne sont pas utiles, par exemple l'autoguidage ou la focalisation.</p>
+
+<h3></h3>
+
+<h3><a name="shutter" id="shutter"></a>cam1 shutter ?<em>shut_mode</em>?</h3>
+
+<p>Lorsque l'obturateur est supporté par la caméra, on peut en préciser le
+comportement. La commande "cam1 shutter" permet cela. Elle a un argument
+optionnel, qui si il est précisé permet de régler ce mode de fonctionnement.
+S'il est absent, cette commande renvoie le mode actuel. </p>
+
+<p>Les trois modes supportés sont <em>opened</em>, <em>closed</em>,
+<em>synchro</em>. Les deux premières valeurs infligent un comportement statique
+à l'obturateur. Le dernier mode, <em>synchro</em>, ouvre l'obturateur en début
+de pose et le ferme à la fin. C'est le mode par défaut, qui est utilisé pour
+l'acquisition traditionnelle. Pour faire des noirs et offsets, on se servira du
+mode <em>closed</em>.</p>
+
+<h3><a name="cooler" id="cooler"></a>cam1 cooler <em>?cool_mode?</em></h3>
+
+<p>Lorsque le système de refroidissement d'une caméra est géré par le logiciel,
+cette fonction a pour paramètre, l'une des valeurs suivante :</p>
+<ul>
+  <li>off : permet d'arrêter le refroidissement.</li>
+  <li>on : permet de mettre en fonctionnement le refroidissement. </li>
+  <li>check valeur : envoie une consigne de température à atteindre (en degrés
+    Celcius).<br />
+    Exemple : <code>cam1 cooler check -20<br />
+    </code>Fixe la consigne de température à -20 °C.</li>
+</ul>
+
+<h3><a name="foclen" id="foclen"></a>cam1 foclen <em>?value?</em></h3>
+
+<p>Fixe la valeur de la longueur focale du système optique placé devant le
+capteur CCD. Entrer la valeur mètres.</p>
+
+<h3><a name="overscan" id="overscan"></a>cam1 overscan <em>?off|on?</em></h3>
+
+<p>Permet de commuter la prise en compte ou non des cellules cachées à la
+lumière sur la matrice CCD. Par défaut, on ne lit pas ces cellules pour obtenir
+une image esthétique (paramètre sur off). Une étude scientifique de l'image
+exige parfois de connaître la valeur de ces pixels cachés. Dans ce cas, on
+fixera le paramètre de l'overscan sur on.</p>
+
+<h3><a name="interrupt" id="interrupt"></a>cam1 interrupt <em>?1|0?</em></h3>
+
+<p>Permet de commuter l'arrêt des interruptions de type cli/sty lors du
+dialogue avec le port parallèle.</p>
+
+<h2>3. Commandes spécifiques à Audine</h2>
+
+<h3><a name="mode" id="mode"></a>cam1 mode ?<em>mode</em>?</h3>
+
+<p>Attention, ce mode n'a pas encore été porté dans le driver externe !!! </p>
+
+<p>Le mode correspond à la manière dont est lu le CCD. Trois modes sont
+possibles : "full", "half", "grid". Le premier (et par défaut) correspond au
+mode pleine trame, c'est à dire le mode classique d'acquisition. Le mode "half"
+correspond au mode demi-trame. Enfin le mode "grid" est un mode particulier qui
+permet de ne lire qu'un pixel sur 'n' dans les deux directions. C'est un mode
+pratique pour faire le pointage d'une planète lorsque le fond de ciel est
+intense : en mode grid 4x4, seul un pixel sur 16 est lu, l'image couvre la
+surface du CCD, mais le contenu des photosites n'est pas accumulé comme dans
+l'opération de binning. Ainsi ni le fond de ciel, ni la planète n'est
+saturé.</p>
+
+<h3><a name="set0" id="set0"></a><a name="set255" id="set255"></a><a
+name="test" id="test"></a><a name="test2" id="test2"></a>cam1 set0, cam1
+set255, cam1 test, cam1 test2</h3>
+
+<p>Ces quatre commandes sont celles qui permettent de tester la caméra Audine,
+comme décrit dans sa documentation de montage.</p>
+
+<h3><a name="scan" id="scan"></a>cam1 scan <em>width height bin dt ?-biny biny?
+?-firstpix index? ?-fast speed? ?-perfo? ?-tmpfile?</em></h3>
+
+<p>Déclenche une acquisition en mode drift scan avec le fonctionnement suivant
+: A l'issue de chaque période <em>dt</em>, <em>biny</em> lignes sont sommées
+dans le CCD avant d'être lues (si l'argument facultatif <em>biny</em> n'est pas
+spécifié, par défaut il prend la valeur 1). Seule la partie de cette
+"super-ligne" décrite par <em>-firstpix</em> et <em>width</em> sera lue avec un
+binning en x de <em>bin</em>. L'image créée aura alors comme largeur
+<em>width</em>/<em>bin</em> (arrondi) et comme hauteur <em>height</em>. Le
+temps d'intégration de chaque ligne est bien dt. </p>
+
+<p><em>Width</em> indique la largeur de l'image en photosites (donc
+indépendante du binning). </p>
+
+<p></p>
+
+<p><em>Height</em> indique le nombre de lignes qu'on souhaite sur l'image
+finale. </p>
+
+<p></p>
+
+<p><em>Bin</em> indique le facteur de binning en x, donc pour les colonnes. </p>
+
+<p></p>
+
+<p><em>Dt</em> donne l'intervalle de temps séparant deux lignes sur l'image
+finale, en millisecondes. </p>
+
+<p></p>
+
+<p>L'option <em>-biny</em> indique le facteur de binning en y, donc pour les
+lignes. Si cet argument n'est pas spécifié, par défaut il prend la valeur 1.</p>
+
+<p></p>
+
+<p>L'option <em>-firstpix</em> permet de décaler la colonne de démarrage de
+l'image (à indiquer avec la valeur de <em>index</em>). Le décalage se compte en
+photosites: la valeur par défaut est 1 et correspond à la première colonne de
+la zone image (overscan exclus). Pour faire une image de 100 pixels de large
+commençant à la colonne 207, il faut entrer la commande : <em>cam1 scan 100 ...
+-firstpix 207</em>. La largeur effective de l'image sur le CCD reste
+<em>width</em>. </p>
+
+<p>L'option <em>-fast</em> permet d'activer le mode rapide du scan. Dans ce
+cas, l'ensemble du scan bloquera les interruptions de l'ordinateur. L'horloge
+de Windows ne peut plus servir de base de temps. On se sert alors de boucles de
+calculs pour calibrer la milliseconde. La valeur du paramètre <em>speed</em>
+correspond aux nombres de boucles à effectuer pour réaliser une attente d'une
+milliseconde. Cette valeur dépend de l'ordinateur. Il faut bien entendu
+calibrer cette valeur. Cela peut être réalisé par la fonction cam1 scanloop.
+</p>
+
+<p>L'option <em>-perfo</em> permet d'obtenir un fichier texte, à la fin du
+scan, qui montre les durées d'attente effectivement réalisées pour obtenir un
+décalage régulier des lignes. Cette option ne fonctionne que dans le cas où
+l'option -fast n'est pas activée. </p>
+
+<p>L'option <em>-tmpfile</em> permet de sauver un fichier binaire des pixels
+lus, au cours de l'acquisition. Utile si l'on craint un plantage du système
+pendant la réalisation d'un scan important (occultation par exemple). </p>
+
+<p>Les options <em>-biny</em>, <em>-firstpix</em>, <em>-fast</em>,
+<em>-perfo</em> et <em>-tmpfile</em> sont disponibles dans le cas d'une caméra
+Audine pilotée par un port parallèle.</p>
+
+<p>Seules les options <em>-biny</em> et <em>-firstpix</em> sont disponibles
+dans le cas d'une caméra Audine pilotée par une EthernAude.</p>
+
+<p>La hauteur de l'image n'est limitée que par la quantité de mémoire
+disponible de la machine, et de ses performances. Il faut tout de même savoir
+que sur l'image finale il y aura un gradient sur les 512/<em>bin</em> premières
+lignes (cas d'un KAF-0400, possédant 512 lignes) car elles n'auront pas eu la
+même durée de présence dans le CCD (la première ligne y reste <em>dt</em>, la
+quinzième 15*<em>dt</em>/<em>bin</em> et la 700ème
+512*<em>dt</em>/<em>bin.</em> </p>
+
+<p>Cette commande n'effectue aucun test concernant les paramètres d'entrée,
+aussi il faut être vigilant sur le positionnement du scan. Par exemple avec un
+KAF-0400 : </p>
+
+<p><em>cam1 scan 205 300 3 200 -firstpix 650</em> </p>
+
+<p>ne va lire que la portion de ligne comprise entre les colonnes 650 et
+650+205-1=854 du CCD. Le problème est que le KAF-0400 ne possède que (!) 768
+colonnes optiques : La commande fonctionnera quand même, mais les colonnes au
+delà de 768 correspondront à des pixels masqués, et de post-scan : Il ne faudra
+pas s'étonner de voir une image noire sur sa partie droite. A noter que le -1
+dans le calcul de la colonne finale est lié au problème des piquets et des
+intervalles (n piquets équivaut à n-1 intervalles). </p>
+
+<p>Pour utiliser le mode drift-scan afin de compenser la rotation de la Terre,
+il faut utiliser la formule suivante : </p>
+<ul>
+  <li>dt = 86164*atan(9e-6*bin/(2*f))/180, où f = focale de l'instrument et bin
+    le facteur de binning. </li>
+  <li>ex : f=1m, bin=2 =&gt; dt = 246.8 ms (pensez à basculer la calculatrice
+    en degrés !) </li>
+</ul>
+
+<p>La fonction scan met à jour la variable scan_result1 pour la caméra cam1,
+etc. à la fin de la pose, de telle sorte qu'un vwait permette de la
+détecter.</p>
+
+<h3><a name="scanloop" id="scanloop"></a>cam1 scanloop</h3>
+
+<p>Calibre la valeur du paramètre <em>speed</em> pour la fonction cam1 scan
+dans le cas d'une caméra Audine pilotée par un port parallèle.</p>
+
+<h3><a name="breakscan" id="breakscan"></a>cam1 breakscan</h3>
+
+<p>Arrête un scan en cours. L'image en cours d'élaboration est conservée.</p>
+
+<h3><a name="shuttertype" id="shuttertype"></a>cam1 shuttertype
+<em>?audine|thierry? ?options?</em></h3>
+
+<p>Permet de sélectionner le type d'obturateur. Le paramètre value peut avoir
+l'une des valeurs suivantes : </p>
+<ul>
+  <li>audine : Pour un obturateur classique de la caméra Audine (décrit dans la
+    documentation).</li>
+  <li>utiliser option égale "inverse" si l'obturateur fonctionne à
+  l'envers.</li>
+  <li>thierry : Pour un obturateur de type Pierre Thierry, basé sur un pilotage
+    par servo-moteurs.</li>
+</ul>
+
+<h3><a name="obtupierre" id="obtupierre"></a>cam1 obtupierre ?a b c d e t
+flag?</h3>
+
+<p>Permet de changer les valeurs des paramètres de l'obturateur de type Pierre
+Thierry.</p>
+
+<h3><a name="ampli" id="ampli"></a>cam1 ampli <em>synchro|on|off
+?nbcleanings?</em></h3>
+
+<p>Commute le mode de l'amplificateur du CCD des Audines . Trois modes sont
+possibles : </p>
+<ul>
+  <li>synchro : Mode par défaut. L'amplificateur est arrêté juste après la
+    phase de nettoyage du CCD en début d'intégration. Il est automatiquement
+    remis en fonctionnement juste avant la lecture des pixels. Noter que
+    l'option ?nbcleaning? permet de régler le nombre de nettoyages du registre
+    horizontal avant lecture. Par défaut cette valeur est fixée à 60. Il est
+    possible qu'il faille augmenter cette valeur dans le cas du Kaf-1600. </li>
+  <li>on : L'amplificateur est toujours en fonctionnement, même pendant les
+    intégrations. L'option ?nbcleaning? n'a aucune influence. Dans ce mode, le
+    signal d'électroluminescence apparaît dans un coin de l'image. </li>
+  <li>off : L'amplificateur n'est jamais en fonctionnement, même pendant les
+    lectures. L'option ?nbcleaning? n'a aucune influence. Dans ce mode, l'image
+    obtenue n'est pas influencée par la lumière reçue sur le CCD et n'a pas
+    d'intérêt autre qu'une mise au point de l'électronique</li>
+</ul>
+
+<h3><a name="outtime" id="outtime"></a>cam1 outtime <em>billion_out</em></h3>
+
+<p>Calcule la durée d'une instruction out envoyée sur le port parallèle. Le
+paramètre billion_out représente le nombre milliards de fois que va être
+exécuté cette instruction pour que le résultat soit correct. Comme la durée
+totale du calcul ne peut être connue qu'a une seconde près, une durée totale de
+plusieurs secondes est nécessaire pour avoir une valeur correcte. Cela
+correspond généralement à environ 15 pour le paramètre <em>billion_out</em>.</p>
+
+<h3><a name="portadress" id="portadress"></a>cam1 portadress
+<em>?value?</em></h3>
+
+<p>Retourne la valeur décimal de l'adresse du port parallèle. Value permet de
+changer l'adresse du port (inutile normalement).</p>
+
+<h3><a name="wipe" id="wipe"></a>cam1 wipe</h3>
+
+<p>Rinçage de tous les pixels du CCD et extinction éventuelle de
+l'amplificateur. Cette fonction peut être utilisée pour commencer une pose sans
+connaître d'avance sa durée.</p>
+
+<h3><a name="read" id="read"></a>cam1 read</h3>
+
+<p>Lecture immédiate, sans rinçage, des pixels du CCD avec le binning fixé par
+<b>cam1 bin</b>. On peut ainsi lire une pose commencée par la fonction <b>cam1
+wipe</b>. Le temps de pose sera calculé à partir de la dernière fonction
+<b>cam1 wipe</b> employée.</p>
+
+<h3><a name="acqnormal" id="acqnormal"></a>cam1 acqnormal</h3>
+
+<p>Equivalent à la fonction cam1 acq, à cela près que c'est la fonction
+cmdCamAcqNormal du fichier tp.c qui est appelée. Cette fonction peut être
+utilisée en enseignement de travaux pratiques sur la caméra CCD Audine pour
+comprendre le chronogramme d'acquisition par les étudiants.</p>
+
+<h3><a name="acqspecial" id="acqspecial"></a>cam1 acqspecial</h3>
+
+<p>En temps normal, cette fonction ne fait rien. Elle appelle la fonction
+cmdCamAcqSpecial du fichier tp.c. Cette fonction est destinée à être programmée
+par des étudiants dans le cadre d'enseignement de travaux pratiques sur la
+caméra CCD Audine afin de modifier le chronogramme d'acquisition.</p>
+
+<h3><a name="cantype" id="cantype"></a>cam1 cantype
+<em>?AD976A|LTC1605?</em></h3>
+
+<p>Choix du type de convertisseur analogique digital. Par défaut les caméras
+Audine sont équipées d'un AD976A qui nécessite une durée d'environ 10
+microsecondes de signal de début de conversion. Le LTC1605 équipe quelques
+Audines custom et nécessite seulement un durée d'environ 2 microsecondes pour
+le signal de début de conversion.</p>
+
+<h2>4. Commandes spécifiques à Hi-SIS</h2>
+
+<h3><a name="bell" id="bell"></a>cam1 bell ?<em>bell_mode</em>?</h3>
+
+<p>Cette commande spécifique aux Hi-SIS 24/33/44 permet d'activer ou non la
+sonnerie. L'argument peut alors valoir "on", ou "off". Sans argument, la
+commande "cam1 bell" renvoie le mode de fonctionnement de la sonnerie.</p>
+
+<h3><a name="delayloops" id="delayloops"></a>cam1 delayloops ?<em>{na nb
+nc}?</em></h3>
+
+<p>Délais de synchronisation avec le microcontrôleur des Hi-SIS 22. na, nb et
+nc sont des nombres d'instructions de type "out" qu'il faut attendre aux cours
+du dialogue avec le microcontrôleur. Par défaut, les délais sont {5 1 7}. Sans
+paramètre, la fonction renvoie les valeurs actuelles.</p>
+
+<h3><a name="fan" id="fan"></a>cam1 fan ?<em>{on|off n}?</em></h3>
+
+<p>Réglages de puissance des modules Peltier (Hi-SIS 24/33/44). L'argument est
+une liste de deux paramètres. Le premier est <em>on</em> ou <em>off</em>. Le
+second est un nombre compris entre 0 et 127. Sans paramètre, la fonction
+renvoie les valeurs actuelles.</p>
+
+<h3><a name="filterwheel" id="filterwheel"></a>cam1 filterwheel
+<em>?nf?</em></h3>
+
+<p>Positionnement d'un filtre (Hi-SIS 24/33/44). nf est un numéro de filtre
+(compris entre 1 et 6 inclus). Sans paramètre, la fonction renvoie la valeur
+actuelle. Sans paramètre, la fonction renvoie la valeur actuelle si la roue à
+filtre est activée. Sinon elle renvoie le message "disable".</p>
+
+<h3><a name="shutterdelay" id="shutterdelay"></a>cam1 shutterdelay
+<em>?nd?</em></h3>
+
+<p>Délais d'attente entre l'ordre de fermeture de l'obturateur et le début de
+lecture (Hi-SIS 24/33/44). Si un nombre est passé en paramètre, il s'agit du
+nombre de millisecondes qu'il doit s'écouler entre l'émission de la fermeture
+de l'obturateur, et le début de la numérisation de l'image CCD. Si aucun
+paramètre n'est fourni, la commande renvoie la valeur actuelle.</p>
+
+<h3><a name="reset" id="reset"></a>cam1 reset</h3>
+
+<p>Initialisation du microcontrôleur (Hi-SIS 24/33/44).</p>
+
+<h3><a name="register" id="register"></a>cam1 register</h3>
+
+<p>Lecture et écriture d'ordres dans le registre du microcontrôleur (Hi-SIS
+24/33/44).</p>
+
+<h3><a name="status" id="status"></a>cam1 status</h3>
+
+<p>Retourne l'état actuel du microcontrôleur (Hi-SIS 24/33/44). Les valeurs
+retournées sont l'une da liste suivante : idle, pause, clean ccd, exposure,
+digitize, cmd1, cmd2, cmd3, Bad status value.</p>
+
+<h3><a name="gainampli" id="gainampli"></a>cam1 gainampli <em>?g?</em></h3>
+
+<p>Réglage du gain de l'amplificateur de la chaîne analogique (Hi-SIS
+24/33/44). <em>g</em> est la valeur du gain. Sans paramètre, la fonction
+renvoie la valeur actuelle.</p>
+
+<h2>5. Commandes spécifiques à SBIG</h2>
+
+<h3><a name="infotemp" id="infotemp"></a>cam1 infotemp ?<em>param</em>?</h3>
+
+<p>Cette commande permet d'afficher les choix actuels de gestion de température
+de la caméra. Elle n'accepte aucun paramètres et retourne une liste composée
+des éléments suivants :</p>
+<ul>
+  <li>Consigne en température, </li>
+  <li>Température du CCD, </li>
+  <li>Température ambiante.</li>
+  <li>Régulation en marche ? 0=non, 1=oui, </li>
+  <li>Puissance appliquée au régulateur Peltier pour atteindre la consigne
+    (varie entre 0=off et 255=puissance maximale), </li>
+</ul>
+
+<p>Exemple :<br />
+<code>cam1 infotemp</code><br />
+<code># -15.000000 -7.715797 25.000000 1 79</code><br />
+Signifie que le consigne est égale à -15.00 °C, que la température actuelle du
+ccd vaut -7.72 °C, que la régulation en température est activée et que le
+régulateur Peltier fonctionne à 79/255*100=31 %. Pour les caméras USB, il n'y a
+pas de capteur de température extérieure. La valeur renvoyée est alors toujours
+25 °C.</p>
+
+<p>La température peut être réglée avec la commande : <code>cam1 cooler check
+-15</code>.</p>
+
+<p>Il est recommandé par SBIG de couper la régulation et d'attendre quelques
+minutes avant d'éteindre l'alimentation de la caméra. L'arrêt de la régulation
+peut aussi être réalisée avec la commande : <code>cam1 cooler off</code>.</p>
+
+<h3><a name="activaterelay" id="activaterelay"></a>cam1 activaterelay
+<em>param</em></h3>
+
+<p>Cette commande active les relais. Le paramètre est une liste de 4 entiers
+qui représentent la durée de l'impulsion appliquée dans chaque direction : x+,
+x-, y+, y-. La durée est exprimée en centièmes de seconde (cs). </p>
+
+<p>Exemple : <code>cam1 relay [list 100 0 0 0]</code> </p>
+
+<p>active le relais x+ pendant 1 seconde.</p>
+
+<h3><a name="aotiptilt" id="aotiptilt"></a>cam1 aotiptilt
+<em>déviation</em></h3>
+
+<p>Le paramètre déviation est une liste à deux entiers (entre 0 et 4095) qui
+indique la déviation du tiptilt. La valeur 2048 correspond au centrage du
+miroir.</p>
+
+<h2>6. Commandes spécifiques aux WebCams</h2>
+
+<h3><a name="videosource" id="videosource"></a>cam1 videosource</h3>
+
+<p>Modification des paramètres d'acquisition.</p>
+
+<h3><a name="videoformat" id="videoformat"></a>cam1 videoformat</h3>
+
+<p>Modification du format d'image.</p>
+
+<h3><a name="longuepose" id="longuepose"></a>cam1 longuepose <em>?0|1?</em></h3>
+
+<p>Si le paramètre est 0 la WebCam est utilisée en mode standard avec le temps
+de pose réglé dans la fonction videosource. </p>
+
+<p>Si le paramètre est 1 la WebCam est utilisée en mode longue pose selon la
+modification de Steve Chambers. Le temps de pose est alors donné par la
+fonction exptime. </p>
+
+<p>Voir <a href="http://home.clara.net/smunch/wintro.htm"
+target="_blank">http://home.clara.net/smunch/wintro.htm</a> et <a
+href="http://astrosurf.com/sweiller/VproDS.html"
+target="_blank">http://astrosurf.com/sweiller/VproDS.html</a> pour plus de
+détails sur la modification de la caméra. </p>
+
+<p>Sans paramètre, la fonction renvoie la valeur actuelle. </p>
+
+<p>Les fonctions ci-dessous ne s'appliquent que lorsque le paramètre longuepose
+vaut 1 : </p>
+
+<h3><a name="longueposeport" id="longueposeport"></a>cam1 longueposeport
+<em>?value?</em></h3>
+
+<p>Retourne la valeur décimale de l'adresse du port parallèle utilisé pour le
+contrôle de la pose. <em>Value</em> permet de changer l'adresse du port.</p>
+
+<h3><a name="longueposestartvalue" id="longueposestartvalue"></a>cam1
+longueposestartvalue <em>?value?</em></h3>
+
+<p>Indique la valeur décimale du caractère envoyé sur le port parallèle au
+début de la pose. La valeur par défaut est 0.</p>
+
+<h3><a name="longueposestopvalue" id="longueposestopvalue"></a>cam1
+longueposestopvalue <em>?value?</em></h3>
+
+<p>Indique la valeur décimale du caractère envoyé sur le port parallèle à la
+fin de la pose. La valeur par défaut est 1, elle convient si la commande est
+réalisée par la pin 2 du port parallèle.</p>
+
+</body>
+</html>

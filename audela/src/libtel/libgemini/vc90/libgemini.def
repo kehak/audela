@@ -1,0 +1,2 @@
+LIBRARY libgemini
+EXPORTS Gemini_Init @1

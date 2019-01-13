@@ -1,0 +1,41 @@
+
+set visuNo 1
+set bufNo [::confVisu::getBufNo $visuNo]
+
+#-------------------------------------------------------------------------------
+test tool_astrometry_deg2hms {sextractor image webcam} -constraints {
+   AUDACE
+} -setup {
+   file copy -force [file join $::conf(testaudela,rep_images) "m45_champ.fit"] $::audace(rep_images)
+   loadima "m45_champ.fit"
+   #--- je charge le package astrometry
+   package require astrometry
+   #--- je demarre l'outil
+   ::confVisu::selectTool $visuNo ::astrometry
+
+} -body {
+   #--- je selectionne le catalogue MICROCAT
+   ::testaudela::clicCombobox .audace.tool.astrometry.cal.catalog.fra_0.cat "MICROCAT"
+   #--- je coche la suppression des fichiers et des images temporaires
+   ::testaudela::clicCheckButton .audace.tool.astrometry.delete_images.chk 1
+   ::testaudela::clicCheckButton .audace.tool.astrometry.delete_files.chk 1
+
+   #--- je clique sur le bouton demarrer
+   ::testaudela::clicButton .audace.tool.astrometry.cal.fra_2.but3
+
+   set result [.audace.tool.astrometry.status.labURL cget -text ]
+   set nbStar 0
+   scan $result "$::caption(astrometry,start,6)" nbStar
+   after 2000
+   return $nbStar
+} -cleanup {
+   #--- je supprime l'instance (cette commande arrete l'outil si ce n'est pas deja fait)
+   ::astrometry::deletePluginInstance $visuNo
+   #--- je supprime le package de la memoire
+   package forget astrometry
+   #--- j'efface l'image dans la visu
+   ::confVisu::clear $visuNo
+   #--- j'efface l'image sur le disque
+   file delete -force [file join $::audace(rep_images) "m45_champ.fit"]
+} -result "45"
+

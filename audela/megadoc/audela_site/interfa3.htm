@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Traiter des images CCD</title>
+</head>
+
+<body>
+<p>Une cam&eacute;ra CCD d&eacute;livre des images brutes. Ces
+  images brutes sont affect&eacute;es de multiples petits d&eacute;fauts inh&eacute;rents &agrave; la
+  technologie du CCD : Bias, dark, flat, smearing, saturation, d&eacute;fauts
+  cosm&eacute;tiques, etc. Le traitement de l'image consiste d'abord &agrave; corriger,
+  en partie, ces d&eacute;fauts afin d'extraire une image exploitable. C'est
+  le pr&eacute;traitement des images. Id&eacute;alement, toute image, m&ecirc;me
+  si elle est acquise uniquement pour des raisons d'esth&eacute;tique, doit &ecirc;tre
+  pr&eacute;trait&eacute;e. C'est d'ailleurs l'image pr&eacute;trait&eacute;e
+  qui doit &ecirc;tre archiv&eacute;e pour le long terme (base de donn&eacute;es,
+  catalogues, etc.). L'image pr&eacute;trait&eacute;e est importante car elle
+  contient aussi l'information de base en vue de mesurer des magnitudes ou bien
+  des coordonn&eacute;es. </p>
+<p>Si l'on souhaite obtenir des images esth&eacute;tiques, on
+  peut parfois ajouter quelques op&eacute;rations de traitements d'images, &agrave; partir
+  de l'image pr&eacute;trait&eacute;e. Par exemple, une transformation logarithmique
+  permet d'homog&eacute;n&eacute;iser la dynamique de l'image des galaxies ou
+  des amas globulaires. </p>
+<p>Si l'on souhaite faire des mesures (magnitudes, coordonn&eacute;es,
+  etc.) il faut calibrer l'image pr&eacute;trait&eacute;e. Ensuite, on utilisera
+  les outils d'analyse du logiciel pour extraire des valeurs num&eacute;riques
+  correspondant aux informations recherch&eacute;es. Cette derni&egrave;re phase
+  s'appelle commun&eacute;ment la r&eacute;duction de donn&eacute;es. Notons
+  que, comme pour des images esth&eacute;tiques, il est parfois n&eacute;cessaire
+  d'appliquer des op&eacute;rations de traitement sur l'image pr&eacute;trait&eacute;e
+  avant de passer &agrave; la r&eacute;duction des donn&eacute;es. Par exemple,
+  si l'on souhaite mesurer la magnitude d'une &eacute;toile situ&eacute;e sur
+  le bras d'une galaxie, on pourra effectuer une op&eacute;ration de traitement
+  qui consiste &agrave; soustraire le bras de la galaxie. Il faut cependant prendre
+  garde que ces traitements ne perturbent pas la mesure ult&eacute;rieure. </p>
+<p>Le traitement des images n'a rien &agrave; voir avec de la
+  magie ou de la triche. Le but n'est pas d'ajouter de l'information mais d'extraire
+  celle qui est utile. De plus, &agrave; chaque th&egrave;me d'observation correspond
+  des besoins sp&eacute;cifiques en mati&egrave;re de traitement. </p>
+<p>R&eacute;sumons les diff&eacute;rentes phases du traitement
+  des images : </p>
+  <ul>
+    <li> Le pr&eacute;traitement des images brutes.</li>
+    <li> Les traitements d'images.</li>
+    <li> Les r&eacute;ductions des donn&eacute;es.</li>
+  </ul>
+  <p>Nous allons donc aborder successivement chacun de ces points. </p>
+<h3> <a name="trt"></a>1. Pr&eacute;traiter les images brutes</h3>
+<p> Le traitement des images acquises avec une cam&eacute;ra
+  CCD permet d'am&eacute;liorer leur qualit&eacute; et d'en extraire des informations.
+  La phase de pr&eacute;traitement permet, notamment, de corriger les imperfections
+  techniques du CCD (courant d'obscurit&eacute;) et les d&eacute;formations photom&eacute;triques
+  du syst&egrave;me optique employ&eacute; (vignettage, poussi&egrave;res sur
+  l'optique, etc.). Le pr&eacute;traitement de base n'est pas compliqu&eacute;.
+  Il consiste d'abord &agrave; soustraire le dark de l'image brute, puis &agrave; diviser
+  le r&eacute;sultat par le flat. Mais qu'est-ce que le dark et le flat ? </p>
+<h3> 1.1. Principes du pr&eacute;traitement</h3>
+<p> Examinons la valeur num&eacute;rique I lue sur un pixel
+  de l'image brute. Cette valeur est la somme de trois composantes :</p>
+    <p align="center">I = B + T + L</p>
+  <ul>
+    <li> B est le signal de bias, aussi appel&eacute;e offset. C'est une valeur
+      constante, pour ce pixel, qui appara&icirc;t sur toutes les images, quelque
+      soit le temps de pose et la lumi&egrave;re re&ccedil;ue. Pour faire une
+      image de bias, il suffit de placer la cam&eacute;ra dans l'obscurit&eacute; compl&egrave;te
+      et de faire une pose de temps d'int&eacute;gration le plus court possible.
+      Avec la cam&eacute;ra Audine, le bias vaut environ 2000 pour un Kaf-0400
+      et environ 8000 pour un Kaf-0401E.</li>
+    <li> T est le thermique. C'est une valeur proportionnelle au temps de pose
+      et qui appara&icirc;t sur toutes les images, quelle que soit la lumi&egrave;re
+      re&ccedil;ue. Le thermique augmente d'autant moins vite que la cam&eacute;ra
+      est mieux refroidie (d'o&ugrave; son nom).</li>
+  </ul>
+  La somme B+T est appel&eacute;e image dark (ou noir) et not&eacute;e
+    D :
+  <center>
+    D = B + T
+  </center>
+    <p>Pour faire une image de dark, il suffit de placer la cam&eacute;ra dans l'obscurit&eacute; compl&egrave;te
+    et de faire une pose avec un temps d'int&eacute;gration exactement semblable &agrave; l'image
+    brute qu'il faudra pr&eacute;traiter. </p>
+    <ul>
+	<li> L est la contribution lumineuse. Elle est &eacute;gale &agrave; l'&eacute;clairement
+      incident E multipli&eacute; par R, le facteur de r&eacute;ponse du aux
+      effets de l'optique (vignettage et poussi&egrave;res) et de r&eacute;ponse
+      propre &agrave; chaque pixel :</li>
+   </ul>
+    <p align="center">L = E*R</p>
+    <p>Il faut donc d&eacute;terminer la r&eacute;ponse R. Pour cela, on effectue
+      une image pos&eacute;e sur un champ uniforme (image sur le ciel cr&eacute;pusculaire
+      typiquement) de fa&ccedil;on &agrave; ce que E ne d&eacute;pende pas du
+      pixel et soit consid&eacute;r&eacute; comme une constante (cste). Ainsi,
+      on nomme flat (not&eacute;e F), l'image : </p>
+    <p align="center">F = cste*R</p>
+    <p>L'image brute d'un flat (not&eacute;e FF) est donc &eacute;gale &agrave; : </p>
+    <p align="center">FF = B + T' + cste*R = D' + F</p>
+    <p>On voit que F peut &ecirc;tre extraite de FF en lui soustrayant la contribution
+      du dark, F=FF-D'. D' est un dark de m&ecirc;me temps de pose que FF.</p>
+  En r&eacute;sum&eacute;, pour pr&eacute;traiter une image brute, il faut disposer
+  de trois images de calibration :
+   <ul>
+     <li> Le bias (ou l'offset) : B</li>
+     <li> Le dark (ou le noir) : D</li>
+     <li> Le flat : F</li>
+   </ul>
+   <p>et l'image pr&eacute;trait&eacute;e sera &eacute;gale &agrave; : E = (I-D)
+   / F </p>
+<h3> 1.2. Obtention des images de calibration</h3>
+<p> De nombreuses techniques permettent d'obtenir des images
+  de calibration tr&egrave;s propres. Nous n'&eacute;tudierons ici que le cas
+  le plus simple afin de ne pas compliquer la proc&eacute;dure. De plus, nous
+  allons montrer un exemple qui concerne la moyenne d&eacute;finition (c'est &agrave; dire
+  le binning 2x2). On peut r&eacute;p&eacute;ter les m&ecirc;mes proc&eacute;dures
+  pour les autres d&eacute;finitions. </p>
+<h3> 1.2.1. Obtention du bias (offset)</h3>
+<p> Il fait nuit et il pleut ! Voil&agrave; le moment propice
+  pour faire les images de bias. La cam&eacute;ra est branch&eacute;e &agrave; l'ordinateur,
+  dans la maison, dans une pi&egrave;ce o&ugrave; r&egrave;gne l'obscurit&eacute; totale.
+  Le hublot avant est bouch&eacute; &agrave; la lumi&egrave;re de fa&ccedil;on
+  tr&egrave;s efficace. Le bias est obtenu en faisant une pose de 0 seconde suivant
+  la <a
+ href="interfa2.htm#acq">proc&eacute;dure classique</a> d'acquisition d'image.
+  On enregistre l'image sous le nom b2.fit sur le disque dur (b pour bias et
+  2 pour binning 2x2). </p>
+<h3> 1.2.2. Obtention du dark (noir)</h3>
+<p> Dans les m&ecirc;mes conditions que pour le bias, un dark
+  de 1 minute est obtenu en faisant une pose de 60 secondes suivant la <a
+ href="interfa2.htm#acq">proc&eacute;dure classique</a> d'acquisition d'image.
+  On enregistre l'image sous le nom d2_60.fit sur le disque dur (d pour dark,
+  2 pour binning 2x2 et 60 pour 60 secondes). </p>
+<h3> 1.2.3. Obtention du flat (plage de lumi&egrave;re uniforme)</h3>
+<p> La cam&eacute;ra est mont&eacute;e sur le t&eacute;lescope.
+  Le Soleil est couch&eacute; depuis 30 minutes environ. On pointe le t&eacute;lescope
+  vers le ciel bleu cr&eacute;pusculaire et on fait une image d'une minute. L'image
+  ne doit pas &ecirc;tre satur&eacute;e, sinon il faut attendre que la nuit soit
+  plus noire. Ce n'est pas grave si quelques &eacute;toiles apparaissent ici
+  et l&agrave; sur les images. On prendra alors 5 poses de flat (de 60 secondes)
+  en suivant la <a
+ href="interfa2.htm#acq">proc&eacute;dure classique</a> et en prenant soin de
+  bouger le t&eacute;lescope entre chaque pose. Les images seront enregistr&eacute;es
+  sur le disque dur sous les noms flat-1.fit, flat-2.fit et ainsi de suite jusqu'&agrave; flat-5.fit. </p>
+<h3> <a name="formcal"></a>1.3. Mise en forme des images de calibration</h3>
+<p> Les images de calibration sont, pour l'instant, sous leur
+  forme brute :
+  <ul>
+    <li> b2.fit : Image du bias d'un niveau de 1000 ADU.</li>
+    <li> d2_60.fit : Image du noir de 60 secondes.</li>
+    <li> flat-1.fit &agrave; flat-5.fit : Images des flats.</li>
+  </ul>
+  <p>Seules les images de flats vont &ecirc;tre mises en forme, les autres images
+  sont exploitables directement. </p>
+<h3> 1.3.1. Mise en forme du flat</h3>
+<p> On commence par corriger les images brutes de flat par
+  le dark et le bias. Pour cela, allez dans le menu Pr&eacute;traitement, puis
+  cliquez sur Sur une s&eacute;rie : </p>
+<p align="center"><img src="images/interfa3/interfa3-01-fr.gif" alt="" width="639" height="135" /></p>
+<p>Une nouvelle fen&ecirc;tre appara&icirc;t, choisissez Optimisation
+    du noir et il faut la remplir comme ci-apr&egrave;s : </p>
+<p align="center"><img src="images/interfa3/interfa3-02-fr.gif" alt="" width="284" height="263" /></p>
+<p>Appuyez sur le bouton Appliquer pour effectuer l'op&eacute;ration.
+  Nous allons maintenant Normaliser l'&eacute;clairement afin d'harmoniser
+  le flux de lumi&egrave;re sur des images prises &agrave; des moments diff&eacute;rents.
+  Toujours dans le menu Pr&eacute;traitement, et Sur une s&eacute;rie,
+  choisir Normaliser l'&eacute;clairement et remplir la fen&ecirc;tre
+  comme ci-apr&egrave;s : </p>
+<p align="center"><img src="images/interfa3/interfa3-03-fr.gif" alt="" width="263" height="233" /></p>
+<p>Enfin, l'image finale du flat sera obtenue comme la M&eacute;diane des
+  images : </p>
+<p><img src="images/interfa3/interfa3-04-fr.gif" alt="" width="263" height="240" /></p>
+<p>Ainsi, l'image f2.fit contiendra le flat pour effectuer les
+  corrections de pr&eacute;traitement. </p>
+<h3> 1.4. La correction d'une image brute</h3>
+<p> Si on appelle m3.fit, l'image brute qui vient d'&ecirc;tre
+  acquise (60 secondes de pose en binning 2x2), on la corrigera en une seule &eacute;tape
+  gr&acirc;ce &agrave; au panneau de pr&eacute;traitement sp&eacute;cialement
+  con&ccedil;ue dans Audace (dans la mesure o&ugrave; l'on a obtenu les images
+  de calibration d&eacute;crites pr&eacute;c&eacute;demment). Pour cela, aller
+  dans le menu Panneau puis cliquer sur Pr&eacute;traitement : </p>
+<p align="center"><img src="images/interfa3/interfa3-05-fr.gif" alt="" width="638" height="342" /></p>
+<p>Apr&egrave;s avoir appuy&eacute; sur le bouton Lance,
+  la fen&ecirc;tre suivante appara&icirc;t. La remplir comme suit :<br />
+</p>
+<div align="center"><img src="images/interfa3/interfa3-06-fr.gif" alt=""
+ width="638" height="572" /></div>
+<p>Dans ce panneau, pr&eacute;charge est synonyme de bias ou
+  d'offset. Il vous suffit d'appuyer seulement sur le dernier bouton Go.
+  Ainsi, l'image m3prt est l'image pr&eacute;trait&eacute;e.</p>
+  <p>Pour plus d'explication, je vous invite &agrave; consulter la notice au format
+  pdf (pretraitement.pdf) du panneau de Pr&eacute;traitement que
+  vous trouverez dans le r&eacute;pertoire "doc_pdf" d'Audela. Ce panneau
+  permet le pr&eacute;traitement par lot des images.</p>
+<h3> 1.5. Corrections compl&eacute;mentaires</h3>
+<p> Apr&egrave;s avoir pr&eacute;trait&eacute; l'image, il
+  peut &ecirc;tre utile d'effectuer des corrections sur certaines parties de
+  l'image afin d'am&eacute;liorer quelques zones pr&eacute;cises. Les corrections
+  sont de deux ordres :</p>
+  <ul>
+    <li> Le smearing : L'effet de tra&icirc;n&eacute;e (en fran&ccedil;ais) est
+      d&ucirc; &agrave; la lecture de l'image si la cam&eacute;ra n'est pas munie
+      d'un obturateur.</li>
+    <li> Les d&eacute;faut cosm&eacute;tiques : La qualit&eacute; des CCD n'est
+      pas toujours irr&eacute;prochable et il faut quelque fois modifier des
+      valeurs localement pour avoir un meilleur rendu.</li>
+    <li> Les cosmiques : Le rayonnement cosmique provoque l'apparition al&eacute;atoire
+      de petits groupes de pixels brillants.</li>
+  </ul>
+  La correction de smearing est implant&eacute;e dans Audace. Si l'image est
+  charg&eacute;e dans le buffer 1 (ce qui est le cas avec la fonction loadima)
+ il suffit d'ex&eacute;cuter la ligne de commande suivante dans la Console d'Audace
+  :
+  <blockquote><pre>buf1 unsmear 0.0005</pre></blockquote>
+  <p>Le coefficient 0.0005 doit &ecirc;tre adapt&eacute; &agrave; l'image
+  r&eacute;alis&eacute;e. Le principe du calcul est le suivant :
+    <p>coef = (temps de lecture / temps de pose / nombre de lignes)</p>
+<p>Par exemple, une cam&eacute;ra Audine utilis&eacute;e en binning
+  2x2 comporte 256 lignes et &agrave; un temps de lecture de 10 secondes. Pour
+  une pose de 60 secondes, cela fait : coef = (10/60/256) = 0.00065 </p>
+<h3> 1.6. Compositage des images</h3>
+<p> Compositer les images consiste &agrave; les recentrer puis &agrave; les
+  empiler pour en faire une seule. Cette op&eacute;ration pr&eacute;sente l'avantage
+  d'&eacute;liminer ou d'att&eacute;nuer certains d&eacute;fauts locaux et d'am&eacute;liorer
+  la qualit&eacute; de l'image. On peut ainsi gagner une magnitude limite de
+  plus dans certains cas. </p>
+<p>A partir d'un lot d'images pr&eacute;trait&eacute;es et non
+  recentr&eacute;es (i1.fit, i2.fit jusqu'&agrave; i6.fit dans notre exemple),
+  le recentrage s'effectue automatiquement ainsi : </p>
+  <blockquote><pre>register2 i j 6</pre></blockquote>
+  <p>Le nom des images de sortie sera j1.fit &agrave; j6.fit. Enfin, si l'on souhaite
+  compositer sous la forme de la moyenne des images, on utilisera la fonction
+  :</p>
+  <blockquote><pre>smean j 6</pre></blockquote>
+  <p>Si l'on souhaite compositer selon une pile m&eacute;diane on utilisera :</p>
+  <blockquote><pre>smedian j 6</pre></blockquote>
+<h3> 1.7. Compression et archivage</h3>
+<p> Les images pr&eacute;trait&eacute;es ne sont g&eacute;n&eacute;ralement
+  pas compress&eacute;es individuellement. On pr&eacute;f&egrave;re plut&ocirc;t
+  cr&eacute;er un seul fichier d'archive contenant les images compress&eacute;es
+  sur une m&ecirc;me nuit ou sur le m&ecirc;me th&egrave;me. </p>
+<h3> 2. Le traitement des images</h3>
+<p align="center">CHAPITRE EN CONSTRUCTION <br />
+  aidez nous &agrave; le compl&eacute;ter
+</p>
+<p>Les op&eacute;rations de traitement d'images ne sont efficaces
+  que si elles sont appliqu&eacute;es aux images pr&eacute;trait&eacute;es. Il
+  existe une infinit&eacute; de traitements d'images et nous allons en donner
+  ici quelques uns tr&egrave;s classiques. En g&eacute;n&eacute;ral, chaque th&egrave;me
+  d'observation a des traitements sp&eacute;cifiques de base qu'il faut conna&icirc;tre. </p>
+<h3> 2.1. Images de la Lune</h3>
+<p> En g&eacute;n&eacute;ral, les images de la Lune m&eacute;ritent
+  un traitement de rehaussement du contraste. Ceci est r&eacute;alis&eacute; par
+  l'une des deux m&eacute;thodes suivantes :
+  <ul>
+    <li> Filtre passe haut.</li>
+    <li> Masque flou.</li>
+  </ul>
+<h3> 2.2 Images de plan&egrave;tes</h3>
+<p> Les d&eacute;tails des images de plan&egrave;tes sont souvent
+  de faible dynamique et il est utile d'appliquer des rehaussements de contraste
+  locaux pour les amplifier. La m&eacute;thode couramment employ&eacute;e est
+  le masque flou. </p>
+<h3> 2.3. Images d'&eacute;toiles</h3>
+<p> Lorsque les &eacute;toiles sont superpos&eacute;es &agrave; une
+  grande galaxie ou &agrave; une n&eacute;buleuse, on peut chercher &agrave; la
+  soustraire pour isoler les &eacute;toiles. On emploie souvent la technique
+  du filtrage par ondelette. Prendre garde &agrave; conserver la photom&eacute;trie. </p>
+<h3> 2.4. Images de n&eacute;buleuses, amas globulaires et galaxies</h3>
+<p> Ces objets ne pr&eacute;sentent un int&eacute;r&ecirc;t
+  de traitement que s'ils sont destin&eacute;s &agrave; des fins esth&eacute;tiques.
+  Traitement logarithmique ou masque flou si le flux est important. </p>
+<h3> 3. R&eacute;duction des donn&eacute;es</h3>
+<h3> 3.1. Astrom&eacute;trie</h3>
+<h3> 3.1.1. Calibration</h3>
+<p> Utilisation de catalogues. MicroCat. </p>
+<h3> 3.1.2. Mesure de coordonn&eacute;es</h3>
+<p> M&eacute;thode de d&eacute;termination de centre, etc. </p>
+<h2> 3.2. Photom&eacute;trie.</h2>
+<h3> 3.2.1. Calibration</h3>
+<p> Utilisation des catalogues. Loneos, champs photom&eacute;triques,
+  Tycho 2. </p>
+<h3> 3.2.2. Mesure de magnitudes</h3>
+<p>M&eacute;thodes d'ajustement et autres. </p>
+<h3> 3.3. Profils</h3>
+<p>Pour la spectroscopie et le suivi temporel d'un ph&eacute;nom&egrave;ne
+  (acquisition en mode scan).</p>
+</body>
+</html>

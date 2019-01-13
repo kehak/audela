@@ -1,0 +1,191 @@
+#
+# Fichier : ros_go.cap
+# Mise a jour $Id: robobs_planif.cap 14308 2017-12-21 14:05:46Z alainklotz $
+#
+
+#=========================================================================
+#   DÃ©but de la declaration des textes localises (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(robobs_planif,main_title)        "RobObs - Planification"
+set caption(robobs_planif,titre)             "Planification of RobObs"
+set caption(robobs_planif,type_modes)        "Type"
+set caption(robobs_planif,but1)              "Cancel"
+set caption(robobs_planif,but2)              "Valid"
+
+set caption(robobs_planif,mode,personal)     "Personal scheduler"
+set caption(robobs_planif,mode,vttrrlyr)     "VTT RR-Lyr"
+set caption(robobs_planif,mode,trerrlyr)     "TRE RR-Lyr"
+set caption(robobs_planif,mode,meridian)     "Always meridian"
+set caption(robobs_planif,mode,geostat1)     "GEO satellites entering in the Earth shadow"
+set caption(robobs_planif,mode,snresearch1)  "Searching for supernovae"
+set caption(robobs_planif,mode,asteroid_light_curve) "One to three asteroid light curves"
+set caption(robobs_planif,mode,star_light_curve)     "One to three asteroid light curves"
+set caption(robobs_planif,mode,vachier_berthier)     "Scheduler of Vachier and Berthier"
+
+set caption(robobs_planif,infos,personal)     "Personal scheduler mode allows you to define your own\nscheduling. You must write a script by yourself."
+set caption(robobs_planif,infos,vttrrlyr)     "VTT stands for Very Tiny Telescope. This type of\nscheduling is based on the continuous follow-up\nof the RR Lyrae star itself."
+set caption(robobs_planif,infos,trerrlyr)     "TRE stands for TAROT Reunion. This type of\nscheduling is based on the continuous follow-up\nof the RR Lyrae star itself."
+set caption(robobs_planif,infos,meridian)     "This type of scheduling is useful for tests.\nIt consists to point the azimuth=south and elevation=80°\nat each pointing."
+set caption(robobs_planif,infos,geostat1)     "This type of scheduling is for GEO satellites.\nIt consists to point just at the entering in\nthe Earth shadow."
+set caption(robobs_planif,infos,snresearch1)  "Searching for nearby extragalactic supernovae\naround the meridian position."
+set caption(robobs_planif,infos,asteroid_light_curve)  "Follow-up on one to three fields \nof asteroids during the night."
+set caption(robobs_planif,infos,star_light_curve)  "Follow-up on one to three fields \nof stars during the night."
+
+set caption(robobs_planif,attrib)             "Attributes for mode"
+set caption(robobs_planif,snresearch1,filegals)   "File of galaxies"
+set caption(robobs_planif,snresearch1,change)   "..."
+set caption(robobs_planif,snresearch1,default)   "Default"
+set caption(robobs_planif,snresearch1,magliminf) "Galaxy limiting magnitude inf."
+set caption(robobs_planif,snresearch1,maglimsup) "Galaxy limiting magnitude sup."
+set caption(robobs_planif,snresearch1,exposure) "Exposure time"
+set caption(robobs_planif,snresearch1,seconds) "seconds / image"
+set caption(robobs_planif,snresearch1,binning) "Binning"
+set caption(robobs_planif,snresearch1,nbimages) "Nb of images per galaxy"
+set caption(robobs_planif,snresearch1,smearing) "Smearing coefficient"
+set caption(robobs_planif,snresearch1,filebias) "File of bias frame"
+set caption(robobs_planif,snresearch1,filedark) "File of dark frame"
+set caption(robobs_planif,snresearch1,fileflat) "File of flat frame"
+
+set caption(robobs_planif,asteroid_light_curve,object_name1) "Object 1: Name"
+set caption(robobs_planif,asteroid_light_curve,object_name2) "Object 2: Name"
+set caption(robobs_planif,asteroid_light_curve,object_name3) "Object 3: Name"
+set caption(robobs_planif,asteroid_light_curve,object_coord) "coordinates"
+set caption(robobs_planif,asteroid_light_curve,change)   "..."
+set caption(robobs_planif,asteroid_light_curve,exposure) "Exposure time"
+set caption(robobs_planif,asteroid_light_curve,seconds) "seconds / image"
+set caption(robobs_planif,asteroid_light_curve,binning) "Binning"
+set caption(robobs_planif,asteroid_light_curve,nbimages) "Nb of images before observing the next object"
+set caption(robobs_planif,asteroid_light_curve,filebias) "File of bias frame"
+set caption(robobs_planif,asteroid_light_curve,filedark) "File of dark frame"
+set caption(robobs_planif,asteroid_light_curve,fileflat) "File of flat frame"
+
+set caption(robobs_planif,star_light_curve,object_name1) "Object 1: Name"
+set caption(robobs_planif,star_light_curve,object_name2) "Object 2: Name"
+set caption(robobs_planif,star_light_curve,object_name3) "Object 3: Name"
+set caption(robobs_planif,star_light_curve,object_coord) "coordinates"
+set caption(robobs_planif,star_light_curve,change)   "..."
+set caption(robobs_planif,star_light_curve,exposure) "Exposure time"
+set caption(robobs_planif,star_light_curve,seconds) "seconds / image"
+set caption(robobs_planif,star_light_curve,binning) "Binning"
+set caption(robobs_planif,star_light_curve,nbimages) "Nb of images before observing the next object"
+set caption(robobs_planif,star_light_curve,filebias) "File of bias frame"
+set caption(robobs_planif,star_light_curve,filedark) "File of dark frame"
+set caption(robobs_planif,star_light_curve,fileflat) "File of flat frame"
+
+set caption(robobs_planif,vachier_berthier,input_file) "Input file"
+set caption(robobs_planif,vachier_berthier,change)   "..."
+set caption(robobs_planif,vachier_berthier,sql_host) "MySQL host"
+set caption(robobs_planif,vachier_berthier,sql_user) "MySQL user"
+set caption(robobs_planif,vachier_berthier,sql_pass) "MySQL pass"
+set caption(robobs_planif,vachier_berthier,filter)   "Filter symbol"
+
+# *************** Version franÃ§aise **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(robobs_planif,main_title)        "RobObs - Planification"
+   set caption(robobs_planif,titre)             "Planification de RobObs"
+   set caption(robobs_planif,type_modes)        "Type"
+   set caption(robobs_planif,but1)              "Annuler"
+   set caption(robobs_planif,but2)              "Valider"
+   set caption(robobs_planif,mode,personal)     "Planificateur personnel"
+   set caption(robobs_planif,mode,vttrrlyr)     "VTT RR-Lyr"
+   set caption(robobs_planif,mode,trerrlyr)     "TRE RR-Lyr"
+   set caption(robobs_planif,mode,meridian)     "Toujours au méridien"
+   set caption(robobs_planif,mode,geostat1)     "Satellites GEO entrant dans l'ombre de la Terre"
+   set caption(robobs_planif,mode,asteroid_light_curve)  "Courbe de lumière d'un à trois astéroides"
+   set caption(robobs_planif,mode,star_light_curve)  "Courbe de lumière d'une à trois étoiles"
+   set caption(robobs_planif,mode,vachier_berthier)     "Planification de Vachier et Berthier"
+   
+   set caption(robobs_planif,infos,personal)     "Le mode Planificateur personnel vous permet de définir\nvotre propre planification. Vous devez écrire un script vous même."
+   set caption(robobs_planif,infos,vttrrlyr)     "VTT signifie Very Tiny Telescope (Très Petit Télescope).\nCe type de planificateur est basé sur le suivi continu\nde l'étoile RR Lyrae elle-même."
+   set caption(robobs_planif,infos,trerrlyr)     "TRE signifie TAROT Reunion.\nCe type de planificateur est basé sur le suivi continu\nde l'étoile RR Lyrae elle-même."
+   set caption(robobs_planif,infos,meridian)     "Ce type de planification est utile pour faire des tests.\nElle consiste à ralier l'azimut sud et l'élevation 80°\n.à chaque pointage"
+   set caption(robobs_planif,infos,geostat1)     "Ce type de planification est pour les satellites GEO.\nElle consiste à pointer juste avant l'entrée\ndans l'ombre de la Terre."
+   set caption(robobs_planif,infos,snresearch1)  "Recherche de supernovae extragalactiques prochaes\nau voisinage de la position du méridien."
+   set caption(robobs_planif,infos,asteroid_light_curve)  "Suivi du champ d'un à trois astéroïdes\ndurant toute la nuit."
+   set caption(robobs_planif,infos,vachier_berthier)  "Suivi de champs imposés par un fichier de nuit."
+   set caption(robobs_planif,attrib)             "Attributs du mode"
+
+   set caption(robobs_planif,snresearch1,filegals)   "Fichier de galaxies"
+   set caption(robobs_planif,snresearch1,default)   "Défaut"
+   set caption(robobs_planif,snresearch1,magliminf) "Magnitude limite inf. de galaxie"
+   set caption(robobs_planif,snresearch1,maglimsup) "Magnitude limite sup. de galaxie"
+   set caption(robobs_planif,snresearch1,exposure) "Temps de pose"
+   set caption(robobs_planif,snresearch1,seconds) "secondes / image"
+   set caption(robobs_planif,snresearch1,binning) "Binning"
+   set caption(robobs_planif,snresearch1,nbimages) "Nb d'images par galaxie"
+   set caption(robobs_planif,snresearch1,smearing) "Coefficient de smearing"
+   set caption(robobs_planif,snresearch1,filebias) "Fichier de l'image bias"
+   set caption(robobs_planif,snresearch1,filedark) "Fichier de l'image dark"
+   set caption(robobs_planif,snresearch1,fileflat) "Fichier de l'image flat"
+
+   set caption(robobs_planif,asteroid_light_curve,object_name1) "Objet 1: Nom"
+   set caption(robobs_planif,asteroid_light_curve,object_name2) "Objet 2: Nom"
+   set caption(robobs_planif,asteroid_light_curve,object_name3) "Objet 3: Nom"
+   set caption(robobs_planif,asteroid_light_curve,object_coord) "coordonnées"
+   set caption(robobs_planif,asteroid_light_curve,exposure) "Temps de pose"
+   set caption(robobs_planif,asteroid_light_curve,seconds) "secondes / image"
+   set caption(robobs_planif,asteroid_light_curve,binning) "Binning"
+   set caption(robobs_planif,asteroid_light_curve,nbimages) "Nb d'images avant de passer à l'objet suivant"
+   set caption(robobs_planif,asteroid_light_curve,filebias) "Fichier de l'image bias"
+   set caption(robobs_planif,asteroid_light_curve,filedark) "Fichier de l'image dark"
+   set caption(robobs_planif,asteroid_light_curve,fileflat) "Fichier de l'image flat"
+   
+   set caption(robobs_planif,star_light_curve,object_name1) "Objet 1: Nom"
+   set caption(robobs_planif,star_light_curve,object_name2) "Objet 2: Nom"
+   set caption(robobs_planif,star_light_curve,object_name3) "Objet 3: Nom"
+   set caption(robobs_planif,star_light_curve,object_coord) "coordonnées"
+   set caption(robobs_planif,star_light_curve,exposure) "Temps de pose"
+   set caption(robobs_planif,star_light_curve,seconds) "secondes / image"
+   set caption(robobs_planif,star_light_curve,binning) "Binning"
+   set caption(robobs_planif,star_light_curve,nbimages) "Nb d'images avant de passer à l'objet suivant"
+   set caption(robobs_planif,star_light_curve,filebias) "Fichier de l'image bias"
+   set caption(robobs_planif,star_light_curve,filedark) "Fichier de l'image dark"
+   set caption(robobs_planif,star_light_curve,fileflat) "Fichier de l'image flat"
+
+   set caption(robobs_planif,vachier_berthier,input_file) "Fichier d'entrée"
+   set caption(robobs_planif,vachier_berthier,change)   "..."
+   set caption(robobs_planif,vachier_berthier,sql_host) "Hôte MySQL"
+   set caption(robobs_planif,vachier_berthier,sql_user) "Utilisateur MySQL"
+   set caption(robobs_planif,vachier_berthier,sql_pass) "Mot de passe MySQL"
+   set caption(robobs_planif,vachier_berthier,filter)   "Symbole du filtre"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+
+}
+
+#=========================================================================
+#   Fin de la dÃ©claration des textes localisÃ©s (internationalisation)
+#=========================================================================
+

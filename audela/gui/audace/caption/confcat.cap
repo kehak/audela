@@ -1,0 +1,133 @@
+#
+# Fichier : confcat.cap
+# Mise a jour $Id: confcat.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(confcat,carte)                  "Chart:"
+set caption(confcat,config)                 "Chart Setup"
+set caption(confcat,creer_au_demarrage)     "Next time software is run connect this chart automatically"
+set caption(confcat,ok)                     "OK"
+set caption(confcat,appliquer)              "Apply"
+set caption(confcat,fermer)                 "Close"
+set caption(confcat,aide)                   "Help"
+
+set caption(confcat,pas_carte)              "No Chart."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(confcat,carte)               "Carte :"
+   set caption(confcat,config)              "Configuration de la carte"
+   set caption(confcat,creer_au_demarrage)  "Connexion automatique de cette carte au prochain démarrage"
+   set caption(confcat,ok)                  "OK"
+   set caption(confcat,appliquer)           "Appliquer"
+   set caption(confcat,fermer)              "Fermer"
+   set caption(confcat,aide)                "Aide"
+
+   set caption(confcat,pas_carte)           "Il n'y a pas de carte présente."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(confcat,carte)               "Mappe:"
+   set caption(confcat,config)              "Configurazione mappe"
+   set caption(confcat,creer_au_demarrage)  "Connessione automatica di questa mappe alla prossima esecuzione del software"
+   set caption(confcat,ok)                  "OK"
+   set caption(confcat,appliquer)           "Applicare"
+   set caption(confcat,fermer)              "Chiudere"
+   set caption(confcat,aide)                "Aiuto"
+
+   set caption(confcat,pas_carte)           "Nen e` presente nessuna mappe."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(confcat,carte)               "Mapa:"
+   set caption(confcat,config)              "Configuración del mapa"
+   set caption(confcat,creer_au_demarrage)  "La próxima vez que se ejecute el programa, se visualiza este mapa automáticamente"
+   set caption(confcat,ok)                  "OK"
+   set caption(confcat,appliquer)           "Aplicar"
+   set caption(confcat,fermer)              "Cerrar"
+   set caption(confcat,aide)                "Ayuda"
+
+   set caption(confcat,pas_carte)           "No hay mapa."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(confcat,carte)               "Karte:"
+   set caption(confcat,config)              "Karte Konfiguration"
+   set caption(confcat,creer_au_demarrage)  "Nächste Mal diese Karte automatisch anschließen"
+   set caption(confcat,ok)                  "OK"
+   set caption(confcat,appliquer)           "Anwenden"
+   set caption(confcat,fermer)              "Schließen"
+   set caption(confcat,aide)                "Hilfe"
+
+   set caption(confcat,pas_carte)           "Keine Karte."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(confcat,carte)               "Mapa:"
+   set caption(confcat,config)              "Configuração do mapa"
+   set caption(confcat,creer_au_demarrage)  "Ligar este mapa automaticamente da próxima vez que o software for executado"
+   set caption(confcat,ok)                  "OK"
+   set caption(confcat,appliquer)           "Aplicar"
+   set caption(confcat,fermer)              "Fechar"
+   set caption(confcat,aide)                "Ajuda"
+
+   set caption(confcat,pas_carte)           "Sem mapa."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(confcat,carte)               "Kort:"
+   set caption(confcat,config)              "Kortopsætning"
+   set caption(confcat,creer_au_demarrage)  "Ved næste start: Kør dette kort automatisk"
+   set caption(confcat,ok)                  "OK"
+   set caption(confcat,appliquer)           "Anvend"
+   set caption(confcat,fermer)              "Luk"
+   set caption(confcat,aide)                "Hjælp"
+
+   set caption(confcat,pas_carte)           "Ingen kort."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(confcat,carte)               "Chart:"
+   set caption(confcat,config)              "Chart Setup"
+   set caption(confcat,creer_au_demarrage)  "Next time software is run connect this chart automatically"
+   set caption(confcat,ok)                  "OK"
+   set caption(confcat,appliquer)           "Apply"
+   set caption(confcat,fermer)              "Close"
+   set caption(confcat,aide)                "Help"
+
+   set caption(confcat,pas_carte)           "No Chart."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(confcat,carte)               "Chart:"
+   set caption(confcat,config)              "Chart Setup"
+   set caption(confcat,creer_au_demarrage)  "Next time software is run connect this chart automatically"
+   set caption(confcat,ok)                  "OK"
+   set caption(confcat,appliquer)           "Apply"
+   set caption(confcat,fermer)              "Close"
+   set caption(confcat,aide)                "Help"
+
+   set caption(confcat,pas_carte)           "No Chart."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

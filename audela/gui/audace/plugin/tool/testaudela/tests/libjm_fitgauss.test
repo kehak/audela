@@ -1,0 +1,19 @@
+
+set visuNo 1
+
+#-------------------------------------------------------------------------------
+test libjm_fitgauss {calaphot fitgauss} -constraints {AUDACE} -setup {
+   #--- je charge l'image
+   loadima [file join $::conf(testaudela,rep_images) m57.fit]
+   
+
+} -body {
+   #--- je lance le calcul de la gaussienne
+   set result [calaphot_fitgauss2d 1 { 150 170 170 180 }]
+
+   return [lindex $result 1]
+   
+} -cleanup {
+    ###confVisu::clear $visuNo
+  
+} -result  "31"

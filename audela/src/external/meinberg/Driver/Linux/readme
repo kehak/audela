@@ -1,0 +1,38 @@
+The "IRQF_DISABLED" symbol has been provided by the kernel sources, but
+has been obsoleted some time ago and has been removed from the kernel
+source in kernel 4.1, so the driver package doesn't compile on kernel
+4.1 or later.
+
+I'm actually working on putting an updated driver package together, but
+this will still take some time.
+
+In the mean time, you can download this package:
+
+https://www.meinberg.de/download/drivers/mbgtools-lx-dev-2014-12-02.tar.gz
+
+After you have unpacked the archive you can also download this one:
+
+https://www.meinberg.de/download/drivers/mbgtools-lx-dev-2014-12-02-mbgclock_main.c.tar.gz
+
+This contains a single file mbgclock_main.c which you can copy over the
+existing file in the mbgclock/ subdirectory of the driver source.
+
+Then just run "make" in the base directory to build the new driver, just
+like you've done before.
+
+This should work also with the latest kernels. If you encounter any
+problems, please contact me.
+
+
+Regards,
+
+Martin
+-- 
+Martin Burnicki
+
+Senior Software Engineer
+
+MEINBERG Funkuhren GmbH & Co. KG
+Email: martin.burnicki@meinberg.de
+Phone: +49 (0)5281 9309-14
+Fax: +49 (0)5281 9309-30

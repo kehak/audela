@@ -1,0 +1,65 @@
+::bddimages::ressource
+
+set gaia1 [csgaia1 /astrodata/Catalog/Stars/GAIA1 0 0 1] 
+set gaia1 [::manage_source::set_common_fields $gaia1 GAIA1 { ra dec ra_error phot_g_mean_mag 0.5 }]
+llength [lindex $gaia1 1]
+# 10 // doit repondre le bon nombre d etoiles
+
+set tgas [ get_tgas http://gaia.ari.uni-heidelberg.de/tap 0 0 1] 
+set tgas [::manage_source::set_common_fields $tgas TGAS { ra dec ra_error phot_g_mean_mag 0.5 }]
+llength [lindex $tgas 1]      
+# 2
+set gaia [ get_gaia http://gaia.ari.uni-heidelberg.de/tap 0 0 1] 
+
+exmples de commandes :
+
+set gaia1 [::manage_source::set_common_fields $gaia1 GAIA1 { ra_deg dec_deg sigra_deg im2_mag 0.5 }]
+set listsources [ identification $gaia1 GAIA1 $tgas TGAS  99.99  -30.0 {} 0 "" ]
+::manage_source::get_nb_sources_rollup $listsources
+
+
+
+# {{TGAS {ra dec poserr mag magerr} { hip tycho2_id source_id ref_epoch ra ra_error dec dec_error parallax parallax_error pmra pmra_error pmdec pmdec_error astrometric_primary_flag astrometric_priors_used phot_g_mean_flux phot_g_mean_flux_error phot_g_mean_mag phot_variable_flag l b ecl_lon ecl_lat}}}
+# {{TGAS    {}  { source_id ref_epoch ra ra_error dec dec_error parallax parallax_error pmra pmra_error pmdec pmdec_error astrometric_primary_flag astrometric_priors_used phot_g_mean_flux phot_g_mean_flux_error phot_g_mean_mag phot_variable_flag}}}
+# { { GAIA1 { } { source_id ref_epoch ra ra_error dec dec_error parallax parallax_error pmra pmra_error pmdec pmdec_error astrometric_primary_flag astrometric_priors_used phot_g_mean_flux phot_g_mean_flux_error phot_g_mean_mag phot_variable_flag } } }
+
+
+
+
+
+
+source_id
+ref_epoch
+ra
+ra_error
+dec
+dec_error
+parallax
+parallax_error
+pmra
+pmra_error
+pmdec
+pmdec_error
+astrometric_primary_flag
+astrometric_priors_used
+phot_g_mean_flux
+phot_g_mean_flux_error
+phot_g_mean_mag
+phot_variable_flag
+
+
+# {{GAIA1 {ra dec poserr mag magerr} { source_id ref_epoch ra ra_error dec dec_error parallax parallax_error pmra pmra_error pmdec pmdec_error astrometric_primary_flag astrometric_priors_used phot_g_mean_flux phot_g_mean_flux_error phot_g_mean_mag phot_variable_flag }}} {{{GAIA1 {359.9895653418 +0.0122251305 Inf 15.1974341016 0.5} {2738188642160748928 2015.0 359.9895653418 0.2398230847 +0.0122251305 0.0987336519 inf inf inf inf inf inf f 2 13518.6830155243 9.4352357665 15.1974341016 NOT_AVAILABLE}}} {{GAIA1 {359.9893579972 +0.0276650678 Inf 17.2803556443 0.5} {2738188676520487424 2015.0 359.9893579972 0.4040612387 +0.0276650678 0.1759062063 inf inf inf inf inf inf f 2 1985.0240266047 5.6991624590 17.2803556443 NOT_AVAILABLE}}} {{GAIA1 {359.9800375558 +0.0078867809 Inf 19.1183697997 0.5} {2642111838657303808 2015.0 359.9800375558 1.1601010633 +0.0078867809 0.5019929912 inf inf inf inf inf inf f 2 365.2246702747 1.8651489361 19.1183697997 NOT_AVAILABLE}}} {{GAIA1 {359.9775577156 +0.0020836243 Inf 20.0284349423 0.5} {2642111838657299968 2015.0 359.9775577156 3.1390489662 +0.0020836243 1.3027339258 inf inf inf inf inf inf f 2 157.9552439494 1.8961085765 20.0284349423 NOT_AVAILABLE}}} {{GAIA1 {0.0306442874 -0.0062787948 Inf 15.5827421053 0.5} {2546034932074144000 2015.0 0.0306442874 0.2166535467 -0.0062787948 0.0882523648 inf inf inf inf inf inf f 2 9480.0621257586 12.1443294588 15.5827421053 NOT_AVAILABLE}}} {{GAIA1 {0.0214565909 -0.0237923945 Inf 18.8987225600 0.5} {2449957888052139648 2015.0 0.0214565909 0.9916252653 -0.0237923945 0.4211888453 inf inf inf inf inf inf f 2 447.1147544766 1.3141800458 18.8987225600 NOT_AVAILABLE}}} {{GAIA1 {0.0173150398 -0.0331713018 Inf 17.2154142859 0.5} {2449957888052139520 2015.0 0.0173150398 0.4394379491 -0.0331713018 0.1920071781 inf inf inf inf inf inf f 2 2107.3773656060 4.9573447275 17.2154142859 NOT_AVAILABLE}}} {{GAIA1 {0.0094384065 -0.0008906676 Inf 18.9955136959 0.5} {2546034966433885568 2015.0 0.0094384065 1.1424076167 -0.0008906676 0.4970913888 inf inf inf inf inf inf f 2 408.9804487917 1.6182384687 18.9955136959 NOT_AVAILABLE}}} {{GAIA1 {359.9999180681 -0.0328854855 Inf 18.1651851280 0.5} {2449958064145765376 2015.0 359.9999180681 0.6117508067 -0.0328854855 0.2672515569 inf inf inf inf inf inf f 2 878.6865411245 4.2935186113 18.1651851280 NOT_AVAILABLE}}} {{GAIA1 {359.9819686345 -0.0042880612 Inf 18.3778226950 0.5} {2642111735577925376 2015.0 359.9819686345 0.7031333423 -0.0042880612 0.3039858553 inf inf inf inf inf inf f 2 722.4020130879 1.8273028214 18.3778226950 NOT_AVAILABLE}}}}
+TGAS :
+# {{GAIA1 {} {source_id ref_epoch ra ra_error dec dec_error parallax parallax_error pmra pmra_error pmdec pmdec_error astrometric_primary_flag astrometric_priors_used phot_g_mean_flux phot_g_mean_flux_error phot_g_mean_mag phot_variable_flag}}} {{{TGAS  {} {2738188642160748928 2015.0 359.9895653417955 0.23982308473166172 0.012225130528469097 0.09873365187623867 {} {} {} {} {} {} 0 2 13518.683015524273 9.435235766498321 15.197434101644111 NOT_AVAILABLE}}} {{TGAS {} {2546034966433885568 2015.0 0.00943840645089968 1.1424076167451804 -8.906676115100896E-4 0.49709138876117126 {} {} {} {} {} {} 0 2 408.9804487916617 1.6182384686552287 18.99551369593005 NOT_AVAILABLE}}}}
+# { { GAIA1 {{source_id ref_epoch ra ra_error dec dec_error parallax parallax_error pmra pmra_error pmdec pmdec_error astrometric_primary_flag astrometric_priors_used phot_g_mean_flux phot_g_mean_flux_error phot_g_mean_mag phot_variable_flag } } } GAIA1 {} {2738188642160748928 2015.0 359.9895653418    0.2398230847       +0.0122251305         0.0987336519  { } { } { } { } { } { } 0 2 13518.6830155243   9.4352357665      15.1974341016      NOT_AVAILABLE} } } { { GAIA1 { } {2546034966433885568 2015.0 0.0094384065 1.1424076167 -0.0008906676 0.4970913888 { } { } { } { } { } { } 0 2 408.9804487917 1.6182384687 18.9955136959 NOT_AVAILABLE} } } }
+
+# {{GAIA1 {} {source_id ref_epoch ra ra_error dec dec_error parallax parallax_error pmra pmra_error pmdec pmdec_error astrometric_primary_flag astrometric_priors_used phot_g_mean_flux phot_g_mean_flux_error phot_g_mean_mag phot_variable_flag}}} {{{GAIA1 {} {2738188642160748928 2015.0 359.9895653418    0.2398230847       +0.0122251305         0.0987336519        {} {} {} {} {} {} f 2 13518.6830155243   9.4352357665      15.1974341016      NOT_AVAILABLE}}} { { GAIA1 { } {2546034966433885568 2015.0 0.0094384065 1.1424076167 -0.0008906676 0.4970913888 { } { } { } { } { } { } f 2 408.9804487917 1.6182384687 18.9955136959 NOT_AVAILABLE} } } }
+
+
+
+GAIA1 { } {2738188642160748928 2015.0 359.9895653418 0.2398230847 +0.0122251305 0.0987336519 { } { } { } { } { } { } f 2 13518.6830155243 9.4352357665 15.1974341016 NOT_AVAILABLE} } } { { GAIA1 { } {2546034966433885568 2015.0 0.0094384065 1.1424076167 -0.0008906676 0.4970913888 { } { } { } { } { } { } f 2 408.9804487917 1.6182384687 18.9955136959 NOT_AVAILABLE} } } }
+GAIA1 {359.9895653418 +0.0122251305 0.259335401648 15.1974341016 0.5} {2738188642160748928 2015.0 359.9895653418 0.2398230847 +0.0122251305 0.0987336519 { } { } { } { } { } { } f 2 13518.6830155243 9.4352357665 15.1974341016 NOT_AVAILABLE}}} {{GAIA1 {0.0094384065 -0.0008906676 1.24587077026 18.9955136959 0.5} {2546034966433885568 2015.0 0.0094384065 1.1424076167 -0.0008906676 0.4970913888 { } { } { } { } { } { } f 2 408.9804487917 1.6182384687 18.9955136959 NOT_AVAILABLE}}}}
+
+
+
+

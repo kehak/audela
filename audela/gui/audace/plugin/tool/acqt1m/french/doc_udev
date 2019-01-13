@@ -1,0 +1,3 @@
+
+udevadm info -q path -n /dev/bus/usb/001/010
+udevadm info -a -p $(udevadm info -q path -n /dev/bus/usb/002/003)

@@ -1,0 +1,133 @@
+#
+# Fichier : focuserlx200.cap
+# Mise a jour $Id: focuserlx200.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(focuserlx200,label)          "LX200 Focuser"
+set caption(focuserlx200,link)           "Controls are sent to the LX200 mount."
+
+set caption(focuserlx200,attention)      "Warning"
+set caption(focuserlx200,msg1)           "You chose the LX200 focuser for this hand controller."
+set caption(focuserlx200,msg2)           "It cannot be used with this mount."
+set caption(focuserlx200,msg3)           "You chose the LX200 focuser for this tool."
+
+set caption(focuserlx200,interro)        "?"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(focuserlx200,label)       "Focaliseur LX200"
+   set caption(focuserlx200,link)        "Les commandes sont envoyées à la monture LX200."
+
+   set caption(focuserlx200,attention)   "Attention"
+   set caption(focuserlx200,msg1)        "Pour cette raquette, vous avez sélectionné le focaliseur LX200."
+   set caption(focuserlx200,msg2)        "Il ne fonctionne pas avec cette monture."
+   set caption(focuserlx200,msg3)        "Pour cet outil, vous avez sélectionné le focaliseur LX200."
+
+   set caption(focuserlx200,interro)     "?"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(focuserlx200,label)       "Focheggiatore LX200"
+   set caption(focuserlx200,link)        "I comandi sono inviati alla montatura LX200."
+
+   set caption(focuserlx200,attention)   "Attenzione"
+   set caption(focuserlx200,msg1)        "Per questa pulsantiera e` stata scelto il focalizzatore LX200."
+   set caption(focuserlx200,msg2)        "Non puo` essere utilizzato con questa montatura."
+   set caption(focuserlx200,msg3)        "Per questo tool e` stata scelto il focalizzatore LX200."
+
+   set caption(focuserlx200,interro)     "?"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(focuserlx200,label)       "Enfocador LX200"
+   set caption(focuserlx200,link)        "Las ordenes se mandan a la montura LX200."
+
+   set caption(focuserlx200,attention)   "Cuidado"
+   set caption(focuserlx200,msg1)        "Ha seleccuonado el enfocador LX200 del controlador de mano."
+   set caption(focuserlx200,msg2)        "No se puede usar en esta montura."
+   set caption(focuserlx200,msg3)        "Ha seleccuonado el enfocador LX200 del herramienta."
+
+   set caption(focuserlx200,interro)     "?"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(focuserlx200,label)       "LX200 Scharfeinstellung"
+   set caption(focuserlx200,link)        "Die Steuervorrichtungen sind zum LX200 Montierung geschickt."
+
+   set caption(focuserlx200,attention)   "Achtung"
+   set caption(focuserlx200,msg1)        "Für diese Hand Kontroller haben Sie den LX200 Scharfeinsteller gewählt."
+   set caption(focuserlx200,msg2)        "Es funktioniert nicht mit dieses Montierung."
+   set caption(focuserlx200,msg3)        "Für diese Geräte haben Sie den LX200 Scharfeinsteller gewählt."
+
+   set caption(focuserlx200,interro)     "?"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(focuserlx200,label)       "Focador LX200"
+   set caption(focuserlx200,link)        "Os comandos são enviados à montagem LX200."
+
+   set caption(focuserlx200,attention)   "Aviso"
+   set caption(focuserlx200,msg1)        "Você escolheu o focador LX200 para este controlador de mão."
+   set caption(focuserlx200,msg2)        "Não pode ser usado com esta montagem."
+   set caption(focuserlx200,msg3)        "Você escolheu o focador LX200 para esta ferramenta."
+
+   set caption(focuserlx200,interro)     "?"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(focuserlx200,label)       "LX200 Focuser"
+   set caption(focuserlx200,link)        "Kommando er sendt til LX200 monteringen."
+
+   set caption(focuserlx200,attention)   "Advarsel"
+   set caption(focuserlx200,msg1)        "Du har valgt LX200 fokuseringen til denne håndkontrol."
+   set caption(focuserlx200,msg2)        "Den kan ikke benyttes med denne montering."
+   set caption(focuserlx200,msg3)        "Du har valgt LX200 fokuseringen til dette værktøj."
+
+   set caption(focuserlx200,interro)     "?"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(focuserlx200,label)       "LX200 Focuser"
+   set caption(focuserlx200,link)        "Controls are sent to the LX200 mount."
+
+   set caption(focuserlx200,attention)   "Warning"
+   set caption(focuserlx200,msg1)        "You chose the LX200 focuser for this hand controller."
+   set caption(focuserlx200,msg2)        "It cannot be used with this mount."
+   set caption(focuserlx200,msg3)        "You chose the LX200 focuser for this tool."
+
+   set caption(focuserlx200,interro)     "?"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(focuserlx200,label)       "LX200 Focuser"
+   set caption(focuserlx200,link)        "Controls are sent to the LX200 mount."
+
+   set caption(focuserlx200,attention)   "Warning"
+   set caption(focuserlx200,msg1)        "You chose the LX200 focuser for this hand controller."
+   set caption(focuserlx200,msg2)        "It cannot be used with this mount."
+   set caption(focuserlx200,msg3)        "You chose the LX200 focuser for this tool."
+
+   set caption(focuserlx200,interro)     "?"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

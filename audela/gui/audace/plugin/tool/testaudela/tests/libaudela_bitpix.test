@@ -1,0 +1,80 @@
+#--- je recupere le buffer de la premiere visu
+set bufNo [::confVisu::getBufNo 1]
+
+#-------------------------------------------------------------------------------
+#  enregistrement d'un image avec bitpix=short
+#  => les valeurs négatives sont conservées
+#  => les valeurs supérieures à 32767 sont tonquées à 32767
+#  => le mot clé BZERO n'est pas créé (ou vaut 0)
+#-------------------------------------------------------------------------------
+test bitpix_short {save short} -constraints {
+   AUDACE
+} -setup {
+   buf$bufNo clear
+} -body  {
+   buf$bufNo setpixels CLASS_GRAY 768 512 FORMAT_FLOAT COMPRESS_NONE 0
+   buf$bufNo setkwd { NAXIS  2 short "" "" }
+   buf$bufNo setkwd { NAXIS1 768 short "" "" }
+   buf$bufNo setkwd { NAXIS2 512 short "" "" }
+
+   #--- j'ajoute un pixel  (1,1)= 100
+   buf$bufNo setpix { 1 1 } 100
+   #--- j'ajoute un pixel  (2,2)= -50
+   buf$bufNo setpix { 2 1 } -50
+   #--- j'ajoute un pixel  (3,3)= 32769
+   buf$bufNo setpix { 3 1 } 32769
+
+   buf$bufNo bitpix short
+   buf$bufNo save [file join $::audace(rep_images) "bitpix-short.fit"]
+   buf$bufNo clear
+
+   buf$bufNo load [file join $::audace(rep_images) "bitpix-short.fit"]
+   set value1 [lindex [buf$bufNo getpix [list 1 1]] 1]
+   set value2 [lindex [buf$bufNo getpix [list 2 1]] 1]
+   set value3 [lindex [buf$bufNo getpix [list 3 1]] 1]
+   set bzero [lindex [buf$bufNo getkwd BZERO] 1]
+   return "[expr int($value1)] [expr int($value2)] [expr int($value3)] bitpix=$bzero"
+} -cleanup  {
+   buf$bufNo clear
+   file delete -force [file join $::audace(rep_images) "bitpix-short.fit"]
+} -result "100 -50 32767 bitpix="
+
+#-------------------------------------------------------------------------------
+#  enregistrement d'un image avec bitpix=ushort
+#  => les valeurs négatives sont mises a zéro
+#  => les valeurs supérieures à 32767 sont conservées
+#  => le mot clé BZERO est créé et vaut 32768
+#-------------------------------------------------------------------------------
+test bitpix_ushort {save ushort} -constraints {
+   AUDACE
+} -setup {
+   buf$bufNo clear
+} -body  {
+   #---- je fabrique une image
+   buf$bufNo setpixels CLASS_GRAY 768 512 FORMAT_FLOAT COMPRESS_NONE 0
+   buf$bufNo setkwd { NAXIS  2 short "" "" }
+   buf$bufNo setkwd { NAXIS1 768 short "" "" }
+   buf$bufNo setkwd { NAXIS2 512 short "" "" }
+
+   #--- j'ajoute un pixel  (1,1)= 100
+   buf$bufNo setpix { 1 1 } 100
+   #--- j'ajoute un pixel  (2,2)= -50
+   buf$bufNo setpix { 2 1 } -50
+   #--- j'ajoute un pixel  (3,3)= 32769
+   buf$bufNo setpix { 3 1 } 32769
+
+   buf$bufNo bitpix ushort
+   buf$bufNo save [file join $::audace(rep_images) "bitpix-ushort.fit"]
+
+   buf$bufNo clear
+   buf$bufNo load [file join $::audace(rep_images) "bitpix-ushort.fit"]
+   set value1 [lindex [buf$bufNo getpix [list 1 1]] 1]
+   set value2 [lindex [buf$bufNo getpix [list 2 1]] 1]
+   set value3 [lindex [buf$bufNo getpix [list 3 1]] 1]
+   set bzero [lindex [buf$bufNo getkwd BZERO] 1]
+   return "[expr int($value1)] [expr int($value2)] [expr int($value3)] bitpix=$bzero"
+} -cleanup  {
+   buf$bufNo clear
+   file delete -force [file join $::audace(rep_images) "bitpix-ushort.fit"]
+} -result "100 0 32769 bitpix=32768"
+

@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Acquisition (T1M)</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 01 mai 2013</p>
+
+<h1>SDK Andor 2.84.30003</h1>
+<h1>Specifique a la camera Ikon-L</h1>
+
+  <h3>Preparation pour l'utilisateur t1m</h3>
+
+      <pre>
+      === Utilisateur t1m : accès au port série
+
+         ls -l /dev/ttyS0
+         crw-rw---- 1 root dialout 4, 64  1 mai   19:20 /dev/ttyS0
+
+         Vérifier que l'utilisateur t1m est dans le groupe dialout :
+
+         dans un terminal utiliser la commande 'id' :
+         uid=1000(t1m) gid=100(users) groups=100(users),16(dialout),17(audio),33(video)
+
+         Si ce n'est pas le cas utiliser yast pour l'y ajouter ; il est
+         ensuite nécessaire de déconnecter l'utilisateur et de le reconnecter.
+
+      == Yast2 ==
+         Gestion des groupes ete des utilisateurs
+         doubleclic sur t1m
+         detail
+         cocher "dialout"
+         Ok & Ok
+      </pre>
+
+  <h3>Compilation SDK</h3>
+
+      <pre>
+      === Compilation et installation du pilote Andor ===
+
+      cd /srv/develop/audela/src/libcam/libandorusb/driverAndor
+
+      sudo ./install_andor
+      et choisir l'option 5 : All USB Cameras
+
+      Editer /etc/udev/rules.d/andor.rules pour
+      remplacer SYSFS{idVendor}=="136e", MODE="0666"
+      par       ATTR{idVendor}=="136e", MODE="0666"
+      </pre>
+
+
+
+  <h3>Redemarrage</h3>
+
+      <pre>
+      === Redémarrer le PC ===
+
+      Suite à l'installation des pilotes Andor et Meinberg, les éléments
+      suivants ont été ajoutés au système :
+       - des modules pour le noyau Linux
+       - des librairies dans /usr/local/lib
+       - des règles d'accès au périphériques (/etc/udev)
+
+      Seul un redémarrage permet d'être certain que l'ensemble de ces modifications
+      fonctionne correctement.
+      </pre>
+
+
+  <h3>Premieres verifications</h3>
+
+      <pre>
+      === Connexion de la camera sur le port USB ===
+      La commande lsusb doit lister un périphérique dont l'identifiant est 136e:000c
+      par exemple :
+      
+      <b>> lsusb </b>
+      ...
+      Bus 001 Device 003: ID 136e:000c 
+
+      === Verificiation que la camera andor est sur ce port USB ===
+      <b>> udevadm info -q path -n /dev/bus/usb/001/003</b>
+      on obtient : 
+      /devices/pci0000:00/0000:00:1a.7/usb1/1-2/1-2.1
+      
+      <b>> udevadm info -a -p /devices/pci0000:00/0000:00:1a.7/usb1/1-2/1-2.1</b>
+      fournit tout un tas d information dans laquelle on peut trouver 
+      ce genre de ligne : 
+
+          ATTR{idVendor}=="136e"
+          ATTR{manufacturer}=="ANDOR"
+          ATTR{product}=="USB CAM"
+
+
+      === Verficiation des droits d acces a ce port USB ===
+      
+      <b>> ls -al /dev/bus/usb/001/003</b>
+      crw-rw-<b>rw</b>- 1 root root 189, 2  2 mai   11:48 /dev/bus/usb/001/003
+      
+      ok le bit rw sur "other" montre que tout le monde peut lire et ecrire sur ce port USB
+      
+      === Verfication avec les programmes fournis par Andor ===
+      <b>
+      cd /srv/develop/audela/src/libcam/libandorusb/driverAndor/examples/console/generic
+      make clean
+      make
+      ./generic
+      </b>
+      
+      si tout se passe correctement on doit voir apparaitre : 
+      
+            Initialising...
+                  Acquire Menu         
+            .-------------------------. 
+            |a. Acquire               |
+            ...
+            |z.   Exit                |
+            `-------------------------'
+
+      Faire z pour sortir
+      </pre>
+  
+
+
+
+  <h3>Compilation Driver Audela</h3>
+
+      <pre>
+      cd /srv/develop/audela/src/libcam/libandorusb/linux
+      make
+      </pre>
+
+  <h3>Seconde verification avec la console Audela</h3>
+
+      <pre>
+      === Lancer Audela dans un Shell ===
+      
+      cd /srv/develop/audela/bin
+      ./audela.sh 
+      
+      on peut voir dans la console shell de l'information supplementaire en cas d echec.
+
+      === Taper les commandes dans la console ===
+      
+      load libandorusb.so
+
+         # Linux (May  1 2013) ...nb commandes = 45
+
+      ::cam::create andorusb usb /usr/local/etc/andor
+      
+         # 1
+         
+      cam1 temperature
+
+         # 16.000000
+
+      Quelques commandes utiles : 
+         
+         Etat du refroidissement : 
+            cam1 cooler 
+         Demarrage du refroidissement
+            cam1 cooler on
+         Valeur de la consigne de temperature
+            cam1 cooler check 
+
+      # Avnat de prendre toute image
+      cam1 buf 2
+
+      # definitiion des parametres pour les images
+      cam1 exptime 1
+      cam1 bin {1 1}
+
+      # prendre une image
+      cam1 acq
+      vwait status_cam1
+
+      cam1 buf 2
+      buf2 save "/usr/local/src/audela/images/test002"
+      buf1 load "/usr/local/src/audela/images/test002"
+
+      # fonctions natives
+      cam1 native GetTotalNumberImagesAcquired
+      cam1 native GetAcquiredData16 4194304
+      cam1 native GetAcquiredData 4194304
+      cam1 native Initialize /usr/local/etc/andor
+
+      buf1 load /usr/local/src/audela/images/m57
+
+      ::buf::list
+      ::buf::create
+      ::buf::delete 1
+      ::buf::delete 2
+      ::buf::delete 3
+
+      ::visu::create 1 1
+      ::visu::list
+      ::visu::delete 1
+      ::visu::delete 2
+      visu1 disp
+      visu2 disp
+
+      cam1 native CoolerON
+      cam1 native GetTemperature
+      cam1 native GetTemperatureF
+      cam1 native GetTemperatureRange
+      cam1 native SetTemperature -15
+      cam1 native GetDetector
+      cam1 close
+      exit
+      
+      </pre>
+
+
+
+
+
+  <h3>Configuration de Audela</h3>
+
+      <pre>
+
+      == Configuration par l'interface graphique Audace
+
+      Depuis un terminal, lancer /usr/local/src/audela/bin/audela.sh
+
+      Dans le menu "Configuration / Camera" sélectionner l'onglet "AndorUSB" et
+      ajuster les paramètres :
+
+      Répertoire contenant les fichiers de configuration : /usr/local/etc/andor
+      
+       [X] Inverser Haut/Bas
+       [X] Inverser Gauche/Droite
+       [X] Refroisissement à la température de -50°C
+       Fonctionnement de l'obturateur : Synchro
+       Délai d'ouverture de l'obturateur : 0 ms
+       Délai de fermetrue de l'obturateur : 30 ms
+       Arreter les acquisitions [X] AVEC lecture du CCD 
+       Cliquer sur [Ok]
+
+      En bas à droite de la fenêtre, on doit lire : "Caméra A : DZ936_BV"
+
+      Si la caméra est bien détectée, aller dans le menu "Camera / Acquisition(T1M)".
+      et lancer un dark
+      </pre>
+
+
+  <h3>Point à vérifier en cas de problèmes</h3>
+  
+      <pre>
+      La commande lsusb doit lister un périphérique dont l'identifiant est 136e:000c
+      par exemple
+      Bus 002 Device 007: ID 136e:000c
+
+      Vérifier que le fichier est en lecture/ecriture par tous les utilisateurs.
+      ls -l /dev/bus/usb/002/007
+      crw-rw-rw- 1 root root 189, 134  7 oct.  01:00 /dev/bus/usb/002/007
+
+      Vérifier la présence du fichier /etc/udev/rules.d/andor.rules contenant la ligne
+      ATTRS{idVendor}=="136e", MODE="0666"
+      </pre>
+  
+
+  <h3>FAQ</h3>
+
+    <h4>Permission sur le Port USB</h4>
+
+      <pre>
+
+      == ERREUR == 
+      libusb couldn't open USB device /dev/bus/usb/002/007: Permission denied.
+      libusb requires write access to USB device nodes.
+      libusb couldn't open USB device /dev/bus/usb/002/007: Permission denied.
+      libusb requires write access to USB device nodes.
+      ./audela.sh : ligne 8 :  1486 Erreur de segmentation  ./audela $*
+
+      == REPONSE == 
+      Selon distrib evidemment, le fonctionnement du montage des peripheriques usb
+      est different. 
+      A linstallation du driver andor. cela cree une nouvelle regle dans /etc/udev/rules.d/
+      et ajoute le fichier andor.rules
+      dans lequel se trouve la ligne suivante: 
+      SYSFS{idVendor}=="136e", MODE="0666"
+
+      sous Archlinux :
+      il faut modifier en :
+      ATTR{idVendor}=="136e", MODE="0666", GROUP="users", OWNER="t1m"
+
+      pour savoir ca, il a fallu tapper les commandes suivantes :
+
+      > udevadm info -q path -n /dev/bus/usb/002/007
+      /devices/pci0000:00/0000:00:1d.7/usb2/2-6/2-6.1
+
+      > udevadm info -a -p /devices/pci0000:00/0000:00:1d.7/usb2/2-6/2-6.1
+      et la on voit toutes les infos qui appartiennent au peripherique. 
+      et c est la qu on voit que SYSFS s est transforme en ATTR.
+
+      </pre>
+
+    <h4>Initialisation de la camera impossible</h4>
+
+      <pre>
+
+      == ERREUR == 
+      open() failed: No such file or directory
+
+      == REPONSE == 
+
+      - la caméra n'est pas branchée
+
+      - la librairie andorusb n'a pas chargé la bonne version de la libusb
+
+      - les paquets suivant n'ont pas ete installé
+
+             libusb1_0-devel 
+             libusb-compat-devel 
+
+      - les droits d acces au port USB ne sont pas correct
+
+      </pre>
+
+
+
+
+</body>
+
+</html>

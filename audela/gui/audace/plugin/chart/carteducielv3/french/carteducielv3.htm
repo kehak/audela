@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Carte du Ciel Version 3</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 30 avril 2016</p>
+<h1>Cartes du Ciel Version 3 </h1>
+<p>Aud'ACE peut communiquer avec "Cartes du Ciel" pour :</p>
+<p>- <a href="#visu_carte">Visualiser une carte correspondant &agrave; une image
+  affich&eacute;e dans Aud'ACE</a>.</p>
+<p>- <a href="#pointer">Pointer un objet d&eacute;sign&eacute; dans "Cartes
+  du Ciel"</a> et d&eacute;placer le t&eacute;lescope vers cet objet.</p>
+<p>Au pr&eacute;alable, il faut configurer la communication entre Aud'ACE et Cartes
+  du Ciel.</p>
+
+<h1>Configuration de "Cartes du Ciel" </h1>
+
+<h2>1 Configuration pour la liaison avec AudeLA</h2>
+<ol>
+
+  <li>Ouvrir le menu <b><i>Configuration --&gt; Syst&egrave;me</i></b>.<b><i><br /></i></b></li>
+
+  <li>S&eacute;lectionner l'onglet <i><b>Serveur</b></i>.<i><b><br />
+    </b></i><img style="width: 551px; height: 432px;" alt="" src="images/config_carteduciel.png" /></li>
+  <li>Cocher <span style="font-weight: bold;">Utiliser le serveur</span>. </li>
+  <li>Cocher <span style="font-weight: bold;">Garde la connexion client</span>.<br />
+  </li>
+  <li>Renseigner <span style="font-weight: bold;">Interface r&eacute;seau</span> : 127.0.0.1</li>
+  <li>Renseigner <span style="font-weight: bold;">Port</span> : 3292</li>
+  <li>Enregistrer les param&egrave;tres en cliquant sur le bouton <span style="font-weight: bold; font-style: italic;">OK</span>. C'est fini pour Cartes du Ciel. <br />
+  </li>
+</ol>
+<h2>2 Configuration de l'&eacute;quinoxe<br />
+</h2>
+<ol>
+<li>Ouvrir le menu <b><i>Configuration --&gt; Cartes, Coordonn&eacute;es</i></b>.<b><i><br />
+    </i></b></li><li>Dans la section <i><b>Type de coordonn&eacute;es</b></i>, s&eacute;lectionner <span style="font-weight: bold; font-style: italic;">Apparente (&eacute;quateur vrai, &eacute;quinoxe et &eacute;poque de la
+    date)</span>.</li>
+</ol>
+<img style="width: 516px; height: 591px;" alt="" src="images/select_equinoxe.png" /><br />
+<br />
+<h1>Configuration de "Aud'ACE" </h1>
+<ol>
+  <li>Ouvrir le menu <b><i>Configuration-&gt;Carte</i></b>.</li>
+  <li>S&eacute;lectionner l'onglet <i><b>Carte du Ciel V3</b></i>.<i><b><br />
+    <img style="width: 638px; height: 505px;" alt="" src="images/config_audace.png" /> </b></i></li>
+  <li>Renseigner <span style="font-weight: bold; font-style: italic;">Recherche (Cartes du ciel V3)</span> avec le chemin complet du
+    programme Cartes du Ciel pour permettre &agrave; Aud'ACE de le lancer, s'il n'est pas d&eacute;j&agrave; lanc&eacute;. Vous pouvez utiliser le bouton <span style="font-weight: bold; font-style: italic;">...</span> (parcourir) pour cette action.<br />
+  </li>
+  <li>Renseigner <span style="font-weight: bold; font-style: italic;">Serveur TCP/IP</span> :127.0.0.1</li>
+  <li>Renseigner <span style="font-weight: bold; font-style: italic;">Port</span> :3292</li>
+  <li>Enregistrer les param&egrave;tres en cliquant sur le bouton <span style="font-weight: bold; font-style: italic;">OK</span>. C'est fini pour Aud'ACE.</li>
+</ol>
+<p>Param&egrave;tres optionnels : </p>
+<ul>
+  <li>Cocher <span style="font-weight: bold; font-style: italic;">Champ fixe</span> pour imposer un champ de taille fixe dans
+    Cartes du Ciel. Pr&eacute;ciser la <span style="font-weight: bold; font-style: italic;">Taille du champ(xxdxxmxxs)</span> en renseignant la valeur
+    en degr&eacute;s, minutes et secondes d'angle. Si cette option n'est pas coch&eacute;e,
+    la taille du champ n'est pas modifi&eacute;e.<br />
+    Exemple : 05d00m00s permet d'obtenir une carte avec un champ de 5 degr&eacute;s.</li>
+</ul>
+
+<h1><a name="visu_carte">Visualiser une carte correspondant &agrave; une image
+  affich&eacute;e dans Aud'ACE</a></h1>
+<ol>
+  <li>Ouvrir une image dans Aud'ACE avec le menu <i><b>Fichier-&gt;Ouvrir</b></i>.</li>
+  <li>S&eacute;lectionner le menu <i><b>Analyse-&gt;Carte,</b></i> la carte
+    correspondant &agrave; l'image est affich&eacute;e dans Cartes du Ciel".
+    <img style="width: 765px; height: 545px;" alt="" src="images/visu_carte.png" /> <br />
+  </li>
+</ol>
+<br />
+<h1><a name="pointer">Pointer un objet d&eacute;sign&eacute; dans "Cartes
+  du Ciel"</a></h1>
+<ol>
+  <li>S&eacute;lectionner l'onglet de votre monture dans Aud'ACE avec le menu <span style="font-weight: bold; font-style: italic;">Configuration --&gt; Monture</span>, cocher l'option <i><b>Raquette
+    &agrave; l'&eacute;cran</b></i> en choisissant la raquette <i><b>superpad</b></i>. Ensuite cliquer sur le bouton <span style="font-style: italic; font-weight: bold;">OK</span>. C'est fini pour Aud'ACE.
+  </li>
+  <li>S&eacute;lectionner avec la souris l'&eacute;toile &agrave; pointer avec le t&eacute;lescope
+dans Cartes du Ciel. C'est fini pour Cartes du Ciel, il n'y a rien
+d'autre &agrave; faire.
+    <p><img style="width: 641px; height: 483px;" alt="" src="images/select_star.png" /></p>
+  </li>
+  <li>Dans Aud'ACE, cliquer sur le bouton <b><i>Carte</i></b> de la raquette SuperPad pour
+    r&eacute;cup&eacute;rer dans Aud'ACE les coordonn&eacute;es de l'&eacute;toile s&eacute;lectionn&eacute;e dans Cartes du Ciel.</li>
+  <li>
+    <p>&nbsp;Le nom de l'&eacute;toile (Alp Vir pour Alpha de la Vierge)
+      et ses coordonn&eacute;es (Ascension Droite et D&eacute;clinaison) apparaissent dans la raquette.</p>
+    <p style="margin-left: 40px;"><img style="width: 186px; height: 372px;" alt="" src="images/raquette.png" /></p>
+  </li>
+  <li>Enfin cliquer sur le bouton <b><i>GOTO</i></b> de la raquette pour
+    d&eacute;placer le t&eacute;lescope vers l'&eacute;toile.</li>
+</ol>
+
+</body></html>

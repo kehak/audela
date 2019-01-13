@@ -1,0 +1,37 @@
+
+CP= copy
+RM= -@del /f /q
+
+SOURCE=jpeg-6b
+EXTERNAL_INCLUDE=..\include
+EXTERNAL_LIB=..\lib
+AUDELA_BIN=..\..\..\bin
+
+$(SOURCE)\release\jpeg.lib:
+   cd jpeg-6b
+   $(CP) jconfig.vc jconfig.h
+   ; nmake /f makefile.vc libjpeg.lib
+   nmake /f makelib.ds
+   cd ..
+
+install: $(SOURCE)\release\jpeg.lib
+	@echo on
+	if not exist $(EXTERNAL_INCLUDE)  mkdir $(EXTERNAL_INCLUDE)
+	if not exist $(EXTERNAL_LIB)      mkdir $(EXTERNAL_LIB)
+	$(CP) $(SOURCE)\jpeglib.h         $(EXTERNAL_INCLUDE)
+	$(CP) $(SOURCE)\jerror.h          $(EXTERNAL_INCLUDE)
+	$(CP) $(SOURCE)\jconfig.h         $(EXTERNAL_INCLUDE)
+	$(CP) $(SOURCE)\jmorecfg.h        $(EXTERNAL_INCLUDE)
+	$(CP) $(SOURCE)\release\jpeg.lib  $(EXTERNAL_LIB)
+
+clean:
+    cd $(SOURCE)
+	nmake /f  makelib.ds  clean
+	cd ..
+	$(RM) $(EXTERNAL_INCLUDE)\jpeglib.h
+	$(RM) $(EXTERNAL_INCLUDE)\jerror.h
+	$(RM) $(EXTERNAL_INCLUDE)\jconfig.h
+	$(RM) $(EXTERNAL_INCLUDE)\jmorecfg.h
+	$(RM) $(EXTERNAL_LIB)\jpeg.lib
+	
+

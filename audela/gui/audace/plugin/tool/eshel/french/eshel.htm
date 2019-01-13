@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Acquisition & Traitement eShel - Premi&egrave;re prise en main</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 06 juillet 2013</p>
+<h1>Acquisition & Traitement eShel - Premi&egrave;re prise en main </h1>
+<h3><a name="instrument"></a>1) Param&eacute;trage des instruments </h3>
+<blockquote>
+  <p> Cliquer sur le bouton &quot;<b>Param&egrave;tres instrument</b>&quot; pour
+    ouvrir la fen&ecirc;tre de param&eacute;trage des instruments</p>
+  <ul>
+    <li> cr&eacute;er une nouvelle configuration.</li>
+    <li>saisir le nom du spectrographe <i>(1)</i> et &eacute;ventuellement les
+      param&egrave;tres sp&eacute;cifiques </li>
+    <li>saisir le nom de la cam&eacute;ra <i>(1)</i>, son type et v&eacute;rifier
+      que la connexion fonctionne (bouton &quot;configurer&quot;)</li>
+    <li>saisir le nom du t&eacute;lescope <i>(1)</i> </li>
+  </ul>
+  <p>Cliquer sur le bouton &quot;OK&quot; pour enregistrer les donn&eacute;es
+    et fermer la fen&ecirc;tre.</p>
+  <p>Pour plus de d&eacute;tail voir le paragraphe <a href="eshel.pdf">... &agrave;
+    compl&eacute;ter</a></p>
+  <p><i>(1) ces noms sont utilis&eacute; par BeSS</i></p>
+</blockquote>
+<p>&nbsp;</p>
+<h3><a name="session"></a>2) Configurer la session </h3>
+<blockquote>
+  <p>Cliquer sur le bouton &quot;<b>Session</b>&quot; pour ouvrir la fen&ecirc;tre
+    de param&eacute;trage de la session.</p>
+  <p>Eshel utilise 5 r&eacute;pertoires : </p>
+  <ul>
+    <li> r&eacute;pertoire des images brutes</li>
+    <li>r&eacute;pertoire des images temporaires</li>
+    <li>r&eacute;pertoire des images de r&eacute;f&eacute;rence</li>
+    <li>r&eacute;pertoire des images trait&eacute;es</li>
+    <li>r&eacute;peroire des images brutes archiv&eacute;es</li>
+  </ul>
+  <p>Pour cr&eacute;er ces 5 r&eacute;pertoires, saisir le nom du r&eacute;pertoire
+    principal et cliquer sur le bouton &quot;<b>Cr&eacute;er tous les r&eacute;pertoires</b>&quot;</p>
+  <p>&nbsp;</p>
+</blockquote>
+<h3><a name="acquisition"></a>3) Faire des acquisitions</h3>
+<blockquote>
+  <p>Lors de la premi&egrave;re utilisation, il convient de faire d'abord des
+    images de r&eacute;f&eacute;rence (offset, dark, flat, lamp) avant les images
+    d'un objet cible car les images de r&eacute;f&eacute;rence sont indispensables
+    aux traitements. </p>
+  <p> Pour faire une s&eacute;rie d'acquisitions de DARK :</p>
+  <ul>
+    <li> s&eacute;lectionner &quot;<b>Dark</b>&quot; dans la liste d&eacute;roulante
+      situ&eacute;e sous le bouton &quot;<b>Session</b>&quot;</li>
+    <li>ajuster le temps de pose (exprim&eacute; en secondes)</li>
+    <li>ajuster le nombre de poses </li>
+    <li>cocher la case &agrave; cocher &quot;auto&quot; pour traiter les images
+      automatiquement apr&egrave;s la fin des acquisitions.</li>
+    <li>cliquer sur &quot;<b>GO ACQ</b>&quot; . </li>
+  </ul>
+  <p>Le compte rendu du d&eacute;roulement des acquisitions est affich&eacute;
+    sous le bouton &quot;<b>GO ACQ</b>&quot;</p>
+  <p>Pour faire une s&eacute;rie d'acquisition d'un objet : </p>
+  <ul>
+    <li>S&eacute;lectionner &quot;<b>Object</b>&quot; dans la liste d&eacute;roulante,
+    </li>
+    <li>saisir son nom dans la rublique &quot;Objet&quot; </li>
+    <li>et proc&eacute;der comme dans l'exemple pr&eacute;c&eacute;dent.</li>
+  </ul>
+</blockquote>
+<h3><a name="process"></a>4) Faire les traitements</h3>
+<blockquote>
+  <p><b>Mode automatique</b></p>
+  <p>En mode automatique (case &agrave; cocher &quot;<b>Auto</b>&quot; coch&eacute;e)
+    , les traitements sont faits au fil des acquisitions. </p>
+  <p>Le r&eacute;sultat est affich&eacute; au fur et &agrave; mesure dans la console
+    de AudeLa.</p>
+  <p>&nbsp;</p>
+  <p><b>Mode manuel</b></p>
+  <p>Pour lancer des traitements en mode manuel :</p>
+  <ul>
+    <li>cliquer sur le bouton &quot;<b>Traiter les spectres ...</b>&quot;</li>
+    <li>d&eacute;cocher la case &agrave; cocher &quot;<b>Auto</b>&quot;</li>
+    <li>cliquer sur le bouton &quot;<b>G&eacute;n&eacute;rer la liste des traitements</b>&quot;
+      et &eacute;ventuellement consulter la liste des images qui sont prises en
+      compte dans les onglets 'Images brutes&quot; et &quot;Images de r&eacute;f&eacute;rence&quot;</li>
+    <li>cliquer sur le bouton &quot;Lancer les traitements&quot; . </li>
+  </ul>
+  <p>Le r&eacute;sultat est affich&eacute; au fur et &agrave; mesure dans la console
+    de AudeLa.</p>
+  <p>Pour plus de d&eacute;tail voir le paragraphe <a href="eshel.pdf">... &agrave;
+    compl&eacute;ter</a></p>
+</blockquote>
+<p>&nbsp; </p>
+</body>
+
+</html>

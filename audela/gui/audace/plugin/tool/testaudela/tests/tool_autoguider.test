@@ -1,0 +1,169 @@
+
+set visuNo 1
+
+#-------------------------------------------------------------------------------
+test tool_autoguider_connect_tel {connect telescope} -constraints {
+   AUDACE ASCOM
+} -setup {
+   ::confTel::run
+   ::confTel::selectNotebook "ascom"
+   after 300
+    #--- je récupère la liste des drivers (adaptation à la version ASCOM 6.2)
+   set telDriverList "$::ascom::private(ascomDriverNameList)"
+   set simTelescope [list "Telescope Simulator for .NET " "Simulator ScopeSim.Telescope"]
+   set result ""
+   foreach simTel $simTelescope {
+      set index [lindex [lsearch -exact $simTelescope "$simTel"] 0]
+      if {$index ne "-1"} {
+	     #--- je sélectionne ce driver
+		 set catchError [ catch { ::testaudela::clicCombobox .audace.confTel.usr.onglet.fascom.driver \@$index } ]
+		 if { $catchError eq "0" } {
+            #--- je n'affiche pas de raquette
+            ::testaudela::clicCheckButton .audace.confTel.usr.onglet.fascom.raquette 0
+            #--- j'applique les choix et je ferme la fenetre de configuration du telescope
+            ::testaudela::clicButton .audace.confTel.cmd.ok
+         }
+		 break
+      }
+   }
+} -body {
+   update
+   set result [::confTel::getPluginProperty "name"]
+   return $result
+} -cleanup {
+} -result "Simulator"
+
+#-------------------------------------------------------------------------------
+test tool_autoguider_connect_cam {connect camera} -constraints {
+   AUDACE ASCOM
+} -setup {
+   ::confCam::run
+   #--- je deconnecte la camera si elle est deja connectee
+   if {  [::confCam::isReady A] == 1 } {
+      ::confCam::stopItem A
+   }
+   #--- je récupère la liste des drivers (adaptation à la version ASCOM 6.2)
+   set camDriverList $::ascomcam::private(ascomDriverNameList)
+   set simCameras [list "Camera V2 simulator" "Simulator" "CCDSimulator\.Camera"] 
+   #--  je sélectionne la page ascom
+   set notebook .audace.confCam.usr.onglet
+   $notebook page 3
+   after 300
+   foreach simCam $simCameras {
+      set index [lindex [lsearch -exact $camDriverList "$simCam"] 0]
+      if {$index ne "-1"} {
+	     #--- je sélectionne ce driver
+		 set catchError [catch { ::testaudela::clicCombobox  $notebook.fascomcam.frame1.frame3.frame4.driver \@$index } ]
+		 if {$catchError eq "0"} {
+			::confCam::selectNotebook "A" "ascomcam"
+		    ::confCam::ok
+		    break
+	     }
+      }
+   }
+} -body {
+   set result [::confCam::getPluginProperty  A product]
+   return $result
+} -cleanup {
+} -result "ascomcam"
+
+#-------------------------------------------------------------------------------
+test tool_autoguider_centerSpeed1 {configure center speed=1} -constraints {
+   AUDACE ASCOM
+} -setup {
+   #--- je charge le package autoguider
+   package require autoguider
+   ::confVisu::selectTool $visuNo ::autoguider
+
+   #--- pose = 0.3 s
+   ::testaudela::clicCombobox .audace.tool.autoguider.pose.combo 0.3
+   #--- intervalle = 0.3s
+   ::testaudela::clicCombobox .audace.tool.autoguider.intervalle.combo 0.3
+   #--- position de la consigne = 348 248
+   ::testaudela::putEntry .audace.tool.autoguider.suivi.origin_x 348
+   ::testaudela::putEntry .audace.tool.autoguider.suivi.origin_y 248
+   #--- suivi actif = 1
+   ::testaudela::clicCheckButton .audace.tool.autoguider.suivi.montEnabled 1
+} -body {
+   #--- j'ouvre la fenetre de configuration de l'autoguidage
+   ::testaudela::clicButton .audace.tool.autoguider.config.but_config
+   #--- je fixe la vitesse de centrage a 1
+   ::testaudela::clicCombobox .autoguiderconfig$visuNo.frame1.telescope.speedList "1"
+   #--- j'applique les choix et je ferme la fenetre de configuration du telescope
+   ::testaudela::clicButton .autoguiderconfig$visuNo.but_ok
+
+   #--- je cherche l'etoile la plus brillante
+   ::testaudela::clicButton .audace.tool.autoguider.suivi.search
+   #--- je lance le centrage
+   ::testaudela::clicButton .audace.tool.autoguider.suivi.center
+   #--- j'attends 2 ou 3 iterations
+   for { set i 0 } {$i < 100 } {incr i } {
+      after 10
+      update
+   }
+   #--- je verifie que la vitesse du telescope est "1"
+   set telrate $::audace(telescope,rate)
+   if { $telrate == "1" } {
+      set result ""
+   } else {
+      set result "center speed is not 1 but $telrate"
+   }
+   #--- j'interrompt le centrage
+   ::testaudela::clicButton .audace.tool.autoguider.suivi.center
+   after 500
+   return $result
+} -cleanup {
+} -result ""
+
+#-------------------------------------------------------------------------------
+test tool_autoguider_configure {configure center speed=2} -constraints {
+   AUDACE ASCOM
+} -setup {
+} -body {
+   #--- j'ouvre la fenetre de configuration de l'autoguidage
+   ::testaudela::clicButton .audace.tool.autoguider.config.but_config
+   #--- je fixe la vitesse de centrage a 2
+   ::testaudela::clicCombobox .autoguiderconfig$visuNo.frame1.telescope.speedList "2"
+   #--- j'applique les choix et je ferme la fenetre de configuration du telescope
+   ::testaudela::clicButton .autoguiderconfig$visuNo.but_ok
+   #--- je cherche l'etoile la plus brillante
+   ::testaudela::clicButton .audace.tool.autoguider.suivi.search
+   #--- je lance le centrage
+   ::testaudela::clicButton .audace.tool.autoguider.suivi.center
+   #--- j'attends 2 ou 3 iterations
+   for { set i 0 } {$i < 100 } {incr i } {
+      after 10
+      update
+   }
+   #--- je verifie que la vitesse du telescope est 2
+   #--- (correspond a ::audace(telescope,rate)=10 pour ascom)
+   set telrate $::audace(telescope,rate)
+   if { $telrate == "10"  } {
+      set result ""
+   } else {
+      set result "center speed is not 2 but $telrate"
+   }
+   #--- j'interrompt le centrage
+   ::testaudela::clicButton .audace.tool.autoguider.suivi.center
+   after 500
+   return $result
+} -cleanup {
+} -result ""
+
+#-------------------------------------------------------------------------------
+test tool_autoguider_disconnect_tel {disconnect telescope} -constraints {
+   AUDACE ASCOM
+} -setup {
+} -body {
+   #--- j'arrete le plugin autoguider
+   ::confVisu::stopTool $visuNo ::autoguider
+   ::confTel::stopPlugin
+   ::confCam::stopPlugin
+   return ""
+} -cleanup {
+   #--- j'efface l'image
+   ::confVisu::clear $visuNo
+   #--- j'affiche l'outil associe au raccourci F2
+   #::audace::afficheOutilF2
+} -result ""
+

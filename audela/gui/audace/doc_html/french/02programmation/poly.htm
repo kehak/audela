@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Gestion d'images FITS polychromes</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 03 avril 2004</p>
+<h1>Gestion d'images FITS polychromes </h1>
+<p><strong>Liste des fonctions utilisables :</strong></p>
+<h3> <a name="seriesApoly" id="seriesApoly"></a>seriesApoly <em>liste_noms_series_monochromes nom_serie_polychrome ?options?</em></h3>
+<p>Cr&eacute;ation d'une s&eacute;rie d'images polychrome &agrave; partir de plusieurs s&eacute;ries monochromes.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : sp&eacute;cifie le r&eacute;pertoire dans lequel travailler.</li>
+  <li>-in_rep : sp&eacute;cifie le r&eacute;pertoire de la s&eacute;rie initiale.</li>
+  <li>-ex_rep : sp&eacute;cifie le r&eacute;pertoire de la s&eacute;rie finale.</li>
+  <li>-ext : extension des s&eacute;ries d'images.</li>
+</ul>
+<h3> <a name="polyAserie" id="polyAserie"></a>polyAserie <em>nom_serie_polychrome No_plan_couleur serie_monochrome ?options?</em></h3>
+<p>Extraction d'une s&eacute;rie monochrome &agrave; partir d'une s&eacute;rie d'images polychrome.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : sp&eacute;cifie le r&eacute;pertoire dans lequel travailler.</li>
+  <li>-in_rep : sp&eacute;cifie le r&eacute;pertoire de la s&eacute;rie initiale.</li>
+  <li>-ex_rep : sp&eacute;cifie le r&eacute;pertoire de la s&eacute;rie finale.</li>
+  <li>-ext : extension des s&eacute;ries d'images.</li>
+  <li>-ex_polyNo : sp&eacute;cifie le plan couleurs de travail pour la s&eacute;rie finale.</li>
+</ul>
+<h3> <a name="polyAseries" id="polyAseries"></a>polyAseries <em>nom_serie_polychrome liste_noms_series_monochromes ?options?</em></h3>
+<p>Conversion d'une s&eacute;rie d'images polychrome en plusieurs s&eacute;ries monochromes.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : sp&eacute;cifie le r&eacute;pertoire dans lequel travailler.</li>
+  <li>-in_rep : sp&eacute;cifie le r&eacute;pertoire de la s&eacute;rie initiale.</li>
+  <li>-ex_rep : sp&eacute;cifie le r&eacute;pertoire de la s&eacute;rie finale.</li>
+  <li>-ext : extension des s&eacute;ries d'images.</li>
+</ul>
+<h3> <a name="poly_nbcouleurs" id="poly_nbcouleurs"></a>poly_nbcouleurs <em>serie ?options?</em></h3>
+<p>Renvoie le nombre de plans couleurs de la s&eacute;rie.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : sp&eacute;cifie le r&eacute;pertoire dans lequel travailler.</li>
+  <li>-ext : extension de la s&eacute;rie d'images.</li>
+</ul>
+<h3> <a name="poly_fenetre" id="poly_fenetre"></a>poly_fenetre <em>in ex coord ?options?</em></h3>
+<p>Fen&ecirc;trage d'une s&eacute;rie de fichiers polychromes. La s&eacute;rie r&eacute;sultante est "ex". "coord" est une liste des coordonn&eacute;es de 2 coins extr&ecirc;mes de la zone de fen&ecirc;trage.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : sp&eacute;cifie le r&eacute;pertoire dans lequel travailler.</li>
+  <li>-in_rep : sp&eacute;cifie le r&eacute;pertoire de la s&eacute;rie initiale.</li>
+  <li>-ex_rep : sp&eacute;cifie le r&eacute;pertoire de la s&eacute;rie finale.</li>
+  <li>-ext : extension de la s&eacute;rie d'images.</li>
+</ul>
+<h3> <a name="poly_souris_fenetre" id="poly_souris_fenetre"></a>poly_souris_fenetre <em>in ex ?options?</em></h3>
+<p>Idem serie_fenetre sauf que les coordonn&eacute;es de la fen&ecirc;tre sont &agrave; faire pr&eacute;alablement &agrave; la souris sur l'image Aud'ACE.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : sp&eacute;cifie le r&eacute;pertoire dans lequel travailler.</li>
+  <li>-in_rep : sp&eacute;cifie le r&eacute;pertoire de la s&eacute;rie initiale.</li>
+  <li>-ex_rep : sp&eacute;cifie le r&eacute;pertoire de la s&eacute;rie finale.</li>
+  <li>-ext : extension de la s&eacute;rie d'images.</li>
+</ul>
+<h3> <a name="poly_rot" id="poly_rot"></a>poly_rot <em>in ex x0 y0 angle ?options?</em></h3>
+<p>Transformation d'une s&eacute;rie d'images polychromes par rotation d'angle "angle" et de centre ("x0", "y0").</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : sp&eacute;cifie le r&eacute;pertoire dans lequel travailler.</li>
+  <li>-in_rep : sp&eacute;cifie le r&eacute;pertoire de la s&eacute;rie initiale.</li>
+  <li>-ex_rep : sp&eacute;cifie le r&eacute;pertoire de la s&eacute;rie finale.</li>
+  <li>-ext : extension des fichiers..</li>
+</ul>
+<h3> <a name="poly_trans" id="poly_trans"></a>poly_trans <em>in ex dx dy ?options?</em></h3>
+<p>Transformation d'une s&eacute;rie d'images polychromes par translation.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : sp&eacute;cifie le r&eacute;pertoire dans lequel travailler.</li>
+  <li>-in_rep : sp&eacute;cifie le r&eacute;pertoire de la s&eacute;rie initiale.</li>
+  <li>-ex_rep : sp&eacute;cifie le r&eacute;pertoire de la s&eacute;rie finale.</li>
+  <li>-ext : extension des fichiers..</li>
+</ul>
+<h3> <a name="poly_series_traligne" id="poly_series_traligne"></a>poly_series_traligne <em>liste_des_series_initiales No_du_plancouleur_de_reference serie_finale ?options?</em></h3>
+<p>Registration manuelle entre plusieurs s&eacute;ries d'images polychromes par translation et rotation.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : sp&eacute;cifie le r&eacute;pertoire dans lequel travailler.</li>
+  <li>-in_rep : sp&eacute;cifie le r&eacute;pertoire de la s&eacute;rie initiale.</li>
+  <li>-ex_rep : sp&eacute;cifie le r&eacute;pertoire de la s&eacute;rie finale.</li>
+  <li>-ext : extension des fichiers.</li>
+</ul>
+</body>
+
+</html>

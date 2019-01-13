@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/dev_template.dwt" codeOutsideHTMLIsLocked="false" -->
+<!-- DW6 -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Qu'est-ce qu'une extension ?</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="keywords" content="astronomy, astronomie, software, Audace, audace, Audela, audela, CCD, ccd, association Aude, association AUDE, amateur astronomer, image, sky, ciel, telescope, télescope, star, étoile, galaxy, ccd camera, camera CCD, astrophotography, Audine, Christian Jasinski, logiciel d'astronomie, astronomy software, astronomie numérique, CCD sensor, astronome amateur">
+<meta name="description" content="Audela : un logiciel d'astronomie CCD libre et gratuit pour tous.  Audela is a free and open-source CCD astronomy software">
+<link rel="stylesheet" href="3col_leftNav.css" type="text/css">
+</head>
+<body> 
+<table id="topTable" cellspacing="0" cellpadding="0"> 
+  <tr> 
+    <td width="85%" valign="middle" id="pageTopLeft"><div align="left" class="style1">Audela</div></td> 
+    <td width="15%"><div align="right"><img src="images/background_a.gif" alt="Audela" width="50" height="50" align="middle"></div></td> 
+</table> 
+<div id="masthead"> 
+  <div id="globalNav"> <a href="index.htm">Accueil</a> | <a href="copi_interfa.htm">Copies d'&eacute;cran</a> | <a href="version_actu.htm">T&eacute;l&eacute;charger</a> | <a href="bug.php">Support</a> | <a href="dev.htm">Documentation</a> | <a href="english.htm">English Version </a></div> 
+  <h2 id="pageName"><!-- InstanceBeginEditable name="Page Title" -->Qu'est-ce qu'une extension ?<!-- InstanceEndEditable --></h2> 
+  <div id="breadCrumb"> <!-- InstanceBeginEditable name="Breadcrumb" --><a href="index.htm">Home page </a> / <a href="dev.htm">Le coin des développeurs</a> / <a href="exten1.htm">Qu'est-ce qu'une extension ? </a> / <!-- InstanceEndEditable --></div> 
+</div> 
+<!--begin content --> 
+<div class="devContent"> <!-- InstanceBeginEditable name="MainContent" --><h2 align="center">Qu'est-ce qu'une extension ? </h2>
+<h3>1. D&eacute;finition d'une extension</h3>
+<p>Nous avons vu que la fonction
+<p><a href="script1.htm#proc">proc</a></p> 
+de Tcl permet d'ajouter une nouvelle fonction. Cette nouvelle fonction peut &ecirc;tre vue comme une macro qui rassemble un encha&icirc;nement de fonctions plus simples. S'il est champion en ex&eacute;cution de scripts, il faut reconna&icirc;tre que Tcl ne brille pas par ses capacit&eacute;s de calculs intensifs. De ce fait, il n'est pas raisonnable de faire, en Tcl, de grandes boucles de calcul sur tous les pixels d'une image, pour cr&eacute;er une nouvelle fonction de traitement d'image par exemple. C'est pour cette raison, et pour contourner ce probl&egrave;me, que Tcl fonctionne avec des "extensions".
+  </p> 
+  <p>Une extension est une librairie dynamique qui apporte de nouvelles fonctions &agrave; Tcl. Les librairies dynamiques sont courament employ&eacute;es dans les programmes informatiques pour effectuer des t&acirc;ches bien pr&eacute;cises. Ces librairies sont des fichiers qui se reconnaissent habituellement par leur suffixe .dll sous Windows et .so sous Linux. Les librairies sont &eacute;crites en langage C ou C++, ce qui permet la vitesse d'ex&eacute;cution la plus rapide possible. Ainsi, il devient possible d'ajouter de nouvelles fonctions &eacute;crites en C &agrave; un script Tcl. </p>
+  <p>Prenons un exemple. Nous souhaitons cr&eacute;er une fonction somme qui retourne la somme de la valeur de tous les pixels de l'image suppos&eacute;e &ecirc;tre dans le buffer 1 (buf1) de Audela. Cette fonction d&eacute;finie en Tcl pur, donnerait : </p>
+  <pre>proc somme {} {</pre> 
+  <pre> # --- retourne le nombre pixels en X ---</pre> 
+  <pre> set naxis1 [lindex [buf1 getkwd NAXIS1] 1]</pre> 
+  <pre> # --- retourne le nombre pixels en Y ---</pre> 
+  <pre> set naxis2 [lindex [buf1 getkwd NAXIS2] 2]</pre> 
+  <pre> set somme 0</pre> 
+  <pre> # --- somme de tous les pixels ---</pre> 
+  <pre> for {set i 1} {$i&lt;=naxis1} {incr i} {</pre> 
+  <pre> for {set j 1} {$j&lt;=naxis2} {incr j} {</pre> 
+  <pre> set somme [expr $somme+[buf1 getpix [list $i $j]]]</pre> 
+  <pre> }</pre> 
+  <pre> }</pre> 
+  <pre> # --- retourne le resultat a l'interpreteur ---</pre> 
+  <pre> return $somme</pre> 
+  <pre>}</pre> 
+  <p>L'ex&eacute;cution d'une telle fonction Tcl prend &eacute;norm&eacute;ment plus de temps que si elle &eacute;tait directement &eacute;crite en C. La m&ecirc;me fonction, &eacute;crite en langage C, sous forme d'extension prends alors la syntaxe suivante : </p>
+  <pre>int somme(ClientData clientData, Tcl_Interp *interp, int argc, char *argv[]) {</pre> 
+  <pre> float *p;</pre> 
+  <pre> int naxis1,naxis2,numbuf;</pre> 
+  <pre> double somme;</pre> 
+  <pre> char s[50];</pre> 
+  <pre> /* --- retourne l'adresse du pointeur image --- */</pre> 
+  <pre> Tcl_Eval(interp,"buf1 pointer");</pre> 
+  <pre> Tcl_GetInt(interp,p);</pre> 
+  <pre> /* --- retourne le nombre pixels en X ---*/</pre> 
+  <pre> Tcl_Eval(interp,"lindex [buf1 getkwd NAXIS1] 1");</pre> 
+  <pre> Tcl_GetInt(interp,&amp;naxis1);</pre> 
+  <pre> /* --- retourne le nombre pixels en Y ---*/</pre> 
+  <pre> Tcl_Eval(interp,"lindex [buf1 getkwd NAXIS2] 1");</pre> 
+  <pre> Tcl_GetInt(interp,&amp;naxis2);</pre> 
+  <pre> /* --- somme de tous les pixels ---*/</pre> 
+  <pre> somme=0;</pre> 
+  <pre> for (i=0;i&lt;naxis1;i++) {</pre> 
+  <pre> for (j=0;j&lt;naxis2;j++) {</pre> 
+  <pre> somme=somme+(double)p[i*naxis2+j];</pre> 
+  <pre> }</pre> 
+  <pre> }</pre> 
+  <pre> /* --- retourne le resultat a l'interpreteur ---*/</pre> 
+  <pre> sprintf(s,"%lf",somme);</pre> 
+  <pre> Tcl_AppendResult(interp,s);</pre> 
+  <pre> return TCL_OK;</pre> 
+  <pre>}</pre> 
+  <p>Les types ClientData et Tcl_Interp ainsi que TCL_OK sont d&eacute;finies dans tcl.h. Les fonctions Tcl_Eval, Tcl_GetInt et Tcl_AppendResult sont d&eacute;finies dans la librairie Tcl. Il faut charger ces fonctions dans la librairie d'extension. Dans les version sup&eacute;rieures &agrave; 8.1, on utilise le principe de stubs pour d&eacute;finir ces fonctions. L'extension devient alors ind&eacute;pendante de la version de Tcl utilis&eacute;e. Le point d'entr&eacute;e de la librairie contient le pointeur sur l'interpr&eacute;teur Tcl (not&eacute; *interp en g&eacute;n&eacute;ral). Parmi les fonctions Tcl accessibles, on trouvera la fonction qui cr&eacute;e la commande de syntaxe somme dans l'interpr&eacute;teur Tcl de Audela et qui ira pointer sur la commande somme du langage C d&eacute;finie plus haut : </p>
+  <pre>Tcl_CreateCommand(interp,"somme",somme,(ClientData)NULL,(Tcl_CmdDeleteProc
+      *)NULL);</pre> 
+  <p>Nous verrons plus loin tous les d&eacute;tails pour <a
+ href="exten4.htm">programmer une extension</a>. </p>
+  <p>Les fonctions d'astronomie, apport&eacute;es par audeLA, sont de v&eacute;ritables extensions. Il est important de conna&icirc;tre ces fonctions pour ma&icirc;triser l'&eacute;criture des scripts Tcl. Pour cela, nous avons regroup&eacute; la <a
+ href="exten2.htm">description des fonctions standard de Audela</a>. </p>
+  <p>En programmant Audela, nous avons voulu donner la chance &agrave; un maximum de gens d'apprendre &agrave; programmer. Le langage Tcl permet de se faire la main et les extensions permettent de se plonger r&eacute;ellement dans la programmation en langage &eacute;volu&eacute;. Nous avons &eacute;crit un <a href="exten3.htm">manuel pour d&eacute;buter en langage C</a> afin de partir avec quelques bases saines. Enfin, nous livrons un <a href="exten4.htm">canevas de sources C</a> qui permet d'&eacute;crire facilement une extension. Il ne reste qu'&agrave; remplir les trous avec vos fonctions !</p>
+  <h3>2. Appeler une extension dans un interpr&eacute;teur Tcl</h3>
+  <p> Un interpr&eacute;teur Tcl peut charger une librairie d'extension en utilisant la fonction load de Tcl. Par exemple, pour charger la librairie libmc, on utilisera: </p>
+  <p>load libmc[info sharedlibextension] </p>
+  <p>La fonction[info sharedlibextension] ajoute l'extension ad&eacute;quate au nom de fichier (.dll pour Windows ou .so pour Linux).</p>
+  <!-- #BeginLibraryItem "/Library/modification date.lbi" --><p style="text-align: right;">
+<script language="javascript">
+<!-- Code after this will be ignored by older browsers
+
+// Assign the last modified date to the variable lastModDate
+	var lastModDate = document.lastModified;
+
+//Create an if statement to test the value of lastModDate
+if (lastModDate == 0) {
+	document.writeln("Dernière modification : date inconnue");
+}
+else {
+	document.writeln("Dernière modification : " + lastModDate);
+}
+
+// Stop hiding the code here -->
+</script>
+</p><!-- #EndLibraryItem --><!-- InstanceEndEditable --></div> 
+<!--end content --> 
+<div id="siteInfo"> 
+  <script language="JavaScript" src="email.js" type="text/javascript"></script> 
+  | <a href="#">English Version </a> | <a href="mailto:audeladev-subscribe@egroups.com">Mailing List Audela</a> | &copy;2004 Audela | <a href="http://www.technospeak.com">Design TechnoSpeak</a> </div> 
+<br> 
+</body>
+<!-- InstanceEnd --></html>

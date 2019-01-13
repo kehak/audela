@@ -1,0 +1,313 @@
+#
+# Fichier : audecom.cap
+# Mise a jour $Id: audecom.cap 9940 2013-08-10 07:56:40Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(audecom,monture)                      "AudeCom"
+set caption(audecom,port)                         "Port"
+set caption(audecom,configurer)                   "Set up"
+set caption(audecom,controle)                     "Control"
+set caption(audecom,ouranos)                      "AudeCom + Ouranos"
+set caption(audecom,pec)                          "Enable PEC"
+set caption(audecom,king)                         "Enable Tracking using King Speed"
+set caption(audecom,mobile)                       "Enables the Tracking of Moving Objects"
+set caption(audecom,mont_allemande)               "German Equatorial Mount"
+set caption(audecom,para_moteur)                  "Motor Parameters"
+set caption(audecom,para_foc)                     "Focus Parameters"
+set caption(audecom,prog_pec)                     "PEC Programming"
+set caption(audecom,ctl_king)                     "King Speed Control"
+set caption(audecom,ctl_mobile)                   "Tracking Speed Control"
+set caption(audecom,ver_firmware)                 "Microcontroller Software: V"
+set caption(audecom,position_telescope)           "Telescope Position:"
+set caption(audecom,change_position_telescope)    "Change the Telescope Initial Position:"
+set caption(audecom,raquette_tel)                 "Hand controller on screen"
+set caption(audecom,soleil)                       "Sun"
+set caption(audecom,lune)                         "Moon"
+
+set caption(audecom,install_1)                    "End of AudeCom plugin installation"
+set caption(audecom,install_2)                    "libaudecom.dll library updated."
+
+set caption(audecom,port_audecom)                 "AudeCom Port"
+set caption(audecom,2points)                      ":"
+
+set caption(audecom,document_ref)                 "Reference Document:"
+set caption(audecom,doc_audecom)                  "AudeCom-V41.pdf"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(audecom,monture)                   "AudeCom"
+   set caption(audecom,port)                      "Port"
+   set caption(audecom,configurer)                "Configurer"
+   set caption(audecom,controle)                  "Contrôle"
+   set caption(audecom,ouranos)                   "AudeCom + Ouranos"
+   set caption(audecom,pec)                       "Active le PEC"
+   set caption(audecom,king)                      "Active le suivi à la vitesse de King"
+   set caption(audecom,mobile)                    "Active le suivi d'objets mobiles"
+   set caption(audecom,mont_allemande)            "Monture équatoriale allemande"
+   set caption(audecom,para_moteur)               "Paramètres moteurs"
+   set caption(audecom,para_foc)                  "Paramètres de la focalisation"
+   set caption(audecom,prog_pec)                  "Programmation du PEC"
+   set caption(audecom,ctl_king)                  "Contrôle de la vitesse de King"
+   set caption(audecom,ctl_mobile)                "Contrôle de la vitesse de suivi"
+   set caption(audecom,ver_firmware)              "Logiciel du microcontrôleur : V"
+   set caption(audecom,position_telescope)        "Position du télescope :"
+   set caption(audecom,change_position_telescope) "Changer la position d'origine du télescope :"
+   set caption(audecom,raquette_tel)              "Raquette à l'écran"
+   set caption(audecom,soleil)                    "Soleil"
+   set caption(audecom,lune)                      "Lune"
+
+   set caption(audecom,install_1)                 "Fin de l'installation du plugin AudeCom"
+   set caption(audecom,install_2)                 "La librairie libaudecom.dll a été mise à jour."
+
+   set caption(audecom,port_audecom)              "Port AudeCom"
+   set caption(audecom,2points)                   ":"
+
+   set caption(audecom,document_ref)              "Document de référence :"
+   set caption(audecom,doc_audecom)               "AudeCom-V41.pdf"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(audecom,monture)                   "AudeCom"
+   set caption(audecom,port)                      "Porta"
+   set caption(audecom,configurer)                "Configurare"
+   set caption(audecom,controle)                  "Controllo"
+   set caption(audecom,ouranos)                   "AudeCom + Ouranos"
+   set caption(audecom,pec)                       "Attivazione PEC"
+   set caption(audecom,king)                      "Attivazione inseguimento con King"
+   set caption(audecom,mobile)                    "Attivazione inseguimento oggetti mobili"
+   set caption(audecom,mont_allemande)            "Montatura equatoriale tedesca"
+   set caption(audecom,para_moteur)               "Parametri motore"
+   set caption(audecom,para_foc)                  "Parametri per la focalizzazione"
+   set caption(audecom,prog_pec)                  "Impostazione PEC"
+   set caption(audecom,ctl_king)                  "Controllo velocita` King"
+   set caption(audecom,ctl_mobile)                "Controllo velocita` di inseguimento"
+   set caption(audecom,ver_firmware)              "Software del microcontrollore: V"
+   set caption(audecom,position_telescope)        "Posizione telescopio:"
+   set caption(audecom,change_position_telescope) "Cambiare la posizione iniziale del telescopio:"
+   set caption(audecom,raquette_tel)              "Pulsantiera a schermo"
+   set caption(audecom,soleil)                    "Sole"
+   set caption(audecom,lune)                      "Luna"
+
+   set caption(audecom,install_1)                 "Fine installazione del plugin AudeCom"
+   set caption(audecom,install_2)                 "La libreria libaudecom.dll è stata aggiornata."
+
+   set caption(audecom,port_audecom)              "Porta AudeCom"
+   set caption(audecom,2points)                   ":"
+
+   set caption(audecom,document_ref)              "Documentazione di riferimento:"
+   set caption(audecom,doc_audecom)               "AudeCom-V41.pdf"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(audecom,monture)                   "AudeCom"
+   set caption(audecom,port)                      "Puerto"
+   set caption(audecom,configurer)                "Configurar"
+   set caption(audecom,controle)                  "Control"
+   set caption(audecom,ouranos)                   "AudeCom + Ouranos"
+   set caption(audecom,pec)                       "Activar PEC"
+   set caption(audecom,king)                      "Activar de seguimiento usando velocidad King"
+   set caption(audecom,mobile)                    "Activar el seguimiento de objetos móviles"
+   set caption(audecom,mont_allemande)            "Montura ecuatorial alemana"
+   set caption(audecom,para_moteur)               "Parametros de motores"
+   set caption(audecom,para_foc)                  "Parametros de focalización"
+   set caption(audecom,prog_pec)                  "Programación del PEC"
+   set caption(audecom,ctl_king)                  "Control de la velocidad King"
+   set caption(audecom,ctl_mobile)                "Ctrl. de la velocidad de seguimiento"
+   set caption(audecom,ver_firmware)              "Software de microcontrolador: V"
+   set caption(audecom,position_telescope)        "Situación del Telescopio:"
+   set caption(audecom,change_position_telescope) "Cambiar la posición inicial del telescopio:"
+   set caption(audecom,raquette_tel)              "Controlador virtual"
+   set caption(audecom,soleil)                    "Sol"
+   set caption(audecom,lune)                      "Luna"
+
+   set caption(audecom,install_1)                 "Fin de la instalación del plugin AudeCom"
+   set caption(audecom,install_2)                 "Libreria libaudecom.dll actualizada."
+
+   set caption(audecom,port_audecom)              "Puerto AudeCom"
+   set caption(audecom,2points)                   ":"
+
+   set caption(audecom,document_ref)              "Documento de referencia:"
+   set caption(audecom,doc_audecom)               "AudeCom-V41.pdf"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(audecom,monture)                   "AudeCom"
+   set caption(audecom,port)                      "Port"
+   set caption(audecom,configurer)                "Konfigurieren"
+   set caption(audecom,controle)                  "Kontroll"
+   set caption(audecom,ouranos)                   "AudeCom + Ouranos"
+   set caption(audecom,pec)                       "PEC aktivieren"
+   set caption(audecom,king)                      "King Tempo Folgung aktivieren"
+   set caption(audecom,mobile)                    "Bewegliche Objekten Folgung aktivieren"
+   set caption(audecom,mont_allemande)            "Deutschen äquatorialen Montierung"
+   set caption(audecom,para_moteur)               "Motoren Parametern"
+   set caption(audecom,para_foc)                  "Fokussierung Parametern"
+   set caption(audecom,prog_pec)                  "PEC Tempo"
+   set caption(audecom,ctl_king)                  "King Tempo Kontrolle"
+   set caption(audecom,ctl_mobile)                "Folgung Tempo Kontrolle"
+   set caption(audecom,ver_firmware)              "Mikrokontroller Software: V"
+   set caption(audecom,position_telescope)        "Teleskop Stellung:"
+   set caption(audecom,change_position_telescope) "Die beginn Position des Teleskop ändern:"
+   set caption(audecom,raquette_tel)              "Hand Kontroller am Bildschirm"
+   set caption(audecom,soleil)                    "Sonne"
+   set caption(audecom,lune)                      "Mond"
+
+   set caption(audecom,install_1)                 "Ende der AudeCom-Plugin-Installation"
+   set caption(audecom,install_2)                 "Die libaudecom.dll Bibliothek ist aktualisiert."
+
+   set caption(audecom,port_audecom)              "AudeCom Port"
+   set caption(audecom,2points)                   ":"
+
+   set caption(audecom,document_ref)              "Referenz Dokument:"
+   set caption(audecom,doc_audecom)               "AudeCom-V41.pdf"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(audecom,monture)                   "AudeCom"
+   set caption(audecom,port)                      "Porta"
+   set caption(audecom,configurer)                "Configuração"
+   set caption(audecom,controle)                  "Controlo"
+   set caption(audecom,ouranos)                   "AudeCom + Ouranos"
+   set caption(audecom,pec)                       "Ligar PEC"
+   set caption(audecom,king)                      "Ligar guiagem utilizando velocidade King"
+   set caption(audecom,mobile)                    "Liga a guiagem de objectos em movimento"
+   set caption(audecom,mont_allemande)            "Montagem Equatorial Alemã"
+   set caption(audecom,para_moteur)               "Parâmetros do Motor"
+   set caption(audecom,para_foc)                  "Parâmetros da Focagem"
+   set caption(audecom,prog_pec)                  "Programação PEC"
+   set caption(audecom,ctl_king)                  "Controlo da Velocidade King"
+   set caption(audecom,ctl_mobile)                "Controlo da Velocidade de Seguimento"
+   set caption(audecom,ver_firmware)              "Software do Microcontrolador Software: V"
+   set caption(audecom,position_telescope)        "Posição do Telescópio:"
+   set caption(audecom,change_position_telescope) "Mudar a Posição Inicial do Telescópio:"
+   set caption(audecom,raquette_tel)              "Controlador de mão no ecrã"
+   set caption(audecom,soleil)                    "Sol"
+   set caption(audecom,lune)                      "Lua"
+
+   set caption(audecom,install_1)                 "Fin da instalação do plugin AudeCom"
+   set caption(audecom,install_2)                 "A livraria libaudecom.dll foi actualizada."
+
+   set caption(audecom,port_audecom)              "Porta AudeCom"
+   set caption(audecom,2points)                   ":"
+
+   set caption(audecom,document_ref)              "Documento de referência:"
+   set caption(audecom,doc_audecom)               "AudeCom-V41.pdf"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(audecom,monture)                   "AudeCom"
+   set caption(audecom,port)                      "Port"
+   set caption(audecom,configurer)                "Set up"
+   set caption(audecom,controle)                  "Control"
+   set caption(audecom,ouranos)                   "AudeCom + Ouranos"
+   set caption(audecom,pec)                       "Enable PEC"
+   set caption(audecom,king)                      "Enable Tracking using King Speed"
+   set caption(audecom,mobile)                    "Enables the Tracking of Moving Objects"
+   set caption(audecom,mont_allemande)            "German Equatorial Mount"
+   set caption(audecom,para_moteur)               "Motor Parameters"
+   set caption(audecom,para_foc)                  "Focus Parameters"
+   set caption(audecom,prog_pec)                  "PEC Programming"
+   set caption(audecom,ctl_king)                  "King Speed Control"
+   set caption(audecom,ctl_mobile)                "Tracking Speed Control"
+   set caption(audecom,ver_firmware)              "Microcontroller Software: V"
+   set caption(audecom,position_telescope)        "Telescope Position:"
+   set caption(audecom,change_position_telescope) "Change the Telescope Initial Position:"
+   set caption(audecom,raquette_tel)              "Hand controller on screen"
+   set caption(audecom,soleil)                    "Sun"
+   set caption(audecom,lune)                      "Moon"
+
+   set caption(audecom,install_1)                 "End of AudeCom plugin installation"
+   set caption(audecom,install_2)                 "libaudecom.dll library updated."
+
+   set caption(audecom,port_audecom)              "AudeCom Port"
+   set caption(audecom,2points)                   ":"
+
+   set caption(audecom,document_ref)              "Reference Document:"
+   set caption(audecom,doc_audecom)               "AudeCom-V41.pdf"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(audecom,monture)                   "AudeCom"
+   set caption(audecom,port)                      "Port"
+   set caption(audecom,configurer)                "Set up"
+   set caption(audecom,controle)                  "Control"
+   set caption(audecom,ouranos)                   "AudeCom + Ouranos"
+   set caption(audecom,pec)                       "Enable PEC"
+   set caption(audecom,king)                      "Enable Tracking using King Speed"
+   set caption(audecom,mobile)                    "Enables the Tracking of Moving Objects"
+   set caption(audecom,mont_allemande)            "German Equatorial Mount"
+   set caption(audecom,para_moteur)               "Motor Parameters"
+   set caption(audecom,para_foc)                  "Focus Parameters"
+   set caption(audecom,prog_pec)                  "PEC Programming"
+   set caption(audecom,ctl_king)                  "King Speed Control"
+   set caption(audecom,ctl_mobile)                "Tracking Speed Control"
+   set caption(audecom,ver_firmware)              "Microcontroller Software: V"
+   set caption(audecom,position_telescope)        "Telescope Position:"
+   set caption(audecom,change_position_telescope) "Change the Telescope Initial Position:"
+   set caption(audecom,raquette_tel)              "Hand controller on screen"
+   set caption(audecom,soleil)                    "Sun"
+   set caption(audecom,lune)                      "Moon"
+
+   set caption(audecom,install_1)                 "End of AudeCom plugin installation"
+   set caption(audecom,install_2)                 "libaudecom.dll library updated."
+
+   set caption(audecom,port_audecom)              "AudeCom Port"
+   set caption(audecom,2points)                   ":"
+
+   set caption(audecom,document_ref)              "Reference Document:"
+   set caption(audecom,doc_audecom)               "AudeCom-V41.pdf"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(audecom,monture)                   "AudeCom"
+   set caption(audecom,port)                      "Port"
+   set caption(audecom,configurer)                "Set up"
+   set caption(audecom,controle)                  "Control"
+   set caption(audecom,ouranos)                   "AudeCom + Ouranos"
+   set caption(audecom,pec)                       "Enable PEC"
+   set caption(audecom,king)                      "Enable Tracking using King Speed"
+   set caption(audecom,mobile)                    "Enables the Tracking of Moving Objects"
+   set caption(audecom,mont_allemande)            "German Equatorial Mount"
+   set caption(audecom,para_moteur)               "Motor Parameters"
+   set caption(audecom,para_foc)                  "Focus Parameters"
+   set caption(audecom,prog_pec)                  "PEC Programming"
+   set caption(audecom,ctl_king)                  "King Speed Control"
+   set caption(audecom,ctl_mobile)                "Tracking Speed Control"
+   set caption(audecom,ver_firmware)              "Microcontroller Software: V"
+   set caption(audecom,position_telescope)        "Telescope Position:"
+   set caption(audecom,change_position_telescope) "Change the Telescope Initial Position:"
+   set caption(audecom,raquette_tel)              "Hand controller on screen"
+   set caption(audecom,soleil)                    "Sun"
+   set caption(audecom,lune)                      "Moon"
+
+   set caption(audecom,install_1)                 "End of AudeCom plugin installation"
+   set caption(audecom,install_2)                 "libaudecom.dll library updated."
+
+   set caption(audecom,port_audecom)              "AudeCom Port"
+   set caption(audecom,2points)                   ":"
+
+   set caption(audecom,document_ref)              "Reference Document:"
+   set caption(audecom,doc_audecom)               "AudeCom-V41.pdf"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

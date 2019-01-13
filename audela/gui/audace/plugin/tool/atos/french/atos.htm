@@ -1,0 +1,1128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>A.T.O.S.</title>
+</head>
+
+<body>
+<p class="date">Date de mise à jour : 10 avril 2014</p>
+
+<h1>A.T.O.S. - Acquisition et Traitement pour les Occultations Stellaires</h1>
+<p>
+Auteurs : Fr&eacute;d&eacute;ric Vachier (fv at imcce.fr), Jerome Berthier, Stephane Vaillant
+</p><p>
+
+
+
+Ce plugin va vous permettre de :
+<ul>
+   <li> Analyser les mesures de photocentre avant l'acquisition qui permet
+   de trouver les meilleurs r&eacute;glages de la cam&eacute;ra avant de lancer l'acquisition</li>
+   <li> Faire l'acquisition Vid&eacute;o d'un occultation stellaire a 25 fps</li>
+   <li> Dater chaque images</li>
+   <li> Mersurer la courbe de lumi&egrave;re</li>
+   <li> Trouver la date des &eacute;v&egrave;nements</li>
+   <li> Construire le rapport PLANOCCULT</li>
+   <li> G&eacute;rer ses occultations</li>
+</ul>
+
+</p><p>
+
+
+</p><p>
+   Prequis :
+</p><p>
+   L'outil est developp&eacute; essentiellement sur open suse.
+<ul>
+   <li> Installation de gocr et ImageMagick pour la reconnaissance de caract&egrave;res<li>
+
+</ul>
+
+
+</p><p>
+
+</p><p>
+
+
+<h2> Exercice </h2>
+
+Entrainez-vous et essayez de retrouver les r&eacute;sultats pr&eacute;sent&eacute;s.
+T&eacute;l&eacute;chargez la vid&eacute;o d'exemple &agrave cette adresse :
+<a href="http://www.imcce.fr/%7Evachier/occultation/demo/sapphoseg.00.avi">http://www.imcce.fr/~vachier/occultation/demo/sapphoseg.00.avi</a>
+</p><p>
+
+
+
+
+
+
+
+
+</p><h2><img src="images/help.png" alt="" align="middle" height="48" width="48" />Aide</h2>
+A chaque fois la bou&eacute;e fera r&eacute;f&eacute;rence à cette page.
+
+
+
+
+
+<h2><img src="images/setup.png" alt="" align="middle" height="48" width="48" />Configuration du plugin<br />
+</h2>
+
+<p>
+<img src="images/conf_01_preferences.png" alt=""  />
+
+
+<dl>
+    <dt>R&eacute;pertoire projet</dt>
+      <dd>C'est l'endroit o&ugrave; vous stockerez vos r&eacute;sultats d'occultations.</dd>
+
+    <dt>Mode Debug</dt>
+      <dd>
+Sert aux d&eacute;veloppeurs, cela permet d'ajouter quelques fonctionnalit&eacute;s comme ressourcer
+l'ensemble du plugin. Pour l'activer il suffit de cocher cette option, de cliquer sur OK, de quitter AudeLA, de sauvegarder
+la configuration d'AudeLA et enfin de relancer AudeLA.
+      </dd>
+
+    <dt>D&eacute;lai d'affichage</dt>
+      <dd>
+permet de visualiser la vid&eacute;o lors de l'acquisition. Le nombre
+repr&eacute;sente la cadence d'affichage.
+      </dd>
+
+    <dt>Espace disque</dt>
+      <dd>
+La gestion de la taille du disque &eacute;vite de saturer un filesystem.
+      </dd>
+
+</dl>
+
+
+
+
+
+
+<p>
+<img src="images/conf_02_ocr.png" alt=""  />
+</p><p>
+
+Les lignes de commandes de l'OCR permettent la reconnaissance des caract&egrave;res.
+Elle permet de r&eacute;cup&eacute;rer la date inscrite sur les images.
+Elle n&eacute;cessite d'installer les outils sous Linux par d&eacute;faut :
+gocr et ImageMagick. La ligne de commande telle qu'elle est &eacute;crite, fournit une cha&icirc;ne
+de caract&egrave;res. Il est donc possible d'utiliser d'autres outils, il suffira de remplacer
+la commande.
+
+<dl>
+    <dt>OCR par d&eacute;faut</dt>
+      <dd></dd>
+
+    <dt>IOTA-VTI</dt>
+      <dd>La premi&egrave;re commande permet de modifier l'image; par exemple augmenter le contraste.
+      La deuxi&egrave;me effectue l'OCR. </dd>
+
+    <dt>TIM-10</dt>
+      <dd>La premiere commande permet de modifier l'image; par exemple augmenter le contraste.
+      La deuxieme effectue l'OCR. Pour l'instant ca ne marche pas</dd>
+
+    <dt>Kiwi-OSD</dt>
+      <dd></dd>
+
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><h2><img src="images/acquisition.png" alt="" align="middle" height="48" width="48" /> Acquisition d'une vid&eacute;o<br />
+</h2>
+Les boutons d'acquisition et de sauvegarde se trouvent en haut de la fen&ecirc;tre et sont toujours visibles.
+<dl>
+    <dt>OneShot</dt>
+      <dd>Prends une image</dd>
+    <dt>Acquisition Continue</dt>
+      <dd></dd>
+    <dt>Capture</dt>
+      <dd>Acquisition Continue avec sauvegarde</dd>
+    <dt>Stop</dt>
+      <dd>Arrete l'acquisition</dd>
+<dl>
+
+     <img src="images/acq_01_perif_choisir.png" alt=""  />
+     <p>
+     <br/>
+Dans l'onglet <b>P&eacute;riph&eacute;rique</b>,
+vous devez choisir le bon p&eacute;riph&eacute;rique de capture
+     <br/><br/>
+     </p>
+
+     <img src="images/acq_01_perif_info.png" alt=""  />
+     <p>
+     <br/>
+V&eacute;rifiez le mod&egrave;le et les dimensions et testez l'acquisition
+par le bouton One-Shot
+     <br/><br/>
+     </p>
+
+     <img src="images/acq_02_destination.png" alt=""  />
+     <p>
+     <br/>
+Dans l'onglet <b>Destination</b>,
+il faut renseigner le reacute;pertoire distant et le pr&eacute;fixe du fichier
+vid&eacute;o qui sera cr&eacute;&eacute;. La structure finale du fichier vid&eacute;o compose avec
+le nom de l'objet, la date de l'occultation et un nombre qui s'incr&eacute;mente
+pour &eacute;viter d'&eacute;craser un r&eacute;sultat.
+     <br/><br/>
+     </p>
+
+     <img src="images/acq_03_info.png" alt=""  />
+     <p>
+     <br/>
+L'onglet <b>Info</b>,
+vous donne les informations temps r&eacute;el lors de la capture de la vid&eacute;o.
+Soyez vigilant &agrave; la taille de disque disponible.
+Le disque se remplit &agrave; hauteur de 1 Go / min d'observation.
+On pr&eacute;conise 30 min id&eacute;alement pour explorer l'environnement de l'objet
+occulteur. il faut donc 30 Go d'espace disque libre.
+     <br/><br/>
+     </p>
+
+     <img src="images/acq_04_photom.png" alt=""  />
+     <p>
+     <br/>
+L'onglet <b>Photom&eacute;trie</b>,
+Permet choisir les sources &agrave; mesurer dans l'image. Pour que cela soit pris
+en compte, il faut
+
+<dl>
+    <dt>Image</dt>
+      <dd>
+S&eacute;lectionner un zone dans l'image dans la visu par un clic droit enfonc&eacute;.
+La zone doit &ecirc;tre le plus large possible en &eacute;vitant les zones de datation.
+      </dd>
+    <dt>Objet</dt>
+      <dd>
+S&eacute;lectionner l'&eacute;toile qui va &ecirc;tre occult&eacute;e.
+Ajuster la taille de la fen&ecirc:tre dans laquelle sera effectu&eacute;e la mesure du photocentre.
+V&eacute;rifier le bon r&eacute;glage de votre cam&eacute;ra pour ne pas saturer. V&eacute;rifier le pixmax
+      </dd>
+    <dt>R&eacute;f&eacute;rence</dt>
+      <dd>
+Si une &eacute;toile de r&eacute;f&eacute;rence se pr&eacute;sente alors s&eacute;lectionner l'&eacute;toile
+qui ne va pas etre occult&eacute;e.
+Ajuster la taille de la fen&ecirc;tre dans laquelle sera effectu&eacute;e la mesure du photocentre.
+V&eacute;rifier le bon r&eacute;glage de votre cam&eacute;ra pour ne pas saturer. V&eacute;rifier le pixmax.
+A d&eacute;faut trouver une autre &eacute;toile de r&eacute;f&eacute;rence si possible.
+      </dd>
+</dl>
+
+     <br/><br/>
+     </p>
+
+     <img src="images/acq_05_psf.png" alt=""  />
+     <p>
+     <br/>
+N'est pas encore actif, bient&ocirc;t...
+     <br/>
+L'onglet <b>PSF</b>,
+permettra de choisir la m&eacute;thode de calcul du photocentre. L'outil
+peut &ecirc:tre test&eacute; en utilisant l outil PSFToolBox dans Audela.
+     <br/><br/>
+     </p>
+
+     <img src="images/acq_06_ocr.png" alt=""  />
+     <p>
+     <br/>
+L'onglet <b>OCR</b>,
+permet de v&eacute;rifier que l'OCR fonctionne. En cochant la case OCR,
+il faut choisir le type d'incrustateur utilis&eacute; et s&eacute;lectionner dans
+l'image la zone d'extraction de la date. Si l'OCR fonctionne
+alors la date et parfois seulement l'heure, est &eacute;crite dans les
+champs correspondant. Le bouton OCR s'allume en vert lorsque ca marche
+et en rouge en cas d'&eacute;chec.
+     <br/><br/>
+L'OCR va nous aider &agrave; dater pr&eacute;cisement la vid&eacute;o, quelques pourcentages
+de r&eacute;ussite permettent une datation pr&eacute;cise.
+Il faut parfois conna&icirc;tre son bo&icirc;tier d'incrustation vid&eacute;o et r&eacute;gler
+la luminosit&eacute; des chiffres ce qui augmentera le taux de r&eacute;ussite de l'OCR.
+     <br/><br/>
+     </p>
+     <img src="images/acq_07_geometrie.png" alt=""  />
+     <p>
+     <br/>
+L'onglet <b>Ge&eacute;metrie</b>,
+est int&eacute;ressant seulement pour faire de la visualisation et son int&eacute;r&ecirc;t
+d&eacute;pend de la cam&eacute;ra utilis&eacute;e. Si par exemple c'est une cam&eacute;ra qui ne fournit
+que du 25 images par seconde, en augmentant le nombre d'images somm&eacute;es on peut visualiser
+le rendu par le bouton OneShot.
+     <br/><br/>
+
+
+
+
+</p><p>
+</p><h2><img src="images/extraction.png" alt="" align="middle" height="48" width="48" /> Extraction en images FITS<br />
+</h2>
+<p>
+L'extraction va convertir un fichier AVI en une multitude d'images FITS. Cette &eacute;tape n'est pas n&eacute;cessaire si
+vous utilisez les outils d' ATOS, puisqu'il traite aussi bien un AVI qu'une liste d'images FITS.
+     <br/><br/>
+
+
+     <img src="images/extract_01.png" alt=""  />
+     <p>
+     <br/>
+Commencer par s&eacute;lectionner le fichier vid&eacute;o en utilisant le bouton "..."
+<br/>
+Ce qui a pour effet d'ouvrir une fen&ecirc;tre de s&eacute;lection des fichiers *.avi
+<br/>
+Puis "Ouvir" le fichier.
+     <br/><br/>
+La barre de progression permet de naviguer dans l'image.
+Les boutons "Avance" et "Retour" font des sauts image par image.
+Les boutons "Avance rapide" et "Retour rapide" font des sauts par bloc
+de 100 images.
+     <br/><br/>
+Les boutons "Marquer le d&eacute;but" et "Marquer la fin" vont reduire la zone de traitement.
+Le bouton <b>Calcul</b> fait une estimation du nombre d'image &agrave; extraire.
+     <br/><br/>
+Choisir le r&eacute;pertoire et le pr&eacute;fixe des fichiers.
+les noms de fichier cr&eacute;&eacute;s seront form&eacute;s comme tel : prefixe1.fit prefixe2.fit etc...
+     <br/><br/>
+L'appuie du bouton <b>Extraction</b> lance le processus.
+
+     <br/><br/>
+     </p>
+
+
+
+
+
+
+
+
+
+<h2>
+    <a name="extraction_heure" id="extraction_heure"/>
+    <img src="images/time.png" alt="" align="middle" height="48" width="48" />
+    Extraction de l'heure
+    <br />
+</h2>
+
+On utilise avec cette fonctionnalit&eacute; la possibilit&eacute; de r&eacute;cup&eacute;rer
+la date incrust&eacute;e sur une image. A partir de maintenant on peut choisir
+d'utiliser une vid&eacute;o AVI ou bien un lot d'images.
+
+     <br/><br/>
+
+
+     <img src="images/datation_01_rectocr.png" alt=""  />
+     <p>
+     <br/>
+Il faut rep&eacute;rer la zone o&ugrave; se situe la date. En fonction du module d'incrustation
+les chiffres n'ont pas la m&ecirc;me typographie.
+
+
+     <p><br/>
+Kiwi-OSD :
+     <img src=images/ocr_kiwi.jpg" alt=""  />
+     <br/><br/></p>
+
+     <p><br/>
+TIM-10 :
+     <img src="images/ocr_tim10.jpg" alt=""  />
+     <br/><br/></p>
+
+     <p><br/>
+IOTA VTI :
+     <img src="images/ocr_vti.jpg" alt=""  />
+     <br/><br/></p>
+
+
+
+     <br/><br/>
+     </p>
+
+     <img src="images/datation_02_ocr.png" alt=""  />
+     <p>
+     <br/>
+
+On retrouve la partie chargement de la vid&eacute;o, la barre de d&eacute;filement,
+les boutons de navigation ainsi
+que le crop pour se restreindre à une partie de la vid&eacute;o.
+La datation peut se faire avec ou sans OCR (Reconnaissance Optique de
+Caractères).
+<p>Sans OCR (OCR n'est pas coch&eacute;), il suffit de saisir à la main quelques dates et de cliquer sur "V&eacute;rifi&eacute;",
+pour que le traitement en appuyant sur l'icône "D&eacute;marrer" en bas a gauche, interpole toutes les dates.
+
+     <br/><br/>
+
+Avec OCR, il faut cocher la case OCR, choisir le type d'incrustateur, s&eacute;lectionner la date
+avec un cadre dans la "visu", puis cliquer sur "Select"
+
+     <br/><br/>
+
+On peut alors voir qu'à cette &eacute;tape que le bouton OCR se colore en vert. Cela signifie que la reconnaissance
+de caractères a fonctionn&eacute; et qu'elle a retourn&eacute; une chaine de caractères sens&eacute;e repr&eacute;senter
+une date.
+
+     <br/><br/>
+
+Avant de commencer le processus en cliquant sur l'icône
+"D&eacute;marrer", il faut imp&eacute;rativement
+choisir 2 dates au minimum, les v&eacute;rifier visuellement et manuellement. (une au
+d&eacute;but de la vid&eacute;o et une à la fin), ensuite il faut se positionner au
+d&eacute;but de la vid&eacute;o sur une image qui a &eacute;t&eacute; v&eacute;rifi&eacute;e. Si tout est OK,
+vous pouvez cliquer sur l'icône "D&eacute;marrer". Cette action d&eacute;marre
+l'extraction de la date. Si l'OCR ne fonctionne pas il sera color&eacute; en
+rouge. Dans ce cas le bouton "Interpol&eacute;" sera color&eacute;
+en vert.
+
+     <br/><br/>
+
+Parfois les boutons "OCR" et "Interpol&eacute;" seront en vert.
+Dans ce cas, l'algorithme a trouv&eacute; une date
+valide, mais cette date pr&eacute;sente un problème car il y a
+un &eacute;cart trop grand. La valeur interpol&eacute;e est donc choisie.
+
+     <br/><br/>
+
+A la fin du processus, vous pouvez v&eacute;rifier ce que l'algorithme
+a retenu en navigant dans l'image.
+Eventuellement vous pouvez ajouter des points de v&eacute;rification
+en cas de problème, puis relancer le processus.
+
+     <br/><br/>
+
+Cette fonctionnalit&eacute; se termine en enregistrant la datation dans un fichier *.time dans le même
+r&eacute;pertoire que la vid&eacute;o, ou que les images FITS. Ce fichier sera r&eacute;utilis&eacute; par la suite.
+
+     <br/><br/>
+
+     <br/><br/>
+     </p>
+
+
+
+
+
+
+<h2>
+    <a name="cdl"/>
+    <img src="images/photom.png" alt="" align="middle" height="48" width="48" />
+    Courbe de lumière
+    <br />
+</h2>
+
+Toujours
+le même principe pour le chargement de la vid&eacute;o et pour la navigation.
+L'espace "Photom&eacute;trie" permet de r&eacute;cup&eacute;rer des informations sur la
+vid&eacute;o. Sur l'image, faire un cadre bien large en &eacute;vitant de
+s&eacute;lectionner des zones à problème comme la date par exemple. Pour les
+sources (objet et r&eacute;f&eacute;rence), il faut faire de petits cadres comme vous
+le feriez pour ajuster une gaussienne. L'appui sur l'icône "D&eacute;marrer"
+lance l'analyse de la vid&eacute;o et fournit un fichier de relev&eacute;s
+photom&eacute;triques. En ayant auparavant g&eacute;n&eacute;r&eacute; le fichier .time, la
+photom&eacute;trie sera en plus, dat&eacute;e à quelques millisecondes pr&eacute;s.
+     <br/><br/>
+
+     <img src="images/cdl_01_visu.png" alt=""  />
+     <p>
+     <br/>
+Selection de la source occultee dans l image par un clic droit enfonc&eacute; dans la visu.
+     <br/><br/>
+     </p>
+
+     <img src="images/cdl_02_select.png" alt="Preparer l'extraction de la photometrie"  />
+     <p>
+     <br/>
+Pour chaque objet, reference, et image, l appuie sur le bouton <b>Selection</b> correspondant
+suppose qu'au prealable vous avez choisi un carr&eacute; dans l image.
+     <br/><br/>
+Selectionner au minimum deux images et pour chacune d elles, il faut <b>Valider</b> la position.
+le bouton modifier permet de refaire la mesure photometrique dans une nouvelle selection tout
+en validant la position.
+     <br/><br/>
+Vous pouvez a tout moment voir sur le graphe les positions validee, ou mesuree, dans le plan
+du ccd ou dans sa courbe de lumiere.
+     <br/><br/>
+Si l'etoile a tendance a bouger dans l'image, il ne faut pas hesiter a valider
+plusieurs points. Et en particulier proche des moments de disparition et reapparition
+de l'etoile.
+     <br/><br/>
+     </p>
+
+     <img src="images/cdl_03_psf.png" alt=""  />
+     <p>
+     <br/>
+N'est pas encore actif, mais permettra de choisir la methode de mesure du
+photocentre.
+     <br/><br/>
+     </p>
+
+     <img src="images/cdl_04_geometrie.png" alt=""  />
+     <p>
+     <br/>
+Dans les cas ou l etoile occultee est trop peu visble dans l'image, on alors
+proceder a une sommation d'image.
+Pour ce faire, dans l'onglet <b>Geometrie</b> ajouter sur la ligne
+<b>Sommation</b> l'increment d'image.
+     <br/><br/>
+Pour visualiser le resultat appuyer sur  <b>Preview</b>
+     <br/><br/>
+Puis lorsque le reglage est convenable appuyer sur <b>Appliquer</b>
+Ce qui aura pour effet de proceder a la sommation d image lors de
+la prochaine mesure en appuyant sur le bouton <b>START</b>
+     <br/><br/>
+     </p>
+
+     <img src="images/cdl_05_suivi_interpole.png" alt=""  />
+     <p>
+     <br/>
+Par defaut la methode utilisee est l'interpolation lineaire entre 2 points
+verifies dans l'image.
+     <br/><br/>
+     </p>
+
+     <img src="images/cdl_05_suivi_auto.png" alt=""  />
+     <p>
+     <br/>
+On peut choisir la methode <b>Auto</b>. Regler les parametres
+pour que le photocentre ne derive pas trop lorsque l'etoile est occult&eacute;e.
+     <br/><br/>
+     </p>
+
+     <img src="images/cdl_06_courbephotom.png" alt=""  />
+     <p>
+     <br/>
+Pour lancer le calcul il faut revenir a la premiere image <b>Verifiee</b>.
+     <br/><br/>
+Appuyer sur le bouton <b>START</b> qui demarre la mesure de la courbe
+de lumiere.
+     <br/><br/>
+Appuyer ensuite sur le bouton <b>SAUVER</b> ce qui aura pour
+effet de creer une fichier de mesure. A chaque appuie se cree un nouveau
+fichier avec un increment. Cela evite de perdre des donnees, mais il faut
+regulierement nettoyer ce repertoire des fichiers de mesure.
+     <br/><br/>
+Ci-dessu le resultat obtenu pour notre exercice.
+     <br/><br/>
+     </p>
+
+
+
+
+
+
+
+
+<h2>
+    <a name="analyse"/>
+    <img src="images/analyse.png" alt="" align="middle" height="48" width="48" />
+    Analyse
+    <br />
+</h2>
+
+
+
+
+
+<img src="images/analyse_01_projet.png" />
+
+<h3>Projet</h3>
+
+
+<h4>Contexte</h4>
+
+Un projet concerne
+une seule courbe faite à partir d'une seule station d'observation. Il faut donc faire autant
+de fichier projet que de station d'observation.
+
+     <br/><br/>
+
+- Avant toute chose, il faut se mettre dans le "contexte". Pour ce
+faire, il suffit
+d'entrer le nom de l'objet occulteur, au sens de Skybot. C'est à dire
+ceres, jupiter,
+mais aussi a:ceres, ou bien p:jupiter. Ceci afin de distinguer a:io et
+p:io. La recherche est insensible à la casse. Pour plus d'informations
+sur Skybot, Miriade
+et tous les outils d&eacute;velopp&eacute;s par l'&eacute;quipe OV de l'IMCCE, consultez la
+page :
+<a href="http://vo.imcce.fr">http://vo.imcce.fr</a>
+
+     <br/><br/>
+
+- La "Date" doit être saisie sous au format ISO.
+
+     <br/><br/>
+
+- La position de l'observateur peut être d&eacute;finie de deux manières, soit vous êtes
+sur un site UAI dont la r&eacute;f&eacute;rence existe, soit il faut entrer les coordonn&eacute;es sous
+la forme : longitude (positif vers l'ouest), latitude (positif vers le nord) et
+altitude.
+
+     <br/><br/>
+
+- La presence d'un tag facultatif pour nommer ce projet.
+
+     <br/><br/>
+
+- Puis vous cliquez sur "Check avec Miriade", ce qui permet
+d'obtenir l'&eacute;ph&eacute;m&eacute;ride de l'objet pour la date. Il est n&eacute;cessaire
+d'être connect&eacute; à internet pour cette action.
+Le projet peut etre cr&eacute;&eacute; bien avant le jour de l'occultation et modifi&eacute; a tout moment.
+
+     <br/><br/>
+
+- Sur la droite se trouve le bouton "Aladin", on le retrouvera plus tard dans l'onglet
+"Paramètres". Ce bouton permet d'envoyer des requêtes par SAMP.
+Il faut au pr&eacute;alable lancer Aladin. Après l'appui du bouton "Aladin" vous trouverez
+dans l'application Aladin, les plans du DSS et les catalogues stellaires sur la zone
+d'int&eacute;rêt.
+
+     <br/><br/>
+
+- le bouton "Google Map", permet de verifier la position de l'observateur.
+Il est bien pratique pour reperer un bon coin.
+
+     <br/><br/>
+
+- le bouton <b>Creer</b>, va creer le nouveau projet.
+et une nouvelle entree apparait dans les champs
+<b>Fichier projet</b> et <b>Repertoire de travail</b>
+
+     <br/><br/>
+
+- le bouton <b>Reset</b>, effacera toute les entrees du projet.
+
+
+
+
+
+
+<h4>Fichiers et R&eacute;pertoires</h4>
+
+- le bouton <b>Charger</b>, permet de parcourir et de choisir un projet existant.
+l'extention des fichiers projet est <b>.atos</b>
+
+     <br/><br/>
+
+- le bouton <b>ReCharger</b>, recharge toutes les donn&eacute;es d'un projet sauver precedemment.
+par defaut recharge le projet en cours a partir de la sauvegarde.
+
+
+
+
+
+
+<h4>Boutons <b>Sauver</b></h4>
+
+A tout moment on peut sauver le projet en appuyant sur le bouton <b>Sauver</b> en bas
+a gauche. On peut recharger un projet sauv&eacute; auparavant par les boutons <b>Charger</b> et
+<b>ReCharger</b>
+
+     <br/><br/>
+
+
+
+
+
+
+
+<h3>Eph&eacute;m&eacute;rides</h3>
+
+<p>
+Dans cet onglet se trouve les &eacute;ph&eacute;m&eacute;rides de l'objet occulteur à la date
+de l'occultation.
+</p>
+<img src="images/analyse_02_ephem.png"/>
+
+
+
+
+
+
+
+
+
+<h3>Parametres</h3>
+
+<img src="images/analyse_03_params.png"/>
+
+
+
+
+
+<h4>Objet occulteur</h4>
+
+Les informations concernant l'objet occulteur sont generalement obtenus apres
+l'appel a Miriade.
+
+     <br/><br/>
+
+
+
+
+
+<h4>Etoile</h4>
+
+L'etoile par contre necessite d'aller chercher certaine information pour
+calculer son diametre equivalent projete a la distance de l'asteroide.
+
+     <br/><br/>
+
+Entrer une designation suivant un catalogue choisi.
+
+     <br/><br/>
+
+Selectionner le type d'etoile s'il est connu.
+
+     <br/><br/>
+
+En s'aidant d'Aladin, et en allant chercher l'entree de cette etoile
+dans le catalogue NOMAD1, on obtient les informations requises, a savoir :
+les magnitudes dans les filtres B, V, et K.
+
+     <br/><br/>
+
+Appuyer sur le bouton <b>Calcul</b>. Le resultat obtenu du diametre equivalent
+est generalement entre une dixaine et une centaine de metres.
+
+<h4>Capteur</h4>
+
+Non utilis&eacute; pour l'instant
+
+     <br/><br/>
+
+<h4>A ajouter de l ancienne doc</h4>
+
+</p><p>
+Dans cet onglet se trouve la liste des derniers paramètres n&eacute;cessaires avant le
+calcul des &eacute;vènements.
+</p><p>
+- La "Distance" en unit&eacute; astronomique (UA) de l'objet occulteur est calcul&eacute;e à partir
+des &eacute;ph&eacute;m&eacute;rides, tout comme la "Vitesse tangentielle".
+</p><p>- Le "Diamètre de la bande" n'est pas connu à ce stade, vous
+pourriez être sur le
+diamètre de l'ast&eacute;roïde comme sur un bord très d&eacute;centr&eacute;. Ce paramètre
+sera recalcul&eacute; à la fin des calculs et le r&eacute;sultat visible sur le
+dernier onglet "Rapport". Commencer avec une valeur large, comme par
+exemple 100 km, puis recommencer le calcul en ayant
+d&eacute;termin&eacute; la bonne valeur. Ce paramètre ne sert qu'à l'affichage des
+courbes car les
+&eacute;vènements sont calcul&eacute;s de manière dissoci&eacute;e, immersion puis &eacute;mersion.
+</p><p>
+- Renseigner la d&eacute;signation de l'&eacute;toile telle qu'elle a &eacute;t&eacute; pr&eacute;sent&eacute;e dans le
+descriptif d'occultation. Un &eacute;toile peut avoir bien des d&eacute;signations. Dans le rapport
+final, dans notre cas au format des rapports PLANOCCULT, on doit pouvoir
+retrouver le même nom d'&eacute;toile qui celui diffus&eacute; sur les listes.
+</p><p>
+- Le diamètre de l'&eacute;toile peut être estim&eacute; en fonction de sa magnitude suivant trois
+bandes : B,V et K. Vous trouverez g&eacute;n&eacute;ralement cette information grâce au catalogue
+NOMAD1 qui pr&eacute;sente de nombreuses longueurs d'onde. Pour ce faire, si vous ne l'avez
+pas d&eacute;jà fait dans le premier onglet "Projet" cliquer sur le bouton "Aladin".
+Dans l'application Aladin, en s&eacute;lectionnant l'&eacute;toile vous trouverez toute les informations n&eacute;cessaires.
+</p><p>
+- La "Longueur d'onde" de sensibilit&eacute; du capteur et sa "Bande passante" sont renseign&eacute;es
+par d&eacute;faut. Les utilisateurs de filtres doivent modifier ces valeurs en cons&eacute;quence.
+</p><p>
+- La "R&eacute;ponse instrumentale" doit être coch&eacute;e si le système d'acquisition pr&eacute;sente
+des temps morts.
+
+
+
+
+
+<h3>Corrections</h3>
+
+La première &eacute;tape de traitement de la courbe est de la corriger
+de tout ses
+art&eacute;facts. G&eacute;n&eacute;ralement, lorsque l'on utilise une cam&eacute;ra vid&eacute;o, un
+système d'insertion
+de la date dans les images et un grabber num&eacute;riques pour num&eacute;riser la
+courbe, des actions sont n&eacute;cessaires avant de se dire qu'à une date
+donn&eacute;e
+nous avons obtenu une mesure. Un grabber enregistre à la cadence de
+25 images par secondes, alors
+que l'on peut faire des acquisitions de plusieurs secondes.
+
+     <br/><br/>
+
+<img src="images/analyse_04_corrections.png"/>
+
+     <br/><br/>
+
+<h4>Ouvrir un fichier de mesure</h4>
+
+Au chargement de la courbe avec le bouton "Ouvrir" apparait une nouvelle fenêtre
+qui repr&eacute;sente la courbe des mesures en fonction du temps. Le temps s'exprime en seconde
+et l'origine est le premier point de la courbe.
+
+     <br/><br/>
+
+
+
+
+<h4>Correction des paquets d'images</h4>
+
+Dans l'exemple ci-dessus, on peut voir sur cette courbe des "paquets" de donn&eacute;es.
+Comme on a utilis&eacute; une Watec 120N avec un grabber, nous avons nos 25 images par
+secondes, qui sont repr&eacute;sent&eacute;s par les points bleus. Chaque paquets montrent que
+nous avons utilis&eacute; le boitier d'int&eacute;gration de la Watec 120N+ en int&eacute;grant sur 8 images.
+Nous pouvons voir sur ce graphe des fluctuations de la photometrie sur les images du meme
+paquet.
+
+     <br/><br/>
+
+<img src="images/analyse_04_corrections_brut.png" />
+
+     <br/><br/>
+
+La première correction à faire est de r&eacute;unir ces paquets de 8 images en
+1 seule mesure.
+La seconde chose à faire est de d&eacute;terminer le nombre d'images que nous
+devons supprimer au d&eacute;but de la courbe pour pouvoir r&eacute;unir ces paquets
+de 8 images.
+
+     <br/><br/>
+
+Dans la fenêtre de la courbe, le bouton gauche de la souris permet
+de d&eacute;finir le zoom.
+Choisir le zoom ad&eacute;quat pour visualiser les paquets d'images à r&eacute;unir
+et à supprimer. Avec le bouton du milieu de la souris, vous pouvez
+s&eacute;lectionner les paquets.
+
+     <br/><br/>
+
+S&eacute;lectionner les premiers blocs de points à supprimer puis
+aller dans l'onglet <b>Corrections</b> la fenêtre "Analyse de la courbe de
+lumière"
+et cliquer sur le bouton <b>Offset</b>. Alors s'affiche le nombre de points
+qui seront supprim&eacute;s.
+
+     <br/><br/>
+
+S&eacute;lectionner les blocs d'images à r&eacute;unir et cliquer sur "Paquet".  Alors s'affiche
+le nombre de points qui seront r&eacute;unis.
+
+     <br/><br/>
+
+Cliquer sur le bouton "View" pour visualiser l'effet sur la courbe.
+
+     <br/><br/>
+
+<img src="images/analyse_04_corrections_parbloc.png" />
+
+     <br/><br/>
+
+Les points rouges montrent le r&eacute;sultat de la m&eacute;diane pour chaque
+point de chaque paquet. La courbe verte montre un seul point de mesure
+qui sera le r&eacute;sultat final que
+nous utiliserons ensuite. On voit que la datation de ce point
+correspond au premier
+point de chaque paquet. Ce qui ne repr&eacute;sente pas forcement la r&eacute;alit&eacute;
+dans le cas
+de notre mat&eacute;riel, il faudra &eacute;ventuellement proc&eacute;der à la correction
+temporelle.
+
+
+<a name="correction_temporelle" id="correction_temporelle"/>
+
+<h4>Correction temporelle</h4>
+
+Il faut renseigner 2 champs, dont le premier repr&eacute;sente le "Temps d'exposition th&eacute;orique".
+
+     <br/><br/>
+
+Dans notre exemple, nous avons une int&eacute;gration de 8 images à 25 images par seconde.
+La cadence de 25 images par seconde fournit des images s&eacute;par&eacute;es entre elles de 0.04 secondes.
+Int&eacute;grer sur 8 images cela correspond a un temps d'exposition de 0.32 secondes.
+
+     <br/><br/>
+
+Le second champ est le saut en temps qui permet de dater une image. La raison est
+que le système d'int&eacute;gration de la date sur l'image fournit la date de l'image
+suivante. Imaginer qu'à l'instant où la camera intègre, l'image n'existe pas sur le disque,
+ni à travers le boitier d'incrustation GPS, il faut donc corriger de cet offset.
+Pour tous ceux qui utilisent des Watec + Boitier gps + Grabber, saisissez 0.03.
+
+     <br/><br/>
+
+La correction à appliquer est de -(I/2 + 0.03) secondes, I &eacute;tant le
+temps d'int&eacute;gration. Les 0.03s viennent du fait que chaque trame est
+expos&eacute;e pendant un temps I mais avec un d&eacute;calage de 0.02s (donc il y a
+un 0.01s qui traine pour r&eacute;cup&eacute;rer le temps central de cette double
+exposition d&eacute;cal&eacute;e + les 0.02s pour le temps central de l'image en sortie).
+
+     <br/><br/>
+
+Cette correction de -(I/2 + 0.03)s est à appliquer au temps central de
+la première image de chaque paquet (ici de 8 images pour 0.32s
+d'int&eacute;gration, la cam&eacute;ra continuant avant la fin de la pose suivante à
+sortir des images à la cadence vid&eacute;o).
+
+     <br/><br/>
+
+Pour toute information concernant ce sujet, je vous conseille les forums, et &eacute;videmment
+<a href="http://www.euraster.net">http://www.euraster.net</a> ou plus d'informations auprès d'Eric Frappa ou auprès de G&eacute;rard Dangl.
+
+     <br/><br/>
+
+Le r&eacute;sultat obtenu (en cliquant sur "View" pour le visualiser), on peut voir
+la courbe verte d&eacute;cal&eacute;e du bon timing. Nous avons donc une courbe parfaitement dat&eacute;e.
+
+     <br/><br/>
+
+<img src="images/analyse_04_corrections_totale.png" />
+
+     <br/><br/>
+
+Suivant la camera utilis&eacute; vous pouvez vous referer aux informations suivantes :
+
+     <br/><br/>
+
+<dl>
+    <dt>Watec 120N</dt>
+      <dd>
+Selon le mode appliqu&eacute;, il faut regarder quel est le nombre d'images sommees.
+multipli&eacute; ce nombre par 0.04 sec pour avoir le temps d exposition teorique.
+      </dd>
+    <dt>Watec 902Hx</dt>
+      <dd>
+Pour ces cameras il n est pas necessaire de faire une correction temporelle.
+      </dd>
+</dl>
+
+     <br/><br/>
+ <p style="color: #f00;">
+<b>Si lors de la mesure de la courbe de lumiere on a choisi la sommation d'images,
+une premiere correction a ete appliqu&eacute; en moyennant les evenements somm&eacute;s.
+donc les parametres a prendre en compte pour le temps d'exposition theorique,
+doit etre choisi comme si on fesait qu'une seule image sans sommation.</b>
+</p>
+
+     <br/><br/>
+
+voir les liens suivant pour plus d'info :
+
+     <br/><br/>
+
+http://www.dangl.at/exta/exta_e.htm
+     <br/>
+http://www.afanet.fr/RCE/PresentationsRCE2012/S2-0211-E.Frappa.pdf
+
+     <br/><br/>
+
+
+
+<a name="correction_reference" id="correction_reference"/>
+
+<h4>Correction par une etoile de reference</h4>
+
+Dans le cas où une &eacute;toile est visible dans l'image et qu'elle a &eacute;t&eacute; mesur&eacute;e par
+l'outil de mesure photom&eacute;trique, il est possible ici de corriger le flux de l'&eacute;toile
+occult&eacute;e.
+
+
+
+
+
+
+<h4>Calcul de la courbe corrigee</h4>
+
+Il suffit de cliquer sur le bouton "Appliquer" pour sauvegarder la courbe. Le
+nouveau fichier aura comme terminaison _CORR.csv et on le retrouve dans l'onglet suivant.
+
+</p><p>
+</p><p>
+
+
+
+
+
+
+
+
+<p>
+</p><h3>S&eacute;lection des "Evènements"</h3>
+<p>
+<img src="images/analyse_05_evenmts.png"/>
+</p><p>
+Avant de continuer il est imp&eacute;ratif de charger la nouvelle courbe corrig&eacute;e
+en cliquant sur le bouton "Ouvrir".
+A ce stade nous allons s&eacute;lectionner chaque &eacute;vènement de la courbe tel qu'ils sont
+dessin&eacute;s en vert sur chaque bouton. En passant la souris sur les boutons, un petit
+descriptif de l'action à appliquer s'affiche.
+Pour les deux &eacute;vènements finaux de la liste, il suffit de s&eacute;lectionner au moins
+2 points autour de l'&eacute;vènement (immersion ou &eacute;mersion).
+
+
+
+
+
+
+
+
+
+
+
+<h3>Immersion</h3>
+
+<img src="images/analyse_06_immersion.png"/>
+
+
+L'immersion est la disparition de l'&eacute;toile occult&eacute;e. Les paramètres inscrits
+dans les zones blanches sont modifiables, même s'ils sont calcul&eacute;s au pr&eacute;alable.
+
+     <br/><br/>
+
+- Le "Temps de pose" par exemple est obtenu par la datation des images et peut ne pas
+correspondre avec le temps de pose th&eacute;orique.
+
+     <br/><br/>
+
+- La date de r&eacute;f&eacute;rence a &eacute;t&eacute; obtenue par s&eacute;lection sur la courbe. Il est conseill&eacute;
+de faire le calcul une deuxième fois après avoir obtenu une première solution.
+
+     <br/><br/>
+
+- Le nombre d'instant  et le pas de recherche exprime comment la solution va être
+explor&eacute;e. Le bouton <img src="images/reload.png" alt="" height="16" width="16" />
+permet de calculer la dur&eacute;e totale d'exploration autour de l'&eacute;vènement.
+
+     <br/><br/>
+
+- Une fois que tout est en place, c'est le moment de cliquer sur l'icône "Calcul".
+
+     <br/><br/>
+
+
+
+<h4>Tout est dans le Chi2</h4>
+
+La solution s'exprime par la valeur du Chi2 minimale. C'est pourquoi
+un bon Chi2 est un Chi2 qui ne pr&eacute;sente pas de doute sur la solution. Ou encore, il faut obtenir
+une jolie courbe qui pr&eacute;sente un minimum global dont la forme est proche d'une parabole,
+comme dans l'exemple pr&eacute;sent&eacute; ci-dessous.
+
+     <br/><br/>
+
+<img src="images/analyse_06_immersion_chi2.png"/>
+
+     <br/><br/>
+
+Il peut arriver que le r&eacute;sultat du chi2 montre un ou des plateaux. A ce moment il faut
+essayer de bouger le système en changeant les valeurs de recherche, reprendre d'autres valeurs
+pour les plateaux, modifier le temps de r&eacute;f&eacute;rence, etc.
+Si rien n'y fait, et que vous obtenez un plateau minimal il ne reste plus qu'à choisir le temps
+milieu du plateau.
+
+     <br/><br/>
+
+<img src="images/analyse_06_immersion_cdl_ombre.png"/>
+
+     <br/><br/>
+
+Resultat final dans notre exemple.
+     <br/><br/>
+
+
+
+
+
+<h3>Emersion</h3>
+
+<img src="images/analyse_07_emersion.png" />
+
+     <br/><br/>
+
+C'est la même chose Comme pour l'immersion, ici on va calculer l'instant de r&eacute;apparition de
+l'&eacute;toile.
+
+
+
+
+
+<h3>Informations</h3>
+
+Les r&eacute;sultats &eacute;tant obtenu, il ne reste plus qu'à &eacute;crire le rapport.
+Les 3 onglets suivants sont à remplir pour un rapport complet.
+Remplissez le maximum d'informations, c'est aussi pour vous et pour retrouver votre
+m&eacute;thodologie au fil du temps.
+
+     <br/><br/>
+
+<img src="images/analyse_08_info1.png"/>
+
+     <br/><br/>
+
+<img src="images/analyse_08_info2.png"/>
+
+     <br/><br/>
+
+<img src="images/analyse_08_info3.png"/>
+
+     <br/><br/>
+
+
+
+
+
+</p><p>
+</p><h3>Rapport</h3>
+<p>
+<img src="images/analyse_09_rapport.png" alt="" height="649" width="817" />
+</p><p>
+Le r&eacute;capitulatif vous pr&eacute;sente les principaux r&eacute;sultats obtenus.
+Vous obtenez la dur&eacute;e de l'&eacute;vènement observ&eacute; mais aussi une estimation de la taille
+de la partie de l'ast&eacute;roïde qui a occult&eacute; l'&eacute;toile. Cet ensemble de valeurs formera
+les cordes des observateurs et c'est grâce à vous que l'on pourra d&eacute;terminer la taille
+mais aussi la forme des ast&eacute;roïdes.
+</p><p>
+Vous devez choisir manuellement si votre r&eacute;sultat est Positif ou N&eacute;gatif.
+</p><p>
+Le dernier bouton "Cr&eacute;ation du rapport" permet de cr&eacute;er le fichier PLANOCCULT que vous trouverez dans le r&eacute;pertoire
+projet avec l'extension .PLANOCCULT.
+
+
+
+</p><p>
+</p><h2><img src="images/dark.png" alt="" align="middle" height="48" width="48" /> Pour s'entrainer</h2>
+<p>
+Vous pouvez t&eacute;l&eacute;charger la vid&eacute;o de l'occultation qui a permis d'exposer le fonctionnement de cet outil,
+à cette adresse :
+</p><p>
+<a href="http://www.imcce.fr/%7Evachier/occultation/demo/sapphoseg.00.avi">http://www.imcce.fr/~vachier/occultation/demo/sapphoseg.00.avi</a>
+</p><p>
+Entrainez-vous et essayez de retrouver les r&eacute;sultats pr&eacute;sent&eacute;s.
+
+
+</p><p>
+</p><h2><img src="images/dark.png" alt="" align="middle" height="48" width="48" /> La suite ...</h2>
+<p>
+
+</p><ul type="none">
+<li>Traitement des Dark et Offset</li>
+<li>Mesure photom&eacute;trique si l'ast&eacute;roïde n'est pas visible</li>
+<li>Robustesse de la s&eacute;lection du p&eacute;riph&eacute;rique de capture sous Linux</li>
+</ul>
+
+
+<ul type="none">
+<li><br />
+</li>
+<li><br />
+</li>
+</ul>
+
+</body></html>

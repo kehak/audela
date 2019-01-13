@@ -1,0 +1,447 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Piloter un instrument sur le port s&eacute;rie du PC</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 18 mai 2007</p>
+<h1>Piloter un instrument sur le port s&eacute;rie du PC </h1>
+
+<p> De tr&egrave;s nombreux instruments d'astronomie sont pilot&eacute;s par le port s&eacute;rie des PC : Moteurs, codeurs, t&eacute;lescopes, roues &agrave; filtres, etc. </p>
+<p>Audela permet de communiquer avec des syst&egrave;mes ext&eacute;rieurs au PC en envoyant des ordres par le port s&eacute;rie. Il s'agit simplement d'utiliser des fonctions Tcl adapt&eacute;es. Apr&egrave;s une rapide description des fonctions de communication du port s&eacute;rie, nous &eacute;tudierons un exemple concret : La programmation du protocole de la carte AudeCom qui se compose d'une carte &eacute;lectronique et de 3 moteurs pour l'entra&icirc;nement horaire, la d&eacute;clinaison et la focalisation. </p>
+<h2> 1. Fonctions Tcl pour le port s&eacute;rie</h2>
+<p>Les fonctions d&eacute;crites ici sont pr&eacute;sentes dans le Tcl. Elles s'appliquent indiff&eacute;remment sous Windows (Win 95, 98, NT, Me, 2000 et XP) et Linux, ce qui permet, avec un jeu de commandes Tcl communes, d'&eacute;crire un pilote d'instrument directement compatible pour Windows et Linux. </p>
+<h3> 1.1. La fonction d'ouverture de la communication</h3>
+<p>La fonction Tcl
+<pre>open</pre> 
+permet d'ouvrir la communication avec un "flux" de donn&eacute;es. Dans le cas du port s&eacute;rie, ce flux de donn&eacute;es se nomme comx (x = 1, 2, 3, 4, etc.) sous Windows et /dev/ttySx (x = 0, 1, 2, 3, etc.) sous Linux. Par exemple, pour ouvrir le port com2 sous Windows, on &eacute;crira : 
+  </p> 
+  <pre>open "com2" r+</pre> 
+  <p>Le r+ signifie que l'on ouvre en lecture (r comme read) et en &eacute;criture (le +). La fonction open, retourne un num&eacute;ro d'identificateur. Il est important de garder ce num&eacute;ro car il sera demand&eacute; &agrave; chaque op&eacute;ration d'entr&eacute;e/sortie et aussi pour fermer la connexion. Ainsi, on pr&eacute;f&eacute;rera &eacute;crire : </p>
+  <pre>set tty [open "com2" r+]</pre> 
+  <p>Dans cet exemple, tty est le nom de la variable qui contient l'identificateur du fichier. Par la suite, nous utiliserons toujours tty pour d&eacute;signer cet identificateur. </p>
+  <h3> 1.2. La fonction de configuration du port</h3>
+  <p>De nombreux param&egrave;tres doivent &ecirc;tre r&eacute;gl&eacute;s lors de la communication avec le port s&eacute;rie. Pour cela on utilise la fonction Tcl fconfigure : </p>
+  <pre>fconfigure $tty -mode "9600,n,8,1"</pre> 
+  <p>Ici, on signifie qu'il faut une vitesse de 9600 bauds, aucun bit de parit&eacute;, 8 bits de donn&eacute;es et 1 bit de stop. Ces pr&eacute;cisions vous sont donn&eacute;es par la documentation du protocole de communication de l'instrument &agrave; piloter. </p>
+  <h3> 1.3. La fonction de vidage</h3>
+  <p>Il est souvent utile de vider le contenu du tampon du port s&eacute;rie avant d'envoyer ou de recevoir des donn&eacute;es. Pour cela, on utilise la commande Tcl flush : </p>
+  <pre>flush $tty</pre> 
+  <h3> 1.4. La fonction d'envoi de donn&eacute;es</h3>
+  <p>Il s'agit &eacute;videmment d'une fonction fondamentale dans le pilotage de l'instrument. On utilise la fonction Tcl puts. L'exemple, ci-apr&egrave;s, envoie les quatre caract&egrave;res a, b, c et d au d&eacute;part du port s&eacute;rie : </p>
+  <pre>puts -nonewline $tty "abcd"</pre> 
+  <p>L'option -nonewline de la fonction puts est souvent utilis&eacute;e car elle emp&ecirc;che l'envoi du caract&egrave;re de fin de ligne (\n) apr&egrave;s les caract&egrave;res envoy&eacute;s. </p>
+  <h3> 1.5. La fonction de r&eacute;ception de donn&eacute;es</h3>
+  <p>La fonction Tcl read permet de lire un certain nombre de caract&egrave;res sur le port s&eacute;rie. Par exemple, pour lire 10 caract&egrave;res : </p>
+  <pre>read $tty 10</pre> 
+  <p>Si l'on ne conna&icirc;t pas le nombre exact de caract&egrave;res de retour, mieux vaut mettre une grande valeur pour s'assurer d'une r&eacute;ception compl&egrave;te. </p>
+  <h3> 1.6. La fonction de fermeture de la communication</h3>
+  <p>Il s'agit simplement de la fonction Tcl close qui agit sur l'identificateur sp&eacute;cifi&eacute; : </p>
+  <pre>close $tty</pre> 
+  <h3> 1.7. La fonction d'attente</h3>
+  <p>Apr&egrave;s avoir envoy&eacute; un ordre dans le port s&eacute;rie, il faut parfois attendre quelques millisecondes avant que l'appareil command&eacute; puisse en recevoir un autre. La fonction Tcl after attend le nombre le millisecondes sp&eacute;cifi&eacute; : </p>
+  <pre>after 50</pre> 
+  <p>Attend 50 millisecondes avant de continuer. </p>
+  <h2> 2. Exemple de programmation d'un protocole</h2>
+  <p>Nous allons programmer un script permettant d'ajouter des fonctions &agrave; Tcl pour piloter la carte AudeCom. Apr&egrave;s un rapide tour de la description du protocole, nous t&acirc;cherons de d&eacute;crire les fonctions essentielles pour motoriser un t&eacute;lescope. </p>
+  <h3> 2.1. Description du protocole</h3>
+  <h3> 2.1.1. Param&egrave;tres de configuration</h3>
+  <p>Configuration du port : </p>
+  <ul> 
+  <li> Vitesse : 9600 bauds</li> 
+  <li> Nombre de bits : 8</li> 
+  <li> Parit&eacute; : Sans</li> 
+  <li> Bits de stop : 1</li> 
+</ul>
+  <p>Configuration ASCII : </p>
+  <p>Dans la suite de cette description, le mot &lt;CR&gt; signifie retour chariot (Carriage Return en anglais). Au niveau du langage Tcl, cela correspond au caract&egrave;re d&eacute;fini par \r correspondant au code ASCII num&eacute;ro 13 d&eacute;cimal (code CR). </p>
+  <p>Si on a choisi de commander la carte AudeCom via l'Hyperterminal de Windows (hors Audela), pr&eacute;ciser "Envoyer les fins de ligne avec retour &agrave; la ligne" non coch&eacute;. Si c'est coch&eacute;, un code LF sera ajout&eacute; &agrave; chaque CR envoy&eacute;. Windows ne comprend pas spontan&eacute;ment qu'apr&egrave;s un retour chariot on ne souhaite pas en g&eacute;n&eacute;ral que le texte se r&eacute;&eacute;crive sur la m&ecirc;me ligne. </p>
+  <h3> 2.2.2. Commandes LX200</h3>
+  <h3> 2.2.2.1. Les commandes principales reconnues sont :</h3>
+  <ul> 
+  <li> &lt;ACK&gt; Demande du mode du t&eacute;lescope, r&eacute;ponse P (pour polaire).</li> 
+  <li> #:U# Bascule pour le passage du format de coordonn&eacute;es court au long et r&eacute;ciproquement.</li> 
+  <li> #:Sr HH:MM.M# M&eacute;morisation d'une position en ascension droite (format court).</li> 
+  <li> #:Sr HH:MM:SS# M&eacute;morisation d'une position en ascension droite (format long).</li> 
+  <li> #:Sd SDD&deg;MM# M&eacute;morisation d'une position en d&eacute;clinaison (format court).</li> 
+  <li> #:Sd SDD&deg;MM:SS# M&eacute;morisation d'une position en d&eacute;clinaison (format long).</li> 
+  <li> #:CM# (MATCH) Les coordonn&eacute;es du t&eacute;lescope deviennent celles m&eacute;moris&eacute;es.</li> 
+  <li> #:MS# D&eacute;placement du t&eacute;lescope vers les coordonn&eacute;es m&eacute;moris&eacute;es.</li> 
+  <li> #:GD# Demande de la d&eacute;clinaison courante.</li> 
+  <li> #:GR# Demande de l'ascension droite courante.</li> 
+</ul>
+  <ul> 
+  <p>Attention : Pour la commande #:U# il s'agit d'une bascule, ce qui signifie qu'&agrave; chaque fois que la commande est activ&eacute;e on passe d'un mode &agrave; l'autre. Si au d&eacute;part on n'&eacute;tait pas dans le mode suppos&eacute; il faut s'attendre &agrave; des interpr&eacute;tations fausses des commandes. AudeCom d&eacute;marre dans le format "court" (exigence pour la compatibilit&eacute; avec le logiciel GUIDE). </p> 
+  <p>N.B. : La commande &lt;ACK&gt;, correspond au code de contr&ocirc;le ASCII "ACKnoledge" de valeur 6 en d&eacute;cimal. On peut l'obtenir sur un PC en activant simultan&eacute;ment les touches &lt;CTRL&gt; et F ou &lt;ALT&gt; et 6 (sur le pav&eacute; num&eacute;rique uniquement). &deg; correspond en fait au caract&egrave;re ASCII non imprimable 223.</p> 
+</ul>
+  <h3> 2.2.2.2. Les commandes secondaires reconnues sont :</h3>
+  <ul> 
+  <li> #:FF#, #:RS#, #:RM# Passent la carte en mode "grande vitesse" de pointage.</li> 
+  <li> #:RC# Passe la carte en mode "moyenne vitesse" de pointage.</li> 
+  <li> #:FS#, #:RG# Passent la carte en mode "petite vitesse" de pointage (centrage).</li> 
+  <li> #:Me#, #:Mw#, #:Ms#, #:Mn# Provoque le d&eacute;placement du t&eacute;lescope selon une des quatre directions cardinales : e = est, w = ouest, n = nord, s = sud.</li> 
+  <li> #:Qe#, #:Qw#, #:Qs#, #:Qn# Provoque l'arr&ecirc;t du d&eacute;placement du t&eacute;lescope selon une des quatre directions cardinales : e = est, w = ouest, n = nord, s = sud.</li> 
+  <li> #:F+#, #:F-# Provoque un mouvement de la focalisation en avant ou en arri&egrave;re.</li> 
+  <li> #:FQ# Provoque l'arr&ecirc;t du d&eacute;placement de la focalisation.</li> 
+</ul>
+  <p>Toutes ces commandes sont celles utilis&eacute;es par la raquette virtuelle, c'est &agrave; dire la raquette que l'on peut faire appara&icirc;tre dans les logiciels "plan&eacute;tarium". </p>
+  <p>Nous allons voir qu'il est tout &agrave; fait possible de piloter la carte AudeCom directement en mode natif, ce qui permet donc d'utiliser explicitement les secondes de temps et de degr&eacute;s dans l'envoie des coordonn&eacute;es &agrave; pointer. </p>
+  <ul> 
+  <li> #:Lx# Commande "non LX200", provoque le passage en mode de commande natif.</li> 
+</ul>
+  <p>Cette commande active automatiquement l'&eacute;cho des commandes envoy&eacute;es (cf. commandes natives) : </p>
+  <ul> 
+  <li> #:Le# Active l'&eacute;cho sur le terminal des commandes &eacute;mises de l'ordinateur (un retour chariot est ajout&eacute; &agrave; chaque r&eacute;ponse AudeCom pour faciliter la lecture &agrave; l'&eacute;cran).</li> 
+  <li> #:LE# Inhibe l'&eacute;cho des commandes &eacute;mises par l'ordinateur.</li> 
+</ul>
+  <h3> 2.2.3. Commandes natives</h3>
+  <h3> 2.2.3.1. Commandes relatives &agrave; l'ascension droite et &agrave; la d&eacute;clinaison :</h3>
+  <ul> 
+  <li> aSHHMMSS&lt;RC&gt; D&eacute;placement vers l'ascension droite pr&eacute;cis&eacute;e.</li> 
+  <li> dSDDMMSS&lt;RC&gt; D&eacute;placement vers la d&eacute;clinaison pr&eacute;cis&eacute;e.</li> 
+  <li> wHHMMSS&lt;RC&gt; Positionnement de la carte &agrave; l'ascension droite pr&eacute;cis&eacute;e (MATCH).</li> 
+  <li> ySDDMMSS&lt;RC&gt; Positionnement de la carte &agrave; la d&eacute;clinaison pr&eacute;cis&eacute;e (MATCH). </li> 
+  <li> uSNNNNNNNN&lt;RC&gt; Choix de la vitesse de d&eacute;rive en ascension droite. </li> 
+  <li> vSNNNNNNNN&lt;RC&gt; Choix de la vitesse de d&eacute;rive en d&eacute;clinaison. </li> 
+  <li> kSNNNNNNNN&lt;RC&gt; Variation de la vitesse de suivi sid&eacute;ral pour King et autres. </li> 
+  <li> A&lt;RC&gt; Retour de la position en ascension sous la forme HH:MM:SS&lt;RC&gt;. </li> 
+  <li> D&lt;RC&gt; Retour de la position en d&eacute;clinaison sous la forme SDD:MM:SS&lt;RC&gt;. </li> 
+  <li> W&lt;RC&gt; Retour du nombre de tics par tour en ascension droite sous la forme NNNNNN&lt;RC&gt; en dizaines de tics par tour. </li> 
+  <li> Y&lt;RC&gt; Retour du nombre de tics par tour en d&eacute;clinaison sous la forme NNNNNN&lt;RC&gt; en dizaines de tics par tour. </li> 
+</ul>
+  <p>N.B. : &lt;CR&gt; correspond au code ASCII du &#8216;retour chariot&#8217; qui correspond &agrave; la valeur 13 en d&eacute;cimal. On peut l'obtenir sur un PC en activant la touche &#8216;retour chariot&#8217;, ou simultan&eacute;ment les touches &lt;CTRL&gt; et M ou &lt;ALT&gt; et 1 puis 3 sur le pav&eacute; num&eacute;rique (utile si le &#8216;retour chariot&#8217; est interpr&eacute;t&eacute; et non transmis par le logiciel utilis&eacute;). Si on utilise un langage de programmation qui respecte la syntaxe du C, il faut terminer la ligne de commande par &#8216;\r&#8217; et pas par &#8216;\n&#8217; qui provoque selon le syst&egrave;me d'exploitation l'&eacute;mission de &#8216;saut de ligne&#8217; ou &#8216;saut de ligne&#8217; et &#8216;retour chariot&#8217;, ce qui perturbe dans tous les cas la carte AudeCom.</p>
+  <p>Le r&ocirc;le de uSNNNNNNNN et vSNNNNNNNN est de provoquer un d&eacute;placement lent par rapport au fond du ciel, en ascension droite et/ou en d&eacute;clinaison pour : </p>
+  <ul> 
+  <li> Suivre la Lune, le Soleil, les plan&egrave;tes. </li> 
+  <li> Suivre les ast&eacute;ro&iuml;des et les com&egrave;tes. </li> 
+</ul>
+  <p>Le r&ocirc;le de kSNNNNNNNN est de provoquer un d&eacute;placement lent par rapport au suivi normal en ascension droite uniquement pour : </p>
+  <ul> 
+  <li> Compenser les glissements des r&eacute;ducteurs &agrave; friction. </li> 
+  <li> Compenser la d&eacute;rive en temp&eacute;rature de la base de temps de la carte de commande. </li> 
+  <li> Compenser la variation de vitesse due &agrave; la r&eacute;fraction atmosph&eacute;rique (King). </li> 
+</ul>
+  <p>Il faut bien noter que &laquo; u &raquo; et &laquo; v &raquo; provoquent une variation lente des coordonn&eacute;es du t&eacute;lescope, en m&ecirc;me temps que ce dernier se d&eacute;place ; ce n'est pas le cas de &laquo; k &raquo; qui ne modifie pas les coordonn&eacute;es du t&eacute;lescope. L'usage n'est donc pas du tout le m&ecirc;me. </p>
+  <p>Sur une carte AudeCom programm&eacute;e avec des valeurs standards, un coefficient de variation de 202 ; par exemple : u202, arr&ecirc;te le suivi stellaire (mais pendant ce temps les coordonn&eacute;es en ascension droite &eacute;voluent doucement), alors que u-202 double la vitesse de suivi. u99999999 annule une correction de d&eacute;rive ant&eacute;rieure (car la correction tend vers 0). k202 annule aussi le suivi stellaire, mais dans ce cas les coordonn&eacute;es en ascension droite n'&eacute;voluent pas. </p>
+  <p>SNNNNNNNN est un nombre entier sign&eacute; dont la valeur absolue doit &ecirc;tre sup&eacute;rieure ou &eacute;gale &agrave; 100, et de maximum huit chiffres. Cette valeur correspond au nombre de fois qu'il faudra attendre 329.1318892981 microsecondes avant que le t&eacute;lescope se d&eacute;place d'une seconde d'arc (la p&eacute;riode donn&eacute;e est valable dans le cas standard uniquement, car elle d&eacute;pend du rapport de r&eacute;duction utilis&eacute;e par le t&eacute;lescope). </p>
+  <p>SHHMMSS correspond &agrave; un angle horaire d&eacute;fini par six chiffres en heures, minutes, secondes. Des &laquo; : &raquo; ou autres &laquo; grigris d&eacute;coratifs &raquo; peuvent &ecirc;tre ajout&eacute;s pour am&eacute;liorer la lisibilit&eacute;. Un signe n&eacute;gatif pr&eacute;c&eacute;dant la valeur de l'angle horaire provoque le d&eacute;placement selon le parcours le plus long au lieu du parcours le plus court. Ceci peut &ecirc;tre utile avec certains t&eacute;lescopes d&egrave;s que l'angle horaire de d&eacute;part ou d'arriv&eacute;e d&eacute;passe six heures et qu'on ne souhaite pas que le tube du t&eacute;lescope creuse une tranch&eacute;e sous terre ou arrache un pied au passage par le m&eacute;ridien. </p>
+  <p>SDDMMSS correspond &agrave; un angle sign&eacute; en degr&eacute;s, minutes, secondes en 6 chiffres. Un signe - doit &ecirc;tre ajout&eacute; si l'angle est n&eacute;gatif. Des &laquo; : &raquo; ou autres &laquo; grigris d&eacute;coratifs &raquo;, ainsi que le signe +, peuvent &ecirc;tre ajout&eacute;s pour am&eacute;liorer la lisibilit&eacute;. </p>
+  <p>Lorsqu'on fournit une valeur &agrave; la carte, il est inutile de transmettre tous les z&eacute;ros non significatifs ; toutefois il faut que le nombre de chiffres transmis soit pair. </p>
+  <p>Exemple : d05:20:40 correspond &agrave; 5&deg; 20' 40" en d&eacute;clinaison ; d5:20:40 est incorrect. </p>
+  <p>D'une fa&ccedil;on g&eacute;n&eacute;rale, les signes autres que les chiffres 0 &agrave; 9 et le signe &#8211; sont totalement ignor&eacute;s par la carte AudeCom dans les param&egrave;tres (ceci est valable &eacute;galement en mode LX200). </p>
+  <h3> 2.2.3.2. Commandes relatives au PEC :</h3>
+  <ul> 
+  <li> rNNN&lt;RC&gt; D&eacute;finit la p&eacute;riodicit&eacute; du PEC. NNN est un nombre compris entre 1 et 360 (inclusivement) qui doit correspondre au rapport de r&eacute;duction entre le moteur d'ascension droite et la roue tangente de l'axe polaire. Cette commande active et initialise aussi le PEC. La vitesse de suivi est alors celle plac&eacute;e dans la premi&egrave;re case du tableau PEC. </li> 
+  <li> R&lt;RC&gt; Inhibe le PEC, et remet l'index du PEC &agrave; z&eacute;ro (on pointe alors sur la premi&egrave;re case du tableau PEC). </li> 
+  <li> iNN&lt;RC&gt; Modifie le pointeur sur le tableau PEC. Apr&egrave;s avoir entr&eacute; la commande, la nouvelle case du tableau PEC point&eacute;e sera NN. NN doit &ecirc;tre compris entre 0 et 19 inclusivement, car un tableau PEC a 20 valeurs. Cette commande peut &ecirc;tre utilis&eacute;e lorsque le PEC est en route pour recaler le point de d&eacute;part, ou se recaler &agrave; une position au choix. </li> 
+  <li> I&lt;RC&gt; Retourne la valeur courante du pointeur sur le tableau PEC. </li> 
+  <li> tNNN&lt;RC&gt; Entre une nouvelle valeur dans le tableau PEC &agrave; la position courante du pointeur sur le tableau (pointeur ou "index" d&eacute;finit par la commande i). Incr&eacute;mente automatiquement l'index. NNN doit &ecirc;tre compris entre 149 et 255 inclusivement pour une r&eacute;duction de 6*360, ou 80 et 122 pour une r&eacute;duction de 12*360. </li> 
+  <li> T&lt;RC&gt; T (comme Tableau) retourne la vitesse de suivi courante et incr&eacute;mente l'index. La valeur par d&eacute;faut (avant qu'on ait entr&eacute; ses propres valeurs) est 202 pour une r&eacute;duction de 6*360, ou 101 pour une r&eacute;duction de 12*360. </li> 
+</ul>
+  <h3> 2.2.3.3. Commandes relatives &agrave; la focalisation :</h3>
+  <ul> 
+  <li> fSNNNNN&lt;RC&gt; D&eacute;placement de la focalisation &agrave; la position SNNNNN. </li> 
+  <li> F&lt;RC&gt; Retour de la position de la focalisation sous la forme SNNNNN&lt;RC&gt;. </li> 
+  <li> g&lt;RC&gt; La nouvelle valeur de la focalisation est 0. </li> 
+  <li> hNNN&lt;RC&gt; La nouvelle vitesse de d&eacute;placement de la focalisation est NNN. </li> 
+</ul>
+  <p>SNNNNN correspond &agrave; un nombre sign&eacute; &agrave; cinq chiffres maximum dont la valeur absolue est inf&eacute;rieure &agrave; 32768. </p>
+  <p>NNN est un nombre non sign&eacute; sup&eacute;rieur ou &eacute;gal &agrave; 5 et inf&eacute;rieur &agrave; 256. Cette valeur correspond au nombre de fois qu'il faudra attendre 200 microsecondes avant que le moteur se d&eacute;place d'un pas ; pas qui correspond &eacute;galement &agrave; une incr&eacute;mentation de 1 (ou une d&eacute;cr&eacute;mentation de 1) de la position absolue de la focalisation. </p>
+  <h3> 2.2.3.4. Les commandes diverses :</h3>
+  <ul> 
+  <li> e&lt;RC&gt; Valide l'&eacute;cho des commandes entrantes. </li> 
+  <li> E&lt;RC&gt; Inhibe l'&eacute;cho des commandes entrantes. </li> 
+  <li> p&lt;RC&gt; Arr&ecirc;te le suivi sid&eacute;ral en d&eacute;clinaison et ascension droite. </li> 
+  <li> P&lt;RC&gt; Red&eacute;marre le suivi sid&eacute;ral en d&eacute;clinaison et ascension droite. </li> 
+</ul>
+  <p>P et p (pour pause) ont &eacute;t&eacute; cr&eacute;&eacute;es pour stopper momentan&eacute;ment le suivi stellaire si on doit faire autre chose : Intervenir sur le t&eacute;lescope, sortir, fumer, boire, dormir, etc. et qu'on veut &eacute;viter que le t&eacute;lescope aille pointer vers un endroit &agrave; probl&egrave;me entre temps (but&eacute;e, toiture, sol, etc.). Le programme prend &eacute;videmment en compte automatiquement l'&eacute;volution de la position du t&eacute;lescope par rapport au fond du ciel et il ne sera donc pas n&eacute;cessaire de le r&eacute;initialiser. </p>
+  <p>N.B. : Ces commandes avaient un comportement diff&eacute;rent dans les versions 1 et 2 du firmware, car e et p &eacute;taient des bascules. </p>
+  <ul> 
+  <li> z&lt;RC&gt; R&eacute;initialisation du t&eacute;lescope (c'&eacute;tait la commande &laquo; i &raquo; dans les versions 1 et 2 du firmware). </li> 
+  <li> o&lt;RC&gt; C'est un RESET du contr&ocirc;leur, l'&eacute;quivalent de &lt;control, alt, suppr&gt; sur un PC. La diff&eacute;rence est que &ccedil;a ce fait en quelques millisecondes, on ne voit donc rien ; mais la carte repasse en mode LX200 et consid&egrave;re qu'elle pointe au point vernal. Tous les param&egrave;tres reprennent leur valeur par d&eacute;faut (ceux de la mise sous tension). </li> 
+  <li> s&lt;RC&gt;, S&lt;RC&gt; Arr&ecirc;t du t&eacute;lescope (freinage) puis retour &agrave; l'endroit point&eacute; au moment de l'action. </li> 
+</ul>
+  <p>Le but de s ou S va &ecirc;tre expliqu&eacute; par un exemple : En cours de pointage, une com&egrave;te, supernovae ou autre objet miraculeux appara&icirc;t dans le viseur, on active alors s ou S. Le t&eacute;lescope continuera un peu sur son inertie, mais reviendra tout seul au point exact de l'instant ou s(top) a &eacute;t&eacute; activ&eacute;. Cette commande est aussi utile en cas de changement d'avis. Elle peut aussi &ecirc;tre utile si on s'aper&ccedil;oit qu'on a point&eacute; vers un endroit situ&eacute; sous l'horizon.&#8230; </p>
+  <ul> 
+  <li> B&lt;RC&gt; Inhibe le boost. N. B. : Le boost est toujours valid&eacute; au d&eacute;marrage, les commandes b et B sont donc surtout la pour diminuer la vitesse du contr&ocirc;leur. Elles n'ont aucune action sur les contr&ocirc;leurs de marque autre que TEMIC. Avec les contr&ocirc;leurs TEMIC, la consommation est diminu&eacute;e lorsque le boost n'est pas activ&eacute;, mais le processeur est ralenti. </li> 
+  <li> b&lt;RC&gt; Active le boost, c'est &agrave; dire double la vitesse des contr&ocirc;leurs TEMIC. Cela est n&eacute;cessaire avec la plupart des logiciels de pilotage, inutile si on commande AudeCom directement via un &eacute;mulateur de terminal. </li> 
+  <li> x&lt;RC&gt; Retour au mode LX200. Supprime automatiquement l'&eacute;cho de la commande tap&eacute;e (ce n'&eacute;tait pas le cas dans les versions 1 et 2 du firmware). </li> 
+  <li> V&lt;RC&gt; Retourne la version et sous version du firmware de la carte (4.01 actuellement). Ceci permet &agrave; Audela de reconna&icirc;tre son interlocuteur. </li> 
+  <li> lNNN&lt;RC&gt; Permet de r&eacute;gler la largeur des impulsions que re&ccedil;oivent les moteurs d'ascension droite et d&eacute;clinaison (en petite vitesse exclusivement). La valeur NNN standard est 100. Plus la valeur est grande plus les impulsions sont longues (et plus on consomme de courant). La valeur 202 correspond a des impulsions qui se recouvrent juste pour une r&eacute;duction de 6*360, la valeur 101 correspond &agrave; la m&ecirc;me chose pour une r&eacute;duction de 12*360. Les valeurs accept&eacute;es pour NNN vont de 0 &agrave; 255 inclus. Mais 0 ne correspond pas &agrave; des impulsions nulles, cette valeur inhibe l'&eacute;conomie d'&eacute;nergie (les impulsions se recouvrent toujours). La diff&eacute;rence entre 250 (ou toute autre valeur suffisante pour provoquer des impulsions qui se recouvrent) et 0 est que si on choisit 0, les impulsions se recouvrent comme avec 250, mais en plus il y aura toujours du courant dans le moteur de d&eacute;clinaison, m&ecirc;me &agrave; l'arr&ecirc;t, ce qui le bloque et l'emp&ecirc;che de glisser ; mais augmente significativement la consommation de la carte. </li> 
+  <li> mNN&lt;RC&gt; Permet de choisir la vitesse maximale du moteur d'ascension droite. Plus NN est grand, plus la vitesse maximale est importante. Les valeurs accept&eacute;es de NN par la carte vont de 4 inclusivement &agrave; la valeur par d&eacute;faut de NN pour la carte. La valeur par d&eacute;faut est a priori de 16 (valeur modifiable). </li> 
+  <li> nNN&lt;RC&gt; Cette commande est le pendant de mNN, elle agit sur la d&eacute;clinaison au lieu de l'ascension droite. </li> 
+</ul>
+  <p>On peut noter d'une fa&ccedil;on g&eacute;n&eacute;rale que les commandes en minuscule &eacute;mettent un param&egrave;tre et/ou activent une action, tandis que les commandes en majuscule attendent un param&egrave;tre en retour et/ou inhibent une action. </p>
+  <h3> 2.2. Script pour driver minimal</h3>
+  <p>Nous allons &eacute;crire ici le script minimum, qui ajoute les fonctions suivantes : </p>
+  <ul> 
+  <li> Etablit la liaison.</li> 
+  <li> Lit les coordonn&eacute;es.</li> 
+  <li> Rallie des coordonn&eacute;es.</li> 
+  <li> Ferme la liaison.</li> 
+</ul>
+  <pre>#--- acomdriv.tcl : script minimum</pre> 
+  <pre>proc acom_create { port } {</pre> 
+  <pre>   #--- etablit la liaison</pre> 
+  <pre>   set tty [ open $port r+ ]</pre> 
+  <pre>   fconfigure $tty -mode "9600,n,8,1" -buffering none -blocking 0</pre> 
+  <pre>   after 150</pre> 
+  <pre>   #--- passe en mode natif</pre> 
+  <pre>   puts -nonewline $tty "#:Lx#"</pre> 
+  <pre>   after 150</pre> 
+  <pre>   #--- inihibe l'echo des commandes entrantes</pre> 
+  <pre>   puts -nonewline $tty "E\r"</pre> 
+  <pre>   after 150</pre> 
+  <pre>   #--- lit le port serie pour supprimer l'echo de E</pre> 
+  <pre>   read $tty 8</pre> 
+  <pre>   after 150</pre> 
+  <pre>   #--- deuxieme lecture -- supprime une anomalie lors</pre> 
+  <pre>   #--- du passage de E --&gt; e --&gt; E</pre> 
+  <pre>   read $tty 8</pre> 
+  <pre>   after 150</pre> 
+  <pre>   return $tty</pre> 
+  <pre>}</pre> 
+  <pre>proc acom_coord { tty } {</pre> 
+  <pre>   #--- lit les coordonnees</pre> 
+  <pre>   #--- demande ra</pre> 
+  <pre>   puts -nonewline $tty "A \r"</pre> 
+  <pre>   after 150</pre> 
+  <pre>   #--- lit ra sur le port serie</pre> 
+  <pre>   set ra [ read $tty 8 ]</pre> 
+  <pre>   after 150</pre> 
+  <pre>   #--- demande dec</pre> 
+  <pre>   puts -nonewline $tty "D \r"</pre> 
+  <pre>   after 150</pre> 
+  <pre>   #--- lit dec sur le port serie</pre> 
+  <pre>   set dec [ read $tty 8 ]</pre> 
+  <pre>   after 150</pre> 
+  <pre>   return [ list $ra $dec ]</pre> 
+  <pre>}</pre> 
+  <pre>proc acom_goto { tty radec { signe "" } } {</pre> 
+  <pre>   #--- $signe == "" --&gt; plus court chemin</pre> 
+  <pre>   #--- $signe == "-" --&gt; plus long chemin</pre> 
+  <pre>   #--- convertit les coordonnees au format AudeCom</pre> 
+  <pre>   set angle_ra [ lindex $radec 0 ]</pre> 
+  <pre>   set angle_dec [ lindex $radec 1 ]</pre> 
+  <pre>   set radeg [ mc_angle2deg $angle_ra ]</pre> 
+  <pre>   set rahms [ mc_angle2hms $radeg ]</pre> 
+  <pre>   set decdms [ mc_angle2dms $angle_dec dec ]</pre> 
+  <pre>   set ra [ format "%02d%02d%02.0f" [ lindex $rahms 0 ] [ lindex $rahms 1 ] [ lindex $rahms 2 ] ]</pre> 
+  <pre>   set signedec "+"</pre> 
+  <pre>   if { [ mc_angle2deg $angle_dec 90 ] &lt; 0 } {</pre> 
+  <pre>      set signedec "-"</pre> 
+  <pre>   }</pre> 
+  <pre>   set dec [ format "%s%02d%02d%02.0f" $signedec [ expr abs( [ lindex $decdms 0 ] ) ] [ lindex $decdms 1 ] [ lindex $decdms 2 ] ]</pre> 
+  <pre>   #--- envoie l'ordre ra de ralliement au telescope</pre> 
+  <pre>   puts -nonewline $tty "a$signe$ra\r"</pre> 
+  <pre>   after 150</pre> 
+  <pre>   #--- envoie l'ordre dec de ralliement au telescope</pre> 
+  <pre>   puts -nonewline $tty "d$dec\r"</pre> 
+  <pre>   after 150</pre> 
+  <pre>   #--- boucle tant que le telescope n'est pas arrete</pre> 
+  <pre>   set radec0 [ acom_coord $tty ]</pre> 
+  <pre>   after 500</pre> 
+  <pre>   set radec1 [ acom_coord $tty ]</pre> 
+  <pre>   while { $radec0 != $radec1 } {</pre> 
+  <pre>      set radec0 $radec1</pre> 
+  <pre>      after 500</pre> 
+  <pre>      set radec1 [ acom_coord $tty ]</pre> 
+  <pre>   }</pre> 
+  <pre>}</pre> 
+  </p> 
+  <pre>proc acom_delete { tty } {</pre> 
+  <pre>   close $tty</pre> 
+  <pre>}</pre> 
+  <p>Ce script, doit &ecirc;tre &eacute;crit dans le fichier acomdriv.tcl pour &ecirc;tre utilis&eacute; avec les exemples ult&eacute;rieurs. </p>
+  <h3> 2.3. Utiliser le script de driver minimal</h3>
+  <p>L'exemple suivant montre comment pointer un objet avec le script minimal : </p>
+  <pre>#--- acomtest.tcl : test du protocole de la carte AudeCom</pre> 
+  <pre>source acomdriv.tcl</pre> 
+  <pre>set tty [ acom_create com2 ]</pre> 
+  <pre>::console::affiche_resultat [ acom_coord $tty ]</pre> 
+  <pre>acom_goto $tty { 12h45m32s -12d28m43s }</pre> 
+  <pre>::console::affiche_resultat [ acom_coord $tty ]</pre> 
+  <pre>acom_delete $tty</pre> 
+  <p>Utilis&eacute; avec l'interface Audace, ce script permet de pointer le t&eacute;lescope aux coordonn&eacute;es sp&eacute;cifi&eacute;es puis renvoie ces coordonn&eacute;es une fois le ralliement effectu&eacute;. Pour faire les tests, on placera donc les scripts acomtest.tcl et acomdriv.tcl dans le dossier principal de Audela, c'est &agrave; dire celui juste un niveau au dessus du r&eacute;pertoire audace. On lancera donc le script acomtest.tcl depuis la ligne de commande par : </p>
+  <pre>source acomtest.tcl</pre> 
+  <p>En vertu de la documentation du protocole, il est donc possible d'ajouter des fonctions au fichier du driver (acomdriv.tcl) de fa&ccedil;on &agrave; donner la possibilit&eacute; d'utiliser simplement l'ensemble des fonctions avec une syntaxe simplifi&eacute;e. Il est aussi possible de programmer le PEC, la focalisation, etc. </p>
+  <p>Les scripts acomdriv.tcl et acomtest.tcl travaillent en coop&eacute;ration. Les commandes "utilisateur" sont &eacute;crites dans le fichier acomtest.tcl. On charge le driver (source acomdriv.tcl), ouvre le port s&eacute;rie (set tty [ acom_create com2 ]), pointe le t&eacute;lescope (acom_goto $tty { 12h45m32s -12d28m43s }) puis ferme le port s&eacute;rie (acom_delete $tty). La variable tty contient l'identificateur de fichier associ&eacute; au port s&eacute;rie. En effet, le port s&eacute;rie est vu comme un simple fichier que l'on ouvre, dans lequel on &eacute;crit, puis que l'on ferme. La variable tty sert donc &agrave; indiquer &agrave; l'interpr&eacute;teur Tcl que le fichier est en fait le port s&eacute;rie. </p>
+  <p>Il est important d'utiliser une structure s&eacute;par&eacute;e en deux fichier : L'un (acomdriv.tcl) sert &agrave; d&eacute;finir les nouvelles fonctions associ&eacute;es au pilotage du port s&eacute;rie et &agrave; la mise en forme des donn&eacute;es selon le protocole, l'autre (acomtest.tcl) concerne l'ex&eacute;cution des fonctions du driver. Ainsi on &eacute;vite de m&eacute;langer les ordres op&eacute;rationnels et les mises en forme de la communication selon le protocole &eacute;tabli. </p>
+  <h3> 2.4. Ajouter des fonctionnalit&eacute;s au driver</h3>
+  <p>Nous venons de d&eacute;crire le driver minimal : Pointage et lectures des coordonn&eacute;es. Les lignes Tcl ci-dessous permettent d'acc&eacute;der &agrave; d'autres fonctions (ici la commande du moteur de focalisation) si elles sont ins&eacute;r&eacute;es dans le fichier acomdriv.tcl : </p>
+  <pre>proc acom_foc_zero { tty } {</pre> 
+  <pre>   #--- met le compteur FOC a zero</pre> 
+  <pre>   puts -nonewline $tty "g\r"</pre> 
+  <pre>   after 150</pre> 
+  <pre>   return</pre> 
+  <pre>}</pre> 
+  <pre>proc acom_foc_goto { tty foc } {</pre> 
+  <pre>   #--- deplacement de la FOC</pre> 
+  <pre>   puts -nonewline $tty "f$foc\r"</pre> 
+  <pre>   after 150</pre> 
+  <pre>   #--- boucle tant que la FOC n'est pas arretee</pre> 
+  <pre>   set foc0 [ acom_foc_coord $tty ]</pre> 
+  <pre>   after 500</pre> 
+  <pre>   set foc1 [ acom_foc_coord $tty ]</pre> 
+  <pre>   while { $foc0 != $foc1 } {</pre> 
+  <pre>      set foc0 $foc1</pre> 
+  <pre>      after 500</pre> 
+  <pre>      set foc1 [ acom_foc_coord $tty ]</pre> 
+  <pre>   }</pre> 
+  <pre>}</pre> 
+  <pre>proc acom_foc_coord { tty } {</pre> 
+  <pre>   #--- lit la position courante de la FOC</pre> 
+  <pre>   #--- demande foc</pre> 
+  <pre>   puts -nonewline $tty "F\r"</pre> 
+  <pre>   after 150</pre> 
+  <pre>   #--- lit foc sur le port serie</pre> 
+  <pre>   set foc [ read $tty 8 ]</pre> 
+  <pre>   after 150</pre> 
+  <pre>   return $foc</pre> 
+  <pre>}</pre> 
+  </p> 
+  <pre>proc kauf_foc_vit { tty vfoc } {</pre> 
+  <pre>   #--- vitesse moteur de focalisation</pre> 
+  <pre>   puts -nonewline $tty "h$vfoc\r"</pre> 
+  <pre>   after 150</pre> 
+  <pre>}</pre> 
+  <p>Il est donc tr&egrave;s facile d'ajouter les commandes d'initialisation, de vitesse du moteur, etc. </p>
+  <h2> 3. Implanter un driver dans les objets Audela</h2>
+  <p>Apr&egrave;s avoir &eacute;crit un script ajoutant les fonctions n&eacute;cessaires &agrave; piloter un nouvel instrument, il vient naturellement &agrave; l'esprit de les transcrire dans les fonctions "<a
+ href="interfa5a.htm">objet</a>" de pilotage de Audela. Par exemple, pour les t&eacute;lescopes, l'objet s'appelle <a
+ href="interfa5a.htm">tel</a> (t&eacute;lescope). Reprenons l'exemple du driver de la carte AudeCom. Dans le fichier acomdriv.tcl, l'ouverture de la connexion est d&eacute;finie par la fonction :
+  <pre>acom_create com2</pre>
+  L'&eacute;quivalent "objet" de Audela serait :
+  <pre>tel::create audecom com2</pre>
+  De m&ecirc;me pour les autres fonctions : 
+  </p> 
+  <p> </p>
+  <table border="1" cols="2" width="100%"> 
+  <tbody> 
+      <tr> 
+      <td> <center> 
+&agrave; partir de acomdriv.tcl
+        </center></td> 
+      <td> <center> 
+&agrave; partir d'un objet Audela
+        </center></td> 
+    </tr> 
+      <tr> 
+      <td><pre>set tty [ acom_create com2 ]</pre></td> 
+      <td><pre>set tty [ tel::create audecom com2 ]</pre></td> 
+    </tr> 
+      <tr> 
+      <td><pre>acom_goto $tty { 12h45m32s -12d28m43s }</pre></td> 
+      <td><pre>tel$tty goto { 12h45m32s -12d28m43s }</pre></td> 
+    </tr> 
+      <tr> 
+      <td><pre>acom_coord $tty</pre></td> 
+      <td><pre>tel$tty coord</pre></td> 
+    </tr> 
+      <tr> 
+      <td><pre>acom_delete $tty</pre></td> 
+      <td><pre>tel::delete $tty</pre></td> 
+    </tr> 
+    </tbody> 
+</table>
+<p></p>
+  <h3> 3.1. Cas d'un instrument commercial</h3>
+  <p>Dans le cas d'un instrument commercial, la conversion vers un objet Audela sera implant&eacute;e dans les fonctions de "t&eacute;lescope" programm&eacute;es dans une librairie sp&eacute;cifique &agrave; l'instrument (liblx200.dll par exemple). De cette fa&ccedil;on, votre travail pourra &ecirc;tre utilis&eacute; par les autres utilisateurs de l'instrument. </p>
+  <p>Il faut n&eacute;anmoins respecter quelques r&egrave;gles dans le fichier driver Tcl. N'utiliser que des fonctions Tcl, <a
+ href="interfa5a.htm">Audela</a> et de la <a
+ href="mcusr_fr.htm">librairie MC</a> afin d'assurer une transcription "mot &agrave; mot" du driver Tcl vers un objet Audela. </p>
+  <h3> 3.2. Cas d'un instrument non commercial</h3>
+  <p>Dans le cas d'un instrument &agrave; exemplaire unique, il n'est pas tr&egrave;s utile d'implanter le driver dans la librairie standard de Audela ou dans une librairie sp&eacute;cifique. Dans ce cas, on pr&eacute;f&eacute;rera utiliser un autre m&eacute;thode, certes moins universelle, mais r&eacute;pondant g&eacute;n&eacute;ralement aux besoins personnels : La surcharge des m&eacute;thodes. On appelle m&eacute;thode, une fonction associ&eacute;e &agrave; un objet. Dans notre cas, l'objet est un t&eacute;lescope et la m&eacute;thode goto est une fonction qui rallie le t&eacute;lescope aux coordonn&eacute;es sp&eacute;cifi&eacute;es. Ce mode de programmation est r&eacute;serv&eacute; aux personnes qui ma&icirc;trisent bien le langage Tcl. </p>
+  <pre>#--- acomtel.tcl : ajoute un driver perso a l'objet tel de Audela</pre> 
+  <pre>#--- on renomme la fonction tel::create de Audela</pre> 
+  <pre>proc ::tel::create_audela { type port { tty 0 } } {</pre> 
+  <pre>   if { $tty == 0 } {</pre> 
+  <pre>      ::tel::create $type $port</pre> 
+  <pre>   } else {</pre> 
+  <pre>      ::tel::create $type $port $tty</pre> 
+  <pre>   }</pre> 
+  <pre>}</pre> 
+  <pre>#--- on renomme la fonction tel::delete de Audela</pre> 
+  <pre>proc ::tel::delete_audela { tty } {</pre> 
+  <pre>   ::tel::delete $tty</pre> 
+  <pre>}</pre> 
+  <pre>#--- on renomme la fonction tel::list de Audela</pre> 
+  <pre>proc ::tel::list_audela { tty } {</pre> 
+  <pre>   ::tel::list $tty</pre> 
+  <pre>}</pre> 
+  <pre>#--- on charge le driver Tcl</pre> 
+  <pre>source acomdriv.tcl</pre> 
+  <pre>#--- on surcharge la fonction de creation du telescope</pre> 
+  <pre>proc ::tel::create { type port {tty 0} } {</pre> 
+  <pre>   if { $type == "audecom" } {</pre> 
+  <pre>      set tty [ acom_create $port ]</pre> 
+  <pre>   } else {</pre> 
+  <pre>      ::tel::create_audela $type $port $tty</pre> 
+  <pre>   }</pre> 
+  <pre>   return $tty</pre> 
+  <pre>}</pre> 
+  <pre>#--- on surcharge la fonction tel1</pre> 
+  <pre>proc ::tel$tty { fonc listargv } {</pre> 
+  <pre>   global tty</pre> 
+  <pre>   set result "Fonction non reconnue"</pre> 
+  <pre>   switch $fonc {</pre> 
+  <pre>      coord {</pre> 
+  <pre>         set result [acom_coord $tty $listargv]</pre> 
+  <pre>      }</pre> 
+  <pre>      goto {</pre> 
+  <pre>         set result [acom_goto $tty $listargv]</pre> 
+  <pre>      }</pre> 
+  <pre>   }</pre> 
+  <pre>   return $result</pre> 
+  <pre>}</pre> 
+  <pre>#--- on surcharge la fonction de deconnexion du telescope</pre> 
+  <pre>proc ::tel::delete { tty } {</pre> 
+  <pre>   if { [ string index $tty 0 ] == "f" } {</pre> 
+  <pre>      set tty [ acom_delete $tty ]</pre> 
+  <pre>      set tty 0</pre> 
+  <pre>   } else {</pre> 
+  <pre>      ::tel::delete_audela $tty</pre> 
+  <pre>   }</pre> 
+  <pre>}</pre> 
+  </p> 
+  <pre>#--- on surcharge la fonction de liste des telescopes</pre> 
+  <pre>proc ::tel::list { } {</pre> 
+  <pre>   global tty</pre> 
+  <pre>   if { [ info exists tty ] == "0" } {</pre> 
+  <pre>      return</pre> 
+  <pre>   }</pre> 
+  <pre>   if { [ string index $tty 0 ] == "f" } {</pre> 
+  <pre>      return $tty</pre> 
+  <pre>   } else {</pre> 
+  <pre>      ::tel::list_audela</pre> 
+  <pre>   }</pre> 
+  <pre>}</pre> 
+  <pre>#--- on deconnecte tous les telescopes presents autres que celui du nouveau driver</pre> 
+  <pre>set listnum [ ::tel::list ]</pre> 
+  <pre>foreach num $listnum {</pre> 
+  <pre>   if { [ string index $tty 0 ] == "f" } {</pre> 
+  <pre>      ::tel::delete $num</pre> 
+  <pre>   }</pre> 
+  <pre>}</pre> 
+  <p>Ce long script (&agrave; tester !) permet donc d'utiliser le driver acomdriv.tcl par l'interm&eacute;diaire des objets de Audela. Par exemple, le script d'utilisation du driver minimal, &eacute;voqu&eacute; plus haut, s'&eacute;crit maintenant : </p>
+  <pre>#--- acomtest2.tcl : test du protocole de la carte AudeCom</pre> 
+  <pre>source acomtel.tcl</pre> 
+  <pre>set tty [ tel::create acommann com2 ]</pre> 
+  <pre>tel$tty goto { 12h45m32s -12d28m43s }</pre> 
+  <pre>tel$tty coord</pre> 
+  <pre>tel::delete $tty</pre> 
+  <p>Ainsi, il devient possible d'utiliser un instrument personnel en ex&eacute;cutant des scripts Audela ou Audace qui pilotent des t&eacute;lescopes. </p>
+  <h2> 4. Autres exemples de scripts</h2>
+  <p>Audela est riche d'autres exemples de scripts d&eacute;velopp&eacute;s pour r&eacute;pondre &agrave; des protocoles et/ou des applications sp&eacute;cifiques. Vous acc&eacute;derez &agrave; ces protocoles et/ou applications par le menu d&eacute;roulant Configuration et ensuite Monture. Ce sont entre autres les objets t&eacute;lescope suivants : </p>
+  <h3> 4.1. Ouranos</h3>
+  <p>Qui pilote l'interface sp&eacute;cifique Ouranos pour permettre de conna&icirc;tre, apr&egrave;s initialisation, la position de votre t&eacute;lescope. Vous pouvez d&eacute;cortiquer les scripts conftel.tcl et ouranoscom.tcl pour en apprendre plus. </p>
+  <h3> 4.2. Autres...</h3>
+  <p>D'autres protocoles verront le jour en fonction des besoins de chaque utilisateur, d&eacute;j&agrave; Temma, ASCOM et Celestron pointent le bout de leurs nez. Cette page a pour but de vous montrer qu'il n'est pas insurmontable de cr&eacute;er un script et une interface graphique pour un protocole particulier. </p>
+  <h3> 4.3. Le cas particulier d'AudeCom</h3>
+  <p>Ce protocole, d&eacute;fini par Philippe Kauffmann, est totalement implant&eacute; dans Audela par l'interm&eacute;diaire de panneaux de configuration et d'interfaces graphiques. Je vous recommande l'&eacute;tude approfondie des fichiers conftel.tcl et audecom.tcl pour la d&eacute;finition et la prise en compte du protocole AudeCom, ainsi que les fichiers foc.tcl, tel.tcl, etc. pour comprendre la mise en oeuvre de ce protocole par l'interm&eacute;diaire d'interfaces graphiques sp&eacute;cifiques. </p>
+</body>
+
+</html>

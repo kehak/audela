@@ -1,0 +1,205 @@
+#
+# Fichier : mcmt.cap
+# Mise a jour $Id: mcmt.cap 13616 2016-04-05 15:34:15Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(mcmt,monture)                       "MCMT II/32"
+set caption(mcmt,port_liaison)                  "Port"
+set caption(mcmt,configurer)                    "Set up"
+set caption(mcmt,controle)                      "Control"
+set caption(mcmt,maj_mcmt)                      "Update longitude, latitude and altitude of MCMT"
+set caption(mcmt,raquette_tel)                  "Hand controller on screen"
+set caption(mcmt,park)                          "Park"
+set caption(mcmt,unpark)                        "Unpark"
+
+set caption(mcmt,install_1)                     "End of MCMT plugin installation"
+set caption(mcmt,install_2)                     "libmcmt.dll library updated."
+
+set caption(mcmt,port_mcmt)                     "MCMT Port"
+set caption(mcmt,2points)                       ":"
+
+set caption(mcmt,titre_site_web)                "Reference Web Site:"
+set caption(mcmt,site_web_ref)                  "http://www.astrosurf.com/mcmtii/"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(mcmt,monture)                    "MCMT II/32"
+   set caption(mcmt,port_liaison)               "Port"
+   set caption(mcmt,configurer)                 "Configurer"
+   set caption(mcmt,controle)                   "Contrôle"
+   set caption(mcmt,maj_mcmt)                   "Mise à jour de la longitude, de la latitude et de l'altitude du MCMT"
+   set caption(mcmt,raquette_tel)               "Raquette à l'écran"
+   set caption(mcmt,park)                       "Park"
+   set caption(mcmt,unpark)                     "Unpark"
+
+   set caption(mcmt,install_1)                  "Fin de l'installation du plugin MCMT"
+   set caption(mcmt,install_2)                  "La librairie libmcmt.dll a été mise à jour."
+
+   set caption(mcmt,port_mcmt)                  "Port MCMT"
+   set caption(mcmt,2points)                    ":"
+
+   set caption(mcmt,titre_site_web)             "Site Web de référence :"
+   set caption(mcmt,site_web_ref)               "http://www.astrosurf.com/mcmtii/"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(mcmt,monture)                    "MCMT II/32"
+   set caption(mcmt,port_liaison)               "Porta"
+   set caption(mcmt,configurer)                 "Configurare"
+   set caption(mcmt,controle)                   "Controllo"
+   set caption(mcmt,maj_mcmt)                   "Aggiornamento longitudine, latitudine ed altitudine dell' MCMT"
+   set caption(mcmt,raquette_tel)               "Pulsantiera a schermo"
+   set caption(mcmt,park)                       "Park"
+   set caption(mcmt,unpark)                     "Unpark"
+
+   set caption(mcmt,install_1)                  "Fine installazione del plugin MCMT"
+   set caption(mcmt,install_2)                  "La libreria libmcmt.dll è stata aggiornata."
+
+   set caption(mcmt,port_mcmt)                  "Porta MCMT"
+   set caption(mcmt,2points)                    ":"
+
+   set caption(mcmt,titre_site_web)             "Sito Web di riferimento:"
+   set caption(mcmt,site_web_ref)               "http://www.astrosurf.com/mcmtii/"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(mcmt,monture)                    "MCMT II/32"
+   set caption(mcmt,port_liaison)               "Puerto"
+   set caption(mcmt,configurer)                 "Configurar"
+   set caption(mcmt,controle)                   "Control"
+   set caption(mcmt,maj_mcmt)                   "Actualizar longitud, latitud y altitud del MCMT"
+   set caption(mcmt,raquette_tel)               "Controlador virtual"
+   set caption(mcmt,park)                       "Park"
+   set caption(mcmt,unpark)                     "Unpark"
+
+   set caption(mcmt,install_1)                  "Fin de la instalación del plugin MCMT"
+   set caption(mcmt,install_2)                  "Libreria libmcmt.dll actualizada."
+
+   set caption(mcmt,port_mcmt)                  "Puerto MCMT"
+   set caption(mcmt,2points)                    ":"
+
+   set caption(mcmt,titre_site_web)             "Sitio Web de referencia:"
+   set caption(mcmt,site_web_ref)               "http://www.astrosurf.com/mcmtii/"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(mcmt,monture)                    "MCMT II/32"
+   set caption(mcmt,port_liaison)               "Port"
+   set caption(mcmt,configurer)                 "Konfigurieren"
+   set caption(mcmt,controle)                   "Kontroll"
+   set caption(mcmt,maj_mcmt)                   "Länge, Breite, Höhe des MCMT Aktualisierung"
+   set caption(mcmt,raquette_tel)               "Hand Kontroller am Bildschirm"
+   set caption(mcmt,park)                       "Park"
+   set caption(mcmt,unpark)                     "Unpark"
+
+   set caption(mcmt,install_1)                  "Ende der MCMT-Plugin-Installation"
+   set caption(mcmt,install_2)                  "Die libmcmt.dll Bibliothek ist aktualisiert."
+
+   set caption(mcmt,port_mcmt)                  "MCMT Port"
+   set caption(mcmt,2points)                    ":"
+
+   set caption(mcmt,titre_site_web)             "Referenz Webseite:"
+   set caption(mcmt,site_web_ref)               "http://www.astrosurf.com/mcmtii/"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(mcmt,monture)                    "MCMT II/32"
+   set caption(mcmt,port_liaison)               "Porta"
+   set caption(mcmt,configurer)                 "Configuração"
+   set caption(mcmt,controle)                   "Controlo"
+   set caption(mcmt,maj_mcmt)                   "Actualizar longitude, latitude e altitude do MCMT"
+   set caption(mcmt,raquette_tel)               "Controlador de mão no ecrã"
+   set caption(mcmt,park)                       "Park"
+   set caption(mcmt,unpark)                     "Unpark"
+
+   set caption(mcmt,install_1)                  "Fin da instalação do plugin MCMT"
+   set caption(mcmt,install_2)                  "A livraria libmcmt.dll foi actualizada."
+
+   set caption(mcmt,port_mcmt)                  "Porta MCMT"
+   set caption(mcmt,2points)                    ":"
+
+   set caption(mcmt,titre_site_web)             "Site Web de referência:"
+   set caption(mcmt,site_web_ref)               "http://www.astrosurf.com/mcmtii/"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(mcmt,monture)                    "MCMT II/32"
+   set caption(mcmt,port_liaison)               "Port"
+   set caption(mcmt,configurer)                 "Set up"
+   set caption(mcmt,controle)                   "Control"
+   set caption(mcmt,maj_mcmt)                   "Update longitude, latitude and altitude of MCMT"
+   set caption(mcmt,raquette_tel)               "Hand controller on screen"
+   set caption(mcmt,park)                       "Park"
+   set caption(mcmt,unpark)                     "Unpark"
+
+   set caption(mcmt,install_1)                  "End of MCMT plugin installation"
+   set caption(mcmt,install_2)                  "libmcmt.dll library updated."
+
+   set caption(mcmt,port_mcmt)                  "MCMT Port"
+   set caption(mcmt,2points)                    ":"
+
+   set caption(mcmt,titre_site_web)             "Reference Web Site:"
+   set caption(mcmt,site_web_ref)               "http://www.astrosurf.com/mcmtii/"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(mcmt,monture)                    "MCMT II/32"
+   set caption(mcmt,port_liaison)               "Port"
+   set caption(mcmt,configurer)                 "Set up"
+   set caption(mcmt,controle)                   "Control"
+   set caption(mcmt,maj_mcmt)                   "Update longitude, latitude and altitude of MCMT"
+   set caption(mcmt,raquette_tel)               "Hand controller on screen"
+   set caption(mcmt,park)                       "Park"
+   set caption(mcmt,unpark)                     "Unpark"
+
+   set caption(mcmt,install_1)                  "End of MCMT plugin installation"
+   set caption(mcmt,install_2)                  "libmcmt.dll library updated."
+
+   set caption(mcmt,port_mcmt)                  "MCMT Port"
+   set caption(mcmt,2points)                    ":"
+
+   set caption(mcmt,titre_site_web)             "Reference Web Site:"
+   set caption(mcmt,site_web_ref)               "http://www.astrosurf.com/mcmtii/"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(mcmt,monture)                    "MCMT II/32"
+   set caption(mcmt,port_liaison)               "Port"
+   set caption(mcmt,configurer)                 "Set up"
+   set caption(mcmt,controle)                   "Control"
+   set caption(mcmt,maj_mcmt)                   "Update longitude, latitude and altitude of MCMT"
+   set caption(mcmt,raquette_tel)               "Hand controller on screen"
+   set caption(mcmt,park)                       "Park"
+   set caption(mcmt,unpark)                     "Unpark"
+
+   set caption(mcmt,install_1)                  "End of MCMT plugin installation"
+   set caption(mcmt,install_2)                  "libmcmt.dll library updated."
+
+   set caption(mcmt,port_mcmt)                  "MCMT Port"
+   set caption(mcmt,2points)                    ":"
+
+   set caption(mcmt,titre_site_web)             "Reference Web Site:"
+   set caption(mcmt,site_web_ref)               "http://www.astrosurf.com/mcmtii/"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

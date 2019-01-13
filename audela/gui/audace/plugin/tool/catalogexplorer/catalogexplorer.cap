@@ -1,0 +1,287 @@
+#
+# Fichier : catalogexplorer.cap
+# Mise a jour $Id: catalogexplorer.cap 13253 2016-02-22 16:23:25Z rzachantke $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(catalogexplorer,titre)                                 "Catalog Explorer"
+
+set caption(catalogexplorer,catalog)                               "Catalog"
+set caption(catalogexplorer,naxis)                                 "Image Width x Height (pix)"
+set caption(catalogexplorer,pixsize)                               "Pixel Size Width X Height (um)"
+set caption(catalogexplorer,foclen)                                "Equipment Focal Length (m)"
+set caption(catalogexplorer,fov)                                   "Field of view (°)"
+set caption(catalogexplorer,crota2)                                "Camera Tilt (°)"
+set caption(catalogexplorer,ad_centre)                             "Right Ascension of the Center (HMS or °)"
+set caption(catalogexplorer,dec_centre)                            "Declination of the Center (DMS or °)"
+set caption(catalogexplorer,mag)                                   "Magnitude Minimum / Limit"
+set caption(catalogexplorer,zoom)                                  "Zoom on the image"
+set caption(catalogexplorer,star)                                  "Star(s)"
+set caption(catalogexplorer,scale)                                 "Zoom %s"
+set caption(catalogexplorer,radius)                                "Radius %s °"
+set caption(catalogexplorer,select)                                "Select a file"
+
+set caption(catalogexplorer,erreur)                                "Error"
+set caption(catalogexplorer,err_type)                              "Variable %s must be of type %s."
+set caption(catalogexplorer,err_file)                              "The file %s is not suitable."
+set caption(catalogexplorer,no_star)                               "The catalog %s contains no star in this field."
+set caption(catalogexplorer,excess_star)                           "# Il y a %s étoiles à afficher.\n\C'est trop.\nChanger les paramètres."
+
+set caption(catalogexplorer,appliquer)                             "Apply"
+set caption(catalogexplorer,fermer)                                "Close"
+set caption(catalogexplorer,aide)                                  "Help"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(catalogexplorer,titre)                              "Explorateur de catalogues"
+
+   set caption(catalogexplorer,catalog)                            "Catalogue"
+   set caption(catalogexplorer,naxis)                              "Largeur X Hauteur de l'image (pix)"
+   set caption(catalogexplorer,pixsize)                            "Largeur X Hauteur des pixels (um)"
+   set caption(catalogexplorer,foclen)                             "Focale de l'instrument (m)"
+   set caption(catalogexplorer,fov)                                "Champ de vision (°)"
+   set caption(catalogexplorer,crota2)                             "Inclinaison de la caméra (°)"
+   set caption(catalogexplorer,ad_centre)                          "Ascension Droite du centre (HMS ou °)"
+   set caption(catalogexplorer,dec_centre)                         "Déclinaison du centre (DMS ou °)"
+   set caption(catalogexplorer,mag)                                "Magnitudes Minimale / Limite"
+   set caption(catalogexplorer,zoom)                               "Zoom sur l'image"
+   set caption(catalogexplorer,star)                               "Etoile(s)"
+   set caption(catalogexplorer,scale)                              "Echelle %s"
+   set caption(catalogexplorer,radius)                             "Rayon %s °"
+   set caption(catalogexplorer,select)                             "Sélectionner un fichier"
+
+   set caption(catalogexplorer,erreur)                             "Erreur"
+   set caption(catalogexplorer,err_type)                           "Le paramètre %s doit être un %s."
+   set caption(catalogexplorer,err_file)                           "Le fichier %s n'est pas adapté."
+   set caption(catalogexplorer,no_star)                            "Le catalogue %s ne contient aucune étoile dans ce champ."
+   set caption(catalogexplorer,excess_star)                        "Il y a %s étoiles à afficher.\n\C'est trop.\nChanger les paramètres."
+
+   set caption(catalogexplorer,appliquer)                          "Appliquer"
+   set caption(catalogexplorer,fermer)                             "Fermer"
+   set caption(catalogexplorer,aide)                               "Aide"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(catalogexplorer,titre)                              "Catalogo explorer"
+
+   set caption(catalogexplorer,catalog)                            "Catalogo"
+   set caption(catalogexplorer,naxis)                              "Immagine Larghezza X  Altezza (pix)"
+   set caption(catalogexplorer,pixsize)                            "Pixel Larghezza X Altezza (um)"
+   set caption(catalogexplorer,foclen)                             "Lunghezza focale telescopio (m)"
+   set caption(catalogexplorer,crota2)                             "Inclinazione camera CCD (°)"
+   set caption(catalogexplorer,fov)                                "Campo di vista (°)"
+   set caption(catalogexplorer,ad_centre)                          "Ascensione Retta centro immagine (HMS ou °)"
+   set caption(catalogexplorer,dec_centre)                         "Declinazione centro immagine (DMS ou °)"
+   set caption(catalogexplorer,mag)                                "Magnitudine Minima / Limite"
+   set caption(catalogexplorer,zoom)                               "Ingrandire l'immagine"
+   set caption(catalogexplorer,star)                               "Stelle"
+   set caption(catalogexplorer,scale)                              "Ingrandire %s"
+   set caption(catalogexplorer,radius)                             "Raggio %s °"
+   set caption(catalogexplorer,select)                             "Selezionare un file"
+
+   set caption(catalogexplorer,erreur)                             "Errore"
+   set caption(catalogexplorer,err_type)                           "Il parametro %s deve essere di tipo %s."
+   set caption(catalogexplorer,err_file)                           "Il file %s non è adatto."
+   set caption(catalogexplorer,no_star)                            "Il catalogo di %s non contiene nessuna stella in questo campo."
+   set caption(catalogexplorer,excess_star)                        "# Il y a %s étoiles à afficher.\n\C'est trop.\nChanger les paramètres."
+
+   set caption(catalogexplorer,appliquer)                          "Applicare"
+   set caption(catalogexplorer,fermer)                             "Chiudere"
+   set caption(catalogexplorer,aide)                               "Aiuto"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(catalogexplorer,titre)                              "Catálogo explorer"
+
+   set caption(catalogexplorer,catalog)                            "Catálogo"
+   set caption(catalogexplorer,naxis)                              "Imagen Anchura X Altura (pix)"
+   set caption(catalogexplorer,pixsize)                            "Pixeles Anchura X Altura (um)"
+   set caption(catalogexplorer,foclen)                             "Distancia focal del equipo (m)"
+   set caption(catalogexplorer,fov)                                "Campo de visión (°)"
+   set caption(catalogexplorer,crota2)                             "Inclinación de cámara (°)"
+   set caption(catalogexplorer,ad_centre)                          "Ascensión Recta del centro (HMS or °)"
+   set caption(catalogexplorer,dec_centre)                         "Declinación del centro (DMS ou °)"
+   set caption(catalogexplorer,mag)                                "Magnitud Mínima / Límite"
+   set caption(catalogexplorer,zoom)                               "Zoom en la imagen"
+   set caption(catalogexplorer,scale)                              "Zoom %s"
+   set caption(catalogexplorer,radius)                             "Radio %s °"
+   set caption(catalogexplorer,star)                               "Estrellas"
+   set caption(catalogexplorer,select)                             "Seleccione un archivo"
+
+   set caption(catalogexplorer,erreur)                             "Error"
+   set caption(catalogexplorer,err_type)                           "La variable %s debe ser del tipo %s."
+   set caption(catalogexplorer,err_file)                           "El archivo %s no es adecuado."
+   set caption(catalogexplorer,no_star)                            "El catálogo de %s no contiene ninguna estrella en este campo."
+   set caption(catalogexplorer,excess_star)                        "# Il y a %s étoiles à afficher.\n\C'est trop.\nChanger les paramètres."
+
+   set caption(catalogexplorer,appliquer)                          "Aplicar"
+   set caption(catalogexplorer,fermer)                             "Cerrar"
+   set caption(catalogexplorer,aide)                               "Ayuda"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(catalogexplorer,titre)                              "Katalog-Explorer"
+
+   set caption(catalogexplorer,catalog)                            "Katalog"
+   set caption(catalogexplorer,naxis)                              "Bild Breite X Höhe (pix)"
+   set caption(catalogexplorer,pixsize)                            "Pixel Breite X Höhe (um)"
+   set caption(catalogexplorer,foclen)                             "Brennweite des Teleskop (m)"
+   set caption(catalogexplorer,fov)                                "Sehfeld (°)"
+   set caption(catalogexplorer,crota2)                             "Kamera Neigung (°)"
+   set caption(catalogexplorer,ad_centre)                          "Centrum Rektaszension (HMS or °)"
+   set caption(catalogexplorer,dec_centre)                         "Centrum Deklination (DMS ou °)"
+   set caption(catalogexplorer,mag_bright)                         "Naxis1"
+   set caption(catalogexplorer,mag_faint)                          "Größeklasse Minimale / Grenze"
+   set caption(catalogexplorer,zoom)                               "Vergrößern auf das Bild"
+   set caption(catalogexplorer,star)                               "Sternen"
+   set caption(catalogexplorer,scale)                              "Vergrößern %s"
+   set caption(catalogexplorer,radius)                             "Radius %s °"
+   set caption(catalogexplorer,select)                             "Wählen Sie eine Datei"
+
+   set caption(catalogexplorer,erreur)                             "Irrtum"
+   set caption(catalogexplorer,err_type)                           "Parameter %s muss vom Typ %s sein."
+   set caption(catalogexplorer,err_file)                           "Die Datei %s ist nicht geeignet."
+   set caption(catalogexplorer,no_star)                            "Der Katalog %s enthält kein Stern in diesem Bereich."
+   set caption(catalogexplorer,excess_star)                        "# Il y a %s étoiles à afficher.\n\C'est trop.\nChanger les paramètres."
+
+   set caption(catalogexplorer,appliquer)                          "Anwenden"
+   set caption(catalogexplorer,fermer)                             "Schließen"
+   set caption(catalogexplorer,aide)                               "Hilfe"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(catalogexplorer,titre)                              "Catálogo explorer"
+
+   set caption(catalogexplorer,catalog)                            "Catálogo"
+   set caption(catalogexplorer,naxis)                              "Imagem Largura X Altura (pix)"
+   set caption(catalogexplorer,pixsize)                            "Pixel Largura X Altura (um)"
+   set caption(catalogexplorer,foclen)                             "Distância Focal do Equipamento (m)"
+   set caption(catalogexplorer,fov)                                "Campo de visão (°)"
+   set caption(catalogexplorer,crota2)                             "Inclinação da câmara (°)"
+   set caption(catalogexplorer,ad_centre)                          "Ascenção recta do centro (HMS ou °)"
+   set caption(catalogexplorer,dec_centre)                         "Declinação do centro (DMS ou °)"
+   set caption(catalogexplorer,mag)                                "Magnitude Minima / Limite"
+   set caption(catalogexplorer,zoom)                               "Zoom na imagem"
+   set caption(catalogexplorer,star)                               "Estrelas"
+   set caption(catalogexplorer,scale)                              "Zoom %s"
+   set caption(catalogexplorer,radius)                             "Raio %s °"
+   set caption(catalogexplorer,select)                             "Selecione um arquivo"
+
+   set caption(catalogexplorer,erreur)                             "Erro"
+   set caption(catalogexplorer,err_type)                           "O parâmetro %s tem que ser um %s."
+   set caption(catalogexplorer,err_file)                           "O arquivo %s não é adequado."
+   set caption(catalogexplorer,no_star)                            "O catálogo de %s não contém nenhuma estrela neste campo."
+   set caption(catalogexplorer,excess_star)                        "# Il y a %s étoiles à afficher.\n\C'est trop.\nChanger les paramètres."
+
+   set caption(catalogexplorer,appliquer)                          "Aplicar"
+   set caption(catalogexplorer,fermer)                             "Fechar"
+   set caption(catalogexplorer,aide)                               "Ajuda"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(catalogexplorer,titre)                              "Catalog Explorer"
+
+   set caption(catalogexplorer,catalog)                            "Catalog"
+   set caption(catalogexplorer,naxis)                              "Image Width x Height (pix)"
+   set caption(catalogexplorer,pixsize)                            "Pixel Size Width X Height (um)"
+   set caption(catalogexplorer,foclen)                             "Equipment Focal Length (m)"
+   set caption(catalogexplorer,fov)                                "Field of view (°)"
+   set caption(catalogexplorer,crota2)                             "Camera Tilt (°)"
+   set caption(catalogexplorer,ad_centre)                          "Right Ascension of the Center (HMS ou °)"
+   set caption(catalogexplorer,dec_centre)                         "Declination of the Center (DMS ou °)"
+   set caption(catalogexplorer,mag)                                "Magnitude Minimum / Limit"
+   set caption(catalogexplorer,zoom)                               "Zoom on the image"
+   set caption(catalogexplorer,star)                               "Star(s)"
+   set caption(catalogexplorer,scale)                              "Zoom %s"
+   set caption(catalogexplorer,radius)                             "Radius %s °"
+   set caption(catalogexplorer,select)                             "Select a file"
+
+   set caption(catalogexplorer,erreur)                             "Error"
+   set caption(catalogexplorer,err_type)                           "Variable %s must be of type %s."
+   set caption(catalogexplorer,err_file)                           "The file %s is not suitable."
+   set caption(catalogexplorer,no_star)                            "The catalog %s contains no star in this field."
+   set caption(catalogexplorer,excess_star)                        "# Il y a %s étoiles à afficher.\n\C'est trop.\nChanger les paramètres."
+
+   set caption(catalogexplorer,appliquer)                          "Apply"
+   set caption(catalogexplorer,fermer)                             "Close"
+   set caption(catalogexplorer,aide)                               "Help"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(catalogexplorer,titre)                              "Catalog Explorer"
+
+   set caption(catalogexplorer,catalog)                            "Catalog"
+   set caption(catalogexplorer,naxis)                              "Image Width x Height (pix)"
+   set caption(catalogexplorer,pixsize)                            "Pixel Size Width X Height (um)"
+   set caption(catalogexplorer,foclen)                             "Equipment Focal Length (m)"
+   set caption(catalogexplorer,fov)                                "Field of view (°)"
+   set caption(catalogexplorer,crota2)                             "Camera Tilt (°)"
+   set caption(catalogexplorer,ad_centre)                          "Right Ascension of the Center (HMS or °)"
+   set caption(catalogexplorer,dec_centre)                         "Declination of the Center (DMS ou °)"
+   set caption(catalogexplorer,mag)                                "Magnitude Minimum / Limit"
+   set caption(catalogexplorer,zoom)                               "Zoom on the image"
+   set caption(catalogexplorer,star)                               "Star(s)"
+   set caption(catalogexplorer,scale)                              "Zoom %s"
+   set caption(catalogexplorer,radius)                             "Radius %s °"
+   set caption(catalogexplorer,select)                             "Select a file"
+
+   set caption(catalogexplorer,erreur)                             "Error"
+   set caption(catalogexplorer,err_type)                           "Variable %s must be of type %s."
+   set caption(catalogexplorer,err_file)                           "The file %s is not suitable."
+   set caption(catalogexplorer,no_star)                            "The catalog %s contains no star in this field."
+   set caption(catalogexplorer,excess_star)                        "# Il y a %s étoiles à afficher.\n\C'est trop.\nChanger les paramètres."
+
+   set caption(catalogexplorer,appliquer)                          "Apply"
+   set caption(catalogexplorer,fermer)                             "Close"
+   set caption(catalogexplorer,aide)                               "Help"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(catalogexplorer,titre)                              "Catalog Explorer"
+
+   set caption(catalogexplorer,catalog)                            "Catalog"
+   set caption(catalogexplorer,naxis)                              "Image Width x Height (pix)"
+   set caption(catalogexplorer,pixsize)                            "Pixel Size Width X Height (um)"
+   set caption(catalogexplorer,foclen)                             "Equipment Focal Length (m)"
+   set caption(catalogexplorer,fov)                                "Field of view (°)"
+   set caption(catalogexplorer,crota2)                             "Camera Tilt (°)"
+   set caption(catalogexplorer,ad_centre)                          "Right Ascension of the Center (HMS or °)"
+   set caption(catalogexplorer,dec_centre)                         "Declination of the Center (DMS ou °)"
+   set caption(catalogexplorer,mag)                                "Magnitude Minimum / Limit"
+   set caption(catalogexplorer,zoom)                               "Zoom on the image"
+   set caption(catalogexplorer,star)                               "Star(s)"
+   set caption(catalogexplorer,scale)                              "Zoom %s"
+   set caption(catalogexplorer,radius)                             "Radius %s °"
+   set caption(catalogexplorer,select)                             "Select a file"
+
+   set caption(catalogexplorer,erreur)                             "Error"
+   set caption(catalogexplorer,err_type)                           "Variable %s must be of type %s."
+   set caption(catalogexplorer,err_file)                           "The file %s is not suitable."
+   set caption(catalogexplorer,no_star)                            "The catalog %s contains no star in this field."
+   set caption(catalogexplorer,excess_star)                        "# Il y a %s étoiles à afficher.\n\C'est trop.\nChanger les paramètres."
+
+   set caption(catalogexplorer,appliquer)                          "Apply"
+   set caption(catalogexplorer,fermer)                             "Close"
+   set caption(catalogexplorer,aide)                               "Help"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

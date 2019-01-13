@@ -1,0 +1,130 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Alain Klotz">
+   <meta name="GENERATOR" content="Mozilla/4.75 [fr] (Win98; U) [Netscape]">
+   <title>Library AudeLA : User manual</title>
+</head>
+<body>
+
+<center>
+<h1>
+libaudela</h1></center>
+
+<center>a Tcl extension library for astronomy
+<br>update 20011127
+<p><b><font size=+3>User manual</font></b></center>
+
+<p>Libaudela is a Tcl extension library which adds functions concerning
+observational astronomy. CCD camera and telescope drivers can be used easily
+by simple Tcl commands. Visualization functions designed for astronomical
+applications are proposed as many image processing functions.
+<h1>
+<a NAME="howtouse"></a>1. How to use libaudela</h1>
+Libaudela can be used by three ways :
+<ul>
+<li>
+From the Wish Tcl/Tk interface as a Tcl extension.</li>
+
+<li>
+From any software as a classical shared library loaded dynamiquely.</li>
+
+<li>
+From its own executable launcher : audela.</li>
+</ul>
+
+<h2>
+<a NAME="wish"></a>1.1. Using the library in a Tcl interpreter</h2>
+To load the libmc library in a Tcl interpreter (Wish for example), use
+the following function :
+<p><b>load libaudela[info sharedlibextension]</b>
+<p>in your current Tcl interpreter. The command [info sharedlibextension]
+allow, to the Tcl interpreter, to append letters for the suffix .dll or
+.so corresponding to the operating system Windows or Linux.
+<p>If the interpreter returns the error message : couldn't load file "libaudela":
+invalid argument, it means that the file of the libaudela library (libaudela.dll
+with Windows and libaudela.so with Linux) is not placed in the current
+folder of the interpreter (cf. pwd and cd function of Tcl).
+<h2>
+<a NAME="dll"></a>1.2. Using the library in a C software</h2>
+The more simplest way to proceed is to have a look on the file test.cpp
+which is a basic application. You must download the three following files
+:
+<ul>
+<li>
+<a href="test.cpp">test.cpp</a> : the C program</li>
+
+<li>
+<a href="sysexp.h">sysexp.h</a> : definition of operating system</li>
+
+<li>
+<a href="audela.h">audela.h</a> : header that defines the libaudela exported
+functions.</li>
+</ul>
+They are 6 functions to import :
+<p><b><tt>void* CALLMETHOD audela_open();</tt></b>
+<blockquote>Function audela_open open an AudeLA session and returns an
+adress for the audela handler.
+<p>Example :
+<br><b><tt>void *session;</tt></b>
+<br><b><tt>session=audela_open();</tt></b></blockquote>
+<b><tt>int CALLMETHOD audela_close(void *handle);</tt></b>
+<blockquote>Function audela_close close the AudeLa session defined by the
+audela handler.
+<p>Example :
+<br><b><tt>audela_close(session);</tt></b></blockquote>
+<b><tt>int CALLMETHOD audela_eval(void *handle, char *s, int *reslen);</tt></b>
+<blockquote>Function audela_eval submit a Tcl string *s to the AudeLA Tcl
+interpreter. The <i>reslen</i> value returns the number of characters of
+the terminated null string that contains the result.
+<p>Example :
+<br><b><tt>int reslen;</tt></b>
+<br><b><tt>audela_eval(session,"source myscript.tcl");</tt></b></blockquote>
+<b><tt>int CALLMETHOD audela_getresult(void *handle, int maxchar, char
+*s);</tt></b>
+<blockquote>Function audela_getresult ask to the AudeLA Tcl interpreter
+to return the last result in the string *s. The <i>maxchar</i> value allow
+to limit the length of the returned string *s.
+<p><b><tt>const int maxchar;</tt></b>
+<br><b><tt>char s[maxchar];</tt></b>
+<br><b><tt>audela_getresult(session,maxchar,s);</tt></b></blockquote>
+<b><tt>int CALLMETHOD audela_putbuf(void *handle, int bufno, int type,
+int w, int h, void *buffer);</tt></b>
+<blockquote>Function audela_putbuf allow to tranfert values of an image
+pointer *buffer (width=<i>w</i>, height=<i>h</i>) to the <i>bufno</i>th
+buffer of AudeLA. The C buffer is of type <i>type</i> :
+<p>unsigned char = AUDELA_TYPE_BYTE
+<br>short = AUDELA_TYPE_SHORT
+<br>unsigned short = AUDELA_TYPE_USHORT
+<br>long = AUDELA_TYPE_LONG
+<br>unsigned long = AUDELA_TYPE_ULONG
+<br>float = AUDELA_TYPE_FLOAT
+<br>double = AUDELA_TYPE_DOUBLE
+<p>Example :
+<br><b><tt>const int w = 10, h = 10;</tt></b>
+<br><b><tt>short buf[h][w]; int n=0;</tt></b>
+<br><b><tt>for(int j=0;j&lt;h;j++) for(int i=0;i&lt;w;i++) buf[j][i] =
+(short)(n++);</tt></b>
+<br><b><tt>audela_putbuf(session,1,AUDELA_TYPE_SHORT,w,h,buf);</tt></b></blockquote>
+<b><tt>int CALLMETHOD audela_getbuf(void *handle, int bufno, int type,
+int w, int h, void *buffer);</tt></b>
+<blockquote>Function audela_getbuf allow to tranfert values of the <i>bufno</i>th
+buffer of AudeLA to an image pointer *buffer (width=<i>w</i>, height=<i>h</i>).
+The C buffer is of type <i>type</i> (see function audela_putbuf).
+<p>Example :
+<br><b><tt>const int w = 10, h = 10;</tt></b>
+<br><b><tt>short buf[h][w]; int n=0;</tt></b>
+<br><b><tt>audela_putbuf(session,1,AUDELA_TYPE_SHORT,w,h,buf);</tt></b></blockquote>
+
+<h2>
+<a NAME="audela"></a>1.3. Using the library by the AudeLA executable code</h2>
+The software AudeLA load libaudela automaticaly. The Tcl escript named
+audela.tcl is then evaluated. In the standard AudeLA distribution, the
+audela.tcl script allow to choice the interface and the langage.
+<h1>
+2. Libaudela functions</h1>
+
+<p><br>TBD...
+</body>
+</html>

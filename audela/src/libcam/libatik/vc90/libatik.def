@@ -1,0 +1,2 @@
+LIBRARY libatik
+EXPORTS Atik_Init @1

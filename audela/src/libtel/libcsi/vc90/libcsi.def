@@ -1,0 +1,2 @@
+LIBRARY libcsi
+EXPORTS Csi_Init @1

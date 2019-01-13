@@ -1,0 +1,238 @@
+set visuNo 1
+set bufNo [::confVisu::getBufNo $visuNo]
+set ext $::conf(extension,defaut)
+#--   le nom de la tablelist des fichiers
+set w ".audace.dialog.tl"
+#--   le nom de la zone de commande
+set z ".audace.dialog"
+
+#-----------------------------------------------------------------------------
+#--  Convertit une image N&B en plan R
+#-----------------------------------------------------------------------------
+test convertir_assignR {assigne une image N&B a un plan R} -constraints {AUDACE} -setup {
+   buf$bufNo setpixels CLASS_GRAY 50 50 FORMAT_BYTE COMPRESS_NONE 0
+   #--   cree un point de valeur 200
+   buf$bufNo setpix [list 25 25] 200
+   set shortName "test$ext"
+   set fileName [file join $::audace(rep_images) $shortName]
+   saveima $fileName
+} -body {
+   #--   clic sur le menu "Images/Retoucher/Supprimer des pixels chauds..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,convertir)" "$::caption(audace,menu,assigner_r)..."
+   set j [lsearch -exact $::conv2::private(conv2,liste_cibles) "$shortName" ]
+   #--   selectionne l'image
+   ::testaudela::clicCheckButton [$w windowpath $j,0] 1
+   #--   selectionne le changement de nom
+   ::testaudela::clicCheckButton $z.chg 1
+   #-- saisit le nom de sortie
+   set generique "plan"
+   ::testaudela::putEntry $z.generique "$generique"
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   set result 0
+   if {[file exists [file join $::audace(rep_images) ${generique}r$ext]]} {
+      incr result
+   }
+   if {[lindex [buf$bufNo getkwd RGBFILTR] 1] eq "R"} {
+      incr result
+   }
+   return $result
+} -cleanup {
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   file delete $fileName
+} -result "2"
+
+#-----------------------------------------------------------------------------
+#--  Convertit une image N&B en plan G
+#-----------------------------------------------------------------------------
+test convertir_assignG {assigne une image N&B a un plan G} -constraints {AUDACE} -setup {
+   buf$bufNo setpixels CLASS_GRAY 50 50 FORMAT_BYTE COMPRESS_NONE 0
+   #--   cree un point de valeur 250
+   buf$bufNo setpix [list 25 25] 250
+   set shortName "test$ext"
+   set fileName [file join $::audace(rep_images) $shortName]
+   saveima $fileName
+} -body {
+   #--   clic sur le menu "Images/Retoucher/Supprimer des pixels chauds..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,convertir)" "$::caption(audace,menu,assigner_g)..."
+   set j [lsearch -exact $::conv2::private(conv2,liste_cibles) "$shortName" ]
+   #--   selectionne l'image
+   ::testaudela::clicCheckButton [$w windowpath $j,0] 1
+   #--   selectionne le changement de nom
+   ::testaudela::clicCheckButton $z.chg 1
+   #-- saisit le nom de sortie
+   set generique "plan"
+   ::testaudela::putEntry $z.generique "$generique"
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   set result 0
+   if {[file exists [file join $::audace(rep_images) ${generique}g$ext]]} {
+      incr result
+   }
+   if {[lindex [buf$bufNo getkwd RGBFILTR] 1] eq "G"} {
+      incr result
+   }
+   return $result
+} -cleanup {
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   file delete $fileName
+} -result "2"
+
+#-----------------------------------------------------------------------------
+#--  Convertit une image N&B en plan B
+#-----------------------------------------------------------------------------
+test convertir_assignB {assigne une image N&B a un plan B} -constraints {AUDACE} -setup {
+   buf$bufNo setpixels CLASS_GRAY 50 50 FORMAT_BYTE COMPRESS_NONE 0
+   #--   cree un point de valeur 180
+   buf$bufNo setpix [list 25 25] 180
+   set shortName "test$ext"
+   set fileName [file join $::audace(rep_images) $shortName]
+   saveima $fileName
+} -body {
+   #--   clic sur le menu "Images/Retoucher/Supprimer des pixels chauds..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,convertir)" "$::caption(audace,menu,assigner_b)..."
+   set j [lsearch -exact $::conv2::private(conv2,liste_cibles) "$shortName" ]
+   #--   selectionne l'image
+   ::testaudela::clicCheckButton [$w windowpath $j,0] 1
+   #--   selectionne le changement de nom
+   ::testaudela::clicCheckButton $z.chg 1
+   #-- saisit le nom de sortie
+   set generique "plan"
+   ::testaudela::putEntry $z.generique "$generique"
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   set result 0
+   if {[file exists [file join $::audace(rep_images) ${generique}b$ext]]} {
+      incr result
+   }
+   if {[lindex [buf$bufNo getkwd RGBFILTR] 1] eq "B"} {
+      incr result
+   }
+   return $result
+} -cleanup {
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   file delete $fileName
+} -result "2"
+
+#-----------------------------------------------------------------------------
+#--  Convertit trois plans R G B en RGB
+#-----------------------------------------------------------------------------
+test convertir_r+v+b2rvb {convertit trois plans R G B en une RGB} -constraints {AUDACE} -setup {
+} -body {
+   #--   clic sur le menu "Images/Retoucher/Supprimer des pixels chauds..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,convertir)" "$::caption(audace,menu,r+v+b2rvb)..."
+   set j [lsearch -exact $::conv2::private(conv2,liste_cibles) "plan" ]
+   #--   selectionne l'image
+   ::testaudela::clicCheckButton [$w windowpath $j,0] 1
+   #--   selectionne le changement de nom
+   ::testaudela::clicCheckButton $z.chg 1
+   #-- saisit le nom de sortie
+   set generique "img"
+   ::testaudela::putEntry $z.generique "$generique"
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   set result 0
+   if {[file exists [file join $::audace(rep_images) ${generique}$ext]]} {
+      incr result
+   }
+   set value [buf$bufNo getpix [list 25 25]]
+   foreach index [list 1 2 3] v [list 200 250 180] {
+      if {[lindex $value $index] == $v} {
+         incr result
+      }
+   }
+   return $result
+} -cleanup {
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   file delete [file join $::audace(rep_images) ${generique}$ext]
+} -result "4"
+
+#-----------------------------------------------------------------------------
+#--  Convertit trois plans R G B en RGB par trichromie directe
+#-----------------------------------------------------------------------------
+test convertir_tricho {trichromie de 3 plans} -constraints {AUDACE} -setup {
+   set wid $::audace(base).trichro
+} -body {
+   #--   clic sur le menu "Images/Retoucher/Supprimer des pixels chauds..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,convertir)" "$::caption(audace,menu,trichro)..."
+   #--   selectionne l'image planr
+   ::testaudela::clicCombobox $wid.fr1.sel_red "planr$ext"
+   #--   selectionne l'image plang
+   ::testaudela::clicCombobox $wid.fr1.sel_green "plang$ext"
+   #--   selectionne l'image planb
+   ::testaudela::clicCombobox $wid.fr1.sel_blue "planb$ext"
+   #-- saisit le nom de sortie
+   set generique "trichro"
+   ::testaudela::putEntry $wid.fr1.racine "$generique"
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $wid.cmd.apply
+
+   #--   procedure de controle
+   set result 0
+   if {[file exists [file join $::audace(rep_images) ${generique}$ext]]} {
+      incr result
+   }
+   set value [buf$bufNo getpix [list 25 25]]
+   foreach index [list 1 2 3] v [list 200 250 180] {
+      if {[lindex $value $index] == $v} {
+         incr result
+      }
+   }
+   return $result
+} -cleanup {
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $wid.cmd.close
+   foreach file [list planr plang planb] {
+      set f [file join $::audace(rep_images) $file$ext]
+      if {[file exists "$f"]} {
+          file delete $f
+      }
+   }
+} -result "4"
+
+#-----------------------------------------------------------------------------
+#--  Decompose une image RGB en trois plans R G B
+#-----------------------------------------------------------------------------
+test convertir_rvb2r+v+b {decompose une image RGB en plans couleurs} -constraints {AUDACE} -setup {
+} -body {
+   #--   clic sur le menu "Images/Retoucher/Supprimer des pixels chauds..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,convertir)" "$::caption(audace,menu,rvb2r+v+b)..."
+   set j [lsearch -exact $::conv2::private(conv2,liste_cibles) "trichro.fit" ]
+   #--   selectionne l'image
+   ::testaudela::clicCheckButton [$w windowpath $j,0] 1
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   set result 0
+   foreach file [list trichror trichrog trichrob] filter [list R G B] {
+      if {[file exists [file join $::audace(rep_images) $file$ext]]} {
+         incr result
+      }
+   }
+   return $result
+} -cleanup {
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+   foreach file [list trichro trichror trichrog trichrob] {
+      set f [file join $::audace(rep_images) $file$ext]
+      if {[file exists "$f"]} {
+          file delete $f
+      }
+   }
+} -result "3"
+

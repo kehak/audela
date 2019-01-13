@@ -1,0 +1,415 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>LibAudeLA</title></head><body>
+<p class="date">Date de mise à jour : 26 juillet 2013</p>
+
+<h1>LibAudeLA</h1>
+<h1>Librairie d'extension Tcl pour l'astronomie - Manuel Utilisateur</h1>
+<h2> 1. Principes généraux</h2>
+<p>LibAudeLA ajoute, à Tcl, des fonctions spécialisées à l'astronomie :
+Gestion d'images au format FITS, traitement d'image, pilotage de
+caméras et de télescopes, etc. Pour faciliter l'utilisation, de
+nombreuses fonctions ont été rassemblées en familles appelées objets.
+Faisons un rapide tour d'horizon de ces objets : </p>
+<ul>
+  <li><a href="#buf">buffer</a> : Les fonction de buffer
+permettent de charger une image en mémoire, la sauver sur le disque et
+permet quelques traitements d'images. </li>
+  <li><a href="#cam">caméra</a> : Les fonctions de caméra permettent de paramétrer l'acquisition d'image par des caméras CCD. </li>
+  <li><a href="#visu">visualisation</a> : Les fonctions de visualisation permettent de paramétrer l'affichage des images dans une fenêtre du logiciel. </li>
+  <li><a href="#tel">télescope</a> : Les fonctions de télescope permettent de paramétrer le pointage et le suivi de télescopes.</li>
+</ul>
+<p>Ces fonctions sont définies dans le fichier libaudela.dll (sous
+Windows) et libaudela.so (sous Linux). LibAudeLA gère la lecture et
+l'écriture disque des images, aux formats FITS et Jpeg, est assuré par
+la librairie <a href="ttus1-fr.htm">LibTT.</a> Cette librairie est
+appelée automatiquement par LibAudeLA. LibTT ajoute aussi de nombreuses
+fonctions de traitement d'images à LibAudeLA (appelables à partir de
+l'objet buffer). </p>
+<p>Pour fonctionner correctement, LibAudeLA nécessite de charger les extensions Tcl <a href="gzipus-fr.htm">LibGzip</a>, <a href="mcusr_fr.htm">LibMC</a>. </p>
+<p>Enfin, LibAudeLA ajoute aussi <a href="#biblio">quelques fonctions utiles</a> à l'interpréteur Tcl </p>
+<h2> <a name="obj" id="obj" />2. Utilisation des objets de AudeLA</h2>
+<p>Le principe de fond de AudeLA est de travailler avec des objets qui
+ont une tâche spécifique. Ainsi il existe quatre types d'objets :
+L'objet caméra, télescope, buffer, et visualisation. Ils sont
+configurables afin de répondre aux exigences de l'utilisateur. Il est
+aussi possible d'avoir plusieurs objets de chaque type. Les commandes
+de base suivantes permettent de créer des objets de chaque type, de les
+détruire, et de savoir combien il en existe dans le système AudeLA. La
+création de ces objets donne lieu à la création des structures de
+données internes à AudeLA qui permettent de les gérer. Les différents
+objets d'un même type sont numérotés : Si le numéro n'est pas imposé,
+alors c'est le plus petit disponible qui est utilisé (à partir de 1).
+Une commande spécifique est alors créée pour accéder à ses données. Par
+exemple si on souhaite créer un buffer, il faut utiliser la commande "<code>::buf::create</code>"
+qui met en place toutes les structures de données du buffer. Si c'est
+le premier buffer créé alors il port le numéro 1 : La commande
+permettant d'y accéder par la suite est alors <code>buf1</code>. Si on créé d'autres buffers, d'autres commandes sont créées, et elles commencent toutes par <code>buf</code>, suivi du numéro du buffer.</p>
+<p>La commande créée avec chaque élément permet d'accéder à ses
+données, mais aussi d'agir dessus. Par exemple pour effectuer un offset
+sur un image, la commande "<code>buf1 offset 100</code>" doit être utilisée. De même pour connaître les coordonnées d'un télescope (informatisé) if faut exécuter "<code>tel1 coord</code>". </p>
+<p>Par exemple, pour créer un buffer et y charger l'image du fichier toto.fit, on procédera ainsi : </p>
+<code>set num [::buf::create]</code> <code>buf$num load toto.fit</code>
+<p>L'ensemble des fonctions de pilotage de caméra, de télescope et
+d'affichage d'image fonctionnent sur ce principe. Les objets de type
+caméra ou télescopes peuvent appeler des drivers externes. Le
+chargement est automatique et transparent à l'utilisateur. Si un driver
+externe existe et a le même nom qu'un driver interne alors c'est le
+driver externe qui est choisi. Par exemple, la fonction <code>::cam::create audine lpt1</code> utilise le driver externe libaudine.dll (libaudine.so sous Linux) si ce fichier existe. </p>
+<h2> <a name="buf" id="buf" />2.1. <a href="buf.htm">buffers</a></h2>
+<p>La commande "<code>::buf::create</code>" a pour rôle de créer un
+buffer, c'est à dire un ensemble de données capables de contenir une
+image, et des mots clés FITS pour l'identifier. Bien entendu juste
+après la création le buffer ne contient pas d'image, ni de mots clés.
+La liste des commandes pour la gestion de buffer est donnée ci-dessous :</p>
+<table>
+  <tbody><tr>
+    <td>Commande</td>
+    <td>Arguments</td>
+    <td>Rôle</td>
+  </tr>
+  <tr>
+    <td><code>::buf::create</code></td>
+    <td><code>?numero?</code></td>
+    <td>Créer un buffer vide, sans les mots clés FITS. Si aucun numéro n'est spécifié.</td>
+  </tr>
+  <tr>
+    <td><code>::buf::delete</code></td>
+    <td><code>numero</code></td>
+    <td>Efface
+le buffer dont le numéro est donné en paramètre, donc son contenu est
+effacé, son numéro est retiré de la liste des buffers, et à nouveau
+disponible pour en recréer un.</td>
+  </tr>
+  <tr>
+    <td><code>::buf::list</code></td>
+    <td><br />
+</td>
+    <td>Renvoie une liste des numéros de buffers utilisés.</td>
+  </tr>
+</tbody></table>
+<p>La liste des <a href="buf.htm">fonctions de buffer sont décrites en détail</a> en cliquant ici. Voici un résumé :</p>
+<ul>
+  <li> Chargement et sauvegarde d'images au format FITS. Tous les formats de données d'images (BITPIX) sont autorisés. </li>
+  <li>Chargement
+et sauvegarde des en-têtes des images FITS. Il est possible de lire, de
+retirer ou d'ajouter des mots clés, de modifier des valeurs, etc. </li>
+  <li>Analyse élémentaire de l'image : Photocentre, flux d'une région. Statistiques sur une image. </li>
+  <li>Traitements d'images. de nombreuses fonctions sont de type <a href="ttus1-fr.htm#functions">IMA/SERIES</a> de la <a href="ttus1-fr.htm">librairie TT</a>.</li>
+</ul>
+<p>Exemple. Nous allons effectuer l'analyse statistique de image
+M57.fit. La séquence Tcl suivante montre la création d'un buffer, le
+chargement de l'image, le calcul des paramètres statistiques puis le
+destruction du buffer. </p>
+<code>set numbuf [::buf::create]</code> <br />
+<code>buf$numbuf load m57.fit</code> <br />
+<code>set mystatistics [buf$numbuf stat]</code> <br />
+<code>::buf::delete $numbuf</code>
+<p>A la fin de cette séquence, il est possible de récupérer la valeur
+moyenne du fond de ciel de l'image (septième élément de la liste de
+retour), par exemple :</p>
+<code>set skyback [lindex $mystatistics 6]</code>
+<p>Attention, bien se souvenir que l'indexation des listes commence à zéro (le septième élément à l'indice six). </p>
+<h2> <a name="cam" id="cam" />2.2. <a href="cam.htm">caméras</a></h2>
+<p>La commande "<code>::cam::create</code>" permet de créer une caméra, c'est à dire de créer une commande commençant par <code>cam</code> qui permet de réaliser des acquisitions, dans différents modes possibles.</p>
+<table>
+  <tbody><tr>
+    <td>Commande</td>
+    <td>Arguments</td>
+    <td>Rôle</td>
+  </tr>
+  <tr>
+    <td><code>::cam::create</code></td>
+    <td><code>libcam_driver</code> <br />
+      <code>?options?</code> </td>
+    <td>Créer
+une caméra. Le pilote de la caméra sera décrit dans le fichier
+d'extension Tcl libcam_driver. Par exemple, pour utiliser une caméra
+audine dont le pilote est le fichier libaudine.dll, "libcam_driver"
+vaudra "audine". Ainsi, on ne met, dans libcam_driver, que le nom sans
+le suffixe lib et sans l'extension. Chaque driver possède ses propres
+options. Se renseigner. Il est possible de spécifier le numéro de
+l'objet caméra ainsi que le nom du composant CCD dans le cas où une
+même caméra peut être équipée de capteurs différents. Le numéro sera
+désigné après l'option -num.</td>
+  </tr>
+  <tr>
+    <td><code>::cam::delete</code></td>
+    <td><code>numero</code></td>
+    <td>Efface la caméra dont le numéro est donné en paramètre. La commande <code>cam</code> associée est également supprimée.</td>
+  </tr>
+  <tr>
+    <td><code>::cam::list</code></td>
+    <td><br />
+</td>
+    <td>Renvoie une liste des numéros de caméras utilisés.</td>
+  </tr>
+</tbody></table>
+<p>La liste des <a href="cam.htm">fonctions de caméra sont décrites en détail</a> en cliquant ici.</p>
+<p>Exemple. La séquence Tcl suivante montre la création d'une caméra
+dans AudeLA et le lancement d'une pose de 30 secondes en binning 2x2 : </p>
+<code>set numcam [::cam::create audine lpt1 -ccd kaf400]</code> <br />
+<code>cam$numcam buf 1</code> <br />
+<code>cam$numcam exptime 30</code> <br />
+<code>cam$numcam bin {2 2}</code> <br />
+<code>cam$numcam acq</code> <br />
+<code>vwait status_cam$numcam</code>
+<p>La fonction vwait permet d'attendre la fin de la pose avant de
+passer à la fonction Tcl suivante. Noter que la fonction acq n'est donc
+pas bloquante. On peut donc profiter du temps de pose pour effectuer
+quelques calculs rapides (par exemple, prétraitement de la précédente
+image acquise). </p>
+<h2> <a name="tel" id="tel" />2.3. <a href="tel.htm">télescopes</a></h2>
+<p>La commande "<code>::tel::create</code>" permet de créer un télescope. Les commandes automatiquement créées à cette occasion sont <code>tel</code>
+suivi d'un numéro. Par le biais de ces commandes il est possible de
+déplacer un télescope informatisé, et d'en connaître la position. Il
+est possible d'avoir plusieurs télescopes reliés au même ordinateur
+sous réserve d'avoir le nombre suffisant de ports de communication.</p>
+<table>
+  <tbody><tr>
+    <td>Commande</td>
+    <td>Arguments</td>
+    <td>Rôle</td>
+  </tr>
+  <tr>
+    <td><code>::tel::create</code></td>
+    <td><code>libtel_driver</code> <br />
+      <code>?options?</code></td>
+    <td>Créer
+un télescope. Le pilote du télescope sera décrit dans le fichier
+d'extension Tcl libtel_driver. Par exemple, pour utiliser un télescope
+LX200 dont le pilote est le fichier liblx200.dll, "libtel_driver"
+vaudra "lx200". Ainsi, on ne met, dans libtel_driver, que le nom sans
+le suffixe lib et sans l'extension. Chaque driver possède ses propres
+options. Se renseigner. Il est possible de spécifier le numéro de
+l'objet télescope. Le numéro sera désigné après l'option -num.</td>
+  </tr>
+  <tr>
+    <td><code>::tel::delete</code></td>
+    <td><code>numero</code></td>
+    <td>Efface le télescope dont le numéro est donné en paramètre. La commande <code>tel</code> associée est également supprimée.</td>
+  </tr>
+  <tr>
+    <td><code>::tel::list</code></td>
+    <td><br />
+</td>
+    <td>Renvoie une liste des numéros de télescopes utilisés.</td>
+  </tr>
+</tbody></table>
+<p>La liste des <a href="tel.htm">fonctions de télescope sont décrites en détail</a> en cliquant ici.</p>
+<p>Exemple. La séquence Tcl suivante montre la création d'un télescope
+dans AudeLA et le pointage à des coordonnées précisées (J2000) :</p>
+<code>set numtel [::tel::create lx200 com2]</code> <br />
+<code>tel$numtel goto "20h45m34s -16d54m"</code>
+<h2> <a name="visu" id="visu" />2.4. <a href="visu.htm">visualisation</a></h2>
+<p>La commande "<code>::visu::create</code>" permet de créer un lien
+entre un buffer (qui contient une image) et une image Tk (TkImage).
+C'est ce lien qui permet de définir des seuils de visualisation, et des
+palettes. Pour créer une visualisation il faut deux arguments
+obligatoires : Un numéro de buffer, et un numéro d'image. Le numéro de
+buffer permet de savoir d'où viennent les images à afficher. Le numéro
+d'image sert à repérer dans quelle image Tk afficher le contenu du
+buffer. Il faut que les images Tk soient appelées <code>image</code> suivi du numéro d'image. Ces images Tk sont créées par la commande "<code>image create photo <em>nom_image</em></code>", ou automatiquement par "<code>::visu::create</code>".</p>
+<table>
+  <tbody><tr>
+    <td>Commande</td>
+    <td>Arguments</td>
+    <td>Rôle</td>
+  </tr>
+  <tr>
+    <td><code>::visu::create</code></td>
+    <td><code>bufNo imgNo ?numero?</code></td>
+    <td>Créer une visualisation qui affiche les données du buffer numéro <code>bufNo</code> dans l'image <code>image$imgNo</code>. Ces deux arguments sont obligatoires, et on peut éventuellement choisir son numéro.</td>
+  </tr>
+  <tr>
+    <td><code>::visu::delete</code></td>
+    <td><code>numero</code></td>
+    <td>Efface la visualisation dont le numéro est donné en paramètre. La commande <code>visu</code> associée est également supprimée.</td>
+  </tr>
+  <tr>
+    <td><code>::visu::list</code></td>
+    <td><br />
+</td>
+    <td>Renvoie une liste des numéros de visualisation utilisés.</td>
+  </tr>
+</tbody></table>
+<p>La liste des <a href="visu.htm">fonctions de visualisation sont décrites en détail</a> en cliquant ici. Voici un résumé :</p>
+<ul>
+  <li>Réglage des seuils de visualisation </li>
+  <li>Lien entre un buffer image et une Tk_PhotoImage d'un canvas. </li>
+  <li>Changement de palette d'affichage.</li>
+</ul>
+<p>Exemple. Nous allons visualiser l'image de M57.fit. La séquence Tcl
+suivante montre la création d'un écran de visu à l'intérieur d'une
+fenêtre appelée ici .test. Tout d'abord, création d'un widget Tk de
+type canvas (.imag1) dans une fenêtre (.test) : </p>
+<code>toplevel .test</code> <br />
+<code>canvas .test.imag1 -width 384 -height 256</code> <br />
+<code>pack .test.imag1</code>
+<p>Il faut ensuite créer une zone de visu pour AudeLA qui va faire le
+lien entre le numéro de buffer qui sera visualisé et le numéro de la
+Tk_PhotoImage qui sera présente dans le canvas : </p>
+<code>set b [::buf::create]</code> <br />
+<code>set v [::visu::create $b 5]</code>
+<p>Le $b reprend le numéro du buffer créé : C'est celui qui sera affiché. Le 5 signifie que l'image sera affichée dans l'image Tk <code>image5</code>, qui est elle-même placée dans le canvas (un canvas permet de regrouper des objets graphiques divers) :</p>
+<code>image create photo image5</code> <br />
+<code>.test.imag1 create image 1 1 -image image5 -anchor nw</code>
+<p>Il faut charger une image dans le buffer :</p>
+<code>buf$b load images/m57</code>
+<p>Ainsi, la visualisation de l'image présente dans le buffer $b dans le canvas se fera simplement par :</p>
+<code>visu$v disp</code>
+<p>La modification des seuils suivie de la revisualisation sera : <code>visu$v cuts [8000 4000]</code></p>
+<code>visu$v disp</code>
+<p>Pour essayer, copiez les lignes précédentes dans un fichier texte (toto.tcl par exemple), et dans la console Aud'ACE entrez "<code>source toto.tcl</code>" ... </p>
+<h2> <a name="biblio" id="biblio" />3. Fonctions de bibliothèque de AudeLA</h2>
+<h3> <a name="fits2colorjpeg" id="fits2colorjpeg" />fits2colorjpeg filenamer filenameg filenameb filenamejpg ?quality? ?locutr hicutr locutg hicutg locutb hicutb?</h3>
+<p>Enregistre le contenu des images de trois fichiers FITS sous la
+forme d'une seul fichier Jpeg couleur. Les fichiers FITS contiennent
+les images rouge, verte et bleu (respectivement filenamer filenameg
+filenameb). Le nom du fichier Jpeg est donné par le paramètre
+filenamejpeg.L'option  <em>quality</em> fixe la
+qualité de l'image (de 5 pour une perte énorme à
+100 pour une compression sans perte). La valeur par défaut
+de <em>quality</em> est 75. Les paramètres optionnels <em>locutr hicutr locutg hicutg locutb hicutb</em>
+permettent d'indiquer les valeurs numériques des seuils de
+visualisation bas et hauts dans chaque couleur des images des 3
+fichiers FITS d'origine. Par défaut les valeurs des seuils bas et hauts
+sont lues comme les valeurs des mots clés MIPS-LO et MIPS-HI de
+l'en-tête FITS de chaqu'un des 3 fichiers des images FITS d'origine. </p>
+<h3> <a name="ttscript" id="ttscript" />ttscript filename</h3>
+<p>Exécute <a href="ttus1-fr.htm#mode%20script">un script TT</a>. contenu dans le fichier texte <em>filename</em>. cf. fonction <a href="#ttscript2">ttscript2</a> pour de plus amples explications.</p>
+<h3> <a name="ttscript2" id="ttscript2" />ttscript2 string</h3>
+<p>Exécute <a href="ttus1-fr.htm#mode%20script">un script TT</a>.<em>string</em>
+est une chaîne de caractères contenant un script spécifique pour le
+traitement d'images. Il ne s'agit plus de scripts Tcl mais de scripts
+TT. Il convient donc de détailler la forme des scripts.</p>
+<p>Un script TT est composé d'une seule chaîne de caractères contenant
+des lignes (séparateurs \n) ou bien d'une seule ligne terminée par le
+caractère final nul (caractère \0). Chaque ligne est analysée
+séquentiellement. Au sein d'une ligne, la première chaîne de caractères
+rencontrée doit contenir le mot clé de définition. Si le mot clé n'est
+pas reconnu, le restant de la ligne est interprété comme une simple
+remarque. Le séparateur blanc est utilisé pour les paramètres suivants
+de la ligne. </p>
+<p>Il existe actuellement trois mots clés de définition : </p>
+<ul>
+  <li>SET/VAR : Initialise la valeur d'une variable de
+substitution. Cette définition comporte deux arguments : Le mot initial
+à substituer et le mot qui le remplacera. Cette substitution sera
+effective pour toutes les lignes suivantes, jusqu'à la fin du script
+TT. </li>
+  <li>IMA/SERIES : Traitement d'une série d'images et génère autant d'images en sortie qu'en entrée. </li>
+  <li>IMA/STACK : Traitement d'une pile d'images et génère une seule image en sortie.</li>
+</ul>
+<p>Les paramétrages des fonctions IMA/SERIES et IMA/STACK sont exposés en détail dans une page spécifique concernant <a href="ttus1-fr.htm#mode%20script">la syntaxe des scripts TT. L'exemple</a> Tcl suivant montre comment corriger le dark d'une image par la méthode de l'optimisation du noir sur l'image i.fit : <code>ttscript2 "IMA/SERIES c:/ccd/ i . . .fit c:/ccd/prt/ i . .fit OPT dark=d60.fit bias=d0.fit unsmearing=0.0005"</code>
+Noter l'utilisation du / au lieu du \ pour définir les dossiers sous
+Windows. Ceci est normal et fonctionne parfaitement. Le symbole \ n'est
+pas employé car il est utilisé par Tcl en tant qu'identificateur de
+remplacement. Si l'on souhaite quant même utiliser le symbolisme \ pour
+désigner les chemins Windows, alors il faut remplacer \ par deux \\.
+Exemple : </p>
+<code>ttscript2 "IMA/SERIES c:\\ccd\\ i . . .fit c:\\ccd\\prt\\ i . .fit OPT dark=d60.fit bias=d0.fit unsmearing=0.0005"</code>
+<h3> <a name="combit" id="combit" />combit ComNumber PinNumber ?BitValue?</h3>
+<p>Lit ou écrit des états binaires sur les broches du port série numéro <em>ComNumber</em>
+(1, 2, etc.). BitValue vaut 0 ou 1 et n'agit que sur les broches
+disponibles en écriture. PinNumber est le numéro de la broche sur une
+prise DB9 ou bien la désignation de la broche:</p>
+<table>
+  <tbody><tr>
+    <td>désignation</td>
+    <td>lecture/écriture</td>
+    <td>DB9</td>
+    <td>DB25</td>
+  </tr>
+  <tr>
+    <td> DCD </td>
+    <td> lecture </td>
+    <td> 1 </td>
+    <td> 8 </td>
+  </tr>
+  <tr>
+    <td> RxD </td>
+    <td><br />
+</td>
+    <td> 2 </td>
+    <td> 3 </td>
+  </tr>
+  <tr>
+    <td> TxD </td>
+    <td>écriture </td>
+    <td> 3 </td>
+    <td> 2 </td>
+  </tr>
+  <tr>
+    <td> DTR </td>
+    <td>écriture </td>
+    <td> 4 </td>
+    <td> 20 </td>
+  </tr>
+  <tr>
+    <td> GND </td>
+    <td> (masse 0V) </td>
+    <td> 5 </td>
+    <td> 7 </td>
+  </tr>
+  <tr>
+    <td> DSR </td>
+    <td> lecture </td>
+    <td> 6 </td>
+    <td> 6 </td>
+  </tr>
+  <tr>
+    <td> RTS </td>
+    <td>écriture </td>
+    <td> 7 </td>
+    <td> 4 </td>
+  </tr>
+  <tr>
+    <td> CTS </td>
+    <td> lecture </td>
+    <td> 8 </td>
+    <td> 5 </td>
+  </tr>
+  <tr>
+    <td> RI </td>
+    <td> lecture </td>
+    <td> 9 </td>
+    <td> 22 </td>
+  </tr>
+</tbody></table>
+<p>Exemple : <code>combit 2 DTR 1</code>, passe au niveau 1 la broche numéro 4 (DTR) du port COM2.</p>
+<p>Il faut préalablement ouvrir le port de communication pour envoyer ou recevoir les bits. Exemple: </p>
+<code>set tty [open com2 w]</code> <br />
+<code>combit 2 DTR 1</code> <br />
+<code>close $tty</code>
+<p>Les fonctions open et close proviennent de l'interpréteur Tcl. </p>
+<h3> <a name="libstd_id" id="libstd_id" />libstd_id</h3>
+<p>Retourne la date de la compilation de la librairie LibAudeLA utilisée.</p>
+<h3> <a name="getbitapp" id="getbitapp" />getbitapp</h3>
+<p>Retourne le type de compilation de l'application AudeLA/Aud'ACE (32 ou 64 bits).</p>
+<h3> <a name="libstd_debugserial" id="libstd_debugserial" />libstd_debugserial ?on?</h3>
+<p>Fonction obsolète de débuggage.</p>
+<h3> <a name="historik" id="historik" />historik add|before|after|synchro|list</h3>
+<p>Gère une liste interne qui peut servir à garder l'historique de commandes. Les options sont les suivantes:</p>
+<ul>
+  <li>add chaine : Ajoute une chaîne de caractères. </li>
+  <li>before : Renvoie la chaîne avant la position courante. </li>
+  <li>after : Renvoie la chaîne après la position courante. </li>
+  <li>synchro : Synchro du point courant sur le point d'insertion et ajoute une chaîne de caractères. </li>
+  <li>list : Renvoie la liste des commandes entrées.</li>
+</ul>
+<h3> <a name="getclicks" id="getclicks" />getclicks</h3>
+<p>Retourne un nombre qui s'incrémente d'une unité à chaque milliseconde.</p>
+<h3> <a name="hostaddress" id="hostaddress" />hostaddress</h3>
+<p>Retourne une liste composée d'au moins deux éléments. Le dernier
+élément contient le nom de la machine locale. Les premiers éléments
+sont des listes contenant les quatre nombres de l'adresse IP locale.
+Par exemple : {192 168 0 1} {62.134.25.67} mycomputer.</p>
+<h3><a name="ping" id="ping" />ping IPAddress ?timeout?</h3>
+<p>Effectue la fonction ping à une adresse IP donnée. Retourne une
+liste composée de deux éléments. Le premier élément vaut 0 en cas
+d'échec à la connexion et 1 en cas de succès. Le second élément est un
+texte donnant des explications complémentaires.</p>
+
+</body></html>

@@ -1,0 +1,4 @@
+LIBRARY    libfitstcl.dll
+
+EXPORTS
+   Fitstcl_Init

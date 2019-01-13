@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Cam&eacute;ra WebCam - Grabber</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 13 mai 2009</p>
+<h1>Cam&eacute;ra WebCam - Grabber </h1>
+<h2>Acquisition Longue Pose </h2>
+<p>La configuration des param&egrave;tres de la longue pose d&eacute;pend
+  de la liaison utilis&eacute;e : </p>
+<p>Liaison par port parall&egrave;le : </p>
+<ul>
+  <li>Num&eacute;ro du bit de commande : 0</li>
+  <li>Commande au d&eacute;but de la pose : 0</li>
+<img src="images/configportparallele.gif" alt="" width="737" height="474" />
+</ul>
+<p>&nbsp;</p>
+<p>Liaison par port s&eacute;rie (avec le c&acirc;ble FTDI) :</p>
+<p></p>
+<ul>
+  <li>Num&eacute;ro du bit de commande : RTS</li>
+  <li>Commande au d&eacute;but de la pose : 1</li>
+  <li></li>
+  <img src="images/configportserie.gif" alt="" width="737" height="474" />
+</ul>
+<p>&nbsp;</p>
+<p>Liaison par quickremote :</p>
+<p></p>
+<ul>
+  <li>Num&eacute;ro du bit de commande : 0</li>
+  <li>Commande au d&eacute;but de la pose : 1</li>
+  <li></li>
+  <img src="images/configquickremote.gif" alt="" width="774" height="474" />
+</ul>
+<p>&nbsp;</p>
+<p>Num&eacute;ro de l'image de longue pose (Linux uniquement)</p>
+<blockquote>
+  <p>Ce param&egrave;tre sert &agrave; indiquer le num&eacute;ro de l'image qui
+    doit &ecirc;tre captur&eacute;e &agrave; la fin d'une longue pose. Cette valeur
+    d&eacute;pend du type de cam&eacute;ra et du nombre d'images stock&eacute;es
+    dans le buffer de son driver. En g&eacute;n&eacute;ral l'image &quot;longue
+    pose&quot; est la 3i&egrave;me ou la 4i&egrave;me image.</p>
+  <p>Valeur mini : 0 (la valeur 0 est &eacute;quivalente &agrave; une d&eacute;tection
+    automatique de l'image longue pose)</p>
+  <p>Valeur maxi : 9</p>
+  <p>Valeur par d&eacute;faut : 3 </p>
+  <p>&nbsp;</p>
+</blockquote>
+<h2>Diff&eacute;rence Windows - Linux</h2>
+<p>Sous Windows, ce plugin pilote tous les p&eacute;riph&eacute;riques vid&eacute;os
+  avec driver VFW (WebCams, Watec et num&eacute;riseurs VFW), alors que sous Linux, il
+  ne pilote que les WebCams Philips (Vesta, ToUcam, SPC900).</p>
+<p>VFW : Video for Windows.</p>
+<h2>Optimisation des webcams Philips (Vesta, ToUcam, SPC900) </h2>
+<p>Les cam&eacute;ras Philips compressent les images avant de les envoyer &agrave; l'ordinateur.
+  Cette compression d&eacute;grade les images (ajout d'artefacs). Cette compression
+  peut &ecirc;tre &eacute;vit&eacute;e en configurant la cam&eacute;ra en mode
+  RAW, mais elle limite la fr&eacute;quence d'acquisition des images &agrave; 5
+  images/seconde maximum.</p>
+<p>Par ailleurs, le pr&eacute;sence de filtres color&eacute;s sur le CCD couleur
+  engendre une perte de flux luminueux, de plus l'algorithme d'interpolation des couleurs
+  diminue la r&eacute;solution. L'utilisation d'un capteur Noir &amp; Blanc &agrave;
+  la place d'un capteur couleur permet d'am&eacute;liorer la sensibilit&eacute;
+  (3 fois plus sensible qu'un capteur couleur) et am&eacute;liore la r&eacute;solution
+  par le calcul d'interpolation des couleurs en mode RAW.</p>
+<p>En r&eacute;sum&eacute; :</p>
+<ul>
+  <li>Avec un capteur couleur, le mode RAW supprime les artefacs.</li>
+  <li>Avec un capteur N&amp;B, le mode RAW supprime les artefacs, am&eacute;liore
+    la sensibilit&eacute; et la r&eacute;solution (temps de pose 10 fois plus
+    court).</li>
+</ul>
+<p></p>
+<h2>Configuration en mode RAW </h2>
+<blockquote>
+  <p>Le logiciel WcRmac d&eacute;velopp&eacute; par <a href="http://burri-web.org/">Martin
+    Burri</a> permet de configurer la cam&eacute;ra en mode RAW en modifiant les param&egrave;tres
+    internes de la cam&eacute;ra.</p>
+  <p>Logiciel WcRmac : <a href="http://www.burri-web.org/bm98/soft/wcrmac/soft-download.htm">http://www.burri-web.org/bm98/soft/wcrmac/soft-download.htm</a></p>
+  <p>Pour une cam&eacute;ra &eacute;quip&eacute;e d'un capteur couleur, choisir
+    l'option &quot;Set COLOR RAW Mode and Special Factory Settings (for COLOR
+    CCDs)&quot;.</p>
+  <p>Pour une cam&eacute;ra &eacute;quip&eacute;e d'un capteur Noir &amp; Blanc,
+    choisir l'option &quot;Set B/W RAW Mode and Special Factory Settings (for
+    B/W CCDs)&quot;.</p>
+  <p><i>ATTENTION : Le mode RAW ne fonctionne qu'avec une fr&eacute;quence d'acquisition
+    de 5 images/seconde.</i> </p>
+</blockquote>
+<h2>&nbsp;</h2>
+<h1>&nbsp;</h1>
+</body>
+
+</html>

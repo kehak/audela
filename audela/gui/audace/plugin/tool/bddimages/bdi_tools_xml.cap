@@ -1,0 +1,80 @@
+#
+# Fichier : bdi_tools_xml.cap
+# $Id: bdi_tools_xml.cap 6812 2011-02-27 11:08:08Z jberthier  $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(bddimages_xml,defaultxml)    "The Bddimages XML setup file will be created..."
+set caption(bddimages_xml,nodefaultxml)  "The Bddimages XML setup file cannot be created"
+set caption(bddimages_xml,errorxml)      "Error when saving the Bddimages XML setup file"
+set caption(bddimages_xml,successxml)    "Bddimages XML setup file saved"
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(bddimages_xml,defaultxml)   "Création du fichier de config XML de bddimages..."
+   set caption(bddimages_xml,nodefaultxml) "Impossible de créer le fichier de config XML de bddimages"
+   set caption(bddimages_xml,errorxml)     "Erreur d'enregistrement du fichier de configuration XML de bddimages"
+   set caption(bddimages_xml,successxml)   "Fichier XML de configuration de bddimages enregistré"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+   set caption(bddimages_xml,defaultxml)    "The Bddimages XML setup file will be created..."
+   set caption(bddimages_xml,nodefaultxml)  "The Bddimages XML setup file cannot be created"
+   set caption(bddimages_xml,errorxml)      "Error when saving the Bddimages XML setup file"
+   set caption(bddimages_xml,successxml)    "Bddimages XML setup file saved"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+   set caption(bddimages_xml,defaultxml)    "The Bddimages XML setup file will be created..."
+   set caption(bddimages_xml,nodefaultxml)  "The Bddimages XML setup file cannot be created"
+   set caption(bddimages_xml,errorxml)      "Error when saving the Bddimages XML setup file"
+   set caption(bddimages_xml,successxml)    "Bddimages XML setup file saved"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+   set caption(bddimages_xml,defaultxml)    "The Bddimages XML setup file will be created..."
+   set caption(bddimages_xml,nodefaultxml)  "The Bddimages XML setup file cannot be created"
+   set caption(bddimages_xml,errorxml)      "Error when saving the Bddimages XML setup file"
+   set caption(bddimages_xml,successxml)    "Bddimages XML setup file saved"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+   set caption(bddimages_xml,defaultxml)    "The Bddimages XML setup file will be created..."
+   set caption(bddimages_xml,nodefaultxml)  "The Bddimages XML setup file cannot be created"
+   set caption(bddimages_xml,errorxml)      "Error when saving the Bddimages XML setup file"
+   set caption(bddimages_xml,successxml)    "Bddimages XML setup file saved"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+   set caption(bddimages_xml,defaultxml)    "The Bddimages XML setup file will be created..."
+   set caption(bddimages_xml,nodefaultxml)  "The Bddimages XML setup file cannot be created"
+   set caption(bddimages_xml,errorxml)      "Error when saving the Bddimages XML setup file"
+   set caption(bddimages_xml,successxml)    "Bddimages XML setup file saved"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+   set caption(bddimages_xml,defaultxml)    "The Bddimages XML setup file will be created..."
+   set caption(bddimages_xml,nodefaultxml)  "The Bddimages XML setup file cannot be created"
+   set caption(bddimages_xml,errorxml)      "Error when saving the Bddimages XML setup file"
+   set caption(bddimages_xml,successxml)    "Bddimages XML setup file saved"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+   set caption(bddimages_xml,defaultxml)    "The Bddimages XML setup file will be created..."
+   set caption(bddimages_xml,nodefaultxml)  "The Bddimages XML setup file cannot be created"
+   set caption(bddimages_xml,errorxml)      "Error when saving the Bddimages XML setup file"
+   set caption(bddimages_xml,successxml)    "Bddimages XML setup file saved"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================

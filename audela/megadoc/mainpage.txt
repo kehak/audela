@@ -1,0 +1,253 @@
+
+/* Note 1 le label d'un plugin commence toujours par plugin_ */
+/* Note 2 les fonctions non documentées sont simplement signalées par @b (bold) */
+/* Note 3 les pages pdf sont appelées directement car elles sont dans doc_doxygen */
+/* Note 4 pour EYE et MASCOT on rappelle le module */
+/* Note 5 pour photométrie on rapelle le tutoriel défini dans aide */
+
+
+/* ========================= Premiers pas ========================== */
+
+/*! @mainpage Faire ses premiers pas avec AudeLA
+  - @subpage presentation
+  - @subpage config
+  - @subpage visualiser_images
+  - @subpage aide
+  - @subpage console
+  - @subpage scripts
+*/
+
+/* ========================== Menu global =========================== */
+
+/*! @page Menu Comprendre le Menu
+  - @subpage menu_fichier
+  - @subpage menu_affichage
+  - @subpage menu_images
+  - @subpage menu_analyse
+  - @subpage menu_camera
+  - @subpage menu_telescope
+  - @subpage menu_configuration
+  - @subpage menu_aide
+*/
+
+/* ============================= Techniques ========================== */
+
+/*! @page techniques Am&eacute;liorer ses techniques
+  Pour bien débuter, acqu&eacute;rir ou am&eacute;liorer ses techniques :
+  - @subpage pilotage_tel
+  - @subpage plugin_chart_carteducielv3
+  - @subpage config_cam
+  - @subpage images_ccd
+  - @subpage images_aligner
+  - @subpage autoguider_spectro_fr
+  - @subpage autoguider_spectro_en
+  - Pour aller plus loin, consulter les @subpage aide_tutoriel
+*/
+
+/* ============================ Scripts ============================= */
+
+/*! @page scripts_exemples Ecrire ses scripts Tcl Tk
+  Vous trouverez ci-apr&egrave;s des exemples de scripts et des conseils :
+  - @subpage whatisascript
+  - @subpage starttcl
+  - @subpage tel_park
+  - @subpage acq_deep_sky
+  - @subpage scanfast
+  - @subpage compatibilite<br/>
+  - Pour aller encore plus loin, consulter @subpage aide_programmation
+*/
+
+/* ======================= Développement ========================== */
+
+/*! @page expert Aller plus loin avec AudeLA
+  Pour aller plus loin avec AudeLA :
+  - @subpage interface_perso1
+  - @subpage interface_perso2
+  - @subpage audela_reseau
+  - @subpage protocole_tcpip
+  - @subpage audela_serveur
+*/
+
+/* ========================= Mise a jour ========================== */
+
+/*! @page maj Mettre &agrave; jour son AudeLA
+  Pour avoir un logiciel toujours &agrave; jour :
+  - @subpage svntortoise
+  - @subpage compillinux
+  - @subpage compilwindows
+  - @subpage updateaudela
+*/
+
+/* ========================= Extensions ========================== */
+
+/*! @page extension Le coin des d&eacute;veloppeurs
+  - @subpage exten1
+  - @subpage exten2
+  - @subpage exten3
+  - @subpage exten4
+  - @subpage exten5
+*/
+
+/*========================== Menu Fichier ========================== */
+
+/*! @page menu_fichier Menu Fichier
+  - @subpage fichier_ouvrir
+  - @subpage fichier_enregistrer
+  - @subpage fichier_enregistrer_sous
+  - @subpage fichier_en-tete-fits
+  - @subpage plugin_tool_visio2
+  - <b>Animation</b>
+  - <b>Animation (MASCOT - ESO)</b>
+  - @subpage plugin_tool_bddimages
+  - @subpage plugin_tool_robobs
+  - <b>Récupération d'images du D.S.S.</b>
+  - <b>Sélection d'images</b>
+  - <b>Visionneuse</b>
+  - <b>Visionneuse eShel</b>
+  - @subpage fichier_nouveau_script
+  - @subpage fichier_editer_script
+  - @subpage fichier_lancer_script
+  - <b>Quitter</b>
+*/
+
+/* ======================= Menu  Affichage ======================= */
+
+/*! @page menu_affichage Menu Affichage
+  - <b>Nouvelle 'visu'</b>
+  - @subpage affichage_masquer
+  - @subpage affichage_effacer_image
+  - @subpage affichage_effacer_console
+  - @subpage affichage_palette
+  - <b>Seuils</b>
+  - <b>Balance RVB</b>
+  - @subpage affichage_zoom
+  - @subpage affichage_plein_ecran
+  - @subpage affichage_miroir_gauche_droite
+  - @subpage affichage_miroir_haut_bas
+  - @subpage affichage_fenetrer
+  - <b>Vison nocturne</b>
+  - <b>Calculatrice astronomique</b>
+  - @subpage plugin_tool_magnifier
+  - @subpage plugin_tool_crosshair
+*/
+
+/* ======================= Menu Images ========================= */
+
+/*! @page menu_images Menu Images
+  - @subpage images_img
+  - @subpage images_elaborer_maitre
+  - @subpage plugin_tool_pretrfc
+  - @subpage images_convertir
+  - @subpage images_combiner
+  - @subpage images_aligner
+  - @subpage images_adapter
+  - @subpage images_retoucher
+  - @subpage images_modifier
+  - @subpage images_masquer
+  - @subpage images_transformer
+  - @subpage images_convoluer
+*/
+
+/* ======================= Menu Analyse ======================= */
+
+/*! @page menu_analyse Menu Analyse
+  - @subpage analyse_histogramme
+  - @subpage analyse_coupe
+  - @subpage analyse_statistiques
+  - <b>Fwhm</b>
+  - <b>Ajuster une gaussienne</b>
+  - @subpage analyse_psf
+  - <b>Photocentre</b>
+  - @ref tuto_photometrie
+  - @subpage analyse_extraire
+  - @subpage analyse_calibwcs_batch
+  - @subpage analyse_calibwcs_une_image
+  - @subpage plugin_tool_fieldchart
+  - @subpage plugin_tool_collector
+  - @subpage plugin_tool_calaphot
+  - @subpage plugin_tool_catalogexplorer
+  - @ref eye_notice_fr
+  - @subpage plugin_tool_vo_tools
+  - @subpage plugin_tool_afrho
+  - @subpage plugin_tool_echip
+  - @subpage plugin_tool_satellites
+  - @subpage analyse_spcaudace
+  - @subpage plugin_tool_sn_tarot
+  - <b>Carte</b>
+ */
+
+/* ===================== Menu Caméras ========================= */
+
+/*! @page menu_camera Menu Caméra
+  - <b>Acquisition</b>
+  - @subpage plugin_tool_atos
+  - @subpage plugin_tool_eshel
+  - @ref notice_mascot
+  - <b>Acquisition (T1M - OHP)</b>
+  - <b>Acquisition ZADKO</b>
+  - @subpage plugin_tool_acqapn
+  - @subpage plugin_tool_acqdlsr
+  - <b>Acquisition fenêtrée</b>
+  - @subpage plugin_tool_acqvideo
+  - @subpage plugin_tool_scan
+  - <b>Fast imaging</b>
+  - @subpage plugin_tool_foc
+  - @subpage plugin_tool_scanfast
+  - @subpage plugin_tool_spytimer
+  - @subpage plugin_tool_supernovae
+ */
+
+/* =================== Menu Télescope ======================== */
+
+/*! @page menu_telescope Menu Télescope
+  - <b>Télescope</b>
+  - @subpage plugin_tool_autoguider
+  - <b>Coordonnées du télescope</b>
+  - @subpage plugin_tool_modpoi2
+  - <a href="methking.pdf"><b>Méthode de King</b></a>
+  - <b>Objectif Lune</b>
+  - <b>Spectrographe Sophie (OHP)</b>
+  - <b>Viseur polaire</b>
+ */
+
+ /* ================ Menu Configuration ===================== */
+
+/*! @page menu_configuration Menu Configuration
+  - @subpage configuration_langue
+  - @subpage configuration_repertoire
+  - @subpage configuration_logiciels_externes
+  - @subpage configuration_temps
+  - @subpage configuration_position
+  - @subpage configuration_fichier_image
+  - @subpage configuration_alarme
+  - @subpage configuration_type_fenetre
+  - @subpage configuration_apparence
+  - @b Police de caractères
+  - @subpage configuration_proxy
+  - @b Nombre de décimales
+  - @subpage configuration_camera
+  - @subpage configuration_monture
+  - @subpage configuration_liaison
+  - @subpage configuration_optique
+  - @subpage configuration_equipement
+  - @subpage configuration_raquette
+  - @subpage configuration_carte
+  - @subpage configuration_selection_outils
+  - <A HREF="gps.pdf"><B>Heure et position avec un GPS</B></A>
+  - @subpage plugin_tool_testaudela
+  - @subpage plugin_tool_updateaudela
+  - @b Enregistrer la configuration
+*/
+
+/* ================== Menu Aide =========================== */
+
+/*! @page menu_aide Menu Aide
+  - @subpage aide_sommaire
+  - @subpage aide_menus
+  - @subpage aide_index_fonctions
+  - @subpage aide_programmation
+  - @subpage aide_tutoriel
+  - @subpage aide_site_web
+  - @subpage aide_notice_pdf
+  - @subpage aide_a_propos_de
+*/

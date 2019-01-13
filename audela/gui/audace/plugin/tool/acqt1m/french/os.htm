@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Acquisition (T1M)</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 01 mai 2013</p>
+
+<h1>openSUSE 12.3 x86_64</h1>
+
+   <h2>Installation a partir du DVD</h2>
+
+      <pre>
+      == Demarrer sur le DVD ==
+      
+         A la mire pour les choix des actions avant de faire Installation
+         F2 -> choisir Francais
+         F3 -> choisir 1900x1200
+
+      == Environement graphique ==
+      
+         Ne pas cocher Gnome ni KDE
+         Choisir Autres : cocher LXDE
+
+      == Date et Heure ==
+      
+         Choisir ETC
+         Cocher horloge materielle sur UTC
+    
+      == Choix des paquetages ==
+      
+         Base Developpement
+         C/C++ Developpement
+         Linux Kernel Developpement
+         Tcl/Tk Developpement
+      
+      == Renseigner les parametres reseaux ==
+      
+         se referer au document interne à ce sujet
+      
+      == Ne pas effectuer de mise a jour en ligne ==
+      
+      == Reboot == 
+
+         Il arrive parfois qu apres le premier reboot, le reseau s'initialise mal.
+         pour regler le probleme : rebooter une seconde fois
+      
+         verifiez le reseau avec firefox , ajouter www.planmou.com/liens 
+         comme page de demarrage
+         
+         La machine est prete
+
+    </pre>
+
+
+
+  <h2>Mise à jour</h2>
+
+    <pre>
+      == Commande Zypper == 
+      
+         Ouvrir une console 
+         se connecter en tant que <b>root</b>
+         taper la commande : 
+         
+           > zypper update
+
+      == Reboot == 
+
+    </pre>
+
+
+  <h2>Informations additionnelles</h2>
+
+      <a href="zypper.htm">Zypper</a> <p>
+
+  <h2>Cartes graphiques</h2>
+
+
+    <h3>Carte Nvidia</h3>
+
+    <pre>
+      == Yast2 == 
+      
+         lancer Yast2
+         
+      == Depots de logiciels == 
+         
+         Ajouter 
+         
+         Depots communautaires 
+         
+         Suivant
+         
+         Cocher : nVidia Graphics Drivers
+         
+         Ok
+         
+         Importer la clé GnuPg -> Faire Confiance
+         
+      == Mise a jour en ligne == 
+
+         Rechercher : nvidia
+         et verifier qu'il y a plusieurs nouveaux paquets a installer.
+         
+         a cette date pour les pc d acquisition et de traitement
+         on peut voir :
+         
+            nvidia-computeG03
+            nvidia-gfxG03-kmp-desktop
+            x11-video-nvidiaG03
+
+         Accepter
+         
+         Continuer
+         
+      == Reboot == 
+         
+      
+    </pre>
+
+
+  <h2>Paquetages additionnels</h2>
+
+    <pre>
+      == Retirer les paquetages suivant de la distro == 
+      
+         zypper install -- -netcat-openbsd
+
+      == Installer les paquetages suivant == 
+      
+         zypper install 
+             gsl gsl-devel           
+             libusb1_0-devel libusb-compat-devel 
+             libXp6-32bit libXpm4-32bit libXt6-32bit   
+             mysql-community-server libmysqlclient-devel libmysqlclient18 libmysqlclient_r18 
+             php5 php5-mysql php5-calendar php5-curl php5-dom php5-mbstring php5-mcrypt php5-soap
+             phpMyAdmin apache2-mod_php5
+             apache2 apache2-mod_php5
+             konqueror kde3-i18n-fr
+     </pre>
+
+
+  <h2>Environnement de travail</h2>
+
+  <h3>/usr/local/src</h3>
+
+     <pre>
+      == Utilisateur root ==
+
+         cd /usr/local/
+         rmdir src
+         ln -s /data/src src
+         chown -R t1m:users /usr/local
+
+     </pre>
+
+  <h3>/srv/develop</h3>
+
+     <pre>
+      == Utilisateur root ==
+
+         cd /srv
+         ln -s /data/develop .
+
+     </pre>
+
+  <h3>Nedit</h3>
+
+     <pre>
+      == Utilisateur t1m ==
+
+         cd /usr/local/bin
+         ln -s /usr/local/src/nedit-5.5-Linux-x86/nedit .
+         ln -s /usr/local/src/nedit-5.5-Linux-x86/nc .
+
+         cd
+         mkdir .nedit
+              cd .nedit
+         vi nedit.rc
+
+         copier le contenu du fichier <a href="nedit.rc">nedit.rc</a>
+
+      == Utilisateur root ==
+
+         su 
+         cd /root
+         mkdir .nedit
+         cd .nedit
+         vi nedit.rc
+
+         copier le contenu du fichier <a href="nedit.rc">nedit.rc</a>
+
+     </pre>
+
+  <h3>Prompt Shell</h3>
+
+     <pre>
+      == Utilisateur t1m & root ==
+
+         cd
+         rm .bashrc
+         vi .bashrc
+         copier le contenu du fichier <a href=".bashrc">.bashrc</a>
+
+         vi .alias
+         copier le contenu du fichier <a href=".alias">.alias</a>
+
+         vi .prompt
+         copier le contenu du fichier <a href=".prompt">.prompt</a>
+
+         vi .eclipse-rc
+         copier le contenu du fichier <a href=".eclipse-rc">.eclipse-rc</a>
+
+      == Utilisateur root ==
+         cd
+         nedit .prompt
+         Modifier la ligne 45 : 
+            local USR_COLOUR=${GREEN}
+         par
+            local USR_COLOUR=${RED}
+     </pre>
+
+  <h3>Economiseur d'ecran</h3>
+
+     <pre>
+      == Desactivation ==
+
+      Systeme -> Preferences -> Economiseur d'ecran
+      Desactivé
+      Avancé -> decocher Gestion d'alimentation de l'ecran
+                decocher Fondu au noir
+      Fichier -> Quitter
+     </pre>
+
+  <h3>Mysql</h3>
+
+     <pre>
+      == Demarrage du serveur ==
+     
+     /etc/init.d/mysql start
+     
+      == Mot de passe root ==
+      
+      mysqladmin -u root password 'deepxxxxxx' 
+     </pre>
+
+  <h3>Demarrage automatique des demons</h3>
+
+     <pre>
+      == Yast2 ==
+      
+      Systeme -> Services Systeme (niveaux d'execution)
+      
+      apache2 -> activé
+      mysql   -> activé
+      
+      OK & OUI
+     </pre>
+
+  <h3>PHPMyAdmin</h3>
+
+     <pre>
+      == Root ==
+      
+      cd /srv/www/htdocs
+      mv phpMyAdmin phpmyadmin
+
+      
+      == Firefox ==
+
+      aller sur la page : http://localhost/phpmyadmin
+      entrer le mot de passe root
+      enregister le mot de passe dans firefox
+     </pre>
+
+  <h3>Firefox</h3>
+
+     <pre>
+      == Firefox ==
+         
+         Outils / Modules Complementaires
+         Rechercher Xmarks
+         Installer
+         Redemarrer Firefox
+         "Cliquer Ici pour terminer l installation"
+         
+      == Xmarks ==
+         Dans Firefox : Outils / Xmarks / Parametres
+         Lancer l assistant de parametrage
+         User & Pass
+         decocher tout ce qui est proposé
+         Cocher : Conserver les donnees serveur supprimer celle de l ordinateur
+         Terminer
+
+      == Telechargement ==
+         Outils -> Preferences 
+         General
+         Telechargement
+         [X] Enregistrer les fichiers dans le dossier /home/t1m/Documents/Téléchargements
+     </pre>
+
+
+
+</body>
+
+</html>

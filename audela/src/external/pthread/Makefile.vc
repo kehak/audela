@@ -1,0 +1,25 @@
+CP= copy
+RM= -@del /f /q
+
+SOURCE=.
+EXTERNAL_INCLUDE=..\include
+EXTERNAL_LIB=..\lib
+AUDELA_BIN=..\..\..\bin
+
+build:
+
+install: build
+	if not exist $(EXTERNAL_INCLUDE)  mkdir $(EXTERNAL_INCLUDE)
+	if not exist $(EXTERNAL_LIB)      mkdir $(EXTERNAL_LIB)
+	$(CP) $(SOURCE)\include\pthread.h    $(EXTERNAL_INCLUDE)
+	$(CP) $(SOURCE)\include\sched.h      $(EXTERNAL_INCLUDE)
+	$(CP) $(SOURCE)\include\semaphore.h  $(EXTERNAL_INCLUDE)
+	$(CP) $(SOURCE)\lib\pthread.lib     $(EXTERNAL_LIB)
+	$(CP) $(SOURCE)\bin\pthreadVC.dll   $(AUDELA_BIN)
+
+clean:
+	$(RM) $(EXTERNAL_INCLUDE)\pthread.h
+	$(RM) $(EXTERNAL_INCLUDE)\sched.h
+	$(RM) $(EXTERNAL_INCLUDE)\semaphore.h
+	$(RM) $(EXTERNAL_LIB)\pthread.lib
+   $(RM) $(AUDELA_BIN)\pthreadVC.dll

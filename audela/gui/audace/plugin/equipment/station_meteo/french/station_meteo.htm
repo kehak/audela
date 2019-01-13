@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Station météo</title>
+</head>
+
+<body>
+Date de mise à jour : 30 juillet 2013
+<h1>Station météo</h1>
+<p>Cet onglet offre la possibilité de lire et d'utiliser des fichiers de données météo issues de plusieurs stations météo.</p>
+L'utilisateur peut choisir d'exploiter les données de
+<b>Sentinel</b> (fichier infodata.txt) ou de <a href="#cumulus"><b>Cumulus</b></a> (fichier realtime.txt, sous Windows uniquement).
+Le chemin d'accès au
+fichier ainsi que la cadence de lecture doivent être définies.
+<ul>
+<li>La station Sentinel ne donne pas la pression
+atmosphérique qui est maintenue à sa valeur par
+défaut (101325 Pa).</li>
+<li>Le logiciel <a href="http://sandaysoft.com/products/cumulus"><b>Cumulus</b></a>
+gratuit permet de lire les informations fournies par <a href="http://wiki.sandaysoft.com/a/Supported_Devices">les stations
+suivantes</a> :
+<ul>
+<li><b>Davis Range</b> : Vantage Pro, Vantage Pro 2, Vantage
+Vue.</li>
+<li><b>Oregon Scientific</b> : WMR-928, WMR-918, WM-918, WMR-968,
+Equivalent rebadged Radio Shack stations (serial only), MR-88,
+WMR-100, WMRS200, WMR-200.</li>
+<li><b>Fine Offset</b> (MyDEL, Nevada, Watson, Fine Offset etc) :
+W8681, WH1080, WH1080PC, WH1081, WH1090, WH1091, National
+Geographic 265NC, PCE-FWS 20, ELECSA 6975, ClimeMET CM2000,
+Maplin N96FY/N96GY, Ambient Weather WS-1080/WS-2080, WeatherEye
+WEA22, WH3080 and WH3081, aycar Digitech XC0348 (AU/NZ).</li>
+<li><b>La Crosse</b> : WS-2300 range (all model numbers of the
+form 23xx). Use of a USB/Serial adapter is not supported with
+these stations.</li>
+</ul>
+Il crée un fichier realtime.txt contenant les
+informations.Sont décodées et accessibles la
+température extérieure, la pression atmosphérique
+relative, la température de rosée, l'hygrométrie
+extérieure, la direction du vent et sa vitesse.</li>
+</ul>
+<p>Le tableau ci-dessous indique les variables et leur nom en vue d'une éventuelle utilisation :</p>
+<table>
+<thead>
+<tr>
+<td>Nature variable</td>
+<td>Nom variable</td>
+<td align="center">Sentinel</td>
+<td align="center">Cumulus</td>
+<td align="center">Valeur par défaut</td>
+<td align="center">Note</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>température °C</td>
+<td>::station_meteo::widget(temperature)</td>
+<td align="center">oui</td>
+<td align="center">oui</td>
+<td align="center">16.85</td>
+<td><br />
+</td>
+</tr>
+<tr>
+<td>hygrométrie %</td>
+<td>::station_meteo::widget(hygro)</td>
+<td align="center">oui</td>
+<td align="center">oui</td>
+<td align="center">-</td>
+<td><br />
+</td>
+</tr>
+<tr>
+<td>température de rosée °C</td>
+<td>::station_meteo::widget(temprose)</td>
+<td align="center">oui</td>
+<td align="center">oui</td>
+<td align="center">-</td>
+<td><br />
+</td>
+</tr>
+<tr>
+<td>vitesse du vent m/s</td>
+<td>::station_meteo::widget(windsp)</td>
+<td align="center">oui</td>
+<td align="center">oui</td>
+<td align="center">-</td>
+<td><br />
+</td>
+</tr>
+<tr>
+<td>direction du vent °</td>
+<td>::station_meteo::widget(winddir)</td>
+<td align="center">oui</td>
+<td align="center">oui</td>
+<td align="center">-</td>
+<td align="center">0° = Sud</td>
+</tr>
+<tr>
+<td>pression atmosphérique Pa</td>
+<td>::station_meteo::widget(pressure)</td>
+<td align="center">101325</td>
+<td align="center">oui</td>
+<td align="center">101325</td>
+<td><br />
+</td>
+</tr>
+<tr>
+<td>température °K</td>
+<td>audace(meteo,obs,temperature)</td>
+<td align="center">oui</td>
+<td align="center">oui</td>
+<td align="center">290</td>
+<td rowspan="2">pour utilisation<br />par hip2tel</td>
+</tr>
+<tr>
+<td>pression atmosphérique Pa</td>
+<td>audace(meteo,obs,pressure)</td>
+<td align="center">101325</td>
+<td align="center">oui</td>
+<td align="center">101325</td>
+</tr>
+</tbody></table>
+<p>Si les données sont invalides (fichier inaccessible ou
+horodatage dépassé) la lecture est interrompue et les
+variables correspondantes sont remises à leur valeur par
+défaut.</p>
+<p>Si la lecture est active, le changement du nom du fichier et/ou de
+son chemin sont inhibées. Il est impératif d'arrêter la lecture pour
+faire ces changements en appuyant sur le bouton "Arrêter" de l'onglet
+"Station météo".<br />
+</p>
+
+</body></html>

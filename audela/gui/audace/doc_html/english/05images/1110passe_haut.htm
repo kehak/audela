@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>High Pass Filter</title>
+</head>
+
+<body>
+<p class="date">Update: 08 January 2010</p>
+<h1>High Pass Filter </h1>
+
+This high-pass filtering operation is a <b>linear</b> one. This operation ( named as <b>convolution</b>) sets every pixel of the final image a weighted sum of some pixels of its local neighborhood. The weights (or coefficients) are contained in a <b>kernel</b>, which size is the actual size of the neighborhood.<br>
+This filter aims in sharpening the image by <b>attenuating the low spatial frequencies</b> of the image (finer details), and by keeping inchanged the highest frequencies. The low frequencies attenuation increases with the kernel size.<br>
+
+The following kernel coefficients are valid when the efficiency coefficient is null (i.e. maximum efficiency).
+
+
+<h2>3x3 kernel coefficients </h2>
+<table border="1" cellspacing="3" cellpadding="2">
+    <tr><td>-0.018</td><td>-0.135</td><td>-0.018</td></tr>
+    <tr><td>-0.135</td><td>+1.615</td><td>-0.135</td></tr>
+    <tr><td>-0.018</td><td>-0.135</td><td>-0.018</td></tr>
+</table>
+
+<h2>5x5 kernel coefficients </h2>
+<table border="1" cellspacing="3" cellpadding="2">
+    <tr><td>-0.000</td><td>-0.007</td><td>-0.018</td><td>-0.007</td><td>-0.000</td></tr>
+    <tr><td>-0.007</td><td>-0.135</td><td>-0.368</td><td>-0.135</td><td>-0.007</td></tr>
+    <tr><td>-0.018</td><td>-0.368</td><td>+3.141</td><td>-0.368</td><td>-0.018</td></tr>
+    <tr><td>-0.007</td><td>-0.135</td><td>-0.368</td><td>-0.135</td><td>-0.007</td></tr>
+    <tr><td>-0.000</td><td>-0.007</td><td>-0.018</td><td>-0.007</td><td>-0.000</td></tr>
+</table>
+
+<h2>7x7 kernel coefficients </h2>
+<table border="1" cellspacing="3" cellpadding="2">
+    <tr><td>-0.000</td><td>-0.000</td><td>-0.001</td><td>-0.002</td><td>-0.001</td><td>-0.000</td><td>-0.000</td></tr>
+    <tr><td>-0.000</td><td>-0.005</td><td>-0.036</td><td>-0.069</td><td>-0.036</td><td>-0.005</td><td>-0.000</td></tr>
+    <tr><td>-0.001</td><td>-0.036</td><td>-0.264</td><td>-0.513</td><td>-0.264</td><td>-0.036</td><td>-0.001</td></tr>
+    <tr><td>-0.002</td><td>-0.069</td><td>-0.513</td><td>+4.712</td><td>-0.513</td><td>-0.069</td><td>-0.002</td></tr>
+    <tr><td>-0.001</td><td>-0.036</td><td>-0.264</td><td>-0.513</td><td>-0.264</td><td>-0.036</td><td>-0.001</td></tr>
+    <tr><td>-0.000</td><td>-0.005</td><td>-0.036</td><td>-0.069</td><td>-0.036</td><td>-0.005</td><td>-0.000</td></tr>
+    <tr><td>-0.000</td><td>-0.000</td><td>-0.001</td><td>-0.002</td><td>-0.001</td><td>-0.000</td><td>-0.000</td></tr>
+</table>
+
+<h2>9x9 kernel coefficients </h2>
+<table border="1" cellspacing="3" cellpadding="2">
+    <tr><td>-0.000</td><td>-0.000</td><td>-0.000</td><td>-0.000</td><td>-0.000</td><td>-0.000</td><td>-0.000</td><td>-0.000</td><td>-0.000</td></tr>
+    <tr><td>-0.000</td><td>-0.000</td><td>-0.002</td><td>-0.007</td><td>-0.011</td><td>-0.007</td><td>-0.002</td><td>-0.000</td><td>-0.000</td></tr>
+    <tr><td>-0.000</td><td>-0.002</td><td>-0.018</td><td>-0.082</td><td>-0.135</td><td>-0.082</td><td>-0.018</td><td>-0.002</td><td>-0.000</td></tr>
+    <tr><td>-0.000</td><td>-0.007</td><td>-0.082</td><td>-0.368</td><td>-0.607</td><td>-0.368</td><td>-0.082</td><td>-0.007</td><td>-0.000</td></tr>
+    <tr><td>-0.000</td><td>-0.011</td><td>-0.135</td><td>-0.607</td><td>+6.283</td><td>-0.607</td><td>-0.135</td><td>-0.011</td><td>-0.000</td></tr>
+    <tr><td>-0.000</td><td>-0.007</td><td>-0.082</td><td>-0.368</td><td>-0.607</td><td>-0.368</td><td>-0.082</td><td>-0.007</td><td>-0.000</td></tr>
+    <tr><td>-0.000</td><td>-0.002</td><td>-0.018</td><td>-0.082</td><td>-0.135</td><td>-0.082</td><td>-0.018</td><td>-0.002</td><td>-0.000</td></tr>
+    <tr><td>-0.000</td><td>-0.000</td><td>-0.002</td><td>-0.007</td><td>-0.011</td><td>-0.007</td><td>-0.002</td><td>-0.000</td><td>-0.000</td></tr>
+    <tr><td>-0.000</td><td>-0.000</td><td>-0.000</td><td>-0.000</td><td>-0.000</td><td>-0.000</td><td>-0.000</td><td>-0.000</td><td>-0.000</td></tr>
+</table>
+</body>
+</html>

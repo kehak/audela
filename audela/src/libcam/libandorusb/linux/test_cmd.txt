@@ -1,0 +1,83 @@
+rm /usr/local/src/audela/src/../bin/libandorusb.so ;make clean ; make
+
+load libandorusb.so
+
+::cam::create andorusb usb /usr/local/etc/andor
+cam1 shutter opened
+cam1 shutter closed
+cam1 temperature
+cam1 close
+cam1 cooler 
+cam1 cooler on
+cam1 cooler check
+
+
+# Avnat de prendre toute image
+cam1 buf 2
+
+# definitiion des parametres pour les images
+cam1 exptime 1
+cam1 bin {1 1}
+
+# prendre une image
+cam1 acq
+vwait status_cam1
+
+cam1 buf 2
+buf2 save "/usr/local/src/audela/images/test002"
+buf1 load "/usr/local/src/audela/images/test002"
+
+# fonctions natives
+cam1 native GetTotalNumberImagesAcquired
+cam1 native GetAcquiredData16 4194304
+cam1 native GetAcquiredData 4194304
+cam1 native Initialize /usr/local/etc/andor
+
+buf1 load /usr/local/src/audela/images/m57
+
+::buf::list
+::buf::create
+::buf::delete 1
+::buf::delete 2
+::buf::delete 3
+
+::visu::create 1 1
+::visu::list
+::visu::delete 1
+::visu::delete 2
+visu1 disp
+visu2 disp
+
+
+
+cam1 native CoolerON
+cam1 native GetTemperature
+cam1 native GetTemperatureF
+cam1 native GetTemperatureRange
+cam1 native SetTemperature -15
+cam1 native GetDetector
+cam1 close
+exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# nouveau test !
+
+::cam::create andorusb usb /usr/local/etc/andor
+cam1 buf 2
+cam1 acq

@@ -1,0 +1,496 @@
+#
+# Borland C++ IDE generated makefile
+# Generated 10/15/98 at 10:52:55 AM 
+#
+.AUTODEPEND
+
+
+#
+# Borland C++ tools
+#
+IMPLIB  = Implib
+BCC32   = Bcc32 +BccW32.cfg 
+BCC32I  = Bcc32i +BccW32.cfg 
+TLINK32 = TLink32
+TLIB    = TLib
+BRC32   = Brc32
+TASM32  = Tasm32
+#
+# IDE macros
+#
+
+
+#
+# Options
+#
+IDE_LinkFLAGS32 =  -LD:\BC5\LIB
+LinkerLocalOptsAtC32_fitstcldlib =  -Tpd -ap -c /w-inq
+ResLocalOptsAtC32_fitstcldlib = 
+BLocalOptsAtC32_fitstcldlib = 
+CompInheritOptsAt_fitstcldlib = -ID:\BC5\INCLUDE;C:\lheaplugin\tcl8.0\GENERIC;C:\lheaplugin\FITSTCL\CFITSIO -D_RTLDLL;_BIDSDLL; -w-sig -w-stu -w-par -w-use -w-aus
+LinkerInheritOptsAt_fitstcldlib = -x
+LinkerOptsAt_fitstcldlib = $(LinkerLocalOptsAtC32_fitstcldlib)
+ResOptsAt_fitstcldlib = $(ResLocalOptsAtC32_fitstcldlib)
+BOptsAt_fitstcldlib = $(BLocalOptsAtC32_fitstcldlib)
+CompLocalOptsAtC32_cfitsiodlib =  -w-sig -w-stu -w-par -w-use -w-aus
+LinkerLocalOptsAtC32_cfitsiodlib =  -Tpd -aa -V4.0 -c
+ResLocalOptsAtC32_cfitsiodlib = 
+BLocalOptsAtC32_cfitsiodlib =  /P32
+CompOptsAt_cfitsiodlib = $(CompOptsAt_fitstcldlib) $(CompLocalOptsAtC32_cfitsiodlib)
+CompInheritOptsAt_cfitsiodlib = -ID:\BC5\INCLUDE;C:\lheaplugin\TCL8.0\GENERIC;C:\lheaplugin\FITSTCL\CFITSIO -D_RTLDLL;_RTLDLL;_BIDSDLL;
+LinkerInheritOptsAt_cfitsiodlib = -x
+LinkerOptsAt_cfitsiodlib = $(LinkerOptsAt_fitstcldlib) $(LinkerLocalOptsAtC32_cfitsiodlib)
+ResOptsAt_cfitsiodlib = $(ResOptsAt_fitstcldlib) $(ResLocalOptsAtC32_cfitsiodlib)
+BOptsAt_cfitsiodlib = $(BOptsAt_fitstcldlib) $(BLocalOptsAtC32_cfitsiodlib)
+
+#
+# Dependency List
+#
+Dep_fitstcl = \
+   fitstcl.lib
+
+fitstcl : BccW32.cfg $(Dep_fitstcl)
+  echo MakeNode
+
+fitstcl.lib : fitstcl.dll
+  $(IMPLIB) $@ fitstcl.dll
+
+
+Dep_fitstclddll = \
+   cfitsio.lib\
+   ..\tcl8.0\win\tcl80.lib\
+   tclshared.obj\
+   fitsinit.obj\
+   fitsutils.obj\
+   fitstcl.obj\
+   fitscmds.obj\
+   fitsio.obj\
+   fvtcl.obj
+
+fitstcl.dll : $(Dep_fitstclddll) fitstcl.def
+  $(TLINK32) @&&|
+ /v $(IDE_LinkFLAGS32) $(LinkerOptsAt_fitstcldlib) $(LinkerInheritOptsAt_fitstcldlib) +
+D:\BC5\LIB\c0d32.obj+
+tclshared.obj+
+fitsinit.obj+
+fitsutils.obj+
+fitstcl.obj+
+fitscmds.obj+
+fitsio.obj+
+fvtcl.obj
+$<,$*
+cfitsio.lib+
+..\tcl8.0\win\tcl80.lib+
+D:\BC5\LIB\bidsfi.lib+
+D:\BC5\LIB\import32.lib+
+D:\BC5\LIB\cw32i.lib, fitstcl.def
+
+
+
+|
+Dep_cfitsiodlib = \
+   putcols.obj\
+   putcolui.obj\
+   putcoluj.obj\
+   putcoluk.obj\
+   putcolu.obj\
+   putkey.obj\
+   region.obj\
+   swapproc.obj\
+   scalnull.obj\
+   wcsutil.obj\
+   putcolk.obj\
+   putcolj.obj\
+   putcoli.obj\
+   putcole.obj\
+   putcold.obj\
+   putcolb.obj\
+   putcol.obj\
+   modkey.obj\
+   listhead.obj\
+   putcoll.obj\
+   getcolj.obj\
+   iraffits.obj\
+   histo.obj\
+   group.obj\
+   grparser.obj\
+   getkey.obj\
+   getcoluk.obj\
+   getcoluj.obj\
+   getcolui.obj\
+   getcols.obj\
+   getcoll.obj\
+   getcolk.obj\
+   eval_f.obj\
+   getcole.obj\
+   getcold.obj\
+   getcolb.obj\
+   getcol.obj\
+   fitscore.obj\
+   eval_y.obj\
+   eval_l.obj\
+   getcoli.obj\
+   buffers.obj\
+   editcol.obj\
+   drvrmem.obj\
+   drvrfile.obj\
+   compress.obj\
+   checksum.obj\
+   cfileio.obj\
+   edithdu.obj
+
+cfitsio.lib : $(Dep_cfitsiodlib)
+  $(TLIB) $< $(IDE_BFLAGS) $(BOptsAt_cfitsiodlib) @&&|
+ -+putcols.obj &
+-+putcolui.obj &
+-+putcoluj.obj &
+-+putcoluk.obj &
+-+putcolu.obj &
+-+putkey.obj &
+-+region.obj &
+-+swapproc.obj &
+-+scalnull.obj &
+-+wcsutil.obj &
+-+putcolk.obj &
+-+putcolj.obj &
+-+putcoli.obj &
+-+putcole.obj &
+-+putcold.obj &
+-+putcolb.obj &
+-+putcol.obj &
+-+modkey.obj &
+-+listhead.obj &
+-+putcoll.obj &
+-+getcolj.obj &
+-+iraffits.obj &
+-+histo.obj &
+-+group.obj &
+-+grparser.obj &
+-+getkey.obj &
+-+getcoluk.obj &
+-+getcoluj.obj &
+-+getcolui.obj &
+-+getcols.obj &
+-+getcoll.obj &
+-+getcolk.obj &
+-+eval_f.obj &
+-+getcole.obj &
+-+getcold.obj &
+-+getcolb.obj &
+-+getcol.obj &
+-+fitscore.obj &
+-+eval_y.obj &
+-+eval_l.obj &
+-+getcoli.obj &
+-+buffers.obj &
+-+editcol.obj &
+-+drvrmem.obj &
+-+drvrfile.obj &
+-+compress.obj &
+-+checksum.obj &
+-+cfileio.obj &
+-+edithdu.obj
+|
+
+putcols.obj :  cfitsio\putcols.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\putcols.c
+|
+
+putcolui.obj :  cfitsio\putcolui.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\putcolui.c
+|
+
+putcoluj.obj :  cfitsio\putcoluj.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\putcoluj.c
+|
+
+putcoluk.obj :  cfitsio\putcoluk.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\putcoluk.c
+|
+
+putcolu.obj :  cfitsio\putcolu.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\putcolu.c
+|
+
+putkey.obj :  cfitsio\putkey.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\putkey.c
+|
+
+region.obj :  cfitsio\region.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\region.c
+|
+
+swapproc.obj :  cfitsio\swapproc.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\swapproc.c
+|
+
+scalnull.obj :  cfitsio\scalnull.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\scalnull.c
+|
+
+wcsutil.obj :  cfitsio\wcsutil.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\wcsutil.c
+|
+
+putcolk.obj :  cfitsio\putcolk.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\putcolk.c
+|
+
+putcolj.obj :  cfitsio\putcolj.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\putcolj.c
+|
+
+putcoli.obj :  cfitsio\putcoli.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\putcoli.c
+|
+
+putcole.obj :  cfitsio\putcole.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\putcole.c
+|
+
+putcold.obj :  cfitsio\putcold.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\putcold.c
+|
+
+putcolb.obj :  cfitsio\putcolb.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\putcolb.c
+|
+
+putcol.obj :  cfitsio\putcol.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\putcol.c
+|
+
+modkey.obj :  cfitsio\modkey.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\modkey.c
+|
+
+listhead.obj :  cfitsio\listhead.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\listhead.c
+|
+
+putcoll.obj :  cfitsio\putcoll.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\putcoll.c
+|
+
+getcolj.obj :  cfitsio\getcolj.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\getcolj.c
+|
+
+iraffits.obj :  cfitsio\iraffits.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\iraffits.c
+|
+
+histo.obj :  cfitsio\histo.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\histo.c
+|
+
+group.obj :  cfitsio\group.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\group.c
+|
+
+grparser.obj :  cfitsio\grparser.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\grparser.c
+|
+
+getkey.obj :  cfitsio\getkey.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\getkey.c
+|
+
+getcoluk.obj :  cfitsio\getcoluk.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\getcoluk.c
+|
+
+getcoluj.obj :  cfitsio\getcoluj.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\getcoluj.c
+|
+
+getcolui.obj :  cfitsio\getcolui.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\getcolui.c
+|
+
+getcols.obj :  cfitsio\getcols.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\getcols.c
+|
+
+getcoll.obj :  cfitsio\getcoll.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\getcoll.c
+|
+
+getcolk.obj :  cfitsio\getcolk.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\getcolk.c
+|
+
+eval_f.obj :  cfitsio\eval_f.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\eval_f.c
+|
+
+getcole.obj :  cfitsio\getcole.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\getcole.c
+|
+
+getcold.obj :  cfitsio\getcold.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\getcold.c
+|
+
+getcolb.obj :  cfitsio\getcolb.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\getcolb.c
+|
+
+getcol.obj :  cfitsio\getcol.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\getcol.c
+|
+
+fitscore.obj :  cfitsio\fitscore.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\fitscore.c
+|
+
+eval_y.obj :  cfitsio\eval_y.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\eval_y.c
+|
+
+eval_l.obj :  cfitsio\eval_l.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\eval_l.c
+|
+
+getcoli.obj :  cfitsio\getcoli.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\getcoli.c
+|
+
+buffers.obj :  cfitsio\buffers.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\buffers.c
+|
+
+editcol.obj :  cfitsio\editcol.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\editcol.c
+|
+
+drvrmem.obj :  cfitsio\drvrmem.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\drvrmem.c
+|
+
+drvrfile.obj :  cfitsio\drvrfile.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\drvrfile.c
+|
+
+compress.obj :  cfitsio\compress.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\compress.c
+|
+
+checksum.obj :  cfitsio\checksum.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\checksum.c
+|
+
+cfileio.obj :  cfitsio\cfileio.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\cfileio.c
+|
+
+edithdu.obj :  cfitsio\edithdu.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_cfitsiodlib) $(CompInheritOptsAt_cfitsiodlib) -o$@ cfitsio\edithdu.c
+|
+
+tclshared.obj :  tclshared.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_fitstcldlib) $(CompInheritOptsAt_fitstcldlib) -o$@ tclshared.c
+|
+
+fitscmds.obj :  fitscmds.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_fitstcldlib) $(CompInheritOptsAt_fitstcldlib) -o$@ fitscmds.c
+|
+
+fitsio.obj :  fitsio.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_fitstcldlib) $(CompInheritOptsAt_fitstcldlib) -o$@ fitsio.c
+|
+
+fvtcl.obj :  fvtcl.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_fitstcldlib) $(CompInheritOptsAt_fitstcldlib) -o$@ fvtcl.c
+|
+
+fitsutils.obj :  fitsutils.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_fitstcldlib) $(CompInheritOptsAt_fitstcldlib) -o$@ fitsutils.c
+|
+
+fitstcl.obj :  fitstcl.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_fitstcldlib) $(CompInheritOptsAt_fitstcldlib) -o$@ fitstcl.c
+|
+
+fitsinit.obj :  fitsinit.c
+  $(BCC32) -P- -c @&&|
+ $(CompOptsAt_fitstcldlib) $(CompInheritOptsAt_fitstcldlib) -o$@ fitsinit.c
+|
+vcclib: fitstcl.def
+       lib/def:fitstcl.def
+
+
+fitstcl.def: 
+	..\tcl8.0\win\DUMPEXTS -o fitstcl.def fitstcl.dll @&&|
+		$(Dep_fitstclddll)
+|
+
+
+# Compiler configuration file
+BccW32.cfg : 
+   Copy &&|
+-w
+-R
+-v
+-vi
+-H
+-H=fitstcl.csm
+-g255
+-WCD
+| $@
+

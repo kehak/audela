@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Trichromie Directe</title></head><body>Date de mise à jour : 4 septembre 2013
+<h1>Trichromie Directe</h1>
+Cette fonction s'adresse à des utilisateurs souhaitant
+mettre en &#339;uvre la technique du Mapped Color ou Trichromie
+Directe sans créer spécifiquement les plans couleurs intermédiaires.
+<table summary="">
+<tbody>
+<tr>
+<td><img style="width: 368px; height: 250px;" alt="" src="images/trichro.gif" /></td>
+<td style="padding-left: 1em;">Cette interface ne s'ouvre que si
+le répertoire images contient des fichiers <b>valides</b>
+pour être traités. Par fichier <b>valide</b>, on entend
+des fichiers d'images qui ne sont pas des images RAW, CFA ou
+RGB. Bien entendu, des fichiers qui ne sont pas des images FITS
+(exemple : .ser ou .txt) ne sont pas non plus proposés. De
+même des fichiers d'images dont les mots clés seraient
+corrompus ou non conformes sont écartés. Lors du
+lancement, un message indique si le répertoire contient
+aucune image valide ou le nombre de fichiers non valides.
+<ul>
+<li>Trois sélecteurs, un pour choisir le plan rouge, un
+second pour le plan vert et un troisième pour le plan bleu,
+proposent la même liste des fichiers contenus dans le
+répertoire sélectionné. Au lancement les trois
+proposent le même fichier (le premier de la liste).</li>
+<li>Un sélecteur de répertoire de destination : Un
+bouton annexe permet de le modifier (le répertoire doit exister).</li>
+<li>La quatrième ligne permet de modifier le nom de sortie.
+Seuls les caractères alphanumériques, le tiret (<b>-</b>)
+et le undescore (<b>_</b>) sont admis (pas les points ni les
+espaces).</li>
+<li>3 ou 4 boutons pour les commandes habituelles.</li>
+<li>Un changement de répertoire images provoque le
+rafraîchissement de l'interface.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Il suffit de sélectionner chaque plan, de définir le
+nom de sortie, de modifier éventuellement le répertoire
+de destination puis d'appuyer sur <b>Appliquer</b> ou <b>OK</b>
+et d'attendre l'affichage de l'image.<br />
+Notes :<br />
+1. Mis à part la nature des caractères, il n'y a aucune exigence
+particulière (nom, suffixe, etc.) sur le nom des images d'entrée.<br />
+2. Les images RGB produites contiennent les seuils MIPS-HI et MIPS-LO
+pour chaque plan couleur de manière à visualiser correctement l'image couleur.<br />
+3. L'échec est certain si vous essayez de construire une image RGB avec
+des plans de tailles différentes : Un message vous en avertira et vous
+rendra la main pour modifier le choix des plans.</p>
+</body></html>

@@ -1,0 +1,4 @@
+LIBRARY     DP40.DLL
+
+EXPORTS
+    Dp_Init                        @1   

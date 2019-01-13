@@ -1,0 +1,39 @@
+{
+"name":
+   "abmc",
+"document":
+   "User guide",
+
+"comment" : "## Tested with JSON Validator http://jsonlint.com/",
+
+"comment" : "#################################################################",
+"comment" : "#################################################################",
+"comment" : "#################################################################",
+
+"themes": [ 
+
+{
+"theme":"How to define a date ?", 
+"brief":
+   "The type Date allows to input dates in many various forms.",
+"details":
+   "Use functions date2* to convert a date formated as a type Date to some converted units.\nSee help Date to obtain the detailed formats.",
+"author":"Alain Klotz"
+},
+
+{
+"theme":"How to define an angle ?", 
+"brief":
+   "The type Angle allows to input angles in many various forms.",
+"details":
+   "Use functions angle2* to convert an angle formated as a type Angle to some converted units.\nSee help Angle to obtain the detailed formats. A very interesting function is angle2sexagesimal wich allows to set the unit, separators and number of digits.",
+"example":
+   "",
+"related functions":
+   "date2iso8601",
+"author":"Alain Klotz"
+}
+
+]
+
+}

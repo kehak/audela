@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Utilisation conjointe de fonctions d'Iris</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 21 f&eacute;vrier 2010</p>
+<h1>Utilisation conjointe d'AudeLA/Aud'ACE et d'Iris </h1>
+<p>Cette page d&eacute;crit comment ex&eacute;cuter des commandes Iris depuis un script tcl. Il s'agit l&agrave; d'un palliatif en attendant l'int&eacute;gration directe des fonctions Iris dans AudeLA/Aud'ACE. Ce script fonctionne &eacute;galement sous Linux (lancement d'Iris via Wine).</p>
+<p>Quelques commandes suppl&eacute;mentaires utilisant conjointement Iris et AudeLA/Aud'ACE sont &eacute;galement disponibles.</p>
+<h2>Mise en oeuvre :</h2>
+<ul>
+  <li>Lancer Iris, <b>ainsi que sa console de commande</b>. Il est imp&eacute;ratif que la console de commande d'Iris soit vierge pour que Scriptis (l'excellent programme de Xavier-Rey Robert utilis&eacute; ici) puisse fonctionner (si besoin, la fermer et la relancer). Ensuite, ne vous pr&eacute;occupez plus de la console Iris.</li>
+  <li>Lancer AudeLA/Aud'ACE.</li>
+  <li>Ne pas oublier de faire pointer les r&eacute;pertoires de travail Iris et AudeLA/Aud'ACE sur le m&ecirc;me dossier.</li>
+  <li>Pour utiliser les commandes "iris2_...", il est imp&eacute;ratif que l'extension Iris par d&eacute;faut soit r&eacute;gl&eacute;e sur ".fit".</li>
+</ul>
+<h2>Liste des fonctions utilisables :</h2>
+<h3> <a name="iris" id="iris"></a>iris <em>commande_Iris</em></h3>
+<p>Fais ex&eacute;cuter &agrave; Iris la commande "commande_Iris".</p>
+<p>Des probl&egrave;mes sont susceptibles d'appara&icirc;tre en cas d'utilisation combin&eacute;e dans des scripts, car Iris, pour certaines fonctions, rend la main avant l'ach&egrave;vement du traitement. Ce probl&egrave;me est r&eacute;solu pour les fonctions "bestof", "pregister" et "file_trans" (en contrepartie, pour "pregister" et "file_trans", il faut que les s&eacute;ries initiales et finales soient diff&eacute;rentes). Si vous constatez des probl&egrave;mes avec d'autres fonctions, merci de contacter l'auteur de cette page qui fera les mises &agrave; jour n&eacute;cessaires. </p>
+<h3> <a name="iris2_select" id="iris2_select"></a>iris2_select <em>nom_ini nom_final nombre</em></h3>
+<p>Permet, apr&egrave;s un bestof, de ne copier que le nombre d'images choisi et pas toute la s&eacute;rie.</p>
+<h3> <a name="iris2_compute_trichro1" id="iris2_compute_trichro1"></a>iris2_compute_trichro1 <em>maitre r v b taille nb_select nb_total</em></h3>
+<p>Par rapport &agrave; la fonction du m&ecirc;me nom sous iris, la gestion des fichiers temporaires a &eacute;t&eacute; am&eacute;lior&eacute;e.</p>
+<p>R&eacute;solution &eacute;galement d'un probl&egrave;me de saturation lié à l'addition d'un trop grand nombre d'images.</p>
+<p>Les composantes r, v et b sont enregistr&eacute;es dans un sous-dossier, en compagnie d'un fichier texte mentionnant les caract&eacute;ristiques du traitement.</p>
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+ROADMAP
+
+partie 1 :
+- commencer avant toute chose a inserer les images dans bddimages
+ 
+
+partie 2 :
+- faire tout ce qu il y a a faire a partir de la fenetre recherche
+
+
+partie 3 :
+- selectionner les flat et les dark (pouvoir virer les mauvaises images)
+
+arbre des boutons 
+bloc BDDIMAGE dans le header fits comprenant toutes les variables suivantes :
+
+
+
+
+
+VERSION    : 1 
+
+STATES     : RAW | CORR | CATA | Unknown
+TYPE       : IMG | FLAT | DARK | OFFSET | Unknown
+
+WCS        : yes | no | unknown
+NAMECATA   : toto_cata.xml.gz | unknown
+DATECATA   : date format iso
+ASTROID    : yes | no
+ASTROMETRY : yes | no
+CATAASTROM : UCAC2
+PHOTOMETRY : yes | no
+CATAPHOTOM : NOMAD
+
+si un des champs absent : le creer
+
+quel type ?
+  cata
+     fini !
+  
+  image
+    brute : 
+       variable superflat existe
+          actif corriger l image :
+             correction certe 
+             variable brute passe a non
+             insertion dans la base
+                ajouter la table qui fait le lien entre image brute et corrigee 
+                  
+       superflat absent
+       
+           variable flat present
+               action faire un super flat
+                 si soffset present dans la liste des autres fichiers
+           variable offset present
+               l image est un offset.
+           variable dark present
+               l image est un dark.
+           variable soffset present
+               l image est un soffset.
+           variable sdark present
+               l image est un sdark.
+
+     wcs existe
+        astroid absent
+          action astroid
+        astrometrie absent
+          action astrometrie
+        photometrie absent
+          action photometrie
+ 
+     wcs absent          
+        choisir 3 etoiles sur la premiere image du bloc d image
+        creation du wcs
+        insertion dans la base de donnees
+
+    corrigee :
+  
+     
+
+  - 
+
+partie 4 :
+- mettre un bouton d astrometrie rapide pour faire un WCS.
+  cette partie est en grande partie ecrite (concernant la reconnaissance de champ
+  grace au trvail sur le chercheur electronique) 
+  pb -> connaitre la focale exacte de l image ! pas si simple
+
+partie 5 :
+- retrouver les objets du champs grace a  la fonction get_cds_query ecrite dans audela
+
+partie 6 :
+- retrouver les objets Skybot
+
+partie 7 :
+- creer un fichier catalogue votable de la liste des sources de l image
+
+partie 8 :
+- lancer astroid, qui fait les mesures precise des photocentres, il choisi aussi les etoiles
+  de reference (type solaire pour la photometrie) et (UCAC2 pour l astrometrie)
+
+partie 9 :
+- formatage des resultats pour la photometrie.
+
+partie 10 :
+- construction d un fichier priam pour l astrometrie
+
+partie 11 :
+- lancement de priam depuis audela. 
+  inserer eventuellement l appli tk de gestion de l astrometrie

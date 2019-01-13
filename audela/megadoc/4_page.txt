@@ -1,0 +1,211 @@
+/*================== Adresse des sous pages du menu Configuration ==================*/
+
+/*!
+  @page configuration_langue                 Langue
+  @htmlinclude "../gui/audace/doc_html/french/10configuration/01audace/1010langue.htm"
+
+  @page configuration_repertoire             Répertoires
+  @htmlinclude "../gui/audace/doc_html/french/10configuration/01audace/1020repertoire.htm"
+
+  @page configuration_logiciels_externes     Logiciels externes
+  @htmlinclude "../gui/audace/doc_html/french/10configuration/01audace/1030logiciels_externes.htm"
+
+  @page configuration_temps                  Temps
+  @htmlinclude "../gui/audace/doc_html/french/10configuration/01audace/1040temps.htm"
+
+  @page configuration_position               Position de l'observateur
+  @htmlinclude "../gui/audace/doc_html/french/10configuration/01audace/1050position.htm"
+
+  @page configuration_fichier_image          Fichiers image
+  @htmlinclude "../gui/audace/doc_html/french/10configuration/01audace/1060fichier_image.htm"
+
+  @page configuration_alarme                 Alarme sonore de fin de pose
+  @htmlinclude "../gui/audace/doc_html/french/10configuration/01audace/1070alarme.htm"
+
+  @page configuration_type_fenetre           Type de fenêtre
+  @htmlinclude "../gui/audace/doc_html/french/10configuration/01audace/1080type_fenetre.htm"
+
+  @page configuration_apparence              Apparence
+  @htmlinclude "../gui/audace/doc_html/french/10configuration/01audace/1090apparence.htm"
+
+  @page configuration_proxy                  Internet (Proxy)
+  @htmlinclude "../gui/audace/doc_html/french/10configuration/01audace/1110proxy.htm"
+
+  @page configuration_camera                 Caméra
+  - @subpage config_camera
+  - @subpage plugin_camera_list
+
+  @page configuration_monture                Monture
+  - @subpage config_mount
+  - @subpage plugin_mount_list
+
+  @page configuration_liaison                Liaison
+  - @subpage config_link
+  - @subpage plugin_link_list
+
+  @page configuration_optique                Optique
+  @htmlinclude "../gui/audace/doc_html/french/10configuration/04optique/1010config_optique.htm"
+
+  @page configuration_equipement             Equipement
+  - @subpage config_equipment
+  - @subpage plugin_equipment_list
+
+  @page configuration_raquette               Raquette
+  - @subpage config_raquette
+  - @subpage plugin_raquette_list
+
+  @page configuration_carte                  Carte
+  - @subpage config_chart
+  - @subpage plugin_chart_list
+
+  @page configuration_selection_outils       Sélection des outils
+  @htmlinclude "../gui/audace/doc_html/french/10configuration/1010choix_outil.htm"
+
+  @page plugin_tool_testaudela               Test AudeLA
+  - fonctions @ref ::testaudela
+  - fichiers @ref testaudela.tcl
+  @htmlinclude "../gui/audace/plugin/tool/testaudela/french/testaudela.htm"
+
+  @page plugin_tool_updateaudela             Mise à jour d'AudeLA
+  @htmlinclude "../gui/audace/plugin/tool/updateaudela/french/updateaudela.htm"
+*/
+
+/* ========================== Camera ========================= */
+
+/*!
+  @page config_camera                       Configuration d'une caméra
+  @htmlinclude "../gui/audace/doc_html/french/10configuration/02camera/1010config_camera.htm"
+
+  @page plugin_camera_list                  Caméras disponibles
+  - @b Andor
+  - @b AndorUSB
+  - @b Apogee
+  - @b Ascom
+  - @b Atik
+  - @b Audine
+  - @b Cagire
+  - @b Cemes
+  - @subpage plugin_camera_dslr
+  - @b EPIX OWL
+  - @b EPIX RAPTOR
+  - @b FLI
+  - @b QSI
+  - <A HREF="SBIGUDrv_4r60B9.pdf"><B>SBIG</B></A>
+  - @subpage plugin_camera_webcam
+
+  @page plugin_camera_dslr     APN (DSLR)
+  @htmlinclude "../gui/audace/plugin/camera/dslr/french/dslr.htm"
+
+  @page plugin_camera_webcam   Caméra WebCam - Grabber
+  @htmlinclude "../gui/audace/plugin/camera/webcam/french/webcam.htm"
+*/
+
+/* ========================== Monture ========================= */
+
+/*!
+  @page config_mount                       Configuration d'une monture
+  @htmlinclude "../gui/audace/doc_html/french/10configuration/03monture/1010config_monture.htm"
+
+  @page plugin_mount_list                  Montures disponibles
+  - @b ASCOM
+  - @subpage plugin_audecom
+  - @b Celestron
+  - <B>Clear Sky Institute</B>
+  - <B>Delta Tau</B>
+  - @b DFM
+  - @b EQUMOD
+  - @b Etel
+  - @b LX200
+  - <B>MCMT II/32</B>
+  - @b Ouranos
+  - @b T193
+  - @b Telscript
+  - @subpage plugin_telescope_temma
+
+  @page plugin_audecom                     AUDECOM
+  @li <A HREF="AudeCom-V41.pdf"><B>CARTE AUDECOM, firmware version 4.01 (mai 2002)</B></A>
+  @li <A HREF="AudeCom-V41-new.pdf"><B>CARTE AUDECOM V3.0, firmware V4.01 (août 2004)</B></A>
+  @li <A HREF="Liste_commandes_AudeCom.pdf"><B>Liste des fonctions du driver AudeCom</B></A>
+
+  @page plugin_telescope_temma             Temma
+  @htmlinclude "../gui/audace/plugin/mount/temma/french/temma.htm"
+*/
+
+/* ========================== Liaison ========================= */
+
+/*!
+  @page config_link                         Configuration d'une laison
+  @htmlinclude "../gui/audace/doc_html/french/10configuration/04link/1010config_liaison.htm"
+
+  @page plugin_link_list                    Liaisons disponibles
+  - @b Ethernaude
+  - @b External
+  - @b Gphoto2
+  - @b Oscadine
+  - <B>Port parallèle</B>
+  - @subpage plugin_link_quickaudine
+  - @subpage plugin_link_quickremote
+  - <B>Port série</B>
+  - <B>Velleman K8055</B>
+  - <B>Velleman K8056</B>
+
+  @page plugin_link_quickaudine    Liaison par QuickAudine
+  @htmlinclude "../gui/audace/plugin/link/quickaudine/french/quickaudine.htm"
+
+  @page plugin_link_quickremote    Liaison par QuickRemote
+  @htmlinclude "../gui/audace/plugin/link/quickremote/french/quickremote.htm"
+*/
+
+/* ======================== Equipements ========================= */
+
+/*!
+  @page config_equipment                     Configuration d'un équipement
+  @htmlinclude "../gui/audace/doc_html/french/10configuration/05equipement/1010config_equipement.htm"
+
+  @page plugin_equipment_list                Equipements disponibles
+  - <B>Focaliseur Audecom</B>
+  - <B>Focaliseur JMI</B>
+  - <B>Focaliseur LX200</B>
+  - <B>Focaliseur T193</B>
+  - @subpage plugin_equipment_usb_focus
+  - <B>Lhires 3</B>
+  - <B>Roue à filtres</B>
+  - @subpage plugin_equipment_scopedome
+  - @subpage plugin_equipment_station_meteo
+
+  @page plugin_equipment_usb_focus          USB_Focus
+  @htmlinclude "../gui/audace/plugin/equipment/usb_focus/french/usb_focus.htm"
+
+  @page plugin_equipment_scopedome          ScopeDome
+  @htmlinclude "../gui/audace/plugin/equipment/scopedome/french/scopedome.htm"
+
+  @page plugin_equipment_station_meteo      Station Météo
+  @htmlinclude "../gui/audace/plugin/equipment/station_meteo/french/station_meteo.htm"
+*/
+
+/* ========================== Raquette ========================= */
+
+/*!
+  @page config_raquette                      Configuration d'une raquette
+  @htmlinclude "../gui/audace/doc_html/french/10configuration/06raquette/1010config_raquette.htm"
+
+  @page plugin_raquette_list                 Raquettes disponibles
+  - @b LX200
+  - @b Superpad
+  - @b T193Pad
+  - @b Telpad
+*/
+
+/* ========================== Cartes =========================== */
+
+/*!
+  @page config_chart                         Configuration d'une carte
+  @htmlinclude "../gui/audace/doc_html/french/10configuration/07carte/1010config_carte.htm"
+
+  @page plugin_chart_list                    Cartes disponibles
+  - @subpage plugin_chart_carteducielv3
+  - @subpage libgs
+
+  @page plugin_chart_carteducielv3           Cartes du Ciel
+  @htmlinclude "../gui/audace/plugin/chart/carteducielv3/french/carteducielv3.htm"
+*/

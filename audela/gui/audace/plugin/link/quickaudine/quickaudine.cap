@@ -1,0 +1,151 @@
+#
+# Fichier : quickaudine.cap
+# Mise a jour $Id: quickaudine.cap 9988 2013-08-18 17:01:49Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(quickaudine,titre)                "QuickAudine"
+set caption(quickaudine,available)            "QuickAudine available"
+set caption(quickaudine,refresh)              "Reload"
+set caption(quickaudine,delayshutter)         "Delay Before Reading CCD"
+set caption(quickaudine,unite)                "1/100 s"
+set caption(quickaudine,lecture_pixel)        "Reading of One Pixel"
+set caption(quickaudine,micro_sec)            "microseconds"
+set caption(quickaudine,error)                "Error Message:"
+set caption(quickaudine,msg)                  "QuickAudine users must install the FTDI driver (follow the steps explained in the Help)."
+
+set caption(quickaudine,installNewVersion)    "Installation of library %s of plugin quickaudine v%s completed."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(quickaudine,titre)             "QuickAudine"
+   set caption(quickaudine,available)         "QuickAudine disponibles"
+   set caption(quickaudine,refresh)           "Rafraîchir"
+   set caption(quickaudine,delayshutter)      "Délai avant la lecture du CCD"
+   set caption(quickaudine,unite)             "1/100 s"
+   set caption(quickaudine,lecture_pixel)     "Lecture d'un pixel"
+   set caption(quickaudine,micro_sec)         "microsecondes"
+   set caption(quickaudine,error)             "Message d'erreur :"
+   set caption(quickaudine,msg)               "Utilisateurs de QuickAudine : Vous devez installer le driver FTDI (suivre la procédure décrite dans l'aide)."
+
+   set caption(quickaudine,installNewVersion) "Fin de l'installation de la librairie %s du plugin quickaudine v%s."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(quickaudine,titre)             "QuickAudine"
+   set caption(quickaudine,available)         "QuickAudine disponibile"
+   set caption(quickaudine,refresh)           "Rinfresca"
+   set caption(quickaudine,delayshutter)      "Ritardo prima della lettura CCD"
+   set caption(quickaudine,unite)             "1/100 s"
+   set caption(quickaudine,lecture_pixel)     "Lettura di un pixel"
+   set caption(quickaudine,micro_sec)         "microsecondi"
+   set caption(quickaudine,error)             "Messaggio di errore:"
+   set caption(quickaudine,msg)               "Gli utilizzatori di QuickAudine devono Installare il driver FTDI (seguendo le istruzioni descritte nell'help)."
+
+   set caption(quickaudine,installNewVersion) "Installazione della libreria %s del plugin quickaudine v%s terminata."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(quickaudine,titre)             "QuickAudine"
+   set caption(quickaudine,available)         "QuickAudine disponibles"
+   set caption(quickaudine,refresh)           "Recargar"
+   set caption(quickaudine,delayshutter)      "Retardo anterior a la lectura CCD"
+   set caption(quickaudine,unite)             "1/100 s"
+   set caption(quickaudine,lecture_pixel)     "Lectura de un píxel"
+   set caption(quickaudine,micro_sec)         "microsegundos"
+   set caption(quickaudine,error)             "Mensaje de error:"
+   set caption(quickaudine,msg)               "Usuarios de QuickAudine: Deben instalar el driver FTDI (seguir el procedimiento descrito en la ayuda)."
+
+   set caption(quickaudine,installNewVersion) "Fin de la instalación de la libreria %s del plugin quickaudine v%s."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(quickaudine,titre)             "QuickAudine"
+   set caption(quickaudine,available)         "QuickAudine verfügbar"
+   set caption(quickaudine,refresh)           "Aktualisieren"
+   set caption(quickaudine,delayshutter)      "Aufschub vor CCD Lesung"
+   set caption(quickaudine,unite)             "1/100 s"
+   set caption(quickaudine,lecture_pixel)     "Ein Rasterpunkt abtasten"
+   set caption(quickaudine,micro_sec)         "Mikrosekunden"
+   set caption(quickaudine,error)             "Fehlermeldung:"
+   set caption(quickaudine,msg)               "QuickAudine Benutzer: Sie müssen die FTDI Treiber installieren (das Verfahren ist in der Hilfe beschrieben)."
+
+   set caption(quickaudine,installNewVersion) "Die Installation der Bibliothek %s ist vervollständigt der Plugin quickaudine v%s."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(quickaudine,titre)             "QuickAudine"
+   set caption(quickaudine,available)         "QuickAudine disponível"
+   set caption(quickaudine,refresh)           "Actualizar"
+   set caption(quickaudine,delayshutter)      "Atraso antes da leitura do CCD"
+   set caption(quickaudine,unite)             "1/100 s"
+   set caption(quickaudine,lecture_pixel)     "Leitura de um pixel"
+   set caption(quickaudine,micro_sec)         "microsegundos"
+   set caption(quickaudine,error)             "Mensagem de erro:"
+   set caption(quickaudine,msg)               "Utilizadores de QuickAudine devem instalar o driver FTDI (seguir o procedimento descrito em Ajuda)."
+
+   set caption(quickaudine,installNewVersion) "Instalação da livraria %s do plugin quickaudine v%s concluída."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(quickaudine,titre)             "QuickAudine"
+   set caption(quickaudine,available)         "QuickAudine disponible"
+   set caption(quickaudine,refresh)           "Genindlæs"
+   set caption(quickaudine,delayshutter)      "Forsinkelse før udlæsning af CCD"
+   set caption(quickaudine,unite)             "1/100 s"
+   set caption(quickaudine,lecture_pixel)     "Læsning af én pixel"
+   set caption(quickaudine,micro_sec)         "microsekunder"
+   set caption(quickaudine,error)             "Fejlmeddelelse:"
+   set caption(quickaudine,msg)               "QuickAudine brugere skal installere FTDI driver (Følg vejledning i Hjælp!)."
+
+   set caption(quickaudine,installNewVersion) "Installation of library %s of plugin quickaudine v%s completed."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(quickaudine,titre)             "QuickAudine"
+   set caption(quickaudine,available)         "QuickAudine available"
+   set caption(quickaudine,refresh)           "Reload"
+   set caption(quickaudine,delayshutter)      "Delay Before Reading CCD"
+   set caption(quickaudine,unite)             "1/100 s"
+   set caption(quickaudine,lecture_pixel)     "Reading of One Pixel"
+   set caption(quickaudine,micro_sec)         "microseconds"
+   set caption(quickaudine,error)             "Error Message:"
+   set caption(quickaudine,msg)               "QuickAudine users must install the FTDI driver (follow the steps explained in the Help)."
+
+   set caption(quickaudine,installNewVersion) "Installation of library %s of plugin quickaudine v%s completed."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(quickaudine,titre)             "QuickAudine"
+   set caption(quickaudine,available)         "QuickAudine available"
+   set caption(quickaudine,refresh)           "Reload"
+   set caption(quickaudine,delayshutter)      "Delay Before Reading CCD"
+   set caption(quickaudine,unite)             "1/100 s"
+   set caption(quickaudine,lecture_pixel)     "Reading of One Pixel"
+   set caption(quickaudine,micro_sec)         "microseconds"
+   set caption(quickaudine,error)             "Error Message:"
+   set caption(quickaudine,msg)               "QuickAudine users must install the FTDI driver (follow the steps explained in the Help)."
+
+   set caption(quickaudine,installNewVersion) "Installation of library %s of plugin quickaudine v%s completed."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

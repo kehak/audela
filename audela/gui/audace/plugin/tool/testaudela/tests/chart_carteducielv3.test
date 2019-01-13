@@ -1,0 +1,25 @@
+
+   global caption
+   set visuNo "1"
+
+#-------------------------------------------------------------------------------
+test carteducielv3_affiche {affiche m57} {CARTEDUCIELV3} {
+   #--- clic sur le menu configuration->carte
+   ::testaudela::clicMenu $visuNo "$caption(audace,menu,setup)" "$caption(audace,menu,carte)..."
+   #--- je selectionne l'onglet carteducielv3
+   ::testaudela::selectNoteBook .audace.confcat.usr.onglet "carteducielv3"
+   #--- j'attends que l'onglet soit affiché
+   after 1000
+   #--- j'applique la configuration et je ferme la fenetre
+   ::testaudela::clicButton .audace.confcat.cmd.ok
+   #--- je charge m57.fit dans la visu1
+   loadima [file join $::conf(testaudela,rep_images) m57.fit]
+   #--- j'attends que l'image soit chargee
+   after 1000
+   #--- clic sur le menu analyse->carte
+   ::testaudela::clicMenu $visuNo "$caption(audace,menu,analysis)" "$caption(audace,menu,carte)"
+} "0"
+
+   #--- je vide la visu
+   ::confVisu::clear $visuNo
+

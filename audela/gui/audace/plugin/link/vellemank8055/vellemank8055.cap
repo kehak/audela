@@ -1,0 +1,214 @@
+#
+# Fichier : vellemank8055.cap
+# Mise a jour $Id: vellemank8055.cap 9990 2013-08-18 17:29:05Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(vellemank8055,titre)                "Velleman K8055"
+set caption(vellemank8055,USBPort)              "USB Link"
+set caption(vellemank8055,selectAdresse)        "Select Card Number"
+set caption(vellemank8055,SK5)                  "SK5"
+set caption(vellemank8055,SK6)                  "SK6"
+set caption(vellemank8055,adresse)              "Card Number:"
+set caption(vellemank8055,test8sorties)         "Test 8 Digital Outputs"
+set caption(vellemank8055,test5entrees)         "Test 5 Digital Inputs"
+set caption(vellemank8055,tous)                 "All"
+set caption(vellemank8055,chenillard)           "Auto Test"
+set caption(vellemank8055,raz)                  "Reset"
+set caption(vellemank8055,lire)                 "Read Entries"
+set caption(vellemank8055,stop)                 "Stop"
+set caption(vellemank8055,attention)            "Warning"
+set caption(vellemank8055,cannotcreatelink)     "The link can not be created."
+set caption(vellemank8055,seeconsole)           "See details in the Terminal screen."
+
+set caption(vellemank8055,installNewVersion)    "Installation of library %s of plugin vellemank8055 v%s completed."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(vellemank8055,titre)             "Velleman K8055"
+   set caption(vellemank8055,USBPort)           "Liaison USB"
+   set caption(vellemank8055,selectAdresse)     "Sélectionner le numéro de la carte"
+   set caption(vellemank8055,SK5)               "SK5"
+   set caption(vellemank8055,SK6)               "SK6"
+   set caption(vellemank8055,adresse)           "Numéro de la carte :"
+   set caption(vellemank8055,test8sorties)      "Tester les 8 sorties numériques"
+   set caption(vellemank8055,test5entrees)      "Tester les 5 entrées numériques"
+   set caption(vellemank8055,tous)              "Toutes"
+   set caption(vellemank8055,chenillard)        "Test auto"
+   set caption(vellemank8055,raz)               "Remise à zéro"
+   set caption(vellemank8055,lire)              "Lire les entrées"
+   set caption(vellemank8055,stop)              "Arrêter"
+   set caption(vellemank8055,attention)         "Attention"
+   set caption(vellemank8055,cannotcreatelink)  "La liaison ne peut pas être créée."
+   set caption(vellemank8055,seeconsole)        "Détails dans la Console."
+
+   set caption(vellemank8055,installNewVersion) "Fin de l'installation de la librairie %s du plugin vellemank8055 v%s."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(vellemank8055,titre)             "Velleman K8055"
+   set caption(vellemank8055,USBPort)           "Collegamento USB"
+   set caption(vellemank8055,selectAdresse)     "Selezionare il numero di carta"
+   set caption(vellemank8055,SK5)               "SK5"
+   set caption(vellemank8055,SK6)               "SK6"
+   set caption(vellemank8055,adresse)           "Numero di carta:"
+   set caption(vellemank8055,test8sorties)      "Verificare le 8 uscite digitali"
+   set caption(vellemank8055,test5entrees)      "Verificare i 5 ingressi digitali"
+   set caption(vellemank8055,tous)              "Tutti"
+   set caption(vellemank8055,chenillard)        "Auto test"
+   set caption(vellemank8055,raz)               "Azzeramento"
+   set caption(vellemank8055,lire)              "Leggere gli ingressi"
+   set caption(vellemank8055,stop)              "Fermare"
+   set caption(vellemank8055,attention)         "Attenzione"
+   set caption(vellemank8055,cannotcreatelink)  "Il collegamento non e' stata creata."
+   set caption(vellemank8055,seeconsole)        "Vedere i dettagli sul Console."
+
+   set caption(vellemank8055,installNewVersion) "Installazione della libreria %s del plugin vellemank8055 v%s terminata."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(vellemank8055,titre)             "Velleman K8055"
+   set caption(vellemank8055,USBPort)           "Conexión USB"
+   set caption(vellemank8055,selectAdresse)     "Seleccionar el número de la tarjeta"
+   set caption(vellemank8055,SK5)               "SK5"
+   set caption(vellemank8055,SK6)               "SK6"
+   set caption(vellemank8055,adresse)           "Número de la tarjeta:"
+   set caption(vellemank8055,test8sorties)      "Testear las 8 salidas digitales"
+   set caption(vellemank8055,test5entrees)      "Testear las 5 entradas digitales"
+   set caption(vellemank8055,tous)              "Todas"
+   set caption(vellemank8055,chenillard)        "Test auto"
+   set caption(vellemank8055,raz)               "Resetear"
+   set caption(vellemank8055,lire)              "Leer las entradas"
+   set caption(vellemank8055,stop)              "Parar"
+   set caption(vellemank8055,attention)         "!Cuidado¡"
+   set caption(vellemank8055,cannotcreatelink)  "Enlace no puede ser creada."
+   set caption(vellemank8055,seeconsole)        "Ver detalles en la Consola."
+
+   set caption(vellemank8055,installNewVersion) "Fin de la instalación de la libreria %s del plugin vellemank8055 v%s."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(vellemank8055,titre)             "Velleman K8055"
+   set caption(vellemank8055,USBPort)           "USB Link"
+   set caption(vellemank8055,selectAdresse)     "Karte Nummer wählen"
+   set caption(vellemank8055,SK5)               "SK5"
+   set caption(vellemank8055,SK6)               "SK6"
+   set caption(vellemank8055,adresse)           "Karte Nummer:"
+   set caption(vellemank8055,test8sorties)      "Die 8 digitale Ausgaben proben"
+   set caption(vellemank8055,test5entrees)      "Die 5 digitale Eingaben proben"
+   set caption(vellemank8055,tous)              "Alle"
+   set caption(vellemank8055,chenillard)        "Auto Test"
+   set caption(vellemank8055,raz)               "Umstellen"
+   set caption(vellemank8055,lire)              "Eingaben lesen"
+   set caption(vellemank8055,stop)              "Halten"
+   set caption(vellemank8055,attention)         "Achtung"
+   set caption(vellemank8055,cannotcreatelink)  "Der Link kann nicht hergestellt werden."
+   set caption(vellemank8055,seeconsole)        "Siehe Details auf der Konsole."
+
+   set caption(vellemank8055,installNewVersion) "Die Installation der Bibliothek %s ist vervollständigt der Plugin vellemank8055 v%s."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(vellemank8055,titre)             "Velleman K8055"
+   set caption(vellemank8055,USBPort)           "Ligação USB"
+   set caption(vellemank8055,selectAdresse)     "Seleccionar o número da carta"
+   set caption(vellemank8055,SK5)               "SK5"
+   set caption(vellemank8055,SK6)               "SK6"
+   set caption(vellemank8055,adresse)           "Número da carta:"
+   set caption(vellemank8055,test8sorties)      "Testar as 8 saídas digitais"
+   set caption(vellemank8055,test5entrees)      "Testar as 5 entradas digitais"
+   set caption(vellemank8055,tous)              "Todas"
+   set caption(vellemank8055,chenillard)        "Teste auto"
+   set caption(vellemank8055,raz)               "Reset"
+   set caption(vellemank8055,lire)              "Ler as entradas"
+   set caption(vellemank8055,stop)              "Parar"
+   set caption(vellemank8055,attention)         "Aviso"
+   set caption(vellemank8055,cannotcreatelink)  "Ligação não pode ser criada."
+   set caption(vellemank8055,seeconsole)        "Ver detalhes na Consola."
+
+   set caption(vellemank8055,installNewVersion) "Instalação da livraria %s do plugin vellemank8055 v%s concluída."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(vellemank8055,titre)             "Velleman K8055"
+   set caption(vellemank8055,USBPort)           "USB Link"
+   set caption(vellemank8055,selectAdresse)     "Select Card Number"
+   set caption(vellemank8055,SK5)               "SK5"
+   set caption(vellemank8055,SK6)               "SK6"
+   set caption(vellemank8055,adresse)           "Card Number:"
+   set caption(vellemank8055,test8sorties)      "Test 8 Digital Outputs"
+   set caption(vellemank8055,test5entrees)      "Test 5 Digital Inputs"
+   set caption(vellemank8055,tous)              "All"
+   set caption(vellemank8055,chenillard)        "Auto Test"
+   set caption(vellemank8055,raz)               "Reset"
+   set caption(vellemank8055,lire)              "Read Entries"
+   set caption(vellemank8055,stop)              "Stop"
+   set caption(vellemank8055,attention)         "Warning"
+   set caption(vellemank8055,cannotcreatelink)  "The link can not be created."
+   set caption(vellemank8055,seeconsole)        "See details in the Terminal screen."
+
+   set caption(vellemank8055,installNewVersion) "Installation of library %s of plugin vellemank8055 v%s completed."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(vellemank8055,titre)             "Velleman K8055"
+   set caption(vellemank8055,USBPort)           "USB Link"
+   set caption(vellemank8055,selectAdresse)     "Select Card Number"
+   set caption(vellemank8055,SK5)               "SK5"
+   set caption(vellemank8055,SK6)               "SK6"
+   set caption(vellemank8055,adresse)           "Card Number:"
+   set caption(vellemank8055,test8sorties)      "Test 8 Digital Outputs"
+   set caption(vellemank8055,test5entrees)      "Test 5 Digital Inputs"
+   set caption(vellemank8055,tous)              "All"
+   set caption(vellemank8055,chenillard)        "Auto Test"
+   set caption(vellemank8055,raz)               "Reset"
+   set caption(vellemank8055,lire)              "Read Entries"
+   set caption(vellemank8055,stop)              "Stop"
+   set caption(vellemank8055,attention)         "Warning"
+   set caption(vellemank8055,cannotcreatelink)  "The link can not be created."
+   set caption(vellemank8055,seeconsole)        "See details in the Terminal screen."
+
+   set caption(vellemank8055,installNewVersion) "Installation of library %s of plugin vellemank8055 v%s completed."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(vellemank8055,titre)             "Velleman K8055"
+   set caption(vellemank8055,USBPort)           "USB Link"
+   set caption(vellemank8055,selectAdresse)     "Select Card Number"
+   set caption(vellemank8055,SK5)               "SK5"
+   set caption(vellemank8055,SK6)               "SK6"
+   set caption(vellemank8055,adresse)           "Card Number:"
+   set caption(vellemank8055,test8sorties)      "Test 8 Digital Outputs"
+   set caption(vellemank8055,test5entrees)      "Test 5 Digital Inputs"
+   set caption(vellemank8055,tous)              "All"
+   set caption(vellemank8055,chenillard)        "Auto Test"
+   set caption(vellemank8055,raz)               "Reset"
+   set caption(vellemank8055,lire)              "Read Entries"
+   set caption(vellemank8055,stop)              "Stop"
+   set caption(vellemank8055,attention)         "Warning"
+   set caption(vellemank8055,cannotcreatelink)  "The link can not be created."
+   set caption(vellemank8055,seeconsole)        "See details in the Terminal screen."
+
+   set caption(vellemank8055,installNewVersion) "Installation of library %s of plugin vellemank8055 v%s completed."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

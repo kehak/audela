@@ -1,0 +1,99 @@
+Resultats test NEQ3 Goto
+
+# Start Goto 10h59m59s99 +70d00m00s0
+# j1 = D5147D = 8197333 = 10h59m59s99    j2 = 6E5395 = 9786222 = +70d00m00s0 (Est)
+# j1 = E6157D = 8197606 = 11h00m10s73    j2 = 015395 = 9786113 = +70d01m17s9 (Est)
+# j1 = 1C467D = 8209948 = 11h04m37s75    j2 = A72995 = 9775527 = +70d59m41s9 (Est)
+# j1 = DCBC7D = 8240348 = 11h14m21s70    j2 = A7B594 = 9745831 = +73d23m07s1 (Est)
+# j1 = 8C2C7E = 8268940 = 11h23m21s86    j2 = F74594 = 9717239 = +75d38m09s4 (Est)
+# j1 = FCA67E = 8300284 = 11h33m13s66    j2 = 87CB93 = 9685895 = +78d06m06s5 (Est)
+# j1 = FC167F = 8328956 = 11h42m15s02    j2 = 875B93 = 9657223 = +80d21m26s9 (Est)
+# j1 = 6C917F = 8360300 = 11h52m06s83    j2 = 07E192 = 9625863 = +82d49m24s1 (Est)
+# j1 = 4C0180 = 8388940 = 12h01m07s59    j2 = 377192 = 9597239 = +85d04m35s4 (Est)
+# j1 = 9C7B80 = 8420252 = 12h10m58s79    j2 = D7F691 = 9565911 = +87d32m23s5 (Est)
+# j1 = 8CEB80 = 8448908 = 12h19m59s55    j2 = F78691 = 9537271 = +89d47m34s8 (Est)
+# j1 = FC6581 = 8480252 = 00h29m51s36    j2 = 870C91 = 9505927 = +87d44m23s4 (Est)
+# j1 = DCD581 = 8508892 = 00h38m52s42    j2 = 979C90 = 9477271 = +85d29m12s1 (Est)
+# j1 = 5C5082 = 8540252 = 00h48m44s23    j2 = 272290 = 9445927 = +83d01m14s9 (Est)
+# j1 = 14B882 = 8566804 = 00h56m47s58    j2 = 67B28F = 9417319 = +80d46m12s7 (Est)
+# j1 = 00DE82 = 8576512 = 00h59m21s16    j2 = F7378F = 9385975 = +78d18m15s5 (Est)
+# j1 = 24E282 = 8577572 = 00h59m41s18    j2 = E7C78E = 9357287 = +76d02m46s1 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = 474D8E = 9325895 = +73d34m39s9 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = 47DD8D = 9297223 = +71d19m14s9 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = B7628D = 9265847 = +68d51m08s7 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = B7F28C = 9237175 = +66d35m52s9 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = 27788C = 9205799 = +64d07m42s1 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = 37088C = 9177143 = +61d52m26s3 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = 978D8B = 9145751 = +59d24m20s1 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = B71D8B = 9117111 = +57d09m08s7 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = 27A38A = 9085735 = +54d40m58s0 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = 37338A = 9057079 = +52d25m46s7 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = C7B889 = 9025735 = +49d57m49s5 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = 974889 = 8997015 = +47d42m15s5 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = 47CE88 = 8965703 = +45d14m22s9 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = 375E88 = 8937015 = +42d59m02s5 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = 97E387 = 8905623 = +40d30m51s8 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = B77387 = 8876983 = +38d15m35s9 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = 27F986 = 8845607 = +35d47m34s2 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = 478986 = 8816967 = +33d32m22s9 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = 670E86 = 8785511 = +31d03m49s5 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = 679E85 = 8756839 = +28d48m29s1 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = B72385 = 8725431 = +26d20m18s4 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = D7B384 = 8696791 = +24d05m02s5 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = 273984 = 8665383 = +21d36m51s8 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = D7EF83 = 8646615 = +20d16m47s3 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = CCE483 = 8643788 = +20d06m55s6 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = A8E083 = 8642728 = +20d01m55s7 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = BFDE83 = 8642239 = +20d00m04s7 (Est)
+# j1 = 60E682 = 8578656 = 00h59m59s79    j2 = BFDE83 = 8642239 = +20d00m04s7 (Est)
+# End Goto 00h59m59s79 +20d00m04s7
+
+tel1 readparams
+
+{a1 4576000 {ADU/360deg} {microsteps/360deg}} 
+{a2 4576000 {ADU/360deg} {microsteps/360deg}} 
+{b1 35477 {ADU^2/sec} {velocity parameter i1 = (1|g1) * b1 / speedtrackHA(deg/s) / (a1/360)}} 
+{b2 35477 {ADU^2/sec} {velocity_parameter i2 = (1|g2) * b2 / speedtrackDEC(deg/s) / (a2/360)}} 
+{c1 20224 {ADU} {motorRA unidentified parameter}} 
+{c2 20224 {ADU} {motorDEC unidentified parameter}} 
+{d1 8388608 {ADU} {motorRA initial position j1 when the mount is just switched on}} 
+{d2 8388608 {ADU} {motorDEC initial position j2 when the mount is just switched on}} 
+{e1 197634 {ADU} {motorRA unidentified parameter}} 
+{e2 197634 {ADU} {motorDEC unidentified parameter}} 
+{f1 101 {integers} {motorRA slewing state 0|1|2|3|5|7=jog_slow+|stop+|jog_slow-|stop-|jog_fast+|jog_fast- 0|1=Stoped|Jogging 0|1=PB?|OK?}} 
+{f2 101 {integers} {motorDEC slewing state 0|1|2|3|5|7=jog_slow+|stop+|jog_slow-|stop-|jog_fast+|jog_fast- 0|1=Stoped|Jogging 0|1=PB?|OK?}} 
+{g1 10 {integers} {motorRA fast tracking speed multiplier (set with :G13x)} } 
+{g2 10 {integers} {motorDEC fast tracking speed multiplier (set with :G13x)} } 
+{h1 0 {ADU} {motorRA Next position to reach = 0.000000 degs (set with :H1)}} 
+{h2 0 {ADU} {motorDEC Next position to reach = 0.000000 degs (set with :H2)}} 
+{i1 0 {ADU} {motorRA Next tracking speed = 2.791023 deg/s or 27.910227 deg/s (set with :I1, start with :J1)}} 
+{i2 0 {ADU} {motorDEC Next tracking speed = 2.791023 deg/s or 27.910227 deg/s (set with :I2, start with :J2)}} 
+{j1 8578656 {ADU} {motorRA Current encoder position = 60E682 Hex = 674.894266 degs (set with :E1)}} 
+{j2 8642239 {ADU} {motorDEC Current encoder position = BFDE83 Hex = 679.896425 degs (set with :E2)}} 
+{m1 0 {ADU} {motorRA start braking position with GOTO = 0.000000 degs (set with :M1)}} 
+{m2 0 {ADU} {motorDEC start braking position with GOTO = 0.000000 degs (set with :M2)}} 
+{s1 35200 {ADU/turn} {microsteps to a complete turnover of worm}} 
+{s2 35200 {ADU/turn} {microsteps to a complete turnover of worm}} 
+{speed_track_ra 0.004178 {deg/s} {motorRA track speed}} 
+{speed_track_dec 0.000000 {deg/s} {motorDEC track speed}} 
+{speed_slew_ra 2.000000 {deg/s} {motorRA slew speed}} 
+{speed_slew_dec 2.000000 {deg/s} {motorDEC slew speed}} 
+{adu4deg_ha 12711.111111 {ADU/deg} {motorRA position conversion}} 
+{adu4deg_dec 12711.111111 {ADU/deg} {motorDEC position conversion}} 
+{track_diurnal 0.004178 {deg/s} {motorRA theoretical diurnal track}} 
+{coord_adu_ha_wmax 8769333 {ADU} {motorRA western stop}} 
+{coord_adu_ha_emin 8006666 {ADU} {motorRA eastern stop}} 
+{radec_move_rate_max 1.000000 {deg/s} {motorRA and motorDEC maximum authorized move speed}} 
+{slew_axis 0 {integer} {motorRA and motorDEC motion states. 0: none, 1: RA, 2: DEC, 3: RA+DEC}} 
+{tube_prefered_side 0 {binary} {0|1=tube position preference (W|E)}} 
+{tube_current_side 0 {binary} {0|1=tube current side (W|E)}} 
+{gotodead_ms 900 {ms} {waiting delay for a complete slew}} 
+{gotoread_ms 350 {ms} {waiting delay for a answer}} 
+{dead_delay_slew 1.800000 {s} {delay for a GOTO at the same place}} 
+{tempo 30 {ms} {delay before to read a command}} {problem_motor 0 {binary} {0=no pb 1=pb encoders}} 
+{park_deg_ha -90.000000 {deg} {motorRA Parking hour angle}} 
+{park_deg_dec 90.000000 {deg} {motorDEC Parking declination}} 
+{park_adu_ha 7244000.000000 {ADU} {motorRA Parking hour angle}} 
+{park_adu_dec 9532000.000000 {ADU} {motorDEC Parking declination}} 
+{gotoblocking 0 {binary} {default GOTO blocking 0|1=non_blocking|blocking}} 
+

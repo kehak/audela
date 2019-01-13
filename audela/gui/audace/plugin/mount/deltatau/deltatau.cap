@@ -1,0 +1,187 @@
+#
+# Fichier : deltatau.cap
+# Mise a jour $Id: deltatau.cap 14412 2018-04-13 18:03:34Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(deltatau,monture)                    "Delta Tau"
+set caption(deltatau,mode)                       "Mode"
+set caption(deltatau,telname)                    "Telescope Name"
+set caption(deltatau,host)                       "Host"
+set caption(deltatau,port)                       "Port"
+set caption(deltatau,raquette_tel)               "Hand controller on screen"
+
+set caption(deltatau,install_1)                  "End of Delta Tau plugin installation"
+set caption(deltatau,install_2)                  "libdeltatau.dll library updated."
+
+set caption(deltatau,port_deltatau)              "Delta Tau Port"
+set caption(deltatau,2points)                    ":"
+
+set caption(deltatau,titre_site_web)             "Reference Web Site:"
+set caption(deltatau,site_deltatau)              "http://www.deltatau.com/"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(deltatau,monture)                 "Delta Tau"
+   set caption(deltatau,mode)                    "Mode"
+   set caption(deltatau,telname)                 "Nom du télescope"
+   set caption(deltatau,host)                    "Host"
+   set caption(deltatau,port)                    "Port"
+   set caption(deltatau,raquette_tel)            "Raquette à l'écran"
+
+   set caption(deltatau,install_1)               "Fin de l'installation du plugin Delta Tau"
+   set caption(deltatau,install_2)               "La librairie libdeltatau.dll a été mise à jour."
+
+   set caption(deltatau,port_deltatau)           "Port Delta Tau"
+   set caption(deltatau,2points)                 ":"
+
+   set caption(deltatau,titre_site_web)          "Site Web de référence :"
+   set caption(deltatau,site_deltatau)           "http://www.deltatau.com/"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(deltatau,monture)                 "Delta Tau"
+   set caption(deltatau,mode)                    "Modalita`"
+   set caption(deltatau,telname)                 "Nome telescopio"
+   set caption(deltatau,host)                    "Host"
+   set caption(deltatau,port)                    "Porta"
+   set caption(deltatau,raquette_tel)            "Pulsantiera a schermo"
+
+   set caption(deltatau,install_1)               "Fine installazione del plugin Delta Tau"
+   set caption(deltatau,install_2)               "La libreria libdeltatau.dll è stata aggiornata."
+
+   set caption(deltatau,port_deltatau)           "Porta Delta Tau"
+   set caption(deltatau,2points)                 ":"
+
+   set caption(deltatau,titre_site_web)          "Sito Web di riferimento:"
+   set caption(deltatau,site_deltatau)           "http://www.deltatau.com/"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(deltatau,monture)                 "Delta Tau"
+   set caption(deltatau,mode)                    "Modo"
+   set caption(deltatau,telname)                 "Telescopio nombre"
+   set caption(deltatau,host)                    "Host"
+   set caption(deltatau,port)                    "Puerto"
+   set caption(deltatau,raquette_tel)            "Controlador virtual"
+
+   set caption(deltatau,install_1)               "Fin de la instalación del plugin Delta Tau"
+   set caption(deltatau,install_2)               "Libreria libdeltatau.dll actualizada."
+
+   set caption(deltatau,port_deltatau)           "Puerto Delta Tau"
+   set caption(deltatau,2points)                 ":"
+
+   set caption(deltatau,titre_site_web)          "Sitio Web de referencia:"
+   set caption(deltatau,site_deltatau)           "http://www.deltatau.com/"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(deltatau,monture)                 "Delta Tau"
+   set caption(deltatau,mode)                    "Modus"
+   set caption(deltatau,telname)                 "Teleskop Name"
+   set caption(deltatau,host)                    "Host"
+   set caption(deltatau,port)                    "Port"
+   set caption(deltatau,raquette_tel)            "Hand Kontroller am Bildschirm"
+
+   set caption(deltatau,install_1)               "Ende der Delta Tau-Plugin-Installation"
+   set caption(deltatau,install_2)               "Die libdeltatau.dll Bibliothek ist aktualisiert."
+
+   set caption(deltatau,port_deltatau)           "Delta Tau Port"
+   set caption(deltatau,2points)                 ":"
+
+   set caption(deltatau,titre_site_web)          "Referenz Webseite:"
+   set caption(deltatau,site_deltatau)           "http://www.deltatau.com/"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(deltatau,monture)                 "Delta Tau"
+   set caption(deltatau,mode)                    "Modo"
+   set caption(deltatau,telname)                 "Telescópio nome"
+   set caption(deltatau,host)                    "Host"
+   set caption(deltatau,port)                    "Porta"
+   set caption(deltatau,raquette_tel)            "Controlador de mão no ecrã"
+
+   set caption(deltatau,install_1)               "Fin da instalação do plugin Delta Tau"
+   set caption(deltatau,install_2)               "A livraria libdeltatau.dll foi actualizada."
+
+   set caption(deltatau,port_deltatau)           "Porta Delta Tau"
+   set caption(deltatau,2points)                 ":"
+
+   set caption(deltatau,titre_site_web)          "Site Web de referência:"
+   set caption(deltatau,site_deltatau)           "http://www.deltatau.com/"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(deltatau,monture)                 "Delta Tau"
+   set caption(deltatau,mode)                    "Mode"
+   set caption(deltatau,telname)                 "Telescope Name"
+   set caption(deltatau,host)                    "Host"
+   set caption(deltatau,port)                    "Port"
+   set caption(deltatau,raquette_tel)            "Hand controller on screen"
+
+   set caption(deltatau,install_1)               "End of Delta Tau plugin installation"
+   set caption(deltatau,install_2)               "libdeltatau.dll library updated."
+
+   set caption(deltatau,port_deltatau)           "Delta Tau Port"
+   set caption(deltatau,2points)                 ":"
+
+   set caption(deltatau,titre_site_web)          "Reference Web Site:"
+   set caption(deltatau,site_deltatau)           "http://www.deltatau.com/"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(deltatau,monture)                 "Delta Tau"
+   set caption(deltatau,mode)                    "Mode"
+   set caption(deltatau,telname)                 "Telescope Name"
+   set caption(deltatau,host)                    "Host"
+   set caption(deltatau,port)                    "Port"
+   set caption(deltatau,raquette_tel)            "Hand controller on screen"
+
+   set caption(deltatau,install_1)               "End of Delta Tau plugin installation"
+   set caption(deltatau,install_2)               "libdeltatau.dll library updated."
+
+   set caption(deltatau,port_deltatau)           "Delta Tau Port"
+   set caption(deltatau,2points)                 ":"
+
+   set caption(deltatau,titre_site_web)          "Reference Web Site:"
+   set caption(deltatau,site_deltatau)           "http://www.deltatau.com/"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(deltatau,monture)                 "Delta Tau"
+   set caption(deltatau,mode)                    "Mode"
+   set caption(deltatau,telname)                 "Telescope Name"
+   set caption(deltatau,host)                    "Host"
+   set caption(deltatau,port)                    "Port"
+   set caption(deltatau,raquette_tel)            "Hand controller on screen"
+
+   set caption(deltatau,install_1)               "End of Delta Tau plugin installation"
+   set caption(deltatau,install_2)               "libdeltatau.dll library updated."
+
+   set caption(deltatau,port_deltatau)           "Delta Tau Port"
+   set caption(deltatau,2points)                 ":"
+
+   set caption(deltatau,titre_site_web)          "Reference Web Site:"
+   set caption(deltatau,site_deltatau)           "http://www.deltatau.com/"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

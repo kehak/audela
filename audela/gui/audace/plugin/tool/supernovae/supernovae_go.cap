@@ -1,0 +1,115 @@
+#
+# Fichier : supernovae_go.cap
+# Mise a jour $Id: supernovae_go.cap 9691 2013-07-06 15:09:59Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(supernovae_go,supernovae)        "Supernovae (Acquisiton & Viewer)"
+set caption(supernovae_go,supernovae1)       "Supernovae\n(Acquisiton &\nViewer)"
+set caption(supernovae_go,help,titre)        "Help for this Tool"
+set caption(supernovae_go,help,titre1)       "Help for the Tool:"
+set caption(supernovae_go,recherche_sn)      "Search for\nsupernovae"
+set caption(supernovae_go,sn_acq)            "Sn Acq."
+set caption(supernovae_go,sn_visu)           "Sn View"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(supernovae_go,supernovae)     "Supernovae (Acquisiton & Visionneuse)"
+   set caption(supernovae_go,supernovae1)    "Supernovae\n(Acquisiton &\nVisionneuse)"
+   set caption(supernovae_go,help,titre)     "Aide de cet outil"
+   set caption(supernovae_go,help,titre1)    "Aide de l'outil :"
+   set caption(supernovae_go,recherche_sn)   "Recherche\nsupernovae"
+   set caption(supernovae_go,sn_acq)         "Sn Acq."
+   set caption(supernovae_go,sn_visu)        "Sn Visu"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(supernovae_go,supernovae)     "Supernovae (Acquisizione & Visualizzatore)"
+   set caption(supernovae_go,supernovae1)    "Supernovae\n(Acquisizione &\nVisualizzatore)"
+   set caption(supernovae_go,help,titre)     "Aiuto per questo tool"
+   set caption(supernovae_go,help,titre1)    "Aiuto per lo tool:"
+   set caption(supernovae_go,recherche_sn)   "Ricerca\nsupernovae"
+   set caption(supernovae_go,sn_acq)         "Acq. Sn"
+   set caption(supernovae_go,sn_visu)        "Vista Sn"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(supernovae_go,supernovae)     "Supernovae (Adquisición & Visor)"
+   set caption(supernovae_go,supernovae1)    "Supernovae\n(Adquisición &\nVisor)"
+   set caption(supernovae_go,help,titre)     "Ayuda para esta herramienta"
+   set caption(supernovae_go,help,titre1)    "Ajuda para del herramienta:"
+   set caption(supernovae_go,recherche_sn)   "Buscar\nsupernovae"
+   set caption(supernovae_go,sn_acq)         "Sn Adq."
+   set caption(supernovae_go,sn_visu)        "Sn Ver"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(supernovae_go,supernovae)     "Supernovae (Belichtung & Diabetrachter)"
+   set caption(supernovae_go,supernovae1)    "Supernovae\n(Belichtung &\nDiabetrachter)"
+   set caption(supernovae_go,help,titre)     "Hilfe für dieses Gerät"
+   set caption(supernovae_go,help,titre1)    "Hilfe für die Gerät:"
+   set caption(supernovae_go,recherche_sn)   "Supernovae\nsuchen"
+   set caption(supernovae_go,sn_acq)         "Sn Anschaf."
+   set caption(supernovae_go,sn_visu)        "Sn Visu"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(supernovae_go,supernovae)     "Supernovae (Aquisição & Visualizador)"
+   set caption(supernovae_go,supernovae1)    "Supernovae\n(Aquisição &\nVisualizador)"
+   set caption(supernovae_go,help,titre)     "Ajuda para esta ferramenta"
+   set caption(supernovae_go,help,titre1)    "Ajuda para del ferramenta:"
+   set caption(supernovae_go,recherche_sn)   "Procurar\nsupernova"
+   set caption(supernovae_go,sn_acq)         "Aqu. Sn"
+   set caption(supernovae_go,sn_visu)        "Visualização Sn"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(supernovae_go,supernovae)     "Supernovae (Acquisiton & Seeren)"
+   set caption(supernovae_go,supernovae1)    "Supernovae\n(Acquisiton &\nSeeren)"
+   set caption(supernovae_go,help,titre)     "Hjælp til dette værktøj"
+   set caption(supernovae_go,help,titre1)    "Hjælp til i værktøj:"
+   set caption(supernovae_go,recherche_sn)   "Søgning efter\nsupernova"
+   set caption(supernovae_go,sn_acq)         "Sn Eksponér"
+   set caption(supernovae_go,sn_visu)        "Sn Se"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(supernovae_go,supernovae)     "Supernovae (Acquisiton & Viewer)"
+   set caption(supernovae_go,supernovae1)    "Supernovae\n(Acquisiton &\nViewer)"
+   set caption(supernovae_go,help,titre)     "Help for this Tool"
+   set caption(supernovae_go,help,titre1)    "Help for the Tool:"
+   set caption(supernovae_go,recherche_sn)   "Search for\nsupernovae"
+   set caption(supernovae_go,sn_acq)         "Sn Acq."
+   set caption(supernovae_go,sn_visu)        "Sn View"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(supernovae_go,supernovae)     "Supernovae (Acquisiton & Viewer)"
+   set caption(supernovae_go,supernovae1)    "Supernovae\n(Acquisiton &\nViewer)"
+   set caption(supernovae_go,help,titre)     "Help for this Tool"
+   set caption(supernovae_go,help,titre1)    "Help for the Tool:"
+   set caption(supernovae_go,recherche_sn)   "Search for\nsupernovae"
+   set caption(supernovae_go,sn_acq)         "Sn Acq."
+   set caption(supernovae_go,sn_visu)        "Sn View"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

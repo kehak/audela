@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Fonctions de visualisation</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 18 juin 2011</p>
+<h1>Fonctions de visualisation </h1>
+<p>Les commandes de visualisation servent &agrave; afficher les donn&eacute;es des buffers &agrave; l'&eacute;cran, dans des structures Tk appel&eacute;es Tk_PhotoImages. Ces images sont cr&eacute;&eacute;es par des commandes telles que "<code>image create photo nom_de_l_image</code>", et sont affich&eacute;es dans des canvas Tk. Les sous-commandes sont appliqu&eacute;es ici &agrave; <code>visu1</code>, mais peuvent &ecirc;tre appliqu&eacute;es &agrave; toutes les autres commandes cr&eacute;&eacute;es par "<code>::visu::create ...</code>".</p>
+<h3> <a name="buf" id="buf"></a>visu1 buf ?bufNo?</h3>
+<p>Retourne le num&eacute;ro du buffer associ&eacute; &agrave; la visualisation lorsque l'argument optionnel est absent. Sinon, le buffer dans lequel la visualisation ira chercher les donn&eacute;es est le buffer num&eacute;ro <code>bufNo</code>.</p>
+<h3><a name="cut" id="cut"></a>visu1 cut ?{liste de seuils}?</h3>
+<p>Utilis&eacute;e sans argument cette sous-commande renvoie une liste contenant
+  les seuils de visualisation actuels (dans l'ordre seuil haut, seuil bas pour
+  uen image en niveau de gris, ou dans l'odre seuil haut rouge , seuil bas rouge,
+  seuil haut vert , seuil bas vert,seuil haut bleu, seuil bas bleu pour une image
+  RGB).Utilis&eacute;e avec un argument, cette commande modifie les seuils d'affichage.
+</p>
+<p>Remarques :<br>
+  Les mots-cl&eacute;s FITS MIPS-LO et MIPS-HI du buffer associ&eacute; &agrave;
+  la visu ne sont pas modifi&eacute;s par cette commande (voir la commande buf1
+  save).<br>
+  Si une liste de 6 seuils {hicutR locutR hicutG locutG hicutB locutB} est utilis&eacute;e
+  avec une image en niveau de gris, les 2 premiers seuils sont seulement utilis&eacute;s.<br>
+  Si une liste de 2 seuils {hicut locut} est utilis&eacute;e avec une image RGB,
+  les m&ecirc;me seuils seront appliqu&eacute;e aux 3 couleurs.</p>
+<blockquote>
+<p>Exemple pour une image en niveau de gris : </p>
+  <pre>visu1 cut {250 50}
+visu1 cut
+{250 50}
+</pre>
+  <p>Exemple pour une image RGB : </p>
+  <pre>visu1 cut {250 50  255 55  240 40}
+visu1 cut
+{250 50  255 55  240 40}
+</pre>
+</blockquote>
+<h3> <a name="disp" id="disp"></a>visu1 disp ?seuils?</h3>
+<p>Cette commande r&eacute;alise effectivement l'affichage en remplissant l'image
+  Tk &agrave; partir des donn&eacute;es contenues dans le buffer, des seuils,
+  de la palette, du fen&ecirc;trage, et du facteur de zoom. Si une liste est pass&eacute;e
+  en arguments, elle doit correspondre &agrave; une liste de seuils. Ces seuils
+  sont affect&eacute;s &agrave; l'image (on les retrouve donc ensuite par la sous-commande
+  "<code>visu1 cut</code>")..</p>
+<h3></h3>
+<h3> <a name="image" id="image"></a>visu1 image ?imageNo?</h3>
+<p>Retourne le num&eacute;ro de l'image Tk utilis&eacute;e pour afficher l'image en m&eacute;moire dans le buffer associ&eacute;, lorsque l'argument est absent. Sinon, indique le num&eacute;ro de l'image Tk pour l'affichage. Il est &agrave; noter que les images Tk ne sont pas naturellement num&eacute;rot&eacute;es : leur nom peut &ecirc;tre quelconque. Par contre AudeLA n'est capable de r&eacute;aliser l'affichage que dans des images Tk dont le nom d'images constitu&eacute;s du pr&eacute;fixe <code>image</code>, suivi d'un num&eacute;ro.</p>
+<h3> <a name="palette" id="palette"></a>visu1 pal ?palette?</h3>
+<p>Sans argument, cette sous-commande renvoie le nom de la palette en cours d'utilisation. Utilis&eacute;e avec un argument, elle change de palette et utilise celle sp&eacute;cifi&eacute;e en argument. Les valeurs possibles sont <code>grey</code>, <code>red1</code>, <code>red2</code>, <code>green1</code>, <code>green2</code>, <code>blue1</code>, <code>blue2</code>.</p>
+<h3><a name="pal" id="pal"></a>visu1 thickness ?epaisseur?</h3>
+<p>Sans argument, cette sous-commande renvoie le nombre de lignes utilis&eacute;es
+  pour afficher une image 1D. Utilis&eacute;e avec un argument, elle change ce
+  nombre de ligne.</p>
+<p>Valeur par defaut = 20</p>
+<blockquote>
+  <p>Exemple :</p>
+  <pre>visu1 thickness 40</pre>
+</blockquote>
+<h3></h3>
+<h3><a name="window" id="window"></a>visu1 window ?fen&ecirc;tre?</h3>
+<p>Cette commande permet de choisir une portion de l'image en m&eacute;moire &agrave;
+  afficher. Si l'argument est une liste, elle correspond &agrave; la fen&ecirc;tre
+  et doit comporter 4 &eacute;l&eacute;ments (x1, y1, x2, y2), sinon il doit valoir
+  "full". Sans argument elle retourne le mode actuel.</p>
+<h3><a name="zoom" id="zoom"></a>visu1 zoom ?val?</h3>
+<p>Cette sous-commande interagit avec le facteur de zoom entre l'image en m&eacute;moire
+  et l'image &agrave; l'&eacute;cran (il n'agit pas sur l'image d'origine). Sans
+  argument elle retourne la valeur actuelle du zoom, avec un argument elle fixe
+  le coefficient (qui doit &ecirc;tre entre 1 et 4).</p>
+<h3></h3>
+<p>&nbsp;</p>
+</body>
+
+</html>

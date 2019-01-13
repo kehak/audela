@@ -1,0 +1,475 @@
+#
+# Fichier : telescope.cap
+# Mise a jour $Id: telescope.cap 10164 2013-09-04 13:53:45Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(telescope,interro)             "?"
+set caption(telescope,init)                "Tel. Initialization"
+set caption(telescope,suivi_marche)        "Tracking On"
+set caption(telescope,suivi_arret)         "Tracking Off"
+
+set caption(telescope,inittelscp0)         "Telescope Initialization"
+set caption(telescope,inittelscp1)         "After you have aimed your scope to Gamma"
+set caption(telescope,inittelscp2)         "Cassiopeia, reset the scope by pressing"
+set caption(telescope,inittelscp3)         "twice on the Slow Speed button of the"
+set caption(telescope,inittelscp4)         "hand controller. If you chose Alioth in"
+set caption(telescope,inittelscp5)         "the Big Dipper, press the Medium Speed"
+set caption(telescope,inittelscp6)         "button twice."
+set caption(telescope,inittelscp7)         "When the window is closed, the"
+set caption(telescope,inittelscp8)         "display of the scope RA and"
+set caption(telescope,inittelscp9)         "Dec. coordinates is updated."
+
+set caption(telescope,goto)                "GOTO"
+set caption(telescope,match)               "MATCH"
+set caption(telescope,match_confirm)       "Continue?"
+set caption(telescope,match_alg_init)      "Initial Alignment"
+set caption(telescope,match_alg_add)       "Additional Alignment"
+set caption(telescope,match_cancel)        "Cancel"
+set caption(telescope,tel)                 "Mount"
+set caption(telescope,non_connecte)        "not connected"
+set caption(telescope,pas_coord1)          "No"
+set caption(telescope,pas_coord2)          "Coordinate"
+set caption(telescope,astre_est)           "The target is"
+set caption(telescope,pas_leve)            "below the horizon."
+set caption(telescope,x1)                  "x1"
+set caption(telescope,x5)                  "x5"
+set caption(telescope,200)                 "200"
+set caption(telescope,NS)                  "NS"
+set caption(telescope,HS)                  "HS"
+set caption(telescope,modele_lx200_gps)    "LX200 GPS"
+set caption(telescope,modele_gemini)       "Losmandy Gemini"
+set caption(telescope,cote_est)            "East Side"
+set caption(telescope,cote_ouest)          "West Side"
+
+set caption(telescope,mobile_etoile)       "Sidereal Tracking"
+set caption(telescope,ctl_mobile:)         "Tracking Speed Control:"
+set caption(telescope,mobile_ad)           "Right Ascension Speed"
+set caption(telescope,mobile_dec)          "Declination Speed"
+
+set caption(telescope,2points)             ":"
+
+set caption(telescope,attention)           "Warning"
+set caption(telescope,errorCoord)          "Coordinates not valid."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(telescope,interro)          "?"
+   set caption(telescope,init)             "Initialisation tél."
+   set caption(telescope,suivi_marche)     "Suivi On"
+   set caption(telescope,suivi_arret)      "Suivi Off"
+
+   set caption(telescope,inittelscp0)      "Initialisation du télescope"
+   set caption(telescope,inittelscp1)      "Après avoir pointé votre instrument sur Gamma"
+   set caption(telescope,inittelscp2)      "Cassiopée, vous devez initialiser le télescope"
+   set caption(telescope,inittelscp3)      "en appuyant 2 fois sur le bouton 'petite vitesse'"
+   set caption(telescope,inittelscp4)      "de la raquette. Si vous avez choisi Alioth dans"
+   set caption(telescope,inittelscp5)      "la Grande Ourse, vous devez appuyer 2 fois sur"
+   set caption(telescope,inittelscp6)      "le bouton 'vitesse moyenne'."
+   set caption(telescope,inittelscp7)      "A la fermeture de cette fenêtre, l'affichage des"
+   set caption(telescope,inittelscp8)      "coordonnées (Ascension Droite et Déclinaison) du"
+   set caption(telescope,inittelscp9)      "télescope sera mis à jour."
+
+   set caption(telescope,goto)             "GOTO"
+   set caption(telescope,match)            "MATCH"
+   set caption(telescope,match_confirm)    "Voulez-vous poursuivre ?"
+   set caption(telescope,match_alg_init)   "Alignement initial"
+   set caption(telescope,match_alg_add)    "Alignement additionnel"
+   set caption(telescope,match_cancel)     "Annuler"
+   set caption(telescope,tel)              "Monture"
+   set caption(telescope,non_connecte)     "non connectée"
+   set caption(telescope,pas_coord1)       "Pas de"
+   set caption(telescope,pas_coord2)       "coordonnée"
+   set caption(telescope,astre_est)        "L'astre n'est"
+   set caption(telescope,pas_leve)         "pas levé."
+   set caption(telescope,x1)               "x1"
+   set caption(telescope,x5)               "x5"
+   set caption(telescope,200)              "200"
+   set caption(telescope,NS)               "NS"
+   set caption(telescope,HS)               "HS"
+   set caption(telescope,modele_lx200_gps) "LX200 GPS"
+   set caption(telescope,modele_gemini)    "Losmandy Gemini"
+   set caption(telescope,cote_est)         "Côté est"
+   set caption(telescope,cote_ouest)       "Côté ouest"
+
+   set caption(telescope,mobile_etoile)    "Suivi sidéral"
+   set caption(telescope,ctl_mobile:)      "Contrôle de la vitesse de suivi :"
+   set caption(telescope,mobile_ad)        "Vitesse en ascension droite"
+   set caption(telescope,mobile_dec)       "Vitesse en déclinaison"
+
+   set caption(telescope,2points)          ":"
+
+   set caption(telescope,attention)        "Attention"
+   set caption(telescope,errorCoord)       "Coordonnées non valides."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(telescope,interro)          "?"
+   set caption(telescope,init)             "Inizializzazione tel."
+   set caption(telescope,suivi_marche)     "Inseguimento On"
+   set caption(telescope,suivi_arret)      "Inseguimento Off"
+
+   set caption(telescope,inittelscp0)      "Inizializzazione telescopio"
+   set caption(telescope,inittelscp1)      "Dopo aver puntato il vostro telescopio su"
+   set caption(telescope,inittelscp2)      "Gamma Cassiopeiae, inizializzare il sistema"
+   set caption(telescope,inittelscp3)      "premendo due volte il bottone 'Slow Speed'"
+   set caption(telescope,inittelscp4)      "sulla pulsantiera di controllo. Se avete scelto"
+   set caption(telescope,inittelscp5)      "Alioth nell' Orsa Maggiore, premere il pulsante"
+   set caption(telescope,inittelscp6)      "'Medium Speed' due volte."
+   set caption(telescope,inittelscp7)      "Alla chiusura di questa finestra verra`"
+   set caption(telescope,inittelscp8)      "aggiornata la visualizzazione delle"
+   set caption(telescope,inittelscp9)      "coordinate (Ascensione Retta e Declinazione)."
+
+   set caption(telescope,goto)             "GOTO"
+   set caption(telescope,match)            "MATCH"
+   set caption(telescope,match_confirm)    "Volete continuare?"
+   set caption(telescope,match_alg_init)   "Allineamento iniziale"
+   set caption(telescope,match_alg_add)    "Allineamento addizionale"
+   set caption(telescope,match_cancel)     "Cancellare"
+   set caption(telescope,tel)              "Montatura"
+   set caption(telescope,non_connecte)     "non connessa"
+   set caption(telescope,pas_coord1)       "Nessuna"
+   set caption(telescope,pas_coord2)       "coordinata"
+   set caption(telescope,astre_est)        "Il campo si trova"
+   set caption(telescope,pas_leve)         "sotto l'orizzonte."
+   set caption(telescope,x1)               "x1"
+   set caption(telescope,x5)               "x5"
+   set caption(telescope,200)              "200"
+   set caption(telescope,NS)               "NS"
+   set caption(telescope,HS)               "HS"
+   set caption(telescope,modele_lx200_gps) "LX200 GPS"
+   set caption(telescope,modele_gemini)    "Losmandy Gemini"
+   set caption(telescope,cote_est)         "Lato est"
+   set caption(telescope,cote_ouest)       "Lato ovest"
+
+   set caption(telescope,mobile_etoile)    "Tracciamento siderale"
+   set caption(telescope,ctl_mobile:)      "Controllo velocita` di inseguimento:"
+   set caption(telescope,mobile_ad)        "Velocita` in ascensione retta"
+   set caption(telescope,mobile_dec)       "Velocita` in declinazione"
+
+   set caption(telescope,2points)          ":"
+
+   set caption(telescope,attention)        "Attenzione"
+   set caption(telescope,errorCoord)       "Coordinates non valida."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(telescope,interro)          "?"
+   set caption(telescope,init)             "Inicialización tel."
+   set caption(telescope,suivi_marche)     "Seguimiento On"
+   set caption(telescope,suivi_arret)      "Seguimiento Off"
+
+   set caption(telescope,inittelscp0)      "Inicialización de telescopio"
+   set caption(telescope,inittelscp1)      "Despues de apuntar el instrumento a Gamma"
+   set caption(telescope,inittelscp2)      "Cassiopeia, hay que inicializar el telescopio"
+   set caption(telescope,inittelscp3)      "presionando dos veces el boton 'velocidad baja'"
+   set caption(telescope,inittelscp4)      "del controlador de mano. Si ha escogido Alioth"
+   set caption(telescope,inittelscp5)      "en la Osa Mayor, debe presionar dos veces"
+   set caption(telescope,inittelscp6)      "el boton'velocidad media'."
+   set caption(telescope,inittelscp7)      "La presentación de las coordenadas"
+   set caption(telescope,inittelscp8)      "Ascensión Recta y Declinación del telescopio"
+   set caption(telescope,inittelscp9)      "se actualizan al cerrar esta ventana."
+
+   set caption(telescope,goto)             "GOTO"
+   set caption(telescope,match)            "MATCH"
+   set caption(telescope,match_confirm)    "Continuar?"
+   set caption(telescope,match_alg_init)   "Alineación inicial"
+   set caption(telescope,match_alg_add)    "Alineamiento adicional"
+   set caption(telescope,match_cancel)     "Cancelar"
+   set caption(telescope,tel)              "Montura"
+   set caption(telescope,non_connecte)     "no conectado"
+   set caption(telescope,pas_coord1)       "Sin"
+   set caption(telescope,pas_coord2)       "coordenada"
+   set caption(telescope,astre_est)        "El astro está"
+   set caption(telescope,pas_leve)         "bajo el horizonte."
+   set caption(telescope,x1)               "x1"
+   set caption(telescope,x5)               "x5"
+   set caption(telescope,200)              "200"
+   set caption(telescope,NS)               "NS"
+   set caption(telescope,HS)               "HS"
+   set caption(telescope,modele_lx200_gps) "LX200 GPS"
+   set caption(telescope,modele_gemini)    "Losmandy Gemini"
+   set caption(telescope,cote_est)         "Lado Este"
+   set caption(telescope,cote_ouest)       "Lado Oeste"
+
+   set caption(telescope,mobile_etoile)    "Seguimiento sidéreo"
+   set caption(telescope,ctl_mobile:)      "Ctrl. de la velocidad de seguimiento:"
+   set caption(telescope,mobile_ad)        "Velocidad en Ascensión Recta"
+   set caption(telescope,mobile_dec)       "Velocidad en Declinación"
+
+   set caption(telescope,2points)          ":"
+
+   set caption(telescope,attention)        "Cuidado"
+   set caption(telescope,errorCoord)       "Coordenadas no válida."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(telescope,interro)          "?"
+   set caption(telescope,init)             "Tel. Initialisieren"
+   set caption(telescope,suivi_marche)     "Folgung auf"
+   set caption(telescope,suivi_arret)      "Folgung aus"
+
+   set caption(telescope,inittelscp0)      "Teleskop Initialisieren"
+   set caption(telescope,inittelscp1)      "Nachdem sie eures Gerät auf Gamma Cassiopee positioniert"
+   set caption(telescope,inittelscp2)      "haben, müssen sie eures Teleskop initialisieren"
+   set caption(telescope,inittelscp3)      "bei Zweimahl auf dem Knopf 'Kleines Tempo' von"
+   set caption(telescope,inittelscp4)      "den Hand Kontroller drücken. Haben sie Alioth in das große"
+   set caption(telescope,inittelscp5)      "Bär gewählt, müssen sie zweimal auf dem Knopf"
+   set caption(telescope,inittelscp6)      "'Mittelwert Tempo' drücken."
+   set caption(telescope,inittelscp7)      "Wenn das Fenster schließt, isst das Anzeigen des"
+   set caption(telescope,inittelscp8)      "Teleskop Koordinaten (Rektaszension und"
+   set caption(telescope,inittelscp9)      "Deklination) aktualisiert."
+
+   set caption(telescope,goto)             "GOTO"
+   set caption(telescope,match)            "MATCH"
+   set caption(telescope,match_confirm)    "Vollen sie weiterführen ?"
+   set caption(telescope,match_alg_init)   "Initiale Linie"
+   set caption(telescope,match_alg_add)    "Zusatz Linie"
+   set caption(telescope,match_cancel)     "Annullieren"
+   set caption(telescope,tel)              "Montierung"
+   set caption(telescope,non_connecte)     "nicht verbun."
+   set caption(telescope,pas_coord1)       "Keine"
+   set caption(telescope,pas_coord2)       "Koordinate"
+   set caption(telescope,astre_est)        "Das Gestirn ist"
+   set caption(telescope,pas_leve)         "unter dem Horizont."
+   set caption(telescope,x1)               "x1"
+   set caption(telescope,x5)               "x5"
+   set caption(telescope,200)              "200"
+   set caption(telescope,NS)               "NS"
+   set caption(telescope,HS)               "HS"
+   set caption(telescope,modele_lx200_gps) "LX200 GPS"
+   set caption(telescope,modele_gemini)    "Losmandy Gemini"
+   set caption(telescope,cote_est)         "Ost Seite"
+   set caption(telescope,cote_ouest)       "West Seite"
+
+   set caption(telescope,mobile_etoile)    "Siderische Folgung"
+   set caption(telescope,ctl_mobile:)      "Folgung Tempo Kontrolle:"
+   set caption(telescope,mobile_ad)        "Rektaszension Tempo"
+   set caption(telescope,mobile_dec)       "Deklination Tempo"
+
+   set caption(telescope,2points)          ":"
+
+   set caption(telescope,attention)        "Achtung"
+   set caption(telescope,errorCoord)       "Ungültig Koordinaten."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(telescope,interro)          "?"
+   set caption(telescope,init)             "Inicialização do Telescópio"
+   set caption(telescope,suivi_marche)     "Seguimento On"
+   set caption(telescope,suivi_arret)      "Seguimento Off"
+
+   set caption(telescope,inittelscp0)      "Inicialização do Telescópio"
+   set caption(telescope,inittelscp1)      "Depois de ter apontado o seu telescópio para Gamma"
+   set caption(telescope,inittelscp2)      "Cassiopeia, inicialize o telescópio fazendo"
+   set caption(telescope,inittelscp3)      "duplo-clique no botão de baixa velocidade do"
+   set caption(telescope,inittelscp4)      "controlador de mão. Se escolher Alioth na"
+   set caption(telescope,inittelscp5)      "Ursa Maior, clique no botão de Velocidade Média"
+   set caption(telescope,inittelscp6)      "com duplo-clique."
+   set caption(telescope,inittelscp7)      "Quando a janela é fechada, o"
+   set caption(telescope,inittelscp8)      "display das coordenadas AR e DEC"
+   set caption(telescope,inittelscp9)      "é actualizado."
+
+   set caption(telescope,goto)             "GOTO"
+   set caption(telescope,match)            "MATCH"
+   set caption(telescope,match_confirm)    "Continuar?"
+   set caption(telescope,match_alg_init)   "Alinhamento Inicial"
+   set caption(telescope,match_alg_add)    "Alinhamento Adicional"
+   set caption(telescope,match_cancel)     "Cancelar"
+   set caption(telescope,tel)              "Montagem"
+   set caption(telescope,non_connecte)     "Disconectado"
+   set caption(telescope,pas_coord1)       "Não"
+   set caption(telescope,pas_coord2)       "Coordenada"
+   set caption(telescope,astre_est)        "O alvo é"
+   set caption(telescope,pas_leve)         "abaixo do horizonte."
+   set caption(telescope,x1)               "x1"
+   set caption(telescope,x5)               "x5"
+   set caption(telescope,200)              "200"
+   set caption(telescope,NS)               "NS"
+   set caption(telescope,HS)               "HS"
+   set caption(telescope,modele_lx200_gps) "LX200 GPS"
+   set caption(telescope,modele_gemini)    "Losmandy Gemini"
+   set caption(telescope,cote_est)         "Lado este"
+   set caption(telescope,cote_ouest)       "Lado oeste"
+
+   set caption(telescope,mobile_etoile)    "Seguimento sideral"
+   set caption(telescope,ctl_mobile:)      "Controlo da velocidade de seguimento:"
+   set caption(telescope,mobile_ad)        "Velocidade em ascensão recta"
+   set caption(telescope,mobile_dec)       "Velocidade em declinação"
+
+   set caption(telescope,2points)          ":"
+
+   set caption(telescope,attention)        "Aviso"
+   set caption(telescope,errorCoord)       "Coordenadas não válida."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(telescope,interro)          "?"
+   set caption(telescope,init)             "Tel. Initialization"
+   set caption(telescope,suivi_marche)     "Tracking On"
+   set caption(telescope,suivi_arret)      "Tracking Off"
+
+   set caption(telescope,inittelscp0)      "Telescope Initialization"
+   set caption(telescope,inittelscp1)      "After you have aimed your scope to Gamma"
+   set caption(telescope,inittelscp2)      "Cassiopeia, reset the scope by pressing"
+   set caption(telescope,inittelscp3)      "twice on the Slow Speed button of the"
+   set caption(telescope,inittelscp4)      "hand controller. If you chose Alioth in"
+   set caption(telescope,inittelscp5)      "the Big Dipper, press the Medium Speed"
+   set caption(telescope,inittelscp6)      "button twice."
+   set caption(telescope,inittelscp7)      "When the window is closed, the"
+   set caption(telescope,inittelscp8)      "display of the scope RA and"
+   set caption(telescope,inittelscp9)      "Dec. coordinates is updated."
+
+   set caption(telescope,goto)             "GOTO"
+   set caption(telescope,match)            "MATCH"
+   set caption(telescope,match_confirm)    "Continue?"
+   set caption(telescope,match_alg_init)   "Initial Alignment"
+   set caption(telescope,match_alg_add)    "Additional Alignment"
+   set caption(telescope,match_cancel)     "Cancel"
+   set caption(telescope,tel)              "Mount"
+   set caption(telescope,non_connecte)     "not connected"
+   set caption(telescope,pas_coord1)       "No"
+   set caption(telescope,pas_coord2)       "Coordinate"
+   set caption(telescope,astre_est)        "The target is"
+   set caption(telescope,pas_leve)         "below the horizon."
+   set caption(telescope,x1)               "x1"
+   set caption(telescope,x5)               "x5"
+   set caption(telescope,200)              "200"
+   set caption(telescope,NS)               "NS"
+   set caption(telescope,HS)               "HS"
+   set caption(telescope,modele_lx200_gps) "LX200 GPS"
+   set caption(telescope,modele_gemini)    "Losmandy Gemini"
+   set caption(telescope,cote_est)         "East Side"
+   set caption(telescope,cote_ouest)       "West Side"
+
+   set caption(telescope,mobile_etoile)    "Sidereal Tracking"
+   set caption(telescope,ctl_mobile:)      "Tracking Speed Control:"
+   set caption(telescope,mobile_ad)        "Right Ascension Speed"
+   set caption(telescope,mobile_dec)       "Declination Speed"
+
+   set caption(telescope,2points)          ":"
+
+   set caption(telescope,attention)        "Warning"
+   set caption(telescope,errorCoord)       "Coordinates not valid."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(telescope,interro)          "?"
+   set caption(telescope,init)             "Tel. Initialization"
+   set caption(telescope,suivi_marche)     "Tracking On"
+   set caption(telescope,suivi_arret)      "Tracking Off"
+
+   set caption(telescope,inittelscp0)      "Telescope Initialization"
+   set caption(telescope,inittelscp1)      "After you have aimed your scope to Gamma"
+   set caption(telescope,inittelscp2)      "Cassiopeia, reset the scope by pressing"
+   set caption(telescope,inittelscp3)      "twice on the Slow Speed button of the"
+   set caption(telescope,inittelscp4)      "hand controller. If you chose Alioth in"
+   set caption(telescope,inittelscp5)      "the Big Dipper, press the Medium Speed"
+   set caption(telescope,inittelscp6)      "button twice."
+   set caption(telescope,inittelscp7)      "When the window is closed, the"
+   set caption(telescope,inittelscp8)      "display of the scope RA and"
+   set caption(telescope,inittelscp9)      "Dec. coordinates is updated."
+
+   set caption(telescope,goto)             "GOTO"
+   set caption(telescope,match)            "MATCH"
+   set caption(telescope,match_confirm)    "Continue?"
+   set caption(telescope,match_alg_init)   "Initial Alignment"
+   set caption(telescope,match_alg_add)    "Additional Alignment"
+   set caption(telescope,match_cancel)     "Cancel"
+   set caption(telescope,tel)              "Mount"
+   set caption(telescope,non_connecte)     "not connected"
+   set caption(telescope,pas_coord1)       "No"
+   set caption(telescope,pas_coord2)       "Coordinate"
+   set caption(telescope,astre_est)        "The target is"
+   set caption(telescope,pas_leve)         "below the horizon."
+   set caption(telescope,x1)               "x1"
+   set caption(telescope,x5)               "x5"
+   set caption(telescope,200)              "200"
+   set caption(telescope,NS)               "NS"
+   set caption(telescope,HS)               "HS"
+   set caption(telescope,modele_lx200_gps) "LX200 GPS"
+   set caption(telescope,modele_gemini)    "Losmandy Gemini"
+   set caption(telescope,cote_est)         "East Side"
+   set caption(telescope,cote_ouest)       "West Side"
+
+   set caption(telescope,mobile_etoile)    "Sidereal Tracking"
+   set caption(telescope,ctl_mobile:)      "Tracking Speed Control:"
+   set caption(telescope,mobile_ad)        "Right Ascension Speed"
+   set caption(telescope,mobile_dec)       "Declination Speed"
+
+   set caption(telescope,2points)          ":"
+
+   set caption(telescope,attention)        "Warning"
+   set caption(telescope,errorCoord)       "Coordinates not valid."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(telescope,interro)          "?"
+   set caption(telescope,init)             "Tel. Initialization"
+   set caption(telescope,suivi_marche)     "Tracking On"
+   set caption(telescope,suivi_arret)      "Tracking Off"
+
+   set caption(telescope,inittelscp0)      "Telescope Initialization"
+   set caption(telescope,inittelscp1)      "After you have aimed your scope to Gamma"
+   set caption(telescope,inittelscp2)      "Cassiopeia, reset the scope by pressing"
+   set caption(telescope,inittelscp3)      "twice on the Slow Speed button of the"
+   set caption(telescope,inittelscp4)      "hand controller. If you chose Alioth in"
+   set caption(telescope,inittelscp5)      "the Big Dipper, press the Medium Speed"
+   set caption(telescope,inittelscp6)      "button twice."
+   set caption(telescope,inittelscp7)      "When the window is closed, the"
+   set caption(telescope,inittelscp8)      "display of the scope RA and"
+   set caption(telescope,inittelscp9)      "Dec. coordinates is updated."
+
+   set caption(telescope,goto)             "GOTO"
+   set caption(telescope,match)            "MATCH"
+   set caption(telescope,match_confirm)    "Continue?"
+   set caption(telescope,match_alg_init)   "Initial Alignment"
+   set caption(telescope,match_alg_add)    "Additional Alignment"
+   set caption(telescope,match_cancel)     "Cancel"
+   set caption(telescope,tel)              "Mount"
+   set caption(telescope,non_connecte)     "not connected"
+   set caption(telescope,pas_coord1)       "No"
+   set caption(telescope,pas_coord2)       "Coordinate"
+   set caption(telescope,astre_est)        "The target is"
+   set caption(telescope,pas_leve)         "below the horizon."
+   set caption(telescope,x1)               "x1"
+   set caption(telescope,x5)               "x5"
+   set caption(telescope,200)              "200"
+   set caption(telescope,NS)               "NS"
+   set caption(telescope,HS)               "HS"
+   set caption(telescope,modele_lx200_gps) "LX200 GPS"
+   set caption(telescope,modele_gemini)    "Losmandy Gemini"
+   set caption(telescope,cote_est)         "East Side"
+   set caption(telescope,cote_ouest)       "West Side"
+
+   set caption(telescope,mobile_etoile)    "Sidereal Tracking"
+   set caption(telescope,ctl_mobile:)      "Tracking Speed Control:"
+   set caption(telescope,mobile_ad)        "Right Ascension Speed"
+   set caption(telescope,mobile_dec)       "Declination Speed"
+
+   set caption(telescope,2points)          ":"
+
+   set caption(telescope,attention)        "Warning"
+   set caption(telescope,errorCoord)       "Coordinates not valid."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

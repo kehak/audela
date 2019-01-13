@@ -1,0 +1,532 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <title>mkLibsdl Manual</title>
+  <meta http-equiv="Content-Type" content="text/html"/>
+  <meta name="DESCRIPTION" content="Tcl/Tk mkLibsdl libsdl"/>
+  <meta name="AUTHOR"      content="Michael Kraus"/>
+  <meta name="KEYWORDS"    content="Tcl, Tk, Tcl/Tk, Scriptics, Scripting, Programming, Extension, Package, SDL, libsdl, mkLibsdl"/>
+  <style type="text/css"><!--
+    body { font-family: Lucida Sans Unicode, Arial, Helvetica }
+    p    { font-family: Arial, Helvetica; font-size: .8em; margin: 1em }
+    h1   { font-size: 1.2em; font-weight: normal; color: #000000; background: #FFFF40; padding: 0.4em }
+    h2   { font-size: 1.0em; font-weight: normal; color: #000080; background: #DDDDDD; padding: 0.1em }
+    h3   { font-size: 0.8em; font-weight: normal; color: #D00000 }
+    h6   { font-size: 0.7em; font-weight: normal; margin: 1em }
+    em   { font-size: 1.0em; font-weight: normal; font-style: normal; color: #D00000 }
+    pre  { color: blue; margin: 1em 1em 1em 1em }
+    quote { font-style: italic}
+    ul   { font-family: Arial, Helvetica; font-size: .8em; margin: 1em 1em 1em 3em }
+    a    { text-decoration: none }
+    a:hover { text-decoration: underline; color: red }
+    img  { float: right; clear: right; margin: .5em }
+  --></style>
+</head>
+
+<body>
+  <h1><img src="images/TclLogo.gif" alt=""/>&nbsp;mkLibsdl 1.0 Manual</h1>
+  <h6>Permission to use, copy, modify, and distribute this software and its documentation
+  for any purpose and without fee is hereby granted. The author makes no representations
+  about the suitability of this software for any purpose.  It is provided "as is" without
+  express or implied warranty.  By use of this software the user agrees to indemnify and
+  hold harmless the author from any claims or liability for loss arising out of such use.<br/>&nbsp;</h6>
+
+  <h2>&nbsp;CONTENTS</h2>
+  <p>
+    mkLibsdl 1.0 - A package for joystick and CD-ROM control, based on <a href="http://libsdl.org">the SDL library</a>.
+  </p>
+  <p>
+    <a href="#introduction">Introduction</a><br/>
+    <a href="#commands">Commands</a><br/>
+    <a href="#notes">Notes</a><br/>
+    <a href="#examples">Examples</a><br/>
+    <a href="#installation">Installation</a><br/>
+    <a href="#changes">Changes</a><br/>
+    <a href="#author">Author</a><br/>
+  </p>
+
+  <h2><a name="introduction">&nbsp;INTRODUCTION</a></h2>
+  <p>
+    mkLibsdl wraps a certain part of the <a href="http://libsdl.org">SDL library</a> for the Tcl world: 
+    the joystick module and the CD-Rom module.
+  </p>
+  <p>
+    What is SDL? Here's a quote from their <a href="http://libsdl.org">web site</a>:
+    <quote>'Simple DirectMedia Layer is a cross-platform multimedia library designed to provide low level access to 
+    audio, keyboard, mouse, joystick, 3D hardware via OpenGL, and 2D video framebuffer. It is used by MPEG playback software,
+    emulators, and many popular games,[...]'</quote>
+  </p>
+  <p>
+    From this all, mkLibsdl wraps the <a href="#joystick">joystick</a> and the <a href="#cdrom">CD-ROM</a> module. Most of the other parts of SDL
+    are already covered by Tcl/Tk or by other packages.
+    Note that the term 'joystick' should read 'game controller', since SDL is not limited to the stick
+    part but also handles balls, hats and buttons usually found on game controllers.
+  </p>
+
+  <h2><a name="commands">&nbsp;COMMANDS</a></h2>
+
+  <h3><a name="joystick">joystick ?args ...?</a></h3>
+  <p>
+    This command lets you query your connected joysticks
+    and their control elements: buttons, balls, axis and hats.
+    It also comes with a new event handler type for joysticks, 
+    whose handling is much like that of the <em>fileevent</em> command.
+  </p>
+
+  <h3>joystick count</h3>
+  <p>
+    This command returns the number of connected joysticks. 
+    If you connect or disconnect joysticks while your Tcl program is running, then this is <i>not</i> detected by the SDL library.
+    You need to call <em>joystick rescan</em> instead, see below.
+  </p>
+
+  <h3>joystick names</h3>
+  <p>
+    This returns a regular Tcl list with the names of all connected joysticks. 
+    It's the name, with which you identify a joystick, not the position in the list.
+    <em>joystick count</em> and <em>llength [joystick names]</em> are equivalent.
+  </p>
+
+  <h3>joystick index <i>pattern</i></h3>
+  <p>
+    Convenience function to help identify a joystick.
+    The command returns the numeric index of the joystick whose name matches the given glob-style and case-insensitve <em>pattern</em>.
+    This index is used in all subsequent commands and must range between <em>0</em> and <em>[joystick count]-1</em>.
+    If no joystick matches the pattern, or if more than one joystick matches the pattern, an error is returned.
+  </p>
+
+  <h3>joystick name <i>index</i></h3>
+  <p>
+    Convenience function to return the name of the joystick with a given <em>index</em>.
+    The equivalent to it is <em>lindex [joystick names] index</em>, but this one has some error handling.
+  </p>
+
+  <h3>joystick rescan</h3>
+  <p>
+    Closes and re-opens all joysticks in the underlying SDL library, so that joysticks that have been disconnected
+    or connected in the meantime are detected. 
+    Note that your indexes that were valid prior to calling <em>joystick rescan</em> may now be invalid!
+    Use e.g. <em>joystick index</em> to identify the joysticks again, since the numerical index may have changed.
+  </p>
+
+  <h3>joystick info <i>index</i> <i>option</i></h3>
+  <p>
+    This command returns information about the joystick specified by <em>index</em>. 
+    The <em>option</em> argument may be one of:
+    </br></br>
+    <em>axes</em>: Returns the number of axes of the joystick (usually 2 for each analog joystick).</br>
+    <em>balls</em>: Returns the number of trackballs in the joystick.</br>
+    <em>hats</em>: Returns the number of hats on the joystick (the four-way cross-shaped elements).</br>
+    <em>buttons</em>: Returns the number of buttons on the joystick.</br>
+  </p>
+
+  <h3>joystick configure <i>index</i> <i>option ?value option value ...?</i></h3>
+  <p>
+    Configures or returns the settings for the maximum value and the dead zone of a joystick's axes.
+    You can either pass option-value pairs to set these values, or you can pass exactly one option
+    without a value to return the current value of the option.
+    If you pass empty strings {} as option values, SDL's default values are set (see below).
+    The <em>option</em> argument may be one of:
+    </br></br>
+    <em>-maxvalue</em></br>
+    The maximum value is the value that is returned when the stick is at its dead stop on either end.
+    With this option you can specify or return this value. If you specify an integer,
+    only integers are returned with <em>joystick get</em> and <em>joystick event peek</em>.
+    If you secify a floating point value, then floating point values are returned likewise.
+    Example: <em>-maxvalue 1000</em> sets the range to -1000..1000 in integer numbers, whereas
+    <em>-maxvalue 1.0</em> sets the range to -1...1 in floating point numbers.
+    The default value range of SDL is -32768..32767 (non symmetric!).
+    </br></br>
+    <em>-deadzone</em></br>
+    The dead zone value is the threshold, below which the stick position is always returned as 0 (zero).
+    If the joystick is only tipped a little, you may want to supress any movement in your 
+    application. This can be achieved by setting a dead zone value. 
+    The dead zone value is always relative to the <em>-maxvalue</em> setting: E.g. if you configure
+    <em>-maxvalue 1.0 -deadzone 0.1</em>, any value in the range of -0.1..0.1 is returned as 0.
+    The default values of SDL is 0 (i.e., no dead zone).
+  </p>
+
+  <h3>joystick get <i>index</i> <i>option</i> <i>control</i></h3>
+  <p>
+    This command returns the state of an element of the joystick specified by <em>index</em>. 
+    With the <em>option</em> argument you specify the control type (e.g. buttons)
+    and with the <em>control</em> argument you specify which control exactly it should be (e.g. button no. 5).
+    The <em>option</em> argument may be one of:
+    </br></br>
+    <em>axis</em>: Returns the position of the axis specified by <em>control</em> in the range set by <em>joystick configure</em>.</br>
+    <em>ball</em>: Returns the relative movement of the ball specified by <em>control</em> as a two-element list for x and y direction.</br>
+    <em>hat</em>: Returns the state of the hat specified by <em>control</em> as an ORed combination of bits: 1 for up, 2 for right, 4 for down and 8 for left.</br>
+    <em>button</em>: Returns the state of the button specified by <em>control</em>: 1 for pressed, 0 for not pressed.</br>
+  </p>
+
+  <h3>joystick event <i>option</i> <i>?arg ...?</i></h3>
+  <p>
+    This command provides an event mechanism for joysticks. 
+    You can set up a callback procedure that is evaluated every time any control on any joystick has changed its value.
+    In the callback procedure you pick up the event data and process it.
+    The syntax of the sub-commands is:
+    </br></br>
+    <em>joystick event eval <i>?script?</i></em></br>
+    Defines a Tcl script which is evaluated each time a joystick event occurs, and is usually a procedure.
+    No arguments are appended to that script.
+    If you specify an empty string, the event handler is removed.
+    If you ommit this argument, the current script is returned.
+    </br></br>
+    <em>joystick event peek</em></br>
+    Returns the data of the joystick event, and is usually called in the event handler script.
+    The return value is a Tcl list with keywoards and values, which is suitable for <em>array set</em>.
+    The list elements are...</br>
+    ...for axis events: <em>joystick <i>index</i> axis <i>axis</i> value <i>value</i></em></br>
+    ...for ball events: <em>joystick <i>index</i> ball <i>ball</i> xrel <i>value</i> yrel <i>value</i></em></br>
+    ...for hat events: <em>joystick <i>index</i> hat <i>hat</i> value <i>value</i></em></br>
+    ...for button events: <em>joystick <i>index</i> button <i>button</i> value <i>value</i></em></br>
+    The values of the various control types are those returned with <em>joystick get</em>. 
+    </br></br>
+    <em>joystick event poll</em></br>
+    Almost identical to <em>joystick event peek</em>, except that, in addition, all joysticks are queried by SDL for new events first.
+    This is necessary, if you do not use <em>joystick event eval</em> but have your own polling mechanism
+    (e.g. because you are polling anyway already, and need to stay in a defined clock cycle).
+    With a callback script, the underlying event handler does the joystick query internally, so you don't need to do it again and can use <em>joystick event peek</em>.
+    Conversely, doing a <em>joystick event poll</em> instead of a <em>joystick event peek</em> in a callback script is of no harm.
+    </br></br>
+  </p>
+
+  <h3><a name="cdrom">cdrom ?args ...?</a></h3>
+  <p>
+    This command wraps the CD-ROM module of the SDL libary.
+    It allows you to control and play CDs by track and even single frames.
+  </p>
+
+  <h3>cdrom count</h3>
+  <p>
+    This command returns the number of connected CD-ROM drives. 
+    If you connect or unplug CD-ROM drives while your Tcl program is running, 
+    then this is <i>not</i> detected by the SDL library.
+    You need to call <em>cdrom rescan</em> instead, see below.
+  </p>
+
+  <h3>cdrom names</h3>
+  <p>
+    This returns a regular Tcl list with the names of all connected CD-ROM drives.
+    It's the name, with which you identify a joystick, not the position in the list.
+    <em>cdrom count</em> and <em>llength [cdrom names]</em> are equivalent.
+  </p>
+
+  <h3>cdrom index <i>pattern</i></h3>
+  <p>
+    Convenience function to help identify a joystick.
+    The command returns the numeric index of the drive whose name matches the given glob-style and case-insensitve <em>pattern</em>.
+    This index is used in all subsequent commands and must range between <em>0</em> and <em>[cdrom count]-1</em>.
+    If no drive matches the pattern, or if more than one drive matches the pattern, an error is returned.
+  </p>
+
+  <h3>cdrom name <i>index</i></h3>
+  <p>
+    Convenience function to return the name of the CD-ROM drives with a given <em>index</em>.
+    The equivalent to it is <em>lindex [cdrom names] index</em>, but this one has some error handling.
+  </p>
+
+  <h3>cdrom rescan</h3>
+  <p>
+    Closes and re-opens all CD-ROM drives in the underlying SDL library, so that drives that
+    have been added or unplugged in the meantime are detected. 
+    Note that your indexes that were valid prior to calling <em>cdrom rescan</em> may now be invalid!
+    Use e.g. <em>cdrom index</em> to identify the drives again, since the numerical index may have changed.
+  </p>
+
+  <h3>cdrom info <i>index</i> <i>option</i></h3>
+  <p>
+    This command returns information about the CD-ROM drive specified by <em>index</em>. 
+    The <em>option</em> argument may be one of:
+    </br></br>
+    <em>status</em>:  Returns one of <em>trayempty, stopped, playing, paused</em> or <em>error</em>. Self-explaining.</br>
+    <em>loaded</em>:  Returns 1 or 0, depending if a CD is in the drive or not.</br>
+    <em>tracks</em>:  Returns the number of data and audio tracks on the CD, if its loaded, or 0 (zero).</br>
+    <em>fps</em>:     Returns the number of frames per second. Calls to <em>cdrom play</em> take a frame number to play parts of a track.</br>
+    <em>current</em>: When playing, the current track and frame is returned as a two-element list, or {0 0} when stopped.</br>
+  </p>
+
+  <h3>cdrom trackinfo <i>index</i> <i>trackno</i> <i>option</i></h3>
+  <p>
+    This command returns information about a particular track on a CD. 
+    The <em>option</em> argument may be one of:
+    </br></br>
+    <em>type</em>:   Returns either <em>audio</em> or <em>data</em> for the given track. Self-explaining.</br>
+    <em>length</em>: Returns the number of frames of the given track.</br>
+    <em>offset</em>: Returns the starting frame of the given track, relative to the entire CD.</br>
+  </p>
+
+  <h3>cdrom play <i>index</i> ?-track <i>value</i>? ?-frame <i>value</i>? ?-numtracks <i>value</i>? ?-numframes <i>value</i>?</h3>
+  <p>
+    Plays the CD starting at the track specified by <em>-track</em> (or the first track), for <em>-numtracks</em> tracks (or all tracks).
+    Option <em>-frame</em> specifies the frame offset, from the beginning of the start track, at which to start.
+    <em>-numframes</em> is the frame offset, from the beginning of the last track (track+numtracks), at which to end playing.
+    With no arguments given, the entire CD is played from the beginning.
+    All options default to 0 (zero). Data tracks are ignored.
+  </p>
+
+  <h3>cdrom stop <i>index</i></h3>
+  <p>
+    Stops playing of the CD. Does nothing if the CD is not currently playing anyways.
+  </p>
+
+  <h3>cdrom pause <i>index</i></h3>
+  <p>
+    Pauses the CD. Does nothing special if the CD is not currently playing.
+  </p>
+
+  <h3>cdrom resume <i>index</i></h3>
+  <p>
+    Resumes playing a previously paused CD. Does nothing if the CD is not currently paused.
+  </p>
+
+  <h3>cdrom eject<i>index</i></h3>
+  <p>
+    Ejects the CD.
+  </p>
+
+
+  <h2><a name="notes">&nbsp;NOTES</a></h2>
+
+  <h3>Credits</h3>
+  <p>
+    This extension is based on the great work that was put into SDL.
+    Please <a href="http://libsdl.org">check out the site</a> for newest releases, ready-to-use binary downloads and documentation.
+  </p>
+
+  <h3>General</h3>
+  <ul>
+    <li>Since the SDL library is a cross-platform software, mkLibsdl is supposed to work on all platforms where Tcl/Tk and SDL is available.</li>
+    <li>The wrappers are rather straight, while attempting to provide a Tcl-style syntax instead of an SDL-style syntax.</li>
+    <li>I made the observation that a game controller with one hat but no analog stick lets the hat appear as a stick with two axes.</li>
+    <li>Also, I couldn't test the ball functions, because my joystick don't got balls...</li>
+    <li>I couldn't make function SDL_CDPlay() work on my computer, but SDL_CDPlayTracks() is wrapped with <em>cdrom play</em>
+  </ul>
+
+  <h3>Internal</h3>
+  <ul>
+    <li>The event handler <em>joystick event eval</em> cannot set up callbacks for a particular joystick, because it's not supported by SDL.</li>
+    <li>The values of the joystick controls retrieved by <em>joystick get</em> are identical to those of SDL.</li>
+    <li>The event handler is based on polling, since the SDL function SDL_WaitEvent() does internally the same.</li>
+    <li>mkLibsdl opens and closes the joysticks and CD-ROMs (necessary in SDL) automatically.</li>
+    <li>mkLibsdl always calls SDL_CDStatus() prior to all functions where this is recommended by the SDL docs.</li>
+  </ul>
+
+  <h2><a name="examples">&nbsp;EXAMPLES</a></h2>
+
+  <h3>
+    Identify my RumblePad game controller
+  </h3>
+
+  <pre>
+    % package require mkLibsdl
+    1.0
+    % joystick count
+    2
+    % joystick names
+    {Logitech Cordless RumblePad 2 USB} {Logitech(R) Precision(TM) Gamepad}
+    % joystick index *logitech*
+    ambiguous pattern '*logitech*'
+    % joystick index *rumble*
+    0
+    % joystick name 0
+    Logitech Cordless RumblePad 2 USB
+    %
+  </pre>
+
+  <h3>
+    See what it's got. 4 axes means two analog joysticks.
+  </h3>
+
+  <pre>
+    % joystick info 0 axes
+    4
+    % joystick info 0 balls
+    0
+    % joystick info 0 hats
+    1
+    % joystick info 0 buttons
+    12
+    %
+  </pre>
+
+  <h3>
+    Moving the x axis of a stick from left to right
+  </h3>
+
+  <pre>
+    % joystick get 0 axis 0
+    0
+    % joystick get 0 axis 0
+    -32768
+    % joystick get 0 axis 0
+    32767
+  </pre>
+
+  <h3>
+    Set up an event handler and test it for 10 seconds
+  </h3>
+
+  <pre>
+    % joystick event eval { puts [joystick event peek] }
+    % after 10000 set x 0; vwait x
+    joystick 0 hat 0 value 1
+    joystick 0 hat 0 value 0
+    joystick 0 hat 0 value 2
+    joystick 0 hat 0 value 0
+    joystick 0 button 0 value 1
+    joystick 0 button 0 value 0
+    joystick 0 button 1 value 1
+    joystick 0 button 1 value 0
+    joystick 0 axis 0 value 520
+    joystick 0 axis 0 value 11962
+    joystick 0 axis 0 value 18203
+    joystick 0 axis 1 value -513
+    joystick 0 axis 0 value 27305
+    joystick 0 axis 1 value -1537
+    joystick 0 axis 0 value 32767
+    joystick 0 axis 1 value -2049
+    joystick 0 axis 1 value -2561
+    joystick 0 axis 1 value -5377
+    joystick 0 axis 0 value 30166
+    joystick 0 axis 1 value -6145
+    joystick 0 axis 0 value 26525
+    joystick 0 axis 1 value -6657
+    joystick 0 axis 0 value 22104
+    joystick 0 axis 0 value 19244
+    joystick 0 axis 0 value -1
+    joystick 0 axis 1 value -1
+    %
+  </pre>
+  
+  <h3>
+    Identify my first CD-ROM drive (drive D: on Windows)
+  </h3>
+
+  <pre>
+    % package require mkLibsdl
+    1.0
+    % cdrom count
+    2
+    % cdrom names
+    D:\\ E:\\
+    % cdrom index D:*
+    0
+    % cdrom name 0
+    D:\
+    %
+  </pre>
+
+  <h3>
+    Check status and the disk's content.
+  </h3>
+
+  <pre>
+    % cdrom info 0 fps
+    75
+    % cdrom info 0 status
+    stopped
+    % cdrom info 0 loaded
+    1
+    % cdrom info 0 tracks
+    25
+    % cdrom trackinfo 0 23 type
+    audio
+    % cdrom trackinfo 0 23 length
+    9378            <i>&lt;-- 9378 frames / fps = 130.44 seconds</i>
+    % cdrom trackinfo 0 23 offset
+    245973
+  </pre>
+
+  <h3>
+    Play parts of the CD
+  </h3>
+
+  <pre>
+    % # play entire CD
+    % cdrom play 0
+    % cdrom info 0 status
+    playing
+    % cdrom info 0 current
+    0 448
+    % cdrom info 0 current
+    0 560
+    % cdrom info 0 current
+    0 672
+    % cdrom stop 0  
+    %
+    % # play only the second track
+    % cdrom play 0 -track 1 -numtracks 1
+    %
+    % # play the first 2 seconds of track 20
+    % cdrom play 0 -track 20 -numframes 150
+  </pre>
+
+  <h2><a name="installation">&nbsp;INSTALLATION</a></h2>
+
+  <h3>&nbsp;General</h3>
+  <p>
+    You need the <a href="http://libsdl.org/download-1.2.php">SDL 1.2</a> runtime library to run mkLibsdl. 
+    The <a href="http://libsdl.org/download-1.2.php">SDL website</a> offers this library for a number of operating systems.
+    For the Windows platform this library (SDL.dll) is included in the mkLibsdl distribution.
+  </p>
+  <p>
+    mkLibsdl is written in C and comes with a DLL for Windows. 
+    On Unix, the package needs to be compiled into a shared library first (see below). 
+    mkLibsdl works with Tcl/Tk version 8.3 and higher and is stubs-enabled.
+  </p>
+  <p>
+    To install, simply place the directory "mkLibsdl1.0" into one of the directories contained in the global Tcl variable "auto_path".
+    For a standard Tcl/Tk installation, this is commonly "C:/tcl/lib" (Windows) and "/usr/local/lib" (Unix). 
+    Also make sure that the SDL runtime library is in an accessible path.
+    For Windows the supplied DLL in the mkLibsdl directory is used automatically.
+  </p>
+
+  <h3>Compiling</h3>
+  <p>
+    Besides from the only mkLibdsl source file (mkLibsdl10.c) you need the development libraries and the header files.
+    Again, you can download them from the <a href="http://libsdl.org/download-1.2.php">SDL website</a> for several platforms,
+    or build them yourself. Check the SDL documentation on how to do that, but there seems to be a makefile for nearly every platform.
+  </p>
+  <p>
+    To compile mkLibsdl, just provide the correct path to "tcl.h", to "SDL.h", 
+    and link against "tcl84.lib", "SDL.lib" and "SDLmain.lib" (Windows) 
+    or "libtcl84.a", "libsdl.a" and "libsdlmain.a" (Unix) respectively. 
+    If you use stubs, define USE_TCL_STUBS and link against "tclstub84.lib" (Windows) or "libtclstub84.a" (Unix) instead.
+  </p>
+  <p>
+    Windows: For Visual C++, the following command should work:
+  </p>
+  <pre>
+    cl /MD /D USE_TCL_STUBS /I C:/Tcl/include /I C:/SDL/include /c mkLibsdl10.c
+    link /subsystem:console /dll C:/Tcl/lib/tclstub84.lib C:/SDL/lib/SDL.lib C:/SDL/lib/SDLmain.lib mkLibsdl10.obj
+  </pre>
+  <p>
+    Unix: At the moment I do not have a system on hand, so I trust that the following would work at least on Linux:
+  </p>
+  <pre>
+    gcc -shared -DUSE_TCL_STUBS -ltclstub8.4 -lz -o mkLibsdl10.so mkLibsdl10.c
+  </pre>
+
+  <h3>Test</h3>
+  <p>
+    Test the installation by opening a tclsh or wish and entering "package require mkLibsdl".
+    The string "1.0" should appear. If it fails, "cd" into the directory "mkLibsdl1.0" and
+    load it directly with "load ./mkLibsdl10.dll" (Windows) or "load ./mkLibsdl10.so" (Unix).
+    If no error occured, it succeeded and something must be wrong with the location of "mkLibsdl1.0".
+  </p>
+
+  <h2><a name="changes">&nbsp;CHANGES</a></h2>
+  <p>
+    No changes - Initial version.
+  </p>
+
+  <h2><a name="author">&nbsp;AUTHOR</a></h2>
+  <p>
+    Michael Kraus<br/>
+    <a href="mailto:michael@kraus5.de">mailto:michael@kraus5.de</a><br/>
+    <a href="http://mkextensions.sourceforge.net">http://mkextensions.sourceforge.net</a><br/>
+  </p>
+</body>
+</html>

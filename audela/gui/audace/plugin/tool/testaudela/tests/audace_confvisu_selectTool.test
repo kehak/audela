@@ -1,0 +1,163 @@
+#-----------------------------------------------------------------------------
+set visuNo 1
+set bufNo [::confVisu::getBufNo $visuNo]
+set ::conf(extension,defaut) .fit
+set ::conf(fichier,compres) 0
+
+variable SETUP {
+   #--- j'affiche m57 dans la visu
+   loadima [file join $::conf(testaudela,rep_images) m57.fit]
+}
+
+variable CLEANUP {
+   #--- j'efface m57 de la visu
+   confVisu::clear $visuNo
+
+}
+
+#-----------------------------------------------------------------------------
+#--   test double ouverture et fermeture des outils
+#-----------------------------------------------------------------------------
+test audace_confvisu_selecTool { selectTool } -constraints {AUDACE} -setup $SETUP -body {
+
+   #--- L'outil eye est en premier dans la liste car cet outil commence par vider la Console
+   set windowList [list  ::eye ::visio2 ::animate ::cmanimate ::bddimages ::robobs \
+     ::getdss ::select ::visio ::eshelvisu ::astrocomputer ::magnifier ::Crosshair \
+     ::pretrfc ::astrometry ::fieldchart ::collector ::catalogexplorer ::vo_tools \
+     ::afrho ::echip ::satellites ::spcaudace ::sn_tarot ::acqfc ::atos ::eshel \
+     ::cmaude ::acqt1m ::acqzadko ::acqapn ::acqdslr ::acqfen ::acqvideo ::scan \
+     ::acqfast ::foc ::scanfast ::spytimer ::supernovae ::tlscp ::autoguider ::displaycoord \
+     ::modpoi2 ::methking ::obj_lune ::sophie ::viseur_polaire ::gps ::updateaudela \
+   ]
+
+   #--- pour tester un seul outil
+   #### set windowList [list ::CalaPhot ]
+   #### set windowList [list ::Photometrie ]
+
+
+   ### ::mobileserver ::testaudela
+
+   #--- j'initialise la variable qui contient l'ensemble des resultats du test
+   set testResult ""
+
+   foreach toolName $windowList {
+
+      set catchResult [catch {
+
+         #--- particularite de ::atos
+         if {$toolName=="::atos" } {
+            set ::tcl_precision 17
+         }
+
+         for {set i 0} {$i < 2} {incr i} {
+
+            #--   Test de l'ouverture de l'outil ::confVisu::selectTool visuNo toolName
+            set result [::confVisu::selectTool $visuNo $toolName ]
+            update
+
+            if { $result==$toolName } {
+               #--   Test de l'état
+               if {[::confVisu::isReady $visuNo $toolName] ==1} {
+                  #--   Test de la re-ouverture de l'outil
+                  ::console::disp "::confVisu::selectTool $visuNo $toolName step=$i  OK \n"
+               } else {
+                  ::console::affiche_erreur "::confVisu::selectTool $visuNo $toolName step=$i not opened \n"
+                  append testResult "::confVisu::selectTool $visuNo $toolName step=$i not opened \n"
+               }
+            }
+         }
+
+         #--   Test de la commande de fermeture
+         ::confVisu::stopTool $visuNo $toolName
+
+         #--   Ferme aussi Collector lancé par SpyTimer
+         if {$toolName eq "::spytimer"} {
+            ::confVisu::stopTool $visuNo ::collector
+         }
+
+         update
+
+         #--   Test de l'état
+         if {[::confVisu::isReady $visuNo $toolName] ==0} {
+            ::console::disp "::confVisu::stopTool $visuNo $toolName OK\n\n"
+         } else {
+            ::console::affiche_erreur "::confVisu::stopTool $visuNo $toolName not working\n\n"
+            append testResult "::confVisu::stopTool $visuNo $toolName not working\n"
+         }
+
+         if {$toolName=="::pretrfc" } {
+            #--- Heure a partir de laquelle on passe sur un nouveau fichier de log
+            if { $::conf(rep_images,refModeAuto) == "0" } {
+               set heure_nouveau_fichier "0"
+            } else {
+               set heure_nouveau_fichier "12"
+            }
+            set heure_courante [lindex [split $::audace(tu,format,hmsint) h] 0]
+            if {$heure_courante < $heure_nouveau_fichier} {
+               #--- Si avant l'heure de changement... Je prends la date de la veille
+               set formatdate [clock format [expr {[clock seconds] - 86400}] -format "%Y-%m-%d"]
+            } else {
+               #--- Sinon, je prends la date du jour
+               set formatdate [clock format [clock seconds] -format "%Y-%m-%d"]
+            }
+            file delete -force [ file join $::audace(rep_images) "pretrfc-$formatdate.log" ]
+         }
+
+         if {$toolName=="::sophie" } {
+            #--- Heure a partir de laquelle on passe sur un nouveau fichier de log
+            if { $::conf(rep_images,refModeAuto) == "0" } {
+               set heure_nouveau_fichier "0"
+            } else {
+               set heure_nouveau_fichier "12"
+            }
+            set heure_courante [ lindex [ split $::audace(tu,format,hmsint) h ] 0 ]
+            if { $heure_courante < $heure_nouveau_fichier } {
+               #--- Si on est avant l'heure de changement, je prends la date de la veille
+               set formatdate [ clock format [ expr { [ clock seconds ] - 86400 } ] -format "%Y-%m-%d" ]
+            } else {
+               #--- Sinon, je prends la date du jour
+               set formatdate [ clock format [ clock seconds ] -format "%Y-%m-%d" ]
+            }
+            file delete -force [ file join $::audace(rep_images) "guidage-sophie-$formatdate.log" ]
+         }
+
+         if {$toolName=="::acqfast" } {
+            #--- Heure a partir de laquelle on passe sur un nouveau fichier de log
+            if { $::conf(rep_images,refModeAuto) == "0" } {
+               set heure_nouveau_fichier "0"
+            } else {
+               set heure_nouveau_fichier "12"
+            }
+            set heure_courante [lindex [split $::audace(tu,format,hmsint) h] 0]
+            if { $heure_courante < $heure_nouveau_fichier } {
+               #--- Si avant l'heure de changement, je prends la date de la veille
+               set formatdate [clock format [expr {[clock seconds] - 86400}] -format "%Y-%m-%d"]
+            } else {
+               #--- Sinon, je prends la date du jour
+               set formatdate [clock format [clock seconds] -format "%Y-%m-%d"]
+            }
+            file delete -force [ file join $::audace(rep_images) "acqfast-visu$visuNo-$formatdate.log" ]
+         }
+
+         if {$toolName=="::methking" } {
+            #--- Heure a partir de laquelle on passe sur un nouveau fichier de log
+            set formatdate [clock format [clock seconds] -format %Y%m%d_%H%M]
+            file delete -force [ file join $::audace(rep_images) "methking_$formatdate.log" ]
+         }
+
+         if {$toolName=="::atos" } {
+            set ::tcl_precision 12
+         }
+      }]
+
+      if { $catchResult == 1 } {
+         append testResult $::errorInfo
+      }
+
+   }
+
+   #--- le test est OK si testResult est vide , sinon testResult contient les messages d'erreur
+   return $testResult
+
+} -cleanup $CLEANUP -result ""
+

@@ -1,0 +1,115 @@
+#
+# Fichier : vellemank8056.cap
+# Mise a jour $Id: vellemank8056.cap 11522 2015-02-16 21:04:14Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(vellemank8056,titre)                "Velleman K8056"
+set caption(vellemank8056,serialPort)           "Serial Port"
+set caption(vellemank8056,refresh)              "Reload"
+set caption(vellemank8056,test)                 "Test"
+set caption(vellemank8056,stop)                 "Stop"
+set caption(vellemank8056,cardAddress)          "Card address"
+set caption(vellemank8056,changeCardAddress)    "Change address"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(vellemank8056,titre)             "Velleman K8056"
+   set caption(vellemank8056,serialPort)        "Port série"
+   set caption(vellemank8056,refresh)           "Rafraîchir"
+   set caption(vellemank8056,test)              "Test"
+   set caption(vellemank8056,stop)              "Arrêter"
+   set caption(vellemank8056,cardAddress)       "Adresse de la carte"
+   set caption(vellemank8056,changeCardAddress) "Changer l'adresse"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(vellemank8056,titre)             "Velleman K8056"
+   set caption(vellemank8056,serialPort)        "Porta seriale"
+   set caption(vellemank8056,refresh)           "Rinfresca"
+   set caption(vellemank8056,test)              "Test"
+   set caption(vellemank8056,stop)              "Fermare"
+   set caption(vellemank8056,cardAddress)       "# Adresse de la carte"
+   set caption(vellemank8056,changeCardAddress) "# Changer l'adresse"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(vellemank8056,titre)             "Velleman K8056"
+   set caption(vellemank8056,serialPort)        "Puerto serie"
+   set caption(vellemank8056,refresh)           "Recargar"
+   set caption(vellemank8056,test)              "Test"
+   set caption(vellemank8056,stop)              "Parar"
+   set caption(vellemank8056,cardAddress)       "# Adresse de la carte"
+   set caption(vellemank8056,changeCardAddress) "# Changer l'adresse"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(vellemank8056,titre)             "Velleman K8056"
+   set caption(vellemank8056,serialPort)        "Serial Anschlüss"
+   set caption(vellemank8056,refresh)           "Aktualisieren"
+   set caption(vellemank8056,test)              "Test"
+   set caption(vellemank8056,stop)              "Halten"
+   set caption(vellemank8056,cardAddress)       "# Adresse de la carte"
+   set caption(vellemank8056,changeCardAddress) "# Changer l'adresse"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(vellemank8056,titre)             "Velleman K8056"
+   set caption(vellemank8056,serialPort)        "Porta série"
+   set caption(vellemank8056,refresh)           "Actualizar"
+   set caption(vellemank8056,test)              "Teste"
+   set caption(vellemank8056,stop)              "Parar"
+   set caption(vellemank8056,cardAddress)       "# Adresse de la carte"
+   set caption(vellemank8056,changeCardAddress) "# Changer l'adresse"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(vellemank8056,titre)             "Velleman K8056"
+   set caption(vellemank8056,serialPort)        "Seriel port"
+   set caption(vellemank8056,refresh)           "Genindlæs"
+   set caption(vellemank8056,test)              "Test"
+   set caption(vellemank8056,stop)              "Stop"
+   set caption(vellemank8056,cardAddress)       "# Adresse de la carte"
+   set caption(vellemank8056,changeCardAddress) "# Changer l'adresse"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(vellemank8056,titre)             "Velleman K8056"
+   set caption(vellemank8056,serialPort)        "Serial Port"
+   set caption(vellemank8056,refresh)           "Reload"
+   set caption(vellemank8056,test)              "Test"
+   set caption(vellemank8056,stop)              "Stop"
+   set caption(vellemank8056,cardAddress)       "Card address"
+   set caption(vellemank8056,changeCardAddress) "Change address"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(vellemank8056,titre)             "Velleman K8056"
+   set caption(vellemank8056,serialPort)        "Serial Port"
+   set caption(vellemank8056,refresh)           "Reload"
+   set caption(vellemank8056,test)              "Test"
+   set caption(vellemank8056,stop)              "Stop"
+   set caption(vellemank8056,cardAddress)       "Card address"
+   set caption(vellemank8056,changeCardAddress) "Change address"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

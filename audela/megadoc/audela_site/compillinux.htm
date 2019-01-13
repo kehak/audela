@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Compilation sous GNU/Linux</title>
+</head>
+
+<body>
+<p>Voil&agrave; comment compiler AudeLA sous son <acronym title="Operating System">OS</acronym> pr&eacute;f&eacute;r&eacute; :</p>
+<p>Pr&eacute;requis :</p>
+<ul>
+<li>xorg-dev</li>
+<li>gcc et g++</li>
+<li>libstdc++</li>
+<li>tcl-dev</li>
+<li>tk-dev</li>
+<li>libgsl0-dev</li>
+<li>linux-headers</li>
+<li>libusb-dev</li>
+</ul>
+
+<p>L&#039;installation des paquets *-dev engendrera l&#039;installation des librairies binaires. Par exemple sous Debian, en tant que root que pour cette &eacute;tape :
+
+</p>
+<pre> sudo apt-get install tcl8.6-dev tk8.6-dev gcc g++ make libgsl0-dev blt subversion xorg-devlinux-libc-dev libstdc++6-4.7-dev libtiff5-dev libftdi-dev libv4l-dev</pre>
+
+<p>
+Pour t&eacute;l&eacute;charger AudeLA pour Linux, il y a 2 m&eacute;thodes :
+</p>
+<ul>
+<li> soit t&eacute;l&eacute;charger l&#039;archive de <a href="http://www.audela.org/dokuwiki/doku.php/fr/release/start#telechargement" class="wikilink1" title="fr:release:start">la version stable</a>.
+</li>
+<li>soit t&eacute;l&eacute;charger la mise &agrave; jour depuis le serveur SVN (derni&egrave;re version en d&eacute;veloppement, donc potentiellement instable mais poss&eacute;dant les nouveaut&eacute;s) avec l&#039;identifiant de son compte :
+</li>
+</ul>
+
+<p>
+
+Premi&egrave;re mise &agrave; jour :
+</p>
+<pre>  mkdir audela-svn ; cd audela-svn
+  svn co -q https://audela.svn.sourceforge.net/svnroot/audela/trunk/audela audela
+  </pre>
+
+<p>
+Mises &agrave; jour suivantes :
+</p>
+<pre class="code"> svn co -q https://audela.svn.sourceforge.net/svnroot/audela/trunk/audela audela
+ </pre>
+
+<p>
+Il peut s&#039;av&eacute;rer n&eacute;cessaire au pr&eacute;alable de rendre ex&eacute;cutable ce fichier :
+</p>
+<pre class="code"> cd audela/src
+ chmod u+x configure
+ ./configure
+ ou
+ ./configure --with-tcl=/usr/share/tcltk/tcl8.5 --with-tk=/usr/share/tcltk/tk8.5
+
+ make external &amp;&amp; make contrib &amp;&amp; make
+ </pre>
+
+<p>
+Rendre ex&eacute;cutable le fichier audela.sh :
+</p>
+<pre class="code"> cd ../bin
+ chmod u+x audela.sh
+ </pre>
+
+<p>
+Lancer AudeLA :
+</p>
+<pre class="code"> ./audela.sh
+ </pre>
+
+<p>Et c&#039;est parti <img src="http://www.audela.org/dokuwiki/lib/images/smileys/icon_smile.gif" class="middle" alt=":-)" /></p>
+</body>
+</html>

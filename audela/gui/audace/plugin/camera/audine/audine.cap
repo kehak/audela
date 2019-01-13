@@ -1,0 +1,421 @@
+#
+# Fichier : audine.cap
+# Mise a jour $Id: audine.cap 9963 2013-08-16 22:02:04Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(audine,camera)                       "Audine"
+
+set caption(audine,obtu_ouvert)                  "Open"
+set caption(audine,obtu_ferme)                   "Closed"
+set caption(audine,obtu_synchro)                 "Synchro"
+
+set caption(audine,ampli_toujours)               "Always"
+set caption(audine,ampli_synchro)                "Synchro"
+
+set caption(audine,kaf400)                       "kaf400"
+set caption(audine,kaf1600)                      "kaf1600"
+set caption(audine,kaf3200)                      "kaf3200"
+
+set caption(audine,can_ad976a)                   "AD976A"
+set caption(audine,can_ltc1605)                  "LTC1605"
+
+set caption(audine,obtu_audine)                  "audine"
+set caption(audine,obtu_audine-)                 "audine -"
+set caption(audine,obtu_i2c)                     "i2c"
+set caption(audine,obtu_thierry)                 "thierry"
+
+set caption(audine,port)                         "Port"
+set caption(audine,port_liaison)                 "Port / Link"
+set caption(audine,configurer)                   "Set up"
+set caption(audine,acquisition)                  "Acquisition"
+set caption(audine,miroir_x)                     "Top/Bottom Reversal"
+set caption(audine,miroir_y)                     "Left/Right Reversal"
+set caption(audine,ampli_ccd)                    "CCD Amplifier"
+set caption(audine,format_ccd)                   "CCD Format"
+set caption(audine,modele_can)                   "A/D Converter"
+set caption(audine,type_obtu)                    "Shutter Type"
+set caption(audine,fonc_obtu)                    "Shutter Operation"
+set caption(audine,test_fab_audine)              "Tests to Check Camera Operation"
+
+set caption(audine,installNewVersion)            "Installation of library %s of plugin audine v%s completed."
+
+set caption(audine,port_camera)                  "Audine Port"
+set caption(audine,2points)                      ":"
+
+set caption(audine,titre_site_web)               "Reference Web Site:"
+set caption(audine,site_web_ref)                 "http://www.astrosurf.com/audine/English/index_en.htm"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(audine,camera)                    "Audine"
+
+   set caption(audine,obtu_ouvert)               "Ouvert"
+   set caption(audine,obtu_ferme)                "Fermé"
+   set caption(audine,obtu_synchro)              "Synchro"
+
+   set caption(audine,ampli_toujours)            "Toujours"
+   set caption(audine,ampli_synchro)             "Synchro"
+
+   set caption(audine,kaf400)                    "kaf400"
+   set caption(audine,kaf1600)                   "kaf1600"
+   set caption(audine,kaf3200)                   "kaf3200"
+
+   set caption(audine,can_ad976a)                "AD976A"
+   set caption(audine,can_ltc1605)               "LTC1605"
+
+   set caption(audine,obtu_audine)               "audine"
+   set caption(audine,obtu_audine-)              "audine -"
+   set caption(audine,obtu_i2c)                  "i2c"
+   set caption(audine,obtu_thierry)              "thierry"
+
+   set caption(audine,port)                      "Port"
+   set caption(audine,port_liaison)              "Port / Liaison"
+   set caption(audine,configurer)                "Configurer"
+   set caption(audine,acquisition)               "Acquisition"
+   set caption(audine,miroir_x)                  "Inverser Haut/Bas"
+   set caption(audine,miroir_y)                  "Inverser Gauche/Droite"
+   set caption(audine,ampli_ccd)                 "Amplificateur du CCD"
+   set caption(audine,format_ccd)                "Format du CCD"
+   set caption(audine,modele_can)                "Convertisseur A/N"
+   set caption(audine,type_obtu)                 "Type de l'obturateur"
+   set caption(audine,fonc_obtu)                 "Fonctionnement de l'obturateur"
+   set caption(audine,test_fab_audine)           "Tests pour la fabrication de la caméra"
+
+   set caption(audine,installNewVersion)         "Fin de l'installation de la librairie %s du plugin audine v%s."
+
+   set caption(audine,port_camera)               "Port Audine"
+   set caption(audine,2points)                   ":"
+
+   set caption(audine,titre_site_web)            "Site Web de référence :"
+   set caption(audine,site_web_ref)              "http://www.astrosurf.com/audine/index_fr.htm"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(audine,camera)                    "Audine"
+
+   set caption(audine,obtu_ouvert)               "Aperto"
+   set caption(audine,obtu_ferme)                "Chiuso"
+   set caption(audine,obtu_synchro)              "Sincronizza"
+
+   set caption(audine,ampli_toujours)            "Sempre"
+   set caption(audine,ampli_synchro)             "Sincronizza"
+
+   set caption(audine,kaf400)                    "kaf400"
+   set caption(audine,kaf1600)                   "kaf1600"
+   set caption(audine,kaf3200)                   "kaf3200"
+
+   set caption(audine,can_ad976a)                "AD976A"
+   set caption(audine,can_ltc1605)               "LTC1605"
+
+   set caption(audine,obtu_audine)               "audine"
+   set caption(audine,obtu_audine-)              "audine -"
+   set caption(audine,obtu_i2c)                  "i2c"
+   set caption(audine,obtu_thierry)              "thierry"
+
+   set caption(audine,port)                      "Porta"
+   set caption(audine,port_liaison)              "Porta / Collegamento"
+   set caption(audine,configurer)                "Configurare"
+   set caption(audine,acquisition)               "Acquisizione"
+   set caption(audine,miroir_x)                  "Inversione Alto/Basso"
+   set caption(audine,miroir_y)                  "Inversione Sinistra/Destra"
+   set caption(audine,ampli_ccd)                 "Amplificatore del CCD"
+   set caption(audine,format_ccd)                "Formato CCD"
+   set caption(audine,modele_can)                "Convertitore A/D"
+   set caption(audine,type_obtu)                 "Tipo otturatore"
+   set caption(audine,fonc_obtu)                 "Funzionamento otturatore"
+   set caption(audine,test_fab_audine)           "Rilevamento camera in corso"
+
+   set caption(audine,installNewVersion)         "Installazione della libreria %s del plugin audine v%s terminata."
+
+   set caption(audine,port_camera)               "Porta Audine"
+   set caption(audine,2points)                   ":"
+
+   set caption(audine,titre_site_web)            "Sito Web di riferimento:"
+   set caption(audine,site_web_ref)              "http://www.astrosurf.com/audine/English/index_en.htm"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(audine,camera)                    "Audine"
+
+   set caption(audine,obtu_ouvert)               "Abierto"
+   set caption(audine,obtu_ferme)                "Cerrado"
+   set caption(audine,obtu_synchro)              "Sincro"
+
+   set caption(audine,ampli_toujours)            "Siempre"
+   set caption(audine,ampli_synchro)             "Sincro"
+
+   set caption(audine,kaf400)                    "kaf400"
+   set caption(audine,kaf1600)                   "kaf1600"
+   set caption(audine,kaf3200)                   "kaf3200"
+
+   set caption(audine,can_ad976a)                "AD976A"
+   set caption(audine,can_ltc1605)               "LTC1605"
+
+   set caption(audine,obtu_audine)               "audine"
+   set caption(audine,obtu_audine-)              "audine -"
+   set caption(audine,obtu_i2c)                  "i2c"
+   set caption(audine,obtu_thierry)              "thierry"
+
+   set caption(audine,port)                      "Puerto"
+   set caption(audine,port_liaison)              "Puerto / Enlace"
+   set caption(audine,configurer)                "Configurar"
+   set caption(audine,acquisition)               "Adquisición"
+   set caption(audine,miroir_x)                  "Invertir Arriba/Abajo"
+   set caption(audine,miroir_y)                  "Invertir Izquierda/Derecha"
+   set caption(audine,ampli_ccd)                 "Ampilificador de la CCD"
+   set caption(audine,format_ccd)                "Formato de CCD"
+   set caption(audine,modele_can)                "Conversor A/D"
+   set caption(audine,type_obtu)                 "Tipo de obturador"
+   set caption(audine,fonc_obtu)                 "Funcionamiento del obturador"
+   set caption(audine,test_fab_audine)           "Tests para la fabricación de la cámara"
+
+   set caption(audine,installNewVersion)         "Fin de la instalación de la libreria %s del plugin audine v%s."
+
+   set caption(audine,port_camera)               "Puerto Audine"
+   set caption(audine,2points)                   ":"
+
+   set caption(audine,titre_site_web)            "Sitio Web de referencia:"
+   set caption(audine,site_web_ref)              "http://www.astrosurf.com/audine/English/index_en.htm"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(audine,camera)                    "Audine"
+
+   set caption(audine,obtu_ouvert)               "Offen"
+   set caption(audine,obtu_ferme)                "Geschlossen"
+   set caption(audine,obtu_synchro)              "Synchro"
+
+   set caption(audine,ampli_toujours)            "Immer"
+   set caption(audine,ampli_synchro)             "Synchro"
+
+   set caption(audine,kaf400)                    "kaf400"
+   set caption(audine,kaf1600)                   "kaf1600"
+   set caption(audine,kaf3200)                   "kaf3200"
+
+   set caption(audine,can_ad976a)                "AD976A"
+   set caption(audine,can_ltc1605)               "LTC1605"
+
+   set caption(audine,obtu_audine)               "audine"
+   set caption(audine,obtu_audine-)              "audine -"
+   set caption(audine,obtu_i2c)                  "i2c"
+   set caption(audine,obtu_thierry)              "thierry"
+
+   set caption(audine,port)                      "Port"
+   set caption(audine,port_liaison)              "Port / Link"
+   set caption(audine,configurer)                "Konfigurieren"
+   set caption(audine,acquisition)               "Belichtung"
+   set caption(audine,miroir_x)                  "Oben/Unten umkehren"
+   set caption(audine,miroir_y)                  "Links/Rechts umkehren"
+   set caption(audine,ampli_ccd)                 "CCD Verstärker"
+   set caption(audine,format_ccd)                "CCD Format"
+   set caption(audine,modele_can)                "A/D Wandler"
+   set caption(audine,type_obtu)                 "Verschluss Modell"
+   set caption(audine,fonc_obtu)                 "Verschluss Arbeiten"
+   set caption(audine,test_fab_audine)           "Testen für das Kamera Bau"
+
+   set caption(audine,installNewVersion)         "Die Installation der Bibliothek %s ist vervollständigt der Plugin audine v%s."
+
+   set caption(audine,port_camera)               "Audine Port"
+   set caption(audine,2points)                   ":"
+
+   set caption(audine,titre_site_web)            "Referenz Webseite:"
+   set caption(audine,site_web_ref)              "http://www.astrosurf.com/audine/English/index_en.htm"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(audine,camera)                    "Audine"
+
+   set caption(audine,obtu_ouvert)               "Aberto"
+   set caption(audine,obtu_ferme)                "Fechado"
+   set caption(audine,obtu_synchro)              "Sincro"
+
+   set caption(audine,ampli_toujours)            "Sempre"
+   set caption(audine,ampli_synchro)             "Sincro"
+
+   set caption(audine,kaf400)                    "kaf400"
+   set caption(audine,kaf1600)                   "kaf1600"
+   set caption(audine,kaf3200)                   "kaf3200"
+
+   set caption(audine,can_ad976a)                "AD976A"
+   set caption(audine,can_ltc1605)               "LTC1605"
+
+   set caption(audine,obtu_audine)               "audine"
+   set caption(audine,obtu_audine-)              "audine -"
+   set caption(audine,obtu_i2c)                  "i2c"
+   set caption(audine,obtu_thierry)              "thierry"
+
+   set caption(audine,port)                      "Porta"
+   set caption(audine,port_liaison)              "Porta / Ligação"
+   set caption(audine,configurer)                "Configurar"
+   set caption(audine,acquisition)               "Aquisição"
+   set caption(audine,miroir_x)                  "Inverter Cima/Baixo"
+   set caption(audine,miroir_y)                  "Inverter Esquerda/Direita"
+   set caption(audine,ampli_ccd)                 "Amplificador CCD"
+   set caption(audine,format_ccd)                "Formato CCD"
+   set caption(audine,modele_can)                "Conversor A/D"
+   set caption(audine,type_obtu)                 "Tipo de obturador"
+   set caption(audine,fonc_obtu)                 "Operação do obturador"
+   set caption(audine,test_fab_audine)           "Testa a operação da câmara"
+
+   set caption(audine,installNewVersion)         "Instalação da livraria %s do plugin audine v%s concluída."
+
+   set caption(audine,port_camera)               "Porta Audine"
+   set caption(audine,2points)                   ":"
+
+   set caption(audine,titre_site_web)            "Site Web de referência:"
+   set caption(audine,site_web_ref)              "http://www.astrosurf.com/audine/English/index_en.htm"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(audine,camera)                    "Audine"
+
+   set caption(audine,obtu_ouvert)               "Open"
+   set caption(audine,obtu_ferme)                "Closed"
+   set caption(audine,obtu_synchro)              "Synchro"
+
+   set caption(audine,ampli_toujours)            "Always"
+   set caption(audine,ampli_synchro)             "Synchro"
+
+   set caption(audine,kaf400)                    "kaf400"
+   set caption(audine,kaf1600)                   "kaf1600"
+   set caption(audine,kaf3200)                   "kaf3200"
+
+   set caption(audine,can_ad976a)                "AD976A"
+   set caption(audine,can_ltc1605)               "LTC1605"
+
+   set caption(audine,obtu_audine)               "audine"
+   set caption(audine,obtu_audine-)              "audine -"
+   set caption(audine,obtu_i2c)                  "i2c"
+   set caption(audine,obtu_thierry)              "thierry"
+
+   set caption(audine,port)                      "Port"
+   set caption(audine,port_liaison)              "Port / Link"
+   set caption(audine,configurer)                "Set up"
+   set caption(audine,acquisition)               "Acquisition"
+   set caption(audine,miroir_x)                  "Top/Bottom Reversal"
+   set caption(audine,miroir_y)                  "Left/Right Reversal"
+   set caption(audine,ampli_ccd)                 "CCD Amplifier"
+   set caption(audine,format_ccd)                "CCD Format"
+   set caption(audine,modele_can)                "A/D Converter"
+   set caption(audine,type_obtu)                 "Shutter Type"
+   set caption(audine,fonc_obtu)                 "Shutter Operation"
+   set caption(audine,test_fab_audine)           "Tests to Check Camera Operation"
+
+   set caption(audine,installNewVersion)         "Installation of library %s of plugin audine v%s completed."
+
+   set caption(audine,port_camera)               "Audine Port"
+   set caption(audine,2points)                   ":"
+
+   set caption(audine,titre_site_web)            "Reference Web Site:"
+   set caption(audine,site_web_ref)              "http://www.astrosurf.com/audine/English/index_en.htm"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(audine,camera)                    "Audine"
+
+   set caption(audine,obtu_ouvert)               "Open"
+   set caption(audine,obtu_ferme)                "Closed"
+   set caption(audine,obtu_synchro)              "Synchro"
+
+   set caption(audine,ampli_toujours)            "Always"
+   set caption(audine,ampli_synchro)             "Synchro"
+
+   set caption(audine,kaf400)                    "kaf400"
+   set caption(audine,kaf1600)                   "kaf1600"
+   set caption(audine,kaf3200)                   "kaf3200"
+
+   set caption(audine,can_ad976a)                "AD976A"
+   set caption(audine,can_ltc1605)               "LTC1605"
+
+   set caption(audine,obtu_audine)               "audine"
+   set caption(audine,obtu_audine-)              "audine -"
+   set caption(audine,obtu_i2c)                  "i2c"
+   set caption(audine,obtu_thierry)              "thierry"
+
+   set caption(audine,port)                      "Port"
+   set caption(audine,port_liaison)              "Port / Link"
+   set caption(audine,configurer)                "Set up"
+   set caption(audine,acquisition)               "Acquisition"
+   set caption(audine,miroir_x)                  "Top/Bottom Reversal"
+   set caption(audine,miroir_y)                  "Left/Right Reversal"
+   set caption(audine,ampli_ccd)                 "CCD Amplifier"
+   set caption(audine,format_ccd)                "CCD Format"
+   set caption(audine,modele_can)                "A/D Converter"
+   set caption(audine,type_obtu)                 "Shutter Type"
+   set caption(audine,fonc_obtu)                 "Shutter Operation"
+   set caption(audine,test_fab_audine)           "Tests to Check Camera Operation"
+
+   set caption(audine,installNewVersion)         "Installation of library %s of plugin audine v%s completed."
+
+   set caption(audine,port_camera)               "Audine Port"
+   set caption(audine,2points)                   ":"
+
+   set caption(audine,titre_site_web)            "Reference Web Site:"
+   set caption(audine,site_web_ref)              "http://www.astrosurf.com/audine/English/index_en.htm"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(audine,camera)                    "Audine"
+
+   set caption(audine,obtu_ouvert)               "Open"
+   set caption(audine,obtu_ferme)                "Closed"
+   set caption(audine,obtu_synchro)              "Synchro"
+
+   set caption(audine,ampli_toujours)            "Always"
+   set caption(audine,ampli_synchro)             "Synchro"
+
+   set caption(audine,kaf400)                    "kaf400"
+   set caption(audine,kaf1600)                   "kaf1600"
+   set caption(audine,kaf3200)                   "kaf3200"
+
+   set caption(audine,can_ad976a)                "AD976A"
+   set caption(audine,can_ltc1605)               "LTC1605"
+
+   set caption(audine,obtu_audine)               "audine"
+   set caption(audine,obtu_audine-)              "audine -"
+   set caption(audine,obtu_i2c)                  "i2c"
+   set caption(audine,obtu_thierry)              "thierry"
+
+   set caption(audine,port)                      "Port"
+   set caption(audine,port_liaison)              "Port / Link"
+   set caption(audine,configurer)                "Set up"
+   set caption(audine,acquisition)               "Acquisition"
+   set caption(audine,miroir_x)                  "Top/Bottom Reversal"
+   set caption(audine,miroir_y)                  "Left/Right Reversal"
+   set caption(audine,ampli_ccd)                 "CCD Amplifier"
+   set caption(audine,format_ccd)                "CCD Format"
+   set caption(audine,modele_can)                "A/D Converter"
+   set caption(audine,type_obtu)                 "Shutter Type"
+   set caption(audine,fonc_obtu)                 "Shutter Operation"
+   set caption(audine,test_fab_audine)           "Tests to Check Camera Operation"
+
+   set caption(audine,installNewVersion)         "Installation of library %s of plugin audine v%s completed."
+
+   set caption(audine,port_camera)               "Audine Port"
+   set caption(audine,2points)                   ":"
+
+   set caption(audine,titre_site_web)            "Reference Web Site:"
+   set caption(audine,site_web_ref)              "http://www.astrosurf.com/audine/English/index_en.htm"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

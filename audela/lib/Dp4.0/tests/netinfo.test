@@ -1,0 +1,95 @@
+# netinfo.test
+#
+#	This file tests the dp_netinfo command
+#
+
+if {[string compare test [info procs test]] == 1} then {source ../tests/defs}
+
+test netinfo-noargs {dp_netinfo command} {
+    list [catch {
+	dp_netinfo
+    } msg] $msg
+} {1 {wrong # args: should be "dp_netinfo option arg"}}
+
+test netinfo-onearg {dp_netinfo command} {
+    list [catch {
+	dp_netinfo -foo
+    } msg] $msg
+} {1 {wrong # args: should be "dp_netinfo option arg"}}
+
+test netinfo-toomanyargs {dp_netinfo command} {
+    list [catch {
+	dp_netinfo one two three
+    } msg] $msg
+} {1 {wrong # args: should be "dp_netinfo option arg"}}
+
+# 
+# This test may not succeed everywhere.
+# 
+test netinfo-localhost {dp_netinfo command} {
+    list [catch {
+	dp_netinfo -address 127.0.0.1
+    } msg] $msg
+} {0 localhost}
+
+test netinfo-localhost {dp_netinfo command} {
+    list [catch {
+	set host [dp_netinfo -address 128.84.218.191]
+	string tolower $host
+    } msg] $msg
+} {0 hercules.cs.cornell.edu}
+
+test netinfo-unknownoption {dp_netinfo command} {
+    list [catch {
+	dp_netinfo -option arg
+    } msg] $msg
+} {1 {dp_netinfo:  unknown option "-option"}}
+
+test netinfo-unknownip {dp_netinfo command} {
+    list [catch {
+	dp_netinfo -address 255.255.255.255
+    } msg] $msg
+} {1 {dp_netinfo -address unknown host "255.255.255.255"}}
+
+test netinfo-unknownhost {dp_netinfo command} {
+    list [catch {
+	dp_netinfo -address .com
+    } msg] $msg
+} {1 {dp_netinfo -address unknown host ".com"}}
+
+#
+# This test will fail if there is a service at -1.
+# This test may take a few seconds.
+#
+test netinfo-unknownserviceport {dp_netinfo command} {
+    list [catch {
+	dp_netinfo -service -1
+    } msg] $msg
+} {1 {dp_netinfo -service unknown service/port# "-1"}}
+
+#
+# This test may take a few seconds.
+#
+test netinfo-unknownservicename {dp_netinfo command} {
+    list [catch {
+	dp_netinfo -service
+    } msg] $msg
+} {1 {wrong # args: should be "dp_netinfo option arg"}}
+
+test netinfo-num2name {dp_netinfo command} {
+    list [catch {
+	lindex [dp_netinfo -service 21] 0
+    } msg] $msg
+} {0 ftp}
+
+test netinfo-name2num {dp_netinfo command} {
+    list [catch {
+	lindex [dp_netinfo -service ftp] 1
+    } msg] $msg
+} {0 21}
+
+
+
+
+
+

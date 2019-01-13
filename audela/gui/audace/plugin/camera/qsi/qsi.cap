@@ -1,0 +1,313 @@
+#
+# Fichier :qsi.cap
+# Mise a jour $Id: qsi.cap 11220 2015-01-02 10:44:49Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(qsi,camera)                              "QSI"
+
+set caption(qsi,miroir_x)                            "Top/Bottom Reversal"
+set caption(qsi,miroir_y)                            "Left/Right Reversal"
+set caption(qsi,refroidissement)                     "Cooling to Temperature"
+set caption(qsi,refroidissement_unite)               "°C"
+set caption(qsi,puissance_peltier_--)                "Peltier Stage Power: --"
+set caption(qsi,puissance_peltier)                   "Peltier Stage Power: "
+set caption(qsi,ccdTemp)                             "CCD Temperature:"
+set caption(qsi,setTemp)                             "Set Temperature:"
+set caption(qsi,ambiantTemp)                         "Ambiant Temperature:"
+set caption(qsi,refroidissement_progressif)          "Progressive"
+set caption(qsi,refroidissement_progressif_unite)    "°C/minute"
+set caption(qsi,deg_c)                               "°C"
+set caption(qsi,filters)                             "Filter"
+
+set caption(qsi,connexion_avec_roue)                 "QSI Camera: Connection with filter wheel"
+set caption(qsi,connexion_sans_roue)                 "QSI Camera: Connection without filter wheel"
+
+set caption(qsi,obtu_ferme)                          "Closed"
+set caption(qsi,obtu_synchro)                        "Synchro"
+
+set caption(qsi,installNewVersion)                   "Installation of library %s of plugin qsi v%s completed."
+
+set caption(qsi,port_camera)                         "QSI Driver"
+set caption(qsi,2points)                             ":"
+
+set caption(qsi,titre_site_web)                      "Reference Web Site:"
+set caption(qsi,site_web_ref)                        "http://www.qsimaging.com"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(qsi,camera)                           "QSI"
+
+   set caption(qsi,miroir_x)                         "Inverser Haut/Bas"
+   set caption(qsi,miroir_y)                         "Inverser Gauche/Droite"
+   set caption(qsi,refroidissement)                  "Refroidissement à la température de"
+   set caption(qsi,refroidissement_unite)             "°C"
+   set caption(qsi,puissance_peltier_--)             "Puissance Peltier : --"
+   set caption(qsi,puissance_peltier)                "Puissance Peltier : "
+   set caption(qsi,ccdTemp)                          "Température du CCD :"
+   set caption(qsi,setTemp)                          "Consigne de température :"
+   set caption(qsi,ambiantTemp)                      "Température ambiante :"
+   set caption(qsi,refroidissement_progressif)       "Progressif"
+   set caption(qsi,refroidissement_progressif_unite) "°C/minute"
+   set caption(qsi,deg_c)                            "°C"
+   set caption(qsi,filters)                          "Filtre"
+
+   set caption(qsi,connexion_avec_roue)              "Caméra QSI : Connexion avec roue à filtres"
+   set caption(qsi,connexion_sans_roue)              "Caméra QSI : Connexion sans roue à filtres"
+
+   set caption(qsi,obtu_ferme)                       "Fermé"
+   set caption(qsi,obtu_synchro)                     "Synchro"
+
+   set caption(qsi,installNewVersion)                "Fin de l'installation de la librairie %s du plugin qsi v%s."
+
+   set caption(qsi,port_camera)                      "Driver QSI"
+   set caption(qsi,2points)                          ":"
+
+   set caption(qsi,titre_site_web)                   "Site Web de référence :"
+   set caption(qsi,site_web_ref)                     "http://www.qsimaging.com"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(qsi,camera)                           "QSI"
+
+   set caption(qsi,miroir_x)                         "Inversione Alto/Basso"
+   set caption(qsi,miroir_y)                         "Inversione Sinistra/Destra"
+   set caption(qsi,refroidissement)                  "Raffreddamento alla temperatura di"
+   set caption(qsi,refroidissement_unite)            "°C"
+   set caption(qsi,puissance_peltier_--)             "Potenza stadio Peltier: --"
+   set caption(qsi,puissance_peltier)                "Potenza stadio Peltier: "
+   set caption(qsi,ccdTemp)                          "CCD Temperatura:"
+   set caption(qsi,setTemp)                          "Set Temperatura:"
+   set caption(qsi,ambiantTemp)                      "# Ambiant Temperature:"
+   set caption(qsi,refroidissement_progressif)       "# Progressif"
+   set caption(qsi,refroidissement_progressif_unite) "# °C/minute"
+   set caption(qsi,deg_c)                            "°C"
+   set caption(qsi,filters)                          "Filtro"
+
+   set caption(qsi,connexion_avec_roue)              "Camera QSI: Connessione con ruota portafiltri"
+   set caption(qsi,connexion_sans_roue)              "Camera QSI: Connessione senza ruota portafiltri"
+
+   set caption(qsi,obtu_ferme)                       "Chiuso"
+   set caption(qsi,obtu_synchro)                     "Sincronizza"
+
+   set caption(qsi,installNewVersion)                "Installazione della libreria %s del plugin qsi v%s terminata."
+
+   set caption(qsi,port_camera)                      "Driver QSI"
+   set caption(qsi,2points)                          ":"
+
+   set caption(qsi,titre_site_web)                   "Sito Web di riferimento:"
+   set caption(qsi,site_web_ref)                     "http://www.qsimaging.com"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(qsi,camera)                           "QSI"
+
+   set caption(qsi,miroir_x)                         "Invertir Arriba/Abajo"
+   set caption(qsi,miroir_y)                         "Invertir Izquierda/Derecha"
+   set caption(qsi,refroidissement)                  "Enfriar hasta temperatura"
+   set caption(qsi,refroidissement_unite)            "°C"
+   set caption(qsi,puissance_peltier_--)             "Alimentación Etapa Peltier: --"
+   set caption(qsi,puissance_peltier)                "Alimentación Etapa Peltier: "
+   set caption(qsi,ccdTemp)                          "Temperatura CCD:"
+   set caption(qsi,setTemp)                          "Establezca la temperatura:"
+   set caption(qsi,ambiantTemp)                      "# Ambiant Temperature:"
+   set caption(qsi,refroidissement_progressif)       "# Progressif"
+   set caption(qsi,refroidissement_progressif_unite) "# °C/minute"
+   set caption(qsi,deg_c)                            "°C"
+   set caption(qsi,filters)                          "Filtro"
+
+   set caption(qsi,connexion_avec_roue)              "Camara QSI: Conexion con rueda de filtros"
+   set caption(qsi,connexion_sans_roue)              "Camara QSI: Conexion sin rueda de filtros"
+
+   set caption(qsi,obtu_ferme)                       "Cerrado"
+   set caption(qsi,obtu_synchro)                     "Sincro"
+
+   set caption(qsi,installNewVersion)                "Fin de la instalación de la libreria %s del plugin qsi v%s."
+
+   set caption(qsi,port_camera)                      "Driver QSI"
+   set caption(qsi,2points)                          ":"
+
+   set caption(qsi,titre_site_web)                   "Sitio Web de referencia:"
+   set caption(qsi,site_web_ref)                     "http://www.qsimaging.com"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(qsi,camera)                           "QSI"
+
+   set caption(qsi,miroir_x)                         "Oben/Unten umkehren"
+   set caption(qsi,miroir_y)                         "Links/Rechts umkehren"
+   set caption(qsi,refroidissement)                  "Temperatur bis zu"
+   set caption(qsi,refroidissement_unite)            "°C kühlen"
+   set caption(qsi,puissance_peltier_--)             "Peltier Stärke: --"
+   set caption(qsi,puissance_peltier)                "Peltier Stärke: "
+   set caption(qsi,ccdTemp)                          "Temperatur CCD:"
+   set caption(qsi,setTemp)                          "Temperatur Einstellung:"
+   set caption(qsi,ambiantTemp)                      "# Ambiant Temperature:"
+   set caption(qsi,refroidissement_progressif)       "# Progressif"
+   set caption(qsi,refroidissement_progressif_unite) "# °C/minute"
+   set caption(qsi,deg_c)                            "°C"
+   set caption(qsi,filters)                          "Filter"
+
+   set caption(qsi,connexion_avec_roue)              "QSI Kamera: Anschluß mit Filterrad"
+   set caption(qsi,connexion_sans_roue)              "QSI Kamera: Anschluß ohne Filterrad"
+
+   set caption(qsi,obtu_ferme)                       "Geschlossen"
+   set caption(qsi,obtu_synchro)                     "Synchro"
+
+   set caption(qsi,installNewVersion)                "Die Installation der Bibliothek %s ist vervollständigt der Plugin qsi v%s."
+
+   set caption(qsi,port_camera)                      "QSI Treiber"
+   set caption(qsi,2points)                          ":"
+
+   set caption(qsi,titre_site_web)                   "Referenz Webseite:"
+   set caption(qsi,site_web_ref)                     "http://www.qsimaging.com"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(qsi,camera)                           "QSI"
+
+   set caption(qsi,miroir_x)                         "Inverter Cima/Baixo"
+   set caption(qsi,miroir_y)                         "Inverter Esquerda/Direita"
+   set caption(qsi,refroidissement)                  "Arrefecendo até Temperatura"
+   set caption(qsi,refroidissement_unite)            "°C"
+   set caption(qsi,puissance_peltier_--)             "Nível de Potência do Peltier: --"
+   set caption(qsi,puissance_peltier)                "Nível de Potência do Peltier: "
+   set caption(qsi,ccdTemp)                          "Temperatura do CCD:"
+   set caption(qsi,setTemp)                          "Definir temperatura:"
+   set caption(qsi,ambiantTemp)                      "# Ambiant Temperature:"
+   set caption(qsi,refroidissement_progressif)       "# Progressif"
+   set caption(qsi,refroidissement_progressif_unite) "# °C/minute"
+   set caption(qsi,deg_c)                            "°C"
+   set caption(qsi,filters)                          "Filtro"
+
+   set caption(qsi,connexion_avec_roue)              "Câmara QSI: Conexão com roda de filtros"
+   set caption(qsi,connexion_sans_roue)              "Câmara QSI: Conexão sem roda de filtros"
+
+   set caption(qsi,obtu_ferme)                       "Fechado"
+   set caption(qsi,obtu_synchro)                     "Sincro"
+
+   set caption(qsi,installNewVersion)                "Instalação da livraria %s do plugin qsi v%s concluída."
+
+   set caption(qsi,port_camera)                      "Driver QSI"
+   set caption(qsi,2points)                          ":"
+
+   set caption(qsi,titre_site_web)                   "Site Web de referência:"
+   set caption(qsi,site_web_ref)                     "http://www.qsimaging.com"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(qsi,camera)                           "QSI"
+
+   set caption(qsi,miroir_x)                         "Top/Bottom Reversal"
+   set caption(qsi,miroir_y)                         "Left/Right Reversal"
+   set caption(qsi,refroidissement)                  "Cooling to Temperature"
+   set caption(qsi,refroidissement_unite)            "°C"
+   set caption(qsi,puissance_peltier_--)             "Peltier Stage Power: --"
+   set caption(qsi,puissance_peltier)                "Peltier Stage Power: "
+   set caption(qsi,ccdTemp)                          "CCD Temperature:"
+   set caption(qsi,setTemp)                          "Set Temperature"
+   set caption(qsi,ambiantTemp)                      "Ambiant Temperature:"
+   set caption(qsi,refroidissement_progressif)       "Progressif"
+   set caption(qsi,refroidissement_progressif_unite) "°C/minute"
+   set caption(qsi,deg_c)                            "°C"
+   set caption(qsi,filters)                          "Filter"
+
+   set caption(qsi,connexion_avec_roue)              "QSI Camera: Connection with filter wheel"
+   set caption(qsi,connexion_sans_roue)              "QSI Camera: Connection without filter wheel"
+
+   set caption(qsi,obtu_ferme)                       "Closed"
+   set caption(qsi,obtu_synchro)                     "Synchro"
+
+   set caption(qsi,installNewVersion)                "Installation of library %s of plugin qsi v%s completed."
+
+   set caption(qsi,port_camera)                      "QSI Driver"
+   set caption(qsi,2points)                          ":"
+
+   set caption(qsi,titre_site_web)                   "Reference Web Site:"
+   set caption(qsi,site_web_ref)                     "http://www.qsimaging.com"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(qsi,camera)                           "QSI"
+
+   set caption(qsi,miroir_x)                         "Top/Bottom Reversal"
+   set caption(qsi,miroir_y)                         "Left/Right Reversal"
+   set caption(qsi,refroidissement)                  "Cooling to Temperature"
+   set caption(qsi,refroidissement_unite)            "°C"
+   set caption(qsi,puissance_peltier_--)             "Peltier Stage Power: --"
+   set caption(qsi,puissance_peltier)                "Peltier Stage Power: "
+   set caption(qsi,ccdTemp)                          "CCD Temperature:"
+   set caption(qsi,setTemp)                          "Set Temperature:"
+   set caption(qsi,ambiantTemp)                      "Ambiant Temperature:"
+   set caption(qsi,refroidissement_progressif)       "Progressif"
+   set caption(qsi,refroidissement_progressif_unite) "°C/minute"
+   set caption(qsi,deg_c)                            "°C"
+   set caption(qsi,filters)                          "Filter"
+
+   set caption(qsi,connexion_avec_roue)              "QSI Camera: Connection with filter wheel"
+   set caption(qsi,connexion_sans_roue)              "QSI Camera: Connection without filter wheel"
+
+   set caption(qsi,obtu_ferme)                       "Closed"
+   set caption(qsi,obtu_synchro)                     "Synchro"
+
+   set caption(qsi,installNewVersion)                "Installation of library %s of plugin qsi v%s completed."
+
+   set caption(qsi,port_camera)                      "QSI Driver"
+   set caption(qsi,2points)                          ":"
+
+   set caption(qsi,titre_site_web)                   "Reference Web Site:"
+   set caption(qsi,site_web_ref)                     "http://www.qsimaging.com"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(qsi,camera)                           "QSI"
+
+   set caption(qsi,miroir_x)                         "Top/Bottom Reversal"
+   set caption(qsi,miroir_y)                         "Left/Right Reversal"
+   set caption(qsi,refroidissement)                  "Cooling to Temperature"
+   set caption(qsi,refroidissement_unite)            "°C"
+   set caption(qsi,puissance_peltier_--)             "Peltier Stage Power: --"
+   set caption(qsi,puissance_peltier)                "Peltier Stage Power: "
+   set caption(qsi,ccdTemp)                          "CCD Temperature:"
+   set caption(qsi,setTemp)                          "Set Temperature:"
+   set caption(qsi,ambiantTemp)                      "Ambiant Temperature:"
+   set caption(qsi,refroidissement_progressif)       "Progressif"
+   set caption(qsi,refroidissement_progressif_unite) "°C/minute"
+   set caption(qsi,deg_c)                            "°C"
+   set caption(qsi,filters)                          "Filter"
+
+   set caption(qsi,connexion_avec_roue)              "QSI Camera: Connection with filter wheel"
+   set caption(qsi,connexion_sans_roue)              "QSI Camera: Connection without filter wheel"
+
+   set caption(qsi,obtu_ferme)                       "Closed"
+   set caption(qsi,obtu_synchro)                     "Synchro"
+
+   set caption(qsi,installNewVersion)                "Installation of library %s of plugin qsi v%s completed."
+
+   set caption(qsi,port_camera)                      "QSI Driver"
+   set caption(qsi,2points)                          ":"
+
+   set caption(qsi,titre_site_web)                   "Reference Web Site:"
+   set caption(qsi,site_web_ref)                     "http://www.qsimaging.com"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

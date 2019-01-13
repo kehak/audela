@@ -1,0 +1,30 @@
+# Commandes a lancer dans audela
+
+load libmeinberg.so
+meinberg_gps open
+meinberg_gps reset
+meinberg_gps read
+meinberg_gps fastread
+
+meinberg_gps status
+meinberg_gps close
+
+
+# compilation du driver 
+# mbgtools-lx-dev-2013-03-15.tar.gz
+# aller dans le repertoire et faire 
+# make 
+# make install
+
+
+## 2013-02-18 carte meinberg fonctions : /srv/develop/audela/src/external/meinberg/src/meinbergtcl.c
+meinberg_gps open => recupere la version du driver, vérifie si l carte est présente dans le PC, ouvre la connection avec la carte
+meinberg_gps reset => clear capture buffer for meinberg
+meinberg_gps read  => on recupere le dernier evenement entres si dispo
+meinberg_gps close
+meinberg_gps status => renvoit version et info sat, date et synchro
+meinberg_gps fastread => voir la diff avec read !!!
+meinberg_gps time
+
+l 682 meinbergtcl.c enlever les elseif et mettre des switch
+

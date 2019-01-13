@@ -1,0 +1,94 @@
+###############
+###         ###
+###############
+
+all: $(OUTPUT) $(OUTPUT_STATIC)
+
+$(OUTPUT): $(OBJ) $(A_LIBS)
+	@echo "*** Linking shared library $@"
+	$(LD) $^ $(LDFLAGS) -o $@ 
+	$(CP) $@ $(OUTPUTDIR)
+
+$(OUTPUT_STATIC): $(OBJ) 
+	@echo "*** Linking static library $@"
+	$(RM) $@
+	$(AR) $@ $(OBJ)
+	$(RANLIB) $@
+
+%.o: $(SRCDIR)/%.cpp
+	@echo "*** Compiling $<"
+	$(CXX) $(CXXFLAGS) -o $@ $<
+
+%.o: $(SRCDIR)/%.c
+	@echo "*** Compiling $<"
+	$(CC) $(CXXFLAGS) -o $@ $<
+
+%.o: %.c
+	@echo "*** Compiling $<"
+	$(CC) $(CXXFLAGS) -o $@ $<
+
+ifdef LIBCAM
+CXXFLAGS += -I $(SRCDIR)
+LDFLAGS  += -Wl,-rpath,. -L$(OUTPUTDIR)  -laudela
+
+%.o: $(LIBCAMDIR)/%.c
+	@echo "*** Compiling $<"
+	$(CC) $(CXXFLAGS) -o $@ $<
+
+%.o: $(LIBCAMDIR)/%.cpp
+	@echo "*** Compiling $<"
+	$(CXX) $(CXXFLAGS) -o $@ $<
+endif
+
+ifdef LIBTEL
+CXXFLAGS += -I $(SRCDIR)
+%.o: $(LIBTELDIR)/%.c
+	@echo "*** Compiling $<"
+	$(CC) $(CXXFLAGS) -o $@ $<
+
+%.o: $(LIBTELDIR)/%.cpp
+	@echo "*** Compiling $<"
+	$(CXX) $(CXXFLAGS) -o $@ $<
+endif
+
+ifdef LIBLINK
+CXXFLAGS += -I $(SRCDIR)
+%.o: $(LIBLINKDIR)/%.cpp
+	@echo "*** Compiling $<"
+	$(CXX) $(CXXFLAGS) -o $@ $<
+endif
+
+
+#########
+###   ###
+#########
+
+depend: makedep
+makedep: $(SRC)
+	@echo "*** Building dependencies file"
+	$(CXX) $(CXXFLAGS) -MM $(SRC) > makedep
+
+-include makedep
+
+.PHONY: clean cleanall
+clean:
+	$(RM) $(OBJ) $(OUTPUT) makedep
+cleanall: clean
+	$(RM) makedep *~ *.bak *.BAK *.swp 
+
+.PHONY: indent
+indent:
+	indent $(SRCDIR)/*.[ch] -kr -line-length1000 --ignore-newlines
+
+.PHONY: local-clean src-clean vc60-clean distclean
+vc60-clean:
+	-$(RM) -rf ../vc60/Debug ../vc60/Release 
+	-$(RM) ../vc60/*.mak ../vc60/*.ncb ../vc60/*.opt ../vc60/*.plg 
+	-$(RM) ../vc60/*~ ../vc60/*.bak 
+local-clean:
+	-$(RM) *~ *.bak makedep
+src-clean:
+	-$(RM) $(SRCDIR)/*~ $(SRCDIR)/*.bak 
+distclean: local-clean src-clean vc60-clean clean
+
+

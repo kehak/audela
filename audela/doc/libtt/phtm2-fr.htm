@@ -1,0 +1,103 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta name="Author" content="Alain KLOTZ">
+   <meta name="GENERATOR" content="Mozilla/4.6 [fr] (Win95; I) [Netscape]">
+   <title>Quelques rep&egrave;res sur la photom&eacute;trie</title>
+</head>
+<body>
+
+<center>
+<h1>
+Quelques rep&egrave;res sur la photom&eacute;trique</h1></center>
+
+<center>Alain KLOTZ
+<br>Mise &agrave; jour 12/1/2000</center>
+
+<h2>
+1. G&eacute;n&eacute;ralit&eacute;s</h2>
+Cette page a pour but de donner quelques conseils pour r&eacute;aliser
+des mesures photm&eacute;triques correctes.
+<h2>
+2. Pr&eacute;cision en magnitude</h2>
+La question de la pr&eacute;cision d'une mesure est cruciale en photom&eacute;trie.
+Elle est compl&egrave;tement li&eacute;e aux diff&eacute;rentes incertitudes
+instrumentales mais aussi &agrave; des ph&eacute;nom&egrave;nes naturels
+in&eacute;vitables. La pr&eacute;cision des catalogues photom&eacute;triques est
+de l'ordre de 0.01 magnitude. Il para&icirc;t donc normal d'atteindre cette
+pr&eacute;cision sur la mesure de la magnitude instrumentale. Dans le cas
+d'un filtre V, rappelons que la magnitude instrumentale est d&eacute;finie
+par :
+<center>
+<p>Vi = -2.5*log(FVi)</center>
+
+<p>o&ugrave; FVi est le flux total de l'&eacute;toile (en pas codeurs).
+Analysons les principaux param&egrave;tres apportant des incertitudes sur
+le mesure de F :
+<ul>
+<li>
+Le bruit de photon Bph : contribution naturelle due &agrave; la nature
+statistique de la lumi&egrave;re.</li>
+
+<li>
+Le bruit de lecture Bel : d&ucirc; aux fluctuations al&eacute;atoires de
+la cha&icirc;ne &eacute;lectronique.</li>
+
+<li>
+Le bruit thermique Bth : contribution naturelle due &agrave; la nature
+statistique des charges thermiques</li>
+
+<li>
+Le bruit de mesure Bme : d&ucirc; &agrave; la m&eacute;thode de calcul
+de F</li>
+</ul>
+L'ensemble des bruits (Bph, Bel, Bth) ne d&eacute;pend pas de la fa&ccedil;on
+dont on extrait la valeur de F mais d&eacute;pend de la m&eacute;thode
+d'observation du pr&eacute;traitement effectu&eacute;.
+<p>Le bruit Bme d&eacute;pend de la m&eacute;thode employ&eacute;e pour
+calculer F. On distingue &agrave; ce propos deux groupes de m&eacute;thodes
+: la photom&eacute;trie d'ouverture et la mod&eacute;lisation. Chacune
+de ces m&eacute;thodes apporte des avantages et des inconv&eacute;nients.
+Nous essaierons de les quantifier dans cette page (&agrave; faire...).
+<h3>
+2.1. Quel flux pour quelle pr&eacute;cision ?</h3>
+L'image pr&eacute;trait&eacute;e provenant d'une cam&eacute;ra CCD pr&eacute;sente
+des bruits qui viennent se superposer au signal. Ces bruits induisent une
+incertitude sur la valeur de la magnitude instrumentale mesur&eacute;e.
+Si l'on n&eacute;glige le bruit de division par le flat field et le bruit
+de quantification, on aboutit, pour une image pr&eacute;trait&eacute;e
+obtenue avec une cam&eacute;ra CCD &eacute;quip&eacute;e d'un Kaf (400
+ou 401E) &agrave; :
+<p>Dm > (a/f) * racine_carr&eacute;e [b * (bel*bel + bth*bth) *fwhm*fwhm
++ f ]
+<p>Dm est l'incertitude en magnitude &agrave; 3 sigma,
+<br>a = 5.53
+<br>b = 1.18
+<br>bel = 20 (&eacute;lectrons/pixel)
+<br>bth = 10 (&eacute;lectrons/pixel) pour une pose de 10 minutes &agrave;
+-20 degr&eacute;s C.
+<br>fwhm = largeur &agrave; mi hauteur de l'&eacute;toile (2 pixels en
+g&eacute;n&eacute;ral).
+<br>f = G*F avec G le gain (3 electrons/pas codeur en g&eacute;n&eacute;ral)
+et F le flux total int&eacute;gr&eacute; (en pas codeurs) dans un cercle
+de rayon 2,5*fwhm.
+<p>Le graphe ci dessous (pour une pose de 10 minutes) montre que la pr&eacute;cision
+photom&eacute;trique est d'autant meilleure que F est grand.
+<center>
+<p><img SRC="photom3.jpg" height=425 width=567></center>
+
+<p>Une &eacute;toile de calibration doit avoir une pr&eacute;cision meilleure
+que 0.05 magnitude si l'on veut obtenir des coefficients de calibration
+corrects. Cela implique que le flux doit &ecirc;tre sup&eacute;rieur &agrave;
+10<sup>4</sup>, c'est &agrave; dire 10 000 pas codeurs. On voit que la
+pr&eacute;cision de 0.01 magnitude n&eacute;cessite environ 300 000 pas
+codeurs. Comme il ne faut pas saturer le d&eacute;tecteur (moins de 50
+000 pas codeur par pixel), il faudra &eacute;taler l'image (augmenter le
+fwhm) donc d&eacute;focaliser si l'on veut atteindre 10<sup>6</sup> pas
+codeurs permettant d'obtenir une pr&eacute;cision meilleure que 0.01 magnitude.
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

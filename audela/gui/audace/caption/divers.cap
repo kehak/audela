@@ -1,0 +1,221 @@
+#
+# Fichier : divers.cap
+# Mise a jour $Id: divers.cap 6934 2011-03-11 16:06:52Z robertdelmas  $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+# Captions de syntaxe
+set caption(divers,syntax,charge)                     "Usage : charge fichier ?options?"
+set caption(divers,syntax,sauve)                      "Usage : sauve fichier ?options?"
+set caption(divers,syntax,sauve_jpeg)                 "Usage : sauve_jpeg fichier ?options?"
+set caption(divers,syntax,soustrait)                  "Usage : soustrait fichier ?options?"
+set caption(divers,syntax,normalise)                  "Usage : normalise fichier ?options?"
+set caption(divers,syntax,suppr_serie)                "Usage : suppr_serie nom_generique ?options?"
+set caption(divers,syntax,suppr_fin_serie)            "Usage : suppr_fin_serie nom_generique index_fin ?options?"
+set caption(divers,syntax,suppr_debut_serie)          "Usage : suppr_debut_serie nom_generique index_debut ?options?"
+set caption(divers,syntax,renumerote)                 "Usage : renumerote nom_generique ?options?"
+set caption(divers,syntax,renomme)                    "Usage : renomme ancien_nom_generique nouveau_nom_generique ?options?"
+set caption(divers,syntax,copie)                      "Usage : copie ancien_nom_generique nouveau_nom_generique ?options?"
+set caption(divers,syntax,copie_partielle)            "Usage : copie_partielle ancien_nom_generique nouveau_nom_generique debut fin ?options?"
+set caption(divers,syntax,serie_fenetre)              "Usage : serie_fenetre in out coord ?options?"
+set caption(divers,syntax,souris_fenetre)             "Usage : souris_fenetre in out ?options?"
+set caption(divers,syntax,serie_rot)                  "Usage : serie_rot in out x0 y0 angle ?options?"
+set caption(divers,syntax,serie_trans)                "Usage : serie_trans in out dx dy ?options?"
+set caption(divers,syntax,series_traligne)            "Usage : series_traligne liste_des_series_initiales serie_finale ?options?"
+set caption(divers,syntax,serie_sauvejpeg)            "Usage : serie_sauvejpeg in ?options?"
+set caption(divers,syntax,mediane)                    "Usage : mediane serie ?options?"
+set caption(divers,syntax,serie_soustrait)            "Usage : serie_soustrait in ex ?options?"
+set caption(divers,syntax,serie_normalise)            "Usage : serie_normalise in ex ?options?"
+set caption(divers,syntax,normalise_gain)             "Usage : normalise_gain in ex ?options?"
+set caption(divers,syntax,aligne)                     "Usage : aligne in ex ?options?"
+set caption(divers,syntax,TestEntier)                 "Usage : TestEntier nombre"
+set caption(divers,syntax,TestReel)                   "Usage : TestReel nombre"
+set caption(divers,syntax,dernier_est_chiffre)        "Usage : dernier_est_chiffre mot"
+set caption(divers,syntax,nom_valide)                 "Usage : nom_valide nom_complet_fichier"
+set caption(divers,syntax,suppr_accents)              "Usage : suppr_accents mot"
+set caption(divers,syntax,decomp)                     "Usage : decomp fichier"
+set caption(divers,syntax,liste_index)                "Usage : liste_index nom_generique ?options?"
+set caption(divers,syntax,liste_series)               "Usage : liste_series ?options?"
+set caption(divers,syntax,liste_sousreps)             "Usage : liste_sousreps ?options?"
+set caption(divers,syntax,serie_existe)               "Usage : serie_existe nom_generique ?options?"
+set caption(divers,syntax,numerotation_usuelle)       "Usage : numerotation_usuelle nom _generique ?options?"
+set caption(divers,syntax,compare_index_series)       "Usage : compare_index_series liste_noms_generiques ?options?"
+set caption(divers,syntax,cree_sousrep)               "Usage : cree_sousrep ?options?"
+set caption(divers,syntax,cree_fichier)               "Usage : cree_fichier ?options?"
+set caption(divers,syntax,syntaxe_args)               "Usage : syntaxe_args liste_opts_averifier nb_args_obligatoires nb_args optionnels liste_options_valides"
+set caption(divers,syntax,range_options)              "Usage : range_options liste_options"
+set caption(divers,syntax,calcul_trzaligne)           "Usage : calcul_trzaligne liste1 liste2"
+set caption(divers,syntax,date_chiffresAlettres)      "Usage : date_chiffresAlettres date_chiffres"
+
+# Autres
+set caption(divers,oubli_param_opt)                   "Missing Parameter for the Following Option: "
+set caption(divers,invalide_opt)                      "Following Option is invalid: "
+set caption(divers,tracebox)                          "Please draw a square with your mouse."
+set caption(divers,series_trreg_cadre-ref)            "Defining the Reference Square for the Following Sub-series: "
+set caption(divers,series_trreg_cadre-a-rec)          "Defining the Square to Register the Following Sub-series: "
+set caption(divers,series_trreg_transl)               "Translation for the Following Sub-series: "
+set caption(divers,series_trreg_rot)                  "Rotation for the Following Sub-series: "
+set caption(divers,erreur,serie_existe)               "Error - The following series does not exist: "
+set caption(divers,nom_invalide)                      "The following file name is invalid (contains accented characters): "
+set caption(divers,copyjpeg)                          "Save as Jpeg"
+set caption(divers,libgsl)                            "\nThe libgsl and libgslcblas libraries are missing."
+set caption(divers,attention)                         "Warning"
+set caption(divers,err_list_of_number)                "{%s} is not a list of numbers."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   # Autres
+   set caption(divers,oubli_param_opt)                "Paramètre manquant pour l'option suivante : "
+   set caption(divers,invalide_opt)                   "L'option suivante est invalide : "
+   set caption(divers,tracebox)                       "Veuillez tracer un cadre à la souris."
+   set caption(divers,series_trreg_cadre-ref)         "Détermination du cadre de référence pour la sous-série suivante : "
+   set caption(divers,series_trreg_cadre-a-rec)       "Détermination du cadre pour la registration de la sous-série suivante : "
+   set caption(divers,series_trreg_transl)            "Translation pour la sous-série suivante : "
+   set caption(divers,series_trreg_rot)               "Rotation pour la sous-série suivante : "
+   set caption(divers,erreur,serie_existe)            "Erreur, la série suivante n'existe pas : "
+   set caption(divers,nom_invalide)                   "Le nom de fichier suivant est invalide (présence de caractères accentués) : "
+   set caption(divers,copyjpeg)                       "Enregistrer en Jpeg"
+   set caption(divers,libgsl)                         "\nLes librairies libgsl et libgslcblas sont manquantes."
+   set caption(divers,attention)                      "Attention"
+   set caption(divers,err_list_of_number)             "{%s} n'est pas une liste de nombres."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   # Autres
+   set caption(divers,oubli_param_opt)                "Parametro mancante per la seguente opzione: "
+   set caption(divers,invalide_opt)                   "La seguente opzione non e' valida: "
+   set caption(divers,tracebox)                       "Disegnare un quadrato con il mouse."
+   set caption(divers,series_trreg_cadre-ref)         "Determinazione del quadro di riferimento per la seguente sotto-serie: "
+   set caption(divers,series_trreg_cadre-a-rec)       "Determinazione del quadro per la registrazione della seguente sotto-serie: "
+   set caption(divers,series_trreg_transl)            "Traslazione per la seguente sotto-serie: "
+   set caption(divers,series_trreg_rot)               "Rotazione per la seguente sotto-serie: "
+   set caption(divers,erreur,serie_existe)            "Errore, la serie seguente non esiste: "
+   set caption(divers,nom_invalide)                   "Il nome del seguente file non e' valido (contiene caratteri accentati): "
+   set caption(divers,copyjpeg)                       "Salvare in JPEG"
+   set caption(divers,libgsl)                         "\nLe librerie libgsl e libgslcblas sono mancanti."
+   set caption(divers,attention)                      "Attenzione"
+   set caption(divers,err_list_of_number)             "{%s} non è una lista numerica."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   # Autres
+   set caption(divers,oubli_param_opt)                "Falta algún parámetro para la siguiente opción: "
+   set caption(divers,invalide_opt)                   "Esta opción es incorrecta: "
+   set caption(divers,tracebox)                       "Porfavor, dibuje un recuadro con el ratón."
+   set caption(divers,series_trreg_cadre-ref)         "Definiendo el recuadro de referencia para la sub-serie siguiente: "
+   set caption(divers,series_trreg_cadre-a-rec)       "Definiendo el recuadro para alinear las siguiente sub-serie: "
+   set caption(divers,series_trreg_transl)            "Traslación para la siguiente sub-serie: "
+   set caption(divers,series_trreg_rot)               "Rotación para la siguiente sub-serie: "
+   set caption(divers,erreur,serie_existe)            "Error, no existe la serie siguiente: "
+   set caption(divers,nom_invalide)                   "El siguiente nombre de fichero es incorrecto (contiene caracteres acentuados): "
+   set caption(divers,copyjpeg)                       "Guardar JPEG"
+   set caption(divers,libgsl)                         "\nLas librerias libgsl y libgslcblas no se encuentran."
+   set caption(divers,attention)                      "Aviso"
+   set caption(divers,err_list_of_number)             "{%s} no es una lista de números."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   # Autres
+   set caption(divers,oubli_param_opt)                "Fehlende Parameter für die Volgende Option: "
+   set caption(divers,invalide_opt)                   "Die Volgende Option ist ungültig: "
+   set caption(divers,tracebox)                       "Bitte, einen Rahmen mit der Mause zeichnen."
+   set caption(divers,series_trreg_cadre-ref)         "Der Betzugsrahmen für den folgenden Untersatz bestimmen: "
+   set caption(divers,series_trreg_cadre-a-rec)       "Der Registrationsrahmen für den folgenden Untersatz bestimmen: "
+   set caption(divers,series_trreg_transl)            "Verschiebung für den folgenden Untersatz: "
+   set caption(divers,series_trreg_rot)               "Umdrehung für den folgenden Untersatz: "
+   set caption(divers,erreur,serie_existe)            "Irrtum, die Folgende Serie existiert nicht: "
+   set caption(divers,nom_invalide)                   "Der Name dieser Datei ist inkorrekt (Gegenwart von betonten Buchstaben): "
+   set caption(divers,copyjpeg)                       "In JPEG speichern"
+   set caption(divers,libgsl)                         "\nDie libgsl und libslcbas Bibliotheken fehlen."
+   set caption(divers,attention)                      "Achtung"
+   set caption(divers,err_list_of_number)             "{%s} ist nicht eine Nummerliste."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   # Autres
+   set caption(divers,oubli_param_opt)                "Falta um parâmetro para a seguinte opção: "
+   set caption(divers,invalide_opt)                   "Esta opção não é válida: "
+   set caption(divers,tracebox)                       "Por favor, desenhe um quadrado com o rato."
+   set caption(divers,series_trreg_cadre-ref)         "A definir o quadrado de referência para a sub-série seguinte: "
+   set caption(divers,series_trreg_cadre-a-rec)       "A definir o quadrado para alinhar as seguintes sub-serie: "
+   set caption(divers,series_trreg_transl)            "Translação para a seguinte sub-série: "
+   set caption(divers,series_trreg_rot)               "Rotação para a seguinte sub-série: "
+   set caption(divers,erreur,serie_existe)            "Erro, não existe a série seguinte: "
+   set caption(divers,nom_invalide)                   "O seguinte nome de ficheiro não é válido (contém caracteres com acento): "
+   set caption(divers,copyjpeg)                       "Guardar como JPEG"
+   set caption(divers,libgsl)                         "\nAs livrarias libgsl e libgslcblas não foram encontradas."
+   set caption(divers,attention)                      "Aviso"
+   set caption(divers,err_list_of_number)             "{%s} não é uma lista de números."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   # Autres
+   set caption(divers,oubli_param_opt)                "Manglende parameter til flg. valg: "
+   set caption(divers,invalide_opt)                   "Flg. valg er ugyldig: "
+   set caption(divers,tracebox)                       "Tegn en ramme med musen."
+   set caption(divers,series_trreg_cadre-ref)         "Definér referenceramme til de følgende sub-serier: "
+   set caption(divers,series_trreg_cadre-a-rec)       "Definering af ramme for at registrere flg. sub-serie: "
+   set caption(divers,series_trreg_transl)            "Overførsel af den flg. sub-serie: "
+   set caption(divers,series_trreg_rot)               "Rotation af den flg. Sub-serie: "
+   set caption(divers,erreur,serie_existe)            "Fejl! Den følgende serie eksisterer ikke: "
+   set caption(divers,nom_invalide)                   "Følgende filnavn er ugyldigt (indeholder forbudte karakterer): "
+   set caption(divers,copyjpeg)                       "Gem som Jpeg"
+   set caption(divers,libgsl)                         "\nBibliotekerne libgsl og libgslcblas er ikke oprettet."
+   set caption(divers,attention)                      "Advarsel"
+   set caption(divers,err_list_of_number)             "{%s} er ikke en talrække."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   # Autres
+   set caption(divers,oubli_param_opt)                "Missing Parameter for the Following Option: "
+   set caption(divers,invalide_opt)                   "Following Option is invalid: "
+   set caption(divers,tracebox)                       "Please draw a square with your mouse."
+   set caption(divers,series_trreg_cadre-ref)         "Defining the Reference Square for the Following Sub-series: "
+   set caption(divers,series_trreg_cadre-a-rec)       "Defining the Square to Register the Following Sub-series: "
+   set caption(divers,series_trreg_transl)            "Translation for the Following Sub-series: "
+   set caption(divers,series_trreg_rot)               "Rotation for the Following Sub-series: "
+   set caption(divers,erreur,serie_existe)            "Error - The following series does not exist: "
+   set caption(divers,nom_invalide)                   "The following file name is invalid (contains accented characters): "
+   set caption(divers,copyjpeg)                       "Save as Jpeg"
+   set caption(divers,libgsl)                         "\nThe libgsl and libgslcblas libraries are missing."
+   set caption(divers,attention)                      "Warning"
+   set caption(divers,err_list_of_number)             "{%s} is not a list of numbers."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   # Autres
+   set caption(divers,oubli_param_opt)                "Missing Parameter for the Following Option: "
+   set caption(divers,invalide_opt)                   "Following Option is invalid: "
+   set caption(divers,tracebox)                       "Please draw a square with your mouse."
+   set caption(divers,series_trreg_cadre-ref)         "Defining the Reference Square for the Following Sub-series: "
+   set caption(divers,series_trreg_cadre-a-rec)       "Defining the Square to Register the Following Sub-series: "
+   set caption(divers,series_trreg_transl)            "Translation for the Following Sub-series: "
+   set caption(divers,series_trreg_rot)               "Rotation for the Following Sub-series: "
+   set caption(divers,erreur,serie_existe)            "Error - The following series does not exist: "
+   set caption(divers,nom_invalide)                   "The following file name is invalid (contains accented characters): "
+   set caption(divers,copyjpeg)                       "Save as Jpeg"
+   set caption(divers,libgsl)                         "\nThe libgsl and libgslcblas libraries are missing."
+   set caption(divers,attention)                      "Warning"
+   set caption(divers,err_list_of_number)             "{%s} is not a list of numbers."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

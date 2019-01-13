@@ -1,0 +1,1630 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Librairie TT : Manuel Utilisateur</title>
+</head>
+<body>
+<p class="date">Date de mise &agrave; jour : 1 August 2016</p>
+<h1>LIB TT - Librairie de pr&eacute;traitement d'images
+astronomiques</h1>
+<h1>Manuel Utilisateur</h1>
+<p>Ce guide de l'utilisateur s'adresse aux astronomes qui veulent
+&eacute;crire des scripts de traitement d'image utilisant la
+librairie TT. Rappelons que seul le format d'images FITS est
+reconnu et que seules les images monochromes (naxis=2) peuvent
+&ecirc;tre trait&eacute;es.</p>
+<p style="color: rgb(0, 0, 0);">On distingue deux types de
+fonctions de traitement d'images. Les fonctions qui traitent une
+pile d'images en entr&eacute;e et sortent une seule image sont
+r&eacute;unies au sein de IMA/STACK. Les fonctions qui traitement
+les images les unes apr&egrave;s les autres ind&eacute;pendamment de
+la pr&eacute;c&eacute;dente sont r&eacute;unies dans IMA/SERIES.</p>
+<h1>1. Guide de r&eacute;f&eacute;rence du mode script de TT</h1>
+<p>L'int&eacute;r&ecirc;t principal de la librairie TT est de
+pouvoir ex&eacute;cuter des commandes entr&eacute;es sous la forme de
+scripts. Un script TT est compos&eacute; d'une seule cha&icirc;ne de
+caract&egrave;res contenant des lignes (s&eacute;parateurs \n du
+langage C). Chaque ligne est analys&eacute;e s&eacute;quentiellement.
+Au sein d'une ligne, la premi&egrave;re cha&icirc;ne de
+caract&egrave;res rencontr&eacute;e doit contenir le mot cl&eacute; de
+d&eacute;finition.</p>
+<p>Si le mot cl&eacute; n'est pas reconnu, le restant de la ligne
+est interpr&eacute;t&eacute; comme une simple remarque. Le
+s&eacute;parateur blanc est utilis&eacute; pour les param&egrave;tres
+suivants de la ligne.</p>
+<p>Il existe actuellement quatre mots cl&eacute;s de
+d&eacute;finition :</p>
+<p>SET/VAR : initialise la valeur d'une variable de substitution.
+Cette d&eacute;finition comporte deux arguments : le mot &agrave;
+substituer et le mot substitu&eacute;.</p>
+<p>Les lignes suivantes se verront ainsi remplacer les mots
+&agrave; substituer par le mot substitu&eacute;.</p>
+<p>IMA/SERIES : traitement d'une s&eacute;rie d'images et
+cr&eacute;ation d'autant d'images en sortie qu'en entr&eacute;e.</p>
+<p>IMA/STACK : traitement d'une pile d'images et cr&eacute;ation
+d'une seule image en sortie.</p>
+<p>TMPFILE/EXT : assignation d'un mot qui sera ajout&eacute; au nom
+des fichiers temporaires (extensions .lst).</p>
+<h2>1.1. Param&eacute;trages des d&eacute;finitions IMA/</h2>
+<p>La forme g&eacute;n&eacute;rale d'une ligne d&eacute;finie par un
+mot cl&eacute; de type IMA/ est la suivante :d&eacute;finition rep_in
+nom_in indice_deb indice_fin ext_in rep_out nom_out ext_out
+indice_out fonction param&egrave;tres ...</p>
+<p>d&eacute;finition : IMA/SERIES ou IMA/STACK</p>
+<p>rep_in : chemin d'acc&egrave;s aux fichiers d'image
+d'entr&eacute;e (mettre un point si c'est le r&eacute;pertoire
+courant de libtt).</p>
+<p>nom_in : nom g&eacute;n&eacute;rique (ou liste de noms
+d&eacute;pareill&eacute;s) des images d'entr&eacute;e</p>
+<p>indice_deb : nombre correspondant &agrave; l'indice de la
+premi&egrave;re image (mettre un point s'il n'y a pas d'indice, ou
+une &eacute;toile si c'est une liste de noms
+d&eacute;pareill&eacute;s)</p>
+<p>indice_fin : nombre correspondant &agrave; l'indice de la
+derni&egrave;re image (mettre un point s'il n'y a pas d'indice, ou
+une &eacute;toile si c'est une liste de noms
+d&eacute;pareill&eacute;s)</p>
+<p>ext_in : nom de l'extension (suffixe) des fichiers images
+d'entr&eacute;e</p>
+<p>rep_out : chemin d'acc&egrave;s aux fichiers d'images de sortie
+(mettre un point si c'est le r&eacute;pertoire courant de
+libtt).</p>
+<p>nom_out : nom g&eacute;n&eacute;rique des images de sortie.</p>
+<p>indice_out : nombre correspondant &agrave; l'indice de la
+premi&egrave;re image de sortie (mettre un point s'il n'y a pas
+d'indice)</p>
+<p>ext_out : nom de l'extension (suffixe) des fichiers images de
+sortie.</p>
+<p>fonction : nom de la fonction (voir ci-apr&egrave;s).</p>
+<p>param&egrave;tres ... : liste de param&egrave;tres propres &agrave;
+chaque fonction. Ces param&egrave;tres peuvent appara&icirc;tre dans
+n'importe quel ordre.</p>
+<p>Exemple d'une ligne de script :IMA/STACK . i 1 5 .fit c:\toto
+j . .fit SK bitpix=32 kappa=1.5 nullpixel=-1000 jpegfile</p>
+<p>Ce script demande d'effectuer un pile kappa-sigma (fonction
+SK) des images i1.fit &agrave; i5.fit du r&eacute;pertoire courant en
+une image j.fit dans le r&eacute;pertoire c:\toto. L'image j.fit
+sera enregistr&eacute;e en entiers de 4 octets (bitpix=32), le
+coefficient kappa vaut 1.5 et les pixels de valeur
+inf&eacute;rieure ou &eacute;gale &agrave; -1000 ADU ne seront pas pris
+en compte dans calcul des kappa-sigma.</p>
+<p>A noter : dans ce propos, le terme de nom complet signifie le
+nom du fichier incluant le r&eacute;pertoire et le suffixe. Ainsi :
+c:\toto\j.fit est un nom complet alors que le nom de l'image est
+j.</p>
+<p>Si un param&egrave;tre doit contenir des caract&egrave;res blancs,
+encadrer le param&egrave;tre par des doubles quotes. Par exemple
+:</p>
+<pre>ttscript2 "IMA/SERIES . i 1 5 .fit . totoj 1 .fit RESAMPLE \"paramresample=1.5 0 0 0 1.5 0 0\" "<br /></pre>
+<p>les double quotes doivent encadrer aussi le mot d&eacute;signant
+le param&egrave;tre.</p>
+<p>Noter que l'extension .mt pour le format FITS g&egrave;re le
+syst&egrave;me d'indexation des images diff&eacute;remment des autres
+extensions. Des z&eacute;ros sont ajout&eacute;s automatiquement
+devant les indices pour que l'indice contienne 4 chiffres. Par
+exemple IMA/SERIES . i 1 5 .mt c:\toto j 1 .fit COPY, va chercher
+les fichiers i0001.mt &agrave; i0005.mt en lecture.</p>
+<h2>1.2. Liste g&eacute;n&eacute;rale des fonctions disponibles</h2>
+<table border="2" cellpadding="5">
+  <tbody>
+    <tr>
+      <td>Mot cl&eacute; de d&eacute;finition [et param&egrave;tres
+disponibles]</td>
+      <td>Mot cl&eacute; de la fonction [et param&egrave;tres
+disponibles]</td>
+    </tr>
+    <tr>
+      <td>IMA/STACK [bitpix jpegfile skylevel<br />
+jpeg_quality]</td>
+      <td><a href="#stackADD">ADD</a> [nullpixel]<br />
+      <a href="#DRIZZLEWCS">DRIZZLEWCS</a> [drop_sizepix]
+[oversampling] [nullpixel]<br />
+      <a href="#MEAN">MEAN</a> [nullpixel]<br />
+      <a href="#MED">MED</a> [nullpixel]<br />
+      <a href="#stackPROD">PROD</a> [powernorm] [nullpixel]<br />
+      <a href="#PYTHAGORE">PYTHAGORE</a> [nullpixel]<br />
+      <a href="#SHUTTER">SHUTTER</a> [nullpixel]<br />
+      <a href="#SIG">SIG</a> [nullpixel]<br />
+      <a href="#SK">SK</a> [kappa] [nullpixel]<br />
+      <a href="#SORT">SORT</a> [percent] [nullpixel]</td>
+    </tr>
+    <tr>
+      <td>IMA/SERIES [bitpix jpegfile skylevel<br />
+jpeg_quality]</td>
+      <td><a href="#seriesADD">ADD</a> [file offset]<br />
+      <a href="#ASTROMETRY">ASTROMETRY</a> [file_ascii]<br />
+      <a href="#BACK">BACK</a> [back_kernel] [back_threshold] [sub]
+[div] [nullpixel]<br />
+      <a href="#CATCHART">CATCHART</a> [path_astromcatalog]
+[astromcatalog] [catafile] [jpegfile_chart] [jpegfile_chart2]
+[magrlim] [magblim] [simulimage] [exposure] [fwhmx] [fwhmy]
+[teldiam] [colfilter] [sky_brightness] [qe] [gain]
+[readout_noise] [Tatm] [Topt] [elecmult] [shutter_mode]
+[bias_level] [thermic_response] [flat_type] [nullpixel] [newstar]
+[ra] [dec] [mag]<br />
+      <a href="#CONV">CONV</a> [kernel_type] [sigma]<br />
+      <a href="#COPY">COPY</a> [nbsubseries]<br />
+      <a href="ttus1-fr.htm#CORNERS">CORNERS</a> [width] [height]<br />
+      <a href="#CUTS">CUTS</a> [hicut] [locut] [keytype] [cutscontrast]
+[nullpixel]<br />
+      <a href="#DELETE">DELETE</a><br />
+      <a href="#DIV">DIV</a> [file] [constant]<br />
+      <a href="#FILTER">FILTER</a> [threshold] [type_threshold]
+[kernel_width] [kernel_type] [kernel_coef]<br />
+      <a href="#FITELLIP">FITELLIP</a> [x1] [x2] [y1] [y2] [xcenter]
+[ycenter] [backgound] [fitorder6543] [file_ascii]
+[threshold]<br />
+      <a href="#HEADERFITS">HEADERFITS</a> [file]<br />
+      <a href="#HOUGH">HOUGH</a> [threshold] [binary]<br />
+      <a href="#INVERT">INVERT</a> [mirror] [flip] [xy] [normaflux]
+[nullpixel]<br />
+      <a href="#MULT">MULT</a> [constant]<br />
+      <a href="#NORMOFFSET">NORMOFFSET</a> [normoffset_value]
+[nullpixel] [xcenter] [ycenter] [radius]<br />
+      <a href="ttus1-fr.htm#NORMGAIN">NORMGAIN</a> [normgain_value]
+[nullpixel] [xcenter] [ycenter] [radius]<br />
+      <a href="#OFFSET">OFFSET</a> [offset]<br />
+      <a href="#OPT">OPT</a> [dark] [bias] [therm_kappa]
+[unsmearing]<br />
+      <a href="#seriesPROD">PROD</a> [file] [constant]<br />
+      <a href="#RADIAL">RADIAL</a> [radius] [sigma] [power] [xcenter]
+[ycenter]<br />
+      <a href="#REGISTER">REGISTER</a> [translate] [normaflux]
+[matchwcs] [nullpixel]<br />
+      <a href="#REGISTERFINE">REGISTERFINE</a> [oversampling] [delta]
+[file] [nullpixel]<br />
+      <a href="#RESAMPLE">RESAMPLE</a> [paramresample] [normaflux]
+[nullpixel]<br />
+      <a href="#RGRADIENT">RGRADIENT</a> [xcenter] [ycenter] [radius]
+[angle] [nullpixel]<br />
+      <a href="#SMILEX">SMILEX</a> [ycenter] [coef_smile2]
+[coef_smile4]<br />
+      <a href="#SMILEY">SMILEY</a> [xcenter] [coef_smile2]
+[coef_smile4]<br />
+      <a href="#SUB">SUB</a> [file] [offset] [hot_pixel_list]
+[cosmic_threshold]<br />
+      <a href="#STAT">STAT</a> [pixelsat_value] [fwhm] [objefile]
+[pixefile] [border] [detect_kappa] [pixint] [nullpixel]<br />
+      <a href="#UNSMEARING">UNSMEARING</a> [unsmearing]<br />
+      <a href="#SUBDARK">SUBDARK</a> [dark] [bias] [exptime] [dexptime]
+[unsmearing] [hot_pixel_list] [cosmic_threshold]<br />
+      <a href="#SORTX">SORTX</a> [percent] [x1] [x2] [width]<br />
+      <a href="#SORTY">SORTY</a> [percent] [y1] [y2] [height]<br />
+      <a href="#TILT">TILT</a> [trans_x] [trans_y]<br />
+      <a href="#TRANS">TRANS</a> [trans_x] [trans_y] [nullpixel]
+      <p><br />
+Fonctions &eacute;crites par tt_user2</p>
+      <a href="#LOPT">LOPT</a> [y1] [y2] [height]<br />
+      <a href="../../../../../../../Audela_Divers/ttus1-fr.htm#LOPT5">LOPT5</a>
+[y1] [y2] [height] [cosmic_threshold] [file]<br />
+      <a href="#PROFILE2">PROFILE2</a> [offset] [direction]
+[filename]<br />
+      <p><br />
+Fonctions &eacute;crites par tt_user3</p>
+      <a href="#BINX">BINX</a> [x1] [x2] [width]<br />
+      <a href="#BINY">BINY</a> [y1] [y2] [height]<br />
+      <a href="#LOG">LOG</a> [offsetlog] [coeff] [nullpixel]<br />
+      <a href="#MATRIX">MATRIX</a> [x1] [x2] [y1] [y2]
+[filematrix]<br />
+      <a href="#MEDIANX">MEDIANX</a> [x1] [x2] [width]<br />
+      <a href="#MEDIANY">MEDIANY</a> [y1] [y2] [height]<br />
+      <a href="#POL2REC">POL2REC</a> [y0] [x0] [scale_theta]
+[scale_rho] [width] [height] [nullpixel]<br />
+      <a href="#PROFILE">PROFILE</a> [offset] [direction]
+[filename]<br />
+      <a href="#REC2POL">REC2POL</a> [y0] [x0] [scale_theta]
+[scale_rho] [nullpixel]<br />
+      <a href="#ROT">ROT</a> [y0] [x0] [angle] [nullpixel]<br />
+      <a href="ttus1-fr.htm#ROTENTIERE">ROTENTIERE</a> [y0] [x0]
+[angle] [nullpixel]<br />
+      <a href="ttus1-fr.htm#RESIZE">RESIZE</a> [width] [height]<br />
+      <a href="#WINDOW">WINDOW</a> [x1] [x2] [y1] [y2]<br />
+      <p><br />
+Fonctions &eacute;crites par tt_user4</p>
+      <a href="#ASTROMETRY2">ASTROMETRY2</a><br />
+      <p><br />
+Fonctions &eacute;crites par tt_user6</p>
+      <a href="#HOTPIXEL">HOTPIXEL</a> [hot_pixel_list]<br />
+      <a href="#COSMIC">COSMIC</a> [cosmic_threshold]</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<h2 style="color: rgb(0, 0, 0);">1.3. Param&egrave;tres optionnels
+communs &agrave; IMA/STACK et IMA/SERIES</h2>
+<p>Les param&egrave;tres optionnels sont du type cl&eacute; ou
+cl&eacute;=valeur. La cl&eacute; est un mot (majuscules ou minuscules
+indiff&eacute;renci&eacute;es). Certaines cl&eacute;s exigent une
+valeur qui doit &ecirc;tre &eacute;crite apr&egrave;s le symbole
+&eacute;gal. La valeur est soit un mot, soit un nombre, soit une
+s&eacute;rie de nombres selon les cas. On prendra garde &agrave; ne
+pas introduire de caract&egrave;re blanc avant et apr&egrave;s le
+symbole &eacute;gal. Un certain nombre de cl&eacute;s peuvent
+&ecirc;tre utilis&eacute;es dans les d&eacute;finitions de IMA/STACK
+ou IMA/SERIES. Elles sont pr&eacute;sent&eacute;es dans ce paragraphe
+:</p>
+<p><a name="defBitpix" id="defBitpix">[bitpix] permet de choisir
+le format des donn&eacute;es enregistr&eacute;es dans le fichier
+FITS.</a></p>
+<p><span style="font-weight: bold;">Par d&eacute;faut, les images
+de sortie prennent le m&ecirc;me type de donn&eacute;es que les
+images d'entr&eacute;e.</span><br />
+</p>
+<p>On distingue les cas suivants :</p>
+<p>bitpix=8 (byte) : entiers &agrave; 1 octet non sign&eacute; (0
+&agrave; 255).</p>
+<p>bitpix=16 (short) : entiers &agrave; 2 octets sign&eacute;s
+(-32768 &agrave; 32767).</p>
+<p>bitpix=+16 (ushort) : entiers &agrave; 2 octets non sign&eacute;s
+(0 &agrave; 65535) (Note 1).<br />
+</p>
+<p>bitpix=32 (long) : entiers &agrave; 4 octets sign&eacute;s (-2 147
+483 648 &agrave; 2 147 483 647).</p>
+<p>bitpix=+32 (ulong) : entiers &agrave; 4 octets non sign&eacute;s
+(0 &agrave; 4 294 967 295) (Note 1).<br />
+</p>
+<p>bitpix=-32 (float) : flottants &agrave; 4 octets
+(-3,4*10<sup>+38</sup> &agrave; 3,4*10<sup>+38</sup>) (Note
+2).<br />
+</p>
+<p>bitpix=-64 (double) : flottants &agrave; 8 octets
+(-1,7*10<sup>+308</sup> &agrave; 1,7*10<sup>+308</sup>)
+(Note3).<br />
+</p>
+<p><span style="text-decoration: underline;">Note 1 :</span> Les
+valeurs +16 et +32 ne sont pas des valeurs normalis&eacute;es du
+standard FITS. Elles sont sp&eacute;cifiques &agrave; AudeLA et ne
+sont utilisables qu'en tant que param&egrave;tres de certaines
+commandes de libaudela et de libtt.<span
+ style="font-family: &quot;Arial&quot;,&quot;sans-serif&quot;;"><br />
+</span></p>
+<p><span style="text-decoration: underline;">Note 2 :</span>
+Cette notation pr&eacute;sente 2 discontinuit&eacute;s, en effet il
+est impossible d'affecter une valeur d'ADU dans les intervalles
+suivants :</p>
+<ul>
+  <li>0 &agrave; +3,4*10<sup class="moz-txt-sup">-38</sup></li>
+  <li>-3,4*10<sup class="moz-txt-sup">-38</sup>&nbsp; &agrave; 0</li>
+</ul>
+<p><span style="text-decoration: underline;">Note 3 :</span>
+Cette notation pr&eacute;sente 2 discontinuit&eacute;s, en effet il
+est impossible d'affecter une valeur d'ADU dans les intervalles
+suivants :</p>
+<ul>
+  <li>0 &agrave; +1,7*10<sup class="moz-txt-sup">-308</sup></li>
+  <li>-1,7*10<sup class="moz-txt-sup">-308</sup>&nbsp; &agrave; 0</li>
+</ul>
+<p>[jpegfile] (pas d'arguments) permet de sauver une ou plusieurs
+images au format JPEG apr&egrave;s traitement. Les seuils sont pris
+&eacute;gaux &agrave; ceux trouv&eacute;s dans l'en-t&ecirc;te de
+l'image (cf. fonction IMA/SERIES STAT pour les calculer). Il y
+aura autant d'images JPEG g&eacute;n&eacute;r&eacute;es que d'images
+finales FITS g&eacute;n&eacute;r&eacute;es. Chaque fichier JPEG porte
+le m&ecirc;me nom que le fichier FITS correspondant dont le
+suffixe est remplac&eacute; par .jpg. Les fichiers JPEG sont
+enregistr&eacute;s dans le m&ecirc;me r&eacute;pertoire que les images
+FITS de sortie.</p>
+<p>[jpeg_quality] (= valeur enti&egrave;re entre 5 et 100) permet
+de fixer la valeur du crit&egrave;re de qualit&eacute; de l'image
+JPEG (cf. utilisation de [jpegfile]). Ce crit&egrave;re peut varier
+entre 5 (image tr&egrave;s d&eacute;grad&eacute;e) &agrave; 100 (image
+compress&eacute;e sans perte). Par d&eacute;faut, cette valeur est
+fix&eacute;e &agrave; 75.</p>
+<p>[skylevel] (pas d'argument) permet de sauver la valeur du fond
+de ciel, avant traitement, dans l'en-t&ecirc;te de l'image
+trait&eacute;e (mot cl&eacute; SKYLEVEL dans l'en-t&ecirc;te
+FITS).</p>
+<p>[nullpixel] (= valeur en ADU). Permet d'indiquer &agrave; la
+fonction de ne pas prendre en compte les pixels dont les valeurs
+sont inf&eacute;rieures ou &eacute;gales &agrave; la valeur seuil de
+nullpixel. Nullpixel employ&eacute; sans argument signifie que la
+valeur seuil vaut z&eacute;ro.</p>
+<p>[tmp_dir] (= nom d'un dossier existant). Indique le dossier dans
+lequel seront enregistr&eacute;s les fichiers tt.log, tt.err et
+tt_last.err. Par d&eacute;faut le dossier est pwd (.).</p>
+<h1>2. Fonctions de la d&eacute;finition IMA/STACK</h1>
+<p style="color: rgb(0, 0, 0);">Ces fonctions produisent une
+seule image en sortie &agrave; partir d'une pile d'images en
+entr&eacute;e.</p>
+<p>Chacune des fonctions de IMA/STACK peut &ecirc;tre
+associ&eacute;e aux param&egrave;tres optionnels g&eacute;n&eacute;raux
+d&eacute;crits au paragraphe 1.3</p>
+<ol>
+  <li>
+    <h3><a name="stackADD" id="stackADD">Fonction ADD</a></h3>
+    <p>Addition pixel &agrave; pixel des images de la pile.<br />
+    </p>
+    <p>La date (DATE-OBS) est chang&eacute;e en fonction des poids de
+chacune des images entrant dans la pile. Le temps de pose
+(EXPOSURE) de l'image finale est &eacute;gal &agrave; la somme des
+(EXPOSURE) des images de la pile.</p>
+  </li>
+  <li>
+    <h3><a name="DRIZZLEWCS" id="DRIZZLEWCS">Fonction
+DRIZZLEWCS</a></h3>
+    <p>Empilage drizzle des images de la pile. Attention, les images
+doivent avoir &eacute;t&eacute; pr&eacute;alablement calibr&eacute;es
+WCS.<br />
+    </p>
+    <p>La date (DATE-OBS) est chang&eacute;e en fonction des poids de
+chacune des images entrant dans la pile. Le temps de pose
+(EXPOSURE) de l'image finale est &eacute;gal &agrave; la moyenne des
+(EXPOSURE) des images de la pile.<br />
+    <br />
+Le param&egrave;tre [drop_size] (=0.5 par d&eacute;faut) est la
+taille de la goutte exprim&eacute;e en pixels (&agrave; choisir entre
+0.5 et 1). Le param&egrave;tre [oversampling] (=2 par d&eacute;faut)
+est un multiplicateur qui s'applique aux dimensions de l'image de
+sortie (&agrave; choisir entre 1 et 5).<br />
+    </p>
+    <p>Pour de plus amples informations su cette technique, voir <a
+ href="http://en.wikipedia.org/wiki/Drizzle_%28image_processing%29">http://en.wikipedia.org/wiki/Drizzle_%28image_processing%29</a>
+et <a href="http://www.jstor.org/stable/10.1086/338393">http://www.jstor.org/stable/10.1086/338393</a>.</p>
+  </li>
+  <li>
+    <h3><a name="MEAN" id="MEAN">Fonction MEAN</a></h3>
+    <p>Moyenne pixel &agrave; pixel des images de la pile.<br />
+    </p>
+    <p>La date (DATE-OBS) est chang&eacute;e en fonction des poids de
+chacune des images entrant dans la pile. Le temps de pose
+(EXPOSURE) de l'image finale est &eacute;gal &agrave; la valeur
+moyenne des (EXPOSURE) des images de la pile.</p>
+  </li>
+  <li>
+    <h3><a name="MED" id="MED">Fonction MED</a></h3>
+    <p>M&eacute;diane pixel &agrave; pixel des images de la
+pile.<br />
+    </p>
+    <p>La date (DATE-OBS) est chang&eacute;e en fonction des poids de
+chacune des images entrant dans la pile. Le temps de pose
+(EXPOSURE) de l'image finale est &eacute;gal &agrave; la valeur
+m&eacute;diane des (EXPOSURE) des images de la pile.</p>
+  </li>
+  <li>
+    <h3><a name="stackPROD" id="stackPROD">Fonction PROD</a></h3>
+    <p>Produit pixel &agrave; pixel des images de la pile. L'option
+[powernorm], si elle est indiqu&eacute;e (sans valeur) impose une
+normalisation en puissance 1/n pour n images constituant chaque
+point.</p>
+    <p>La date (DATE-OBS) est chang&eacute;e en fonction des poids de
+chacune des images entrant dans la pile. Le temps de pose
+(EXPOSURE) de l'image finale est &eacute;gal &agrave; la somme des
+(EXPOSURE) des images de la pile.</p>
+  </li>
+  <li>
+    <h3><a name="PYTHAGORE" id="PYTHAGORE">Fonction
+PYTHAGORE</a></h3>
+    <p>Racine carr&eacute;e de la somme des carr&eacute;s de pixel
+&agrave;
+pixel des images de la pile.<br />
+    </p>
+    <p>La date (DATE-OBS) est chang&eacute;e en fonction des poids de
+chacune des images entrant dans la pile. Le temps de pose
+(EXPOSURE) de l'image finale est &eacute;gal &agrave; la somme des
+(EXPOSURE) des images de la pile.</p>
+  </li>
+  <li>
+    <h3><a name="SIG" id="SIG">Fonction SIG</a></h3>
+    <p>Ecart type, pixel &agrave; pixel, des images de la
+pile.<br />
+    </p>
+    <p>La date (DATE-OBS) est chang&eacute;e en fonction des poids de
+chacune des images entrant dans la pile. Le temps de pose
+(EXPOSURE) de l'image finale est &eacute;gal &agrave; la valeur
+moyenne des (EXPOSURE) des images de la pile.</p>
+  </li>
+  <li>
+    <h3><a name="SK" id="SK">Fonction SK</a></h3>
+    <p>Moyenne kappa-sigma, pixel &agrave; pixel, des images de la
+pile. Le param&egrave;tre optionnel [kappa] permet de choisir le
+seuil de r&eacute;jection des valeurs hors de la plage
+[moyenne-kappa*&eacute;cart-type ; moyenne+kappa*&eacute;cart-type].
+Par d&eacute;faut [kappa=3].<br />
+    </p>
+    <p>La date (DATE-OBS) est chang&eacute;e en fonction des poids de
+chacune des images entrant dans la pile. Le temps de pose
+(EXPOSURE) de l'image finale est &eacute;gal &agrave; la valeur
+moyenne des (EXPOSURE) des images de la pile.</p>
+  </li>
+  <li>
+    <h3><a name="SORT" id="SORT">Fonction SORT</a></h3>
+    <p>Valeur tri&eacute;e, pixel &agrave; pixel, des images de la
+pile.
+Le calcul de la valeur tri&eacute;e est le suivant. La valeur de
+chaque pixel (x,y) de toutes les images de la pile sont
+tri&eacute;es dans l'ordre croissant. Le param&egrave;tre optionnel
+[percent] permet de choisir la valeur tri&eacute;e. La valeur
+tri&eacute;e est prise &eacute;gale au minimum si [percent=0], &agrave;
+la valeur m&eacute;diane si [percent=50] et au maximum si
+[percent=100]. percent peut prendre n'importe quelle valeur entre
+0 et 100. Par d&eacute;faut [percent=50].</p>
+    <p>Exemple avec 8 valeurs class&eacute;es par ordre croissant : 0,
+1, 2, 2, 4, 4, 6, 1000<br />
+0% ---&gt; 0 ; 30%---&gt; 2 ; 50% ---&gt; 4 ; 100% ---&gt;
+1000</p>
+    <p>La date (DATE-OBS) est chang&eacute;e en fonction des poids de
+chacune des images entrant dans la pile. Le temps de pose
+(EXPOSURE) de l'image finale varie en fonction de la valeur de
+[percent].</p>
+  </li>
+  <li>
+    <h3><a name="SHUTTER" id="SHUTTER">Fonction SHUTTER</a></h3>
+    <p>Synth&eacute;tise l'image des d&eacute;lais de
+ouverture/fermeture
+d'un obturateur m&eacute;canique &agrave; partir d'un lot d'images
+prises avec des dur&eacute;es de pose diff&eacute;rentes. La valeur
+des pixels de l'image finale est &eacute;gale au retard par rapport
+au d&eacute;but d'ouverture de l'obturateur.<br />
+    </p>
+    <p>La date (DATE-OBS) est chang&eacute; en fonction des poids de
+chacune des images entrant dans la pile. Le temps de pose
+(EXPOSURE) de l'image finale est &eacute;gal &agrave; 0.</p>
+  </li>
+</ol>
+<h1>3. Fonctions de la d&eacute;finition IMA/SERIES</h1>
+<p>Chacune des fonctions de IMA/SERIES peut &ecirc;tre
+associ&eacute;e aux param&egrave;tres optionnels g&eacute;n&eacute;raux
+d&eacute;crits au paragraphe 1.3. Les param&egrave;tres optionnels
+(et leur argument) sp&eacute;cifiques &agrave; chaque fonction sont
+d&eacute;crits maintenant :</p>
+<h2>3.1. Les fonctions destin&eacute;es &agrave; 'Adapter la
+g&eacute;om&eacute;trie' des images</h2>
+<p style="color: rgb(0, 0, 0);">Ces fonctions transforment la
+g&eacute;om&eacute;trie des images et/ou l'intensit&eacute; des pixels
+et produisent autant d'images en sortie qu'il y en a en
+entr&eacute;e.</p>
+<ol>
+  <li>
+    <h3><a name="INVERT" id="INVERT">Fonction INVERT</a></h3>
+    <p>Echange les pixels de l'image en fonction de l'option
+pr&eacute;cis&eacute;e :</p>
+    <p>MIRROR : L'image est invers&eacute;e gauche droite.</p>
+    <p>FLIP : L'image est invers&eacute;e haut bas.</p>
+    <p>XY : L'image est transpos&eacute;e (&eacute;change des lignes et
+des colonnes).</p>
+    <p>Les mots cl&eacute;s d'astrom&eacute;trie (WCS),
+&eacute;ventuellement pr&eacute;sents dans l'en-t&ecirc;te FITS, sont
+modifi&eacute;s en cons&eacute;quence.</p>
+  </li>
+  <li>
+    <h3><a name="WINDOW" id="WINDOW">Fonction WINDOW</a></h3>
+    <p>Extrait une image de sortie dans la fen&ecirc;tre [x1] [x2]
+[y1] [y2] de l'image d'entr&eacute;e.</p>
+    <p>Exemple de script pour fen&ecirc;trer trois images de nom
+g&eacute;n&eacute;rique $img, indic&eacute;es de 1 &agrave; 3 et
+d'extension $ext, $x1,$y1 et $x2,$y2 repr&eacute;sentant les
+coordonn&eacute;es d'un rectangle de s&eacute;lection, on peut
+ex&eacute;cuter dans un script Tcl :</p>
+    <pre>ttscript2 "IMA/SERIES . $img 1 3 $ext . $img 1 $ext WINDOW x1=$x1 x2=$x2 y1=$y1 y2=$y2 bitpix=16"<br /> <br />
+    </pre>
+Pour des plans couleurs portant le nom ${img}r ${img}g ${img}b il
+faudra traiter les images comme une liste d&eacute;pareill&eacute;e :
+    <pre>set liste_images [ list ${img}r ${img}g ${img}b ]<br /><br />ttscript2 "IMA/SERIES . \"$liste_images\" * * $ext . $img 1 $ext WINDOW x1=$x1 x2=$x2 y1=$y1 y2=$y2 bitpix=16"<br /> <br />
+    </pre>
+    <p>Les images produites porteront le nom ${img}1 ${img}2
+${img}3</p>
+  </li>
+  <li>
+    <h3><a name="RESAMPLE" id="RESAMPLE">Fonction RESAMPLE</a></h3>
+    <p>Effectue une transformation lin&eacute;aire de type :</p>
+    <p>x_out = a[0]*x_in + a[1]*y_in + a[2]<br />
+y_out = a[3]*x_in + a[4]*y_in + a[5]</p>
+    <p>La valeur des coefficients a[0] &agrave; a[5] est cod&eacute;e
+dans le param&egrave;tre [paramresample] sous la forme de la suite
+des coefficients 0 &agrave; 5. Par exemple, pour effectuer une
+r&eacute;duction homog&egrave;ne de l'image d'un facteur 2, on
+&eacute;crira <b>(attention &agrave; l'&eacute;criture de
+paramresample)</b> :</p>
+    <pre>ttscript2 "IMA/SERIES . i 1 5 .fit . totoj 1 .fit RESAMPLE \"paramresample=1.5 0 0 0 1.5 0 0\" "<br /></pre>
+    <p>Par d&eacute;faut, l'int&eacute;grale du flux est
+conserv&eacute;e
+(par exemple, si l'image est dilat&eacute;e d'un facteur deux sur
+les deux axes, sa dynamique sera r&eacute;duite d'un facteur
+quatre). Pour imposer une normalisation autre du flux, utiliser
+le param&egrave;tre [normaflux]. Par exemple, pour garder la
+dynamique originelle, utiliser normaflux=1.</p>
+    <p>Les mots cl&eacute;s d'astrom&eacute;trie (WCS),
+&eacute;ventuellement pr&eacute;sents dans l'en-t&ecirc;te FITS, sont
+modifi&eacute;s en cons&eacute;quence de la transformation
+g&eacute;om&eacute;trique.</p>
+  </li>
+  <li>
+    <h3><a name="TRANS" id="TRANS">Fonction TRANS</a></h3>
+    <p>Effectue une translation constante de [trans_x] [trans_y]
+pixels de toutes les images. Les mots cl&eacute;s
+d'astrom&eacute;trie (WCS), &eacute;ventuellement pr&eacute;sents dans
+l'en-t&ecirc;te FITS, sont modifi&eacute;s en
+cons&eacute;quence.<br />
+    </p>
+    <p>Par exemple, pour effectuer une translation sur l'image
+$img.$ext</p>
+    <pre>ttscript2 "IMA/SERIES . $img . . $ext . $img . $ext TRANS trans_x=12 trans_y=34 nullpixel=0<br /> <br />
+    </pre>
+    <p>L'option nullpixel=0 peut s'av&eacute;rer importante pour le
+compositage ult&eacute;rieur des images. En effet, le mot cl&eacute;
+NULLPIXEL pourra &ecirc;tre &agrave; nouveau utilis&eacute; par les
+fonctions d'empilage (IMA/STACK) pour &eacute;viter de tenir compte
+des "bords noirs" des images.</p>
+  </li>
+  <li>
+    <h3><a name="ROT" id="ROT">Fonction ROT</a></h3>
+    <p>Effectue une rotation d'un [angle] (en degr&eacute;s) autour du
+point d&eacute;fini par les coordonn&eacute;es [x0] [y0]. Les mots
+cl&eacute;s d'astrom&eacute;trie (WCS), &eacute;ventuellement
+pr&eacute;sents dans l'en-t&ecirc;te FITS, sont modifi&eacute;s en
+cons&eacute;quence.</p>
+    <p>Exemple de script pour tourner une image de 15&deg; autour de
+son centre x0,y0 :</p>
+    <pre>ttscript2 "IMA/SERIES . $file . . $ext . rot$file . $ext ROT x0=$x0 y0=$y0 angle=15.0"<br /> <br />
+    </pre>
+    <p>L'image produite garde les m&ecirc;mes dimensions naxis1 et
+naxis2 que l'image originale. Une partie des coins de l'image
+originale est perdue. La perte est d'autant plus importante que
+l'angle de rotation est grand.</p>
+  </li>
+  <li>
+    <h3><a name="ROTENTIERE" id="ROTENTIERE">Fonction
+ROTENTIERE</a></h3>
+    <p>A la diff&eacute;rence de ROT, les dimensions de l'image finale
+sont modifi&eacute;es pour contenir toute l'image originale
+tourn&eacute;e d'un [angle] (en degr&eacute;s) autour du centre de
+l'image de coordonn&eacute;es [x0] (= naxis1 / 2) et [y0] (= naxis2
+/ 2).</p>
+  </li>
+</ol>
+<h2>3.2. Les fonctions pour 'Retoucher' les images</h2>
+<p style="color: rgb(0, 0, 0);">Ces fonctions corrigent des
+d&eacute;fauts sur les images. Elles produisent autant d 'images en
+sortie qu'il y en a en entr&eacute;e.</p>
+<ol>
+  <li>
+    <h3><a name="UNSMEARING" id="UNSMEARING">Fonction
+UNSMEARING</a></h3>
+    <p>Effectue une correction de tra&icirc;n&eacute;e (deconvflat)
+dans
+le cas d'une image effectu&eacute;e avec une cam&eacute;ra sans
+obturateur. Pour ce faire, indiquer la valeur du rapport de
+lecture (en g&eacute;n&eacute;ral proche de 0.0005) dans le
+param&egrave;tre [unsmearing]. Le coefficient
+UNSMEARING=[unsmearing] correspond au rapport du temps de lecture
+d'une ligne par rapport a l'image enti&egrave;re.</p>
+    <p>Cette correction doit &ecirc;tre effectu&eacute;e apr&egrave;s
+correction du bias et du dark.</p>
+    <p>Remarque : Le smearing peut supprim&eacute; aussi avec les
+commandes <a href="#OPT">OPT</a> et <a href="#SUBDARK">SUBDARK</a> .</p>
+    <p>Exemple : Supprimer le smearing de 3 images ugc192-1.fit ,
+ugc192-2.fit , ugc192-3.fit acquises avec une Audine Kaf400 avec
+512 lignes en binning 2x2 . Le coefficient vaut environ 1 /
+(binningx * binningy * nb lignes) = 0.0005 . On suppose que les
+images sont dans le r&eacute;pertoire par d&eacute;faut d&eacute;fini
+dans la variable ::audace(rep_images).</p>
+    <pre>set in "ugc192-"<br /><br />set first 1<br /><br />set ni 3<br /><br />set ext ".fit"<br /><br />set out "ugc192unsmear-"<br /><br />set coefficientUnsmear 0.0005<br /><br />ttscript2 "IMA/SERIES \"$::audace(rep_images)\" \"$in\" $first $ni \"$ext\" \"$::audace(rep_images)\" \"$out\" 1 \"$ext\" UNSMEARING UNSMEARING=$coefficientUnsmear"<br />
+    </pre>
+    <p>La commande cr&eacute;e les 3 images trait&eacute;es :
+ugc192unsmear-1.fits , ugc192unsmear-2.fits ,
+ugc192unsmear-3.fits</p>
+  </li>
+  <li>
+    <h3><a name="HOTPIXEL" id="HOTPIXEL">Fonction HOTPIXEL</a></h3>
+    <p>Corrige les pixels chauds, les colonnes d&eacute;fectueuses et
+les lignes d&eacute;fectueuses en rempla&ccedil;ant les valeurs
+d&eacute;fectueuses par la moyenne des pixels voisins.</p>
+    <p>La fonction re&ccedil;oit en param&egrave;tre la liste des
+pixels
+&agrave; corriger sous la forme d'une cha&icirc;ne de
+caract&egrave;res contenant les &eacute;l&eacute;ments suivants :</p>
+    <blockquote>
+      <p>"P x y" repr&eacute;sente les coordonn&eacute;es d'un pixel
+chaud<br />
+"C x" repr&eacute;sente l'abscisse d'une colonne
+d&eacute;fectueuse<br />
+"L y" repr&eacute;sente l'ordonn&eacute;e d'une ligne
+d&eacute;fectueuse<br />
+      </p>
+    </blockquote>
+    <p>L'exemple suivant corrige le pixel (232,133), le pixel (456
+198), la colonne 400 et la ligne 200 :</p>
+    <pre>ttscript2 "IMA/SERIES ./images/ i- 1 9 .fit ./images/ j . .fit HOTPIXEL \"hot_pixel_list=P 232 133 P 456 198 C 400 L 200 \" "<br />
+    </pre>
+    <p>Note : laisser un blanc apr&egrave;s la derni&egrave;re
+valeur.</p>
+    <p>Remarque : Pour optimiser les traitements, il est possible de
+corriger aussi les pixels chauds avec les fonctions de
+soustraction des images ou de soustraction des darks (voir les
+commandes SUB et SUBDARK)<br />
+    </p>
+  </li>
+  <li>
+    <h3><a name="COSMIC" id="COSMIC">Fonction COSMIC</a></h3>
+    <p>Corrige les cosmiques en rempla&ccedil;ant les valeurs
+alt&eacute;r&eacute;es par un cosmique par la moyenne des pixels
+voisins.</p>
+    <p>La fonction re&ccedil;oit en param&egrave;tre un seuil qui
+permet
+d'adapter le niveau de d&eacute;tection des cosmiques dans l'image.
+La valeur par d&eacute;faut est 400. Il est conseill&eacute;
+d'utiliser une valeur entre 100 et 500.</p>
+    <p>Exemple :</p>
+    <pre>IMA/SERIES ./images/ i- 1 9 .fit ./images/ j . .fit COSMIC COSMIC_THRESHOLD=350<br />
+    </pre>
+    <p>Remarque : Pour optimiser les traitements, il est possible de
+corriger aussi les cosmiques avec les fonctions de soustraction
+des images ou de soustraction des darks (voir les commandes SUB
+et SUBDARK<br />
+    </p>
+  </li>
+  <li>
+    <h3><a name="OPT" id="OPT">Fonction OPT</a></h3>
+    <p>Correction du dark avec optimisation. Les images sont
+corrig&eacute;es des images [bias] et [dark] (noms complets).
+L'image [dark] est optimis&eacute;e avant d'&ecirc;tre soustraite.
+L'optimisation se fait sur les pixels dont la valeur est
+sup&eacute;rieure &agrave; un certain seuil dans l'image dark. Ce
+seuil est calcul&eacute; comme la moyenne + [therm_kappa] sigma.
+Par d&eacute;faut, [therm_kappa]=0.25.</p>
+    <p>A la suite des corrections pr&eacute;c&eacute;dentes, il est
+possible d'effectuer une correction de tra&icirc;n&eacute;e
+(deconvflat) dans le cas d'une image effectu&eacute;e avec une
+cam&eacute;ra sans obturateur. Pour ce faire, indiquer la valeur du
+rapport de lecture (en g&eacute;n&eacute;ral proche de 0.0005) dans
+le param&egrave;tre [unsmearing].</p>
+  </li>
+  <li>
+    <h3><a name="BACK" id="BACK">Fonction BACK</a></h3>
+    <p>Synth&eacute;tise une image du fond de ciel. L'image est d'abord
+d&eacute;coup&eacute;e en pav&eacute;s carr&eacute;s de
+c&ocirc;t&eacute;
+[back_kernel] (=8 par d&eacute;faut) pixels. Dans chaque carr&eacute;
+est calcul&eacute;e la valeur du fond de ciel en prenant la
+fraction [back_threshold] (=0.1 par d&eacute;faut) des valeurs de
+pixels tri&eacute;s dans l'ordre d'intensit&eacute; croissante
+(back_threshold=0 pour ne prendre que les valeurs minimales et =1
+pour les valeurs maximales).</p>
+    <p>Ajouter [sub] sans argument si l'on souhaite obtenir
+directement le r&eacute;sultat de la soustraction du fond &agrave;
+l'image initiale (une valeur constante &eacute;gale &agrave; la
+moyenne du fond synth&eacute;tique est ajout&eacute;e au
+r&eacute;sultat de fa&ccedil;on &agrave; retrouver la dynamique
+initiale).</p>
+    <p>Ajouter [div] sans argument si l'on souhaite obtenir
+directement le r&eacute;sultat de la division du fond &agrave;
+l'image initiale (une valeur constante &eacute;gale &agrave; la
+moyenne du fond synth&eacute;tique est multipli&eacute;e au
+r&eacute;sultat de fa&ccedil;on &agrave; retrouver la dynamique
+initiale).</p>
+    <p>Pour soustraire le fond de ciel &agrave; une image dont les
+&eacute;toiles sont &eacute;tal&eacute;es d'environ 3 pixels, on
+essaiera par exemple :</p>
+    <pre>ttscript2 "IMA/SERIES . $file . . $ext . $file . $ext BACK back_kernel=12 back_threshold=0.2 sub"<br /> <br />
+    </pre>
+  </li>
+  <li>
+    <h3><a name="SUBDARK" id="SUBDARK">Fonction SUBDARK</a></h3>
+    <p>Soustraction d'un dark de temps de pose diff&eacute;rent des
+images brutes. Le nom du dark est [dark] et celui du bias est
+[bias]. Si [exptime] est le temps d'int&eacute;gration des images
+et [dexptime] le temps d'exposition du dark, le dark est
+corrig&eacute; du rapport de ces valeurs. Si [exptime] et
+[dexptime] sont des cha&icirc;nes de caract&egrave;res, alors la
+valeur des temps d'int&eacute;gration sera recherch&eacute;e comme la
+valeur de ces mots cl&eacute;s.</p>
+    <p>Par d&eacute;faut, [exptime]="EXPTIME" et
+[dexptime]="EXPTIME".</p>
+    <p>Si l'argument UNSMEARING=[unsmearing] est pr&eacute;sent, il est
+possible d'effectuer une correction de tra&icirc;n&eacute;e
+(deconvflat) dans le cas d'une image effectu&eacute;e avec une
+cam&eacute;ra sans obturateur. Pour ce faire, indiquer la valeur du
+rapport de lecture (en g&eacute;n&eacute;ral proche de 0.0005) dans
+le param&egrave;tre [unsmearing].</p>
+    <p>Si l'argument HOT_PIXEL_LIST="P x1 y1 P x2 y2 ..." est
+pr&eacute;sent, les pixels chauds sont retir&eacute;s de chaque image
+avant la soustraction du dark (la syntaxe est identique &agrave; la
+fonction <a href="#HOTPIXEL">HOTPIXEL</a> ).</p>
+    <p>Si l'argument COSMIC_THRESHOLD=400 est pr&eacute;sent, les
+cosmiques sont retir&eacute;s de chaque image avant la soustraction
+du dark (la syntaxe est identique &agrave; la fonction <a
+ href="#COSMIC">COSMIC</a> )</p>
+  </li>
+</ol>
+<h2>3.3. Les fonctions pour effectuer des op&eacute;ration
+'arithm&eacute;tiques'</h2>
+<p style="color: rgb(0, 0, 0);">Ces fonctions modifient
+l'intensit&eacute; des pixels trait&eacute;s et produisent autant
+d'images en sortie qu'il y en a en entr&eacute;e.</p>
+<ol>
+  <li>
+    <h3><a name="seriesADD" id="ADD">Fonction ADD</a></h3>
+    <p>Addition pixel &agrave; pixel avec une image dont le nom complet
+est d&eacute;fini par l'argument de [file]. Une valeur d'offset
+peut &ecirc;tre ajout&eacute;e et vaut l'argument de [offset].</p>
+  </li>
+  <li>
+    <h3><a name="SUB" id="SUB">Fonction SUB</a></h3>
+    <p>Soustraction pixel &agrave; pixel avec une image dont le nom
+complet est d&eacute;fini par l'argument de [file]. Une valeur
+d'offset peut &ecirc;tre ajout&eacute;e et vaut l'argument de
+[offset].</p>
+    <p>Si l'argument HOT_PIXEL_LIST="P x1 y1 P x2 y2 ..." est
+pr&eacute;sent, les pixels chauds sont retir&eacute;s de chaque image
+avant la soustraction (la syntaxe est identique &agrave; la
+fonction <a href="#HOTPIXEL">HOTPIXEL</a> ).</p>
+    <p>Si l'argument COSMIC_THRESHOLD=400 est pr&eacute;sent, les
+cosmiques sont retir&eacute;s de chaque image avant la soustraction
+(la syntaxe est identique &agrave; la fonction <a href="#COSMIC">COSMIC</a>
+)</p>
+  </li>
+  <li>
+    <h3><a name="DIV" id="DIV">Fonction DIV</a></h3>
+    <p>Division pixel &agrave; pixel avec une image dont le nom complet
+est d&eacute;fini par l'argument de [file]. Une valeur constante
+peut &ecirc;tre multipli&eacute;e et vaut l'argument de
+[constant].</p>
+  </li>
+  <li>
+    <h3><a name="seriesPROD" id="seriesPROD">Fonction PROD</a></h3>
+    <p>Produit pixel &agrave; pixel avec une image dont le nom complet
+est d&eacute;fini par l'argument de [file]. Une valeur constante
+peut &ecirc;tre divis&eacute;e et vaut l'argument de [constant].</p>
+  </li>
+  <li>
+    <h3><a name="OFFSET" id="OFFSET">Fonction OFFSET</a></h3>
+    <p>Ajoute, &agrave; tous les pixels, une valeur constante qui vaut
+l'argument de [offset].</p>
+  </li>
+  <li>
+    <h3><a name="MULT" id="MULT">Fonction MULT</a></h3>
+    <p>Multiplication de la valeur de tous les pixels par une
+constante d&eacute;finie par l'argument de [constant].</p>
+  </li>
+  <li>
+    <h3><a name="LOG" id="LOG">Fonction LOG</a></h3>
+    <p>Effectue une op&eacute;ration math&eacute;matique de logarithme
+selon la formule :</p>
+    <p>[coeff] *log10(value-[offsetlog])</p>
+    <p>La valeur [nullpixel] (z&eacute;ro par d&eacute;faut)
+appara&icirc;t lorsque (value-[offsetlog]) est n&eacute;gatif (log
+non d&eacute;fini).</p>
+  </li>
+  <li>
+    <h3><a name="NORMOFFSET" id="NORMOFFSET">Fonction
+NORMOFFSET</a></h3>
+    <p>Normalise, par un offset, la valeur du fond de ciel &agrave; la
+valeur sp&eacute;cifi&eacute;e par [normoffset_value]. Par
+d&eacute;faut, la valeur de [normoffset_value] vaut z&eacute;ro. Si les
+param&egrave;tres&nbsp;[xcenter] [ycenter] [radius] sont
+sp&eacute;cifi&eacute;s (en pixels) alors le calcul de normalisation
+n'est effectu&eacute; qu'&agrave; l'int&eacute;rieur de la zone
+circulaire ainsi d&eacute;finie (utile en cas de vignettage).</p>
+  </li>
+  <li>
+    <h3><a name="NORMGAIN" id="NORMGAIN">Fonction NORMGAIN</a></h3>
+    <p>Normalise, par une multiplication, la valeur du fond de ciel
+&agrave; la valeur sp&eacute;cifi&eacute;e par [normgain_value]. Par
+d&eacute;faut, la valeur de [normgain_value] vaut la valeur de fond
+de ciel de la premi&egrave;re image. Si les
+param&egrave;tres&nbsp;[xcenter] [ycenter] [radius] sont
+sp&eacute;cifi&eacute;s (en
+pixels) alors le calcul de normalisation n'est effectu&eacute;
+qu'&agrave; l'int&eacute;rieur
+de la zone circulaire ainsi d&eacute;finie (utile en cas de
+vignettage).</p>
+  </li>
+</ol>
+<h2>3.4. Les fonctions 'filtres'</h2>
+<p style="color: rgb(0, 0, 0);">Ces fonctions&nbsp;appliquent des
+filtres aux images. Elles produisent autant d 'images en sortie
+qu'il y en a en entr&eacute;e.</p>
+<ol>
+  <li>
+    <h3><a name="FILTER" id="FILTER">Fonction FILTER</a></h3>
+    <p>Filtrage spatial d'image avec un filtre kernel. Le masque de
+kernel est carr&eacute; est comporte [kernel_width] pixels. Les
+valeurs du kernel sont pr&eacute;d&eacute;finies en fonction du
+[kernel_type]</p>
+    <p>kernel_type=fb : Filtre passe-bas</p>
+    <p>kernel_type=fh : Filtre passe-haut</p>
+    <p>kernel_type=med : Filtre m&eacute;dian</p>
+    <p>kernel_type=mean : Filtre moyen<br />
+    </p>
+    <p>kernel_type=min : Filtre minimum</p>
+    <p>kernel_type=max : Filtre maximum</p>
+    <p>kernel_type=gradup : Filtre gradient &eacute;clair&eacute; par
+le
+haut</p>
+    <p>kernel_type=gradleft : Filtre gradient &eacute;clair&eacute; par
+la gauche</p>
+    <p>kernel_type=graddown : Filtre gradient &eacute;clair&eacute; par
+le bas</p>
+    <p>kernel_type=gradright : Filtre gradient &eacute;clair&eacute;
+par
+la droite</p>
+    <p>L'argument de [kernel_coef] permet de r&eacute;gler
+l'efficacit&eacute; d'action du filtre. Cette efficacit&eacute; est
+nulle (le filtre n'a aucun effet) si la valeur vaut 1.
+L'efficacit&eacute; est maximale si la valeur vaut 0. En pratique
+l'efficacit&eacute; est calcul&eacute;e de la fa&ccedil;on suivante :
+value est la valeur initiale du pixel central du kernel, val0 est
+la valeur filtr&eacute;e par le kernel, valmax est l'avant
+derni&egrave;re valeur maximale des pixels sous le kernel et valmin
+est la deuxi&egrave;me valeur minimale des pixels sous le kernel.
+On calcule val1 et val2 de la fa&ccedil;on suivante :</p>
+    <p>val1=fabs((double)(val0-value));</p>
+    <p>val2=kernel_coef*(valmax-valmin);</p>
+    <p>La valeur initiale est remplac&eacute;e par la valeur
+filtr&eacute;e si val1&lt;val2.</p>
+    <p>Le param&egrave;tre [threshold] permet d'assigner un seuil de
+limite du calcul du filtre et [type_threshold] permet de
+distinguer la condition du calcul par rapport &agrave; ce
+seuil.</p>
+    <p>type_threshold=-1 : le filtre est appliqu&eacute; si le pixel
+central initial a une valeur inf&eacute;rieure ou &eacute;gale au
+seuil [threshold]</p>
+    <p>type_threshold=0 : le filtre est appliqu&eacute; &agrave; tous
+les
+pixels de l'image (valeur par d&eacute;faut).</p>
+    <p>type_threshold=+1 : le filtre est appliqu&eacute; si le pixel
+central initial a une valeur sup&eacute;rieure ou &eacute;gale au
+seuil [threshold]</p>
+  </li>
+  <li>
+    <h3><a name="CONV" id="CONV">Fonction CONV</a></h3>
+    <p>Convolution d'image par un filtre de type
+d&eacute;termin&eacute;
+par [kernel_type] :</p>
+    <p>GAUSSIAN : pour un filtre gaussien.</p>
+    <p>MORLET : pour une ondelette de type Morlet.</p>
+    <p>MEXICAN : pour une ondelette de type chapeau mexicain.</p>
+    <p>La largeur des filtres est d&eacute;termin&eacute;e par la
+valeur
+de l'option [sigma]. Si ce param&egrave;tre n'est pas
+pr&eacute;cis&eacute;, sigma sera d&eacute;termin&eacute;e &agrave;
+partir
+de la valeur associ&eacute;e au mot cl&eacute; FWHM de l'en-t&ecirc;te
+de l'image (sigma = fwhm * 0.601). Si le mot cl&eacute; FWHM n'est
+pas trouv&eacute; dans l'en-t&ecirc;te, la valeur de sigma, par
+d&eacute;faut, vaut 2 pixels.</p>
+  </li>
+  <li>
+    <h3><a name="RGRADIENT" id="RGRADIENT">Fonction
+RGRADIENT</a></h3>
+    <p>Effectue un gradient rotationnel, centr&eacute; sur la position
+pixel d&eacute;finie par [xcenter] [ycenter]. Le gradient a pour
+param&egrave;tre radial [radius] (en pixel) et pour param&egrave;tre
+angulaire [angle] (en degr&eacute;s).</p>
+  </li>
+  <li>
+    <h3><a name="RADIAL" id="RADIAL">Fonction RADIAL</a></h3>
+    <p>Applique le poids (1-1/(1+(r/[sigma])^[power]))) &agrave; chaque
+pixel distant de r au centre d&eacute;fini par [xcenter],
+[ycenter]. Tous les pixels inf&eacute;rieurs &agrave; la distance
+[radius] du centre ne sont pas affect&eacute;s. Noter qu'il s'agit
+d'un masque utile pour mettre en &eacute;vidence les jets coronnaux
+lors d'&eacute;clipses de Soleils.</p>
+  </li>
+</ol>
+<h2>3.5. Les fonctions pour 'Transformer' les images</h2>
+<ol>
+  <li>
+    <h3><a name="REC2POL" id="REC2POL">Fonction REC2POL</a></h3>
+    <p>Projection polaire centr&eacute;e en [y0] [x0] de l'image
+d'entr&eacute;e. Par d&eacute;faut, les axes polaires ont
+1degr&eacute;/pix pour l'angle et 1 pix/pix pour
+l'&eacute;loignement. Il est possible de modifier ces valeurs en
+utilisant les facteurs d'&eacute;chelle [scale_theta]
+[scale_rho].</p>
+    <p>Exemple de script pour passer l'image en coordonn&eacute;es
+polaires centr&eacute;es sur x0 et y0, l'image de sortie ayant pour
+nom pol$file :</p>
+    <pre>ttscript2 "IMA/SERIES . $file . . $ext . pol$file . $ext REC2POL x0=$x0 y0=$y0 scale_theta=1. scale_rho=1."<br /> <br />
+    </pre>
+  </li>
+  <li>
+    <h3><a name="POL2REC" id="POL2REC">Fonction POL2REC</a></h3>
+    <p>Projection cart&eacute;sienne centr&eacute;e en [y0] [x0]
+&agrave;
+partir de l'image d'une projection polaire. Il est possible de
+modifier les valeurs des facteurs d'&eacute;chelle [scale_theta]
+[scale_rho]. Enfin, [width] et [height] sont les largeur et
+hauteur de l'image finale.</p>
+    <p>Exemple de script pour repasser en coordonn&eacute;es
+cart&eacute;siennes en retrouvant la taille (naxis1 et naxis2) de
+l'image d'origine :</p>
+    <pre>ttscript2 "IMA/SERIES . pol$file . . $ext . $file . $ext POL2REC x0=$x0 y0=$y0 scale_theta=1. scale_rho=1. width=$naxis1 height=$naxis2"<br /> <br />
+    </pre>
+  </li>
+  <li>
+    <h3><a name="HOUGH" id="HOUGH">Fonction HOUGH</a></h3>
+    <p>Transform&eacute;e de Hough. Chaque point de l'image,
+sup&eacute;rieur &agrave; [threshold] (=0 par d&eacute;faut), est
+repr&eacute;sent&eacute;, dans l'espace de Hough (T, R) par une
+sinuso&iuml;de d'intensit&eacute; I, d'&eacute;quation R = y*sin(T) -
+x*cos(T) avec -90&lt;=T&lt;90. La valeur R=0 est situ&eacute;e
+&agrave; la ligne telle que y=naxis2/2 et la valeur T=0 est
+situ&eacute;e &agrave; la colonne x=naxis1/2 (T=0, R=0 est donc au
+milieu de l'image). L'&eacute;chelle de T vaut 1 degr&eacute; par
+pixel (R est en pixel de l'image initiale). I vaut 1 si on a
+pr&eacute;cis&eacute; [binary] sinon il vaut la valeur
+d'intensit&eacute; du pixel de l'image initiale. La
+transform&eacute;e de Hough permet de rep&eacute;rer la position de
+pixels align&eacute;s (tra&icirc;n&eacute;e de smearing, satellite,
+avion, etc.).</p>
+  </li>
+  <li>
+    <h3><a name="RESIZE" id="RESIZE">Fonction RESIZE</a></h3>
+Redimensionne le nombre de pixels de
+l'image. Ce nombre peut &ecirc;tre plus petit ou plus grand que la
+dimension initiale. [width] et [height] sont les dimensions de
+l'image de sortie. Si [width] est plus grand que naxis1, la
+fonction ajoute des pixels noirs entre naxis1 et [width]; si
+[width] est plus petit que naxis1, la fonction supprime les
+colonnes entre [width] et naxis1 ; il en va de m&ecirc;me pour
+[height] et naxis2. Le pixel de coordonn&eacute;es 1,1 est le coin
+inf&eacute;rieur gauche de l'image.</li>
+  <li>
+    <h3><a name="CORNERS" id="RESIZE">Fonction CORNERS</a></h3>
+Extrait neuf sous images &agrave; partir de l'image d'entr&eacute;e et
+les colle en une seule image de sortie. Les neuf sous images sont
+situ&eacute;es dans les quatre coins, les quatre bords et le centre et
+ont toutes les dimentsions [width] x [height] pixels. Les neufs sous
+images sont&nbsp;coll&eacute;es les unes aux autres pour constituer une
+seule image comme une mosa&iuml;que qui permet de comparer facilement
+la qualit&eacute; optique d'une tr&egrave;s grande image. [width] et
+[height] sont les dimensions de
+chaque sous image. L'image de sortie a la dimension 3*[width] x
+3*[height] pixels.</li>
+</ol>
+<h2>3.6. Les fonctions pour,'Extraire des informations'</h2>
+<ol>
+  <h3><a name="PROFILE" id="PROFILE">Fonction PROFILE</a></h3>
+  <p>Extrait la valeur num&eacute;rique des pixels d'une ligne ou
+d'une colonne dans un fichier texte [filename]. [direction]=x ou
+y respectivement pour effectuer le profil selon les lignes ou les
+colonnes. [offset] repr&eacute;sente le num&eacute;ro de ligne ou de
+colonne sur lequel sera effectu&eacute; le profil. Si
+[direction]=x, alors [offset] peut &ecirc;tre compris entre 1 et
+le nombre de colonnes. Si [direction]=y, alors [offset] peut
+&ecirc;tre compris entre 1 et le nombre de lignes. Le fichier
+[filename] contient une ent&ecirc;te de 1 ligne sur 2
+colonnes.</p>
+  <p>Exemple de script pour extraire la colonne (direction=y) de
+coordonn&eacute;e x (offset) vers un fichier profile.txt <b>(attention
+&agrave; l'&eacute;criture de filename)</b> :</p>
+  <pre>ttscript2 "IMA/SERIES . $file . . $ext . $file . $ext PROFILE direction=y offset=1 \"filename=profile.txt\" "<br />
+    </pre>
+  <p>Le fichier profile.txt se pr&eacute;sente ainsi :<br />
+pixel value of the pixel<br />
+1 13.000000<br />
+2 9.275490<br />
+3 9.827091</p>
+  <p>Le fichier est directement copiable dans Excel ou peut
+&ecirc;tre lu pour recopier les valeurs dans un vecteur (liste de
+3474 valeurs pour un .CR2 !)</p>
+  <p>Dans l'exemple ci-dessus on a extrait les valeurs d'un fichier
+binn&eacute; n'ayant qu'une seule colonne. Pour extraire une ligne
+particuli&egrave;re d'une image :</p>
+  <pre>ttscript2 "IMA/SERIES . $file . . $ext . $file . $ext PROFILE direction=x offset=$y \"filename=profile.txt\" "<br />
+    </pre>
+Pour extraire une seule colonne particuli&egrave;re :
+  <pre>ttscript2 "IMA/SERIES . $file . . $ext . $file . $ext PROFILE direction=y offset=$x \"filename=profile.txt\" "<br />
+    </pre>
+  <li>
+    <h3><a name="PROFILE2" id="PROFILE2">Fonction PROFILE2</a></h3>
+    <p>Extrait la valeur num&eacute;rique des pixels d'une ligne ou
+d'une colonne dans un fichier texte [filename]. [direction]=x ou
+y respectivement pour effectuer le profil selon les lignes ou les
+colonnes. [offset] repr&eacute;sente le num&eacute;ro de ligne ou de
+colonne sur lequel sera effectu&eacute; le profil. Si
+[direction]=x, alors [offset] peut &ecirc;tre compris entre 1 et
+le nombre de colonnes. Si [direction]=y, alors [offset] peut
+&ecirc;tre compris entre 1 et le nombre de lignes. A la
+diff&eacute;rence de PROFIL le fichier [filename] ne contient pas
+d'ent&ecirc;te.</p>
+  </li>
+  <li>
+    <h3><a name="BINY" id="BINY">Fonction BINY</a></h3>
+    <p>Attribue, &agrave; chaque colonne, une valeur constante
+&eacute;gale &agrave; la somme de tous les pixels de cette colonne
+entre les pixels [y1] et [y2]. L'image finale comporte [height]
+colonnes (20 par d&eacute;faut).</p>
+    <p>Exemple de script pour additionner tous les pixels de chaque
+colonne. L'image finale ne contient qu'une seule ligne ; comme on
+additionne tous les valeurs, on passe en 32 bits pour garder une
+grande amplitude de valeur ; $in est le nom de l'image
+d'entr&eacute;e , $ext l'extension, bin_y$in le nom de l'image de
+sortie :</p>
+    <pre>ttscript2 "IMA/SERIES . $in . . $ext . biny_$in . $ext BINY y1=1 y2=$naxis2 height=1 bitpix=32"<br /> <br />
+    </pre>
+    <p>L'image finale contient une seule ligne (height=1).</p>
+  </li>
+  <li>
+    <h3><a name="MEDIANY" id="MEDIANY">Fonction MEDIANY</a></h3>
+    <p>Attribue, &agrave; chaque colonne, une valeur constante
+&eacute;gale &agrave; la m&eacute;diane de tous les pixels de cette
+colonne entre les pixels [y1] et [y2]. L'image finale comporte
+[height] colonnes (20 par d&eacute;faut).</p>
+    <p>C'est le parall&egrave;le de BINY : la somme est
+remplac&eacute;e
+par la m&eacute;diane.</p>
+  </li>
+  <li>
+    <h3><a name="SORTY" id="SORTY">Fonction SORTY</a></h3>
+    <p>Attribue, &agrave; chaque colonne, une valeur constante
+&eacute;gale &agrave; la valeur tri&eacute;e &agrave; [percent] (=50
+pour
+la m&eacute;diane, =100 pour le maximum) de tous les pixels de
+cette colonne entre les pixels [y1] et [y2]. L'image finale
+comporte [height] colonnes (20 par d&eacute;faut).</p>
+    <p>C'est le parall&egrave;le de BINY : la somme est
+remplac&eacute;e
+par la valeur tri&eacute;e (CF</p>
+  </li>
+  <a href="ttus1-fr.htm#SORT">IMA/STACK SORT</a>). <li
+ style="list-style-type: none; list-style-image: none; list-style-position: outside;">
+    <p style="color: rgb(0, 0, 0);">Ces fonctions permettent
+d'extraire les valeurs d'intensit&eacute; dans un fichier .txt.
+Elles ne peuvent traiter qu'une seule image &agrave; la fois : si
+on traitait une s&eacute;rie ou une liste d&eacute;pareill&eacute;e,
+les fichiers produits seraient &eacute;cras&eacute;s &agrave;
+l'exception du dernier. Le nom de l'image de sortie est identique
+&agrave; celui de l'image d'entr&eacute;e.<br />
+    </p>
+  </li>
+  <li>
+    <h3><a name="BINX" id="BINX">Fonction BINX</a></h3>
+    <p>Attribue, &agrave; chaque ligne, une valeur constante
+&eacute;gale
+&agrave; la somme de tous les pixels de cette ligne entre les
+pixels [x1] et [x2]. L'image finale comporte [width] colonnes (20
+par d&eacute;faut).</p>
+    <p>Exemple de script pour additionner tous les pixels de chaque
+ligne entre les pixels 1 et naxis1, $file est le nom de l'image
+d'entr&eacute;e , $ext l'extension et binx_$file le nom de l'image
+de sortie :</p>
+    <pre>ttscript2 "IMA/SERIES . $file . . $ext . binx_$file . $ext BINX x1=1 x2=$naxis1 width=1 bitpix=32"<br /> <br />
+    </pre>
+    <p>L'image finale contient une seule colonne (width=1), d'o&ugrave;
+un petit fichier. Comme on additionne tous les valeurs, on passe
+en 32 bits pour garder une grande amplitude de valeurs.</p>
+  </li>
+  <li>
+    <h3><a name="MEDIANX" id="MEDIANX">Fonction MEDIANX</a></h3>
+    <p>Attribue, &agrave; chaque ligne, une valeur constante
+&eacute;gale
+&agrave; la m&eacute;diane de tous les pixels de cette ligne entre
+les pixels [x1] et [x2]. L'image finale comporte [width] colonnes
+(20 par d&eacute;faut).</p>
+    <p>C'est le parall&egrave;le de BINX : la somme est
+remplac&eacute;e
+par la m&eacute;diane.</p>
+  </li>
+  <li>
+    <h3><a name="SORTX" id="SORTX">Fonction SORTX</a></h3>
+    <p>Attribue, &agrave; chaque ligne, une valeur constante
+&eacute;gale
+&agrave; la valeur tri&eacute;e &agrave; [percent] (=50 pour la
+m&eacute;diane, =100 pour le maximum) de tous les pixels de cette
+ligne entre les pixels [x1] et [x2]. L'image finale comporte
+[width] colonnes (20 par d&eacute;faut).</p>
+    <p>C'est le parall&egrave;le de BINX : la somme est
+remplac&eacute;e
+par la valeur tri&eacute;e (CF <a href="#SORT">IMA/STACK
+SORT</a>).</p>
+  </li>
+  <li>
+    <h3><a name="MATRIX" id="MATRIX">Fonction MATRIX</a></h3>
+  </li>
+</ol>
+<p style="text-align: left; margin-left: 40px;">Extrait une
+fen&ecirc;tre [x1] [x2] [y1] [y2] de l'image et &eacute;crit les
+valeurs de ces pixels dans un fichier texte [filematrix]. L'image
+de sortie est la m&ecirc;me que celle d'entr&eacute;e.</p>
+<h2>3.7. Les fonctions 'r&eacute;gistration'</h2>
+<ol>
+  <li>
+    <h3><a name="REGISTER" id="REGISTER">Fonction REGISTER</a></h3>
+    <p>Effectue la r&eacute;gistration des images par rapport &agrave;
+la
+premi&egrave;re. Il faut pr&eacute;alablement que toutes les images
+aient un liste d'objets associ&eacute;e (cf. fonction STAT).
+[translate] permet de contraindre le mode de calcul de la
+r&eacute;gistration :</p>
+    <p>translate=only : on contraint le passage d'une image &agrave;
+l'autre par une translation.</p>
+    <p>translate=before : on effectue d'abord le calcul de
+r&eacute;gistration par une translation, puis si aucun accord n'est
+trouv&eacute;, on effectue une transformation lin&eacute;aire
+quelconque.</p>
+    <p>translate=after : on effectue d'abord le calcul de
+r&eacute;gistration par une transformation lin&eacute;aire
+quelconque. puis si aucun accord n'est trouv&eacute;, on effectue
+une translation.</p>
+    <p>translate=never : on effectue le calcul de r&eacute;gistration
+uniquement par une transformation lin&eacute;aire quelconque.</p>
+    <p>Le mot d'option [matchwcs] indique que le recentrage ne sera
+fait qu'avec les mots cl&eacute;s WCS de l'image. A noter que dans
+ce cas on peut effectuer une r&eacute;gistration sur des images
+d'entr&eacute;e de dimensions diff&eacute;rentes. Cela est tr&egrave;s
+utile pour combiner des images effectu&eacute;es avec des
+t&eacute;lescopes diff&eacute;rents.</p>
+    <p>Par d&eacute;faut, l'int&eacute;grale du flux est
+conserv&eacute;e
+(par exemple, si l'image est dilat&eacute;e d'un facteur deux, sa
+dynamique sera r&eacute;duite d'un facteur 2). Pour imposer une
+normalisation autre du flux, utiliser le param&egrave;tre
+[normaflux]. Par exemple, pour garder la dynamique originelle,
+utiliser normaflux=1.</p>
+    <p>Les mots cl&eacute;s d'astrom&eacute;trie (WCS),
+&eacute;ventuellement pr&eacute;sents dans l'en-t&ecirc;te FITS, sont
+modifi&eacute;s en cons&eacute;quence.</p>
+  </li>
+  <li>
+    <h3><a name="REGISTERFINE" id="REGISTERFINE">Fonction
+REGISTERFINE</a></h3>
+    <p>Effectue une translation de fa&ccedil;on &agrave; minimiser la
+somme des carr&eacute;s des r&eacute;sidus avec une image de
+r&eacute;f&eacute;rence [file]. La translation sera recherch&eacute;e
+entre les bornes en pixels d&eacute;limit&eacute;s par [delta] avec
+un sur&eacute;chantillonnage [oversampling].</p>
+  </li>
+  <li>
+    <h3><a name="FITELLIP" id="FITELLIP">Fonction FITELLIP</a></h3>
+    <p>Synth&eacute;tise une image par ajustement d'ellipses. Cette
+fonction permet de synth&eacute;tiser l'image non bruit&eacute; d'une
+galaxie elliptique (pour &eacute;ventuellement la soustraire &agrave;
+l'image originale). Avant d'utiliser Fitellip, il est
+n&eacute;cessaire d'enlever les &eacute;toiles les plus brillantes de
+l'image. On peut travailler uniquement sur une partie de l'image
+d&eacute;limit&eacute;e par [x1] [x2] [y1] [y2]. Il faut d&eacute;finir
+un centre approximatif (&agrave; quelques pixels pr&egrave;s) avec
+[xcenter] et [ycenter]. Il faut d&eacute;finir le niveau (en ADU)
+du fond de ciel avec [backgound]. Il est possible de raffiner
+l'ajustement en introduisant un d&eacute;veloppement de Fourier par
+dessus les ellipses afin de tenir compte des effets boxy ou lemon
+en utilisant [fitorder6543]. Ce param&egrave;tre comprend quatre
+entiers: par exemple 0000 signifie qu'il ne faut faire aucun
+d&eacute;veloppement d'ordre sup&eacute;rieur &agrave; 2. Pour un
+d&eacute;veloppement d'ordre 4 uniquement, [fitorder6543]=0010. Les
+param&egrave;tres du profil final sont dans le fichier d&eacute;finit
+par [file_ascii]. Le format de sortie est le suivant:: indice,
+rayon^1/4 (arcmin), magnitude surfacique (mag/arcsec^2), xce et
+yce les centres de l'ellipse, csa (?), l'angle au nord, et les
+coefficients de Fourier: a3 b3 a4 b4 a5 b5 a6 b6. Le
+param&egrave;tre [threshold] s'il n'est pas =0, permet de
+synth&eacute;tiser une image &agrave; partir de l'image originale (o)
+&agrave; qui l'on remplace les pixels par l'image de l'ajustement
+d'ellipses (c) si o-c&gt;[threshold].</p>
+    <p>Pour mod&eacute;liser l'image d'une galaxie centr&eacute;e au
+pixel (32,99) avec un fond de ciel de 150 A.D.U. :</p>
+    <pre>ttscript2 "IMA/SERIES . $file . . $ext . $file . $ext FITELLIP xcenter=32 ycenter=99 background=150 "<br />
+    </pre>
+  </li>
+</ol>
+<h2>3.8. Les fonctions 'en-t&ecirc;tes'</h2>
+<p style="color: rgb(0, 0, 0);">Elles compl&egrave;tent ou
+modifient les mots cl&eacute;s des images. Elles produisent autant
+d 'images en sortie qu'il y en a en entr&eacute;e.</p>
+<ol>
+  <li>
+    <h3><a name="STAT" id="STAT">Fonction STAT</a></h3>
+    <p>Effectue le calcul des param&egrave;tres statistiques de l'image
+(moyenne, &eacute;cart type, minimum, maximum, moyenne du fond,
+&eacute;cart type du fond, seuil haut, seuil bas, contraste).
+Calcule le nombre de pixels satur&eacute;s si on d&eacute;finit la
+valeur de [pixelsat_value]. Calcule la largeur &agrave; mi-hauteur
+moyenne des &eacute;toiles du champ si le param&egrave;tre optionnel
+[fwhm] est pr&eacute;sent.</p>
+    <p>Si l'option [objefile] est pr&eacute;sente, g&eacute;n&egrave;re
+une
+liste d'objets dont le nom complet du fichier FITS est l'argument
+de [objefile]. De m&ecirc;me, on peut g&eacute;n&eacute;rer une liste
+de pixels dont le nom complet du fichier FITS est l'argument de
+[pixefile]. [pixefile] et [objefile] peuvent avoir le m&ecirc;me
+nom. Il est possible de r&eacute;duire la fen&ecirc;tre de recherche
+pour [objefile] et [pixefile]. Pour cela, on utilise le mot
+[border] suivit d'un pourcentage. Ce pourcentage vaut 0 pour
+calculer sur toute l'image (valeur par d&eacute;faut), et vaut au
+maximum 90 pour effectuer le calcul sur une petite zone au centre
+de l'image. [border] n'affecte pas le calcul des param&egrave;tres
+statistiques moyenne, etc. Enfin, il est possible de r&eacute;gler
+le seuil de d&eacute;tection en agissant sur la valeur de
+[detect_kappa]. Par d&eacute;faut, [detect_kappa] vaut 3 (en
+unit&eacute;s d'&eacute;cart type du fond).</p>
+    <p>Si le mot cl&eacute; [pixint] est pr&eacute;sent alors le calcul
+de la liste d'objet est effectu&eacute; avec des coordonn&eacute;es
+(x,y) en pixels entier et non pas fractionnaires (option par
+d&eacute;faut).</p>
+  </li>
+  <li>
+    <h3><a name="CUTS" id="CUTS">Fonction CUTS</a></h3>
+    <p>Calcule les seuils de visualisation de l'image par analyse de
+l'histogramme. La valeur des seuils est compl&eacute;t&eacute;e dans
+l'en-t&ecirc;te FITS. Le mot cl&eacute; correspondant au seuil haut
+est d&eacute;finit par [hicut] (MIPS-HI par d&eacute;faut) et celui
+du seuil bas est d&eacute;finit par [locut] (MIPS-LO par
+d&eacute;faut). Le type de valeur pour l'en-t&ecirc;te FITS est
+donn&eacute;e par [keytype] et peut valoir INT, FLOAT ou STRING
+(INT par d&eacute;faut). Par exemple :</p>
+    <p>IMA/SERIES ... CUTS hicut=SH locut=SB keytype=FLOAT</p>
+    <p>Les param&egrave;tres [lofrac] et [hifrac] servent &agrave;
+fixer
+la fraction de l'histogramme o&ugrave; seront calcul&eacute;s les
+seuils. [lofrac] (=0.05 par d&eacute;faut) est la fraction pour le
+seuil bas et [lofrac] (=0.05 par d&eacute;faut) est la fraction
+pour le seuil haut. ces valeurs peuvent varier de 0 &agrave; 1.</p>
+    <p>Le param&egrave;tre [cutscontrast] (=1 par d&eacute;faut) sert
+&agrave; adoucir le contraste. Plus sa valeur est grande, plus doux
+sera le contraste. La valeur doit &ecirc;tre une quantit&eacute;
+r&eacute;elle positive ou nulle.</p>
+    <p>La m&eacute;thode de calcul de la fonction CUTS fourni un
+r&eacute;sultat bien plus rapide que le calcul des seuils par la
+fonction STAT. Cependant, la qualit&eacute; du calcul est un peu
+meilleure pour la fonction STAT que l'on pr&eacute;f&eacute;rera pour
+des petites images (inf&eacute;rieures &agrave; 500x500 typiquement).
+La fonction CUTS pr&eacute;sente un grand int&eacute;r&ecirc;t sur les
+grandes images car seuls 100 000 points servent au calcul. Le
+temps de calcul est donc le m&ecirc;me quelque soit la taille de
+l'image (alors qu'il peu devenir long pour la fonction STAT).</p>
+  </li>
+  <li>
+    <h3><a name="HEADERFITS" id="HEADERFITS">Fonction
+HEADERFITS</a></h3>
+    <p>Ajoute des mots cl&eacute;s &agrave; l'en-t&ecirc;te FITS. Les
+mots
+cl&eacute;s sont d&eacute;finis dans un fichier texte ASCII dont le
+nom complet est l'argument de [file]. Chaque mot cl&eacute; est
+d&eacute;fini par 5 lignes dans le fichier texte :</p>
+    <p>ligne 1 : nom du mot cl&eacute; (en majuscules &lt;= 8
+lettres)</p>
+    <p>ligne 2 : valeur associ&eacute;e au mot cl&eacute;.</p>
+    <p>ligne 3 : type de la valeur (short, int, float, double,
+string)</p>
+    <p>ligne 4 : commentaire</p>
+    <p>ligne 5 : unit&eacute;s</p>
+    <p>S'il n'y a pas de commentaire, laisser la ligne blanche. De
+m&ecirc;me pour l'unit&eacute;. On peut ajouter autant de mots
+cl&eacute;s que l'on veut.</p>
+    <p>Exemple de script pour modifier l'en-t&ecirc;te FITS des images
+avec les donn&eacute;es du kwdfile.txt contenu dans le
+r&eacute;pertoire de travail :</p>
+    <pre>ttscript2 "IMA/SERIES . $img 1 3 $ext . $img 1 $ext HEADERFITS file=kwdfile.txt"<br /> <br />
+    </pre>
+  </li>
+  <li>
+    <h3><a name="CATCHART" id="CATCHART">Fonction CATCHART</a></h3>
+    <p>Dresse un liste d'objets d'un catalogue correspondant au champ
+&agrave; l'image d'entr&eacute;. La liste est enregistr&eacute;e dans
+le fichier FITS de nom complet l'argument de [catafile]. Par
+d&eacute;faut (catafile employ&eacute; sans argument) le fichier FITS
+est celui de l'image de sortie. Ainsi, la liste du catalogue est
+ajout&eacute;e derri&egrave;re l'image. Si l'on souhaite
+g&eacute;n&eacute;rer une liste catalogue &agrave; part de l'image, il
+suffit de sp&eacute;cifier son nom comme argument de [catafile].
+Dans ce cas, ce fichier FITS contiendra toutes les listes
+catalogues de la s&eacute;rie d'image.</p>
+    <p>[path_astromcatalog] est le chemin d'acc&egrave;s au catalogue.
+[astromcatalog] est le nom du catalogue choisit :</p>
+    <p>astromcatalog=USNO : pour utiliser l'USNO A ou SA</p>
+    <p>astromcatalog=MICROCAT : pour utiliser le catalogue
+astrom&eacute;trique compact&eacute; Microcat.</p>
+    <p>Sinon, il s'agit d'un nom de fichier ASCII d'un catalogue
+personnel contenant des lignes de type "ra dec mag" o&ugrave; ra et
+dec sont exprim&eacute;s en degr&eacute;s d&eacute;cimaux et mag est la
+magnitude.</p>
+    <p>[jpegfile_chart] est le nom du fichier jpeg qui simule l'image
+du champ des &eacute;toiles du catalogue.</p>
+    <p>[jpegfile_chart2] est le nom du fichier jpeg qui simule
+l'image du champ des &eacute;toiles du catalogue qui se superposent
+en rouge sur le champ observ&eacute;.</p>
+    <p>Il est possible de r&eacute;duire la fen&ecirc;tre de la carte
+des &eacute;toiles du catalogue. Pour cela, on utilise le mot
+[border] suivit d'un pourcentage. Ce pourcentage vaut 0 pour
+calculer sur toute l'image (valeur par d&eacute;faut), et vaut au
+maximum 90 pour effectuer le calcul sur une petite zone au centre
+de l'image (cf. fonction STAT de IMA/SERIES).</p>
+    <p>On peut fixer une limite de magnitude au-del&agrave; de laquelle
+on ne lit pas les donn&eacute;es dans le catalogue. Les arguments
+de [magrlim] [magblim] fixent ces limites (99 par d&eacute;faut).
+Dans le cas d'un catalogue personnel, seul [magrlim] est
+actif.</p>
+    <p>Si le mot [simulimage] est sp&eacute;cifi&eacute; alors l'image
+de
+sortie sera une image synth&eacute;tique compos&eacute;e &agrave;
+partir des &eacute;toiles trouv&eacute;es dans le catalogue. Les
+param&egrave;tres physiques optionnels sont : [exposure] (= 1
+seconde par d&eacute;faut), [fwhmx] (= 2.5 pixels par d&eacute;faut),
+[ fwhmy] (= 2.5 pixels par d&eacute;faut), [teldiam] (= 1
+m&egrave;tre par d&eacute;faut), [colfilter] (= R par d&eacute;faut),
+[sky_brightness] (= 20.9 mag/arcsec2 par d&eacute;faut), [qe] (= 1
+par d&eacute;faut), [gain] (= 2.5 e/ADU par d&eacute;faut),
+[readout_noise] (= 0 &eacute;lectron par d&eacute;faut), [Tatm] (=0.6
+par d&eacute;faut), [Topt] (=0.85 par d&eacute;faut), [elecmult] (=1
+par d&eacute;faut), [shutter_mode] (= 0 si obturateur ferm&eacute;, =
+1 si obturateur synchro (valeur par d&eacute;faut), = 2 si
+obturateur toujours ouvert ou inexistant, = 3 si obturateur
+synchro mais sans synth&egrave;se d'&eacute;toiles (simule un
+&eacute;cran de flat)), [bias_level] (= 0 ADU par d&eacute;faut,
+d&eacute;finit un niveau constant du bias), [thermic_response] (= 0
+par d&eacute;faut, exprime la r&eacute;ponse thermique moyenne en
+e/pix/sec), [flat_type] (= 0 pour ne pas tenir compte d'une
+r&eacute;ponse de flat (par d&eacute;faut), = 1 pour tenir compte
+d'un vignettage parabolique).<br />
+    <br />
+Il est possible d'ajouter une &eacute;toile artificielle en
+utilisant le mot cl&eacute; [newstar] (=none par d&eacute;faut).
+Si&nbsp;[newstar]=ADD alors l'&eacute;toile sera additionn&eacute;e sur
+les autres d&eacute;j&agrave;
+pr&eacute;sentes.&nbsp;Si&nbsp;[newstar]=REPLACE
+alors l'&eacute;toile remplera celles qui sont pr&eacute;sentes dans
+le catalogue &agrave; moins de deux pixels. L'&eacute;toile
+artificielle aura une magnitude d&eacute;finie par [mag] (=12 par
+d&eacute;fault) aux coordonn&eacute;es J2000.0&nbsp;[ra] et [dec] (en
+degr&eacute;s).<br />
+    </p>
+  </li>
+</ol>
+<ol>
+  <li>
+    <h3><a name="ASTROMETRY" id="ASTROMETRY">Fonction
+ASTROMETRY</a></h3>
+    <p>Calcule les param&egrave;tres astrom&eacute;triques de l'image
+(mots cl&eacute;s CRVAL1, CRVAL2, CD1_1, CD1_2, CD2_1, CD2_2 de
+l'en-t&ecirc;te FITS dans le cas d'une transformation
+lin&eacute;aire). Il faut pr&eacute;alablement que les images soient
+associ&eacute;es &agrave; des listes d'objets (voir fonction STAT) et
+des listes de catalogue (voir fonction CATCHART). De plus, pour
+initialiser le calcul des coefficients astrom&eacute;triques, il
+faut pr&eacute;d&eacute;finir la valeur de RA, DEC, PIXSIZE1,
+PIXSIZE2 et FOCLEN dans l'en-t&ecirc;te FITS (cf. fonction
+HEADERFITS) :</p>
+    <p>RA : coordonn&eacute;e approximative d'ascension droite du
+centre de l'image (en degr&eacute;s)</p>
+    <p>DEC : coordonn&eacute;e approximative de d&eacute;clinaison du
+centre de l'image (en degr&eacute;s)</p>
+    <p>PIXSIZE1 : taille du pixel sur l'axe x (en microns)</p>
+    <p>PIXSIZE2 : taille du pixel sur l'axe y (en microns)</p>
+    <p>FOCLEN : longueur focale approximative (en m&egrave;tres).</p>
+    <p>Le param&egrave;tre [epsilon] permet de r&eacute;gler le rayon
+d'appariement de la m&eacute;thode des triangles (=0.002 par
+d&eacute;faut). [delta] permet de r&eacute;gler le nombre de pixels
+d'appariement final (=1 par d&eacute;faut).</p>
+    <p>Si le param&egrave;tre [objefile] est pr&eacute;sent, il indique
+le nom du catalogue g&eacute;n&eacute;r&eacute; par Sextractor &agrave;
+utiliser comme liste d'objets. Le catalogue est de la forme
+suivante :</p>
+    <p>Indice</p>
+    <p>Flux ErrFlux Mag ErrMag</p>
+    <p>Backgnd X Y X2</p>
+    <p>Y2 XY a b</p>
+    <p>theta fwhm flag</p>
+    <p>avec</p>
+    <p>X2 : moment d'ordre 2 selon X</p>
+    <p>Y2 : moment d'ordre 2 selon Y</p>
+    <p>XY : moment d'ordre 2 selon X-Y</p>
+    <p>a : grand axe de l'ellipse repr&eacute;sentant au mieux
+l'objet</p>
+    <p>b : petit axe de l'ellipse repr&eacute;sentant au mieux
+l'objet</p>
+    <p>theta : angle de l'ellipse repr&eacute;sentant au mieux
+l'objet</p>
+    <p>flag : flag sextractor</p>
+  </li>
+  <li>
+    <h3><a name="ASTROMETRY2" id="ASTROMETRY2">Fonction
+ASTROMETRY2</a></h3>
+    <p>Effectue l'astrom&eacute;trie de la m&ecirc;me mani&egrave;re
+que
+ASTROMETRY mais calcule les coefficients de d&eacute;formation du
+second ordre. ces coefficients sont cod&eacute;s par les mots
+cl&eacute;s FITS standards PV* dans l'en-t&ecirc;te de l'image de
+sortie.</p>
+  </li>
+</ol>
+<h2>3.9. Les fonctions 'spectres'</h2>
+<p style="color: rgb(0, 0, 0);">Ces fonctions sont utiles pour
+traiter des images spectrales. Elles produisent autant d 'images
+en sortie qu'il y en a en entr&eacute;e.</p>
+<ol>
+  <li>
+    <h3><a name="TILT" id="TILT">Fonction TILT</a></h3>
+    <p>Effectue une translation de colonnes
+Dy=(x-0.5*NAXIS1/2)*[trans_y] puis une translation de lignes
+Dx=(y-0.5*NAXIS2)*[trans_x] afin de corriger les effets
+d'inclinaison des raies dans un spectre.</p>
+  </li>
+  <li>
+    <h3><a name="SMILEX" id="SMILEX">Fonction SMILEX</a></h3>
+    <p>Effectue une translation de lignes
+Dx=[coef_smile2]*(y-[ycenter])^2+[coef_smile4]*(y-[ycenter])^4
+pour corriger les effets de distorsions de type smile des raies
+dans un spectre.</p>
+  </li>
+  <li>
+    <h3><a name="SMILEY" id="SMILEY">Fonction SMILEY</a></h3>
+    <p>Effectue une translation de lignes
+Dy=[coef_smile2]*(x-[xcenter])^2+[coef_smile4]*(x-[xcenter])^4
+pour corriger les effets de distorsions de type smile des raies
+dans un spectre.</p>
+  </li>
+  <li>
+    <h3><a name="LOPT" id="LOPT">Fonction LOPT</a></h3>
+    <p>Calcule la somme normalis&eacute;e &agrave; 32767 et
+optimis&eacute;e entre les lignes [y1] et [y2] d'apr&egrave;s J. G.
+Robertson, PASP 98, 1220-1231, November 1986. Le code est
+copi&eacute; du logiciel IRIS. L'image finale comporte [height]
+lignes (20 par d&eacute;faut).</p>
+  </li>
+  <li>
+    <h3><a name="LOPT5" id="LOPT">Fonction LOPT5</a></h3>
+Calcule la somme normalis&eacute;e &agrave; 32767 et optimis&eacute;e
+entre les lignes [y1] et [y2]. Il s'agit de l'impl&eacute;mentation
+raisonnable de l'algorithme de Hornes. Le profil spatial du
+spectre (axe vertical) est obtenu localement par une moyenne
+m&eacute;diane. On se sert &eacute;ventuellement de la somme de
+toutes les images [file] pour calculer&nbsp;le profil vertical du
+spectre. La distribution est alors mieux d&eacute;finie. Le
+param&egrave;tre [cosmic_threshold] est le coefficient de
+r&eacute;jection des cosmiques. Une valeur typique est comprise
+entre 20 et 100. Une valeur inf&eacute;rieure peut conduite &agrave;
+un lissage du spectre perceptible &agrave; haut Rapport Signal sur
+Bruit. Le code est copi&eacute; de la fonction LOPT5 du logiciel
+IRIS. L'image finale comporte [height] lignes (20 par
+d&eacute;faut).<br />
+  </li>
+</ol>
+<h2>3.10. Les fonctions 'utilitaires'</h2>
+<ol>
+  <li>
+    <h3><a name="COPY" id="COPY">Fonction COPY</a></h3>
+    <p>Recopie sans rien changer, les images vers un autre nom,
+r&eacute;pertoire, suffixe.</p>
+    <p>Il est possible de changer le num&eacute;ro d'ordre des indices
+des fichiers de sortie en sp&eacute;cifiant le nombre de sous
+s&eacute;ries (param&egrave;tre [nbsubseries]=1 par d&eacute;faut). Par
+exemple, si l'on a r&eacute;alis&eacute; douze images i1 &agrave; i12
+en quatre sous s&eacute;ries de trois images ([nbsubseries]=4)
+l'indexation des images de sortie (j1 &agrave; j12) sera faite
+ainsi :</p>
+    <p>entr&eacute;e (1 2 3) (4 5 6) (7 8 9) (10 11 12)<br />
+sortie (1 4 7 10) (2 5 8 11) (3 6 9 12)</p>
+    <p>De cette fa&ccedil;on, la premi&egrave;re s&eacute;rie en sortie
+contient les premi&egrave;res images de chaque s&eacute;rie
+d'entr&eacute;e, le deuxi&egrave;me s&eacute;rie en sortie contient les
+deuxi&egrave;mes images de chaque s&eacute;rie d'entr&eacute;e et ainsi
+de suite. En pratique, cela permet de trier les images en vue de
+la r&eacute;alisation d'un superflat &agrave; partir de s&eacute;ries
+d'images. Dans notre exemple, (1 2 3) sont trois images du
+m&ecirc;me champ, (4 5 6) trois images d'un autre champ, etc. La
+s&eacute;rie de sortie (1 4 7 10) c'est &agrave; dire j1 &agrave; j4
+contient les images de champs diff&eacute;rents et peuvent
+synth&eacute;tiser un superflat. La deuxi&egrave;me s&eacute;rie de
+sortie (2 5 8 11) permet de r&eacute;aliser un deuxi&egrave;me
+superflat et ainsi de suite. Il suffit ensuite de combiner les
+superflats pour r&eacute;aliser un superflat total.</p>
+    <p>Exemple de script pour copier un fichier d'un r&eacute;pertoire
+externe au r&eacute;pertoire de travail :</p>
+    <pre>ttscript2 "IMA/SERIES \"$dir\" $in . . $ext . $in . $ext COPY"<br /> <br />
+    </pre>
+  </li>
+  <li>
+    <h3><a name="DELETE" id="DELETE">Fonction DELETE</a></h3>
+    <p>Efface les fichiers.</p>
+    <p>Exemple de script pour effacer une liste de fichiers de noms
+d&eacute;pareill&eacute;s :</p>
+    <pre>ttscript2 "IMA/SERIES . \"$liste_de_noms_courts_sans_extension\" * * $ext . . . . DELETE"<br /> <br />
+    </pre>
+  </li>
+</ol>
+<h1>4. Exemples de scripts</h1>
+<p>Nous allons &eacute;tudier ici quelques cas classiques de
+traitement d'images astronomiques.</p>
+<h2>4.1. Pr&eacute;traitement des images CCD</h2>
+Le pr&eacute;traitement des images consiste &agrave; soustraire le
+dark aux images brutes puis de diviser par le flatfield. Tout cet
+exemple traite des images acquises suivantes :
+<p>images de bias : de bias-1.fit &agrave; bias-9.fit dans le
+chemin ./bias</p>
+<p>images de dark : de dark-1.fit &agrave; dark-9.fit dans le
+chemin ./dark</p>
+<p>images de flat : de flat-1.fit &agrave; flat-9.fit dans le
+chemin ./flat</p>
+<p>images &agrave; pr&eacute;traiter : de sky-1.fit &agrave; sky-9.fit
+dans le chemin ./sky</p>
+<p>Nous allons d'abord pr&eacute;parer des images synth&eacute;tiques
+de bias, dark et flat, r&eacute;sultant d'empilements, afin
+d'att&eacute;nuer le bruit. Enfin, nous allons pr&eacute;traiter les
+images en utilisant la m&eacute;thode de l'optimisation du
+thermique. Les images pr&eacute;trait&eacute;es seront plac&eacute;es
+dans le chemin ./prt</p>
+<ol>
+  <li>
+    <h3>Pr&eacute;paration du bias</h3>
+    <p>Le bias est une image de tr&egrave;s court temps
+d'int&eacute;gration, obtenue dans le noir absolu. Le
+pr&eacute;traitement propos&eacute; consiste &agrave; faire une pile
+m&eacute;diane : IMA/STACK ./bias/ bias- 1 9 .fit ./bias/ bias .
+.fit MED</p>
+  </li>
+  <li>
+    <h3>Pr&eacute;paration du dark</h3>
+    <p>Le dark est une image de temps d'int&eacute;gration proche de
+celui des images sky, obtenue dans le noir absolu. Le
+pr&eacute;traitement propos&eacute; consiste &agrave; faire une pile
+m&eacute;diane : IMA/STACK ./bias/ bias- 1 9 .fit ./bias/ bias .
+.fit MED</p>
+    <p>Le dark est une image de temps d'int&eacute;gration proche dark
+. .fit MED</p>
+  </li>
+  <li>
+    <h3>Pr&eacute;paration du flat</h3>
+    <p>Le bias est une image obtenue sur une surface lumineuse la
+plus uniforme possible. Le pr&eacute;traitement propos&eacute;
+consiste &agrave; faire une correction de dark, suivie d'une
+normalisation en gain et d'une pile m&eacute;diane.SET/VAR
+$smearing 0</p>
+    <p>IMA/SERIES ./flat/ flat- 1 9 .fit ./flat/ f . .fit OPT
+bias=./bias/bias.fit dark=./dark/dark.fit
+unsmearing=$smearing</p>
+    <p>IMA/SERIES ./flat/ f- 1 9 .fit ./flat/ f . .fit NORMGAIN
+normgain_value=10000</p>
+    <p>IMA/STACK ./flat/ f- 1 9 .fit ./flat/ flat . .fit MED</p>
+    <p>IMA/SERIES ./flat/ f- 1 9 .fit . . . .fit DELETE</p>
+    <p>Si les images ont &eacute;t&eacute; obtenues avec un obturateur,
+la valeur de $smearing doit &ecirc;tre &eacute;gale &agrave;
+z&eacute;ro. Avec des images obtenues sans obturateur, il est
+n&eacute;cessaire de placer une valeur non nulle &agrave;
+$smearing.</p>
+  </li>
+  <li>
+    <h3>Pr&eacute;traitement des images brutes</h3>
+    <p>SET/VAR $sky sky<br />
+SET/VAR $smearing 0<br />
+IMA/SERIES ./sky/ $sky- 1 9 .fit ./prt/ i . .fit OPT
+bias=./bias/bias.fit dark=./dark/dark.fit
+unsmearing=$smearing<br />
+IMA/SERIES ./prt/ i- 1 9 .fit ./prt/ i . .fit DIV
+file=./flat/flat.fit constant=10000<br />
+IMA/SERIES ./prt/ i- 1 9 .fit ./prt/ i . .fit NORMOFFSET
+normoffset_value=200 skylevel Si les images ont &eacute;t&eacute;
+obtenues avec un obturateur, la valeur de $smearing doit
+&ecirc;tre &eacute;gale &agrave; z&eacute;ro. Avec des images obtenues
+sans obturateur, il est n&eacute;cessaire de placer une valeur non
+nulle &agrave; $smearing.</p>
+  </li>
+  <li>
+    <h3>R&eacute;gistration et empilement des images
+pr&eacute;trait&eacute;es</h3>
+    <p>SET/VAR $sky sky<br />
+IMA/SERIES ./prt/ i- 1 9 .fit ./prt/ i . .fit STAT
+objefile=./prt/x$sky.fit<br />
+IMA/SERIES ./prt/ i- 1 9 .fit ./prt/ i . .fit REGISTER
+translate=before nullpixel=-1000<br />
+IMA/STACK ./prt/ i- 1 9 .fit ./prt/ $sky . .fit MED
+nullpixel=-1000<br />
+IMA/SERIES ./prt/ i- 1 9 .fit . . . .fit DELETE<br />
+IMA/SERIES ./prt/ x$sky . . .fit . . . .fit DELETE</p>
+  </li>
+  <li>
+    <h3>Mise en forme de l'image pr&eacute;trait&eacute;e</h3>
+SET/VAR $sky sky<br />
+IMA/SERIES ./prt/ $sky . . .fit ./prt/ $sky . .fit STAT fwhm
+jpegfile=./prt/$sky.jpg</li>
+</ol>
+<h2>4.2. Calibration astrom&eacute;trique d'une image
+pr&eacute;trait&eacute;e</h2>
+<p>IMA/SERIES ./prt/ $sky . . .fit ./prt/ $sky . .fit STAT
+objefile=./prt/x$sky.fit<br />
+IMA/SERIES ./prt/ $sky . . .fit ./prt/ $sky . .fit CATCHART
+path_astromcatalog=/cdrom/ astromcatalog=Microcat
+catafile=./prt/c$sky.fit<br />
+IMA/SERIES ./prt/ $sky . . .fit ./prt/ $sky . .fit
+ASTROMETRY<br />
+IMA/SERIES ./prt/ $sky . . .fit ./prt/ $sky . .fit CATCHART
+path_astromcatalog=/cdrom/ astromcatalog=Microcat
+catafile=./prt/c$sky.fit jpegfile_chart2=./prt/$skyb.jpg<br />
+IMA/SERIES ./prt/ x$sky . . .fit . . . .fit DELETE<br />
+IMA/SERIES ./prt/ c$sky . . .fit . . . .fit DELETE<br />
+</p>
+&ecirc;
+</body>
+</html>

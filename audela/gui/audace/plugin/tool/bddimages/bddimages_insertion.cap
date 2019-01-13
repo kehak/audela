@@ -1,0 +1,211 @@
+#
+# Fichier : bddimages_insertion.cap
+# $Id: bddimages_insertion.cap 13886 2016-05-22 21:55:06Z jberthier $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+set caption(bddimages_insertion,main_title)     "BddImages - Insertion"
+set caption(bddimages_insertion,titre)          "Insertion dans la base de données"
+set caption(bddimages_insertion,label_nbimg)    "Nb d'images au total :"
+set caption(bddimages_insertion,label_nbimgins) "Nb d'images insérées :"
+set caption(bddimages_insertion,label_nbimgerr) "Nb d'images en erreur :"
+set caption(bddimages_insertion,label_nbheader) "Nb de header :"
+
+set caption(bddimages_insertion,connect)        "Connexion à MySql"
+set caption(bddimages_insertion,refresh)        "Rafraîchir"
+set caption(bddimages_insertion,lectentete)     "Lecture des en-têtes"
+set caption(bddimages_insertion,inser)          "Insertion"
+set caption(bddimages_insertion,inserauto)      "Continuous insertion"
+set caption(bddimages_insertion,inserall)       "Insérer tout"
+set caption(bddimages_insertion,aide)           "Aide"
+set caption(bddimages_insertion,fermer)         "Fermer"
+set caption(bddimages_insertion,stop)           "Stop"
+set caption(bddimages_insertion,select)         "Selection"
+set caption(bddimages_insertion,selectall)      "Select All"
+set caption(bddimages_insertion,voirimg)        "Voir l'image"
+set caption(bddimages_insertion,voirheader)     "Voir le header"
+set caption(bddimages_insertion,msg_erreur)     "Erreur"
+set caption(bddimages_insertion,msg_internet)   "Erreur connexion"
+set caption(bddimages_insertion,nofileselected) "Please, read header files before insert, or select 'Continuous insertion'"
+
+# -- Colonnes de la table --
+set caption(bddimages_insertion,etat)           "Etat"
+set caption(bddimages_insertion,nom)            "Nom"
+set caption(bddimages_insertion,dateobs)        "Date"
+set caption(bddimages_insertion,telescope)      "Site"
+set caption(bddimages_insertion,taille)         "Taille"
+set caption(bddimages_insertion,erreur)         "Erreur"
+
+# -- Erreurs --
+set caption(bddimages_insertion,err0)           "Image insérée"
+set caption(bddimages_insertion,err1)           "Image existante dans la base"
+set caption(bddimages_insertion,err2)           "Rezip l'image impossible"
+set caption(bddimages_insertion,err3)           "Erreur de chargement de l'image en mémoire"
+set caption(bddimages_insertion,err4)           "Récupération des champs du header FITS impossible"
+set caption(bddimages_insertion,err5)           "Champ DATE-OBS inexistant"
+set caption(bddimages_insertion,err6)           "Champ DATE-OBS invalide"
+set caption(bddimages_insertion,err7)           ""
+set caption(bddimages_insertion,err8)           "Archive invalide"
+set caption(bddimages_insertion,err9)           "Renommage du fichier impossible"
+
+set caption(bddimages_insertion,err101)         "Création table images impossible"
+set caption(bddimages_insertion,err102)         ""
+set caption(bddimages_insertion,err103)         ""
+set caption(bddimages_insertion,err104)         "Creation table common impossible"
+set caption(bddimages_insertion,err105)         "Impossible d inserer un element dans la table commun"
+set caption(bddimages_insertion,err106)         "Impossible d acceder aux informations de commun"
+set caption(bddimages_insertion,err107)         "Impossible de supprimer l'image de la table images"
+set caption(bddimages_insertion,err108)         "Impossible de supprimer l'image de la table images"
+set caption(bddimages_insertion,err109)         ""
+set caption(bddimages_insertion,err110)         ""
+set caption(bddimages_insertion,err111)         "Effacement du fichier impossible"
+set caption(bddimages_insertion,err112)         "Copie du fichier impossible"
+
+set caption(bddimages_insertion,err201)         "Impossible de créer la table header"
+set caption(bddimages_insertion,err202)         "Impossible d'accéder aux informations de bddimages.header"
+set caption(bddimages_insertion,err203)         "type de champ du header vide"
+set caption(bddimages_insertion,err204)         "type de champ du header inconnu"
+set caption(bddimages_insertion,err205)         "Impossible d'insérer un nouveau type de header"
+set caption(bddimages_insertion,err206)         "Création nouvelle table images_ impossible"
+set caption(bddimages_insertion,err207)         "Effacement impossible dans la table header"
+
+set caption(bddimages_insertion,err300)         "Unlinked"
+set caption(bddimages_insertion,err301)         "Impossible d'accéder à la table images"
+set caption(bddimages_insertion,err302)         "Impossible d'effacer le fichier"
+set caption(bddimages_insertion,err303)         "Création table catas impossible"
+set caption(bddimages_insertion,err304)         "Impossible d'insérer un élément dans la table catas"
+set caption(bddimages_insertion,err305)         "Impossible d'accéder aux informations de bddimages.catas"
+set caption(bddimages_insertion,err306)         "Création table cataimage impossible"
+set caption(bddimages_insertion,err307)         "Impossible d'insérer un element dans la table cataimage"
+set caption(bddimages_insertion,err308)         "Impossible d'accéder aux informations de bddimages.cataimage"
+set caption(bddimages_insertion,err309)         "Impossible de supprimer le fichier cata de la table catas"
+set caption(bddimages_insertion,err310)         "Impossible de supprimer le fichier cata de la table cataimage"
+set caption(bddimages_insertion,err311)         "Impossible d'effacer le fichier"
+set caption(bddimages_insertion,err312)         "Erreur inconnue voir log"
+set caption(bddimages_insertion,err320)         "Cata existant dans la base"
+
+# *************** Version française **** **********************
+if {[info exists langage]!=0} {
+
+   if { [ string compare $langage "french" ] == "0" } {
+      set caption(bddimages_insertion,main_title)     "BddImages - Insertion"
+      set caption(bddimages_insertion,titre)          "Insertion dans la base de données"
+      set caption(bddimages_insertion,label_nbimg)    "Nb d'images au total :"
+      set caption(bddimages_insertion,label_nbimgins) "Nb d'images insérées :"
+      set caption(bddimages_insertion,label_nbimgerr) "Nb d'images en erreur :"
+      set caption(bddimages_insertion,label_nbheader) "Nb de header :"
+
+      set caption(bddimages_insertion,connect)        "Connexion à MySql"
+      set caption(bddimages_insertion,refresh)        "Rafraîchir"
+      set caption(bddimages_insertion,lectentete)     "Lecture des en-têtes"
+      set caption(bddimages_insertion,inser)          "Insertion"
+      set caption(bddimages_insertion,inserauto)      "Insertion continue"
+      set caption(bddimages_insertion,inserall)       "Insérer tout"
+      set caption(bddimages_insertion,aide)           "Aide"
+      set caption(bddimages_insertion,fermer)         "Fermer"
+      set caption(bddimages_insertion,select)         "Sélection"
+      set caption(bddimages_insertion,selectall)      "Sélectionner tout"
+      set caption(bddimages_insertion,voirimg)        "Voir l'image"
+      set caption(bddimages_insertion,voirheader)     "Voir le header"
+      set caption(bddimages_insertion,msg_erreur)     "Erreur"
+      set caption(bddimages_insertion,msg_internet)   "Erreur connexion"
+      set caption(bddimages_insertion,nofileselected) "Veuillez lire les en-têtes avant d'insérer, ou sélectionner 'Insertion continue'"
+
+      # -- Colonnes de la table --
+      set caption(bddimages_insertion,etat)           "Etat"
+      set caption(bddimages_insertion,nom)            "Nom"
+      set caption(bddimages_insertion,dateobs)        "Date"
+      set caption(bddimages_insertion,telescope)      "Site"
+      set caption(bddimages_insertion,taille)         "Taille"
+      set caption(bddimages_insertion,erreur)         "Erreur"
+
+      # -- Erreurs --
+      set caption(bddimages_insertion,err0)           "Image insérée"
+      set caption(bddimages_insertion,err1)           "Image existante dans la base"
+      set caption(bddimages_insertion,err2)           "Rezip l'image impossible"
+      set caption(bddimages_insertion,err3)           "Erreur de chargement de l'image en mémoire"
+      set caption(bddimages_insertion,err4)           "Récupération des champs du header FITS impossible"
+      set caption(bddimages_insertion,err5)           "Champ DATE-OBS inexistant"
+      set caption(bddimages_insertion,err6)           "Champ DATE-OBS invalide"
+      set caption(bddimages_insertion,err7)           ""
+      set caption(bddimages_insertion,err8)           "Archive invalide"
+      set caption(bddimages_insertion,err9)           "Renommage du fichier impossible"
+
+      set caption(bddimages_insertion,err101)         "Création table images impossible"
+      set caption(bddimages_insertion,err102)         ""
+      set caption(bddimages_insertion,err103)         ""
+      set caption(bddimages_insertion,err104)         ""
+      set caption(bddimages_insertion,err105)         "Impossible de supprimer l'image dans incoming"
+      set caption(bddimages_insertion,err106)         ""
+      set caption(bddimages_insertion,err107)         "Impossible de supprimer l'image de la table images"
+      set caption(bddimages_insertion,err108)         "Impossible de supprimer l'image de la table images"
+      set caption(bddimages_insertion,err109)         ""
+      set caption(bddimages_insertion,err110)         ""
+      set caption(bddimages_insertion,err111)         "Effacement du fichier impossible"
+      set caption(bddimages_insertion,err112)         "Copie du fichier impossible"
+
+      set caption(bddimages_insertion,err201)         "Impossible de créer la table header"
+      set caption(bddimages_insertion,err202)         "Impossible d'accéder aux informations de bddimages.header"
+      set caption(bddimages_insertion,err203)         "type de champ du header vide"
+      set caption(bddimages_insertion,err204)         "type de champ du header inconnu"
+      set caption(bddimages_insertion,err205)         "Impossible d'insérer un nouveau type de header"
+      set caption(bddimages_insertion,err206)         "Création nouvelle table images_ impossible"
+      set caption(bddimages_insertion,err207)         "Effacement impossible dans la table header"
+
+      set caption(bddimages_insertion,err300)         "Unlinked"
+      set caption(bddimages_insertion,err301)         "Impossible d'accéder à la table images"
+      set caption(bddimages_insertion,err302)         "Impossible d'effacer le fichier"
+      set caption(bddimages_insertion,err303)         "Création table catas impossible"
+      set caption(bddimages_insertion,err304)         "Impossible d'insérer un élément dans la table catas"
+      set caption(bddimages_insertion,err305)         "Impossible d'accéder aux informations de bddimages.catas"
+      set caption(bddimages_insertion,err306)         "Création table cataimage impossible"
+      set caption(bddimages_insertion,err307)         "Impossible d'insérer un element dans la table cataimage"
+      set caption(bddimages_insertion,err308)         "Impossible d'accéder aux informations de bddimages.cataimage"
+      set caption(bddimages_insertion,err309)         "Impossible de supprimer le fichier cata de la table catas"
+      set caption(bddimages_insertion,err310)         "Impossible de supprimer le fichier cata de la table cataimage"
+      set caption(bddimages_insertion,err311)         "Impossible d'effacer le fichier"
+      set caption(bddimages_insertion,err312)         "Erreur inconnue voir log"
+      set caption(bddimages_insertion,err320)         "Cata existant dans la base"
+
+
+   # *************** Version italienne ***************************
+   } elseif { [ string compare $langage "italian" ] == "0" } {
+
+
+   # *************** Version espagnole ***************************
+   } elseif { [ string compare $langage "spanish" ] == "0" } {
+
+
+   # *************** Version allemande ***************************
+   } elseif { [ string compare $langage "german" ] == "0" } {
+
+
+   # *************** Version portugaise **************************
+   } elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+
+   # *************** Version danoise *****************************
+   } elseif { [ string compare $langage "danish" ] == "0" } {
+
+
+   # *************** Version ukrainienne *************************
+   } elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+
+   # *************** Version russe *******************************
+   } elseif { [ string compare $langage "russian" ] == "0" } {
+
+
+   }
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

@@ -1,0 +1,19 @@
+Nomenclature NGC2000
+
+Gx       Galaxie
+OC       Amas ouvert
+Gb       Amas globulaire
+Nb       Nebuleuse par emission ou reflection
+Pl       Nebuleuse planetaire
+C+N      Amas d etoiles + nebuleuse
+Ast      groupe detoiles
+Kt       Regions H2
+***      Etoile triple
+D*       Etoile double
+*        Etoile simple
+?        Type incertain
+blank    Objet inconnu ou non identifie
+-        Objet non existant
+PD       Plaque photo defectueuse
+
+Coordonnees Equatoriales  Equinoxe 2000.0

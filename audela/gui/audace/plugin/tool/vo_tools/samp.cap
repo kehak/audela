@@ -1,0 +1,187 @@
+#
+# Fichier : samp.cap
+# Mise a jour $Id: samp.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(samp,description_text)   "AudeLA - Acquisition and image processing for astronomy"
+set caption(samp,reception_image)    "Samp: Get image "
+set caption(samp,reception_votable)  "Samp: Get VOTable "
+set caption(samp,reception_spectrum) "Samp: Get spectrum "
+set caption(samp,hub_shutdown)       "Samp: the hub has been shutdown, you are now disconnected"
+set caption(samp,hub_disconnect)     "Samp: the hub has disconnected AudeLA"
+set caption(samp,pointatsky)         "Samp: point at sky:"
+set caption(samp,connection)         "Samp: connection to local hub"
+set caption(samp,tcpport)            "   TCP port for callback: "
+set caption(samp,unregerror)         "Samp: an error occurs when unregistred the hub"
+set caption(samp,disconnected)       "Samp: disconnected from hub"
+set caption(samp,notconnected)       "Samp: not connected"
+set caption(samp,image_failed)       "Samp: failed to load the image: path or filename not found"
+set caption(samp,votable_failed)     "Samp: failed to load the VOTable: path or filename not found"
+set caption(samp,spectrum_failed)    "Samp: failed to load the spectrum: path or filename not found"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(samp,description_text)   "AudeLA - Acquisition et traitement d'images astronomiques"
+   set caption(samp,reception_image)    "Samp: Réception de l'image "
+   set caption(samp,reception_votable)  "Samp: Réception de la VOTable "
+   set caption(samp,reception_spectrum) "Samp: Réception du spectre "
+   set caption(samp,hub_shutdown)       "Samp: le hub est arreté, vous êtes maintenant déconnecté\n"
+   set caption(samp,hub_disconnect)     "Samp: le hub a déconnecté AudeLA"
+   set caption(samp,pointatsky)         "Samp: coordonnées célestes pointées:"
+   set caption(samp,connection)         "Samp: connexion au hub local"
+   set caption(samp,tcpport)            "   Port TCP pour callback: "
+   set caption(samp,unregerror)         "Samp: une erreur s'est produite lors de la déconnexion au hub"
+   set caption(samp,disconnected)       "Samp: déconnecté du hub"
+   set caption(samp,notconnected)       "Samp: non connecté"
+   set caption(samp,image_failed)       "Samp: L'image n'a pas pu être chargée: chemin ou nom inconnu"
+   set caption(samp,votable_failed)     "Samp: La VOTable n'a pas pu être chargée: chemin ou nom inconnu"
+   set caption(samp,spectrum_failed)    "Samp: Le spectre n'a pas pu être chargé: chemin ou nom inconnu"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(samp,description_text)   "AudeLA - Acquisition and image processing for astronomy"
+   set caption(samp,reception_image)    "Samp: Get image "
+   set caption(samp,reception_votable)  "Samp: Get VOTable "
+   set caption(samp,reception_spectrum) "Samp: Get spectrum "
+   set caption(samp,hub_shutdown)       "Samp: the hub has been shutdown, you are now disconnected"
+   set caption(samp,hub_disconnect)     "Samp: the hub has disconnected AudeLA"
+   set caption(samp,pointatsky)         "Samp: point at sky:"
+   set caption(samp,connection)         "Samp: connection to local hub"
+   set caption(samp,tcpport)            "   TCP port for callback: "
+   set caption(samp,unregerror)         "Samp: an error occurs when unregistred the hub"
+   set caption(samp,disconnected)       "Samp: disconnected from hub"
+   set caption(samp,notconnected)       "Samp: not connected"
+   set caption(samp,image_failed)       "Samp: failed to load the image: path or filename not found"
+   set caption(samp,votable_failed)     "Samp: failed to load the VOTable: path or filename not found"
+   set caption(samp,spectrum_failed)    "Samp: failed to load the spectrum: path or filename not found"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(samp,description_text)   "AudeLA - Acquisition and image processing for astronomy"
+   set caption(samp,reception_image)    "Samp: Get image "
+   set caption(samp,reception_votable)  "Samp: Get VOTable "
+   set caption(samp,reception_spectrum) "Samp: Get spectrum "
+   set caption(samp,hub_shutdown)       "Samp: the hub has been shutdown, you are now disconnected"
+   set caption(samp,hub_disconnect)     "Samp: the hub has disconnected AudeLA"
+   set caption(samp,pointatsky)         "Samp: point at sky:"
+   set caption(samp,connection)         "Samp: connection to local hub"
+   set caption(samp,tcpport)            "   TCP port for callback: "
+   set caption(samp,unregerror)         "Samp: an error occurs when unregistred the hub"
+   set caption(samp,disconnected)       "Samp: disconnected from hub"
+   set caption(samp,notconnected)       "Samp: not connected"
+   set caption(samp,image_failed)       "Samp: failed to load the image: path or filename not found"
+   set caption(samp,votable_failed)     "Samp: failed to load the VOTable: path or filename not found"
+   set caption(samp,spectrum_failed)    "Samp: failed to load the spectrum: path or filename not found"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(samp,description_text)   "AudeLA - Acquisition and image processing for astronomy"
+   set caption(samp,reception_image)    "Samp: Get image "
+   set caption(samp,reception_votable)  "Samp: Get VOTable "
+   set caption(samp,reception_spectrum) "Samp: Get spectrum "
+   set caption(samp,hub_shutdown)       "Samp: the hub has been shutdown, you are now disconnected"
+   set caption(samp,hub_disconnect)     "Samp: the hub has disconnected AudeLA"
+   set caption(samp,pointatsky)         "Samp: point at sky:"
+   set caption(samp,connection)         "Samp: connection to local hub"
+   set caption(samp,tcpport)            "   TCP port for callback: "
+   set caption(samp,unregerror)         "Samp: an error occurs when unregistred the hub"
+   set caption(samp,disconnected)       "Samp: disconnected from hub"
+   set caption(samp,notconnected)       "Samp: not connected"
+   set caption(samp,image_failed)       "Samp: failed to load the image: path or filename not found"
+   set caption(samp,votable_failed)     "Samp: failed to load the VOTable: path or filename not found"
+   set caption(samp,spectrum_failed)    "Samp: failed to load the spectrum: path or filename not found"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(samp,description_text)   "AudeLA - Acquisition and image processing for astronomy"
+   set caption(samp,reception_image)    "Samp: Get image "
+   set caption(samp,reception_votable)  "Samp: Get VOTable "
+   set caption(samp,reception_spectrum) "Samp: Get spectrum "
+   set caption(samp,hub_shutdown)       "Samp: the hub has been shutdown, you are now disconnected"
+   set caption(samp,hub_disconnect)     "Samp: the hub has disconnected AudeLA"
+   set caption(samp,pointatsky)         "Samp: point at sky:"
+   set caption(samp,connection)         "Samp: connection to local hub"
+   set caption(samp,tcpport)            "   TCP port for callback: "
+   set caption(samp,unregerror)         "Samp: an error occurs when unregistred the hub"
+   set caption(samp,disconnected)       "Samp: disconnected from hub"
+   set caption(samp,notconnected)       "Samp: not connected"
+   set caption(samp,image_failed)       "Samp: failed to load the image: path or filename not found"
+   set caption(samp,votable_failed)     "Samp: failed to load the VOTable: path or filename not found"
+   set caption(samp,spectrum_failed)    "Samp: failed to load the spectrum: path or filename not found"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(samp,description_text)   "AudeLA - Acquisition and image processing for astronomy"
+   set caption(samp,reception_image)    "Samp: Get image "
+   set caption(samp,reception_votable)  "Samp: Get VOTable "
+   set caption(samp,reception_spectrum) "Samp: Get spectrum "
+   set caption(samp,hub_shutdown)       "Samp: the hub has been shutdown, you are now disconnected"
+   set caption(samp,hub_disconnect)     "Samp: the hub has disconnected AudeLA"
+   set caption(samp,pointatsky)         "Samp: point at sky:"
+   set caption(samp,connection)         "Samp: connection to local hub"
+   set caption(samp,tcpport)            "   TCP port for callback: "
+   set caption(samp,unregerror)         "Samp: an error occurs when unregistred the hub"
+   set caption(samp,disconnected)       "Samp: disconnected from hub"
+   set caption(samp,notconnected)       "Samp: not connected"
+   set caption(samp,image_failed)       "Samp: failed to load the image: path or filename not found"
+   set caption(samp,votable_failed)     "Samp: failed to load the VOTable: path or filename not found"
+   set caption(samp,spectrum_failed)    "Samp: failed to load the spectrum: path or filename not found"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(samp,description_text)   "AudeLA - Acquisition and image processing for astronomy"
+   set caption(samp,reception_image)    "Samp: Get image "
+   set caption(samp,reception_votable)  "Samp: Get VOTable "
+   set caption(samp,reception_spectrum) "Samp: Get spectrum "
+   set caption(samp,hub_shutdown)       "Samp: the hub has been shutdown, you are now disconnected"
+   set caption(samp,hub_disconnect)     "Samp: the hub has disconnected AudeLA"
+   set caption(samp,pointatsky)         "Samp: point at sky:"
+   set caption(samp,connection)         "Samp: connection to local hub"
+   set caption(samp,tcpport)            "   TCP port for callback: "
+   set caption(samp,unregerror)         "Samp: an error occurs when unregistred the hub"
+   set caption(samp,disconnected)       "Samp: disconnected from hub"
+   set caption(samp,notconnected)       "Samp: not connected"
+   set caption(samp,image_failed)       "Samp: failed to load the image: path or filename not found"
+   set caption(samp,votable_failed)     "Samp: failed to load the VOTable: path or filename not found"
+   set caption(samp,spectrum_failed)    "Samp: failed to load the spectrum: path or filename not found"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(samp,description_text)   "AudeLA - Acquisition and image processing for astronomy"
+   set caption(samp,reception_image)    "Samp: Get image "
+   set caption(samp,reception_votable)  "Samp: Get VOTable "
+   set caption(samp,reception_spectrum) "Samp: Get spectrum "
+   set caption(samp,hub_shutdown)       "Samp: the hub has been shutdown, you are now disconnected"
+   set caption(samp,hub_disconnect)     "Samp: the hub has disconnected AudeLA"
+   set caption(samp,pointatsky)         "Samp: point at sky:"
+   set caption(samp,connection)         "Samp: connection to local hub"
+   set caption(samp,tcpport)            "   TCP port for callback: "
+   set caption(samp,unregerror)         "Samp: an error occurs when unregistred the hub"
+   set caption(samp,disconnected)       "Samp: disconnected from hub"
+   set caption(samp,notconnected)       "Samp: not connected"
+   set caption(samp,image_failed)       "Samp: failed to load the image: path or filename not found"
+   set caption(samp,votable_failed)     "Samp: failed to load the VOTable: path or filename not found"
+   set caption(samp,spectrum_failed)    "Samp: failed to load the spectrum: path or filename not found"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

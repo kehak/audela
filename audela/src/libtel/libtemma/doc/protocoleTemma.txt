@@ -1,0 +1,268 @@
+Protocole Temma (modifs au 08/06/03) :
+
+----------------------------------------------
+Initial Settings Upon Power Up
+1 RA/DEC: 000000/00000
+2 Telescope Side: West
+3 Handbox: Direction keys operational
+4 RA/DEC Correction Speeds: 90%/90%
+5 Tracking: Northern Hemisphere
+Note: Tracking is reversed by holding the [S1] key
+while turning on power.
+-----------------------------------------------
+All commands to the mount end with a [CR] [LF]. \r\n (#13 #10)
+All replies from the mount end with a [CR] [LF].
+-----------------------------------------------
+The delay time to process a command varies, but
+if you allow 1/4 second that should allow
+enough time for all commands.
+-----------------------------------------------
+Nothing is kept in memory. Latitude & LST must
+be set each time mount is powered up.
+If these are not set the "Get" commands return
+garbage.
+-----------------------------------------------
+
+* Set Local Sidereal Time
+T999999
+Hours (0 - 23)
+Minutes (0 - 59)
+Seconds (0 - 59)
+
+* Get Local Sidereal Time
+g
+Reply Structure:
+g999999
+Hours (0 - 23)
+Minutes (0 - 59)
+Seconds (0 - 59)
+
+* Set Latitude
+I+/-99999
+Degrees (0 - 89)
+Minutes (0 - 59)
+Seconds (0 - 9) 1/10 Minutes
+
+* Get Latitude
+i
+Reply structure:
+i+/-99999
+Degrees (0 - 89)
+Minutes (0 - 59)
+Seconds (0 - 9) 1/10 Minutes
+
+* Set RA Correction Speed
+LA99
+10 - 90 ( de 10% à 90%)
+
+* Get RA Correction Speed
+la
+(Note: This is a lower case "L")
+Reply structure:
+laLA99
+10% - 90%
+
+* Set DEC Correction Speed
+LB99
+10% - 90%
+
+* Get Dec Correction Speed
+lb
+(Note: This is a lower case "L")
+Reply structure:
+lgLB99
+10 - 90 ( de 10% à 90%)
+
+* Get Both Correction Speeds With Hemisphere
+lg
+(Note: This is a lower case "L")
+Reply Structure:
+lg99D99N/S
+Northern, Southern Hemisphere
+Dec Correction Speed (10% - 90%)
+RA Correction Speed (10% - 90%)
+
+* Set Comet Tracking
+LM+/-99999,+/-9999
+RA : Adjust Sidereal time by seconds per Day
+DEC : Adjust DEC tracking by Minutes Per Day
+Example:
+LM+120,+30 would slow the RA speed by 86164/86284 and
+the Dec would track at 30 Minutes a day.
+To stop tracking either send a LM0,0 (or a PS ?)
+
+* Get Comet Speed
+lm Note: This is a lower case "L"
+Reply Structure:
+lmLM+/-99999,+/-9999
+RA Speed Adjustment,Dec Speed Adjustment
+
+Note: RA Speed adjustment is how many RA seconds are added/subtracted per 24 hour period,
+DEC adjustment is how many Minutes per 24 hour period.
+
+* Get Local Sidereal Time
+g
+Reply Structure:
+g999999
+Hours (0 - 23)
+Minutes (0 - 59)
+Seconds (0 - 59)
+
+* Get Automatic Introduction Motions
+s
+Reply Structure:
+s9
+0 or 1
+### retour s1 pendant un goto sinon s0
+
+
+* Get Version
+v
+Reply Structure:
+ver .....
+For Temma PC = TPC-0200-050200-T3A-0502
+or TPC-0NJP-050200-T3A-0418
+or TPC-020J-050075-T3A-0424
+
+* Do Slew : raquette de commande
+M *
+Bit: Value = 0 Value = 1
+1 Low Speed High Speed
+2 RA Right
+3 RA Left
+4 DEC Up
+5 DEC Down
+6 Encoder On Encoder Off
+7 Always 1
+8 Always 0
+This byte must be write as one ASCII character
+                                     7654321
+                                    01000000
+raquetteDECmoins HS enc ON  : MQ= 81=1010001
+raquetteDECmoins HS enc OFF : Mq=113=1110001
+
+raquetteDECmoins NS enc ON  : MP= 80=1010000
+raquetteDECmoins NS enc OFF : Mp=112=1110000
+
+raquetteDECplus  HS enc ON  : MI= 73=1001001
+raquetteDECplus  HS enc OFF : Mi=105=1101001
+
+raquetteDECplus  NS enc ON  : MH= 72=1001000
+raquetteDECplus  NS enc OFF : Mh=104=1101000
+
+raquetteRAplus   HS enc ON  : ME= 69=1000101
+raquetteRAplus   HS enc OFF : Me=101=1100101
+etc.
+
+## voir script pour les valeurs justes sur raquette
+
+
+* Set Location
+1) Do Set Local Sidereal Time
+2) Z
+3) Do Set Local Sideral Time again
+4) D999999+/-99999
+
+Dec :
+Degrees (0 - 89) signés
+Minutes (0 - 59)
+Seconds (1/10 Minute)
+
+RA :
+Hours (0 - 23)
+Minutes (0 - 59)
+Seconds (0 - 59)
+
+Reply Structure:
+R *
+R0 = Ok
+R1 = RA Error
+R2 = Dec Error
+R3 = Too many digits
+
+* Get Current Location
+E
+Reply structure:
+E999999+/-99999E/W/FH
+H = Handbox (operational?)
+E/W = Side of mount telescope is on
+F = Automatic introduction complete after goto operation retour F F F
+
+RA :
+Hour (0 - 23)
+Minutes (0 - 59)
+Seconds (0 - 99) 1/100 Minute
+
+DEC [space] when Dec = 00000
+Degrees (0 - 89)
+Minutes (0 - 59)
+Seconds (0 - 9) 1/10 Minute
+
+
+
+Note:
+After automatic introduction the E/W/F byte will read "F" for the
+first four readings.
+After that it will read E/W.
+## retourné par Temma
+## E->pos telescope coté EST
+## W->pos telescope coté OUEST
+## F F F->quand le goto est terminé
+
+
+Switch Side Of Mount (E/W) : PT
+Note: Side of mount that telescope is on.
+## PTE->telescope coté EST (si retournement manuel)
+## PTW->telescope coté OUEST (si retournement)
+switch E/W aussi si même commande envoyée 2X
+
+
+* Goto
+1) Do a Set Local Sidereal Time
+2) P999999+/-99999
+
+RA :
+Hour (0 - 23)
+Minutes (0 - 59)
+Seconds (0 - 99) 1/100 Minute
+
+DEC [space] when Dec = 00000
+Degrees (0 - 89) signés
+Minutes (0 - 59)
+Seconds (1 - 9) 1/10 Minute
+
+Reply Structure:
+R *
+R0 = Ok
+R1 = RA Error
+R2 = Dec Error
+R3 = Too many digits
+
+* Stop GOTO
+To confirm us "S" command, S0 = canceled, S1 = send again.
+## PS0->stop goto
+## PS1->send again ???
+
+Set Hemisphere Tracking
+Determined by Latitude
+
+* Set Solar Rate
+LK
+
+* Set Stellar Rate
+LL ou LM0,0 ou LM+0,+0
+
+
+## Autoguide ON/OFF : à tester
+LG
+
+
+## pas utiles
+* Set 12V Power
+v1
+
+* Set 24V Power
+v2
+
+
+

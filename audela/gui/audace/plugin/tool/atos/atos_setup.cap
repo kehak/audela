@@ -1,0 +1,228 @@
+#------------------------------------------------------------------
+# source [ file join $audace(rep_plugin) tool atos atos_setup.cap
+#------------------------------------------------------------------
+#
+# Fichier        : atos_setup.cap
+# Description    : Caption pour la partie configuration
+# Auteur         : Frederic Vachier
+# Mise à jour $Id: atos_setup.cap 14089 2016-10-20 21:51:29Z jberthier $
+#
+
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(atos_setup,titre)                     "ATOS - Setup"
+set caption(atos_setup,en-tete_fits)              "FITS Header"
+set caption(atos_setup,mots_cles)                 "Keywords"
+set caption(atos_setup,chgdir)                    "Choose a project directory"
+set caption(atos_setup,preferences)               "Preferences"
+set caption(atos_setup,ocr)                       "OCR"
+set caption(atos_setup,demo)                      "Demo"
+set caption(atos_setup,texte1)                    "Display messages on the Terminal"
+set caption(atos_setup,texte2)                    "Record dates in the log file"
+set caption(atos_setup,texte3)                    "Aural warning when the series ends"
+set caption(atos_setup,texte4)                    "Ask whether the user wants existing file to be replaced"
+set caption(atos_setup,texte5)                    "Prompt the user if the index starts with a value different from 1"
+set caption(atos_setup,texte6)                    "Debug Mode"
+set caption(atos_setup,screen_refresh)            "Display delay during the acquisition"
+set caption(atos_setup,free_space)                "Stop capture when free disk space drops below"
+set caption(atos_setup,dir_prj)                   "ATOS projects directory"
+set caption(atos_setup,tmpfs)                     "Temp directory (tmpfs)"
+set caption(atos_setup,exec_ocr)                  "OCR command line:"
+set caption(atos_setup,color_mode)                "AVI color mode:"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(atos_setup,titre)                  "ATOS - Configuration"
+   set caption(atos_setup,en-tete_fits)           "En-tête FITS"
+   set caption(atos_setup,mots_cles)              "Mots clés"
+   set caption(atos_setup,chgdir)                 "Choisir un répertoire des projets"
+   set caption(atos_setup,preferences)            "Préférences"
+   set caption(atos_setup,ocr)                    "OCR"
+   set caption(atos_setup,demo)                   "Démo"
+   set caption(atos_setup,texte1)                 "Afficher les messages dans la Console"
+   set caption(atos_setup,texte2)                 "Enregistrer les dates dans le fichier log"
+   set caption(atos_setup,texte3)                 "Alarme sonore de fin de série"
+   set caption(atos_setup,texte4)                 "Demander l'autorisation de remplacer un fichier existant"
+   set caption(atos_setup,texte5)                 "Signaler que l'index de départ est différent de 1"
+   set caption(atos_setup,texte6)                 "Mode Debug"
+   set caption(atos_setup,screen_refresh)         "Delai d'affichage durant l'acquisition"
+   set caption(atos_setup,free_space)             "Arrête la capture si l'espace disque disponible est inférieur à"
+   set caption(atos_setup,dir_prj)                "Répertoire des projets ATOS"
+   set caption(atos_setup,tmpfs)                  "Répertoire de travail (tmpfs)"
+   set caption(atos_setup,exec_ocr)               "Ligne de commande de l'OCR :"
+   set caption(atos_setup,color_mode)             "Mode couleur AVI:"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(atos_setup,titre)                  "ATOS - Configurazione"
+   set caption(atos_setup,en-tete_fits)           "Intestazione FITS"
+   set caption(atos_setup,mots_cles)              "Parole chiave"
+   set caption(atos_setup,chgdir)                 "Choose a project directory"
+   set caption(atos_setup,preferences)            "Preferences"
+   set caption(atos_setup,ocr)                    "OCR"
+   set caption(atos_setup,demo)                   "Demo"
+   set caption(atos_setup,texte1)                 "Mostra messaggio sul terminale"
+   set caption(atos_setup,texte2)                 "Salvataggio date nel file di log"
+   set caption(atos_setup,texte3)                 "Segnale acustico quando finisce la serie"
+   set caption(atos_setup,texte4)                 "Domandare l'autorizzazione di rimpiazzare un file esistente"
+   set caption(atos_setup,texte5)                 "Segnalare che l'indice di partenza sia differente da 1"
+   set caption(atos_setup,texte6)                 "Debug Mode"
+   set caption(atos_setup,screen_refresh)         "Display delay during the acquisition"
+   set caption(atos_setup,exec_ocr)               "OCR command line"
+   set caption(atos_setup,free_space)             "Stop capture when free disk space drops below"
+   set caption(atos_setup,dir_prj)                "Projects directory"
+   set caption(atos_setup,tmpfs)                  "Temp directory (tmpfs)"
+   set caption(atos_setup,color_mode)             "AVI color mode:"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(atos_setup,titre)                  "ATOS - Configuración"
+   set caption(atos_setup,en-tete_fits)           "Cabecera FITS"
+   set caption(atos_setup,mots_cles)              "Palabras clave"
+   set caption(atos_setup,chgdir)                 "Choose a project directory"
+   set caption(atos_setup,preferences)            "Preferences"
+   set caption(atos_setup,ocr)                    "OCR"
+   set caption(atos_setup,demo)                   "Demo"
+   set caption(atos_setup,texte1)                 "Mostrar mensajes en la Consola"
+   set caption(atos_setup,texte2)                 "Grabar fechas en el fichero de log"
+   set caption(atos_setup,texte3)                 "Alarma sonora cuando la serie termina"
+   set caption(atos_setup,texte4)                 "Pedir autorización para reemplazar un fichero existente"
+   set caption(atos_setup,texte5)                 "Avisar que el indice empieza con un valor diferente de 1"
+   set caption(atos_setup,texte6)                 "Debug Mode"
+   set caption(atos_setup,screen_refresh)         "Display delay during the acquisition"
+   set caption(atos_setup,exec_ocr)               "OCR command line"
+   set caption(atos_setup,free_space)             "Stop capture when free disk space drops below (Mo)"
+   set caption(atos_setup,dir_prj)                "Projects directory"
+   set caption(atos_setup,tmpfs)                  "Temp directory (tmpfs)"
+   set caption(atos_setup,color_mode)             "AVI color mode:"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(atos_setup,titre)                  "ATOS - Konfiguration"
+   set caption(atos_setup,en-tete_fits)           "FITS Header"
+   set caption(atos_setup,mots_cles)              "Stichwörter"
+   set caption(atos_setup,chgdir)                 "Choose a project directory"
+   set caption(atos_setup,preferences)            "Preferences"
+   set caption(atos_setup,ocr)                    "OCR"
+   set caption(atos_setup,demo)                   "Demo"
+   set caption(atos_setup,texte1)                 "Die Nachrichten am Bildschirm zeigen"
+   set caption(atos_setup,texte2)                 "Die Zeit in die Log Datei speichern"
+   set caption(atos_setup,texte3)                 "Ton Alarm wenn die Serie endet"
+   set caption(atos_setup,texte4)                 "Die Zulassung eine vorhandene Datei zu ersetzen fragen"
+   set caption(atos_setup,texte5)                 "Dass der Anfang Index nicht 1 ist veranlassen"
+   set caption(atos_setup,texte6)                 "Debug Mode"
+   set caption(atos_setup,screen_refresh)         "Display delay during the acquisition"
+   set caption(atos_setup,exec_ocr)               "OCR command line"
+   set caption(atos_setup,free_space)             "Stop capture when free disk space drops below (Mo)"
+   set caption(atos_setup,dir_prj)                "Projects directory"
+   set caption(atos_setup,tmpfs)                  "Temp directory (tmpfs)"
+   set caption(atos_setup,color_mode)             "AVI color mode:"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(atos_setup,titre)                  "ATOS - Configuração"
+   set caption(atos_setup,en-tete_fits)           "Cabeçalho FITS"
+   set caption(atos_setup,mots_cles)              "Palavras-chave"
+   set caption(atos_setup,chgdir)                 "Choose a project directory"
+   set caption(atos_setup,preferences)            "Preferences"
+   set caption(atos_setup,ocr)                    "OCR"
+   set caption(atos_setup,demo)                   "Demo"
+   set caption(atos_setup,texte1)                 "Mostrar mensagens na Consola"
+   set caption(atos_setup,texte2)                 "Guardar datas no ficheiro log"
+   set caption(atos_setup,texte3)                 "Alarme sonoro quando a série terminar"
+   set caption(atos_setup,texte4)                 "Pedir a autorização para substituir um ficheiro existente"
+   set caption(atos_setup,texte5)                 "Indicar que o índice de partida é diferente de 1"
+   set caption(atos_setup,texte6)                 "Debug Mode"
+   set caption(atos_setup,screen_refresh)         "Display delay during the acquisition"
+   set caption(atos_setup,exec_ocr)               "OCR command line"
+   set caption(atos_setup,free_space)             "Stop capture when free disk space drops below (Mo)"
+   set caption(atos_setup,dir_prj)                "Projects directory"
+   set caption(atos_setup,tmpfs)                  "Temp directory (tmpfs)"
+   set caption(atos_setup,color_mode)             "AVI color mode:"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(atos_setup,titre)                  "ATOS - Setup"
+   set caption(atos_setup,en-tete_fits)           "FITS Header"
+   set caption(atos_setup,mots_cles)              "Keywords"
+   set caption(atos_setup,chgdir)                 "Choose a project directory"
+   set caption(atos_setup,preferences)            "Preferences"
+   set caption(atos_setup,ocr)                    "OCR"
+   set caption(atos_setup,demo)                   "Demo"
+   set caption(atos_setup,texte1)                 "Display messages on the Terminal"
+   set caption(atos_setup,texte2)                 "Record dates in the log file"
+   set caption(atos_setup,texte3)                 "Aural warning when the series ends"
+   set caption(atos_setup,texte4)                 "Ask whether the user wants existing file to be replaced"
+   set caption(atos_setup,texte5)                 "Prompt the user if the index starts with a value different from 1"
+   set caption(atos_setup,texte6)                 "Debug Mode"
+   set caption(atos_setup,screen_refresh)         "Display delay during the acquisition"
+   set caption(atos_setup,exec_ocr)               "OCR command line"
+   set caption(atos_setup,free_space)             "Stop capture when free disk space drops below (Mo)"
+   set caption(atos_setup,dir_prj)                "Projects directory"
+   set caption(atos_setup,tmpfs)                  "Temp directory (tmpfs)"
+   set caption(atos_setup,color_mode)             "AVI color mode:"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(atos_setup,titre)                  "ATOS - Setup"
+   set caption(atos_setup,en-tete_fits)           "FITS Header"
+   set caption(atos_setup,mots_cles)              "Keywords"
+   set caption(atos_setup,chgdir)                 "Choose a project directory"
+   set caption(atos_setup,preferences)            "Preferences"
+   set caption(atos_setup,ocr)                    "OCR"
+   set caption(atos_setup,demo)                   "Demo"
+   set caption(atos_setup,texte1)                 "Display messages on the Terminal"
+   set caption(atos_setup,texte2)                 "Record dates in the log file"
+   set caption(atos_setup,texte3)                 "Aural warning when the series ends"
+   set caption(atos_setup,texte4)                 "Ask whether the user wants existing file to be replaced"
+   set caption(atos_setup,texte5)                 "Prompt the user if the index starts with a value different from 1"
+   set caption(atos_setup,texte6)                 "Debug Mode"
+   set caption(atos_setup,screen_refresh)         "Display delay during the acquisition"
+   set caption(atos_setup,exec_ocr)               "OCR command line"
+   set caption(atos_setup,free_space)             "Stop capture when free disk space drops below (Mo)"
+   set caption(atos_setup,dir_prj)                "Projects directory"
+   set caption(atos_setup,tmpfs)                  "Temp directory (tmpfs)"
+   set caption(atos_setup,color_mode)             "AVI color mode:"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(atos_setup,titre)                  "ATOS - Setup"
+   set caption(atos_setup,en-tete_fits)           "FITS Header"
+   set caption(atos_setup,mots_cles)              "Keywords"
+   set caption(atos_setup,chgdir)                 "Choose a project directory"
+   set caption(atos_setup,preferences)            "Preferences"
+   set caption(atos_setup,ocr)                    "OCR"
+   set caption(atos_setup,demo)                   "Demo"
+   set caption(atos_setup,texte1)                 "Display messages on the Terminal"
+   set caption(atos_setup,texte2)                 "Record dates in the log file"
+   set caption(atos_setup,texte3)                 "Aural warning when the series ends"
+   set caption(atos_setup,texte4)                 "Ask whether the user wants existing file to be replaced"
+   set caption(atos_setup,texte5)                 "Prompt the user if the index starts with a value different from 1"
+   set caption(atos_setup,texte6)                 "Debug Mode"
+   set caption(atos_setup,screen_refresh)         "Display delay during the acquisition"
+   set caption(atos_setup,exec_ocr)               "OCR command line"
+   set caption(atos_setup,free_space)             "Stop capture when free disk space drops below (Mo)"
+   set caption(atos_setup,dir_prj)                "Projects directory"
+   set caption(atos_setup,tmpfs)                  "Temp directory (tmpfs)"
+   set caption(atos_setup,color_mode)             "AVI color mode:"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================

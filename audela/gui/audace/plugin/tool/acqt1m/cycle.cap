@@ -1,0 +1,178 @@
+#
+# Fichier : cycle.cap
+# Mise a jour $Id: cycle.cap 9368 2013-04-11 18:17:38Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(cycle,lancement)                "Run 'Cycle'"
+set caption(cycle,initFiltres)              "Filter Initialization"
+set caption(cycle,initCamera)               "Camera Initialization"
+set caption(cycle,pasCamera)                "No camera defined"
+set caption(cycle,initBuffer)               "Buffer Initialization"
+set caption(cycle,initCom)                  "Initialization of the connection with the filter wheel"
+set caption(cycle,roueNonInitialise)        "Filter wheel not initialized"
+set caption(cycle,initialiseRoue)           "Initialization of the filter wheel"
+set caption(cycle,changeFiltre)             "Filter Change"
+set caption(cycle,probleme)                 "Warning: Problem with the filter wheel which should be reset"
+set caption(cycle,fermeCom)                 "Closing the connection with the filter wheel"
+set caption(cycle,filtre)                   "Filter:"
+set caption(cycle,acquisition)              "Acquisition:"
+set caption(cycle,energistre)               "Saving:"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(cycle,lancement)             "Lancement de 'Cylce'"
+   set caption(cycle,initFiltres)           "Initialisation des filtres"
+   set caption(cycle,initCamera)            "Initialisation de la caméra"
+   set caption(cycle,pasCamera)             "Aucune caméra n'est définie"
+   set caption(cycle,initBuffer)            "Initialisation du buffer"
+   set caption(cycle,initCom)               "Initialisation de la connexion avec la roue à filtres"
+   set caption(cycle,roueNonInitialise)     "La roue à filtres n'a pas été initialisée"
+   set caption(cycle,initialiseRoue)        "Initialise la roue à filtres"
+   set caption(cycle,changeFiltre)          "Changement de filtre"
+   set caption(cycle,probleme)              "Attention : Problème avec la roue à filtres qui doit être réinitialisée"
+   set caption(cycle,fermeCom)              "Fermeture de la connexion avec la roue à filtres"
+   set caption(cycle,filtre)                "Filtre :"
+   set caption(cycle,acquisition)           "Acquisition :"
+   set caption(cycle,energistre)            "Enregistrement de :"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(cycle,lancement)             "Esegui 'Cycle'"
+   set caption(cycle,initFiltres)           "Inizializzazione filtri"
+   set caption(cycle,initCamera)            "Inizializzazione camera"
+   set caption(cycle,pasCamera)             "Nessuna camera definita"
+   set caption(cycle,initBuffer)            "Inizializzazione buffer"
+   set caption(cycle,initCom)               "Inizializzazione della connessione con la ruota portafiltri"
+   set caption(cycle,roueNonInitialise)     "La ruota portafiltri non è stata inizializzata"
+   set caption(cycle,initialiseRoue)        "Inizializza la ruota portafiltri"
+   set caption(cycle,changeFiltre)          "Cambio filtro"
+   set caption(cycle,probleme)              "Attenzione: Probelma con ruota portafiltri - Re-inizializzare"
+   set caption(cycle,fermeCom)              "Chiusura della connessione con la ruota portafiltri"
+   set caption(cycle,filtre)                "Filtro:"
+   set caption(cycle,acquisition)           "Acquisizione:"
+   set caption(cycle,energistre)            "Salvataggio di:"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(cycle,lancement)             "Inicio de 'Cycle'"
+   set caption(cycle,initFiltres)           "Inicializando filtros"
+   set caption(cycle,initCamera)            "Inicializando camara"
+   set caption(cycle,pasCamera)             "No hay cámara definida"
+   set caption(cycle,initBuffer)            "Inicializando buffer"
+   set caption(cycle,initCom)               "Inicialiación de la conexión con la rueda de filtros"
+   set caption(cycle,roueNonInitialise)     "Rueda de filtros no inicializada"
+   set caption(cycle,initialiseRoue)        "Inicializa la rueda de filtros"
+   set caption(cycle,changeFiltre)          "Cambio de filtro"
+   set caption(cycle,probleme)              "Atención: Problema con la rueda de filtros, debe ser reinicializada"
+   set caption(cycle,fermeCom)              "Cerrando conexión con la rueda de filtros"
+   set caption(cycle,filtre)                "Filtros:"
+   set caption(cycle,acquisition)           "Adquisición:"
+   set caption(cycle,energistre)            "Salvando:"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(cycle,lancement)             "Laufen lassen 'Cycle'"
+   set caption(cycle,initFiltres)           "Filtern Initialisierung"
+   set caption(cycle,initCamera)            "Kamera Initialisierung"
+   set caption(cycle,pasCamera)             "Keine Kamera definiert"
+   set caption(cycle,initBuffer)            "Buffer Initialisierung"
+   set caption(cycle,initCom)               "Die Verbindung mit das Filterrad initialisieren"
+   set caption(cycle,roueNonInitialise)     "Filterrad nicht initialisiert"
+   set caption(cycle,initialiseRoue)        "Initialisiert das Filterrad"
+   set caption(cycle,changeFiltre)          "Filter Ändern"
+   set caption(cycle,probleme)              "Achtung: Problem mit das Filterrad das reinitialisiert werden soll"
+   set caption(cycle,fermeCom)              "Verbindung mit das Filterrad schließen"
+   set caption(cycle,filtre)                "Filter:"
+   set caption(cycle,acquisition)           "Belichtung:"
+   set caption(cycle,energistre)            "Speichern:"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(cycle,lancement)             "Início 'Cycle'"
+   set caption(cycle,initFiltres)           "Inicialização dos filtros"
+   set caption(cycle,initCamera)            "Inicialização da câmara"
+   set caption(cycle,pasCamera)             "Nenhuma câmara definida"
+   set caption(cycle,initBuffer)            "Inicialização do buffer"
+   set caption(cycle,initCom)               "Inicialização da conexão com a roda de filtros"
+   set caption(cycle,roueNonInitialise)     "A roda de filtros não foi iniciada"
+   set caption(cycle,initialiseRoue)        "Inicialização da roda de filtros"
+   set caption(cycle,changeFiltre)          "Mudança de filtro"
+   set caption(cycle,probleme)              "Aviso: Problema com a roda de filtros, a qual deve ser reiniciada"
+   set caption(cycle,fermeCom)              "Termina a conexão com a roda de filtros"
+   set caption(cycle,filtre)                "Filtro:"
+   set caption(cycle,acquisition)           "Aquisição:"
+   set caption(cycle,energistre)            "Guardando:"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(cycle,lancement)             "Run 'Cycle'"
+   set caption(cycle,initFiltres)           "Filter Initialization"
+   set caption(cycle,initCamera)            "Camera Initialization"
+   set caption(cycle,pasCamera)             "No camera defined"
+   set caption(cycle,initBuffer)            "Buffer Initialization"
+   set caption(cycle,initCom)               "Initialization of the connection with the filter wheel"
+   set caption(cycle,roueNonInitialise)     "Filter wheel not initialized"
+   set caption(cycle,initialiseRoue)        "Initialization of the filter wheel"
+   set caption(cycle,changeFiltre)          "Filter Change"
+   set caption(cycle,probleme)              "Warning: Problem with the filter wheel which should be reset"
+   set caption(cycle,fermeCom)              "Closing the connection with the filter wheel"
+   set caption(cycle,filtre)                "Filter:"
+   set caption(cycle,acquisition)           "Acquisition:"
+   set caption(cycle,energistre)            "Saving:"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(cycle,lancement)             "Run 'Cycle'"
+   set caption(cycle,initFiltres)           "Filter Initialization"
+   set caption(cycle,initCamera)            "Camera Initialization"
+   set caption(cycle,pasCamera)             "No camera defined"
+   set caption(cycle,initBuffer)            "Buffer Initialization"
+   set caption(cycle,initCom)               "Initialization of the connection with the filter wheel"
+   set caption(cycle,roueNonInitialise)     "Filter wheel not initialized"
+   set caption(cycle,initialiseRoue)        "Initialization of the filter wheel"
+   set caption(cycle,changeFiltre)          "Filter Change"
+   set caption(cycle,probleme)              "Warning: Problem with the filter wheel which should be reset"
+   set caption(cycle,fermeCom)              "Closing the connection with the filter wheel"
+   set caption(cycle,filtre)                "Filter:"
+   set caption(cycle,acquisition)           "Acquisition:"
+   set caption(cycle,energistre)            "Saving:"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(cycle,lancement)             "Run 'Cycle'"
+   set caption(cycle,initFiltres)           "Filter Initialization"
+   set caption(cycle,initCamera)            "Camera Initialization"
+   set caption(cycle,pasCamera)             "No camera defined"
+   set caption(cycle,initBuffer)            "Buffer Initialization"
+   set caption(cycle,initCom)               "Initialization of the connection with the filter wheel"
+   set caption(cycle,roueNonInitialise)     "Filter wheel not initialized"
+   set caption(cycle,initialiseRoue)        "Initialization of the filter wheel"
+   set caption(cycle,changeFiltre)          "Filter Change"
+   set caption(cycle,probleme)              "Warning: Problem with the filter wheel which should be reset"
+   set caption(cycle,fermeCom)              "Closing the connection with the filter wheel"
+   set caption(cycle,filtre)                "Filter:"
+   set caption(cycle,acquisition)           "Acquisition:"
+   set caption(cycle,energistre)            "Saving:"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

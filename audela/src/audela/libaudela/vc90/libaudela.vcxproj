@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5A1A1AAC-22A5-4E69-A441-0488B3F9DC4C}</ProjectGuid>
+    <RootNamespace>libaudela</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.24730.2</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+      <Command>echo on
+if exist ..\..\include\libtt.h (del ..\..\include\libtt.h)
+</Command>
+    </PreBuildEvent>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/libaudela.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <AdditionalIncludeDirectories>..\src;..\..\include;..\..\..\include;..\..\..\external\include;..\..\..\external\porttalk;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;USE_TCL_STUBS;USE_TK_STUBS;USE_COMPOSITELESS_PHOTO_PUT_BLOCK;LIBAUDELA_EXPORTS;TCL_THREADS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);HAVE_STRUCT_TIMESPEC</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile />
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <BrowseInformation />
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>tkstub86.lib;tclstub86.lib;wsock32.lib;version.lib;libdcjpeg.lib;libdcraw.lib;pthread.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>..\..\..\..\bin\libaudela.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\..\..\external\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile />
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ProgramDatabaseFile />
+      <SubSystem>Windows</SubSystem>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <RandomizedBaseAddress />
+      <DataExecutionPrevention />
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release/libaudela.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>echo on
+copy ..\src\libaudela.h ..\..\..\include
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/libaudela.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\src;..\..\include;..\..\..\include;..\..\..\external\porttalk;..\..\..\external\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;USE_TCL_STUBS;LIBAUDELA_EXPORTS;TCL_THREADS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);HAVE_STRUCT_TIMESPEC</PreprocessorDefinitions>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile />
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>wsock32.lib;tclstub86.lib;version.lib;libdcraw.lib;libdcjpeg.lib;pthread.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>..\..\..\..\bin\libaudela.dll </OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\..\..\external\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile />
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/libaudela.pdb</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug/libaudela.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>echo on
+copy ..\src\libaudela.h ..\..\..\include
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\external\porttalk\porttalk_interface.cpp" />
+    <ClCompile Include="..\src\buf_tcl.cpp" />
+    <ClCompile Include="..\src\cam_tcl.cpp" />
+    <ClCompile Include="..\src\cbuffer.cpp" />
+    <ClCompile Include="..\src\cdevice.cpp" />
+    <ClCompile Include="..\src\cerror.cpp" />
+    <ClCompile Include="..\src\cfile.cpp" />
+    <ClCompile Include="..\src\cpixels.cpp" />
+    <ClCompile Include="..\src\cpixelsgray.cpp" />
+    <ClCompile Include="..\src\cpixelsrgb.cpp" />
+    <ClCompile Include="..\src\cpool.cpp" />
+    <ClCompile Include="..\src\file_tcl.cpp" />
+    <ClCompile Include="..\src\fitskw.cpp" />
+    <ClCompile Include="..\src\history.cpp" />
+    <ClCompile Include="..\src\libaudela.cpp" />
+    <ClCompile Include="..\src\libstd.cpp" />
+    <ClCompile Include="..\src\link_tcl.cpp" />
+    <ClCompile Include="..\src\MinimisationAndLinearAlgebraicSystems.cpp" />
+    <ClCompile Include="..\src\ping.cpp" />
+    <ClCompile Include="..\src\pool_tcl.cpp" />
+    <ClCompile Include="..\src\PsfFitter.cpp" />
+    <ClCompile Include="..\src\psfimcce.cpp" />
+    <ClCompile Include="..\src\psfimcce_funcs.cpp" />
+    <ClCompile Include="..\src\psfimcce_nr.cpp" />
+    <ClCompile Include="..\src\setip.cpp" />
+    <ClCompile Include="..\src\stats.cpp" />
+    <ClCompile Include="..\src\tel_tcl.cpp" />
+    <ClCompile Include="..\src\thread.cpp" />
+    <ClCompile Include="..\src\utf2Unicode_tcl.cpp" />
+    <ClCompile Include="..\src\utils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libaudela.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\external\include\libdcjpeg.h" />
+    <ClInclude Include="..\..\..\external\include\libdcraw.h" />
+    <ClInclude Include="..\src\AllExceptions.h" />
+    <ClInclude Include="..\src\audela.h" />
+    <ClInclude Include="..\src\buf_tcl.h" />
+    <ClInclude Include="..\src\cbuffer.h" />
+    <ClInclude Include="..\src\cdevice.h" />
+    <ClInclude Include="..\src\cerror.h" />
+    <ClInclude Include="..\src\cfile.h" />
+    <ClInclude Include="..\src\cmditem_tcl.h" />
+    <ClInclude Include="..\src\cpixels.h" />
+    <ClInclude Include="..\src\cpixelsgray.h" />
+    <ClInclude Include="..\src\cpixelsrgb.h" />
+    <ClInclude Include="..\src\cpool.h" />
+    <ClInclude Include="..\src\fitskw.h" />
+    <ClInclude Include="..\src\history.h" />
+    <ClInclude Include="..\src\jpegmemscr.h" />
+    <ClInclude Include="..\src\libaudela.h" />
+    <ClInclude Include="..\src\libstd.h" />
+    <ClInclude Include="..\src\MinimisationAndLinearAlgebraicSystems.h" />
+    <ClInclude Include="..\src\palette.h" />
+    <ClInclude Include="..\src\PsfFitter.h" />
+    <ClInclude Include="..\src\psfimcce.h" />
+    <ClInclude Include="..\src\setip.h" />
+    <ClInclude Include="..\src\stats.h" />
+    <ClInclude Include="..\src\utf2Unicode_tcl.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\external\libdcjpeg\vc90\external_libdcjpeg.vcxproj">
+      <Project>{4edb076f-aa8e-4b39-9ee3-e244bb81f0ed}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external\libdcraw\vc90\external_libdcraw.vcxproj">
+      <Project>{a20eec71-6b59-4898-b47a-984aea48dcc7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external\pthread\vc90\external_pthread.vcxproj">
+      <Project>{2402b30e-01ad-4f43-b42f-55c9d699880a}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external\tcl\vc90\external_tcl.vcxproj">
+      <Project>{c40a605b-e0b8-4d8f-9c08-23825cd5c6a4}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libtt\vc90\libtt.vcxproj">
+      <Project>{5d54c1bf-e5f7-4d09-85a8-5b0f324ce5dc}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

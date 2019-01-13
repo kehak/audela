@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <title>Inverse Discrete Fourier Transform</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="generator" content="Geany 0.18">
+</head>
+<body>
+<p class="date">Update: 08 January 2010</p>
+<h1>Inverse Discrete Fourier Transform</h1>
+<p>The <b>Inverse Discrete Fourier Transform (I-DFT)</b> translates
+two frequency-domain images into one spatial-domain image.
+Mathematically speaking, this a complex transformation. Both input
+images are either the real and the imaginary parts, or the modulus and
+the argument of a DFT. All other image couples will produce an
+unpredictable - and likely false - result.</p>
+<p>Hence, both input images shall :
+</p>
+<ul>
+  <li>have the very same width and height.</li>
+  <li>contain a <em>DFT_ORD</em> keyword with the very same value (<em>CENTERED</em>
+ou <em>REGULAR</em>).</li>
+  <li>contain a <em>DFT_TYPE</em> keyword with some paired values : <em>REAL</em>
+and <em>IMAG</em>, or <em>SPECTRUM</em> and <em>PHASE</em>.</li>
+</ul>
+<p>For more information on the <em>DFT_ORD</em> and the <em>DFT_TYPE</em>
+keywords, refer to the <a href="1110TFD.htm">Discrete Fourier Transform</a>
+command.<br>
+The result of the I-DFT processing will be displayed and saved in the
+current image directory as "<span style="font-style: italic;">image.fit</span>".
+<span style="text-decoration: underline;">If there were a file with the
+very same name, its content will be overridden</span>.<br>
+The output image
+is encoded with unsigned 16-bits words.
+</p>
+</body>
+</html>

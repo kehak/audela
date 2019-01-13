@@ -1,0 +1,2 @@
+LIBRARY libros
+EXPORTS Ros_Init @1

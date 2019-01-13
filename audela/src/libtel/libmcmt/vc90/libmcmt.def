@@ -1,0 +1,2 @@
+LIBRARY libmcmt
+EXPORTS Mcmt_Init @1

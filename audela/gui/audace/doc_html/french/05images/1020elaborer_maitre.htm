@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Elaborer une image ma&#238;tre</title>
+</head>
+<body>
+<p class="date">Date de mise &#224; jour : 12 janvier 2011</p>
+<h1>Elaborer une image ma&#238;tre</h1>
+<h2>1. Fonctions</h2>
+<p>Elles permettent de :</p>
+<ul>
+  <li>R&#233;aliser les &#233;tapes du pr&#233;traitement (image de
+pr&#233;charge (offset ou bias en anglais), image du noir (ou
+dark), image de P.L.U., Plage de Lumi&#232;re Uniforme, (ou flat
+ou flat-field), image finale).</li>
+  <li>Sur des images N et B ou CFA au format FITS.</li>
+  <li>En s&#233;ries index&#233;es ou d&#233;pareill&#233;es.</li>
+  <li>Au format FITS, compress&#233; (gz) ou non.</li>
+  <li>Les images sources doivent &#234;tre localis&#233;es dans le
+r&#233;pertoire d&#233;fini dans
+Configuration/R&#233;pertoires/R&#233;pertoire des images. Les
+images produites et les images 'op&#233;randes' peuvent &#234;tre
+dans un r&#233;pertoire diff&#233;rent.</li>
+  <li>En donnant acc&#232;s aux options TT.</li>
+  <li>Avec une interface commune.</li>
+</ul>
+<h2><a name="BIAS" id="BIAS"></a>2. Elaborer une image
+ma&#238;tre de pr&#233;charge (bias ou offset)</h2>
+<p>L'image ma&#238;tre de pr&#233;charge, nomm&#233;e aussi bias
+ou offset, correspond &#224; l'image obtenue, dans
+l'obscurit&#233; totale, avec le temps d'exposition le plus court
+possible disponible sur la cam&#233;ra utilis&#233;e.<br>
+</p>
+<p>Cette fonction effectue la m&#233;diane des images
+s&#233;lectionn&#233;es.</p>
+<h3>2.1 Lancement de l'interface</h3>
+<p>Avant de lancer une fonction d&#233;finir l'extension et la
+compression par "Configuration" --&gt; "Fichiers image".</p>
+<p>Si la s&#233;lection du r&#233;pertoire est incorrecte, il
+suffit de la modifier par "Configuration" --&gt;
+"R&#233;pertoires" : La liste affich&#233;e est automatiquement
+rafra&#238;chie.</p>
+<p><img src="images/offset.png"></p>
+<p>Le nom de l'image produite est celui du g&#233;n&#233;rique.
+Si le fichier existe d&#233;j&#224; il sera &#233;cras&#233;.</p>
+<h3>2.2. Pr&#233;filtrage des images s&#233;lectionnables</h3>
+<p>Les fichiers affich&#233;s dans la fen&#234;tre sont
+limit&#233;s au couple {extension compression} d&#233;fini dans
+Configuration/Fichiers images. Le changement de l'un de ces
+r&#233;glages entra&#238;ne la mise &#224; jour de la liste des
+fichiers. Les fichiers produits ont la m&#234;me extension (FITS
+compress&#233;s ou non).</p>
+<p>Afin de minimiser les risques d'erreur de manipulation, les
+s&#233;lections possibles sont pr&#233;filtr&#233;es :</p>
+<ul>
+  <li>Les fichiers image autres (1D RGB) que monochromes ou CFA ne
+sont pas affich&#233;s.</li>
+  <li>Les images qui comportent une erreur dans l'en-t&#234;te sont
+&#233;galement filtr&#233;es et donnent lieu &#224; un message
+d'erreur sur la Console.</li>
+  <li>Le chargement d'une image dans la visu ou la s&#233;lection
+d'une image dans la liste a pour effet d'inhiber la
+s&#233;lection des images de caract&#233;ristiques
+diff&#233;rentes, ce qui &#233;vite par exemple une erreur due
+&#224; des dimensions diff&#233;rentes. La d&#233;s&#233;lection
+de toutes les images annule la r&#233;f&#233;rence.</li>
+</ul>
+<h2><a name="DARK" id="DARK"></a>3. Elaborer une image
+ma&#238;tre du noir (dark)</h2>
+<p><img src="images/dark.png"></p>
+<p>L'image ma&#238;tre du noir, nomm&#233;e aussi dark, est
+l'image de la r&#233;ponse thermique de la cam&#233;ra. Elle
+correspond &#224; la carte des charges thermiques accumul&#233;es
+pendant la pose.<br>
+</p>
+<p>On obtient cette image par une pose, effectu&#233;e dans
+l'obscurit&#233; totale, de la m&#234;me dur&#233;e et &#224; la
+m&#234;me temp&#233;rature que l'image &#224; pr&#233;traiter
+&#224; laquelle nous avons soustrait l'image ma&#238;tre de
+pr&#233;charge.<br>
+</p>
+<p>Cette fonction applique la m&#233;thode retenue (m&#233;diane,
+moyenne ou somme) aux images s&#233;lectionn&#233;es.</p>
+<p>Les fichiers image pass&#233;s en param&#232;tres sont
+&#233;galement v&#233;rifi&#233;s :</p>
+<ul>
+  <li>Existence de l'image.</li>
+  <li>Absence d'erreur dans l'en-t&#234;te et dans le nom.</li>
+  <li>Extension et dimensions identiques &#224; celle des images
+trait&#233;es.</li>
+</ul>
+<p>Si l'entr&#233;e <b>bias</b> (pr&#233;charge, offset) comporte
+le nom d'un fichier valide, celui-ci sera pr&#233;alablement
+soustrait de chaque image. Ce fichier peut &#234;tre dans le
+m&#234;me r&#233;pertoire ou dans un r&#233;pertoire
+diff&#233;rent. Si l'entr&#233;e <b>bias</b> est laiss&#233;e
+vide, un message sur la Console rend compte que l'image du Noir a
+&#233;t&#233; r&#233;alis&#233;e sans image de
+Pr&#233;charge.</p>
+<h2><a name="FLAT" id="FLAT"></a>4. Elaborer une image
+ma&#238;tre de P.L.U. ou Plage de Lumi&#232;re Uniforme (flat ou
+flat-field)</h2>
+<p><img src="images/flat.png"></p>
+<p>L'image ma&#238;tre de P.L.U. (Plage de Lumi&#232;re
+Uniforme), nomm&#233;e aussi flat ou flat-field, caract&#233;rise
+le facteur de r&#233;ponse des pixels du CCD. En effet tous les
+pixels d'une m&#234;me matrice CCD ne sont pas sensibles de la
+m&#234;me mani&#232;re &#224; un flux lumineux, qui lui-m&#234;me
+est influenc&#233; par la pr&#233;sence de vignettage ou de
+poussi&#232;res au niveau des optiques.<br>
+</p>
+<p>Cette fonction effectue la m&#233;diane des images
+s&#233;lectionn&#233;es.</p>
+<p>Si les entr&#233;es <b>bias</b> et <b>dark</b> comportent le
+nom d'un fichier valide, ces images seront pr&#233;alablement
+soustraites de chaque image et l'offset sera automatiquement
+normalis&#233; &#224; la valeur saisie. Ces fichiers peuvent
+&#234;tre dans le m&#234;me r&#233;pertoire ou dans un
+r&#233;pertoire diff&#233;rent. Si l'une ou l'autre de ces
+entr&#233;es est laiss&#233;e vide un message sur la Console rend
+compte que le traitement a &#233;t&#233; r&#233;alis&#233; sans
+la ou les images correspondantes.</p>
+<p>Le <b>dark</b> dont il est fait mention ici est celui qui
+correspond au m&#234;me temps de pose que le flat.</p>
+<h2><a name="PRETRAITER" id="PRETRAITER"></a>5. Pr&#233;traiter
+les images brutes</h2>
+<p><img src="images/calibree.png"></p>
+<p>Le nom du r&#233;pertoire d'origine des fichiers
+op&#233;randes n'est affich&#233; que s'il est diff&#233;rent du
+r&#233;pertoire-images. Dans le cas contraire son nom est
+remplace par ./</p>
+<p>Deux modes de traitement sont accessibles :</p>
+<p>L'option optimisation du noir demande la pr&#233;sence d'un
+fichier de <b>bias</b> et de <b>dark</b> et il faut cocher
+l'option <span style="font-weight: bold;">opt_black</span>. Si
+l'entr&#233;e <b>flat</b> est laiss&#233;e vide, un message sur
+la Console rend compte que le traitement a &#233;t&#233;
+r&#233;alis&#233; sans image de P.L.U.</p>
+<p>Sans optimisation du noir, les fichiers de <b>bias</b> et/ou
+de <b>dark</b> peuvent &#234;tre omis, dans ce cas ne rien
+mentionner dans les entr&#233;es correspondantes. Un message sur
+la Console rend compte que le traitement a &#233;t&#233;
+r&#233;alis&#233; sans la ou les images de r&#233;f&#233;rence
+correspondantes.</p>
+<p>Les images interm&#233;diaires produites lors des &#233;tapes
+pr&#233;c&#233;dentes sont ensuite divis&#233;es par l'image de
+PLU (param&#232;tre <b>flat</b>) et multipli&#233;es par une
+constante. Par d&#233;faut cette constante vaut 1. Lors de la
+s&#233;lection du flat sa valeur est mise &#224; jour avec la
+valeur moyenne de l'image, d'o&#249; un certain temps de latence.
+L'utilisateur est libre de modifier ou non cette valeur.</p>
+<h2>6. Valeurs par d&#233;faut</h2>
+<p>La r&#233;alisation d'une image ma&#238;tre de pr&#233;charge,
+de noir ou de PLU demande au moins deux images.</p>
+<p>La valeur par d&#233;faut affich&#233;e dans bitpix est
+&#233;gale &#224; "16" si aucune image n'est affich&#233;e dans
+la visu. Lorsqu'une image est s&#233;lectionn&#233;e dans la
+liste, la valeur affich&#233;e est celle du mot-cl&#233; BITPIX.
+Il convient donc de v&#233;rifier si la valeur affich&#233;e est
+conforme &#224; ce qui est souhait&#233; juste avant de lancer le
+traitement.</p>
+<p>Tous les param&#232;tres optionnels, tant ceux de la fonction
+que les options g&#233;n&#233;rales, ne sont pris en compte que
+si leurs valeurs sont diff&#233;rentes des valeurs par
+d&#233;faut.</p>
+<h2>7. Apr&#232;s le traitement</h2>
+<p>La liste des fichiers est rafra&#238;chie ce qui permet
+d'encha&#238;ner les traitements si on a appuy&#233; sur le
+bouton 'Appliquer'. Si le fichier produit est dans le
+r&#233;pertoire et visualis&#233; il est coch&#233; dans la
+liste.</p>
+<h2>8. Compression des fichiers</h2>
+<p>Les fichiers en entr&#233;e et les fichiers op&#233;randes
+peuvent &#234;tre compress&#233;s (.gz) ou non.</p>
+<p>Si la compression .gz a &#233;t&#233; s&#233;lectionn&#233;e,
+seuls les fichiers compress&#233;s sont affich&#233;s dans la
+fen&#234;tre et la case 'Compression .gz" est automatiquement
+coch&#233;e.<br>
+Si la case est d&#233;coch&#233;e les fichiers de sortie ne sont
+pas compress&#233;s.</p>
+<p>Que les fichiers d'ent&#233;e soient compress&#233;s ou non,
+le fait de cocher la case provoque la compression .gz des
+fichiers en sortie.</p>
+<h2>9. Test avec TestAudela</h2>
+<p>Les tests des fonctions sont regroup&#233;s dans
+audace_images_elaborer_maitre.test</p>
+</body>
+</html>

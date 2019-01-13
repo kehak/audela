@@ -1,0 +1,353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tutoriel sur la détermination des paramètres électroniques d'une caméra CCD</title></head><body style="color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+<p class="date">Date de
+mise à jour : 22 septembre 2012<br />
+</p>
+<h1>Tutoriel sur la détermination des paramètres
+électroniques d'une caméra CCD</h1>
+Dans le cadre de la caractérisation des performances d'une
+caméra CCD, la détermination de paramètres
+essentiels, tels que le gain et le bruit de lecture constitue une
+étape indispensable. Notamment, ces paramètres pourront
+être introduits dans l'Exposure Time Calculator afin de simuler
+les performances théoriques attendues et les confronter ensuite aux
+images réelles. <br />
+<br />
+Dans ce document, nous commençons par décrire la
+théorie utilisée pour
+caractériser les paramètres électroniques d'une
+caméra CCD puis nous
+décrivons
+les fonctions intégrées dans le logiciel AudeLA.<br />
+<h1>1. Les paramètres électroniques d'une caméra
+CCD</h1>
+L'utilisateur d'une caméra CCD ne dispose que de sa
+caméra reliée à AudeLA, une pièce dans
+laquelle on peut faire l'obscurité complète ou mettre un
+niveau de lumière constant. Il n'est pas nécessaire de
+démonter la caméra ni d'utiliser des voltmètres ou
+un oscilloscope. Les procédures sont simples à
+réaliser.<br />
+<br />
+Un pixel du capteur CCD génère un niveau que l'on peut
+lire avec AudeLA sous la forme d'un nombre noté ADU (pour Analog
+Digital Unit). Ce niveau est constitué de plusieurs sources de
+signaux que nous décrirons en détail par la suite : Le
+bias, le thermique et le signal photonique. Même en
+opérant le plus proprement possible, chacune de ces composantes
+est affectée d'une incertitude (le bruit) qui se traduit par le
+fait que deux image réalisées dans des conditions
+identiques n'ont pas la même valeur de niveau dans les pixels. <br />
+<br />
+Au départ, le capteur CCD voit arriver des photons. Leur
+interaction avec le silicium du pixel génère des
+électrons piégés dans le pixel. On appelle
+rendement quantique équivalent, le nombre d'électrons
+générés pour un photon incident sur le pixel. Ce
+nombre est toujours inférieur à l'unité et souvent
+exprimé en pourcents (100% pour un rendement quantique de 1
+électron/photon). Le rendement quantique équivalent est
+d'environ 60% pour un capteur CCD classique (éclairé par
+l'avant) et peut atteindre 95% pour les excellents capteurs CCD amincis
+(éclairés par l'arrière).<br />
+<br />
+A la sortie de l'électronique environnant la caméra CCD,
+le pixel contient un niveau en ADU. L'électronique peut donc
+être considérée comme une conversion entre des
+électrons et des ADU. Cette conversion est un paramètre
+important qu'il faut déterminer. On l'appelle communément
+le gain (noté G par la suite). Il s'exprime en électrons/ADU. En
+général, une caméra commerciale est
+réglée de façon&nbsp;à avoir un gain
+compris entre 1 et 5 électrons/ADU. Les caméras simples
+n'ont qu'un seul gain. Parfois, l'électronique de la
+caméra permet de choisir deux ou trois gains différents
+qui sont gérés par le logiciel de pilotage. Il convient
+de se renseigner sur ces fonctionnalités.<br />
+<br />
+Connaissant la valeur du gain d'une caméra, on peut alors
+exprimer les niveaux des pixels soit en ADU, soit en électrons.<br />
+<br />
+Comme il a été dit précédemment, deux
+mesures consécutives du niveau d'un pixel soumis à un
+éclairement&nbsp;identique ne fournissent pas les mêmes
+valeurs à cause du bruit. Le bruit des composantes thermiques et
+photoniques suivent une loi précise basée sur les
+théories de la physique. En revanche, le bruit de lecture est
+une caractéristique de la qualité du capteur CCD et de
+l'électronique. La détermination du bruit de lecture est
+un paramètre important pour qualifier une caméra CCD. On
+exprime habituellement le bruit en électrons (noté b(el)
+par la suite).<br />
+<br />
+Attention, les capteurs CCD à multiplication d'électrons
+(EMCCD) sont
+des capteurs CCD qui on un étage de pixels
+supplémentaires permettant
+de multiplier le nombre d'électrons avant la sortie du capteur.
+L'utilisateur peut régler le coefficient multiplicateur Em par
+logiciel (Em peut varier généralement entre 1 et 500).
+Parfois, Em est appelé abusivement gain. Il ne faut donc pas
+confondre le "gain EMCCD" qui est le coefficient multiplicateur Em sans
+unité avec le gain de la caméra qui s'exprime en
+électrons/ADU.<br />
+<br />
+La composante thermique est constituée d'un signal dont le
+niveau est proportionnel au temps de pose. Le coefficient de
+proportionnalité s'exprime en électrons/seconde/pixel.
+Plus la caméra est refroidie, plus ce coefficient est petit. La
+détermination du coefficient thermique est très
+importante pour savoir si l'on refroidit assez ou non la caméra
+CCD.<br />
+<h1>2. Théorie de détermination des paramètres
+électroniques</h1>
+Le niveau d'un pixel est constitué de trois composantes :<br />
+<ul>
+  <li>(el) : La composante électronique, due aux réglages
+et à la qualité des composants électroniques.</li>
+  <li>(th) : La composante thermique, due à la
+température appliquée au capteur CCD.</li>
+  <li>(ph) : La composante photonique, due à la
+génération d'électrons suite à
+l'interaction des photons avec le silicium du pixel du CCD.</li>
+</ul>
+<p style="margin-bottom: 0cm;" lang="fr-FR">On note :</p>
+<ul>
+  <li> s : Le signal (exprimé en électrons).</li>
+  <li>S : Le signal (exprimé en ADU).</li>
+  <li>b : Le bruit (exprimé en électrons).</li>
+  <li>B : Le bruit (exprimé en ADU).</li>
+</ul>
+<p style="margin-bottom: 0cm;" lang="fr-FR">Ainsi, S(th) sera le signal
+thermique exprimé en ADU. Il est à préciser que
+l'utilisateur n'a accès qu'aux mesures de signal et de bruit en ADU
+(S et B).</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">G : Le gain
+(électrons/ADU) défini par :<br />
+ </p>
+<p style="margin-bottom: 0cm;" lang="fr-FR"> s = G*S [1]<br />
+b = G*B [2]</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">Le signal total S(tot)
+d'un pixel est égal à : S(tot) = S(el) + S(th) + S(ph) [3]</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">Avec :<br />
+</p>
+<ul>
+  <li>S(el) : Le signal
+électronique (=bias).</li>
+  <li>S(th) : Le signal
+thermique (attention ce n'est pas directement ce que l'on appelle
+communément le dark).</li>
+  <li>S(ph) : Le signal
+photonique.</li>
+</ul>
+<p style="margin-bottom: 0cm;" lang="fr-FR">Les bruits thermique b(th)
+et photonique b(ph) suivent une loi de Poisson. Donc :<br />
+</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR"> b(th)^2=s(th) [4]</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR"> b(ph)^2=s(ph) [5]</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">Le bruit
+électronique
+b(el) a une dispersion constante. Il est appelé aussi "bruit de
+lecture".</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">Les sources de bruit sont
+indépendantes, donc :</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">b(tot)^2 = b(el)^2 +
+b(th)^2 + b(ph)^2 [6]</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">La combinaison des formules
+[1] à [6] décrites ci-dessus mène aux formules [7]
+et [8] qui nous intéressent :<br />
+</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">[2] =&gt; b(tot)^2 = G^2 *
+B(tot)^2</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">[2] =&gt; b(el)^2 = G^2 *
+B(el)^2</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">[4] &amp; [1] =&gt;
+b(th)^2 = s(th) = G * S(th)</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">[5] &amp; [1] =&gt;
+b(ph)^2 = s(ph) = G * S(ph)</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">[6] =&gt; G^2 * B(tot)^2 =
+G^2 * B(el)^2 + G * S(th) + G * S(ph)</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">On simplifie par G cette
+dernière équation et l'on obtient :</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">G * ( B(tot)^2 - B(el)^2
+) = S(th) + S(ph)</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">G * ( B(tot)^2 - B(el)^2
+) = S(tot) - S(el)</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">G = ( S(tot) - S(el) ) /
+( B(tot)^2 - B(el)^2 ) [7]</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">S(tot) correspond a une
+image brute de flat field.</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">S(el) correspond a une
+image brute de bias.</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">B(tot) correspond à
+l'écart type de la valeur d'un pixel sur l'image brute de flat
+field.</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">B(el) correspond à
+l'écart type de la valeur d'un pixel sur l'image brute de bias.</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">Le bruit de lecture est
+simplement déterminé par : </p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">[2] =&gt; b(el) = G *
+B(el) [8]</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">Le coefficient thermique
+est déterminé en mesurant S(th) pour différents
+temps de pose. Ainsi on peut distinguer S(th,t) pour chaque temps de
+pose t. On effectue une régression linéaire entre t et
+S(th,t) et l'on obtient le coefficient thermique exprimé en
+ADU/seconde/pixel. Il suffit de la multiplier par le gain G pour
+l'exprimer en électrons/seconde/pixel.</p>
+<h1>3. Méthodes de détermination des paramètres
+électroniques</h1>
+Pour déterminer b(el) et G en appliquant les formules [7] et
+[8], il faut simplement mesurer S(tot), S(el), B(tot) et B(el). S(tot)
+correspond au niveau ADU du pixel d'une
+image brute de flat field. S(el) correspond au niveau ADU d'un pixel
+d'une
+image brute de bias.
+<br />
+<br />
+Il y a deux méthodes pour
+déterminer B(tot) et B(el).
+<p style="margin-bottom: 0cm;" lang="fr-FR">La première est une
+méthode rigoureuse qui consiste à enregistrer N images de
+flat et
+de bias (N&gt;20 typiquement). Sur le lot des images de flat, on
+choisit un pixel et on mesure S(tot) et B(tot) comme la moyenne et
+l'écart type de la valeur ADU du pixel sur les N images. On peut
+ainsi déterminer G et b(el) pour chaque pixel. On peut ainsi
+mettre
+en évidence des défauts d'uniformité de b(el)
+(assez fréquent) ou
+de G.</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">Le seconde méthode
+est
+expéditive et repose sur le fait de ne prendre que deux images
+de
+bias S1(el) et S2(el) et deux images de flat S1(tot) et S2(tot). Dans
+cette méthode on considère que tous les pixels ont les
+mêmes G et
+b(el). Dans ce contexte, la moyenne de la différence S1-S2 doit
+valoir zéro et la dispersion des valeurs de S1-S2 autour de
+zéro
+met en évidence le bruit. Lorsque les deux signaux S1 et S2 sont
+soustraits, la variance du signal résultat est donnée par
+la
+relation :</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">[9] : variance( S1 - S2 )
+= B1^2 + B2^2</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">Comme on considère
+B1=B2,
+alors, B = 1/sqrt(2) * ecart_type( S1 - S2 ) [10]</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">On applique [10] aux deux
+images de bias, B(el) = 1/sqrt(2) * ecart_type( S1(el) - S2(el) ) [11]</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">On applique [10] aux deux
+images de flat, B(tot) = 1/sqrt(2) * ecart_type( S1(tot) - S2(tot) )
+[12]</p>
+<h1>4. Pratique de la détermination des paramètres
+électroniques avec AudeLA</h1>
+Il est à noter que la détermination des paramètres
+électroniques est valable pour un binning donné (et pour
+une valeur Em donnée dans le cas d'un EMCCD).<br />
+<h2>4.1. Détermination du gain et du bruit de lecture</h2>
+<p style="margin-bottom: 0cm;" lang="fr-FR">On effectue deux images de
+bias S1(el) et S2(el). Il s'agit de deux images effectuées dans
+l'obscurité totale (bouchon bien vissé sur l'objectif),
+de temps de
+pose le plus court possible pour rendre négligeable le signal
+thermique. Soient Sel1.fit et Sel2.fit les deux fichiers FITS
+correspondants.</p>
+<p style="margin-bottom: 0cm;" lang="fr-FR">On effectue deux images de
+flat S1(tot) et S2(tot). Il s'agit de deux images effectuées sur
+un
+écran blanc, défocalisé si possible et
+éclairé rigoureusement de
+la même façon (peut importe la couleur de la
+lumière a priori). Les temps de poses doivent aussi
+être
+rigoureusement les mêmes (pas d'obturation manuelle). On
+vérifiera
+que l'image S1(tot) - S2(tot) soit égale à zéro.
+Le niveau moyen
+des flats doit remplir une partie importante de la dynamique (70% est
+un bon choix). Soient Stot1.fit et Stot2.fit les deux fichiers FITS
+correspondants.</p>
+<br />
+La commande en ligne dans la Console AudeLA est :<br />
+<br />
+electronic_chip gainnoise Sel1 Sel2 Stot1 Stot2<br />
+<br />
+La fonction affiche les valeurs calculées de gain et de bruit de
+lecture.<br />
+<h2>4.2. Détermination du coefficient thermique</h2>
+<p style="margin-bottom: 0cm;" lang="fr-FR">On effectue une
+série typiquement de 10 images de dark. Il s'agit d'images
+effectuées dans
+l'obscurité totale (bouchon bien vissé sur l'objectif),
+de temps de
+pose commençant à 10s jusqu'à 100s par exemple.
+Soient dark1.fit, dark2.fit, ..., dark10.fit les noms des fichiers FITS
+correspondants.</p>
+<br />
+La commande en ligne dans la Console AudeLA est :<br />
+<br />
+electronic_chip lintherm dark 10<br />
+<br />
+La fonction affiche les valeurs calculées du coefficient
+thermique en ADU/seconde/pixel et du bias en ADU.<br />
+<br />
+Si l'on a déjà déterminé le gain G et le
+bruit de lecture b(el), on peut les utiliser dans cette fonction. Par
+exemple, avec G=2.78 électrons/ADU et b(el)=8.2
+électrons, on écrira :<br />
+<br />
+electronic_chip lintherm dark 10 2.78 8.2<br />
+<br />
+La fonction affichera les valeurs calculées du coefficient
+thermique en électron/seconde/pixel et du bias en ADU (ce
+n'est&nbsp;pas pertinent d'exprimer le bias en électrons).<br />
+<br />
+Enfin, si l'on connaît aussi le niveau ADU de saturation de la
+caméra, on peut l'introduire pour déterminer le temps de
+pose maximal pour obtenir la saturation thermique. Par exemple, pour une
+saturation à 65535 ADU :<br />
+<br />
+electronic_chip lintherm dark 10 2.78 8.2 65535<br />
+<br />
+Dans tous les cas, la fonction affiche aussi le temps pose critique. Si
+l'on souhaite effectuer des temps de poses supérieurs à
+ce temps de pose critique, le bruit thermique sera prédominant
+sur le bruit de lecture. Cela signifie qu'il est alors
+préférable de refroidir davantage la caméra. Cette
+analyse est importante car elle permet de savoir si la
+température de refroidissement de la caméra testée
+est suffisante ou non par rapport aux temps de poses que l'on souhaite
+utiliser dans la nuit.<span style="font-weight: bold;"><br />
+</span>
+<h2>4.3. Détermination du retard d'ouverture de l'obturateur</h2>
+Lorsque l'on utilise une caméra équipée d'un
+obturateur à iris, il peut être important de
+connaître la façon dont s'ouvre et se ferme l'obturateur
+de façon à corriger les pixels notamment pour atteindre
+la millimagnitude en photométrie (transits d'expolanètes
+par exemple). AudeLA permet de synthétiser une image dont
+l'intensité des pixels donne le retard (en seconde) par rapport
+au centre du champ.<br />
+<br />
+On effectue une série typiquement de 20 images de flat. Il
+s'agit d'images effectuées dans une ambiance lumineuse de niveau
+constant
+de temps de
+pose commençant à 0,1s jusqu'à 2,0s par exemple.
+Soient flat1.fit, flat2.fit, ..., flat20.fit les noms des fichiers FITS
+correspondants.
+<br />
+<br />
+La commande en ligne dans la Console AudeLA est :<br />
+<br />
+electronic_chip shutter flat 20<br />
+<br />
+La fonction affiche l'image de synthèse. Il suffit de passer le
+curseur sur les pixels pour connaître le retard.<br />
+</body></html>

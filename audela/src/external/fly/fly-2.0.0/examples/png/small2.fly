@@ -1,0 +1,14 @@
+new   
+#
+size 256,256   
+type png
+name temp.png
+
+# background fill, all white
+fill   1,1,255,255,255
+
+# line from top to bottom, 50 pixels from left edge, colour black
+line   50,0,50,255,0,0,0
+
+# fill in the left region a revolting pastel green
+filltoborder 20,20,0,0,0,0,255,127

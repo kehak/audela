@@ -1,0 +1,313 @@
+#
+# Fichier : sbig.cap
+# Mise a jour $Id: sbig.cap 9971 2013-08-17 14:17:49Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(sbig,camera)                       "SBIG"
+
+set caption(sbig,obtu_ferme)                   "Closed"
+set caption(sbig,obtu_synchro)                 "Synchro"
+
+set caption(sbig,usb)                          "USB"
+set caption(sbig,ethernet)                     "Ethernet"
+set caption(sbig,port)                         "Port"
+set caption(sbig,configurer)                   "Set up"
+set caption(sbig,acquisition)                  "Acquisition"
+set caption(sbig,lpt_custom)                   "Customized address for LPT port"
+set caption(sbig,host)                         "Host SBIG (Only for Ethernet)"
+set caption(sbig,refroidissement)              "Cooling to Temperature"
+set caption(sbig,refroidissement_1)            "°C"
+set caption(sbig,puissance_peltier_--)         "Peltier Stage Power: --"
+set caption(sbig,puissance_peltier)            "Peltier Stage Power: "
+set caption(sbig,temp_ext)                     "CCD Temp. / Ext.:"
+set caption(sbig,deg_c)                        "°C"
+set caption(sbig,miroir_x)                     "Top/Bottom Reversal"
+set caption(sbig,miroir_y)                     "Left/Right Reversal"
+set caption(sbig,fonc_obtu)                    "Shutter Operation"
+
+set caption(sbig,installNewVersion)            "Installation of library %s of plugin sbig v%s completed."
+
+set caption(sbig,port_camera)                  "SBIG Port"
+set caption(sbig,2points)                      ":"
+
+set caption(sbig,titre_site_web)               "Reference Web Site:"
+set caption(sbig,site_web_ref)                 "http://www.sbig.com/"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(sbig,camera)                    "SBIG"
+
+   set caption(sbig,obtu_ferme)                "Fermé"
+   set caption(sbig,obtu_synchro)              "Synchro"
+
+   set caption(sbig,usb)                       "USB"
+   set caption(sbig,ethernet)                  "Ethernet"
+   set caption(sbig,port)                      "Port"
+   set caption(sbig,configurer)                "Configurer"
+   set caption(sbig,acquisition)               "Acquisition"
+   set caption(sbig,lpt_custom)                "Adresse personnalisée du port LPT"
+   set caption(sbig,host)                      "Host SBIG (seulement pour Ethernet)"
+   set caption(sbig,refroidissement)           "Refroidissement à la température de"
+   set caption(sbig,refroidissement_1)         "°C"
+   set caption(sbig,puissance_peltier_--)      "Puissance Peltier : --"
+   set caption(sbig,puissance_peltier)         "Puissance Peltier : "
+   set caption(sbig,temp_ext)                  "Temp. CCD / Ext. :"
+   set caption(sbig,deg_c)                     "°C"
+   set caption(sbig,miroir_x)                  "Inverser Haut/Bas"
+   set caption(sbig,miroir_y)                  "Inverser Gauche/Droite"
+   set caption(sbig,fonc_obtu)                 "Fonctionnement de l'obturateur"
+
+   set caption(sbig,installNewVersion)         "Fin de l'installation de la librairie %s du plugin sbig v%s."
+
+   set caption(sbig,port_camera)               "Port SBIG"
+   set caption(sbig,2points)                   ":"
+
+   set caption(sbig,titre_site_web)            "Site Web de référence :"
+   set caption(sbig,site_web_ref)              "http://www.sbig.com/"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(sbig,camera)                    "SBIG"
+
+   set caption(sbig,obtu_ferme)                "Chiuso"
+   set caption(sbig,obtu_synchro)              "Sincronizza"
+
+   set caption(sbig,usb)                       "USB"
+   set caption(sbig,ethernet)                  "Ethernet"
+   set caption(sbig,port)                      "Porta"
+   set caption(sbig,configurer)                "Configurare"
+   set caption(sbig,acquisition)               "Acquisizione"
+   set caption(sbig,lpt_custom)                "Indirizzo della porta LPT personalizzato"
+   set caption(sbig,host)                      "Host SBIG (Solamente per Ethernet)"
+   set caption(sbig,refroidissement)           "Raffreddamento alla temperatura di"
+   set caption(sbig,refroidissement_1)         "°C"
+   set caption(sbig,puissance_peltier_--)      "Potenza stadio Peltier: --"
+   set caption(sbig,puissance_peltier)         "Potenza stadio Peltier: "
+   set caption(sbig,temp_ext)                  "CCD Temp. / Ext.:"
+   set caption(sbig,deg_c)                     "°C"
+   set caption(sbig,miroir_x)                  "Inversione Alto/Basso"
+   set caption(sbig,miroir_y)                  "Inversione Sinistra/Destra"
+   set caption(sbig,fonc_obtu)                 "Funzionamento otturatore"
+
+   set caption(sbig,installNewVersion)         "Installazione della libreria %s del plugin sbig v%s terminata."
+
+   set caption(sbig,port_camera)               "Porta SBIG"
+   set caption(sbig,2points)                   ":"
+
+   set caption(sbig,titre_site_web)            "Sito Web di riferimento:"
+   set caption(sbig,site_web_ref)              "http://www.sbig.com/"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(sbig,camera)                    "SBIG"
+
+   set caption(sbig,obtu_ferme)                "Cerrado"
+   set caption(sbig,obtu_synchro)              "Sincro"
+
+   set caption(sbig,usb)                       "USB"
+   set caption(sbig,ethernet)                  "Ethernet"
+   set caption(sbig,port)                      "Puerto"
+   set caption(sbig,configurer)                "Configurar"
+   set caption(sbig,acquisition)               "Adquisición"
+   set caption(sbig,lpt_custom)                "Dirección personalizada del puerto LPT"
+   set caption(sbig,host)                      "Host SBIG (Sólo para Ethernet)"
+   set caption(sbig,refroidissement)           "Enfriar hasta temperatura"
+   set caption(sbig,refroidissement_1)         "°C"
+   set caption(sbig,puissance_peltier_--)      "Alimentación Etapa Peltier: --"
+   set caption(sbig,puissance_peltier)         "Alimentación Etapa Peltier: "
+   set caption(sbig,temp_ext)                  "Temp. CCD / Ext.:"
+   set caption(sbig,deg_c)                     "°C"
+   set caption(sbig,miroir_x)                  "Invertir Arriba/Abajo"
+   set caption(sbig,miroir_y)                  "Invertir Izquierda/Derecha"
+   set caption(sbig,fonc_obtu)                 "Funcionamiento del obturador"
+
+   set caption(sbig,installNewVersion)         "Fin de la instalación de la libreria %s del plugin sbig v%s."
+
+   set caption(sbig,port_camera)               "Puerto SBIG"
+   set caption(sbig,2points)                   ":"
+
+   set caption(sbig,titre_site_web)            "Sitio Web de referencia:"
+   set caption(sbig,site_web_ref)              "http://www.sbig.com/"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(sbig,camera)                    "SBIG"
+
+   set caption(sbig,obtu_ferme)                "Geschlossen"
+   set caption(sbig,obtu_synchro)              "Synchro"
+
+   set caption(sbig,usb)                       "USB"
+   set caption(sbig,ethernet)                  "Ethernet"
+   set caption(sbig,port)                      "Port"
+   set caption(sbig,configurer)                "Konfigurieren"
+   set caption(sbig,acquisition)               "Belichtung"
+   set caption(sbig,lpt_custom)                "LPT Port benutzerdefinierte Adresse"
+   set caption(sbig,host)                      "Host SBIG (Nur für Ethernet)"
+   set caption(sbig,refroidissement)           "Temperatur bis zu"
+   set caption(sbig,refroidissement_1)         "°C kühlen"
+   set caption(sbig,puissance_peltier_--)      "Peltier Stärke: --"
+   set caption(sbig,puissance_peltier)         "Peltier Stärke: "
+   set caption(sbig,temp_ext)                  "Temp. CCD / äuß.:"
+   set caption(sbig,deg_c)                     "°C"
+   set caption(sbig,miroir_x)                  "Oben/Unten umkehren"
+   set caption(sbig,miroir_y)                  "Links/Rechts umkehren"
+   set caption(sbig,fonc_obtu)                 "Verschluss Arbeiten"
+
+   set caption(sbig,installNewVersion)         "Die Installation der Bibliothek %s ist vervollständigt der Plugin sbig v%s."
+
+   set caption(sbig,port_camera)               "SBIG Port"
+   set caption(sbig,2points)                   ":"
+
+   set caption(sbig,titre_site_web)            "Referenz Webseite:"
+   set caption(sbig,site_web_ref)              "http://www.sbig.com/"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(sbig,camera)                    "SBIG"
+
+   set caption(sbig,obtu_ferme)                "Fechado"
+   set caption(sbig,obtu_synchro)              "Sincro"
+
+   set caption(sbig,usb)                       "USB"
+   set caption(sbig,ethernet)                  "Ethernet"
+   set caption(sbig,port)                      "Porto"
+   set caption(sbig,configurer)                "Configurar"
+   set caption(sbig,acquisition)               "Aquisição"
+   set caption(sbig,lpt_custom)                "Endereço personalizado da porta LPT"
+   set caption(sbig,host)                      "Host SBIG (Só para Ethernet)"
+   set caption(sbig,refroidissement)           "Arrefecendo até Temperatura"
+   set caption(sbig,refroidissement_1)         "°C"
+   set caption(sbig,puissance_peltier_--)      "Nível de Potência do Peltier: --"
+   set caption(sbig,puissance_peltier)         "Nível de Potência do Peltier: "
+   set caption(sbig,temp_ext)                  "CCD Temp. / Ext.:"
+   set caption(sbig,deg_c)                     "°C"
+   set caption(sbig,miroir_x)                  "Inverter Cima/Baixo"
+   set caption(sbig,miroir_y)                  "Inverter Esquerda/Direita"
+   set caption(sbig,fonc_obtu)                 "Operação do obturador"
+
+   set caption(sbig,installNewVersion)         "Instalação da livraria %s do plugin sbig v%s concluída."
+
+   set caption(sbig,port_camera)               "Porta SBIG"
+   set caption(sbig,2points)                   ":"
+
+   set caption(sbig,titre_site_web)            "Site Web de referência:"
+   set caption(sbig,site_web_ref)              "http://www.sbig.com/"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(sbig,camera)                    "SBIG"
+
+   set caption(sbig,obtu_ferme)                "Closed"
+   set caption(sbig,obtu_synchro)              "Synchro"
+
+   set caption(sbig,usb)                       "USB"
+   set caption(sbig,ethernet)                  "Ethernet"
+   set caption(sbig,port)                      "Port"
+   set caption(sbig,configurer)                "Set up"
+   set caption(sbig,acquisition)               "Acquisition"
+   set caption(sbig,lpt_custom)                "Customized address for LPT port"
+   set caption(sbig,host)                      "Host SBIG (Only for Ethernet)"
+   set caption(sbig,refroidissement)           "Cooling to Temperature"
+   set caption(sbig,refroidissement_1)         "°C"
+   set caption(sbig,puissance_peltier_--)      "Peltier Stage Power: --"
+   set caption(sbig,puissance_peltier)         "Peltier Stage Power: "
+   set caption(sbig,temp_ext)                  "CCD Temp. / Ext.:"
+   set caption(sbig,deg_c)                     "°C"
+   set caption(sbig,miroir_x)                  "Top/Bottom Reversal"
+   set caption(sbig,miroir_y)                  "Left/Right Reversal"
+   set caption(sbig,fonc_obtu)                 "Shutter Operation"
+
+   set caption(sbig,installNewVersion)         "Installation of library %s of plugin sbig v%s completed."
+
+   set caption(sbig,port_camera)               "SBIG Port"
+   set caption(sbig,2points)                   ":"
+
+   set caption(sbig,titre_site_web)            "Reference Web Site:"
+   set caption(sbig,site_web_ref)              "http://www.sbig.com/"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(sbig,camera)                    "SBIG"
+
+   set caption(sbig,obtu_ferme)                "Closed"
+   set caption(sbig,obtu_synchro)              "Synchro"
+
+   set caption(sbig,usb)                       "USB"
+   set caption(sbig,ethernet)                  "Ethernet"
+   set caption(sbig,port)                      "Port"
+   set caption(sbig,configurer)                "Set up"
+   set caption(sbig,acquisition)               "Acquisition"
+   set caption(sbig,lpt_custom)                "Customized address for LPT port"
+   set caption(sbig,host)                      "Host SBIG (Only for Ethernet)"
+   set caption(sbig,refroidissement)           "Cooling to Temperature"
+   set caption(sbig,refroidissement_1)         "°C"
+   set caption(sbig,puissance_peltier_--)      "Peltier Stage Power: --"
+   set caption(sbig,puissance_peltier)         "Peltier Stage Power: "
+   set caption(sbig,temp_ext)                  "CCD Temp. / Ext.:"
+   set caption(sbig,deg_c)                     "°C"
+   set caption(sbig,miroir_x)                  "Top/Bottom Reversal"
+   set caption(sbig,miroir_y)                  "Left/Right Reversal"
+   set caption(sbig,fonc_obtu)                 "Shutter Operation"
+
+   set caption(sbig,installNewVersion)         "Installation of library %s of plugin sbig v%s completed."
+
+   set caption(sbig,port_camera)               "SBIG Port"
+   set caption(sbig,2points)                   ":"
+
+   set caption(sbig,titre_site_web)            "Reference Web Site:"
+   set caption(sbig,site_web_ref)              "http://www.sbig.com/"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(sbig,camera)                    "SBIG"
+
+   set caption(sbig,obtu_ferme)                "Closed"
+   set caption(sbig,obtu_synchro)              "Synchro"
+
+   set caption(sbig,usb)                       "USB"
+   set caption(sbig,ethernet)                  "Ethernet"
+   set caption(sbig,port)                      "Port"
+   set caption(sbig,configurer)                "Set up"
+   set caption(sbig,acquisition)               "Acquisition"
+   set caption(sbig,lpt_custom)                "Customized address for LPT port"
+   set caption(sbig,host)                      "Host SBIG (Only for Ethernet)"
+   set caption(sbig,refroidissement)           "Cooling to Temperature"
+   set caption(sbig,refroidissement_1)         "°C"
+   set caption(sbig,puissance_peltier_--)      "Peltier Stage Power: --"
+   set caption(sbig,puissance_peltier)         "Peltier Stage Power: "
+   set caption(sbig,temp_ext)                  "CCD Temp. / Ext.:"
+   set caption(sbig,deg_c)                     "°C"
+   set caption(sbig,miroir_x)                  "Top/Bottom Reversal"
+   set caption(sbig,miroir_y)                  "Left/Right Reversal"
+   set caption(sbig,fonc_obtu)                 "Shutter Operation"
+
+   set caption(sbig,installNewVersion)         "Installation of library %s of plugin sbig v%s completed."
+
+   set caption(sbig,port_camera)               "SBIG Port"
+   set caption(sbig,2points)                   ":"
+
+   set caption(sbig,titre_site_web)            "Reference Web Site:"
+   set caption(sbig,site_web_ref)              "http://www.sbig.com/"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

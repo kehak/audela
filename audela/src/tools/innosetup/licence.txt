@@ -1,0 +1,38 @@
+Please read this file before using AudeLA.
+
+Files contained in the binwin and dev folders
+(.exe, .dll and there sources) are protected 
+by a GNU LGP license (Lesser General Public 
+License).
+
+Files contained in the audace, tutorial, test, 
+profile, scripts folders (.tcl) are protected 
+by a GNU GP license (General Public License).
+
+Files contained in the doc_* folders (.htm and 
+.pdf) are protected by a GNU FD license (Free 
+Documentation License).
+
+Full texts of these lincenses can be found at:
+
+http://www.gnu.org/copyleft/copyleft.fr.html
+
+AudeLA : Copyright (C) 1999-2009 The AudeLA Core Team.
+
+AudeLA developers are:
+D. Marchais, A. Klotz, R. Delmas,
+C. Jasinski, J. Michelet, F. Cochard, O. Thizy,
+R. Zachantke, Ph. Kauffmann, G. Spitzer, B. Maugis,
+M. Pujol, P. Thierry, P. Chevalley, A. Kalicki
+
+AudeLA Software Translations are made by:
+(GB) C. Jasinski + D. Futak + D. Holler
+(I) F. Manenti, (E) R. G. Fuentetaja + C. Garcia
+(D) Ph. Kauffmann, (DK) K. Strandbaek
+
+Installation wizard under Windows created using
+"inno setup" free software:
+
+http://www.jrsoftware.org/isinfo.php
+
+

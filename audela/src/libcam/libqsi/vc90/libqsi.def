@@ -1,0 +1,2 @@
+LIBRARY libqsi
+EXPORTS Qsi_Init @1

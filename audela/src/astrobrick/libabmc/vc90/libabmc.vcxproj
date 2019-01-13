@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A4B80389-BCF6-46A0-B856-9782C5C579FB}</ProjectGuid>
+    <RootNamespace>libabmc</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>abmc</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.24730.2</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <CustomBuildBeforeTargets>Clean</CustomBuildBeforeTargets>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <GenerateManifest>true</GenerateManifest>
+    <CustomBuildBeforeTargets>Clean</CustomBuildBeforeTargets>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\common\src;..\..\..\include;..\..\..\external\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;ABMC_EXPORTS;ABCOMMON_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+    <PostBuildEvent>
+      <Command>echo on
+copy /y "$(TargetPath)"  ..\..\..\..\bin
+copy /y "$(TargetPath)"  ..\..\..\..\astrobrick\python</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>del  /f /q "$(SolutionDir)..\bin\$(TargetFileName)"
+del  /f /q "$(SolutionDir)..\astrobrick\python\$(TargetFileName)</Command>
+      <Outputs>$(TargetPath)</Outputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>..\..\common\src;..\..\..\include;..\..\..\external\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;ABMC_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat />
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+    </Link>
+    <PostBuildEvent>
+      <Command>echo on
+copy /y "$(TargetPath)"  ..\..\..\..\bin
+copy /y "$(TargetPath)"  ..\..\..\..\astrobrick\python</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>del  /f /q "$(SolutionDir)..\bin\$(TargetFileName)"
+del  /f /q "$(SolutionDir)..\astrobrick\python\$(TargetFileName)</Command>
+      <Outputs>$(TargetPath)</Outputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\abmc.cpp" />
+    <ClCompile Include="..\src\CAngle.cpp" />
+    <ClCompile Include="..\src\CCoordinates.cpp" />
+    <ClCompile Include="..\src\CDate.cpp" />
+    <ClCompile Include="..\src\CHome.cpp" />
+    <ClCompile Include="..\src\CMc.cpp" />
+    <ClCompile Include="..\src\CMcPool.cpp" />
+    <ClCompile Include="..\src\mc_cart1.cpp" />
+    <ClCompile Include="..\src\mc_cata1.cpp" />
+    <ClCompile Include="..\src\mc_corc1.cpp" />
+    <ClCompile Include="..\src\mc_cord1.cpp" />
+    <ClCompile Include="..\src\mc_elp10.cpp" />
+    <ClCompile Include="..\src\mc_elp11.cpp" />
+    <ClCompile Include="..\src\mc_elp12.cpp" />
+    <ClCompile Include="..\src\mc_elp13.cpp" />
+    <ClCompile Include="..\src\mc_file1.cpp" />
+    <ClCompile Include="..\src\mc_file2.cpp" />
+    <ClCompile Include="..\src\mc_file3.cpp" />
+    <ClCompile Include="..\src\mc_intg1.cpp" />
+    <ClCompile Include="..\src\mc_macr1.cpp" />
+    <ClCompile Include="..\src\mc_macr2.cpp" />
+    <ClCompile Include="..\src\mc_macr3.cpp" />
+    <ClCompile Include="..\src\mc_math1.cpp" />
+    <ClCompile Include="..\src\mc_menu1.cpp" />
+    <ClCompile Include="..\src\mc_modl1.cpp" />
+    <ClCompile Include="..\src\mc_nora1.cpp" />
+    <ClCompile Include="..\src\mc_orbi1.cpp" />
+    <ClCompile Include="..\src\mc_orbi2.cpp" />
+    <ClCompile Include="..\src\mc_orbi3.cpp" />
+    <ClCompile Include="..\src\mc_plnt1.cpp" />
+    <ClCompile Include="..\src\mc_plnt2.cpp" />
+    <ClCompile Include="..\src\mc_plnt3.cpp" />
+    <ClCompile Include="..\src\mc_plnt4.cpp" />
+    <ClCompile Include="..\src\mc_scdl1.cpp" />
+    <ClCompile Include="..\src\mc_time1.cpp" />
+    <ClCompile Include="..\src\mc_util1.cpp" />
+    <ClCompile Include="..\src\mc_util2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\abmc.h" />
+    <ClInclude Include="..\src\CAngle.h" />
+    <ClInclude Include="..\src\CCoordinates.h" />
+    <ClInclude Include="..\src\CDate.h" />
+    <ClInclude Include="..\src\CHome.h" />
+    <ClInclude Include="..\src\CMc.h" />
+    <ClInclude Include="..\src\mc.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\external\sofa\vc90\sofa.vcxproj">
+      <Project>{8cc9768f-ecc1-4a20-a281-d1523b4ef779}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libabcommon\vc90\libabcommon.vcxproj">
+      <Project>{401ceb54-fbc3-4bec-995e-89790237e53f}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

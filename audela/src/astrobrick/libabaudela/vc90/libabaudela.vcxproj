@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5A1A1AAC-22A5-4E69-A441-0488B3F9DC4C}</ProjectGuid>
+    <RootNamespace>libabaudela</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>abaudela</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.24730.2</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>true</GenerateManifest>
+    <CustomBuildBeforeTargets>Clean</CustomBuildBeforeTargets>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
+    <LinkIncremental>false</LinkIncremental>
+    <CustomBuildBeforeTargets>Clean</CustomBuildBeforeTargets>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+      <Command>echo on
+if exist ..\..\include\libtt.h (del ..\..\include\libtt.h)
+</Command>
+    </PreBuildEvent>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/libabaudela.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <AdditionalIncludeDirectories>..\src;..\..\include;..\..\..\include;..\..\..\external\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;ABAUDELA_EXPORTS;TCL_THREADS;HAVE_STRUCT_TIMESPEC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile />
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <BrowseInformation />
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>wsock32.lib;version.lib;libdcraw.lib;libdcjpeg.lib;$(OutDir)libabmc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\..\..\external\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile />
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ProgramDatabaseFile />
+      <SubSystem>Windows</SubSystem>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <RandomizedBaseAddress />
+      <DataExecutionPrevention />
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release/libabaudela.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>echo on
+copy /y "$(TargetPath)"  ..\..\..\..\bin
+copy /y "$(TargetPath)"  ..\..\..\..\astrobrick\python
+</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>del  /f /q "$(SolutionDir)..\bin\$(TargetFileName)"
+del  /f /q "$(SolutionDir)..\astrobrick\python\$(TargetFileName)</Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <TreatOutputAsContent>true</TreatOutputAsContent>
+      <Outputs>$(TargetPath)</Outputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/libabaudela.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\src;..\..\..\include;..\..\..\external\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;ABAUDELA_EXPORTS;ABCOMMON_EXPORTS;TCL_THREADS;HAVE_STRUCT_TIMESPEC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile />
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <BrowseInformation>false</BrowseInformation>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MinimalRebuild>true</MinimalRebuild>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>wsock32.lib;version.lib;libdcraw.lib;libdcjpeg.lib;$(OutDir)libabmc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\..\..\external\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <ModuleDefinitionFile />
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/libabaudela.pdb</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration />
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug/libabaudela.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>echo on
+copy /y "$(TargetPath)"  ..\..\..\..\bin
+copy /y "$(TargetPath)"  ..\..\..\..\astrobrick\python
+</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>del  /f /q "$(SolutionDir)..\bin\$(TargetFileName)"
+del  /f /q "$(SolutionDir)..\astrobrick\python\$(TargetFileName)</Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <TreatOutputAsContent>true</TreatOutputAsContent>
+      <Outputs>$(TargetPath)</Outputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\abaudela.cpp" />
+    <ClCompile Include="..\src\autoguider.cpp" />
+    <ClCompile Include="..\src\CBuffer.cpp" />
+    <ClCompile Include="..\src\CBufferPool.cpp" />
+    <ClCompile Include="..\src\CCamera.cpp" />
+    <ClCompile Include="..\src\cerrorlibtt.cpp" />
+    <ClCompile Include="..\src\cfile.cpp" />
+    <ClCompile Include="..\src\CLink.cpp" />
+    <ClCompile Include="..\src\CLinkPool.cpp" />
+    <ClCompile Include="..\src\CMcPool.cpp" />
+    <ClCompile Include="..\src\cpixels.cpp" />
+    <ClCompile Include="..\src\cpixelsgray.cpp" />
+    <ClCompile Include="..\src\cpixelsrgb.cpp" />
+    <ClCompile Include="..\src\CTelescope.cpp" />
+    <ClCompile Include="..\src\CTelescopePool.cpp" />
+    <ClCompile Include="..\src\fitskw.cpp" />
+    <ClCompile Include="..\src\psfimcce.cpp" />
+    <ClCompile Include="..\src\psfimcce_funcs.cpp" />
+    <ClCompile Include="..\src\psfimcce_nr.cpp" />
+    <ClCompile Include="..\src\stats.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\abaudela.h" />
+    <ClInclude Include="..\src\AllExceptions.h" />
+    <ClInclude Include="..\src\autoguider.h" />
+    <ClInclude Include="..\src\CBuffer.h" />
+    <ClInclude Include="..\src\CCamera.h" />
+    <ClInclude Include="..\src\cerrorlibtt.h" />
+    <ClInclude Include="..\src\cfile.h" />
+    <ClInclude Include="..\src\CLibraryLoader.h" />
+    <ClInclude Include="..\src\CLink.h" />
+    <ClInclude Include="..\src\cpixels.h" />
+    <ClInclude Include="..\src\cpixelsgray.h" />
+    <ClInclude Include="..\src\cpixelsrgb.h" />
+    <ClInclude Include="..\src\CTelescope.h" />
+    <ClInclude Include="..\src\fitskw.h" />
+    <ClInclude Include="..\src\psfimcce.h" />
+    <ClInclude Include="..\src\stats.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\audela\libtt\vc90\libtt.vcxproj">
+      <Project>{5d54c1bf-e5f7-4d09-85a8-5b0f324ce5dc}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external\libltdl\vc90\external_libltdl.vcxproj">
+      <Project>{01d1c7a3-e153-4af0-9cc1-eb31c5dcec84}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libabcommon\vc90\libabcommon.vcxproj">
+      <Project>{401ceb54-fbc3-4bec-995e-89790237e53f}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

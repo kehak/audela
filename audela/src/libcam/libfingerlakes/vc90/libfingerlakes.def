@@ -1,0 +1,2 @@
+LIBRARY libfingerlakes
+EXPORTS Fingerlakes_Init @1

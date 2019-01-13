@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Fonctions du namespace confVisu</title></head><body>
+<p class="date">Date de mise à jour : 27 avril 2013</p>
+<h1>Fonctions du namespace confVisu </h1>
+<p>Le fichier confvisu.tcl est un fichier important de Aud'ACE en ce
+sens qu'il est celui qui génère les fonctions
+liées à l'affichage.</p>
+<p>Le namespace ::confVisu regroupe les fonctions et les variables qui
+ont rapport avec l'affichage d'une visu.</p>
+<h2> Le namespace ::confVisu</h2>
+<h3>::confVisu::boxBegin visuNo coord</h3>
+<p>Entame une opération de dragging en initialisant la variable
+private($visuNo,box_1) avec les coordonnées canvas du curseur.
+Toutefois les coordonnées passées au travers de la
+variable coord sont des coordonnées écran (issues
+directement du binding). Cette remarque est valable pour les trois
+commandes box. Cette commande ne fait rien si aucune image n'est
+chargée en mémoire.<br />
+</p>
+<pre>Paramètres :<br />   visuNo : Numéro de la visu<br />   coord  : Coordonnées écran du premier coin initialisant la fenêtre de sélection</pre>
+<h3>::confVisu::boxEnd visuNo coord</h3>
+<p>Cette commande clôture l'opération de dragging en
+formant la liste private($visuNo,box) qui regroupe les
+coordonnées des deux coins de la boîte, dans l'ordre x1,
+y1 x2, y2. Si les coordonnées d'arrivée sont
+égales aux coordonnées de départ alors le cadre
+est effacé.<br />
+</p>
+<pre>Paramètres :<br />   visuNo : Numéro de la visu<br />   coord  : Coordonnées écran du second coin finalisant la fenêtre de sélection</pre>
+<h3>::confVisu::boxDrag visuNo coord</h3>
+<p>Cette commande met à jour la variable private($visuNo,box_2)
+qui est la coordonnée du deuxième coin de la boîte
+(toujours le curseur). En même temps il y a redimensionnement de
+la boîte pour la faire correspondre aux coordonnées.
+boxDrag est appelée en réponse à
+l'évènement "déplacement avec le bouton gauche
+appuyé" sur le widget canvas.<br />
+</p>
+<pre>Paramètres :<br />   visuNo : Numéro de la visu<br />   coord  : Coordonnées écran du second coin finalisant la fenêtre de sélection</pre>
+<h3>::confVisu::getBox visuNo</h3>
+<p>Cette commande retourne les coordonnées de la boite
+(coordonnées dans le buffer) si elle existe, sinon retourne une
+chaîne vide.<br />
+</p>
+<pre>Paramètre :<br />   visuNo : Numéro de la visu</pre>
+<p>Exemple : </p>
+<p>::confVisu::getBox 1<br />
+# 92 379 137 436</p>
+<h3>::confVisu::autovisu visuNo { force "-no" }</h3>
+<p>Cette commande rafraichit l'affichage l'image avec des seuils optimaux pour
+analyser le fond de ciel de l'image.</p>
+<pre>Paramètres :<br />   visuNo : Numéro de la visu<br />   force  :<br />     -no     : Rafraichissement normal (valeur par défaut)<br />     -novisu : Pas de rafraichissement des seuils<br />Retour : null</pre>
+<h3>::confVisu::displayCursorCoord coord</h3>
+<p>Cette commande prend en entrée des coordonnées
+écran, les transforme en coordonnées image, et affiche
+dans la barre en bas de la fenêtre principale les
+coordonnées image du curseur, ainsi que l'intensité du
+pixel à cet endroit.<br />
+</p>
+<pre>Paramètres :<br />   coord  : Coordonnées écran</pre>
+<h3>::confVisu::getFileName visuNo </h3>
+<p>Cette commande retourne le nom du fichier courant</p>
+<pre>Paramètre :<br />   visuNo : Numéro de la visu</pre>
+<h3>::confVisu::onCutScaleRelease visuNo</h3>
+<p>Commande appelée lorsque l'une des barres de seuils est
+relâchée, afin de recalculer et d'afficher l'image avec
+les nouvelles valeurs de seuils.<br />
+</p>
+<pre>Paramètre :<br />   visuNo : Numéro de la visu</pre>
+<h3>::confVisu::onCutLabelLeftClick visuNo</h3>
+<p>Commande appelée lorsqu'on clique sur l'une des valeurs des
+seuils de visualisation avec le bouton gauche de la souris. Cela a pour
+rôle d'afficher l'image avec des seuils optimaux pour analyser le
+fond de ciel de l'image.<br />
+</p>
+<pre>Paramètre :<br />   visuNo : Numéro de la visu</pre>
+<h3>::confVisu::onCutLabelRightClick visuNo</h3>
+<p>Commande appelée lorsqu'on clique sur l'une des valeurs des
+seuils de visualisation avec le bouton droit de la souris. Cela ouvre
+une fenêtre qui permet de modifier les valeurs minimales et
+maximales des barres de seuil.<br />
+</p>
+<pre>Paramètre :<br />   visuNo : Numéro de la visu</pre>
+<h3> </h3>
+<h3>::confVisu::setFileName visuNo fileName</h3>
+<p>Cette commande modifie le nom du fichier courant et affiche le nom dans le titre.</p>
+<pre>Paramètres :<br />   visuNo   : Numéro de la visu<br />   fileName : Nom du fichier</pre>
+<h3>&nbsp;::confVisu::setPos visuNo xy<br />
+</h3>
+
+<p>Cette commande centre l'image dans la visu aux coordonnées images x y.</p>
+
+<pre>Paramètres :<br />   visuNo : Numéro de la visu<br />   xy     : Liste des coordonnées x et y<br /><br />Exemple :<br /><br />Centrer une image aux coordonnées 512 512 dans la visu 2.<br />::confVisu::setPos 2 {512 512}<br /></pre>
+
+
+</body></html>

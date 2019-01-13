@@ -1,0 +1,53 @@
+================================
+Custom Installation
+================================
+
+
+Installation
+============
+To install the bc635PCI driver and demo software, follow these steps:
+
+Windows 9x:
+===========
+1) Use the OEMSETUP.INF file when the Plug&Play asks for the bc635PCI Driver
+
+2) Copy the files "bc637pci.dll" and "bc_int.dll" to: <drive letter>\Windows\system\
+
+3) Add the registry keys by double clicking on the file "bc635Pci9x.reg" 
+
+4) Reboot the system 
+
+5) Compile the sample program under the \\Example Programs\bc635pciCpp folder
+
+6) Run the program "bc635cpp.exe" to test your installation.
+
+
+Windows NT:
+===================
+1) Copy the file "WinRT.sys" to: <drive letter>\Winnt\system32\drivers\
+
+2) Copy the files "bc637pci.dll" and "bc_int.dll" to: <drive letter>\Winnt\system32\
+
+3) Add the registry keys by double clicking on the file "bc635PciNT.reg" 
+
+4) Reboot the system 
+
+5) Compile the sample program under the \\Example Programs\bc635pciCpp folder
+
+6) Run the program "bc635cpp.exe" to test your installation. 
+
+Windows 2K and XP:
+===================
+1) Use the DatumPci.INF file when the Plug&Play asks for the bc635PCI Driver
+
+2) Copy the file "Wrtdev.sys" to: <drive letter>\Winnt\system32\drivers\
+
+3) Copy the files "bc637pci.dll" and "bc_int.dll" to: <drive letter>\Winnt\system32\
+
+4) Add the registry keys by double clicking on the file "bc635PciNT.reg" 
+
+5) Reboot the system 
+
+5) Compile the sample program under the \\Example Programs\bc635pciCpp folder
+
+6) Run the program "bc635cpp.exe" to test your installation. 

@@ -1,0 +1,23 @@
+User help for the window "Imaging with Telescope Shift"
+
+This script is meant to make image acquisition easier when you want the telescope to move between exposures (e.g. if you want to make a mosaic).
+
+Part about Exposure Data:
+This is pretty self-explaning here!
+
+Part about Imaging:
+1) Normal Image:  if you want to shoot several images of the same object while slightly shifting the scope between each exposure (this is recommended to improve image quality).  In this script, the scope is automatically shifted by 30 pixels between exposures.
+
+2) Night-Sky Flat Fielding:  if you want to make flat field exposures on the night sky instead of the twilight sky.  The scope is randomly shifted by 3,000 pixels so that the stars can be ultimately removed through image processing.  As a result, the scope optical defects are the only data remaining on these images which can then be used as normal flat field exposures.
+
+3) 4-Image Mosaic:  you aim at an object, you center it and run the 4-Image Mosaic procedure when the scope is centered on the object.  The script will then shift the scope so that the object remains in the center of the mosaic.  The total number of images made by the script will equal the number of exposures multiplied by 4 since this is a 4-Image Mosaic. 
+
+4) 9-Image Mosaic:  same as before but with 9 images.
+
+Part about Base Name of Image File: 
+Enter here the base name for the file that will be copied on your hard disk.  An index number will be appended to the base name for each image of the series.  For instance, say you choose "M81-" as a base name and you want to shoot 9 exposures.  The script will copy 9 files on your hard disk with the following names:  M81-1, M81-2, ..., M81-9.
+If you make mosaics, 2 index numbers will be appended to the base name of the file.  For instance, if we take "M81-" again as a base name, and for a 4-Image Mosaic with 2 exposures per image, you will get: M81-1-1, M81-1-2, M81-2-1, M81-2-2, M81-3-1, M81-3-2, ... The first index number is the image number in the mosaic (hence 1, 2, 3, and 4 in our example since it is a 4-image mosaic) and the second index number is the exposure number for each image (hence 1 and 2 in our example since we have 2 exposures per image in the mosaic).
+
+I hope you will find this script useful!
+
+You can contact me at: chris.jasinski@wanadoo.fr

@@ -1,0 +1,89 @@
+set visuNo 1
+set bufNo [::confVisu::getBufNo $visuNo]
+#--   le nom de la tablelist des fichiers
+set w ".audace.prtr.usr.choix.tablelist"
+#--   le nom de la zone de cmd
+set z ".audace.prtr.usr.table"
+
+#-----------------------------------------------------------------------------
+#--   le test REC2POL a pour entree une image RGB a traiter
+#--   le test porte sur naxis1 = 361
+#-----------------------------------------------------------------------------
+#--   IMA/SERIES REC2POL :
+test imaseries_rec2pol {coordonnees polaires de rz_rgbr_8} -constraints {AUDACE} -setup {
+   #--   configure l'extension et la compression
+   set ::conf(extension,defaut) ".fit"
+   set ::conf(fichier,compres) 0
+   update
+   file copy -force [file join $::conf(testaudela,rep_images) rz_rgbr_8.fit] $::audace(rep_images)
+   loadima rz_rgbr_8.fit
+} -body {
+   #--   clic sur le menu "Images/Transformer/Cartésien-->polaire..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,transform)" "$::caption(audace,menu,cart2pol)..."
+   #--   selectionne rz_rgbr_8
+   set k [lsearch [$w getcolumns 1] rz_rgbr_8]
+   ::testaudela::clicCheckButton [$w windowpath $k,0] 1
+   #::testaudela::clicCheckButton [$w windowpath rz_rgbr_8,0] 1
+   #--   entre les coordonnees du centre
+   ::testaudela::putLabelEntry $z.funoptions.x0 "173"
+   ::testaudela::putLabelEntry $z.funoptions.y0 "96.5"
+   #--   pm scale_theta et scale_rho valent 1
+   #-- saisit le nom de sortie
+   set name_out "polaire"
+   ::testaudela::putLabelEntry $z.sortie.out "$name_out"
+   #::testaudela::clicCheckButton $z.affiche.script 1
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   polaire est chargée automatiquement
+   set result 0
+   set naxis1 [lindex [buf$bufNo getkwd NAXIS1] 1]
+   if {$naxis1 == "361"} {incr result}
+   return $result
+} -cleanup {
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+} -result "1"
+
+#-----------------------------------------------------------------------------
+#--   le test REC2POL a pour entree une image polaire cree lors du test rect2pol
+#--   le test porte sur naxis1 et naxis2
+#     les intensites ne sont pas conservees
+#-----------------------------------------------------------------------------
+test imaseries_pol2rec {coordonnees rectangulaires polaire.fit} -constraints {AUDACE} -setup {
+   set ::conf(extension,defaut) .fit
+   set ::conf(fichier,compres) 0
+} -body {
+   #--   clic sur le menu "Rotation2" de le fenetre de 'Images' restee ouverte
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,transform)" "$::caption(audace,menu,pol2cart)..."
+   #--   selectionne polaire
+    set k [lsearch [$w getcolumns 1] polaire]
+   ::testaudela::clicCheckButton [$w windowpath $k,0] 1
+   #--   restitue les coordonnees du centre
+   ::testaudela::putLabelEntry $z.funoptions.x0 "173"
+   ::testaudela::putLabelEntry $z.funoptions.y0 "96.5"
+   #--   restitue les dimensions
+   ::testaudela::putLabelEntry $z.funoptions.width "337"
+   ::testaudela::putLabelEntry $z.funoptions.height "218"
+   #-- saisit le nom de sortie
+   set name_out "rectangle"
+   ::testaudela::putLabelEntry $z.sortie.out "$name_out"
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   set result 0
+   set naxis1 [lindex [buf$bufNo getkwd NAXIS1] 1]
+   set naxis2 [lindex [buf$bufNo getkwd NAXIS2] 1]
+   if {$naxis1 == "337"} {incr result}
+   if {$naxis2 == "218"} {incr result}
+   set liste [list rz_rgbr_8 polaire rectangle]
+   return $result
+} -cleanup {
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+   ttscript2 "IMA/SERIES . \"$liste\" * * .fit . . . . DELETE"
+} -result "2"
+

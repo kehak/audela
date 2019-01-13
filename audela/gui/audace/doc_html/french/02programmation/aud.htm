@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Fonctions du namespace audace</title>
+
+
+</head><body>
+<p class="date">Date de mise à jour : 02 avril 2011</p>
+
+<h1>Fonctions du namespace audace </h1>
+
+<p>Les fichiers aud.tcl et confvisu.tcl sont les fichiers principaux
+d'Aud'ACE en ce sens qu'ils sont ceux qui génèrent l'interface
+graphique principale du logiciel.</p>
+
+<p>L'application est en fait bâtie à l'intérieur d'un namespace appelé
+::audace qui regroupe les fonctions et variables qui ont rapport à
+cette interface principale. Le fichier est composé de trois parties : <br />
+</p>
+
+<ul>
+
+  <li>La première charge les librairies nécessaires ainsi que les
+fichiers d'Aud'ACE.</li>
+  <li>La seconde correspond au corps de l'interface graphique.</li>
+  <li>Et la dernière est le lancement de cette interface.</li>
+</ul>
+
+<h2> Chargement des librairies</h2>
+
+<p>Les premières actions réalisées lorsque ces fichiers sont chargés
+sont le chargement des différentes librairies nécessaires au
+fonctionnement d'Aud'ACE. Les trois types de librairies chargées ici
+sont :</p>
+
+<ul>
+
+  <li>Les librairies binaires, qui sont des .dll sous Windows, et
+des .so sous les systèmes UNIX. Elles contiennent des fonctions qui ont
+été élaborées en langage compilé (C, etc.) pour apporter des
+fonctionnalités supplémentaires au langage TCL. Ces librairies
+s'appellent des packages. C'est ici qu'il faut insérer des instructions
+de chargement pour des librairies supplémentaires développées soit par
+la communauté TCL (librairies généralistes) ou bien à destination
+astronomique.</li>
+  <li>Des librairies graphiques qui permettent d'accéder à de nouveaux
+widgets (menus, etc.).</li>
+  <li>Des
+fichiers propres à Aud'ACE, qui ne contiennent que des fonctions ou
+namespaces. Ces fichiers enregistrent auprès de TCL des fonctions, qui
+ne seront appelées que plus tard par le logiciel.</li>
+</ul>
+
+<h2> Le namespace ::audace</h2>
+
+<p>C'est ce namespace qui définit le comportement de l'interface
+graphique principale d'Aud'ACE. La commande qui permet de lancer
+l'application est ::audace::run.</p>
+
+<p>L'appel aux autres commandes n'est issu que de celle-là. D'ailleurs
+l'évaluation d'un namespace ne produit rien, sinon la connaissance par
+TCL de son contenu : C'est pour cela qu'à la fin du fichier il n'y a
+qu'une seule commande : ::audace::run.</p>
+
+<h3> ::audace::run ?this?<br />
+</h3>
+
+<p>C'est la commande qui permet de lancer l'interface graphique.
+Normalement on ne doit faire appel à aucune autre commande de ce
+namespace directement. Elle ne fait qu'enchaîner une suite de commandes
+qui vont mettre en place l'interface, d'abord initialiser les variables
+globales, ensuite créer l'interface graphique, puis les menus,
+effectuer des initialisations diverses et enfin démarrer l'affichage de
+l'horloge. L'argument this est optionnel, il permet de spécifier le
+chemin TK de la fenêtre. S'il est omis, le chemin de la fenêtre
+principale d'Aud'ACE est .audace</p>
+
+<h3> ::audace::initEnv</h3>
+
+<p>Cette commande initialise les variables globales de l'application au
+travers d'un tableau global (audace). Cela passe par la création du
+buffer d'images d'Aud'ACE, puis la visualisation (lien entre le buffer
+et le canvas d'affichage), la création de la Console et quelques
+couleurs.</p>
+
+<h3> ::audace::createDialog</h3>
+
+<p>Cette commande créée l'interface graphique proprement dite. Elle
+fixe la variable du namespace This avec le chemin de la fenêtre
+(.audace dans la plupart des cas). Ensuite la fenêtre principale est
+créée suivant ce chemin. Puis c'est la création de tous les éléments
+graphiques de la fenêtre. Notez que les ascenseurs qui permettent de se
+déplacer sur l'image lorsqu'elle est trop grande par rapport à la
+fenêtre, sont créés dans la commande Scroll_Canvas décrite plus bas.
+Enfin quelques bindings sont établis pour faire réagir les barres de
+seuils notamment. Tous les fichiers du sous-répertoire plugin\tool sont
+chargés par cette fonction.<br />
+</p>
+
+<h3> ::audace::initLastEnv</h3>
+
+<p>Cette commande réalise les dernières initialisations, notamment le
+chargement du fichier (audace.ini) qui décrit la configuration du
+logiciel.</p>
+
+<h3> ::audace::dispClock1</h3>
+
+<p>Cette commande récupère la date et l'heure, et les affiche dans la
+barre en bas de la fenêtre Aud'ACE. Pour que ces données soient
+rafraîchies toutes les secondes, on a recours à la commande after, qui
+programme une commande pour qu'elle s'exécute au bout d'un nombre fixé
+de millisecondes. Logiquement, on rappelle la commande
+::audace::dispClock1. Il est à noter qu'il faut repréciser le namespace
+pour l'appel à after, car l'appel à dispClock1 est placé dans la file
+d'évènements, la commande retourne immédiatement, pour terminer
+l'actuel dispClock1. Elle sera exécutée dans le namespace de base (::),
+qui lui n'a pas de commande ::dispClock1 (d'où la nécessité de préciser
+::audace::dispClock1).</p>
+
+<h3><a name="autovisu" id="autovisu"></a> ::audace::autovisu</h3>
+
+<p>Rafraîchit l'affichage dans la visu.</p>
+
+<h3> ::audace::charger</h3>
+
+<p>Cette commande fait appel directement à la commande loadima (sans
+argument), qui demandera le nom du fichier par un navigateur.</p>
+
+<h3> ::audace::enregistrer</h3>
+
+<p>Cette commande fait appel directement à la commande saveima en
+précisant le nom du fichier disponible dans la visu en argument.</p>
+
+<h3> ::audace::enregistrer_sous</h3>
+
+<p>Cette commande fait appel directement à la commande saveima (sans
+argument), qui demandera le nom du fichier par un navigateur.</p>
+
+<h3> ::audace::enregistrerConfiguration</h3>
+
+<p>Cette commande enregistre la configuration du logiciel. Le fichier
+généré audace.ini est un fichier TCL, qui est exécuté au chargement du
+logiciel pour modifier la configuration par défaut.</p>
+
+<h3> ::audace::newScript</h3>
+
+<p>Cette commande est appelée par le menu Fichier --&gt; Nouveau
+script. Elle fait appel à ::newScript::run pour récupérer un nom de
+fichier, créer un fichier vide à ce nom (certains éditeurs n'acceptent
+pas d'être ouverts sur un fichier qui n'existe pas, tels certains
+outils de MicroSoft), et exécuter le logiciel d'édition, dont le nom
+est contenu dans la variable conf(editscript).</p>
+
+<h3> ::audace::editScript</h3>
+
+<p>Cette commande est appelée par le menu Fichier --&gt; Editer un
+script. Elle lance l'éditeur indiqué dans la variable conf(editscript).</p>
+
+<h3> ::audace::runScript</h3>
+
+<p>Cette commande est appelée par le menu Fichier --&gt; Lancer un
+script. Elle exécute le contenu du fichier qui est issu de la boîte de
+dialogue de sélection de fichiers (explorateur).</p>
+
+<h3> ::audace::quitter</h3>
+
+<p>Sort du logiciel en demandant une confirmation.</p>
+
+<h3> ::audace::menustate state</h3>
+
+<p>Change l'état de l'ensemble du menu. Le paramètre state peut valoir
+normal ou disabled. Par exemple, ::audace::menustate disabled rend tous
+les menus inactifs, et donc on ne peut plus lancer les actions
+correspondantes.</p>
+
+<h3><a name="cursor" id="cursor"></a> ::audace::cursor cursor (renvoie vers ::confVisu::cursor visuNo
+cursor)<br />
+</h3>
+
+<p>Commande qui permet de modifier l'apparence du curseur lorsqu'il est
+sur la zone image d'Aud'ACE. Les curseurs sont définis par leurs noms.
+Ainsi le curseur "target" est une cible formé de deux cercles
+concentriques. Reportez vous à la documentation de TK pour connaître la
+liste des curseurs disponibles.</p>
+
+<h3><a name="bg" id="bg"></a> ::audace::bg couleur (renvoie vers ::confVisu::bg visuNo couleur)<br />
+</h3>
+
+<p>Commande qui permet de modifier la couleur de fond du canvas de la
+visu. Les couleurs sont codées en RGB sous la forme suivante : #rrggbb,
+où les r, g et b sont des nombres hexadécimaux.</p>
+
+<p>Par exemple :</p>
+
+<p> ::audace::bg #0000FF</p>
+
+<p>donne un fond bleu.</p>
+
+<p>TK sait aussi reconnaître certains noms tels que red, green, blue,
+grey75, etc. Consultez la documentation de TK pour avoir plus de
+renseignements.</p>
+
+<h3> ::audace::screen2Canvas coord</h3>
+
+<p>Cette commande réalise la conversion des coordonnées écran en
+coordonnées canvas. L'argument coord est une liste de deux entiers, les
+coordonnées x et y du point. En retour, cette fonction renvoie une
+liste de deux entiers qui correspond aux coordonnées du point dans le
+repère du canvas. Le canvas en question est celui de l'affichage des
+images dans l'interface principale d'Aud'ACE.</p>
+
+<h3> ::audace::canvas2Picture coord</h3>
+
+<p>Cette commande réalise la conversion des coordonnées canvas en
+coordonnées image. Par exemple le point (1,1) de l'image est en bas à
+gauche de l'image tandis que le point (1,1) du canvas est dans son coin
+supérieur gauche. L'argument et le résultat sont du même type que pour
+la fonction screen2Canvas.</p>
+
+<h3> ::audace::picture2Canvas coord</h3>
+
+<p>Cette commande réalise l'opération inverse de la commande précédente.<br />
+</p>
+
+<h3><a name="date_sys2ut" id="date_sys2ut"></a>::audace::date_sys2ut ?Date?</h3>
+
+<p>Retourne la date TU sous la forme d'une liste YYYY MM DD hh mm ss.</p>
+
+<h2> Lancement de l'interface graphique</h2>
+
+<p>Le lancement de l'interface graphique consiste à cacher la fenêtre
+mère, puis à exécuter la commande ::audace::run. C'est cette commande
+qui met en place toute l'interface graphique et les enchaînements
+décrits par les bindings. Après qu'elle soit exécutée, AudeLA rentre
+dans une boucle d'évènements interne qui dispatche les différents
+événements tels que ceux de la souris, du clavier, etc. AudeLA ne
+sortira de cette boucle que par la commande TCL exit.</p>
+
+</body></html>

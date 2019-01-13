@@ -1,0 +1,48 @@
+2016-04-16  Michel PUJOL
+   Dans  external\fli\fli-dist-1.104\libfli\libfli-sys.h 
+   desactivation de la declaration de la ligne 
+   #define snprintf _snprintf
+   si MSC_VER >=1900 ( Visual Studio 2015)
+
+2016-04-16  Bruce GENDRE  <bruce.gendre@gmail.com>
+  Modifications de la librairie
+  -Ajout de divers test pour la compilation Linux/Windows afin de trouver
+  les bons headers
+  -Appel à certains headers obsoletes remplacés par les nouveaux headers
+
+2016-04-16  Bruce GENDRE  <bruce.gendre@gmail.com>
+   Import de la version 1.104 du driver FLI.
+
+2009-04-18  Denis MARCHAIS  <denis.marchais@free.fr>
+   Modification du module kernel pour compat kernels recents:
+   - fliusb.c: remplacement de <asm/semaphore.h> par <linux/semaphore.h>
+   - Makefile: remplacement de CFLAGS par EXTRA_CFLAGS, et suppression
+     du scatter-gather.
+   Modification de la librairie:
+   - libfli.c: retrait du define SHOWFUNCTIONS
+   - libfli-mem.c: ajout d'infos de debug (INFO) dans findptr.
+   - libfli-camera-usb.c: infos de debug (INFO) dans fli_camera_usb_grab_row
+   - libfli-debug.c: ecriture des infos de debug dans "fingerlakes.txt"
+   - libfli-sys.c: suppression du xrealloc final dans unix_fli_list_glob
+     et ajout de quelques infos de debug (INFO).
+   - libfli-sys.h: buffer usb reduit a 32ko au lieu de 128 ko.
+   - libfli-usb-sys.c: mise a jour des definitions d'include usb.
+
+2009-04-18  Denis MARCHAIS  <denis.marchais@free.fr>
+   Import de la version 1.71 du driver FLI.
+
+
+2005-03-02  Denis MARCHAIS  <denis.marchais@free.fr>
+	Les modifications suivantes ont ete apportees au driver	libfli-1.13 
+	pour pouvoir compiler sur plusieurs linuxs differents (knoppix, 
+	mandrake, etc) :
+	- lib/Makefile:48: la ligne de commande doc++ a ete rassemblee 
+	  en une seule ligne.
+	- lib/unix/linux/libfli-usb-sys.c: remplacement de l'include usb.h 
+	  par usb_ch9.h pour avoir acces aux structures usb sans etre en 
+	  mode kernel. Suppression de la structure usb_device_descriptor.
+
+2005-03-01  Denis MARCHAIS  <denis.marchais@free.fr>
+	Importation de la librairie FLI v1.13.
+
+

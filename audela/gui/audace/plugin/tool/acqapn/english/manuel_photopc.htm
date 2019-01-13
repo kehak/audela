@@ -1,0 +1,566 @@
+<HTML><HEAD><TITLE>Manpage of PHOTOPC</TITLE>
+</HEAD><BODY>
+<H1>PHOTOPC</H1>
+Section:  User Commands  (1)<BR>Updated: 15 Jan 2001<BR><A HREF="#index">Index</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+<P>
+photopc - utility to control digital cameras based on Sierra Imaging firmware
+<P>
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<P>
+photopc [-h] [-V] [-v[v]] [-q] [-z] [-t] [-f timeformat] [-s &lt;speed&gt;] [-S &lt;pseudo-speed&gt;] [-l &lt;device&gt;] [-u] [command [params] ] ...
+<P>
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<P>
+This is a command line tool to manipulate digital still cameras that use
+certain control protocol, namely Agfa ePhoto line, Epson PhotoPC line,
+Olympus D-xxxL line, Sanyo and Nikon (at least CoolPix 9xx) cameras.  It
+can set camera parameters, download and erase pictures, e.t.c.  It was
+originally developed for Epson PhotoPC 500, now the author uses it with
+Olympus D-600L, results with other models may vary.
+<P>
+<P>
+
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<P>
+<DL COMPACT>
+<DT><B>-h</B>
+
+<DD>
+This option produces a help screen of all options and commands.
+<P>
+<DT><B>-V</B>
+
+<DD>
+This option prints software revision information.
+<P>
+<DT><B>-v</B>
+
+<DD>
+This option enables verbose output. Using two -v options increases the
+level of verbosity. This is primarily meant for debugging.
+<P>
+<DT><B>-q</B>
+
+<DD>
+This option sets quiet mode.  If it is not specified, the program will
+show running download progress indicator.
+<P>
+<DT><B>-z</B>
+
+<DD>
+This option sets no time-zone processing mode.  Use this option if the
+camera's clock is (should be) set up shifted by the local timezone
+offset.
+<P>
+<DT><B>-s speed</B>
+
+<DD>
+This option allows setting the data rate to use when communicating with
+the camera.  Valid rates are 9600, 19200, 38400, 57600 and 115200 (the
+default).
+<P>
+
+
+
+
+<DT><B>-S speed</B>
+
+<DD>
+On some UNIX systems with some serial hardware/driver combinations you
+need to &quot;lie&quot; to the driver about the communication speed that you want
+to use at startup and during the session.  Physical startup speed is
+always 19200.  E.g., if on your system speeds up to 19200 are translated
+one to one, but in order to use 57600 baud you have to specify 50 baud,
+and you want to run at 57600, you'll need to specify
+<B>photopc -s57600 -S19200,50</B>
+
+<I>&lt;commands ...&gt;</I>
+
+<P>
+Another example: if your driver will use physical speed four times
+as high as you told it to set, and you want to run at default 115200
+physical speed, specify
+<B>photopc -S4800,28800</B>
+
+<I>&lt;commands ...&gt;</I>
+
+<P>
+<DT><B>-t</B>
+
+<DD>
+Set timestamp of generated files to the time of snapshot.
+<P>
+<DT><B>-f timeformat</B>
+
+<DD>
+This option allows to specify the format for automatically generated
+image file names; the value is used as the format string for strftime (3)
+function.  By default, names of the format &quot;MMDD_NNN.jpg&quot; are generated,
+where MM is a month, DD is a day, and NNN is a count starting from 001.
+A good starting point for the timeformat value could be
+&quot;%Y_%m_%d-%H_%M_%S.jpg&quot;.  If the format string contains context &quot;%%XXXd&quot;
+where XXX are digits, it is taken for the count, i.e. if the file with
+such name is present, next count is tried.  If the format string does
+not contain &quot;%%XXXd&quot; part, the count field, if necessary, is appended at
+the end of the name.
+<P>
+A few single-character formats are used as shortcuts.  &quot;x&quot; makes the
+name of seconds since the epoch in hexadecimal format (8 characters +
+&quot;.jpg&quot;), &quot;d&quot; - the same in decimal format (10 characters), &quot;1&quot; stands
+for default format &quot;%m%d_%%03d.jpg&quot;, &quot;2&quot; stands for &quot;%y%m%d%%02d.jpg&quot;,
+&quot;3&quot; stands for &quot;%Y_%m_%d-%H_%M_%S.jpg&quot; and 4 stands for
+&quot;%Y/%m/%d/%H_%M_%S.jpg&quot;.  The program attempts to create intermediate
+directories if necessary (and possible).
+<P>
+<DT><B>-l device</B>
+
+<DD>
+This allows specifying the serial device to use for communicating with
+the camera. The default is
+<I>/dev/photopc</I>
+
+(which is typically created as
+a (symbolic) link to the real device, e.g. /dev/ttyS0) in UNIX, and
+<I>COM1:</I>
+
+in DOS and Windows.  Note that the program does not use UUCP style locks
+so you need to be certain that no other program, such as uugetty,
+uucico or mouse manager, is trying to access the same device.
+<P>
+<DT><B>-u</B>
+
+<DD>
+Use Universal Serial Bus (USB) if available.
+<P>
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>COMMANDS</H2>
+
+<P>
+After the options, one or more commands can be given in the command line.
+<P>
+Some commands accept
+<B>frame-list</B>
+
+as a parameter.  Frame list is a comma-separated list of tokens (no
+whitespace allowed), each of the tokens being a word
+<B>all</B>,
+
+or a single number, or two numbers separated by a dash (-),
+or a number followed by a dash and a word
+<B>last</B>
+
+(without whitespace).
+<P>
+<DL COMPACT>
+<DT><B>query</B>
+
+<DD>
+Display all current camera settings.
+<P>
+<DT><B>count</B>
+
+<DD>
+Output the number of pictures stored in the camera.  This is intended
+for use in shell scripts.
+<P>
+<DT><B>list</B>
+
+<DD>
+List information about frames stored in the camera.  Fields displayed
+are: frame number, size of image file, protection state, resolution
+mode, timestamp and filename if available.  Faster than
+<B>llist</B>
+
+but may not work with some (older) models.
+<P>
+WARNING: this command changes current directory on models that support
+directory tree on the flash media.
+<P>
+<DT><B>llist</B>
+
+<DD>
+List more information about frames stored in the camera.  Fields
+displayed are: frame number, protection state, size of image file,
+resolution mode, flash, shutter and timestamp.  Slower than
+<B>list</B>
+
+and does not work with models that use
+<I>Exif</I>
+
+file format.
+<P>
+WARNING: this command changes current directory on models that support
+directory tree on the flash media.
+<P>
+<DT><B>cd &lt;path&gt;</B>
+
+<DD>
+On the models that support multiple directories on the flash media,
+change current directory as specified.
+<P>
+The program chdir's to the first non-empty folder at the beginning.
+So, your first
+<B>cd</B>
+
+command
+<I>must</I>
+
+specify full path starting with
+a slash. If it where unix you could also
+<B>cd</B><I> ../something</I>
+
+but here we do not have a way to move up one level.
+<P>
+<DT><B>protect &lt;frame-list&gt; On | Off</B>
+
+<DD>
+Change &quot;protected&quot; status of frames. Frame numbering starts at 1. The
+command will fail if the frame number is omitted, not numeric, or does
+not correspond to a stored frame.  &quot;Protected&quot; frames cannot be erased
+with &quot;erase&quot; and &quot;eraseall&quot; commands or with the &quot;erase&quot; button on the
+camera.
+<P>
+<DT><B>erase &lt;frame-list&gt;</B>
+
+<DD>
+Erase frames. Frame numbering starts at 1. The command will fail if the
+frame number is omitted, not numeric, or does not correspond to a stored
+frame.
+<P>
+To avoid unexpected results, list of frames specified for this command
+is sorted and processed in reverse order.
+<P>
+<DT><B>eraseall</B>
+
+<DD>
+Erase all stored frames.
+<P>
+<DT><B>eraselast</B>
+
+<DD>
+Erase most recently taken frame.
+<P>
+<DT><B>snapshot</B>
+
+<DD>
+Take a picture.
+<P>
+<DT><B>off</B>
+
+<DD>
+Switch off the camera.  This command only has this effect on some models
+(notably Olympus D-600L).  On other models, it just terminates the
+session immediately (otherwise the camera would be active several
+seconds after the last command).  On models with big timeout, such as
+Photopc 600, it may be wise to always issue &quot;off&quot; at the end of command
+row, to decrease power consumption.
+<P>
+All commands going after &quot;off&quot; are ignored.
+<P>
+<DT><B>image &lt;frame-list&gt; &lt;file-or-dir-name&gt;</B>
+
+<DD>
+Download an image or series of images from the camera to disk file(s) on
+the host computer.  Frame numbering starts at 1. The command will fail
+if the frame number is omitted, not numeric, or does not correspond to a
+stored frame.  Files are stored in JPEG (JFIF or Exif) format.  Image
+file also contains a thumbnail portion, and set of parameters like the
+shutter speed, date and time, I.D. string and more.  Directory must be
+specified if frame list is requested.  If directory name is specified,
+downloaded file(s) will get unique names starting with month and date of
+snapshot, unless -f option is used, in which case unique names according
+to
+<B>-f</B>
+
+option setting.
+<P>
+<DT><B>thumbnail &lt;frame-list&gt; &lt;file-or-dir-name&gt;</B>
+
+<DD>
+Download a thumbnail image or series of thumbnails from the camera to
+disk file(s) on the host computer. Frame numbering starts at 1. The
+command will fail if the frame number is omitted, not numeric, or does
+not correspond to a stored frame. Files are stored in JPEG (JFIF or Exif)
+format.  If the camera does not keep files in
+<I>EXIF</I>
+
+format, then the thumbnail file also contains a set of parameters like
+the shutter speed, date and time, I.D.  string and more.  Directory must
+be specified if frame list is requested.  If directory name is
+specified, downloaded file(s) will get unique names according to
+<B>-f</B>
+
+option setting.
+<P>
+<DT><B>audio &lt;frame-list&gt; &lt;file-or-dir-name&gt;</B>
+
+<DD>
+Download an audio notice file or series of files from the camera to disk
+file(s) on the host computer. Frame numbering starts at 1. The command
+will fail if the frame number is omitted, not numeric, or does not
+correspond to a stored frame. Files are stored with &quot;.wav&quot; extention but
+the format is
+<I>not</I>
+
+RIFF WAV format.  It is compressed in some way, probably with some
+variation of ADPCM.  The program stores the raw data as provided by the
+camera, it is not playable as a normal
+<I>.wav</I>
+
+file.  Directory must be specified if frame list is requested.  If
+directory name is specified, downloaded file(s) will get unique names
+according to
+<B>-f</B>
+
+option setting.
+<P>
+<DT><B>preview &lt;file-name&gt;</B>
+
+<DD>
+take a `preview' snapshot and save image as a &lt;file-name&gt;.  File is in
+JPEG (JFIF or Exif) format, and does not contain any additional data,
+just plain (very low resolution) image.
+<P>
+<DT><B>upload &lt;file-name&gt;</B>
+
+<DD>
+Upload image file into the camera.  This command is not enabled in
+LOWMEMORY version (i.e. under MS/DOS).
+<P>
+<B>WARNING!</B>
+
+You cannot upload arbitrary JPEG file.  Depending on the camera model,
+such attempt may result in the image not uploaded, not viewable, or even
+the camera &quot;hung&quot; needing to remove the batteries to make it work again.
+File previously downloaded from the same camera model is always uploadable.
+Otherwise, your milage may vary.
+<B>photopc</B>
+
+program does not perform any checks, so it's up to the user to provide
+the file in proper format.
+<P>
+<DT><B>mode Record | Play | Thumbnail</B>
+
+<DD>
+Set specified operation mode on certain models.
+<P>
+<DT><B>resolution Hi | Lo | Ext | &lt;number&gt;</B>
+
+<DD>
+Set the camera to high, low or extended resolution mode.  Exact meaning
+of the modes is model-dependant and may specify different image
+dimensions and/or JPEG compression rate.
+<P>
+<DT><B>clock</B>
+
+<DD>
+Set the camera's internal real-time clock using the current date and
+time from the host computer.  Time of taking a snapshot is included
+inside the JPEG files produced.  Note that the models which display
+the time on the LCD will then display GMT rather than local time.
+With
+<B>-z</B>
+
+option, time shifted by the timezone offset is set, and the LCD will
+display local time.  Using unshifted (GMT) time in the camera seems a
+proper way to go.
+<P>
+<DT><B>shutter &lt;speed&gt;</B>
+
+<DD>
+Set the camera shutter speed.  Units can be specified in microseconds or
+in traditional form like &quot;1/250&quot;.  Valid interval depends on the model.
+If a value outside the interval is specified, the camera will set the
+speed to the nearest margin of the valid interval.  Special speed value
+<B>auto</B>
+
+will set automatic shutter.  Note that this only works while the camera
+is connected to the host, and automatically turns the flash off.  While
+disconnected, shutter speed is always set automatically.
+<P>
+<DT><B>aperture Auto | Lo | Med | Hi</B>
+
+<DD>
+Set the lense aperture on models that support it.
+<P>
+<DT><B>flash Auto | Force | Off | AntiRedeye | SlowSync</B>
+
+<DD>
+Set the camera flash mode.
+<P>
+<DT><B>id &lt;string&gt;</B>
+
+<DD>
+Set the camera identifier string that is included inside the JPEG files
+produced.  Only few models support this.
+<P>
+<DT><B>autoshut-host &lt;seconds&gt;</B>
+
+<DD>
+Automatically shut off the camera after that many seconds of inactivity
+while connected to the computer (on the host).
+<P>
+<DT><B>autoshut-field &lt;seconds&gt;</B>
+
+<DD>
+Automatically shut off the camera after that many seconds of inactivity
+while disconnected from the computer (in the field).
+<P>
+<DT><B>lcd-autoshut &lt;seconds&gt;</B>
+
+<DD>
+Automatically shut off the LCD monitor after that many seconds of inactivity.
+<P>
+<DT><B>lcd-brightness &lt;value&gt;</B>
+
+<DD>
+Set LCD brightness to the value (valid values are 1 to 7).
+<P>
+<DT><B>focus Macro | Normal | Infinity</B>
+
+<DD>
+Set the lens focusing mode.  As far as I can tell, on fixed focus models
+macro only means force minimum aperture, not change the focal length.
+Only has effect in the same invocation with &quot;snapshot&quot; command.
+<P>
+<DT><B>adjust Normal | Contrast+ | Contrast- | Brightness+ | Brightness-</B>
+
+<DD>
+Set adjustment of picture brightness/contrast.
+<P>
+<DT><B>metering Center-weighted | Spot | Matrix</B>
+
+<DD>
+Set auto exposure metering mode.
+<P>
+<DT><B>whitebalance Normal | Sunny | Incandescent | Fluorescent | Flash | Preset | Cloudy</B>
+
+<DD>
+Set white balance.
+<P>
+<DT><B>color On | Off</B>
+
+<DD>
+Set color or B/W mode.
+<P>
+<DT><B>dzoom On | Off | &lt;number&gt;</B>
+
+<DD>
+Set digital zoom on or off.  Note that low resolution must be set prior
+to turning on digital zoom.  Numeric values have model-dependant meaning.
+Only has effect in the same invocation with &quot;snapshot&quot; command.
+<P>
+<DT><B>zoom &lt;mm&gt;</B>
+
+<DD>
+Set optical zoom value on models that support it.
+<P>
+</DL>
+<A NAME="lbAG">&nbsp;</A>
+<H2>EXAMPLES</H2>
+
+<P>
+% photopc query
+<P>
+% photopc -f &quot;image%H:%M:%S&quot; eraseall snapshot image 1 .
+<P>
+<A NAME="lbAH">&nbsp;</A>
+<H2>OTHER NOTES</H2>
+
+<P>
+The latest version of this tool can be found at
+<A HREF="ftp://ftp.average.org/pub/photopc/;">ftp://ftp.average.org/pub/photopc/;</A> see also WWW page at
+<A HREF="http://www.average.org/digicam/.">http://www.average.org/digicam/.</A>
+<P>
+Trademarks are properties of their respective owners.
+<P>
+<A NAME="lbAI">&nbsp;</A>
+<H2>KNOWN BUGS</H2>
+
+<P>
+On some models, powersaving timeouts are measured not in seconds but in
+1/10 sec units.  The program reports them as in seconds.
+<P>
+Llist command relies on the format of thumbnail image that does not
+contain necessary information on some models (e.g. Nikon CP 900), this
+command does not work for these models.  List command, on the contrary,
+do not display useful data on models that do not return it in the
+register 47 (e.g. Agfa 780).
+<P>
+The program is known to have some timing problems talking to Nikon CP900
+when the camera is &quot;napping&quot; in powersaving mode.  Until the problem is
+solved, a workaround is to run the program this way:
+<P>
+<B>$ photopc &amp;&amp; photopc</B>
+
+<I>&lt;command list&gt;</I>
+
+<P>
+Nikon seem to have some other problems too, especially when doing
+&quot;actions&quot; (e.g. snapshots, erase).
+<P>
+Another Nikon problem: if 32Mb (or bigger?) memry card is inserted, the
+program cannot get the number of frames taken, and if &quot;all&quot; or &quot;NN-last&quot;
+range is specified for downloading, the program fails.  Specify explicit
+range of frames.  Also, with any card, number of frames taken is not
+updated immediately after the &quot;snapshot&quot; command (the same has been
+reported for other models).  If you find how to find the correct number
+of frames, please let me know.
+<P>
+<A NAME="lbAJ">&nbsp;</A>
+<H2>COPYRIGHT</H2>
+
+<P>
+The program is copyrighted by Eugene G. Crosser &lt;<A HREF="mailto:crosser@average.org">crosser@average.org</A>&gt;
+and freely distributable.  See README file for details.  DOS and
+Windows support copyright Bruce D. Lightner &lt;<A HREF="mailto:lightner@lightner.net">lightner@lightner.net</A>&gt;
+<P>
+<A NAME="lbAK">&nbsp;</A>
+<H2>CREDITS</H2>
+
+<P>
+The man page was originally written by Jeff Tranter
+&lt;<A HREF="mailto:jeff_tranter@pobox.com">jeff_tranter@pobox.com</A>&gt;, who also contributed a few bugfixes.  Some
+information about the serial protocol obtained from Jun-ichiro &quot;itojun&quot;
+Itoh &lt;<A HREF="mailto:itojun@itojun.org">itojun@itojun.org</A>&gt;, Thierry Bousch
+&lt;<A HREF="mailto:bousch%linotte.uucp@topo.math.u-psud.fr">bousch%linotte.uucp@topo.math.u-psud.fr</A>&gt; and other contributors.
+<P>
+<A NAME="lbAL">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<P>
+<A HREF="epinfo.html">epinfo</A>(1), protocol description.
+<A HREF="protocol.html">protocol description</A>.
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">COMMANDS</A><DD>
+<DT><A HREF="#lbAG">EXAMPLES</A><DD>
+<DT><A HREF="#lbAH">OTHER NOTES</A><DD>
+<DT><A HREF="#lbAI">KNOWN BUGS</A><DD>
+<DT><A HREF="#lbAJ">COPYRIGHT</A><DD>
+<DT><A HREF="#lbAK">CREDITS</A><DD>
+<DT><A HREF="#lbAL">SEE ALSO</A><DD>
+</DL>
+<HR>o
+This document was created by man2html, using the manual pages.<BR>
+Time: 01:43:19 GMT, January 26, 2001
+</BODY>
+</HTML>

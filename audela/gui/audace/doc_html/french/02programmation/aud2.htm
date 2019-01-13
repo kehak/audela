@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Fonctions du namespace offsetWindow</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 11 novembre 2004</p>
+<h1>Fonctions du namespace offsetWindow </h1>
+<p>Les fonctions qui suivent sont impl&eacute;ment&eacute;es dans diff&eacute;rents namespaces, de fa&ccedil;on &agrave; isoler les variables et les fonctions du reste. N&eacute;anmoins elles sont appel&eacute;es en faisant pr&eacute;c&eacute;der le nom de la fonction du nom du namespace. Ainsi si le namespace est <em>::toto</em> et poss&egrave;de une fonction <em>ma_fonction</em>, on peut l'appeler par : <em>::toto::ma_fonction les_arguments</em>.</p>
+<p>Les diff&eacute;rents namespace d&eacute;crits dans ce fichier ont pour but de cr&eacute;er des fen&ecirc;tres qui permettent de saisir de mani&egrave;re graphique les param&egrave;tres de fonctions qu'ils encapsulent. Ainsi le namespace <em>::offsetWindow</em> cr&eacute;&eacute; et g&egrave;re une fen&ecirc;tre qui permet de saisir les param&egrave;tres de la commande <em>offset</em> d&eacute;crite dans le fichier aud1.tcl.</p>
+<h2> Namespace ::offsetWindow</h2>
+<p>Ce namespace impl&eacute;mente une fen&ecirc;tre qui permet de saisir de mani&egrave;re graphique les param&egrave;tres de la commande <em><a href="aud1.htm#offset">offset</a></em>. La commande qui ouvre la fen&ecirc;tre est ::offsetWindow::run. C'est la seule qui doit normalement &ecirc;tre appel&eacute;e dans ce namespace.</p>
+<h3> ::offsetWindow::run ?<em>this</em>?</h3>
+<p>Ouvre la fen&ecirc;tre de gestion d'offset : le param&egrave;tre optionnel <em>this</em> correspond au chemin que l'on souhaite pour la fen&ecirc;tre. Par d&eacute;faut (si le param&egrave;tre n'est pas donn&eacute;), le chemin de la fen&ecirc;tre est <em>.audace.offsetWindow</em>.</p>
+<h3> ::offsetWindow::createDialog</h3>
+<p>C'est la fonction qui cr&eacute;&eacute;e l'interface proprement dite : la fen&ecirc;tre et tous les widgets qui vont avec. Les bindings sur les boutons et la fen&ecirc;tre sont &eacute;galement mis en place.</p>
+<h3> ::offsetWindow::destroyDialog</h3>
+<p>Cette fonction a pour but de d&eacute;truire la fen&ecirc;tre, soit apr&egrave;s que l'op&eacute;ration d'offset ait &eacute;t&eacute; effectu&eacute;e, soit lorsque l'op&eacute;ration a &eacute;t&eacute; annul&eacute;e.</p>
+<h3> ::offsetWindow::cmdApply</h3>
+<p>Fonction qui r&eacute;alise le traitement proprement dit.</p>
+<h3> ::offsetWindow::cmdOk</h3>
+<p>Fonction appel&eacute;e lorsqu'on appuie sur le bouton OK : elle r&eacute;alise le traitement (par <em>cmdApply</em>), et ferme la fen&ecirc;tre par un appel &agrave; <em>destroyDialog</em>.</p>
+<h3> ::offsetWindow::cmdCancel</h3>
+<p>Cette fonction est appel&eacute;e par appui sur le bouton Annuler : elle ferme uniquement la fen&ecirc;tre par appel &agrave; <em>destroyDialog</em>.</p>
+<h2> Les autres namespaces</h2>
+<p>Cinq autres namespaces sont d&eacute;finis dans ce fichier, ils correspondent &agrave; la mise sous forme graphique des fonctions <em><a href="aud1.htm#noffset">noffset</a></em>, <em><a href="aud1.htm#ngain">ngain</a></em>, <em><a href="aud1.htm#add">add</a></em>, <em><a href="aud1.htm#sub">sub</a></em>, <em><a href="aud1.htm#div">div</a></em>. Les noms des namespaces correspondants sont obtenus en accolant le nom de la fonction de traitement et Window. Cela donne : ngainWindow, etc.</p>
+<p>Les adeptes de la programmation orient&eacute;e objet ont pu noter que la plupart de ces namespaces sont redondants dans certains de leurs aspects (les boutons d'action, l'encha&icirc;nement des actions, etc.). Il est possible en TCL de faire de la programmation objet, en faisant appel &agrave; la librairie iTCL (i pour <em>incremental</em>). Nous avons pr&eacute;f&eacute;r&eacute; rester dans une philosophie non objet afin de permettre &agrave; tout un chacun de modifier suivant ses besoins le logiciel.</p>
+</body>
+
+</html>

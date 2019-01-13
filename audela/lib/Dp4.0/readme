@@ -1,0 +1,148 @@
+
+             Tcl Distributed Programming (Tcl-DP)
+               (Version 4.0b2; Dec 10, 1997)
+
+	  Brian C. Smith, Mike Perham, Tibor Janosi
+		Department of Computer Science
+			Cornell University
+
+This directory contains a freely distributable extension to Tcl/Tk
+called Tcl Distributed Programming (Tcl-DP).  Tcl-DP adds TCP, UDP, and
+IP-multicast connection management, remote procedure call (RPC), and
+distributed object protocols to Tcl/Tk.  A C interface to the RPC
+primitives is also provided.  
+
+Background
+----------
+
+Tcl stands for the Tool Command Language, a freely distributable,
+embeddable scripting language package.  Tk is an freely distributable
+window interface toolkit and widget library implemented by a
+collection of new commands added to Tcl.  Information about Tcl/Tk is
+available from http://www.sunlabs.com/research/tcl.  Tcl-DP was
+originally developed for Tcl 6.5 and Tk 3.0.  Tcl-DP 4.0b2 is compatible
+with both Tcl 7.6 and Tcl 8.0 (release versions only).
+
+This distribution contains a loadable module for Tcl 8.0.  HTML pages
+that describe the commands, and several examples that illustrate how
+to use Tcl-DP to build simple distributed applications.  This file,
+and Tcl-DP source code, is available from
+
+    http://www.cs.cornell.edu/Info/Projects/zeno/Projects/Tcl-DP.html
+
+Both source and binary releases are available from this location.
+
+In the examples subdirectory, several sample applications are supplied
+that use Tcl-DP.  As you can see from the examples, the distributed
+programming mechanisms of Tcl-DP are very simple.  A dp_RPC command,
+for example, sends a Tcl command to a remote process, which evaluates
+the command in the destination Tcl interpreter and returns the result
+as the value of the dp_RPC command.
+
+New Features in 4.0
+-------------------
+
+Tcl-DP 4.0 represents the first major rewrite of the code base since its
+beginning.  This version is distributed as a loadable module for Tcl 8.0
+that adds RPC and several communication protocols (TCP, UDP, IP-multicast,
+email, and serial lines) to Tcl.  Tcl-DP 4.0 uses the Tcl channel abstraction
+for all I/O.  DP's RPC layer has been rewritten to work with any DP registered
+channel, allowing RPCs to be performed across a normal TCP network,
+over a serial link or even via e-mail!  DP 4.0 also introduces plug-in
+filters that that allow a programmatic filter to be inserted into any
+network layer, allowing experimental or secure protocols to be built
+easily.
+
+Summary of new features:
+
+ * RPC over ANY read/writable non-blocking channel.
+ * Tcl_Channel drivers for TCP, UDP and IP Multicast protocols.
+ * Tcl_Channel drivers for serial ports and e-mail (via sendmail).
+ * Plugin Filter API that can attach to a Channel and manipulate the
+ 	incoming/outgoing data (i.e. uuencode/uudecode for email,
+ 	sequencing for UDP, etc.)
+ * Designed from the ground up to be portable and easily extensible
+	(simple to add your own Channels or filters).
+
+How to compile the Tcl-DP 4.0 source
+------------------------------------
+
+On SunOS 4.1, Solaris 2.5, Linux 2.0, HP/UX 9.0:
+
+1) Download the Tcl source and unarchive it into a directory
+2) Download the Tcl-DP 4.0 source and unarchive it into the same directory
+   At this point, Tcl and Tcl-DP should be sibling directories.
+3) Make Tcl.  See the Tcl documentation on how to do this.
+4) Change directory to tcl-dp/unix and type './configure'
+5) Type 'make'
+6) Assuming all went well, you can test the binary by typing 'make tests'
+   This step is optional.
+7) Please see "How to Install the Tcl-DP 4.0 Binaries" below.
+
+Windows:
+
+NOTE: You must use Microsoft Visual C++!
+1) Download the Tcl source and unarchive it into a dir.
+2) Download Tcl-DP 4.0 source and unarchive it into the same dir.
+   At this point, Tcl and Tcl-DP should be in sibling directories.
+3) Make Tcl.  See the Tcl docs on how to do this.
+4) Change directory to tcl-dp/win and copy either "makefile.76" or
+   "makefile.80" to "makefile", depending on your version of Tcl.
+5) Type "nmake" to build Tcl-DP.
+6) Assuming all went well, you cam test the binary by typing "nmake
+   tests".  This step is optional.
+7) Please see "How to Install the Tcl-DP 4.0 Binaries" below.
+
+How to install the Tcl-DP 4.0 Binaries
+--------------------------------------
+
+Tcl-DP uses a homegrown tool to install itself: Teki.  Teki is a
+Tcl/Tk application that can manage Tcl packages and automatically install
+or uninstall them.  To install the Tcl-DP binaries, simply run teki.tcl
+in wish and select 'File | Install'.  Select dp.tek and Teki should
+install DP into your Tcl/Tk installation.  NOTE: we assume that wish
+has been installed correctly on your system.
+
+To use Tcl-DP
+-------------
+
+Using Tcl-DP requires nothing more than wish or tclsh.  All DP scripts
+should have "package require dp" as their first line which will
+automatically load the DP module if it has not been loaded already.
+
+Please see the FAQ before emailing us if you have problems using DP.
+
+Documentation
+-------------
+
+Documentation for the new DP 4.0 API and library functions is available
+in the doc subdirectory in standard HTML format.  You can use any WWW
+browser to read the files.
+
+Bug Reports
+-----------
+
+Send mail to tcl-dp@cs.cornell.edu.
+
+Credits
+-------
+
+Tcl-DP 4.0 exists due to the following people:
+
+Brian Smith, Mike Perham, Tibor Janosi, Ioi Lam
+
+We extend our thanks to everyone who helped to create, debug, and
+distribute this software.  Although there are too many people to mention
+at this point, the following people deserve special attention:
+
+  John Ousterhout, creator of Tcl/Tk; 
+  Pekka Nikander, creator of tcpConnect;
+  Tim MacKenzie, creator of tclRawTCP;
+  Larry Rowe, co-creator of the original Tcl-DP;
+  Lou Salkind, ported Tcl-DP to Tcl 7.0/Tk 3.3
+  R Lindsay Todd, developed security mechanism
+  Peter Liu, developed extended name server code
+  Ulla Bartsich, integrated many changes into Tcl-DP 3.3
+  Mike Grafton, wrote extensive test suites for Tcl-DP 3.x
+  Jon Knight, wrote IP-multicast extensions to Tcl-DP 3.x
+  Gordon Chaffee, ported Tcl-DP 3 to Windows-NT

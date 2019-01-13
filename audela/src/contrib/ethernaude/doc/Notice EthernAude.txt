@@ -1,0 +1,134 @@
+Modifs du 30/12/2002
+
+				DOC ETHERNAUDE
+
+
+
+Voici les ordres à envoyer et envoyés par la carte EthernAude, xx signifiant un octet renvoyé par la carte mais sans objet.
+En fait, à la plupart des ordres, l'EthernAude repond par un groupes de 11 octets, le premier etant le numero de la commande envoyée.
+
+VIDAGE:
+   envoie: 01 aa, avec aa=nombres de vidages (donc maxi 255)
+   retour:  01 xx xx xx xx xx xx xx xx xx xx
+
+POSE
+   envoie: 02 aa bb cc dd, avec temps de pose en ms=aa+bb*256+cc*65536 et obturateur ouvert si dd=1, sinon dd=0
+   retour:  02 aa bb cc xx xx xx xx xx xx xx avec temps de pose effectue en ms=aa+bb*256+cc*65536, si la pose a été jusqu'au bout,
+                   sinon $02 aa bb cc xx xx xx xx xx xx xx avec temps de pose effectué en ms=aa+bb*256+cc*65536, si la pose a été interrompu
+                   par la commande abort.
+
+IDENTITE DE LA CCD
+   envoie: 03
+   retour:  aa bb cc dd ee ff gg hh ii jj kk ll mm nn oo pp qq rr ss tt uu vv ww xx yy zz AA BB soit donc 28 octets
+              avec aa=54 pour une CCD 2K, 1 pour un KAF400, 2 pour une kaf1600, 3 pour une kaf3200
+                      bb=nombre de pixels cachés en début de ligne (14 pour les KAF400 et 1600)
+                      cc=nombre de pixels cachés en fin de ligne (14 pour les KAF400 et 1600)
+                      dd,ee=taille des pixels en microns avec dd partie entiere et ee partie decimale, exemple: 15 99 --> 15,99µ
+                      ff,gg= nombre de pixels non cachés dans une ligne=ff*256+gg
+                      hh,ii= nombre de pixels non cachés dans une colonne=hh*256+ii
+                      jj,kk= nombre de pixels dans une ligne=jj*256+kk
+                      ll= nombre de bits de numérisation, je propose que cela soit une valeur positive pour une justification à droite et
+                          négatif pour une justification à gauche, exemple +15 pour une Audine, -14 pour une Maya2000.
+                      mm=1 si c'est un CCD de guidage, autrement 0. Pour l'Audine=0.
+                      nn,oo,pp,qq,rr,ss,tt,uu,vv,ww,xx,yy= nom de la camera en code Ascii (max 12 charactères), et completé avec des 0
+                                                                           pour les charactères inutilisés.
+                      zz,AA=version du soft, actuellement 04 02 soit donc 2.04
+                      BB=nombres de lignes cachées en haut ou en bas de la CCD, 04 pour une Audine.
+
+LECTURE CCD
+   envoie: 04 aa bb cc dd ee ff gg hh
+             avec aa=binning en x (1 a 256=0)
+                    bb=binning en y (1 à 256=0)
+                    cc,dd= x du point de départ=cc+dd*256, ATTENTION le premier point est x=1 et se trouve en zone cachée, en utilisation
+                               habituelle, x>=15 (premier pixel visible, x=15)
+                    ee,ff=y du point de départ=ee+ff*256, ATTENTION le premier point est y=1, MAIS ne tient pas compte des lignes cachées,
+                               donc en temps normal y>=1.
+                    gg,hh=largeur de la fenetre=gg+hh*256, on peut lire jusqu'au dernier pixel caché (768+14+14=796 pour une KAF400).
+                    ii,jj=hauteur de la fenêtre=ii+jj*256, on ne peut pas lire les 4 lignes cachées en bas de CCD, mais on peut lire celles du haut,
+                            donc pour un KAF400, par exemple, le y du dernier pixel peut atteindre la valeur 512+4=516=y depart+hauteur
+                    TRES IMPORTANT les valeurs de largeurs et hauteurs doivent tenir compte du binning, ainsi si vous voulez lire le fenetre de
+                        point de depart 100,200, de largeur 300 et de hauteur 400 en binning 2*4, il faudra envoye cc,dd=100,0  ee,ff=200,0 mais
+                        largeur=300/binningx soit donc 150,0 et pour la hauteur=400/binningy soit donc 100,0
+   retour: des trames de 1024 octets, les deux premiers octets sont les octets pour le numero de la trame (00 01 pour la premiere...etc,
+                  mais c'est remis a 1, à chaque nouvelle lecture de la CCD), les 1022 octets suivants sont les valeurs de pixels, avec d'abord le
+                  byte de poids fort, puis celui de poids faible. La dernière trame fait aussi 1024 octets, mais les octets inutilisés pour des pixels,
+                  sont completes par les valeurs $FF et $55.
+
+INVERSION DU PORT OBTURATEUR
+   envoie: 05
+   retour: 05 xx xx xx xx xx xx xx xx xx xx (11 octets)
+
+INIT DES PORTS
+   envoie: 06
+   retour: ininterressant pour l'utilisation, sert juste pour des tests de communication.
+
+TOUTES HORLOGES A 1
+   envoie: 07
+   retour: 07 xx xx xx xx xx xx xx xx xx xx (11 octets)
+
+TOUTES HORLOGES A 0
+   envoie: 08
+   retour: 08 xx xx xx xx xx xx xx xx xx xx (11 octets)
+
+OUVRIR L'OBTURATEUR
+   envoie: 09
+   retour: 09 xx xx xx xx xx xx xx xx xx xx (11 octets)
+
+FERMER L'OBTURATEUR
+   envoie: 09
+   retour: 09 xx xx xx xx xx xx xx xx xx xx (11 octets)
+
+DRIFTSCAN
+   envoie: $0A aa bb cc dd ee ff gg hh ii
+             avec aa,bb=temps en 1/10eme de ms=aa+bb*256 (donc maxi 6,5536s)
+                  cc,dd= x du point de départ=cc+dd*256, ATTENTION le premier point est x=1 et se trouve en zone cachée, en utilisation
+                               habituelle, x>=15 (premier pixel visible, x=15)
+                  ee,ff=nombre de lignes a lire=ee+ff*256
+                  gg,hh=largeur de la fenetre=gg+hh*256, on peut lire jusqu'au dernier pixel caché (768+14+14=796 pour une KAF400).
+                  ii=1 pour ouvrir l'obturateur en début de scan=1, sinon=0
+   retour: D'abord les trames contenant les données, puis:
+           $0A aa bb xx xx xx xx xx xx xx xx avec lignes scannées=aa+bb*256, si le scan a été jusqu'au bout,
+           sinon $0A aa bb xx xx xx xx xx xx xx xx avec lignes scannées=aa+bb*256, si la pose a été interrompu
+                   par la commande abort.
+
+VITESSE
+   envoie: $0B aa, si aa=0, on lit a pleine vitesse (6.3µs par pixel), sinon on rajoute aa*1µs par pixel, par exemple
+           si aa=4, le temps de lecture devient 10.3µs (valeur mini et par defaut pour un convertisseur 100kpix/s).
+   retour: $0B xx xx xx xx xx xx xx xx xx xx (11 octets)
+
+VIDEO
+   envoie: $0C aa bb cc dd ee ff gg hh ii jj kk
+             avec aa,bb=temps de pose en ms=aa+bb*256 (donc maxi 65,536s)
+                  cc,dd= x du point de départ=cc+dd*256, ATTENTION le premier point est x=1 et se trouve en zone cachée, en utilisation
+                               habituelle, x>=15 (premier pixel visible, x=15)
+                  ee,ff=nombre d'images a lire=ee+ff*256
+                  gg,hh=largeur de la fenetre=gg+hh*256, on peut lire jusqu'au dernier pixel caché (768+14+14=796 pour une KAF400).
+                  ii,jj=hauteur de la fenêtre=ii+jj*256
+                  kk=1 pour ouvrir l'obturateur en début de pose=1, sinon=0
+   retour: D'abord les trames contenant les données, puis:
+           $0C aa bb xx xx xx xx xx xx xx xx avec nombres de fenêtres lues=aa+bb*256, si la vidéo a été jusqu'au bout,
+           sinon $0C aa bb xx xx xx xx xx xx xx xx avec nombres de fenêtres lues=aa+bb*256, si la vidéo a été interrompu
+                   par la commande abort.
+
+WRITEI2C
+   envoie: $0D ad nb (va)xnb fois
+	     avec ad=adresse du composant I2C
+		  nb=nombre d'octets à écrire (maxi 6)
+		  va= valeur du ou des octets
+   retour: $0D ad nb xx xx xx xx xx xx xx xx, si écriture OK (11 octets)
+   	   $0D ad $FF xx xx xx xx xx xx xx xx, si pas d'acknowledge (11 octets)
+
+READI2C
+   envoie: $0E ad nb
+	     avec ad=adresse du composant I2C
+		  nb=nombre d'octets à lire (maxi 6)
+   retour: $0E ad nb (va)xnb fois (xx)x(8-nb) fois, si lecture OK (11 octets)
+   	   $0E ad $FF xx xx xx xx xx xx xx xx , si pas d'acknowledge (11 octets)
+
+ABORTCOMMAND
+   envoie: $FA
+   retour: $Numero de la commande interrompue, et ensuite le détail de la situation au moment de
+		l'interruption, pour les détails voir POSE, DRIFTSCAN et VIDEO
+
+
+Bon courage.

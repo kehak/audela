@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eprocSchema xmlns="file:/usr/local/src/eproc-4.1/XMLSchema/eproc-v2.xsd"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="file:/usr/local/src/eproc-4.1/XMLSchema/eproc-v2.xsd file:/usr/local/src/eproc-4.1/XMLSchema/eproc-v2.xsd">
+
+    <comment>Eproc ephemerides - default ephemcc outputs</comment>
+
+    <info>
+        <user>eproc</user>
+        <email>vo.imcce@obspm.fr</email>
+        <reference>eprocSphericalOutputs</reference>
+    </info>
+
+    <output>
+        <param id="1">
+            <name>date</name>
+            <class>date</class>
+            <label>Date</label>
+            <format>iso</format>
+            <precision>3</precision>
+        </param>
+        <param id="2">
+            <name>RA</name>
+            <class>angle</class>
+            <label>RA</label>
+            <unit>h</unit>
+            <format>sexa</format>
+            <precision>3</precision>
+        </param>
+        <param id="3">
+            <name>DEC</name>
+            <class>angle</class>
+            <label>DEC</label>
+            <unit>sdeg</unit>
+            <format>sexa</format>
+            <precision>2</precision>
+        </param>
+        <param id="4">
+            <name>az</name>
+            <class>angle</class>
+            <label>Az</label>
+            <unit>deg</unit>
+            <format>dec</format>
+            <width>9</width>
+            <precision>4</precision>
+        </param>
+        <param id="5">
+            <name>elev</name>
+            <class>angle</class>
+            <label>H</label>
+            <unit>deg</unit>
+            <format>dec</format>
+            <width>8</width>
+            <precision>4</precision>
+        </param>
+        <param id="6">
+            <name>am</name>
+            <class>scalar</class>
+            <label>AM</label>
+            <unit/>
+            <format>real</format>
+            <width>8</width>
+            <precision>3</precision>
+        </param>
+        <param id="7">
+            <name>dRAcosDEC</name>
+            <class>scalar</class>
+            <label>muRAcosDEC</label>
+            <unit>arcsec/s</unit>
+            <format>realE</format>
+            <width>11</width>
+            <precision>4</precision>
+        </param>
+        <param id="8">
+            <name>dDEC</name>
+            <class>scalar</class>
+            <label>muDE</label>
+            <unit>arcsec/s</unit>
+            <format>realE</format>
+            <width>11</width>
+            <precision>4</precision>
+        </param>
+        <param id="9">
+            <name>vmag</name>
+            <class>scalar</class>
+            <label>VMag</label>
+            <unit>mag</unit>
+            <format>real</format>
+            <width>7</width>
+            <precision>2</precision>
+        </param>
+        <param id="10">
+            <name>Johnson:B</name>
+            <class>scalar</class>
+            <label>Johnson B</label>
+            <unit>mag</unit>
+            <format>real</format>
+            <width>7</width>
+            <precision>2</precision>
+        </param>
+        <param id="11">
+            <name>Johnson:V</name>
+            <class>scalar</class>
+            <label>Johnson V</label>
+            <unit>mag</unit>
+            <format>real</format>
+            <width>7</width>
+            <precision>2</precision>
+        </param>
+        <param id="12">
+            <name>Cousins:R</name>
+            <class>scalar</class>
+            <label>Cousins R</label>
+            <unit>mag</unit>
+            <format>real</format>
+            <width>7</width>
+            <precision>2</precision>
+        </param>
+    </output>
+
+</eprocSchema>

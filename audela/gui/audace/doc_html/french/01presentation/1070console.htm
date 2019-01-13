@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Utilisation de la Console</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 02 avril 2005</p>
+<h1>Utilisation de la Console </h1>
+<p> La Console est un interpr&eacute;teur de commandes. Les commandes disponibles sont tr&egrave;s nombreuses. On peut se servir de commandes propres &agrave; Aud'ACE mais aussi de toutes les fonctions primitives mises &agrave; disposition par la plateforme AudeLA sur laquelle Aud'ACE est construit. Ainsi, les commandes disponibles depuis la Console d'Aud'ACE sont bien plus nombreuses que les fonctions disponibles &agrave; partir des menus. </p>
+<p>Ce chapitre est destin&eacute; &agrave; montrer quelques possibilit&eacute;s des commandes de la Console sous la forme d'un exemple : </p>
+<p>Dans la ligne de commande, tapez : </p>
+<ul>
+<code> cd images</code>
+</ul>
+<p> On place ainsi le dossier par d&eacute;faut sur images. On peut v&eacute;rifier le chemin du dossier courant avec la fonction : </p>
+<ul>
+<code> pwd</code>
+</ul>
+<p> Attention, il est d&eacute;conseill&eacute; d'utiliser le symbole DOS \ pour s&eacute;parer les niveaux de dossier. Il vaut mieux remplacer \ par /, ce qui fonctionne aussi bien sous Windows avec Aud'ACE. Ceci vient du fait que le symbole \ est interpr&eacute;t&eacute; comme un caract&egrave;re sp&eacute;cial par l'interpr&eacute;teur de commande Tcl. Pour utiliser quand m&ecirc;me \, il faut &eacute;crire \\. Enfin, pour conna&icirc;tre la liste des noms des fichiers disponibles dans le r&eacute;pertoire courant, utilisez la fonction : </p>
+<ul>
+<code> glob *.*</code>
+</ul>
+<p> Elle est &eacute;quivalente au fameux dir *.* sous DOS et ls *.* sous Unix. Nous cherchons &agrave; charger l'image de Messier 57. On &eacute;crira : </p>
+<ul>
+<code> loadima m57.fit</code>
+</ul>
+<p>ou plus simplement :</p>
+<ul>
+<code> loadima m57</code>
+</ul>
+<p> L'image m57.fit est maintenant charg&eacute;e en m&eacute;moire et est affich&eacute;e dans la fen&ecirc;tre principale. Voyons maintenant comment modifier les seuils de visualisation. </p>
+<ul>
+<code> visu {5000 0}</code>
+</ul>
+<p> L'image est visualis&eacute;e avec le seuil bas &eacute;gal &agrave; 0 et le seuil haut &eacute;gal &agrave; 5000. Le m&ecirc;me r&eacute;sultat peut &ecirc;tre obtenu en se servant des curseurs situ&eacute;s en bas &agrave; gauche de la fen&ecirc;tre d'Aud'ACE. </p>
+<p>Pour enregistrer l'image sur le disque dur de votre micro ordinateur, il suffit d'&eacute;crire : </p>
+<ul>
+<code> saveima messier57.fit</code>
+</ul>
+<p>ou plus simplement :</p>
+<ul>
+<code> saveima messier57</code>
+</ul>
+<p>L'image modifi&eacute;e est donc enregistr&eacute;e sur le disque dur au format FITS. </p>
+<p>Nous allons maintenant pr&eacute;traiter une image m3.fit avec le bias (b2.fit), le dark (d2_60.fit) et le flat (f2.fit) (cf. le traitement des images) </p>
+<ul>
+<p><code> loadima m3.fit</code></p>
+<p><code> opt d2_60.fit b2.fit</code></p>
+<p><code> div f2.fit 10000</code></p>
+<p><code> visu</code></p>
+<p><code> saveima m3prt.fit</code></p>
+</ul>
+<p>ou plus simplement :</p>
+<ul>
+<p><code> loadima m3</code></p>
+<p><code> opt d2_60 b2</code></p>
+<p><code> div f2 10000</code></p>
+<p><code> visu</code></p>
+<p><code> saveima m3prt</code></p>
+</ul>
+<p>Enfin, pour ex&eacute;cuter un script (par exemple date_ordi.tcl d&eacute;crit plus haut), il suffit d'&eacute;crire :</p>
+<ul>
+<code> source date_ordi.tcl</code>
+</ul>
+<p>En n'oubliant surtout pas de faire pr&eacute;c&eacute;der cette commande de :</p>
+<ul>
+<code> cd scripts</code> 
+</ul>
+<p>Car pour les scripts, le dossier est bien scripts si la configuration des R&eacute;pertoires le pr&eacute;cise ainsi.
+<p>L'ensemble des fonctions disponibles pour la ligne de commande de la Console peuvent &ecirc;tre consult&eacute;es.</p>
+</body>
+
+</html>

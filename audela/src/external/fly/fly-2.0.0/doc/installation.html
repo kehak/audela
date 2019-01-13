@@ -1,0 +1,294 @@
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head>
+  <title>images on the fly
+ </title>
+  <link rev="made" href="mailto:martin@gleeson.com" />
+  <link rel="stylesheet" href="style.css" media="screen" />
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta name="description"
+     content="Installation of fly." />
+
+  <meta name="robots"
+     content="nofollow" />
+</head>
+ <body>
+ <table class="maintable">
+  <tr>
+   <td class="maincontent">
+     <!-- ====================================================================== -->
+     <hr class="divider" />
+     <h1>fly: download &amp; installation</h1>
+     <!-- ====================================================================== -->
+     <hr class="divider" />
+    <h2>Table of Contents</h2>
+<ol>
+    <li><a href="#getting">Obtaining fly (source and binaries).</a></li>
+    <li><a href="#installing">Installing <b>fly</b>.</a></li>
+    <li><a href="#trouble">Troubleshooting</a></li>
+</ol>
+<!-- ===================================================================== -->
+<hr class="divider" />
+<h2><a name="getting">Obtaining fly</a>
+</h2>
+<p>  <b>fly</b> source code is available in the following formats:</p>
+<dl>
+ <dt>unix tar, compressed:</dt>
+ <dd><a href="dist/fly-2.0.0.tar.Z">fly-2.0.0.tar.Z</a> (160k)</dd>
+<dt>unix tar, GNU zipped:</dt>
+     <dd><a href="dist/fly-2.0.0.tar.gz">fly-2.0.0.tar.gz</a> (92k)</dd>
+<dt>pkzip:</dt>
+     <dd><a href="dist/fly-2.0.0.zip">fly-2.0.0.zip</a> (100k)</dd>
+</dl>
+<p>You will also need to download and install <a
+   href="http://www.boutell.com/gd/">gd</a> (fly has been tested with gd
+   1.8.4), which also requires <a href="http://www.libpng.org/pub/png/"
+   >libpng</a>, <a href="http://www.gzip.org/zlib/">zlib</a> and, if desired,
+   <a href="http://www.ijg.org/">jpeg 6b or later.</a>  If you need to
+   create GIF images you will need to use Philip Warner's <a
+   href="http://www.rime.com.au/gd/">patched version of gd 1.8.4</a>.
+</p>
+<!-- ===================================================================== -->
+<hr class="divider" />
+<h3>Older Versions:</h3>
+<h4>1.6.5</h4>
+<dl>
+  <dt>unix tar, GNU zipped:</dt>
+     <dd><a href="dist/fly-1.6.5.tar.gz">fly-1.6.5.tar.gz</a> (92k)</dd>
+  <dt>pkzip:</dt>
+     <dd><a href="dist/fly-1.6.5.zip">fly-1.6.5.zip</a> (100k)</dd>
+</dl>
+<p>Source code is available for MMS (Module Management System) on VMS and OpenVMS:</p>
+<dl><dt>In tar+GNU zipped format:</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.4.2.vms-src.tar.gz">
+     ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.4.2.vms-src.tar.gz
+     </a> (51k)</dd>
+</dl>
+<!-- ===================================================================== -->
+<hr class="divider" />
+<p>  Precompiled binaries of older versions of fly are available for some
+operating systems:
+</p>
+<dl>
+<dt>Windows NT &amp; Windows 95 (x86):</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.0.WinNT.zip"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.0.WinNT.zip</a>
+     (62k ZIP file)</dd>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.0.exe"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.0.exe</a>
+     (134k executable)</dd>
+<dt>OS/2 v2.1 (486):</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.1.OS2-2.1-486.tar.gz"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.1.OS2-2.1-486.tar.gz</a>
+     (61k)</dd>
+<dt>DEC OSF/1 v3.2 aka Digital UNIX (DEC Alpha):</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.5.OSF1-V3.2-alpha.tar.gz"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.5.OSF1-V3.2-alpha.tar.gz</a>
+     (41k)</dd>
+<dt>DEC OSF/1 v4.0 aka Digital UNIX (DEC Alpha):</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.5.OSF1-V4.0-alpha.tar.gz"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.5.OSF1-V4.0-alpha.tar.gz</a>
+     (48k)</dd>
+<dt>OpenVMS for DEC Alpha:</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.4.2.OpenVMS-alpha.tar.gz"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.4.2.OpenVMS-alpha.tar.gz</a>
+     (51k)</dd>
+<dt>IBM AIX 3.2.5 (RS/6000):</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.1.AIX-3-RS6000.tar.gz"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.1.AIX-3-RS6000.tar.gz</a>
+     (41k)</dd>
+<dt>Linux 2.0.33 (i586):</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.5.Linux-2.0.33-i586.tar.gz"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.5.Linux-2.0.33-i586.tar.gz</a>
+     (40k)</dd>
+<dt>Linux 2.1.125 (i686):</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.5.Linux-2.1.125-i686.tar.gz"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.5.Linux-2.1.125-i686.tar.gz</a>
+     (41k)</dd>
+<dt>FreeBSD 2.2.2 (i586):</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.2.FreeBSD-2.2.2-i586.tar.gz"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.2.FreeBSD-2.2.2-i586.tar.gz</a>
+     (45k)</dd>
+<dt>BSDI 3.0 (Intel x86):</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.0.BSD_OS-3.1-i386.tar.gz"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.0.BSD_OS-3.1-i386.tar.gz</a>
+     (64k)</dd>
+<dt>SunOS 4.1.3 (SPARC):</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.5.SunOS-4.1C-sun4.tar.gz"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.5.SunOS-4.1C-sun4.tar.gz</a>
+     (44k)</dd>
+<dt>Solaris 2.4 (SPARC):</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.3.SunOS-5.4-sun4d.tar.gz"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.3.SunOS-5.4-sun4d.tar.gz</a>
+     (43k)</dd>
+<dt>Solaris 2.5.1 (SPARC):</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.0.SunOS-5.5.1-sun4m.tar.gz"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.0.SunOS-5.5.1-sun4m.tar.gz</a>
+     (40k)</dd>
+<dt>Solaris 2.6 (SPARC):</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.5.SunOS-5.6-sun4d.tar.gz"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.5.SunOS-5.6-sun4d.tar.gz</a>
+     (46k)</dd>
+<dt>Solaris 2.6 (Ultra SPARC):</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.5.SunOS-5.6-sun4u.tar.gz"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.5.SunOS-5.6-sun4u.tar.gz</a>
+     (46k)</dd>
+<dt>SGI IRIX 6.4 (R10000):</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.0.IRIX-6.4-R10000.tar.gz"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.0.IRIX-6.4-R10000.tar.gz</a>
+     (46k)</dd>
+<dt>NeXTSTEP 3.3 (intel):</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.0.NeXTSTEP.3.3.moto-intel.tar.gz"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.0.NeXTSTEP.3.3.moto-intel.tar.gz</a>
+     (90k)</dd>
+<dt>SCO Open Server 5.0.0 (Intel x86):</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.5.3.SCO-5.0.4-x86.tar.gz"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.5.3.SCO-5.0.4-x86.tar.gz</a>
+     (86k)</dd>
+<dt>Risc PC StrongArm (RISC-OS):</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.5.RiscOS.zip"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.5.RiscOS.zip</a>
+     (102k)</dd>
+<dt>OS/2 Warp 4:</dt>
+     <dd><a href="ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.5.OS2-Warp4.zip"
+     >ftp://ftp.unimelb.edu.au/pub/www/tools/unix/fly/fly-1.6.5.OS2-Warp4.zip</a>
+     (393k)</dd>
+</dl>
+<p>  HP/UX binaries are available from the HP/UX Porting and Archive
+     Centre at <a href="http://hpux.csc.liv.ac.uk/"
+     >&lt;URL:http://hpux.csc.liv.ac.uk/&gt;</a>. Search for &quot;fly&quot;
+     and look under the X11/Graphics section.
+</p>
+<p>  http://osx.hyperjeff.net/articles/Fly.html
+</p>
+ <!-- NOT CURRENTLY AVAILABLE
+<h3><a name="email"> via E-Mail</a>
+</h3>
+<p>  Because some users have reported difficulties in retrieving <b>fly</b>
+     by ftp, due to slow internet links, I have created an autoresponse
+     system where the <b>fly</b> distribution can be mailed to you.
+</p>
+<p>  To obtain <b>fly</b> via email, send a message to
+     <tt>auto-mailer@www.unimelb.edu.au</tt> with no subject, and the
+     following line (<strong>exactly</strong>) in the <strong>body</strong>
+     of the message:<br /><br /><tt>send <i>&lt;filename&gt;</i></tt><br /><br />
+     where <tt><i>&lt;filename&gt;</i></tt> is one of the filenames above
+     (e.g.  <tt>fly-1.6.5.tar.gz</tt>, <tt>fly-1.6.5.exe</tt>,
+     <tt>fly-1.6.5.SunOS-5.4-sun4d.tar.gz</tt> etc.)
+</p>
+<p>  <span style="color: red">Note:</span> Do NOT send HTML mail to this
+     address. Heck, don't send HTML mail to <em>any</em> address! But I
+     digress. If you do send HTML mail, you'll just have to do it again
+     the right way.
+</p>
+-->
+<!-- ===================================================================== -->
+<hr class="divider" />
+<h2><a name="installing">Installing fly</a>
+</h2>
+<p>  If you have obtained <b>fly-<i>n</i>.tar.Z</b> or
+     <b>fly-<i>n</i>.tar.gz</b>, enter the following commands at the unix
+     prompt:
+</p>
+<dl>
+<dt> <kbd> uncompress fly-<i>n</i>.tar.Z </kbd> or <kbd>gunzip
+     fly-<i>n</i>.tar.gz</kbd>
+</dt>
+     <dd> This will decompress the compressed archive.
+     </dd>
+<dt> <kbd> tar xfv fly-<i>n</i>.tar </kbd>
+</dt>
+     <dd> This will un-tar the archive, placing its contents
+          in a directory called <b>fly</b>
+     </dd>
+<dt> <kbd> cd fly-<i>n</i>; make </kbd>
+</dt>
+     <dd> If all goes well, this will compile the program
+          giving you an executable called <b>fly</b>
+     </dd>
+</dl>
+<!-- ===================================================================== -->
+<hr class="divider" />
+<p>  If you have obtained the NT/Win95 zip file, <b>fly-<i>n</i>.WinNT.zip</b>,
+     enter the following command at the DOS prompt:
+</p>
+<dl>
+<dt> <kbd>pkunzip -d fly-<i>n</i>.zip</kbd>
+</dt>
+     <dd> This will unzip the archive. <em>Note: it is
+          <strong>essential</strong> that you use the <strong>-d
+          switch</strong> to force pkunzip to create the necessary
+          directories</em>.<br />
+     </dd>
+</dl>
+<p>Windows users can also use <a href="http://www.winzip.com/">WinZip</a>
+   to extract the files with all the compression formats used on this page
+   including zip, tar, and gz.
+</p>
+<p>  If you have obtained the NT/Win95 binary, <b>fly-<i>n</i>.exe</b>, no
+     installation is necessary.
+</p>
+<!-- ===================================================================== -->
+<hr class="divider" />
+<p>  If you obtained one of the precompiled binaries, enter the following
+     commands:
+</p>
+<dl>
+     <dt></dt>
+     <dd><kbd>gunzip fly-<i>n</i>.<i>OS</i>.tar.gz</kbd><br />
+     <kbd>tar xfv fly-<i>n</i>.<i>OS</i>.tar</kbd></dd>
+</dl>
+
+<!-- ===================================================================== -->
+<hr class="divider" />
+<h2> <a name="trouble">Troubleshooting</a></h2>
+<p>  If you are attempting to compile from source and don't have gcc, you
+     will get an error message along the lines of <tt>'gcc: command not
+     found'</tt> and make will exit. Just change the lines in the Makefile
+     and the Makefile in the gd1.2 directory that read:<br />
+     <tt>CC = gcc</tt><br />
+     to:<br />
+     <tt>CC = cc</tt><br />
+     and it should work. If it still doesn't compile, try one of the
+     pre-compiled binaries, or contact me.
+</p>
+  </td>
+   <td class="mainmenutop">
+    <p class="navigation-centred"><a href="http://martin.gleeson.com/fly/"><img
+         src="fly-logo.gif" class="borderless" alt=" [fly] " width="157" height="52" /></a>
+   </p>
+    <ul class="navigation">
+     <li><a class="navigation" href="index.html">Home</a> </li>
+     <li><a class="navigation" href="installation.html">Download &amp; Installation.</a> </li>
+     <li><a class="navigation" href="using.html">How to use fly.</a> </li>
+     <li><a class="navigation" href="examples.html">Examples.</a> </li>
+     <li><a class="navigation" href="outthere.html">Fly on the Web.</a> </li>
+     <li><a class="navigation" href="FAQ.html">Frequently Asked Questions.</a> </li>
+     <li><a class="navigation" href="release-notes.html">Contributors and Release notes.</a> </li>
+     <li><a class="navigation" href="feedback.html">Feedback &amp; Mailing Lists.</a> </li>
+     <li><a class="navigation" href="copyright.html">Credits &amp; Copyright Information.</a></li>
+    </ul>
+   </td>
+ </tr>
+  <tr>
+   <td class="mainmenubottom">
+   <p class="pagedetails"><tt>Created: 21 June 1995<br />
+    Last modified: 25 November 2001<br />
+    Copyright &#169; 1995-2001 <a href="http://martin.gleeson.com/"
+    class="writtenurl">Martin Gleeson.</a></tt><br />
+    <small>&lt;URL:<a href="http://martin.gleeson.com/fly/installation.html"
+    class="writtenurl">http://martin.gleeson.com/fly/installation.html</a>&gt;</small>
+   </p>
+  </td>
+   <td>
+     <p class="rightfooter"><a href="http://validator.w3.org/check/referer"><img
+       src="http://www.w3.org/Icons/valid-xhtml10" class="borderless"
+       alt="[Valid XHTML 1.0!]" height="31" width="88" /></a>
+    </p>
+  </td>
+ </tr>
+</table>
+</body>
+</html>

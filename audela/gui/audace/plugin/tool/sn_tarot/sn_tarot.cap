@@ -1,0 +1,691 @@
+#
+# Fichier : sn_tarot.cap
+# Mise a jour $Id: sn_tarot.cap 9349 2013-04-05 22:34:00Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(sn_tarot,main_title)             "Tarot SN View"
+set caption(sn_tarot,title)                  "Today Image <-  Archive Analysis: %s  -> Reference"
+set caption(sn_tarot,prev)                   "Previous"
+set caption(sn_tarot,next)                   "Next\n(F1)"
+set caption(sn_tarot,goto)                   "Go to"
+set caption(sn_tarot,background)             "Sky Background\n(F2)"
+set caption(sn_tarot,blink_go)               "Start Blink\n(F3)"
+set caption(sn_tarot,blink_stop)             "Stop Blink"
+set caption(sn_tarot,save)                   "Save\n(F4)"
+set caption(sn_tarot,perso)                  "Personal"
+set caption(sn_tarot,dss)                    "DSS"
+
+set caption(sn_tarot,image1)                 "Image 1 -> %s %s %s %s %s %s"
+set caption(sn_tarot,image2)                 "Image 2 -> %s %s"
+
+set caption(sn_tarot,galaxy_center)          "Center of host galaxy"
+set caption(sn_tarot,star_ref)               "Position of a reference star"
+set caption(sn_tarot,star_pos)               "Position of SN candidate"
+set caption(sn_tarot,star_id)                "Creating data sheet about SN candidate"
+set caption(sn_tarot,swatch)                 "Swatch & Transfer Function"
+
+set caption(sn_tarot,save1)                  "Save"
+set caption(sn_tarot,confirm)                "Continue?"
+
+set caption(sn_tarot,cancel)                 "Cancel"
+set caption(sn_tarot,go)                     "GO"
+
+set caption(sn_tarot,secondary_title)        "Tarot SN View - Go to"
+set caption(sn_tarot,image_numero)           "Go to Image Number:"
+
+set caption(sn_tarot,config_title)           "Tarot SN View - Setup"
+set caption(sn_tarot,rafraich_images)        "Display Refresh:"
+set caption(sn_tarot,motion)                 "Option 'motion'"
+set caption(sn_tarot,release)                "Option 'release'"
+set caption(sn_tarot,blink_delai)            "Blink   -   Delay (ms):"
+set caption(sn_tarot,blink_nbre)             "Loop Number:"
+set caption(sn_tarot,auto_blink)             "Auto"
+set caption(sn_tarot,image_gzip)             "Saving Reference Images:"
+
+set caption(sn_tarot,attention)              "Warning"
+set caption(sn_tarot,alerte)                 "Display Refresh changes will only be applied\nafter Tarot SN View is relaunched."
+
+set caption(sn_tarot,reference)              "Reference"
+set caption(sn_tarot,newref)                 "New Reference Image 1"
+set caption(sn_tarot,filter)                 "Filtering of %s -> %s %s"
+set caption(sn_tarot,0image)                 "No image."
+set caption(sn_tarot,fits_header)            "FITS Header"
+set caption(sn_tarot,header,noimage)         "No image in memory."
+
+set caption(sn_tarot,dss_title)              "DSS image download"
+set caption(sn_tarot,dss_galaxy)             "Galaxy: %s"
+set caption(sn_tarot,dss_not_found)          "%s not loaded. Reason: %s"
+set caption(sn_tarot,dss_all)                "All DSS images are available."
+set caption(sn_tarot,dss_manq)               "Downloads DSS images:\n%s."
+
+set caption(sn_tarot,configuration)          "Setup"
+set caption(sn_tarot,select)                 "Choose an archive:"
+set caption(sn_tarot,aide)                   "Help"
+set caption(sn_tarot,exit)                   "Exit"
+
+set caption(sn_tarot,candidate)              "Supernovae Candidate"
+set caption(sn_tarot,modify)                 "Edit candidate file"
+set caption(sn_tarot,ok)                     "OK"
+set caption(sn_tarot,result_analysis)        "Result of the analysis:"
+
+set caption(sn_tarot,cand_wait)              "Please wait while the candidate data sheet is created..."
+set caption(sn_tarot,cand_wait_mp)           "Checks if there are asteroids..."
+set caption(sn_tarot,cand_wait_sn)           "Checks if there is a known supernovae..."
+set caption(sn_tarot,cand_wait_ar)           "Checks if the galaxy is in the archives..."
+
+set caption(sn_tarot,ancand_wait)            "Please wait while the candidate data sheets are analyzed..."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(sn_tarot,main_title)          "Tarot SN Visu"
+   set caption(sn_tarot,title)               "Image du jour <-  Analyse de l'archive : %s  -> Référence"
+   set caption(sn_tarot,prev)                "Précédente"
+   set caption(sn_tarot,next)                "Suivante\n(F1)"
+   set caption(sn_tarot,goto)                "Aller à"
+   set caption(sn_tarot,background)          "Fond du ciel\n(F2)"
+   set caption(sn_tarot,blink_go)            "GO Blink\n(F3)"
+   set caption(sn_tarot,blink_stop)          "Stop Blink"
+   set caption(sn_tarot,save)                "Enregistrer\n(F4)"
+   set caption(sn_tarot,perso)               "Personnel"
+   set caption(sn_tarot,dss)                 "DSS"
+
+   set caption(sn_tarot,image1)              "Image 1 -> %s %s %s %s %s %s"
+   set caption(sn_tarot,image2)              "Image 2 -> %s %s"
+
+   set caption(sn_tarot,galaxy_center)       "Centre de la galaxie hôte"
+   set caption(sn_tarot,star_ref)            "Position d'une étoile de référence"
+   set caption(sn_tarot,star_pos)            "Position de la candidate SN"
+   set caption(sn_tarot,star_id)             "Création de la fiche de la candidate SN"
+   set caption(sn_tarot,swatch)              "Palette & Fonction de Transfert"
+
+   set caption(sn_tarot,save1)               "Enregistrer"
+   set caption(sn_tarot,confirm)             "Voulez-vous poursuivre ?"
+
+   set caption(sn_tarot,cancel)              "Annuler"
+   set caption(sn_tarot,go)                  "GO"
+
+   set caption(sn_tarot,secondary_title)     "Tarot SN Visu - Aller à"
+   set caption(sn_tarot,image_numero)        "Aller à l'image numéro :"
+
+   set caption(sn_tarot,config_title)        "Tarot SN Visu - Configuration"
+   set caption(sn_tarot,rafraich_images)     "Rafraîchissement de la visualisation :"
+   set caption(sn_tarot,motion)              "Option 'motion'"
+   set caption(sn_tarot,release)             "Option 'release'"
+   set caption(sn_tarot,blink_delai)         "Blink   -   Délai (ms) :"
+   set caption(sn_tarot,blink_nbre)          "Nombre de boucles :"
+   set caption(sn_tarot,auto_blink)          "Auto"
+   set caption(sn_tarot,image_gzip)          "Enregistrement des images de référence :"
+
+   set caption(sn_tarot,attention)           "Attention"
+   set caption(sn_tarot,alerte)              "Le changement de configuration du rafraîchissement de la visualisation\nne prendra effet qu'au prochain démarrage de Tarot SN Visu."
+
+   set caption(sn_tarot,reference)           "Référence"
+   set caption(sn_tarot,newref)              "Nouvelle référence Image 1"
+   set caption(sn_tarot,filter)              "Filtrage de %s -> %s %s"
+   set caption(sn_tarot,0image)              "Pas d'image."
+   set caption(sn_tarot,fits_header)         "En-tête FITS"
+   set caption(sn_tarot,header,noimage)      "Il n'y a pas d'image actuellement en mémoire."
+
+   set caption(sn_tarot,dss_title)           "Téléchargement des images DSS"
+   set caption(sn_tarot,dss_galaxy)          "Galaxie : %s"
+   set caption(sn_tarot,dss_not_found)       "%s pas chargé. Motif : %s"
+   set caption(sn_tarot,dss_all)             "Toutes les images DSS sont présentes."
+   set caption(sn_tarot,dss_manq)            "Télécharge les images DSS :\n%s."
+
+   set caption(sn_tarot,configuration)       "Configuration"
+   set caption(sn_tarot,select)              "Sélectionner une archive :"
+   set caption(sn_tarot,aide)                "Aide"
+   set caption(sn_tarot,exit)                "Quitter"
+
+   set caption(sn_tarot,candidate)           "Candidate supernova"
+   set caption(sn_tarot,modify)              "Modifier le fichier de la candidate"
+   set caption(sn_tarot,ok)                  "OK"
+   set caption(sn_tarot,result_analysis)     "Résultat de l'analyse :"
+
+   set caption(sn_tarot,cand_wait)           "Patientez pendant la création de la fiche de la candidate..."
+   set caption(sn_tarot,cand_wait_mp)        "Vérifie la présence d'astéroïdes..."
+   set caption(sn_tarot,cand_wait_sn)        "Vérifie la présence d'une supernova connue..."
+   set caption(sn_tarot,cand_wait_ar)        "Vérifie la présence de la galaxie dans les archives..."
+
+   set caption(sn_tarot,ancand_wait)         "Patientez pendant l'analyse des fiches candidates..."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(sn_tarot,main_title)          "Tarot Vista SN"
+   set caption(sn_tarot,title)               "Immagine del giorno <-  Analisi dell'Archivio: %s  -> Riferimento"
+   set caption(sn_tarot,prev)                "Precedente"
+   set caption(sn_tarot,next)                "Successivo\n(F1)"
+   set caption(sn_tarot,goto)                "Vai a"
+   set caption(sn_tarot,background)          "Fondo cielo\n(F2)"
+   set caption(sn_tarot,blink_go)            "Start Blink\n(F3)"
+   set caption(sn_tarot,blink_stop)          "Stop Blink"
+   set caption(sn_tarot,save)                "Salvare\n(F4)"
+   set caption(sn_tarot,perso)               "Personali"
+   set caption(sn_tarot,dss)                 "DSS"
+
+   set caption(sn_tarot,image1)              "Immagine 1 -> %s %s %s %s %s %s"
+   set caption(sn_tarot,image2)              "Immagine 2 -> %s %s"
+
+   set caption(sn_tarot,galaxy_center)       "Centro della galassia ospite"
+   set caption(sn_tarot,star_ref)            "Posizione di una stella di riferimento"
+   set caption(sn_tarot,star_pos)            "Posizione della candidata SN"
+   set caption(sn_tarot,star_id)             "Creazione del file della candidata SN"
+   set caption(sn_tarot,swatch)              "Palette & Funzione di trasferimento"
+
+   set caption(sn_tarot,save1)               "Salvare"
+   set caption(sn_tarot,confirm)             "Volete continuare?"
+
+   set caption(sn_tarot,cancel)              "Cancellare"
+   set caption(sn_tarot,go)                  "GO"
+
+   set caption(sn_tarot,secondary_title)     "Tarot Vista SN - Vai a"
+   set caption(sn_tarot,image_numero)        "Vai a all'immagine numero:"
+
+   set caption(sn_tarot,config_title)        "Tarot Vista SN - Configurazione"
+   set caption(sn_tarot,rafraich_images)     "Rinfresco visualizzazione:"
+   set caption(sn_tarot,motion)              "Opzione 'motion'"
+   set caption(sn_tarot,release)             "Opzione 'release'"
+   set caption(sn_tarot,blink_delai)         "Blink   -   Intervallo (ms):"
+   set caption(sn_tarot,blink_nbre)          "Numero ripetizioni:"
+   set caption(sn_tarot,auto_blink)          "Auto"
+   set caption(sn_tarot,image_gzip)          "Salvataggio immagini di riferimento:"
+
+   set caption(sn_tarot,attention)           "Attenzione"
+   set caption(sn_tarot,alerte)              "La modifica del Display Refresh sarà attiva solo dopo il riavvio."
+
+   set caption(sn_tarot,reference)           "Riferimento"
+   set caption(sn_tarot,newref)              "Nuovo riferimento Immagine 1"
+   set caption(sn_tarot,filter)              "Filtraggio di %s -> %s %s"
+   set caption(sn_tarot,0image)              "Nessuna immagine."
+   set caption(sn_tarot,fits_header)         "Header FITS"
+   set caption(sn_tarot,header,noimage)      "Nessuna immagine in memoria."
+
+   set caption(sn_tarot,dss_title)           "Scaricamento delle immagini DSS"
+   set caption(sn_tarot,dss_galaxy)          "Galassia: %s"
+   set caption(sn_tarot,dss_not_found)       "%s non caricato. Causa: %s"
+   set caption(sn_tarot,dss_all)             "Tutte le immagini DSS sono disponibili."
+   set caption(sn_tarot,dss_manq)            "Scarica immagini DSS:\n%s."
+
+   set caption(sn_tarot,configuration)       "Configurazione"
+   set caption(sn_tarot,select)              "Seleziona un archivio:"
+   set caption(sn_tarot,aide)                "Aiuto"
+   set caption(sn_tarot,exit)                "Chiudere"
+
+   set caption(sn_tarot,candidate)           "Candidata Supernova"
+   set caption(sn_tarot,modify)              "Modifica file candidato"
+   set caption(sn_tarot,ok)                  "OK"
+   set caption(sn_tarot,result_analysis)     "Risultato delle analisi:"
+
+   set caption(sn_tarot,cand_wait)           "Attendere creazione file della candidata..."
+   set caption(sn_tarot,cand_wait_mp)        "Verifica la presenza di asteroidi..."
+   set caption(sn_tarot,cand_wait_sn)        "Verifica la presenza di una supernova nota..."
+   set caption(sn_tarot,cand_wait_ar)        "Verifica la presenza della galassia negli archivi..."
+
+   set caption(sn_tarot,ancand_wait)         "Attendere l'analisi dei file candidati..."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(sn_tarot,main_title)          "Tarot SN Ver"
+   set caption(sn_tarot,title)               "Imagen del día <-  Análisis del archivo: %s  -> Referencia"
+   set caption(sn_tarot,prev)                "Previo"
+   set caption(sn_tarot,next)                "Siguiente\n(F1)"
+   set caption(sn_tarot,goto)                "Ir a"
+   set caption(sn_tarot,background)          "Fondo de cielo\n(F2)"
+   set caption(sn_tarot,blink_go)            "Comienzo Blinking\n(F3)"
+   set caption(sn_tarot,blink_stop)          "Parar Blinking"
+   set caption(sn_tarot,save)                "Salvar\n(F4)"
+   set caption(sn_tarot,perso)               "Personal"
+   set caption(sn_tarot,dss)                 "DSS"
+
+   set caption(sn_tarot,image1)              "Imagen 1 -> %s %s %s %s %s %s"
+   set caption(sn_tarot,image2)              "Imagen 2 -> %s %s"
+
+   set caption(sn_tarot,galaxy_center)       "Centro de la galaxia"
+   set caption(sn_tarot,star_ref)            "Posición de una estrella de referencia"
+   set caption(sn_tarot,star_pos)            "Posición de la candidata SN"
+   set caption(sn_tarot,star_id)             "Creación de la ficha de la candidata SN"
+   set caption(sn_tarot,swatch)              "Paleta & Función de transferencia"
+
+   set caption(sn_tarot,save1)               "Salvar"
+   set caption(sn_tarot,confirm)             "Continuar?"
+
+   set caption(sn_tarot,cancel)              "Cancelar"
+   set caption(sn_tarot,go)                  "GO"
+
+   set caption(sn_tarot,secondary_title)     "Tarot SN Ver - Ir a"
+   set caption(sn_tarot,image_numero)        "Ir a imágen número:"
+
+   set caption(sn_tarot,config_title)        "Tarot SN Ver - Configuración"
+   set caption(sn_tarot,rafraich_images)     "Refresco de pantalla:"
+   set caption(sn_tarot,motion)              "Opción 'motion'"
+   set caption(sn_tarot,release)             "Opción 'release'"
+   set caption(sn_tarot,blink_delai)         "Blinking   -   Retraso (ms):"
+   set caption(sn_tarot,blink_nbre)          "Numero repeticiones:"
+   set caption(sn_tarot,auto_blink)          "Auto"
+   set caption(sn_tarot,image_gzip)          "Registro de imágenes de referencia:"
+
+   set caption(sn_tarot,attention)           "!Cuidado¡"
+   set caption(sn_tarot,alerte)              "El cambio de configuración de refresco de la pantalla sólo\nse aplican tras el rearranque de Tarot SN Ver."
+
+   set caption(sn_tarot,reference)           "Referencia"
+   set caption(sn_tarot,newref)              "Nueva referencia Imagen 1"
+   set caption(sn_tarot,filter)              "Filtrado de %s -> %s %s"
+   set caption(sn_tarot,0image)              "No hay imagen."
+   set caption(sn_tarot,fits_header)         "Cabecera FITS"
+   set caption(sn_tarot,header,noimage)      "No hay imagen en memoria."
+
+   set caption(sn_tarot,dss_title)           "Descarga de imágenes DSS"
+   set caption(sn_tarot,dss_galaxy)          "Galaxia: %s"
+   set caption(sn_tarot,dss_not_found)       "%s no cargada. Motivo: %s"
+   set caption(sn_tarot,dss_all)             "Todas las imágenes DSS etán presentes."
+   set caption(sn_tarot,sn_tarot,dss_manq)   "Descarga de imágenes DSS:\n%s."
+
+   set caption(sn_tarot,configuration)       "Configuración"
+   set caption(sn_tarot,select)              "Seleccionar un archivo:"
+   set caption(sn_tarot,aide)                "Ayuda"
+   set caption(sn_tarot,exit)                "Salir"
+
+   set caption(sn_tarot,candidate)           "Supernova candidata"
+   set caption(sn_tarot,modify)              "Modificar fichero de la candidata"
+   set caption(sn_tarot,ok)                  "OK"
+   set caption(sn_tarot,result_analysis)     "Resultados del análisis:"
+
+   set caption(sn_tarot,cand_wait)           "Por favor esperar mientras se crea la ficha de la candidata..."
+   set caption(sn_tarot,cand_wait_mp)        "Verificar la presencia de asteroides..."
+   set caption(sn_tarot,cand_wait_sn)        "Verificar la presencia de una supernova conocida..."
+   set caption(sn_tarot,cand_wait_ar)        "Verificar la presencia de la galaxia en los archivos..."
+
+   set caption(sn_tarot,ancand_wait)         "Por favor, esperar al análisis de los ficheros candidatos..."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(sn_tarot,main_title)          "Tarot SN Visu"
+   set caption(sn_tarot,title)               "Tages Bild <-  Archiv Analyse: %s  -> Referenz"
+   set caption(sn_tarot,prev)                "Vorigen"
+   set caption(sn_tarot,next)                "Nächsten\n(F1)"
+   set caption(sn_tarot,goto)                "Gehen zu"
+   set caption(sn_tarot,background)          "Hinterhimmel\n(F2)"
+   set caption(sn_tarot,blink_go)            "GO Blink\n(F3)"
+   set caption(sn_tarot,blink_stop)          "Stop Blink"
+   set caption(sn_tarot,save)                "Speichern\n(F4)"
+   set caption(sn_tarot,perso)               "Persönlichen"
+   set caption(sn_tarot,dss)                 "DSS"
+
+   set caption(sn_tarot,image1)              "Bild 1 -> %s %s %s %s %s %s"
+   set caption(sn_tarot,image2)              "Bild 2 -> %s %s"
+
+   set caption(sn_tarot,galaxy_center)       "Mittelpunkt der Host Galaxie"
+   set caption(sn_tarot,star_ref)            "Ein Referenz-Stern Position"
+   set caption(sn_tarot,star_pos)            "Position der SN Kandidat"
+   set caption(sn_tarot,star_id)             "Datei der SN Kandidat erstellten"
+   set caption(sn_tarot,swatch)              "Palette & Transfert Funktion"
+
+   set caption(sn_tarot,save1)               "Speichern"
+   set caption(sn_tarot,confirm)             "Vollen sie weiterführen ?"
+
+   set caption(sn_tarot,cancel)              "Annullieren"
+   set caption(sn_tarot,go)                  "GO"
+
+   set caption(sn_tarot,secondary_title)     "Tarot SN Visu - Gehen zu"
+   set caption(sn_tarot,image_numero)        "Zu Bild Nummer ... gehen:"
+
+   set caption(sn_tarot,config_title)        "Tarot SN Visu - Konfiguration"
+   set caption(sn_tarot,rafraich_images)     "Display Erfrischung:"
+   set caption(sn_tarot,motion)              "Wahl 'motion'"
+   set caption(sn_tarot,release)             "Wahl 'release'"
+   set caption(sn_tarot,blink_delai)         "Blink   -   Zeitraum (ms):"
+   set caption(sn_tarot,blink_nbre)          "Schleifen Zahl:"
+   set caption(sn_tarot,auto_blink)          "Auto"
+   set caption(sn_tarot,image_gzip)          "Referenz Bilder speichern:"
+
+   set caption(sn_tarot,attention)           "Achtung"
+   set caption(sn_tarot,alerte)              "Die Änderung der Konfiguration der Display Erfrischung wird erst wirksam, beim nächsten Mal Tarot SN Visu gestartet wird."
+
+   set caption(sn_tarot,reference)           "Bezug"
+   set caption(sn_tarot,newref)              "Neue Bild 1 Bezug"
+   set caption(sn_tarot,filter)              "Filtrierung von %s -> %s %s"
+   set caption(sn_tarot,0image)              "Kein Bild."
+   set caption(sn_tarot,fits_header)         "FITS Header"
+   set caption(sn_tarot,header,noimage)      "Kein Bild zur Zeit in Speicher."
+
+   set caption(sn_tarot,dss_title)           "DSS Bilder herunterladen"
+   set caption(sn_tarot,dss_galaxy)          "Galaxis: %s"
+   set caption(sn_tarot,dss_not_found)       "%s nicht geladen. Grund: %s"
+   set caption(sn_tarot,dss_all)             "Alle DSS Bilder sind da."
+   set caption(sn_tarot,dss_manq)            "Diese DSS Bilder herunterladen:\n%s."
+
+   set caption(sn_tarot,exit)                "Beenden"
+   set caption(sn_tarot,select)              "Ein Archiv wählen:"
+   set caption(sn_tarot,configuration)       "Konfiguration"
+   set caption(sn_tarot,aide)                "Hilfe"
+
+   set caption(sn_tarot,candidate)           "Supernovae Kandidat"
+   set caption(sn_tarot,modify)              "Die Datei des Kandidaten bearbeiten"
+   set caption(sn_tarot,ok)                  "OK"
+   set caption(sn_tarot,result_analysis)     "Ergebnis der Analyse:"
+
+   set caption(sn_tarot,cand_wait)           "Bitte während die Schaffung der Kandidat Datei warten..."
+   set caption(sn_tarot,cand_wait_mp)        "Asteroiden Präsenz Prüfung..."
+   set caption(sn_tarot,cand_wait_sn)        "Bekannte Supernovae Präsenz Prüfung..."
+   set caption(sn_tarot,cand_wait_ar)        "Prüft die Präsenz der Galaxie in den Archiven..."
+
+   set caption(sn_tarot,ancand_wait)         "Warten Sie für die Analyse von Datensätzen Kandidaten..."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(sn_tarot,main_title)          "Tarot Visualização SN"
+   set caption(sn_tarot,title)               "Imagem do dia <-  Análise do arquivo: %s  -> Referência"
+   set caption(sn_tarot,prev)                "Anterior"
+   set caption(sn_tarot,next)                "Seguinte\n(F1)"
+   set caption(sn_tarot,goto)                "Ir para"
+   set caption(sn_tarot,background)          "Fundo do céu\n(F2)"
+   set caption(sn_tarot,blink_go)            "GO Blink\n(F3)"
+   set caption(sn_tarot,blink_stop)          "Stop Blink"
+   set caption(sn_tarot,save)                "Guardar\n(F4)"
+   set caption(sn_tarot,perso)               "Pessoal"
+   set caption(sn_tarot,dss)                 "DSS"
+
+   set caption(sn_tarot,image1)              "Imagem 1 -> %s %s %s %s %s %s"
+   set caption(sn_tarot,image2)              "Imagem 2 -> %s %s"
+
+   set caption(sn_tarot,galaxy_center)       "Centro da galáxia anfitriã"
+   set caption(sn_tarot,star_ref)            "Posição de uma estrela de referência"
+   set caption(sn_tarot,star_pos)            "Posição da candidata SN"
+   set caption(sn_tarot,star_id)             "Criação da ficha da candidate SN"
+   set caption(sn_tarot,swatch)              "Paleta & Função transferência"
+
+   set caption(sn_tarot,save1)               "Guardar"
+   set caption(sn_tarot,confirm)             "Deseja continuar?"
+
+   set caption(sn_tarot,cancel)              "Cancelar"
+   set caption(sn_tarot,go)                  "GO"
+
+   set caption(sn_tarot,secondary_title)     "Tarot Visualização SN - Ir para"
+   set caption(sn_tarot,image_numero)        "Ir para a imagem número:"
+
+   set caption(sn_tarot,config_title)        "Tarot Visualização SN - Configuração"
+   set caption(sn_tarot,rafraich_images)     "Actualização da visualização:"
+   set caption(sn_tarot,motion)              "Opção 'motion'"
+   set caption(sn_tarot,release)             "Opção 'release'"
+   set caption(sn_tarot,blink_delai)         "Blink   -   Atraso (ms):"
+   set caption(sn_tarot,blink_nbre)          "Número de ciclos:"
+   set caption(sn_tarot,auto_blink)          "Auto"
+   set caption(sn_tarot,image_gzip)          "Mostrar imagens de referência:"
+
+   set caption(sn_tarot,attention)           "Atenção"
+   set caption(sn_tarot,alerte)              "As alterações nas actualizações da visualização apenas\nterão efeito quando Tarot Visualização SN for reiniciado."
+
+   set caption(sn_tarot,reference)           "Referência"
+   set caption(sn_tarot,newref)              "Nova referência Imagem 1"
+   set caption(sn_tarot,filter)              "Filtragem de  %s -> %s %s"
+   set caption(sn_tarot,0image)              "Não existe imagem."
+   set caption(sn_tarot,fits_header)         "Cabeçalho FITS"
+   set caption(sn_tarot,header,noimage)      "Não existe imagem em memória neste momento."
+
+   set caption(sn_tarot,dss_title)           "Download das imagens DSS"
+   set caption(sn_tarot,dss_galaxy)          "Galáxia: %s"
+   set caption(sn_tarot,dss_not_found)       "%s não carregado. Motivo: %s"
+   set caption(sn_tarot,dss_all)             "Todas as imagens DSS estão disponíveis."
+   set caption(sn_tarot,dss_manq)            "Descarrega as imagens DSS:\n%s."
+
+   set caption(sn_tarot,configuration)       "Configuração"
+   set caption(sn_tarot,select)              "Escolher um arquivo:"
+   set caption(sn_tarot,aide)                "Ajuda"
+   set caption(sn_tarot,exit)                "Sair"
+
+   set caption(sn_tarot,candidate)           "Candidata supernova"
+   set caption(sn_tarot,modify)              "Modificar o ficheiro da candidata"
+   set caption(sn_tarot,ok)                  "OK"
+   set caption(sn_tarot,result_analysis)     "Resultado da análise:"
+
+   set caption(sn_tarot,cand_wait)           "Por favor aguarde enquanto a ficha da candidata é criada..."
+   set caption(sn_tarot,cand_wait_mp)        "Verifica a presença de asteróides..."
+   set caption(sn_tarot,cand_wait_sn)        "Verifica a presença de uma supernova conhecida..."
+   set caption(sn_tarot,cand_wait_ar)        "Verifica a presença da galáxia nos arquivos..."
+
+   set caption(sn_tarot,ancand_wait)         "Por favor aguarde, enquanto as fichas candidatas são analisadas..."
+
+# *************** Version danoise *************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(sn_tarot,main_title)          "Tarot SN View"
+   set caption(sn_tarot,title)               "Today Image <-  Archive Analysis: %s  -> Reference"
+   set caption(sn_tarot,prev)                "Previous"
+   set caption(sn_tarot,next)                "Next\n(F1)"
+   set caption(sn_tarot,goto)                "Go to"
+   set caption(sn_tarot,background)          "Sky Background\n(F2)"
+   set caption(sn_tarot,blink_go)            "Start Blink\n(F3)"
+   set caption(sn_tarot,blink_stop)          "Stop Blink"
+   set caption(sn_tarot,save)                "Save\n(F4)"
+   set caption(sn_tarot,perso)               "Personal"
+   set caption(sn_tarot,dss)                 "DSS"
+
+   set caption(sn_tarot,image1)              "Image 1 -> %s %s %s %s %s %s"
+   set caption(sn_tarot,image2)              "Image 2 -> %s %s"
+
+   set caption(sn_tarot,galaxy_center)       "Center of host galaxy"
+   set caption(sn_tarot,star_ref)            "Position of a reference star"
+   set caption(sn_tarot,star_pos)            "Position of SN candidate"
+   set caption(sn_tarot,star_id)             "Creating data sheet about SN candidate"
+   set caption(sn_tarot,swatch)              "Swatch & Transfer Function"
+
+   set caption(sn_tarot,save1)               "Save"
+   set caption(sn_tarot,confirm)             "Continue?"
+
+   set caption(sn_tarot,cancel)              "Cancel"
+   set caption(sn_tarot,go)                  "GO"
+
+   set caption(sn_tarot,secondary_title)     "Tarot SN View - Go to"
+   set caption(sn_tarot,image_numero)        "Go to Image Number:"
+
+   set caption(sn_tarot,config_title)        "Tarot SN View - Setup"
+   set caption(sn_tarot,rafraich_images)     "Display Refresh:"
+   set caption(sn_tarot,motion)              "Option 'motion'"
+   set caption(sn_tarot,release)             "Option 'release'"
+   set caption(sn_tarot,blink_delai)         "Blink   -   Delay (ms):"
+   set caption(sn_tarot,blink_nbre)          "Loop Number:"
+   set caption(sn_tarot,auto_blink)          "Auto"
+   set caption(sn_tarot,image_gzip)          "Saving Reference Images:"
+
+   set caption(sn_tarot,attention)           "Warning"
+   set caption(sn_tarot,alerte)              "Display Refresh changes will only be applied\nafter Tarot SN View is relaunched."
+
+   set caption(sn_tarot,reference)           "Reference"
+   set caption(sn_tarot,newref)              "New Reference Image 1"
+   set caption(sn_tarot,filter)              "Filtering of %s -> %s %s"
+   set caption(sn_tarot,0image)              "No image."
+   set caption(sn_tarot,fits_header)         "FITS Header"
+   set caption(sn_tarot,header,noimage)      "No image in memory."
+
+   set caption(sn_tarot,dss_title)           "DSS image download"
+   set caption(sn_tarot,dss_galaxy)          "Galaxy: %s"
+   set caption(sn_tarot,dss_not_found)       "%s not loaded. Reason: %s"
+   set caption(sn_tarot,dss_all)             "All DSS images are available."
+   set caption(sn_tarot,dss_manq)            "Downloads DSS images:\n%s."
+
+   set caption(sn_tarot,configuration)       "Setup"
+   set caption(sn_tarot,select)              "Choose an archive:"
+   set caption(sn_tarot,aide)                "Help"
+   set caption(sn_tarot,exit)                "Exit"
+
+   set caption(sn_tarot,candidate)           "Supernovae Candidate"
+   set caption(sn_tarot,modify)              "Edit candidate file"
+   set caption(sn_tarot,ok)                  "OK"
+   set caption(sn_tarot,result_analysis)     "Result of the analysis:"
+
+   set caption(sn_tarot,cand_wait)           "Please wait while the candidate data sheet is created..."
+   set caption(sn_tarot,cand_wait_mp)        "Checks if there are asteroids..."
+   set caption(sn_tarot,cand_wait_sn)        "Checks if there is a known supernovae..."
+   set caption(sn_tarot,cand_wait_ar)        "Checks if the galaxy is in the archives..."
+
+   set caption(sn_tarot,ancand_wait)         "Please wait while the candidate data sheets are analyzed..."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(sn_tarot,main_title)          "Tarot SN View"
+   set caption(sn_tarot,title)               "Today Image <-  Archive Analysis: %s  -> Reference"
+   set caption(sn_tarot,prev)                "Previous"
+   set caption(sn_tarot,next)                "Next\n(F1)"
+   set caption(sn_tarot,goto)                "Go to"
+   set caption(sn_tarot,background)          "Sky Background\n(F2)"
+   set caption(sn_tarot,blink_go)            "Start Blink\n(F3)"
+   set caption(sn_tarot,blink_stop)          "Stop Blink"
+   set caption(sn_tarot,save)                "Save\n(F4)"
+   set caption(sn_tarot,perso)               "Personal"
+   set caption(sn_tarot,dss)                 "DSS"
+
+   set caption(sn_tarot,image1)              "Image 1 -> %s %s %s %s %s %s"
+   set caption(sn_tarot,image2)              "Image 2 -> %s %s"
+
+   set caption(sn_tarot,galaxy_center)       "Center of host galaxy"
+   set caption(sn_tarot,star_ref)            "Position of a reference star"
+   set caption(sn_tarot,star_pos)            "Position of SN candidate"
+   set caption(sn_tarot,star_id)             "Creating data sheet about SN candidate"
+   set caption(sn_tarot,swatch)              "Swatch & Transfer Function"
+
+   set caption(sn_tarot,save1)               "Save"
+   set caption(sn_tarot,confirm)             "Continue?"
+
+   set caption(sn_tarot,cancel)              "Cancel"
+   set caption(sn_tarot,go)                  "GO"
+
+   set caption(sn_tarot,secondary_title)     "Tarot SN View - Go to"
+   set caption(sn_tarot,image_numero)        "Go to Image Number:"
+
+   set caption(sn_tarot,config_title)        "Tarot SN View - Setup"
+   set caption(sn_tarot,rafraich_images)     "Display Refresh:"
+   set caption(sn_tarot,motion)              "Option 'motion'"
+   set caption(sn_tarot,release)             "Option 'release'"
+   set caption(sn_tarot,blink_delai)         "Blink   -   Delay (ms):"
+   set caption(sn_tarot,blink_nbre)          "Loop Number:"
+   set caption(sn_tarot,auto_blink)          "Auto"
+   set caption(sn_tarot,image_gzip)          "Saving Reference Images:"
+
+   set caption(sn_tarot,attention)           "Warning"
+   set caption(sn_tarot,alerte)              "Display Refresh changes will only be applied\nafter Tarot SN View is relaunched."
+
+   set caption(sn_tarot,reference)           "Reference"
+   set caption(sn_tarot,newref)              "New Reference Image 1"
+   set caption(sn_tarot,filter)              "Filtering of %s -> %s %s"
+   set caption(sn_tarot,0image)              "No image."
+   set caption(sn_tarot,fits_header)         "FITS Header"
+   set caption(sn_tarot,header,noimage)      "No image in memory."
+
+   set caption(sn_tarot,dss_title)           "DSS image download"
+   set caption(sn_tarot,dss_galaxy)          "Galaxy: %s"
+   set caption(sn_tarot,dss_not_found)       "%s not loaded. Reason: %s"
+   set caption(sn_tarot,dss_all)             "All DSS images are available."
+   set caption(sn_tarot,dss_manq)            "Downloads DSS images:\n%s."
+
+   set caption(sn_tarot,configuration)       "Setup"
+   set caption(sn_tarot,select)              "Choose an archive:"
+   set caption(sn_tarot,aide)                "Help"
+   set caption(sn_tarot,exit)                "Exit"
+
+   set caption(sn_tarot,candidate)           "Supernovae Candidate"
+   set caption(sn_tarot,modify)              "Edit candidate file"
+   set caption(sn_tarot,ok)                  "OK"
+   set caption(sn_tarot,result_analysis)     "Result of the analysis:"
+
+   set caption(sn_tarot,cand_wait)           "Please wait while the candidate data sheet is created..."
+   set caption(sn_tarot,cand_wait_mp)        "Checks if there are asteroids..."
+   set caption(sn_tarot,cand_wait_sn)        "Checks if there is a known supernovae..."
+   set caption(sn_tarot,cand_wait_ar)        "Checks if the galaxy is in the archives..."
+
+   set caption(sn_tarot,ancand_wait)         "Please wait while the candidate data sheets are analyzed..."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(sn_tarot,main_title)          "Tarot SN View"
+   set caption(sn_tarot,title)               "Today Image <-  Archive Analysis: %s  -> Reference"
+   set caption(sn_tarot,prev)                "Previous"
+   set caption(sn_tarot,next)                "Next\n(F1)"
+   set caption(sn_tarot,goto)                "Go to"
+   set caption(sn_tarot,background)          "Sky Background\n(F2)"
+   set caption(sn_tarot,blink_go)            "Start Blink\n(F3)"
+   set caption(sn_tarot,blink_stop)          "Stop Blink"
+   set caption(sn_tarot,save)                "Save\n(F4)"
+   set caption(sn_tarot,perso)               "Personal"
+   set caption(sn_tarot,dss)                 "DSS"
+
+   set caption(sn_tarot,image1)              "Image 1 -> %s %s %s %s %s %s"
+   set caption(sn_tarot,image2)              "Image 2 -> %s %s"
+
+   set caption(sn_tarot,galaxy_center)       "Center of host galaxy"
+   set caption(sn_tarot,star_ref)            "Position of a reference star"
+   set caption(sn_tarot,star_pos)            "Position of SN candidate"
+   set caption(sn_tarot,star_id)             "Creating data sheet about SN candidate"
+   set caption(sn_tarot,swatch)              "Swatch & Transfer Function"
+
+   set caption(sn_tarot,save1)               "Save"
+   set caption(sn_tarot,confirm)             "Continue?"
+
+   set caption(sn_tarot,cancel)              "Cancel"
+   set caption(sn_tarot,go)                  "GO"
+
+   set caption(sn_tarot,secondary_title)     "Tarot SN View - Go to"
+   set caption(sn_tarot,image_numero)        "Go to Image Number:"
+
+   set caption(sn_tarot,config_title)        "Tarot SN View - Setup"
+   set caption(sn_tarot,rafraich_images)     "Display Refresh:"
+   set caption(sn_tarot,motion)              "Option 'motion'"
+   set caption(sn_tarot,release)             "Option 'release'"
+   set caption(sn_tarot,blink_delai)         "Blink   -   Delay (ms):"
+   set caption(sn_tarot,blink_nbre)          "Loop Number:"
+   set caption(sn_tarot,auto_blink)          "Auto"
+   set caption(sn_tarot,image_gzip)          "Saving Reference Images:"
+
+   set caption(sn_tarot,attention)           "Warning"
+   set caption(sn_tarot,alerte)              "Display Refresh changes will only be applied\nafter Tarot SN View is relaunched."
+
+   set caption(sn_tarot,reference)           "Reference"
+   set caption(sn_tarot,newref)              "New Reference Image 1"
+   set caption(sn_tarot,filter)              "Filtering of %s -> %s %s"
+   set caption(sn_tarot,0image)              "No image."
+   set caption(sn_tarot,fits_header)         "FITS Header"
+   set caption(sn_tarot,header,noimage)      "No image in memory."
+
+   set caption(sn_tarot,dss_title)           "DSS image download"
+   set caption(sn_tarot,dss_galaxy)          "Galaxy: %s"
+   set caption(sn_tarot,dss_not_found)       "%s not loaded. Reason: %s"
+   set caption(sn_tarot,dss_all)             "All DSS images are available."
+   set caption(sn_tarot,dss_manq)            "Downloads DSS images:\n%s."
+
+   set caption(sn_tarot,configuration)       "Setup"
+   set caption(sn_tarot,select)              "Choose an archive:"
+   set caption(sn_tarot,aide)                "Help"
+   set caption(sn_tarot,exit)                "Exit"
+
+   set caption(sn_tarot,candidate)           "Supernovae Candidate"
+   set caption(sn_tarot,modify)              "Edit candidate file"
+   set caption(sn_tarot,ok)                  "OK"
+   set caption(sn_tarot,result_analysis)     "Result of the analysis:"
+
+   set caption(sn_tarot,cand_wait)           "Please wait while the candidate data sheet is created..."
+   set caption(sn_tarot,cand_wait_mp)        "Checks if there are asteroids..."
+   set caption(sn_tarot,cand_wait_sn)        "Checks if there is a known supernovae..."
+   set caption(sn_tarot,cand_wait_ar)        "Checks if the galaxy is in the archives..."
+
+   set caption(sn_tarot,ancand_wait)         "Please wait while the candidate data sheets are analyzed..."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

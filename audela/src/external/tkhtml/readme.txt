@@ -1,0 +1,1 @@
+The contents of htmlwidget comes fromhttp://tkhtml.tcl.tk/tkhtml3-alpha-11.tar.gzAccess of this file is described inhttp://www.flightlab.com/~joe/gutter/mirror.htmlNote that the file http://tkhtml.tcl.tk/tkhtml3-alpha-16.tar.gzleads to a version of libTkhtml.so which craches AudeLA.Alain Klotz 2013 Jan. 3

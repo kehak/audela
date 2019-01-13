@@ -1,0 +1,128 @@
+
+#--- je recupere le buffer de la premiere visu
+set visuNo 1
+set bufNo [::confVisu::getBufNo $visuNo]
+
+#-------------------------------------------------------------------------------
+test ima_series_stack_init {prepare 3 fichiers} {
+   #--- je cree une image de niveau 50
+   set naxis1 768
+   set naxis2 512
+   set bufTemp [::buf::create]
+   buf$bufTemp setpixels CLASS_GRAY $naxis1 $naxis2 FORMAT_USHORT COMPRESS_NONE 0
+   buf$bufTemp setkwd [list "NAXIS" 2 int "" ""]
+   buf$bufTemp setkwd [list "NAXIS1" $naxis1 int "" ""]
+   buf$bufTemp setkwd [list "NAXIS2" $naxis2 int "" ""]
+   buf$bufTemp offset 50
+
+   #--- imastack-1.fit niveau 50 , sauf intensite(1,1)=100
+   buf$bufTemp copyto $bufNo
+   buf$bufNo setpix {1 1} 100
+   set exptime "60"
+   set dateObs "2008-12-05T22:00:00.00"
+   set dateEnd "2008-12-05T22:01:00.00"
+   buf$bufNo setkwd [list "EXPOSURE" $exptime float "" "s"]
+   buf$bufNo setkwd [list "DATE-OBS" $dateObs string "Start of exposure. FITS standard" "Iso 8601"]
+   buf$bufNo setkwd [list "DATE-END" $dateEnd string "End of exposure. FITS standard" "Iso 8601"]
+   buf$bufNo setkwd [list "NAXIS" 2 int "" ""]
+   buf$bufNo setkwd [list "NAXIS1" $naxis1 int "" ""]
+   buf$bufNo setkwd [list "NAXIS2" $naxis2 int "" ""]
+   buf$bufNo save $::audace(rep_images)/imastack-1.fit
+
+   #--- imastack-2.fit niveau 50 sauf intensite(2,2)=200
+   buf$bufTemp copyto $bufNo
+   buf$bufNo setpix {2 2} 200
+   set exptime "60"
+   set dateObs "2008-12-05T22:01:30.00"
+   set dateEnd "2008-12-05T22:02:30.00"
+   buf$bufNo setkwd [list "EXPOSURE" $exptime float "" "s"]
+   buf$bufNo setkwd [list "DATE-OBS" $dateObs string "Start of exposure. FITS standard" "Iso 8601"]
+   buf$bufNo setkwd [list "DATE-END" $dateEnd string "End of exposure. FITS standard" "Iso 8601"]
+   buf$bufNo setkwd [list "NAXIS" 2 int "" ""]
+   buf$bufNo setkwd [list "NAXIS1" $naxis1 int "" ""]
+   buf$bufNo setkwd [list "NAXIS2" $naxis2 int "" ""]
+   buf$bufNo save $::audace(rep_images)/imastack-2.fit
+
+   #--- imastack-3.fit niveau 50 sauf intensite(3,3)=300
+   buf$bufTemp copyto $bufNo
+   buf$bufNo setpix {3 3} 300
+   set exptime "60"
+   set dateObs "2008-12-05T22:03:00.00"
+   set dateEnd "2008-12-05T22:04:00.00"
+   buf$bufNo setkwd [list "EXPOSURE" $exptime float "" "s"]
+   buf$bufNo setkwd [list "DATE-OBS" $dateObs string "Start of exposure. FITS standard" "Iso 8601"]
+   buf$bufNo setkwd [list "DATE-END" $dateEnd string "End of exposure. FITS standard" "Iso 8601"]
+   buf$bufNo setkwd [list "NAXIS" 2 int "" ""]
+   buf$bufNo setkwd [list "NAXIS1" $naxis1 int "" ""]
+   buf$bufNo setkwd [list "NAXIS2" $naxis2 int "" ""]
+   buf$bufNo save $::audace(rep_images)/imastack-3.fit
+
+   #--- je supprime le buffer temporaire
+   ::buf::delete $bufTemp
+
+   return ""
+} ""
+
+#-------------------------------------------------------------------------------
+test ima_stack_sadd2 {sadd2} {
+
+   #--- je teste la somme avec l'option DATE-END
+   sadd imastack- add 3 1 "DATE-END"
+
+   buf$bufNo load $::audace(rep_images)/add.fit
+   confVisu::autovisu $visuNo
+   update
+   file delete $::audace(rep_images)/add.fit
+
+   set pix1 [lindex [buf$bufNo getpix {1 1}] 1]
+   #--- je verifie que c'est egal a la somme 100+50+50 = 200
+   return [ expr $pix1 ]
+} [ expr 200.000000 ]
+
+#-------------------------------------------------------------------------------
+test ima_stack_add {ttscript2 IMA/STACK ADD} {
+
+   #--- je cree une image de niveau 150
+   ttscript2 "IMA/STACK \"$::audace(rep_images)\" \"imastack-1.fit imastack-2.fit imastack-3.fit\" * * \"\" \"$::audace(rep_images)\" add-result.fit . \"\" ADD DATE-END jpegfile jpeg_quality=100"
+
+   buf$bufNo load $::audace(rep_images)/add-result.fit
+   confVisu::autovisu $visuNo
+   update
+   file delete $::audace(rep_images)/add-result.fit
+   file delete $::audace(rep_images)/add-result.jpg
+
+   set pix1 [lindex [buf$bufNo getpix {1 1}] 1]
+   #--- je verifie que c'est egal a la somme 100+50+50 = 200
+   return [ expr $pix1 ]
+
+} [ expr 200.000000 ]
+
+#-------------------------------------------------------------------------------
+test ima_series_offset {ttscript2 IMA/SERIES OFFSET} {
+
+   #--- je cree une image de niveau 150
+   ttscript2 "IMA/SERIES \"$::audace(rep_images)\" imastack-1.fit * * \"\" \"$::audace(rep_images)\" offset-result.fit . \"\" OFFSET offset=1000 jpegfile jpeg_quality=100"
+
+   buf$bufNo load $::audace(rep_images)/offset-result.fit
+   confVisu::autovisu $visuNo
+   update
+   file delete $::audace(rep_images)/offset-result.fit
+   file delete $::audace(rep_images)/offset-result.jpg
+
+   set pix1 [lindex [buf$bufNo getpix {1 1}] 1]
+   #--- je verifie que c'est egal a la somme 100+1000 = 1100
+   return [ expr $pix1 ]
+
+} [ expr 1100.000000 ]
+
+#-------------------------------------------------------------------------------
+test ima_series_stack_end {supprime les images temporaires} {
+
+   #--- je supprime le fichiers de travail
+   file delete $::audace(rep_images)/imastack-1.fit
+   file delete $::audace(rep_images)/imastack-2.fit
+   file delete $::audace(rep_images)/imastack-3.fit
+   confVisu::clear $visuNo
+   return ""
+} ""
+

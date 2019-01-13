@@ -1,0 +1,44 @@
+SCENARIO
+
+- inserer les images avec bddimages/insertion
+- aller dans l outil recherche.
+- faire une nouvelle liste intelligente entre 2 dates definissant une mission
+  d observation
+- afficher la liste des images dans la fenetre de recherche
+- voir idbddimages, telescope, date, OBJECT, Filter
+- definir les FLAT, DARK, OFFSET, IMAGES en selectionnant les images 
+  puis clic droit sur la liste, menu "type d images" selectionner 
+  1 des 5 types d images
+- Faire un super dark et un super offset. implique un bouton "make offset/dark"
+- selectionner les flats d un meme filtre, puis clic sur le bouton 
+  make super flat. creation d une nouvelle image de flat dans la bdd, 
+  et affichage dans la liste encours de la mission.
+- Faire ca pour chaque filtre.
+- Selectionner toutes les images brutes. (implique un espace de 5 boutons de filtre
+  d affichage suivant le type, ajouter IM Brute et IM corrigee voir BDIFTYPE)
+- pour toute les images brutes selectionnées faire le traitement FLAT/DARK/OFFSET
+  si et seulement si les supers flat/dark/offset sont presents.
+  implique un bouton "traitement de l image"
+- pour toutes les images corrigees selectionnees -> lancement 
+  de l outil construction du wcs.
+  l outil wcs propose le choix de plusieurs methodes.
+  * cas du chargement d une image dss :
+    - fenetre du choix d un champ et d un rayon.
+    - si certains parametres (RA, DEC, et FIELDWCS) sont dans le header de l image
+      les champs se remplissent automatiquement.
+      bouton GO qui applique la requete cherche l image dss et un catalogue astrometriue. 
+    - une nouvelle visu apparait avec l image du dss. et l autre avec la premiere image selectionnee.
+    - clic d une etoile du dss puis clic de la meme etoile dans l image
+    - le wcs se construit au fur et a mesure affichage des rond vert des etoiles du catalogue
+      dans l image.
+    - quand satisfait clic sur finish.
+    - construction du wcs pour toutes les images selectionnees.
+    - aller a la derniere image et verifier le wcs par la presence des ronds verts.
+- aller chercher tous les catalogues cds query. photometrie + skybot + autres.
+- extraction des sources de l image.
+- identification en mixant en une seule liste de source de l image. construction de la liste des sources en tant que fichier cata votable.
+- calcul de l astrometrie en construisant les fichiers priam associés.
+- calcul de la photometrie
+
+
+    

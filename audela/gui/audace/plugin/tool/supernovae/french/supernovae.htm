@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Supernovae (Acquisiton & Visionneuse)</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 06 juillet 2013</p>
+<h1>Supernovae (Acquisiton & Visionneuse) - Recherche de supernovae </h1>
+<h2> 1. Comment fonctionne ce script ?</h2>
+<p> Le script de recherche de supernovae est un ensemble de fonctions de l'interface Aud'ACE, destin&eacute; &agrave; observer des supernovae avec un t&eacute;lescope automatique (LX200 et compatibles, AudeCom, MCMT, etc.) et une cam&eacute;ra CCD. L'objectif est de permettre au plus grand nombre de partager une m&eacute;thode d'observation performante et &eacute;ventuellement de l'am&eacute;liorer. On peut distinguer deux th&egrave;mes : </p>
+<ul>
+  <li> La recherche de nouvelles supernovae.</li>
+  <li> Le suivi photom&eacute;trique de supernovae connues.</li>
+</ul>
+<p> Actuellement, seul le premier th&egrave;me a &eacute;t&eacute; d&eacute;velopp&eacute;. </p>
+<h2> 2. D&eacute;marrer le script</h2>
+<p> D&eacute;marrer l'interface Aud'ACE, ensuite choisir comme ci-dessous l'intitul&eacute; <strong>Supernovae</strong> dans le menu d&eacute;roulant <strong>Outils</strong> : </p>
+<img src="images/snaude01.gif" alt="" width="639" height="507" />
+<p>L'outil <strong>Supernovae</strong> s'ouvre et ressemble alors &agrave; cela : </p>
+<img src="images/snaude02.gif" alt="" width="639" height="507" />
+<p>Trois boutons sont disponibles : </p>
+<ul>
+  <li> <strong>Supernovae</strong> : Qui permet d'acc&eacute;der &agrave; la pr&eacute;sente page web qui constitue l'aide de cet outil.</li>
+  <li> <strong>Sn Acq.</strong> : Pour acqu&eacute;rir des images de galaxies dans l'espoir de trouver des supernovae.</li>
+  <li> <strong>Sn Visu</strong> : Pour visualiser les images acquises par <strong>Sn Acq.</strong> et les comparer &agrave; des images de r&eacute;f&eacute;rence.</li>
+</ul>
+<h2><a name="sn_acq" id="sn_acq"></a> 3. Sn Acq.</h2>
+<p> <strong>Sn Acq.</strong> permet de r&eacute;aliser automatiquement des images toute la nuit. Il observe les galaxies qui sont catalogu&eacute;es par exemple dans le fichier <strong>sn.txt</strong>. Ce fichier est extrait de diff&eacute;rents catalogues et comprend actuellement 21743 galaxies plus brillantes que la magnitude 15.5 (liste fournie par Robin Chassagne). Bien s&ucirc;r, il vous est possible de confectionner un autre fichier pour vous orienter vers une strat&eacute;gie personnelle (catalogues de Markarian, Arp, etc.). Ce nouveau fichier sera alors copi&eacute; dans le r&eacute;pertoire <strong>\audace\plugin\tool\supernovae\cata_supernovae</strong> afin d'&ecirc;tre automatiquement pris en compte par <strong>Sn Acq.</strong> via une boite d&eacute;roulante. Le fichier <strong>sn.txt</strong> est &eacute;crit au format texte : </p>
+<p><strong><code>UGC12889 00 00 02 +47 16 28 13.73</code></strong> <br />
+  <strong><code>NGC3112 00 00 03 -18 00 30 15.15</code></strong> <br />
+  <strong><code>...</code></strong> </p>
+<p>On trouve une galaxie par ligne et chaque ligne est d&eacute;finie par les champs suivants : </p>
+<ul>
+  <li> Nom : Qui sera celui du fichier de l'image acquise.</li>
+  <li> hh mm ss : L'ascension droite en coordonn&eacute;es J2000.0.</li>
+  <li> +dd mm ss : La d&eacute;clinaison en coordonn&eacute;es J2000.0.</li>
+  <li> La magnitude donn&eacute;e par le catalogue.</li>
+</ul>
+<p> Si vous d&eacute;sirez utiliser un autre catalogue, il suffit d'utiliser le m&ecirc;me ordre pour les champs. Ces champs sont s&eacute;par&eacute;s par des espaces. </p>
+<p><strong>Sn Acq.</strong> se pr&eacute;sente sous la forme d'une interface qui comprend : </p>
+<ul>
+  <li> Une zone d'entr&eacute;e de param&egrave;tres.</li>
+  <li> Une zone de retour d'&eacute;tat.</li>
+  <li> Une zone de boutons de commande.</li>
+</ul>
+<img src="images/snaude03.gif" alt="" width="538" height="454" />
+<p>Pour d&eacute;marrer une nuit d'acquisition, il faut avoir mis en station le t&eacute;lescope automatique, avoir r&eacute;gl&eacute; les coordonn&eacute;es des codeurs (initialisation de la position du t&eacute;lescope par rapport aux &eacute;toiles) et avoir r&eacute;alis&eacute; la focalisation (mise au point). Comme <strong>Sn Acq.</strong> a besoin de conna&icirc;tre l'heure pour commencer et arr&ecirc;ter automatiquement les observations, il est n&eacute;cessaire de mettre &agrave; l'heure l'horloge de l'ordinateur d'acquisition. Pour cela, la bo&icirc;te <strong>Temps</strong> qui est accessible par le menu d&eacute;roulant<strong>Configuration</strong>, puis l'option <strong>Temps...</strong>, vous permet de choisir entre 2 possibilit&eacute;s : </p>
+<ul>
+  <li> Soit l'heure de votre ordinateur sera l'heure locale (HL), c'est &agrave; dire celle de vote montre.</li>
+  <li> Soit ce sera l'heure TU de votre lieu d'observation.</li>
+</ul>
+<h3> 3.1. Connexion et images pour le pr&eacute;traitement</h3>
+<p> <strong>Sn Acq.</strong> ne fonctionne que si les quatre conditions suivantes sont r&eacute;unies :</p>
+<ul>
+  <li> Une cam&eacute;ra est connect&eacute;e et configur&eacute;e par Aud'ACE. Par d&eacute;faut, il n'y a pas de cam&eacute;ra connect&eacute;e &agrave; l'interface Aud'ACE. Pour changer cette configuration, il suffit de cliquer sur le libell&eacute; "<strong>Pas de cam&eacute;ra</strong>" &eacute;crit en rouge. Apr&egrave;s connexion, la phrase "<strong>Cam&eacute;ra audine</strong>" (par exemple) remplace le message rouge.</li>
+  <li> Un t&eacute;lescope est connect&eacute; et configur&eacute; par Aud'ACE. Par d&eacute;faut, il n'y a pas de t&eacute;lescope connect&eacute; &agrave; l'interface Aud'ACE. Pour &eacute;tablir une connexion, il suffit de cliquer sur le libell&eacute; "<strong>Pas de t&eacute;lescope</strong>" &eacute;crit en rouge. Apr&egrave;s connexion, la phrase "<strong>T&eacute;lescope LX200</strong>" (ou "<strong>T&eacute;lescope AudeCom</strong>", etc.) remplace le message rouge.</li>
+  <li> Une image de dark est pr&eacute;sente dans le dossier d&eacute;di&eacute; aux images (zone <strong>Dossier images</strong>). Pour acqu&eacute;rir cette image, il suffit de placer la cam&eacute;ra CCD, refroidie, dans le noir et de cliquer sur le bouton <strong>Dark</strong>. Une quinzaine d'images de dark sont alors acquises et une image m&eacute;diane est extraite et sauvegard&eacute;e. Le fichier de l'image du dark (de nom d60b2.fit pour 60 secondes de pose en binning 2x2) se trouve dans le dossier d&eacute;di&eacute; aux images.</li>
+  <li> Une image de bias est pr&eacute;sente dans le dossier d&eacute;di&eacute; aux images (zone <strong>Dossier images</strong>). Pour acqu&eacute;rir cette image, il suffit de placer la cam&eacute;ra CCD, refroidie, dans le noir et de cliquer sur le bouton <strong>Bias</strong>. Une vingtaine d'images avec 0 seconde d'exposition sont alors acquises et une image m&eacute;diane est extraite et sauvegard&eacute;e. Le fichier de l'image du bias (de nom d0b2.fit pour 0 seconde de pose en binning 2x2) se trouve dans le dossier d&eacute;di&eacute; aux images.</li>
+</ul>
+<img src="images/snaude04.gif" alt="" width="538" height="454" />
+<p>Noter que la correction de flat n'est pas r&eacute;alis&eacute;e. Cela ne nuit pas &agrave; la d&eacute;tection des supernovae et permet de ne pas d&eacute;truire les images en cas de mauvais flat. </p>
+<h3> 3.2. Param&eacute;trage</h3>
+<p> Le param&eacute;trage permet de r&eacute;gler les valeurs d'acquisition de fa&ccedil;on &agrave; adapter la m&eacute;thode d'observation &agrave; vos contraintes. Ces param&egrave;tres sont disponibles dans le fichier de configuration <strong>config.ini</strong> mis &agrave; jour &agrave; chaque sortie de la fen&ecirc;tre de <strong>Sn Acq</strong>. On a distingu&eacute; les param&egrave;tres de base, r&eacute;glables depuis l'interface <strong>Sn Acq.</strong>, et les param&egrave;tres &eacute;tendus, r&eacute;glables avec un &eacute;diteur de texte directement &agrave; partir du fichier <strong>config.ini</strong>.</p>
+<h4> 3.2.1. Param&egrave;tres de base</h4>
+<p> Les champs &agrave; remplir sont d&eacute;finis de la mani&egrave;re suivante : </p>
+<ul>
+  <li> <strong>Dossier images</strong> : C'est le nom du dossier o&ugrave; vont &ecirc;tre enregistr&eacute;es les images. Par d&eacute;faut, c'est le chemin du r&eacute;pertoire d&eacute;di&eacute; aux images d&eacute;fini par le menu d&eacute;roulant<strong>Configuration</strong>, puis le libell&eacute; <strong>R&eacute;pertoires...</strong> qui est affich&eacute; dans cette zone. Pour information, ./ d&eacute;signe le r&eacute;pertoire du logiciel AudeLA. Important : Sous Windows, n'utiliser pas les \ mais remplacer les par des /. Par un simple clic gauche de la souris sur le chemin du dossier (texte en bleu) vous ouvrez directement la bo&icirc;te de dialogue pour modifier ce param&eacute;trage.</li>
+  <li> <strong>Lieu</strong> : Il faut indiquer les coordonn&eacute;es g&eacute;ographiques du lieu au format GPS. Si vous &ecirc;tes &agrave; une longitude de 3.45 degr&eacute;s Ouest, une latitude de 46.342 degr&eacute;s Sud et &agrave; 562 m&egrave;tres d'altitude, indiquer : <strong><code>GPS 3.45 W -46.342 562</code></strong>. Par d&eacute;faut, ce sont les coordonn&eacute;es d&eacute;finies par le menu d&eacute;roulant<strong>Configuration</strong>, puis le libell&eacute; <strong>Position de l'observateur...</strong> qui sont affich&eacute;es dans cette zone. De m&ecirc;me que ci-dessus, par un simple clic gauche de la souris sur les coordonn&eacute;es du lieu (texte en bleu) vous ouvrez directement la de dialogue pour modifier ce param&egrave;tre.</li>
+  <li> <strong>Hauteur du Soleil pour observer</strong> : C'est la hauteur, en degr&eacute;s, sous l'horizon &agrave; partir de laquelle le ciel est suffisamment noir pour pouvoir observer.</li>
+  <li> <strong>Angle horaire limite ouest</strong> : Le t&eacute;lescope ne pourra pointer qu'en direction du m&eacute;ridien et de part et d'autre suivant deux valeurs limites. Le m&eacute;ridien est d&eacute;fini par l'angle horaire de 0 &agrave; 360 degr&eacute;s. Si l'on souhaite autoriser les observations jusqu'&agrave; 60 degr&eacute;s du m&eacute;ridien vers l'ouest (le couchant) alors il suffit d'&eacute;crire 60 pour ce param&egrave;tre.</li>
+  <li> <strong>Angle horaire limite est</strong> : De m&ecirc;me si l'on souhaite autoriser les observations jusqu'&agrave; 60 degr&eacute;s du m&eacute;ridien vers l'est (le levant) alors il suffit d'&eacute;crire 300 (= 360 - 60) pour ce param&egrave;tre.</li>
+  <li> <strong>D&eacute;clinaison limite inf&eacute;rieure</strong> : C'est la limite inf&eacute;rieure de la d&eacute;clinaison au-dessous de laquelle le t&eacute;lescope ne pointera pas.</li>
+  <li> <strong>D&eacute;clinaison limite sup&eacute;rieure</strong> : C'est la limite sup&eacute;rieure de la d&eacute;clinaison au-dessus de laquelle le t&eacute;lescope ne pointera pas.</li>
+  <li> <strong>Exposition (sec.)</strong> : On indiquera ici le temps de pose de la cam&eacute;ra CCD en secondes.</li>
+  <li> <strong>Nbre d'images par champ</strong> : Ce param&egrave;tre indique le nombre d'images du m&ecirc;me champ &agrave; acqu&eacute;rir afin de pouvoir augmenter la d&eacute;tectivit&eacute; pour un temps de pose donn&eacute;.</li>
+  <li> <strong>Unsmearing</strong> : C'est un param&egrave;tre pour le traitement d'images qui a pour fonction de corriger l'effet de tra&icirc;n&eacute;e des &eacute;toiles lorsque la cam&eacute;ra CCD ne poss&egrave;de pas d'obturateur. Par contre si la cam&eacute;ra a un obturateur, il faut mettre 0 (z&eacute;ro) pour ce param&egrave;tre.</li>
+  <li> <strong>Fichier de base de donn&eacute;es</strong> : C'est le nom du fichier contenant la base de donn&eacute;es des galaxies.</li>
+  <li> <strong>Magnitude sup.</strong> : C'est la limite sup&eacute;rieure de la magnitude des galaxies &agrave; observer.</li>
+  <li> <strong>Magnitude inf.</strong> : C'est la limite inf&eacute;rieure de la magnitude des galaxies &agrave; observer.</li>
+  <li> <strong>Binning</strong> : On retrouve ici le binning des images CCD &agrave; acqu&eacute;rir.</li>
+  <li> <strong>Longueur focale (m)</strong> : C'est la longueur focale r&eacute;sultante du montage optique utilis&eacute;.</li>
+  <li> <strong>Observateur</strong> : Enfin, ici on trouve le nom de l'observateur.</li>
+</ul>
+<p>Les limites donn&eacute;es en angle horaire permettent d'observer, par exemple, avec un t&eacute;lescope dans une coupole fixe.</p>
+<p>Voici &agrave; titre d'exemple, les variables de configuration des champs d&eacute;finis ci-dessus qui sont disponibles dans le fichier <strong>config.ini</strong>, attention les commentaires ont &eacute;t&eacute; rajout&eacute;s pour une meilleure compr&eacute;hension : </p>
+<p><code># === Basic parameters ===</code><br />
+  <code># --- binning factor (1, 2, 4)</code> <br />
+  <code>set conf(snconfacq,binning) "2"</code><br />
+  <code># --- degrees : Lower declination limit</code> <br />
+  <code>set conf(snconfacq,decinf) "-15"<br />
+  </code><code># --- degrees : Upper declination limit</code> <br />
+  <code>set conf(snconfacq,decsup) "50"</code><br />
+  <code># --- folder of images</code><br />
+  <code>set conf(snconfacq,dossier) "C:/Astronomie/AudeLA-1.2.3/images</code><code>"</code><br />
+  <code># --- exposure time for CCD (seconds)</code> <br />
+  <code>set conf(snconfacq,exptime) "60"</code><br />
+  <code># --- filename of the database</code> <br />
+  <code>set conf(snconfacq,fichier_sn) "sn.txt"</code><br />
+  <code># --- optical focal length (meters)</code> <br />
+  <code>set conf(snconfacq,foclen) "1.2"</code><br />
+  <code># --- Sun altitude under that SNAcq is on (degrees)</code><br />
+  <code>set conf(snconfacq,haurore) "-10"</code><br />
+  <code># --- degrees : Hour angle limit toward eastern horizon</code> <br />
+  <code>set conf(snconfacq,hest) "300."</code><br />
+  <code># --- degrees : Hour angle limit toward western horizon</code> <br />
+  <code>set conf(snconfacq,houest) "30."</code><br />
+  <code># --- site (GPS long(degrees) E/W lat(degrees) alt(meters))</code> <br />
+  <code>set conf(snconfacq,localite) "GPS 1.376722 E 43.659778 142"</code> <br />
+  <code># --- lower limit magnitude to select galaxies from database</code> <br />
+  <code>set conf(snconfacq,maginf) "-1.5"</code><br />
+  <code># --- upper limit magnitude to select galaxies from database</code> <br />
+  <code>set conf(snconfacq,magsup) "13.5"</code><br />
+  <code># --- number image to record on the same field (1, 2,...)</code> <br />
+  <code>set conf(snconfacq,nbimages) "1"</code><br />
+  <code># --- telescope type</code> <br />
+  <code>set conf(snconfacq,telescope) "lx200"</code><br />
+  <code># --- smearing factor (0 if camera as a shutter)</code> <br />
+  <code>set conf(snconfacq,unsmearing) "0.0005"</code><br />
+</p>
+<h4>3.2.2. Param&egrave;tres &eacute;tendus</h4>
+<p>Ces param&egrave;tres peuvent &ecirc;tre chang&eacute;s facilement en &eacute;ditant le fichier <strong>config.ini</strong> avec un &eacute;diteur de texte (wordpad, notepad ou kedit par exemple). </p>
+<p><code># === Extended parameters ===<br />
+  # --- FITS Keywords</code> <br />
+  <code>set conf(snconfacq,fits,COMMENT1) "Focal reducer"</code> <br />
+  <code>set conf(snconfacq,fits,COMMENT2) "Kaf-0401E Kodak CCD"</code> <br />
+  <code>set conf(snconfacq,fits,INSTRUME) "CCD camera"</code><br />
+  <code>set conf(snconfacq,fits,OBSERVER) "SUPER Man"</code> <br />
+  <code>set conf(snconfacq,fits,TELESCOP) "LX200"</code><br />
+  <br />
+</p>
+<p>Les param&egrave;tres &eacute;tendus se limitent donc &agrave; une s&eacute;rie de mots cl&eacute;s au format FITS qui appara&icirc;tront dans l'en-t&ecirc;te des images. </p>
+<p>Nota : Si des mots sont encadr&eacute;s par ## et ##, ce sont des commentaires. </p>
+<h3> 3.3. L'acquisition des images</h3>
+<p>C'est paradoxalement la partie la plus simple. Il suffit d'appuyer sur le bouton <strong>Acquisition</strong>. <strong>Sn Acq.</strong> r&eacute;alise le champ d'une galaxie et passe au suivant. La strat&eacute;gie de choix des galaxies est simple. La premi&egrave;re galaxie est choisie le plus pr&egrave;s possible de la limite ouest autoris&eacute;e. Les galaxies suivantes sont encha&icirc;n&eacute;es dans l'ordre croissant des ascensions droites. La position de la Lune est prise en compte et le t&eacute;lescope ne pointera pas &agrave; moins de 55 degr&eacute;s de la Pleine Lune lorsqu'elle est &acirc;g&eacute;e entre le Premier Quartier et le Dernier Quartier. Cette m&eacute;thode a l'inconvenant de faire faire de grands d&eacute;placements en d&eacute;clinaison lorsque l'on passe d'une galaxie &agrave; l'autre. Mais elle &eacute;tait plus "facile" &agrave; programmer. </p>
+<p>L'encha&icirc;nement des op&eacute;rations est le suivant : </p>
+<ul>
+  <li> 1 - Pointage du t&eacute;lescope, 1er objet.</li>
+  <li> 2 - Lance la pose CCD, 1er objet.</li>
+  <li> 3 - Attend la fin de la pose CCD, 1er objet.</li>
+  <li> 4 - Lecture de l'image, 1er objet.</li>
+  <li> 5 - Pointage du t&eacute;lescope, 2i&egrave;me objet (ou reste sur le premier objet si on a demand&eacute; plusieurs poses par champ).</li>
+  <li> 6 - Lance la pose CCD, 2i&egrave;me objet (ou sur le premier dans le cas de plusieurs poses par champ).</li>
+  <li> 7 - Corrige l'image du bias et du dark, 1er objet.</li>
+  <li> 8 - Attend la fin de la pose CCD, 2i&egrave;me objet.</li>
+  <li> 9 - Lecture de l'image, 2i&egrave;me objet.</li>
+  <li> Etc.</li>
+</ul>
+<p>La correction du bias et du dark d'une image est effectu&eacute;e pendant le temps de pose de l'image suivante afin d'optimiser le temps d'observation. De plus, un l&eacute;ger filtre (traitement d'images) est appliqu&eacute;, il doit retirer les cosmiques qui n'occupent qu'un seul pixel. </p>
+<h3> 3.4. Les fichiers LOG</h3>
+<p> Deux fichiers sont mis &agrave; jour apr&egrave;s chaque prise de vue. Ce sont des fichiers texte qui contiennent des informations sur ce qui a &eacute;t&eacute; observ&eacute; jusqu'alors. Le fichier <strong>sn.log</strong> est utilis&eacute; en interne par <strong>Sn Acq.</strong> et ne pr&eacute;sente pas d'int&eacute;r&ecirc;t. En revanche, le fichier <strong>sn2.log</strong> contient divers renseignements comme l'angle horaire point&eacute; pour chaque galaxie. Ce fichier peut &ecirc;tre utilis&eacute; pour &eacute;tudier le bien fond&eacute; (ou non) de la strat&eacute;gie d'observation. Voici une ligne extraite d'un fichier <strong>sn2.log</strong> :</p>
+<p><code>jj= 2451809.400775 tsl= 327.35 ra= 292.88 h= 34.47 dec= 35.88 IC1303 19 31 30 +35 53 1.5</code> </p>
+<p>Important : Si Aud'ACE se plante pendant la nuit. Il est possible de relancer <strong>Sn Acq.</strong> qui n'observera pas les galaxies d&eacute;j&agrave; enregistr&eacute;es car elles sont inscrites dans les fichiers <strong>sn.log</strong> et <strong>sn2.log</strong>. Cependant, cet avantage pr&eacute;sente aussi l'inconv&eacute;nient qu'il faille effacer les fichiers "log" d'une nuit &agrave; l'autre, sinon on n'observera jamais deux fois la m&ecirc;me galaxie ! En g&eacute;n&eacute;ral, apr&egrave;s la nuit, il vaut mieux transf&eacute;rer les images et les fichiers "log" vers un ordinateur de traitement d'images. </p>
+<p>Lors d'une <strong>Simulation</strong>, les fichiers <strong>sn.log</strong> et <strong>sn2.log</strong> ne sont pas touch&eacute;s. Les fichiers <strong>snsimu.log</strong> et <strong>snsimu2.log</strong> sont alors g&eacute;n&eacute;r&eacute;s. </p>
+<h3> 3.5. La simulation d'une nuit d'observation et son optimisation</h3>
+<p> Il est utile de conna&icirc;tre par avance le comportement de <strong>Sn Acq.</strong> pour la nuit d'observation &agrave; venir. Pour cela, la journ&eacute;e qui pr&eacute;c&egrave;de la nuit, vous pouvez simuler la nuit en appuyant sur le bouton <strong>Simulation</strong>. Laisser d&eacute;rouler la simulation jusqu'&agrave; la fin. Lorsque elle est termin&eacute;e, on peut lire le nombre de galaxies virtuellement observ&eacute;es dans la zone de retour d'&eacute;tat. En remontant en haut de cette zone, on peut lire &eacute;galement le nombre de galaxies s&eacute;lectionn&eacute;es pour la nuit. Si le nombre de galaxies observ&eacute;es est &eacute;gal au nombre de galaxies s&eacute;lectionn&eacute;es, c'est s&ucirc;rement que la magnitude sup&eacute;rieure de s&eacute;lection n'est pas assez grande. Modifier donc la valeur dans la zone de saisie de ce param&egrave;tre. Relancer la simulation jusqu'&agrave; ce que le nombre de galaxies point&eacute;es soit &agrave; peine sup&eacute;rieur au nombre de galaxies s&eacute;lectionn&eacute;es. A noter que l'on peut &eacute;galement r&eacute;gler la magnitude inf&eacute;rieure si l'on ne veut pas observer les galaxies les plus brillantes (M31, etc.). </p>
+<p>Enfin, l'analyse des angles horaires point&eacute;s (argument 'h=' du fichier <strong>sn2simu.log</strong>) permet de voir comment le t&eacute;lescope pointe pendant la nuit. Contrairement aux fichiers <strong>sn.log</strong> et <strong>sn2.log</strong> (du mode <strong>Acquisition</strong>) auxquels s'ajoutent les nouvelles galaxies observ&eacute;es (et donc permet d'&eacute;viter d'observer celles d&eacute;j&agrave; faites), les fichiers <strong>snsimu.log</strong> et <strong>sn2simu.log</strong> du mode <strong>Simulation</strong> sont d&eacute;truits &agrave; chaque nouvelle simulation. Le but &eacute;tant simplement de simuler la nuit compl&egrave;te. </p>
+<h3> 3.6. Gestion des alertes</h3>
+<p>Au cours de la nuit, si vous devez observer un ph&eacute;nom&egrave;ne particulier (v&eacute;rifier un candidat supernova pr&eacute;sent sur les images de la veille par exemple), il est possible d'interrompre temporairement le cours de <strong>Sn Acq.</strong> pour ex&eacute;cuter un script Aud'ACE. Pour cela, il suffit d'&eacute;crire ce script dans un fichier qui sera plac&eacute; dans le dossier <strong>alert</strong> du r&eacute;pertoire <strong>supernovae</strong>. Le dossier <strong>alert</strong> est explor&eacute; par <strong>Sn Acq.</strong> avant chaque nouvelle image &agrave; acqu&eacute;rir. Pour observer l'alerte qu'une seule fois, il vaut mieux utiliser la forme du script suivant qui permet de d&eacute;marrer &agrave; une heure pr&eacute;cise : </p>
+<code>#--- date of the begining of observation</code><br />
+<code>set galalert_date [mc_date2jd {2003 01 13 23} ]</code><br />
+</code><br />
+<code> if {[mc_date2jd [::audace::date_sys2ut now]]&gt;$galalert_date} {</code><br />
+catch {</code><br />
+<code> #--- set parameters</code><br />
+<code> set galalert_catname NGC2275</code><br />
+<code> set galalert_nb 2</code><br />
+<code> set galalert_galname $galalert_catname</code><br />
+<code> set galalert_dossier "c:/audela-1.2.2/images"</code><br />
+<code> #--- run</code><br />
+<code>sninfo "Process an alert ([file tail [info script]])"</code><br />
+<code> #--- slew telescope to the target</code><br />
+<code> # snconf(repsnaude)/sn.txt is the master file</code><br />
+<code> set galalert_filename "$snconf(repsnaude)/sn.txt"</code><br />
+<code> set galalert_f [open "$galalert_filename" r]</code><br />
+<code> set galalert_res [split [read $galalert_f] \n]</code><br />
+<code> close $galalert_f</code><br />
+<code> set galalert_k [lsearch -regexp $galalert_res $galalert_catname]</code><br />
+<code>if {$galalert_k&gt;=0} {</code><br />
+<code>set galalert_ligne [lindex $galalert_res $galalert_k]</code><br />
+<code> set galalert_ra [lindex $galalert_ligne 1]h[lindex $galalert_ligne 2]m[lindex $galalert_ligne 3]s</code><br />
+<code> set galalert_dec [lindex $galalert_ligne 4]d[lindex $galalert_ligne 5]m[lindex $galalert_ligne 6]s</code><br />
+<code> tel1 goto [list $galalert_ra $galalert_dec ]</code><br />
+<code>set galalert_result "The telescope is at [tel1 coord]"<br />
+sninfo "$galalert_result"<br />
+#--- acquire images<br />
+for {set galalert_k 1} {$galalert_k&lt;=$galalert_nb} {incr galalert_k} {<br />
+sninfo "Acquisition of number $galalert_k"<br />
+acq 60 2<br />
+visu<br />
+saveima ${galalert_galname}-${galalert_k}.fit<br />
+}</code><br />
+<code> sninfo "Acquisition ended"</code><br />
+<code> #--- preprocess the images</code><br />
+<code> sninfo "begin preprocessing"</code><br />
+<code> ttscript2 "IMA/SERIES $galalert_dossier ${galalert_galname}- 1 $galalert_nb .fit $galalert_dossier ${galalert_galname}- 1 .fit OPT dark=d60b2.fit bias=d0b2.fit unsmearing=0.00015"</code><br />
+<code> ttscript2 "IMA/SERIES $galalert_dossier ${galalert_galname}- 1 $galalert_nb .fit $galalert_dossier ${galalert_galname}- 1 .fit FILTER kernel_type=med kernel_width=3 kernel_coef=1.2"</code><br />
+<code> ttscript2 "IMA/SERIES $galalert_dossier ${galalert_galname}- 1 $galalert_nb .fit $galalert_dossier ${galalert_galname}- 1 .fit STAT"</code><br />
+<code> sninfo "End preprocesing"</code><br />
+} else {</code><br />
+<code> sninfo "$galalert_galname not found"</code><br />
+}</code><br />
+<code> catch {unset galalert_res}</code><br />
+<code> #--- end of execution</code><br />
+<code> sninfo "Alert done"</code><br />
+<code> set galalert_name [file rootname "[info script]"]</code><br />
+<code> file rename "${galalert_name}.tcl" "${galalert_name}.done"</code><br />
+<code> }</code><br />
+<code>}</code><br />
+<code> #=== end of script</code><br />
+</p>
+<h2> 4. Sn Visu</h2>
+<p> <strong>Sn Visu</strong> est un assistant pour la visualisation des images de galaxies. L'outil <strong>Supernovae</strong> ne d&eacute;tecte pas automatiquement les supernovae. Il faut regarder soigneusement toutes les images. Avec un peu d'exp&eacute;rience, on arrive &agrave; analyser environ 300 images par heure. <strong>Sn Visu</strong> permet donc de visualiser une image, acquise la nuit derni&egrave;re, et de la comparer avec une image d'une nuit ant&eacute;rieure affich&eacute;e &agrave; c&ocirc;t&eacute;. Si les images sont r&eacute;alis&eacute;es avec le m&ecirc;me t&eacute;lescope elles doivent se ressembler beaucoup. C'est la meilleure m&eacute;thode pour permettre &agrave; l'&#339;il de juger rapidement. L'interface <strong>Sn Visu</strong> ressemble &agrave; cela : </p>
+<img src="images/snaude05.gif" alt="" width="868" height="554" />
+<p>L'utilisation de cette interface est tr&egrave;s intuitive. Il faut d'abord choisir le nom du dossier qui contient les images &agrave; analyser avec le bouton <strong>Dossier nuit</strong> et ensuite les noms des dossiers des images de r&eacute;f&eacute;rence avec le bouton <strong>Dossier r&eacute;f&eacute;rence,</strong> une premi&egrave;re fois avec le radio bouton sur <strong>Personnel</strong> et une autre fois avec le radio bouton sur <strong>DSS</strong>. Avec le radio bouton sur <strong>Personnel</strong>, on pointe vers le dossier qui contient vos images de r&eacute;f&eacute;rence personnelles, alors que le choix <strong>DSS</strong> permet de pointer vers le dossier qui contient des champs du DSS. Ensuite, appuyez sur le bouton <strong>Suivante (F1)</strong> ou sur la touche fonction <strong>F1</strong> pour visionner les galaxies les unes apr&egrave;s les autres sur l'&eacute;cran de gauche ou sur le bouton <strong>Pr&eacute;c&eacute;dente</strong> pour revenir &agrave; une image pr&eacute;c&eacute;dente. Si une image de m&ecirc;me nom est trouv&eacute;e dans le dossier de r&eacute;f&eacute;rence s&eacute;lectionn&eacute; (<strong>Personnel</strong> ou <strong>DSS</strong>), elle sera affich&eacute;e &agrave; droite. De plus le fond du radio bouton correspondant prendra alors une couleur diff&eacute;rente. Ainsi, si vous avez une image de r&eacute;f&eacute;rence, le fond du radio bouton <strong>Personnel</strong> sera d'une autre couleur. Si par la m&ecirc;me occasion, il y a une image DSS de la m&ecirc;me galaxie, alors le fond du radio bouton <strong>DSS</strong> sera &eacute;galement d'une autre couleur, qu'il soit ou non s&eacute;lectionn&eacute;. Cet artifice permet &agrave; tout moment, de savoir si vous avez une image de r&eacute;f&eacute;rence et de conna&icirc;tre le dossier qui la contient : </p>
+<img src="images/snaude06.gif" alt="" width="873" height="733" />
+<p>Une fonction Loupe est m&ecirc;me disponible pour faciliter la d&eacute;tection d'un candidat supernova. Pour disposer de cette fonctionnalit&eacute; il suffit de cliquer avec le bouton gauche de la souris sur la zone d&eacute;sir&eacute;e de l'image de la nuit. Ici nous avons utilis&eacute; cette option pour mettre en &eacute;vidence la pr&eacute;sence de la supernova SN2003bj d&eacute;couverte par Robin Chassagne dans la galaxie IC4219. L'image de la d&eacute;couverte, &agrave; gauche, montre cette supernova identifi&eacute;e par un trait rouge (y compris dans la fen&ecirc;tre obtenue avec la fonction <strong>Loupe 1</strong>), alors que sur l'image de r&eacute;f&eacute;rence, &agrave; droite, elle est absente. C'est &eacute;galement confirm&eacute; par la fonction <strong>Loupe 2</strong>. </p>
+<p>Le bouton <strong>Fond du ciel (F2)</strong> permet de retirer le fond du ciel et les extensions des grandes galaxies en vue de faciliter la d&eacute;tection d'un candidat supernova. </p>
+<p>Toujours pour faciliter la d&eacute;couverte de supernovae, il existe une fonction blink avec recentrage automatique de l'image acquise et de l'image de r&eacute;f&eacute;rence qui est activ&eacute;e en appuyant sur le bouton <strong>GO Blink (F3)</strong> ou sur la touche fonction <strong>F3</strong>. On peut &agrave; tout moment arr&ecirc;ter la fonction blink en appuyant sur le m&ecirc;me bouton qui a pris le nom <strong>Stop Blink</strong> pour l'occasion. Apr&egrave;s l'arr&ecirc;t de la fonction blink, le bouton reprendra le nom <strong>GO Blink (F3)</strong>. </p>
+<p>Si l'image de la nuit est de meilleure qualit&eacute; que l'image de r&eacute;f&eacute;rence, il suffit d'appuyer sur le bouton <strong>Enregistrer (F4)</strong> ou sur la touche de fonction <strong>F4</strong> pour qu'elle devienne la nouvelle image de r&eacute;f&eacute;rence, mais avant un message de confirmation vous invitera ou non &agrave; faire cette substitution. <strong>Html</strong> permet d'&eacute;diter automatiquement une page HTML pour faire conna&icirc;tre vos candidats potentiels (cette partie est totalement personnalisable si on prend la peine de fouiller dans le code Tcl du fichier <strong>snvisu.tcl</strong>, rechercher la cha&icirc;ne de caract&egrave;res "htmlimage"). <strong>Aller &agrave;</strong> permet d'aller directement &agrave; un num&eacute;ro d'image donn&eacute; (entre 1 et 29, et c'est l'image 13 qui a &eacute;t&eacute; choisie dans l'exemple ci-dessus). Le bouton <strong>Quitter</strong> permet de sortir de <strong>Sn Visu</strong> et de sauvegarder les modifications des param&egrave;tres (chemins des diff&eacute;rents dossiers). Le bouton <strong>Carte</strong> permet de lancer le logiciel de plan&eacute;tarium choisi par l'interm&eacute;diaire du menu d&eacute;roulant <strong>Configuration</strong> et du libell&eacute; <strong>Carte...</strong> afin de visualiser la galaxie acquise sur le ciel. </p>
+<p><a name="sn_raccourcis" id="sn_raccourcis"></a>Il existe un certain nombre de raccourcis qu'il est utile de conna&icirc;tre pour utiliser au mieux <strong>Sn Visu</strong>, en voici la liste: </p>
+<ul>
+  <li><strong>F1</strong> : Equivalent &agrave; un appui sur le bouton <strong>Suivante (F1)</strong>. </li>
+  <li><strong>F2</strong> : Equivalent &agrave; un appui sur le bouton <strong>Fond du ciel (F2)</strong>. </li>
+  <li><strong>F3</strong> : Equivalent &agrave; un appui sur le bouton <strong>GO Blink (F3)</strong>.</li>
+  <li><strong>F4</strong> : Equivalent &agrave; un appui sur le bouton <strong>Enregistrer (F4)</strong>.</li>
+  <li><strong>F5</strong> : Edite l'en-t&ecirc;te FITS de l'image de la nuit.</li>
+  <li><strong>F6</strong> : Edite l'en-t&ecirc;te FITS de l'image de r&eacute;f&eacute;rence. </li>
+  <li><strong>F7</strong> : Applique un filtre m&eacute;dian sur l'image de la nuit pour &eacute;liminer les cosmiques. </li>
+</ul>
+<p>Lorsque vous enregistrez une nouvelle image de r&eacute;f&eacute;rence, elle prend le nom de l'image actuelle sans son indice. Par exemple, la galaxie NGC524-1.fit est enregistr&eacute;e dans le dossier de r&eacute;f&eacute;rence sous le nom NGC524.fit. </p>
+<p>Les noms des dossiers de la nuit et de r&eacute;f&eacute;rence sont conserv&eacute;s dans le fichier <strong>config.ini</strong> lorsque l'on quitte la fen&ecirc;tre <strong>Sn Visu</strong>. Le contenu de ce fichier se pr&eacute;sente comme celui pour l'acquisition (attention nous avons rajout&eacute; des commentaires pour votre compr&eacute;hension) : </p>
+<p><code>#--- Folder of night images</code> <br />
+   <code>set conf(snconfvisu,rep1) "C:/Astronomie/AudeLA-1.2.3/images</code><code>"</code> <br />
+   <code>#--- Folder of personnal reference images</code> <br />
+   <code>set conf(snconfvisu,rep2) "C:/Astronomie/ccd/personnel</code><code>"</code> <br />
+   <code>#--- Folder of DSS reference images</code> <br />
+   <code>set conf(snconfvisu,rep3) "C:/Astronomie/ccd/dss</code><code>"</code> </p>
+<p><a name="sn_config" id="sn_config"></a>Enfin, il existe &eacute;galement huit autres param&egrave;tres accessibles &agrave; partir du bouton <strong>Configuration</strong>, qui sont :</p>
+<p>
+<code>#--- Cuts change by motion or release</code> <br />
+<code>set conf(snconfvisu,cuts_change) "release"</code><br />
+<code>#--- Choise blink delay</code> <br />
+<code>set conf(snconfvisu,delai_blink) "250"</code> <br />
+<code>#--- Choise blink number</code> <br />
+<code>set conf(snconfvisu,nb_blink) "20"</code><br />
+<code>#--- Displaying scrollbars</code> <br />
+<code>set conf(snconfvisu,scrollbars) "on"</code><br />
+<code>#--- Choise to save reference images compressed by gzip</code> <br />
+<code>set conf(snconfvisu,gzip) "no"</code> <br />
+<code>#--- Reference images on hard disk or on DVD</code> <br />
+<code>set conf(snconfvisu,dss_dvd) "$snconfvisu(dss_dvd)"</code><br />
+<code>#--- Folder of DVD</code> <br />
+<code>set conf(snconfvisu,rep_dss_dvd) "$snconfvisu(rep_dss_dvd)"</code><br />
+<code>#--- Reference images (DSS) - DVD priority</code> <br />
+<code>set conf(snconfvisu,priorite_dvd) "$snconfvisu(priorite_dvd)"</code><br />
+</p>
+<img src="images/snaude07.gif" alt="" width="479" height="264" />
+<p>Le param&egrave;tre <strong>conf(snconfvisu,cuts_change)</strong> permet de d&eacute;finir la fa&ccedil;on dont on souhaite rafra&icirc;chir l'&eacute;cran de visualisation lorsque l'on agit sur les barres de seuil. L'option "<strong>motion</strong>" signifie que la visualisation suit le mouvement du curseur de la barre de seuils. L'option "<strong>release</strong>" signifie que la visualisation n'est rafra&icirc;chie qu'apr&egrave;s avoir rel&acirc;ch&eacute; le curseur de la barre de seuils. </p>
+<p>Le param&egrave;tre <strong>conf(snconfvisu,delai_blink)</strong> permet de fixer le d&eacute;lai d'attente en ms entre l'affichage de l'image acquise et l'affichage de l'image de r&eacute;f&eacute;rence et ainsi de suite. </p>
+<p>Le param&egrave;tre <strong>conf(snconfvisu,nb_blink)</strong> permet de fixer le nombre de cycle de clignotement de l'image acquise et de l'image de r&eacute;f&eacute;rence pour r&eacute;aliser la fonction blink. </p>
+<p>Le param&egrave;tre <strong>conf(snconfvisu,scrollbars)</strong> permet d'afficher ou non ("<strong>on</strong>" ou "<strong>off</strong>" respectivement) les barres de d&eacute;filement. C'est utile pour les grandes images. </p>
+<p>Le param&egrave;tre <strong>conf(snconfvisu,gzip)</strong> permet (<strong>yes</strong>) ou non (<strong>no</strong>) d'enregistrer les images de la nuit sous la forme compress&eacute;e (.gzip) dans la base des images de r&eacute;f&eacute;rence (<strong>Personnel</strong>), soit pour ajouter une galaxie, soit pour remplacer une image de r&eacute;f&eacute;rence mal r&eacute;solue par exemple. </p>
+<p>Le param&egrave;tre <strong>conf(snconfvisu,dss_dvd)</strong> permet de choisir les images de r&eacute;f&eacute;rence du DSS &agrave; partir d'un DVD, images au format .cpa (PRiSM), au lieu du classique r&eacute;pertoire DSS disponible sur le disque dur de votre ordinateur. </p>
+<p>Le param&egrave;tre <strong>conf(snconfvisu,rep_dss_dvd)</strong> permet de sp&eacute;cifier le chemin d'acc&egrave;s &agrave; ce DVD. </p>
+<p>Enfin le param&egrave;tre <strong>conf(snconfvisu,priorite_dvd)</strong> permet de donner la priorit&eacute; de l'affichage de l'image de r&eacute;f&eacute;rence du DSS au DVD. </p>
+<p>Toute modification d'un de ces param&egrave;tres est valid&eacute;e par un appui sur le bouton <strong>GO</strong>. Mais attention, toutes ces &eacute;volutions de la configuration ne sont pas disponibles imm&eacute;diatement, certaines n&eacute;cessitent un red&eacute;marrage de l'interface Sn Visu : </p>
+<ul>
+  <li>Le rafra&icirc;chissement de la visualisation. </li>
+  <li>L'affichage des barres de d&eacute;filement. </li>
+</ul>
+<img src="images/snaude08.gif" alt="" width="341" height="159" />
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+Mare Anguis               22.6N   67.7E   150.0   27                                              Serpent Sea
+Mare Australe             38.9S   93.0E   603.0   69  76                                  IV  V   Southern Sea
+Mare Cognitum             10.0S   23.1W   376.0   42                                              Sea that has become known (Ranger 7 impact site, 31th July 1964)
+Mare Crisium              17.0N   59.1E   418.0   26  27  37  38                                  Sea of Crises
+Mare Fecunditatis         7.8S    51.3E   909.0   37  48  49  59                                  Sea of Fecundity
+Mare Frigoris             56.0N   1.4E    1596.0  1   2   3   4   5   6                           Sea of Cold
+Mare Humboldtianum        56.8N   81.5E   273.0   7                                       II      Humboldt, Alexander von; German natural historian (1769-1859)
+Mare Humorum              24.4S   38.6W   389.0   51  52                                          Sea of Moisture
+Mare Imbrium              32.8N   15.6W   1123.0  9   10  11  12  19  20  21                      Sea of Showers
+Mare Ingenii              33.7S   163.5E  318.0                                                   Sea of Cleverness
+Mare Insularum            7.5N    30.9W   513.0   30  31  32  41  42  .                           Sea of Islands
+Mare Marginis             13.3N   86.1E   420.0   27  38                                  III     Sea of the Edge
+Mare Moscoviense          27.3N   147.9E  277.0                                                   Sea of Muscovy
+Mare Nectaris             15.2S   35.5E   333.0   47  58                                          Sea of Nectar
+Mare Nubium               21.3S   16.6W   715.0   53  54                                          Sea of Clouds
+Mare Orientale            19.4S   92.8W   327.0   50                                      VII     Eastern sea
+Mare Serenitatis          28.0N   17.5E   707.0   13  14  23  24                                  Sea of Serenity
+Mare Smythii              1.3N    87.5E   373.0   38  49                                  III IV  Smyth, William Henry; British astronomer (1788-1865)
+Mare Spumans              1.1N    65.1E   139.0   38                                              Foaming Sea
+Mare Tranquillitatis      8.5N    31.4E   873.0   35  36  47                                      Sea of Tranquility
+Mare Undarum              6.8N    68.4E   243.0   38                                              Sea of Waves
+Mare Vaporum              13.3N   3.6E    245.0   22  33  34                                      Sea of Vapors

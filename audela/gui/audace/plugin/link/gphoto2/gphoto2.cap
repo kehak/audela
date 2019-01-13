@@ -1,0 +1,88 @@
+#
+# Fichier : gphoto2.cap
+# Mise a jour $Id: gphoto2.cap 9987 2013-08-18 13:38:06Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(gphoto2,titre)                "GPhoto2"
+set caption(gphoto2,debug)                "Debug Mode"
+
+set caption(gphoto2,installNewVersion)    "Installation of library %s of plugin gphoto2 v%s completed."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(gphoto2,titre)             "GPhoto2"
+   set caption(gphoto2,debug)             "Mode débug"
+
+   set caption(gphoto2,installNewVersion) "Fin de l'installation de la librairie %s du plugin gphoto2 v%s."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(gphoto2,titre)             "GPhoto2"
+   set caption(gphoto2,debug)             "Modalita` debug"
+
+   set caption(gphoto2,installNewVersion) "Installazione della libreria %s del plugin gphoto2 v%s terminata."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(gphoto2,titre)             "GPhoto2"
+   set caption(gphoto2,debug)             "Modo depuracion"
+
+   set caption(gphoto2,installNewVersion) "Fin de la instalación de la libreria %s del plugin gphoto2 v%s."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(gphoto2,titre)             "GPhoto2"
+   set caption(gphoto2,debug)             "Debug Modus"
+
+   set caption(gphoto2,installNewVersion) "Die Installation der Bibliothek %s ist vervollständigt der Plugin gphoto2 v%s."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(gphoto2,titre)             "GPhoto2"
+   set caption(gphoto2,debug)             "Modo debug"
+
+   set caption(gphoto2,installNewVersion) "Instalação da livraria %s do plugin gphoto2 v%s concluída."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(gphoto2,titre)             "GPhoto2"
+   set caption(gphoto2,debug)             "Debug Mode"
+
+   set caption(gphoto2,installNewVersion) "Installation of library %s of plugin gphoto2 v%s completed."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(gphoto2,titre)             "GPhoto2"
+   set caption(gphoto2,debug)             "Debug Mode"
+
+   set caption(gphoto2,installNewVersion) "Installation of library %s of plugin gphoto2 v%s completed."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(gphoto2,titre)             "GPhoto2"
+   set caption(gphoto2,debug)             "Debug Mode"
+
+   set caption(gphoto2,installNewVersion) "Installation of library %s of plugin gphoto2 v%s completed."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

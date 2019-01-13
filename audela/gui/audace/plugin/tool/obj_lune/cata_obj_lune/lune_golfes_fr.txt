@@ -1,0 +1,11 @@
+Sinus Aestuun             10.9N   8.8W    290.0   32  33                                          Golfe Torride
+Sinus Amoris              18.1N   39.1E   130.0   25                                              Golfe de l'Amour
+Sinus Asperitatis         3.8S    27.4E   206.0   46  47                                          Golfe des Aspérités
+Sinus Concordiae          10.8N   43.2E   142.0   37                                              Golfe de la Concorde
+Sinus Fidei               18.0N   2.0E    70.0    22                                              Golfe de la Foi
+Sinus Honoris             11.7N   18.1E   109.0   35                                              Golfe de l'Honneur
+Sinus Iridum              44.1N   31.5W   236.0   10                                              Golfe des Iris
+Sinus Lunicus             31.8N   1.4W    126.0   12                                              Golfe Luna (site d'impact de Luna 2 le 13 Septembre 1959)
+Sinus Medii               2.4N    1.7E    335.0   33  44                                          Golfe Central
+Sinus Roris               54.0N   56.6W   202.0   1   8   9                               I   VIIIGolfe de la Rosée
+Sinus Successus           0.9N    59.0E   132.0   38                                              Golfe du Succès

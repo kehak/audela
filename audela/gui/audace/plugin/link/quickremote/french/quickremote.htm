@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Liaison par QuickRemote</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 13 janvier 2010</p>
+<h1>Liaison par QuickRemote</h1>
+<h2>Remarque pour une premi&egrave;re utilisation </h2>
+<p>La liaison USB entre AudeLA et le QuickRemote n&eacute;cessite le driver FTDI
+qui est disponible sur le site (le m&ecirc;me driver que pour la QuickAudine) : </p>
+<p>http://www.ftdichip.com/ </p>
+<p>Menu Drivers --> D2XX </p>
+&nbsp;
+<ul>
+<li>Pour Windows XP 64 bits, t&eacute;l&eacute;charger le fichier : </li>
+<ul>http://www.ftdichip.com/Drivers/CDM/WinXPx64/CDM%202.00.00%20x64.zip </ul>
+&nbsp;
+<li>Pour Windows XP 32 bits, t&eacute;l&eacute;charger le fichier : </li>
+<ul>http://www.ftdichip.com/Drivers/CDM/Win2000/CDM%202.00.00.zip </ul>
+&nbsp;
+<li>Pour Windows 98 ou Me, t&eacute;l&eacute;charger le fichier : </li>
+<ul>http://www.ftdichip.com/Drivers/D2XX/Win98/D30104.zip </ul>
+&nbsp;
+</ul>
+<p>Puis d&eacute;zipper le fichier dans un r&eacute;pertoire temporaire et lancer
+l'installation en suivant la proc&eacute;dure d&eacute;crite dans : </p>
+<p>http://www.ftdichip.com/Documents/InstallGuides.htm </p>
+<h2>Description </h2>
+<p>Le bo&icirc;tier QuickRemote est un convertisseur USB-parallele qui permet 
+  de piloter un port parallele constitu&eacute;s de 8 bits via une prise USB d'un 
+  micro-ordinateur. Les bits peuvent &ecirc;tre utilis&eacute;s pour piloter plusieurs 
+  p&eacute;riph&eacute;riques. </p>
+<p>Exemple : </p>
+<blockquote>
+  <p>Le bit 0 peut commander la longue pose d'un APN.<br>
+    Le bit 1 peut commande la longue pose d'une WebCam.<br>
+    Les bit bits 2,3 peuvent commande un focuser (on/off, sens).<br>
+    Les bits 4,5,6,7 peuvent commander commande la raquette d'un telescope &agrave; 
+    4 fils ou une monture par la prise compatible ST4.<br>
+  </p>
+</blockquote>
+<p>Remarque : </p>
+<blockquote>
+  <p>Si message &quot;error when loading driver&quot; apparait &agrave; l'ouverture 
+    d'un quickremote, il faut v&eacute;rifier que le driver du Quickremote est 
+    correctement install&eacute;.<br>
+    Avec WINDOWS, v&eacute;rifier la pr&eacute;sence des fichiers C:\WINDOWS\system32\ftd2xx.dll 
+    et C:\WINDOWS\system32\drivers\ftd2xx.sys . Si ces fichiers sont absents , 
+    installer le driver &quot;FDTDI DXX&quot; disponible sur le site du fabriquant 
+    <a href="http://www.ftdichip.com/FTDrivers.htm">http://www.ftdichip.com/FTDrivers.htm</a></p>
+</blockquote>
+<p>&nbsp;</p>
+<h2>Utilisation dans Audace</h2>
+<p>Le menu <b>Configuration-&gt;Liaison</b> de Audace affiche la liste des Quickremote 
+  disponibles. Le bouton &quot;rafraichir&quot; permet de mettre &agrave; jour 
+  la liste.</p>
+<p>&nbsp;</p>
+<h2>Programmation TCL</h2>
+<h2></h2>
+<h2></h2>
+<h3><b>::link::available quickremote </b></h3>
+<p>Retourne la liste des QuickRemote disponibles.</p>
+<p><b>Exemple :</b></p>
+<blockquote> 
+  <pre><b>::link::available quickremote
+{ 0 USB-SERIAL }  { 1 USB-SERIAL } 
+
+Dans cet exemple deux QuickRemote sont disponibles. Leurs index sont 0 et 1.</b></pre>
+</blockquote>
+<h3><b>::link::create quickremote ?index?</b></h3>
+<p>La commande ouvre un QuickRemote et retourne son num&eacute;ro de link. La 
+  commande retourne z&eacute;ro si la cr&eacute;ation a &eacute;chou&eacute;.</p>
+<p><b>Exemple :</b></p>
+<blockquote> 
+  <pre>::link::create quickremote 0
+1                                # le Quickremote d'index 0 est ouvert. Son nom est link1
+::link::create quickremote 1
+2                                # le Quickremote d'index 1 est ouvert. Son nom est link2
+::link::create quickremote 2
+0                                # le Quickremote d'index 1 ne peut pas &ecirc;tre ouvert.</pre>
+</blockquote>
+<h3><b>::link::delete ?linkno?</b></h3>
+<h3></h3>
+<p>La commande ferme le QuickRemote num&eacute;ro &quot;linkno&quot;</p>
+<p><b>Exemple :</b></p>
+<blockquote> 
+  <pre>::link::create quickremote 0     # ouverture du quickremote d'index 0. Son nom est link1
+1
+     
+::link::delete 1                 # fermeture de link1</pre>
+</blockquote>
+<pre>&nbsp;</pre>
+<h3>link1 char ?0 ... 255?</h3>
+<blockquote> 
+  <p>Si aucune valeur n'est pr&eacute;cis&eacute;e, la commande retourne la valeur 
+    actuelle des bits du port de sortie.</p>
+  <p>Si une valeur entre 0 et 255 est pr&eacute;cis&eacute;e, la commande affecte la valeur au port de sortie.</p>
+</blockquote>
+<p><b>Exemple : </b></p>
+<blockquote> 
+  <pre><b>::link::create quickremote 0</b>  # ouverture du quickremote d'index 0
+1                             # son nom est link1
+
+link1 char 255      # les bits 0 &agrave; 7 sont positionn&eacute;s &agrave;  1 
+                    # une tension de 5 volts est sur les 8 broches de sortie
+
+link1 char 4        # le bit 2 est mis &agrave; 1, les autres bits sont mis &agrave; 0
+
+link1 char          
+4                   # la commande retourne la valeur courant du des bits du quickremote</pre>
+  <blockquote> 
+    <p></p>
+  </blockquote>
+</blockquote>
+<h3>&nbsp;</h3>
+<h3>link1 bit b ?0|1?</h3>
+<blockquote> 
+  <p>Si une valeur 0 ou 1 est pr&eacute;cis&eacute;e, la commande affecte la valeur 
+    0 ou 1 au bit num&eacute;ro b.</p>
+  <p>Si aucune valeur n'est pr&eacute;cis&eacute;e, la commande retourne la valeur 
+    actuelle du bit num&eacute;ro &quot;b&quot;</p>
+  <p>&quot;b&quot; est un chiffre de 0 &agrave; 7</p>
+</blockquote>
+<p><b>Exemple : </b></p>
+<blockquote>
+  <pre>link1 bit 2 1        # le bit 2 est mis &agrave; 1, les autres bits sont inchang&eacute;s
+1 </pre>
+  <pre>link1 bit 2 0        # le bit 2 est mis &agrave; 0, les autres bits sont inchang&eacute;s
+0 
+
+link1 bit 2          # retourne la valeur du bit 2
+0</pre>
+</blockquote>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Rotation</title>
+</head>
+<body>
+<p class="date">Date de mise &#224; jour : 23 janvier 2011</p>
+<h1><a name="ROT+90" id="ROT+90"></a>1. Tourner 90&#176; sens
+horaire</h1>
+<p>Cette commande permet de faire pivoter une ou plusieurs images
+de 90&#176; dans le sens horaire.</p>
+<h1><a name="ROT-90" id="ROT-90"></a>2. Tourner 90&#176; sens
+anti-horaire</h1>
+<p>Cette commande permet de faire pivoter une ou plusieurs images
+de 90&#176; dans le sens anti-horaire.</p>
+<h1><a name="ROT180" id="ROT180"></a>3. Tourner 180&#176;</h1>
+<p>Cette commande permet de faire pivoter une ou plusieurs images
+de 180&#176;.</p>
+<h3>Ex&#233;cution en ligne de commande</h3>
+<p>Ces trois fonctions sont ex&#233;cutables en ligne de commande
+dans la Console. Le r&#233;pertoire images doit &#234;tre celui
+contenant la ou les images &#224; traiter. Le nom de la fonction
+<b>::prtr::cmdRot</b> doit &#234;tre suivi de deux listes de
+param&#232;tres.</p>
+<p>La premi&#232;re liste contient :</p>
+<ul>
+  <li>Le nom g&#233;n&#233;rique (ou la liste des noms) des images
+d'entr&#233;e.</li>
+  <li>Le chemin d'acc&#232;s aux fichiers des images de sortie (mettre
+un point si c'est le r&#233;pertoire images).</li>
+  <li>Le nom g&#233;n&#233;rique des images de sortie.</li>
+  <li>L'extension du ou des fichiers.</li>
+  <li>Le nom de l'op&#233;ration &#224; r&#233;aliser <b>{ROT+90 |
+ROT-90 | ROT180}</b>.</li>
+</ul>
+La seconde liste est vide.
+<pre>::prtr::cmdRot {rz_rgbr_8 . toto .fit ROT-90} {}<br></pre>
+Elle renvoie 0 s'il n'y a pas d'erreur, sinon 1 en cas d'erreur.<br>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0053)http://rseymour.home.wolfenet.com/autostar_mtr_2.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>Meade Autostar / Motor Protocol Information</title></head>
+
+<body>
+<h2>Title:&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Autostar / Motor
+protocol description</h2>
+<h2>Version:&nbsp;&nbsp; 2</h2>
+<h2>Date:&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 17 Aug 2005<br>
+</h2>
+<h2>Introduction:</h2>
+This document describes the protocol used between the autostar (#494
+,#497) controllers and the RA and DEC motors.<br>
+<br>
+This document doesn't cover the protocol used between the Autostar and
+devices that plug into the accessory socket as I don't have any of
+these accessories.<br>
+<br>
+This document is not complete (there are some commands whose purpose I
+haven't discovered), but it should be sufficiently complete for many
+purposes.<br>
+<h2>Notices:</h2>
+The information in this document is derived from US patent #6,304,376
+(held by Meade), and observation of the interactions between the
+Autostar controllers and the DH series motors.<br>
+<br>
+The information in this document was not derived via disassembly of the
+Autostar or motor processor firmware.<br>
+<br>
+Care must be taken to not violate the claims of the aforementioned
+patent in applying this information. <br>
+<br>
+Any consequences of the use of this information is the sole
+responsibility of the user.<br>
+<h2>Interface signals:</h2>
+Each motor is connected to the autostar using two signals (plus a
+common ground). These clock and data signals allow the implementation
+of a bidirectional serial protocol.<br>
+<br>
+The clock signal for each motor is always driven by the Autostar, which
+determines the transfer timing. The frequency of the clock signal is
+Autostar dependent with a frequency of around 5.5 kHz.<br>
+<br>
+The data signal is driven either the Autostar or the motor and appears
+to only be driven low. The signal is weakly pulled high by the Autostar.<br>
+<br>
+Although the wiring between the Autostar and the motors would allow the
+two sets of signals to be completely seperated, it appears that the
+data lines are either tied together in the Autostar controllers.<br>
+<br>
+The DH motors appear to reset if the clock line is held low for more
+than a few ms. I'm not sure what the magic time is.<br>
+<h2>Data transfer protocol:</h2>
+The data transfer is in structured as a series of commands. Each
+command has:<br>
+<br>
+<ul>
+  <li>A start sequence (which allows the Autostar to be sure there is a
+motor present)</li>
+  <li>A command sequence during which the eight bit command is sent by
+the Autostar</li>
+  <li>A data sequence during which some number of bits containing data
+associated with the command, or returned by the Autostar. The number of
+bits is a function of the command, but is always constant for a given
+command</li>
+</ul>
+Each bit of data after the start sequence is transferred as follows:<br>
+<ul>
+  <li>The Autostar drives the clock line high</li>
+  <li>The transmitter of the bit forces the data line low (to transfer
+a zero value), or allows it to float high</li>
+  <li>The Autostar drives the clock line low</li>
+  <li>The receiver of the bit samples the data line to determine the
+bit value</li>
+</ul>
+<h3>Start sequence:</h3>
+In response to the Autostar driving the clock line low, the motor
+drives the data line low. This is used by the #494 Autostar to
+determine the presence of a motor.<br>
+<br>
+The state of the data line seems to be ignored by the #497 Autostar
+software.<br>
+<br>
+<h3>Command sequence:</h3>
+An eight bit command. MSB first, is sent by the Autostar. This tells
+the motor what to do and what bits will be transferred later in the
+transfer.<br>
+<br>
+<h3>Data sequence:</h3>
+The most significant bit of the most significant byte (for multibye
+data) is transferred first. Some commands use a number of bits
+which is not a multiple of eight.<br>
+<br>
+I know of the following commands. I've had to guess at the
+interpretation of some of them, and there are a few I don't know yet.
+Ignoring them when emulating the motor seems to work without obvious
+problems.<br>
+<br>
+<table border="1" cellpadding="2" cellspacing="2" width="100%">
+  <tbody>
+    <tr>
+      <td valign="top">Cmd<br>
+      </td>
+      <td valign="top">Parameters<br>
+      </td>
+      <td valign="top">Description<br>
+      </td>
+      <td valign="top">Notes<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">0x0 (Rotate slow)<br>
+0x1 (Rotate fast)<br>
+      </td>
+      <td valign="top">speed [24 bits, 2's comp, 16.8 FP format]
+(A-&gt;M)<br>
+      <br>
+      </td>
+      <td valign="top">Rotate the motor at the specified rate. The
+rate
+is a 24-bit 2's complement number of motor ticks per 6.5 ms period in a
+16.8 fixed point fractional format<br>
+      </td>
+      <td valign="top">The protocol assumes
+that the autostar and motor act as a closed loop. The changes can be
+seen as the autostar converges on a sidereal tracking speed.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">0x3 (Set LED current)<br>
+      </td>
+      <td valign="top">led value [8 bits] (A-&gt;M)<br>
+      </td>
+      <td valign="top">Sets the LED current used for the encoder LED. <br>
+      </td>
+      <td valign="top">This is stored in the Autostar and sent at
+initialization.</td>
+    </tr>
+    <tr>
+      <td valign="top">0x4 (Calibrate LED)<br>
+      </td>
+      <td valign="top">None<br>
+      </td>
+      <td valign="top">Tells the motor to determine the optimal LED
+current for the optical encoder<br>
+      </td>
+      <td valign="top">Unknown whether it uses this value, or whether
+it needs to be read and written to take effect.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">0x5 (Stop)</td>
+      <td valign="top">None</td>
+      <td valign="top">Stop the motor</td>
+      <td valign="top">The motor may continue to rotate for a short
+time after this command is issued</td>
+    </tr>
+    <tr>
+      <td valign="top">0x6 (Full speed reverse)<br>
+      </td>
+      <td valign="top">&nbsp;None<br>
+      </td>
+      <td valign="top">Rotate the motor at the highest possible speed
+in the negative direction<br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">0x7 (Full speed forward)<br>
+      </td>
+      <td valign="top">None<br>
+      </td>
+      <td valign="top">Rotate the motor at the highest possible speed
+in the negative direction<br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">0x8 (Read status)<br>
+      </td>
+      <td valign="top">relative position change [16 bits, 2's comp],<br>
+PWM duty cycle [8 bits], encoder error [1 bit]<br>
+(M -&gt; A)<br>
+      </td>
+      <td valign="top">Read information about the position and
+activity
+of the motor. <br>
+      <br>
+The position is reset after this command<br>
+      </td>
+      <td valign="top">If the PWM value is 0xff and the position change
+is
+zero then it is likely that the motor is stalled<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">0x9 (Get LED current)<br>
+      </td>
+      <td valign="top">led value [8 bits] (M-&gt;A)<br>
+      </td>
+      <td valign="top">Get the LED current.<br>
+      </td>
+      <td valign="top">Issued after the calibrate LED command<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">0xb (Get motor type)<br>
+      </td>
+      <td valign="top">motor type [8 bits] (M-&gt;A)<br>
+      </td>
+      <td valign="top">Get the type of motor attached<br>
+      </td>
+      <td valign="top">The DH motors returns 0x10. Larger values
+cause
+the #494 autostar to indicate the ETX Autostar should be used.<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">0xe4 (unknown)</td>
+      <td valign="top">None</td>
+      <td valign="top">Unknown. Used by the autostar after the stop
+command when performing LED calibration. parking the scope, or sleeping
+the scope</td>
+      <td valign="top">Doesn't seem to clear the status information.</td>
+    </tr>
+    <tr>
+      <td valign="top">0x2 (Set error count)<br>
+      </td>
+      <td valign="top">error [16 bits] (A -&gt; M)<br>
+      </td>
+      <td valign="top">Add the specified error to the current
+position error. The servo loop will try to compensate<br>
+      </td>
+      <td valign="top">This is used by the pulseguide commands to
+nudge the scope position. For the #497 it's also used to nudge the
+scope
+to the correct position after GOTO in some cases.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+The following example commands sequeces may help understand the
+interaction of the autostar and motors. Note that these are the #494
+sequences, but they seem to be the same as the #497 ones. (Values
+returned by status command often differ due to differences in motor
+speed and command timing)<br>
+<br>
+Startup:<br>
+<br>
+0x5<br>
+0x8 (ret: 0x0 0x0 0x0 0)<br>
+0xb (ret 0x10)<br>
+0x3 0xe7<br>
+<br>
+Initial alignment:<br>
+<br>
+0x5<br>
+0x8 (ret: 0x0 0x0 0x0 0)<br>
+0x7<br>
+0x8 (ret 0x0 0x2a 0xff 0) [repeated many times during slew]<br>
+0x0 0x47 0x1c 0x6f [near end of slew]<br>
+<br>
+Sleep scope:<br>
+<br>
+0x5<br>
+0xe4<br>
+<br>
+Park scope:<br>
+0x0 0xff 0xa1 0x57<br>
+0x8 (ret: 0xff 0xff 0x0 0)<br>
+0x5<br>
+<br>
+Calibrate motors:<br>
+0x5<br>
+0xe4<br>
+(motors move at this point. I assume it's due to a low-clock reset.
+This lasts 1 - 2 seconds)<br>
+0x5<br>
+0x4<br>
+0x9 (ret: 0xe7)<br>
+0x8 (ret: 0x8 0x25 0x6c 0x0 0)<br>
+<br>
+Not sure about the timing of this set of commands, but each phase seems
+to be less that 5 seconds.<br>
+</body></html>

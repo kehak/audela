@@ -1,0 +1,93 @@
+{
+"name":
+   "abmc",
+"document":
+   "Reference guide",
+"brief":
+   "Astrobrick of celestial mechanics.",
+"details":
+   "This astrobrick provides many functions of celestial mechanics.\nConversion of angles, dates. Ephemeris calculations.",
+
+"comment" : "## Tested with JSON Validator http://jsonlint.com/",
+
+"comment" : "#################################################################",
+"comment" : "#################################################################",
+"comment" : "#################################################################",
+
+"types": [ 
+
+{
+"type":"Date", 
+"brief":
+   "Description of a date.",
+"details":
+   "The definition of a date can be writed by differents forms :\n\njd : a floating number upper or equal to 1000000 defines a julian date\nmjd : a floating number lower to 1000000 defines a modified julian date (jd - 2400000.5)\nNOW : the word now takes the date and the time from the operating system.\nNOW0 : the word now0 takes the date and the time at 0h a.m. from the operating system\nNOW1 : the word now1 takes the date and the time at 24h p.m. from the operating system\n{year month day h m s} : a gregorian date as a calendar. It is possible to use floating numbers. For instance {2001 12 23.567}.\nyyyy-mm-ddThh:mm:ss.ss : a gregorian date coded as the format DATE-OBS of a header FITS\nJ2000 : definition date for an equinox (B1950, J2010.56, etc.).\n\nN.B. Words NOW, NOW0 et NOW1 can be written uppercase or lowercase without incidence.\n",
+"author":"Alain Klotz"
+},
+
+{
+"type":"Angle", 
+"brief":
+   "Description of an angle.",
+"details":
+   "An angle can be written by many ways. Some following exemples show these possibilities :\n\n45°34'28\" :\n45d34m28s : is equal to 45°34'28\"\n45:34:28 : is equal to 45°34'28\"\n45d34m28s9 : is equal to 45°34'28.9\"\n45d34m28.9s : is equal to 45°34'28.9\"\n45d34 : is equal to 45°34'\n45.34 : is interpreted as 45.34 decimal degrees.\n-45d34.5 : is interpreted as -45°34'30\"\n1h30m : is interpreted as 22.5 decimal degrees (1 hour is equal to 15 degrees).\n1.57r : is interpreted as 1.57 radians.\n45 34 28.4 : is interpreted as 45d34m28.4s\n1 30 h : is interpreted as 1h30m.\n1.57 r : is interpreted as 1.57 radians\n",
+"author":"Alain Klotz"
+}
+
+],
+
+"comment" : "#################################################################",
+"comment" : "#################################################################",
+"comment" : "#################################################################",
+
+"functions": [ 
+
+{
+"fn":"date2jd", 
+"args":["Date"], 
+"brief":
+   "Conversion from Date input in any format to Julian day.",
+"details":
+   "Julian day is a real number which increase by a unit at 12h.\nSee help of type Date to list all the input possibilities.",
+"example":
+   "",
+"related functions":
+   "date2iso8601",
+"author":"Alain Klotz"
+},
+
+{
+"fn":"angle2deg", 
+"args":["Angle"], 
+"brief":
+   "Conversion from Angle input in any format to degrees.",
+"details":
+   "Output angle will be returned in degrees between -360 and +360.\nSee help of type Angle to list all the input possibilities.",
+"example":
+   "angle2deg(\"-00:04:30\")\n-0.075",
+"related functions":
+   "angle2rad, angle2sexagesimal",
+"author":"Alain Klotz"
+},
+
+{
+"fn":"angle2sexagesimal", 
+"args":["Angle","format"], 
+"brief":
+   "Conversion from Angle input in any format to sexagesimal according a specified format.",
+"details":
+   "See help of type Angle to list all the input possibilities.\nThe output string will be written according the string format. The string format uses 0 to 6 characters symbolized by uspzad. The details of each character is:\n\nu (unit) = h,H,d,D (default=D)\ns (separator) = \" \",:,\"\" (default=\"\")\np (plus/moins) = +,\"\" (default=\"\")\nz (zeros) = 0,\"\" (default=\"\")\na (angle_digits) = 1,2,3 (default=3 if unit D,H)\nd (sec_digits) = \"\",\".1\",\".2\",... (default=\"\")\n\nNote for units: h is to convert into hours (-12h to +12h), H is to convert into hours (0h to 24h). d is to convert into degrees (-180d to 180d), D is to convert into degrees (0d to 360d).",
+"example":
+   "angle2sexagesimal(-0.075,\"D 2.2\")\n359 55 30.00",
+"related functions":
+   "angle2deg, angle2rad",
+"author":"Alain Klotz"
+}
+
+],
+
+"comment" : "#################################################################",
+"comment" : "#################################################################",
+"comment" : "#################################################################"
+
+}

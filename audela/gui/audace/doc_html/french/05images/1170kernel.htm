@@ -1,0 +1,1191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Convolution spatiale</title></head><body>
+<p class="date">Date de mise à jour : 07 mai 2012</p>
+<h1 id="kernel">Filtrage d'images par convolution spatiale</h1>
+<h2>1. Comment ça marche ?</h2>
+<p><b>Note importante : Ces filtres modifient les valeurs des
+pixels, il est donc recommandé de toujours travailler sur
+une copie</b>.</p>
+<p>Aud'ACE propose des fonctions évoluées de filtrage
+par convolution spatiale dans le menu <b>Images/Filtrer</b>. Une
+autre solution est proposée dans <b>Images/Convoluer</b>.
+Cette page explique le principe de leur fonctionnement.</p>
+<p>Deux outils sont proposés :</p>
+<ul>
+<li>L' <a href="#editeur_noyau"><b>Editeur de noyau</b></a> pour
+construire des filtres personnels.</li>
+<li><a href="#conv_spatiale"><b>Convolution spatiale</b></a> pour
+appliquer un filtre (personnel ou non) à une image FITS, RGB ou
+non.</li>
+</ul>
+<p>Les <a href="#references">références ci-dessous</a>
+permettent de comprendre ce qu'est la convolution spatiale d'une
+image sans (trop) de formules mathématiques.</p>
+<p>Pour faire simple, un filtre remplace la valeur d'un pixel par
+la combinaison linéaire de la valeur du pixel et des pixels
+adjacents. L'action du filtre est <b>locale</b> à la
+différence d'un filtre <b>global</b> (modification d'un
+pixel en fonction de caractéristiques globales de l'image).</p>
+<p>Le poids accordé à chaque pixel est donné dans
+un tableau qui représente le <b>noyau</b> (ou masque ou
+matrice ou kernel) du filtre. Il est caractérisé par
+ses <b>dimensions</b> : Nombre de lignes x nombre de colonnes,
+souvent égaux. Par exemple, le filtre 3x3 ci-dessous
+remplace la valeur du pixel par lui-même en accordant un
+poids nul à ses voisins, il ne fait strictement rien mais
+n'est pas inutile pour autant, car il constitue le filtre
+<b>unitaire 3x3</b> invariant.</p>
+<table summary="unitaire" align="center" border="1">
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td><b>1</b></td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p>La somme des coefficients du noyau étant égale
+à 1 on ne modifie pas la <b>dynamique</b> de l'image. Si la
+somme n'est pas nulle, il faut diviser le résultat par cette
+somme pour retrouver la dynamique initiale de l'image. Les
+exemples proposés plus bas résultent de
+<b>l'application du filtre normalisé</b> (chaque coefficient
+est divisé par la somme des coefficients). Eviter de diviser
+par 0.</p>
+<p>Suivant la taille du noyau le nombre de calculs peut devenir
+trés important de même que le temps de traitement. Des
+<a href="#simplification">astuces</a> permettent d'optimiser ces
+opérations.</p>
+<h2>2. Effets et applications de quelques filtres</h2>
+<ol>
+<li>
+<h3>Filtres gaussiens et moyens (flou)</h3>
+<p>Les filtres, dits <b>gaussiens</b> car les valeurs simulent,
+plus ou moins approximativement, une distribution gaussienne
+à deux dimensions, provoquent un effet de flou car ils
+remplacent la valeur d'un pixel (<b>en gras</b> dans les
+tableaux) par la valeur pondérée du pixel et des pixels
+adjacents.</p>
+<p>Une distribution gaussienne peut être
+caractérisée par sa FWHM (largeur à mi-hauteur) et
+son sigma &#963; (écart-type). Il faut donc définir la
+taille du noyau et les valeurs des coefficients de manière
+à ce qu'il ait le &#963; souhaité. Idéalement la
+taille des filtres devrait être de 6 &#963;+1, soit un rayon
+de 3 &#963;, de manière à contenir 99% des valeurs. La
+taille du noyau augmente :</p>
+<ul>
+<li>Avec le &#963;, car FWHM = 2.355 * &#963;.</li>
+<li>Si le pas d'échantillonnage (la taille du pixel) diminue
+car la FWHM occupe plus de pixels.</li>
+</ul>
+<table summary="sigma &lt; 1" cellpadding="10">
+<tbody><tr>
+<th>original</th>
+<th>conique 5x5</th>
+<th>gaussien 3x3</th>
+<th>gaussien 5x5</th>
+<th><br />
+</th>
+</tr>
+<tr>
+<td><br />
+</td>
+<td align="center">
+<table summary="conique" border="1">
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td><b>5</b></td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody></table>
+</td>
+<td align="center">
+<table summary="flou" border="1">
+<tbody><tr>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td><b>4</b></td>
+<td>2</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+</tr>
+</tbody></table>
+</td>
+<td align="center">
+<table summary="gaussien sigma 1" border="1">
+<tbody><tr align="center">
+<td>1</td>
+<td>4</td>
+<td>6</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr align="center">
+<td>4</td>
+<td>18</td>
+<td>30</td>
+<td>18</td>
+<td>4</td>
+</tr>
+<tr align="center">
+<td>6</td>
+<td>30</td>
+<td><b>48</b></td>
+<td>30</td>
+<td>6</td>
+</tr>
+<tr align="center">
+<td>4</td>
+<td>18</td>
+<td>30</td>
+<td>18</td>
+<td>4</td>
+</tr>
+<tr align="center">
+<td>1</td>
+<td>4</td>
+<td>6</td>
+<td>4</td>
+<td>1</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr align="center">
+<td><br />
+</td>
+<td>&#963; = 0.7</td>
+<td>&#963; = 0.8</td>
+<td>&#963; = 1.0</td>
+</tr>
+<tr align="center">
+<td><img src="images/originale.gif" height="137" width="143" /></td>
+<td><img src="images/conique_25_5x5.gif" height="137" width="143" /></td>
+<td><img src="images/gaussien_flou_16_3x3.gif" height="137" width="143" /></td>
+<td><img src="images/gaussien_sigma1_300_5x5.gif" height="137" width="143" /></td>
+</tr>
+</tbody></table>
+<p>Les filtres de flou réduisent ou suppriment les
+détails fortement contrastés : Ce sont des filtres
+<b>passe-bas</b> (cf. les fonctions Aud'ACE <b>Images/Filtrer/Filtre
+passe bas ...</b> et <b>Images/Filtrer/Filtre gaussien ...</b>).
+Les filtres passe-bas adoucissent l'image. Ils sont utiles pour
+lisser le bruit (&#963; &lt; 1) et dans la technique du <a href="#masque_flou">masque flou</a> (&#963; &gt; 1).</p>
+<table summary="sigma &gt; 1" cellpadding="10">
+<tbody><tr>
+<th>gaussien binomial 5x5</th>
+<th>gaussien 5x5</th>
+<th>gaussien 5x5</th>
+</tr>
+<tr>
+<td align="center">
+<table summary="binomial sigma 1.1" border="1">
+<tbody><tr align="center">
+<td>1</td>
+<td>4</td>
+<td>6</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>16</td>
+<td>24</td>
+<td>16</td>
+<td>4</td>
+</tr>
+<tr>
+<td>6</td>
+<td>24</td>
+<td><b>36</b></td>
+<td>24</td>
+<td>6</td>
+</tr>
+<tr align="center">
+<td>4</td>
+<td>16</td>
+<td>24</td>
+<td>16</td>
+<td>4</td>
+</tr>
+<tr align="center">
+<td>1</td>
+<td>4</td>
+<td>6</td>
+<td>4</td>
+<td>1</td>
+</tr>
+</tbody></table>
+</td>
+<td align="center">
+<table summary="sigma 1.3" border="1">
+<tbody><tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>6</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>6</td>
+<td><b>9</b></td>
+<td>6</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>6</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+</tr>
+</tbody></table>
+</td>
+<td align="center">
+<table summary="sigma 1.7" border="1">
+<tbody><tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3</td>
+<td><b>4</b></td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr align="center">
+<td>&#963; = 1.1</td>
+<td>&#963; = 1.3</td>
+<td>&#963; = 1.7</td>
+</tr>
+<tr>
+<td><img src="images/gaussien_binomial_256_5x5.gif" height="137" width="143" /></td>
+<td><img src="images/originale.gif" height="137" width="143" /></td>
+<td><img src="images/gaussien_sigma17_56_5x5.gif" height="137" width="143" /></td>
+</tr>
+</tbody></table>
+<p>Les <b>filtres moyens</b> sont en quelque sorte des filtres
+gaussiens dénaturés où tous les coefficients
+seraient égaux (pas de sigma) (cf. la fonction Aud'ACE
+<b>Images/Filtrer/Filtre moyen ...</b>). Ils sont trés
+simples mais préservent aussi un peu moins bien les
+détails.</p>
+<table summary="filtres moyens" cellpadding="10">
+<tbody><tr>
+<th>moyen 3x3</th>
+<th>hexagonal 5x5</th>
+</tr>
+<tr>
+<td align="center">
+<table summary="moyen" border="1">
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td><b>1</b></td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody></table>
+</td>
+<td align="center">
+<table summary="hexagonal" border="1">
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td><b>1</b></td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr>
+<td><img src="images/moyen_9_3x3.gif" height="137" width="143" /></td>
+<td><img src="images/hexagonal_7_5x5.gif" height="137" width="143" /></td>
+</tr>
+</tbody></table>
+<p>Il faut parfois faire des comparaisons détaillées
+pour distinguer les différences.</p>
+<p><a name="masque-flou" id="masque_flou">La technique du
+<b>masque flou</b></a> consiste à :</p>
+<ul>
+<li>Appliquer un filtre gaussien à l'original.</li>
+<li>Soustraire l'image floue de l'originale.</li>
+<li>Amplifier la force des détails en multipliant l'image
+par un coefficient k.</li>
+<li>Ajouter cette image amplifiée à l'original.</li>
+<li>Revenir à la dynamique initiale en divisant par
+k+1.</li>
+</ul>
+<p>La fonction <b>Images/Filtrer/Masque Flou ...</b> d'Aud'ACE
+fait cela automatiquement.</p>
+</li>
+<li>
+<h3>Filtres laplaciens (rehaussement des contours)</h3>
+<p>Ces filtres ont une action inverse des précédents,
+ils améliorent le contraste local. Leur caractéristique
+est que la somme des coefficients est nulle (donc pas question de
+normaliser). On peut cependant rajouter 1 à l'élément central et c'est alors un filtre
+normalisé qui constitue un filtre <b>passe-haut</b> (cf. la
+<b>netteté</b> et <b>Images/Filtrer/Filtre passe haut
+...</b>). Ils ont tendance à accentuer le bruit (thermique
+ou de photon).</p>
+<table summary="filtres laplaciens" cellpadding="10">
+<tbody><tr align="center">
+<th>original</th>
+<th>laplacien 1 3x3</th>
+<th>netteté</th>
+<th>accentuation 3x3</th>
+</tr>
+<tr align="center">
+<td><br />
+</td>
+<td>
+<table summary="laplacien 1" align="center" border="1">
+<tbody><tr>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>-1</td>
+<td align="center"><b>8</b></td>
+<td>-1</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+</tr>
+</tbody></table>
+</td>
+<td>
+<table summary="nettete" align="center" border="1">
+<tbody><tr>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>-1</td>
+<td align="center"><b>9</b></td>
+<td>-1</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+</tr>
+</tbody></table>
+</td>
+<td>
+<table summary="accentuation" align="center" border="1">
+<tbody><tr>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>-1</td>
+<td align="center"><b>16</b></td>
+<td>-1</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr>
+<td><img src="images/saturne.gif" height="65" width="128" /></td>
+<td><img src="images/laplacien1_0_3x3_saturne.gif" height="65" width="128" /></td>
+<td><img src="images/nettete_1_3x3_saturne.gif" height="65" width="128" /></td>
+<td><img src="images/accentuation_8_3x3_saturne.gif" height="65" width="128" /></td>
+</tr>
+</tbody></table>
+<p>L'effet est d'autant moins prononcé que le coefficient
+central est important.</p>
+<p>Les filtres <b>laplacien 1</b>, <b>netteté</b> et
+<b>accentuation</b> sont <b>non directionnels</b> au sens où tous les éléments entourant le pixel central sont
+traités de manière identique. Ils ne privilégient
+aucune direction (Nord-Sud, Est-Ouest, diagonale). La permutation
+des éléments entourant l'élément central ne
+produit pas un noyau différent.</p>
+<p>Les pixels des coins, qui ne sont pas exactement à la
+même distance que les pixels directement adjacents, peuvent
+être traités différemment, ce qui génère
+d'autres noyaux de base et d'autres effets. Le tableau ci-dessous
+regroupe le noyau et l'effet obtenu après addition de
+l'image filtrée avec l'image originale :</p>
+<table summary="autres laplaciens" cellpadding="10">
+<tbody><tr>
+<th>laplacien 1 3x3</th>
+<th>laplacien 2 3x3</th>
+<th>laplacien de Robinson 3x3</th>
+<th>laplacien 3 3x3</th>
+<th>laplacien hexagonal 5x5</th>
+</tr>
+<tr align="center">
+<td>
+<table summary="laplacien 1" align="center" border="1">
+<tbody><tr>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>-1</td>
+<td align="center"><b>8</b></td>
+<td>-1</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>-1</td>
+<td>-1</td>
+</tr>
+</tbody></table>
+</td>
+<td>
+<table summary="laplacien 2" border="1">
+<tbody><tr>
+<td>-1</td>
+<td>-2</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>-2</td>
+<td><b>12</b></td>
+<td>-2</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>-2</td>
+<td>-1</td>
+</tr>
+</tbody></table>
+</td>
+<td>
+<table summary="laplacien de Robinson" border="1">
+<tbody><tr>
+<td align="center">1</td>
+<td>-2</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td>-2</td>
+<td align="center"><b>4</b></td>
+<td>-2</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td>-2</td>
+<td align="center">1</td>
+</tr>
+</tbody></table>
+</td>
+<td align="center">
+<table summary="laplacien 3" border="1">
+<tbody><tr align="center">
+<td>0</td>
+<td>-1</td>
+<td>0</td>
+</tr>
+<tr align="center">
+<td>-1</td>
+<td><b>4</b></td>
+<td>-1</td>
+</tr>
+<tr align="center">
+<td>0</td>
+<td>-1</td>
+<td>0</td>
+</tr>
+</tbody></table>
+</td>
+<td>
+<table summary="laplacien hexgonal" border="1">
+<tbody><tr align="center">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr align="center">
+<td>0</td>
+<td>-1</td>
+<td>0</td>
+<td>-1</td>
+<td>0</td>
+</tr>
+<tr align="center">
+<td>-1</td>
+<td>0</td>
+<td><b>6</b></td>
+<td>0</td>
+<td>-1</td>
+</tr>
+<tr align="center">
+<td>0</td>
+<td>-1</td>
+<td>0</td>
+<td>-1</td>
+<td>0</td>
+</tr>
+<tr align="center">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr align="center">
+<td><img src="images/nettete_1_3x3_saturne.gif" height="65" width="128" /></td>
+<td><img src="images/laplacien2_0_3x3_saturne.gif" height="65" width="128" /></td>
+<td><img src="images/laplacien_robinson_0_3x3_saturne.gif" height="65" width="128" /></td>
+<td><img src="images/laplacien3_0_3x3_saturne.gif" height="65" width="128" /></td>
+<td><img src="images/laplacien_hexagonal_0_5x5_saturne.gif" height="65" width="128" /></td>
+</tr>
+</tbody></table>
+<p>Ces filtres produisent un halo noir et augmentent le bruit. Il
+est préférable d'appliquer un filtre flou pour diminuer
+le bruit avant d'appliquer un filtre d'accentuation des
+détails, c'est la combinaison <b>LoG</b> (Laplacien of
+Gaussian) ou <b>chapeau mexicain</b> (cf.
+<b>Images/Filtrer/Ondelettes de type chapeau
+mexicain...</b>).</p>
+</li>
+<li>
+<h3>Filtres gradients (variation de luminosité)</h3>
+<p>Les filtres <b>directionnels</b> ne sont pas symétriques.
+Tel est le cas du filtre de Sobel qui permet de mettre en
+évidence les différences (le <b>gradient</b>) de
+luminosité entre zones dans une direction donnée. Ils
+servent à enlever des composantes continues et à mettre
+en valeur de faibles détails et à leur donner du
+relief. Ils ont donc également tendance à accentuer le
+bruit (thermique ou de photon).</p>
+<table summary="gradients" cellpadding="10">
+<tbody><tr align="center">
+<th>Sobel Ouest-&gt;Est 3x3</th>
+<th>Sobel Nord-&gt;Sud 3x3</th>
+<th>Sobel Est-&gt;Ouest 3x3</th>
+<th>Sobel Sud-&gt;Nord 3x3</th>
+</tr>
+<tr align="center">
+<td>
+<table summary="Sobel Ouest-&gt;Est" border="1">
+<tbody><tr>
+<td>-1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>-2</td>
+<td><b>0</b></td>
+<td>2</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody></table>
+</td>
+<td>
+<table summary="Sobel Nord-&gt;Sud 3x3" border="1">
+<tbody><tr>
+<td>-1</td>
+<td>-2</td>
+<td>-1</td>
+</tr>
+<tr align="center">
+<td>0</td>
+<td><b>0</b></td>
+<td>0</td>
+</tr>
+<tr align="center">
+<td>1</td>
+<td>2</td>
+<td>1</td>
+</tr>
+</tbody></table>
+</td>
+<td>
+<table summary="Sobel Est-&gt;Ouest" border="1">
+<tbody><tr>
+<td>1</td>
+<td>0</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>2</td>
+<td><b>0</b></td>
+<td>-2</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>-1</td>
+</tr>
+</tbody></table>
+</td>
+<td>
+<table summary="Sobel Sud-&gt;Nord" border="1">
+<tbody><tr align="center">
+<td>1</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr align="center">
+<td>0</td>
+<td><b>0</b></td>
+<td>0</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>-2</td>
+<td>-1</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr>
+<td><img src="images/sobel_OE_0_3x3_M57.gif" height="141" width="141" /></td>
+<td><img src="images/sobel_NS_0_3x3_M57.gif" height="141" width="141" /></td>
+<td><img src="images/sobel_EO_0_3x3_M57.gif" height="141" width="141" /></td>
+<td><img src="images/sobel_SN_0_3x3_M57.gif" height="141" width="141" /></td>
+</tr>
+</tbody></table>
+<p>L'effet de relief et d'estampage varie selon la direction du
+filtre, l'ombre est toujours du côté des valeurs
+négatives du noyau et les contours et les détails sont
+plus ou moins accentués. Il est donc recommandé de
+procéder à des essais pour sélectionner le filtre
+adapté.</p>
+<p>Les 4 noyaux ci-dessus peuvent être obtenus par rotation
+d'un angle de 90° des valeurs périphériques de la
+matrice. On pourrait compléter la gamme avec des rotations
+à 45° ou avec des permutations entre les lignes ou
+entre les colonnes.</p>
+<p>Voici un comparatif de quelques noyaux :</p>
+<table summary="comparatif gradient" cellpadding="10">
+<tbody><tr align="center">
+<th>Sobel Ouest-&gt;Est 3x3</th>
+<th>Prewitt Ouest-&gt;Est 3x3</th>
+<th>Kirsch Ouest-&gt;Est 3x3</th>
+</tr>
+<tr align="center">
+<td>
+<table summary="Sobel Ouest-&gt;Est" border="1">
+<tbody><tr>
+<td>-1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>-2</td>
+<td><b>0</b></td>
+<td>2</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody></table>
+</td>
+<td>
+<table summary="Prewitt Ouest-&gt;Est" border="1">
+<tbody><tr>
+<td>-1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>-1</td>
+<td><b>0</b></td>
+<td>1</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody></table>
+</td>
+<td>
+<table summary="Kirsch Ouest-&gt;Est" border="1">
+<tbody><tr>
+<td>-3</td>
+<td>0</td>
+<td>5</td>
+</tr>
+<tr>
+<td>-3</td>
+<td><b>0</b></td>
+<td>5</td>
+</tr>
+<tr>
+<td>-3</td>
+<td>0</td>
+<td>5</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr align="center">
+<th>Roberts Ouest-&gt;Est 3x3</th>
+<th>Croix Ouest-&gt;Est 3x3</th>
+<th>Frei-Chen Ouest-&gt;Est 3x3</th>
+</tr>
+<tr align="center">
+<td>
+<table summary="roberts" border="1">
+<tbody><tr align="center">
+<td>-1</td>
+<td><b>1</b></td>
+<td>0</td>
+</tr>
+</tbody></table>
+</td>
+<td>
+<table summary="croix" border="1">
+<tbody><tr align="center">
+<td>-1</td>
+<td><b>0</b></td>
+<td>1</td>
+</tr>
+</tbody></table>
+</td>
+<td>
+<table summary="frei-chen" border="1">
+<tbody><tr align="center">
+<td>&#8730;2</td>
+<td>0</td>
+<td>&#8730;2</td>
+</tr>
+<tr align="center">
+<td>-1</td>
+<td><b>0</b></td>
+<td>1</td>
+</tr>
+<tr>
+<td>&#8730;2</td>
+<td>0</td>
+<td>&#8730;2</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<p>Les filtres directionnels sont regroupés dans le menu
+<b>Images/Filtrer/Eclairement ...</b> d'Aud'ACE.</p>
+</li>
+<li>
+<h3><a name="simplification" id="simplification">Simplification
+des noyaux</a></h3>
+<p>Du fait que ces noyaux ont les caractéristiques de
+matrices, ceux-ci peuvent bénéficier
+éventuellement de simplifications permettant de réduire
+le nombre de calculs et le temps de traitement.</p>
+<ol>
+<li>
+<h3>Inversion</h3>
+<p>Le filtre complémentaire du filtre invariant signalé au premier paragraphe peut s'écrire simplement :</p>
+<table summary="inversion" border="1">
+<tbody><tr>
+<td>-1</td>
+</tr>
+</tbody></table>
+<p>Il produit l'inversion des valeurs de l'image qui devient le
+<b>négatif</b> de l'original.</p>
+</li>
+<li>
+<h3>Addition avec l'original</h3>
+<p>Le filtre <b>netteté</b> peut être utilisé tel quel. On peut aussi remarquer que la différence entre le
+filtre <b>netteté</b> et le filtre <b>laplacien 1
+3x3</b> est une augmentation de 1 (9 au lieu de 8) sur le pixel
+central. Compte tenu de la remarque sur le noyau
+<b>unité</b> le filtre <b>netteté</b> peut
+s'écrire simplement : <b>netteté</b> = <b>laplacien
+1 3x3</b> + <b>original</b>, ce qui signifie qu'il suffit
+d'additionner les deux images.</p>
+<p>De même le filtre <b>accentuation 3x3</b> peut aussi
+être obtenu en faisant <b>laplacien 1 3x3</b> + 8 *
+<b>original</b> = <b>accentuation 3x3</b> / 8 (pour garder la
+dynamique initiale).</p>
+<p>La multiplication de l'original revient à diluer l'effet
+du filtre. Ces filtres sont donc fréquemment
+accompagné d'un réglage permettant d'obtenir la
+<b>force</b> souhaitée.</p>
+</li>
+<li>
+<h3>Séparation des filtres</h3>
+<p>Les filtres <b>gaussien 3x3</b>, <b>gaussien binomial</b>,
+<b>gaussien 5x5</b> (premier), <b>moyen 3x3</b>, <b>laplacien
+Robinson 3x3</b> et le filtre de <b>Sobel</b> peuvent être
+séparés en deux filtres directionnels plus simples. Par
+exemple le filtre <b>gaussien 3x3</b> peut être écrit
+:</p>
+<table summary="separation" align="center">
+<tbody><tr>
+<td>
+<table summary="" border="1">
+<tbody><tr align="center">
+<td>1</td>
+<td>2</td>
+<td>1</td>
+</tr>
+</tbody></table>
+</td>
+<td>x</td>
+<td>
+<table summary="" border="1">
+<tbody><tr align="center">
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+</tr>
+<tr>
+<td>1</td>
+</tr>
+</tbody></table>
+</td>
+<td>=</td>
+<td>
+<table summary="" border="1">
+<tbody><tr align="center">
+<td>1</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<p>Il faut alors exécuter un balayage horizontal avec l'un
+et un balayage vertical avec l'autre. Même si deux balayages
+sont nécessaires, au total ils nécessitent bien moins de
+calculs et diminuent les temps de traitement.</p>
+<p>Pour qu'un filtre soit séparable il faut et il suffit que
+les coefficients des lignes et des colonnes soient
+proportionnels, ce qui est le cas des filtres cités.</p>
+</li>
+</ol>
+</li>
+<li>
+<h3>Combinaisons de filtres (non exhaustif)</h3>
+<p>Le filtre <b>LoG</b> (Laplacien of Gaussian) ou <b>filtre de
+Marr</b>, connu sous le nom de <b>chapeau mexicain</b>, combine
+un filtre gaussien et un filtre laplacien. Exemple : Application
+d'un filtre laplacien (noyau = 3) à une image ayant
+préalablement été traitée par un filtre
+gaussien de sigma = 0.45.</p>
+<p>Le filtre <b>DoG</b> (Difference of Gaussian) effectue la
+différence entre deux filtres gaussiens de sigma
+différents. Exemple : Différence entre une image
+traitée avec un filtre gaussien (noyau = 5, sigma = 1) avec
+celle traitée par un filtre gaussien (noyau = 7, sigma
+= 1.6).</p>
+<p>Le filtre <b>DoB</b> (Difference of Boxes) fait la
+différence entre deux filtres moyens de tailles
+différentes du noyau. Exemple : Différence entre une
+image traitée avec un filtre moyen (noyau = 4) avec celle
+traitée avec un filtre moyen (noyau = 20).</p>
+<p>Les filtres ci-dessus font partie de la famille des filtres
+<b>linéaires</b> car ils remplacent une valeur par une
+combinaison des valeurs des pixels du noyau.</p>
+</li>
+<li>
+<h3>Autres filtres</h3>
+<p>Le filtre <b>moyen</b> remplace la valeur du pixel central du
+noyau par la valeur moyenne des valeurs (cf.
+<b>Images/Filtrer/Filtre moyen ...</b>). Une fonction telle que
+<b>Images/Filtrer/Filtre médian ...</b> remplace la valeur
+du pixel central par la médiane des valeurs du noyau choisi.
+Ce noyau n'est pas configurable comme celui d'un noyau de filtre
+linéaire car il n'est pas possible de déterminer à l'avance quelle sera la position du pixel porteur de cette
+valeur. Il en va de même pour les fonctions
+<b>Images/Filtrer/Filtre minimum ...</b> et
+<b>Images/Filtrer/Filtre maximum ...</b>. Les filtres de
+<b>Harris</b>, <b>Kuwahara</b>, <b>Symetric Nearest Neighbor</b>
+et <b>Déparasitage</b> ont un mode d'action analogue.</p>
+<p>Il en existe encore d'autres qui agissent différemment
+mais qui ne relèvent pas d'une convolution spatiale (cf.
+<b>Images/Filtrer/Gradient rotationnel ...</b> et
+<b>Images/Filtrer/Filtre radial ...</b>).</p>
+</li>
+<li>
+<h3>Déconvolution</h3>
+<p>La déconvolution est l'action inverse de la convolution
+et vise à restaurer une image. Ce n'est pas une action
+simple dés lors que le filtre appliqué est inconnu, ce
+qui est le cas le plus fréquent.</p>
+</li>
+</ol>
+<h2><a name="editeur_noyau" id="editeur_noyau">3. Editeur de
+noyaux</a></h2>
+<p>Cette application permet de construire des filtres personnels
+de taille 1 x n (une seule ligne), n x n ou n x 1 (une seule
+colonne), avec n au maximum égal à 9.</p>
+<ol>
+<li>
+<h3>Interface</h3>
+<p><img src="images/editeur.gif" /></p>
+<p>L'éditeur comprend (de haut en bas) :</p>
+<ul>
+<li>Une liste déroulante de sélection de
+l'image-filtre. Au lancement la liste se positionne sur
+<b>&lt;nouveau&gt;</b> et crée un noyau 3x3 avec des
+0.</li>
+<li>Une ligne <b>Taille du noyau</b> comporte des sélecteurs
+du nombre de lignes et de colonnes, la sélection d'un
+bouton crée automatiquement un <b>&lt;nouveau&gt;</b>
+noyau carré initialisé à 0.</li>
+<li>Une représentation matricielle des valeurs du noyau
+sélectionné. Les cases permettent également de
+saisir des valeurs pour modifier un noyau existant ou créer
+un nouveau noyau. Les valeurs affichées sont soit
+entières soit avec 3 décimales.</li>
+<li>Une case <b>Diviseur</b> donnant la somme des
+éléments du noyau et permettant de savoir si elle nulle
+(filtre laplacien), égale à 1 (filtre normalisé)
+ou supérieure à 1.</li>
+<li>Une case à cocher pour normaliser automatiquement le
+noyau affiché, les valeurs affichées se limitent
+à 3 décimales mais le noyau est en <b>float</b>. Cette
+commande n'opère que si le noyau peut être
+normalisé.</li>
+<li>La valeur de &#963;x et de &#963;y pour les noyaux de type
+<b>gaussien</b>.</li>
+<li>Les commandes habituelles, dont <b>Appliquer</b> qui
+génère et affiche l'image du noyau et complète la
+liste des noyaux disponibles. Pour créer un filtre il suffit
+de donner un nom générique (cf. la gestion des images de
+convolution, paragraphe ci-dessous).</li>
+</ul>
+<br /></li>
+<li>
+<h3>Gestion des images de convolution</h3>
+<ul>
+<li>Le répertoire des images de filtres est situé de
+manière intangible dans le sous répertoire
+<b>$conf(rep_userFiltre)</b>. Si ce répertoire n'existe pas
+il est créé et 28 filtres y sont recopiés.</li>
+<li>L'extension des fichiers de filtre est celle définie par
+l'utilisateur dans '<span style="font-weight: bold;">Configuration/Fichiers</span>'.</li>
+<li>Le nom des images commence par le nom générique
+saisi. Pour faciliter leur identification le nom
+générique est suivi automatiquement d'indications sur
+les caractéristiques du noyau séparées par des _,
+le diviseur (un nombre entier, éventuellement 0), la taille
+du noyau (exemple <b>3x3</b>).</li>
+<li>Il n'y a pas de règle concernant la fixation du nom des
+filtres. Seule la lecture des valeurs permet de les
+différencier et chacun est libre de choisir un nom évocateur :
+<ul>
+<li>Nom de leur créateur (Kirsch, Roberts, Sobel, Prewitt,
+etc.).</li>
+<li>Effet (flou, contraste, netteté, détection des
+bords, estampage).</li>
+<li>Caractéristique de la fonction (gaussien, laplacien,
+moyen, conique, etc.) ou du noyau (croix, etc.).</li>
+<li>Orientation du filtre.</li>
+<li>Autre ...</li>
+</ul>
+</li>
+</ul>
+<br /></li>
+<li>
+<h3>Bon à savoir</h3>
+<ul>
+<li>Les filtres ne savent pas bien traiter les bords des images,
+il faudra recadrer l'image finale pour nettoyer ces quelques
+lignes et colonnes.</li>
+<li>Les images de noyaux de convolution sont vraiment trés
+petites, de l'ordre de quelques (6) Ko, le zoom est donc
+automatiquement positionné au maximum (8). A la fermeture de
+la fenêtre il est remis à sa valeur antérieure.</li>
+</ul>
+</li>
+</ol>
+<h2>4. <a name="conv_spatiale" id="conv_spatiale">Mise en &#339;uvre
+d'un filtre</a></h2>
+<p>La fonction <b>Images/Convoluer/Convolution</b> permet
+d'appliquer un filtre sur une image FITS non-RGB (<b>Image
+d'entrée numéro 1</b>). Le nom du filtre doit être
+saisi dans la fenêtre <b>Image d'entrée numéro
+2</b>.</p>
+<p>Il est aussi possible d'utiliser l'interface trés simple
+<b>Images/Convoluer/Convolution spatiale</b> qui peut prendre en
+charge une image FITS ou non, RGB ou non, affiché dans la
+visu. Selon la nature de l'image soumise au filtre, le script
+convertit les images non-FITS en FITS, décompose les images
+RGB en plans couleurs, applique le filtre à chaque plan puis
+recompose l'image RGB et, enfin, reconvertit l'image au format de
+l'image à traiter.</p>
+<p><img src="images/convolution_spatiale.gif" /></p>
+<p>L'interface comporte un sélecteur de filtres qui pointe
+vers le répertoire des filtres ainsi qu'une option
+<b>Préserver la dynamique</b> et les commandes habituelles.</p>
+<p>Le nom de l'image produite est le nom de l'image originale
+précédé du nom du filtre. Elle est
+enregistrée dans le répertoire des images et
+affichée dans la visu.</p>
+<h2>5. <a name="references" id="references">Quelques
+références</a></h2>
+<ul>
+<li>ASTROART <a href="http://xmcvs.free.fr/astroart/Chapitre4.pdf">http://xmcvs.free.fr/astroart/Chapitre4.pdf</a></li>
+<li>Alain Boucher IFI <a href="http://www2.ifi.auf.org/personnel/Alain.Boucher/cours/traitement_images/03-Convolution.pdf">
+http://www2.ifi.auf.org/personnel/Alain.Boucher/cours/traitement_images/03-Convolution.pdf</a></li>
+<li>Rafaello Université de Besançon <a href="http://raphaello.univ-fcomte.fr/IG/TraitementImages/TraitementImages.htm#matriciel">
+http://raphaello.univ-fcomte.fr/IG/TraitementImages/TraitementImages.htm#matriciel</a></li>
+<li>Jérôme Vicente IUSTI <a href="http://iusti.polytech.univ-mrs.fr/%7Evicente/supportcours/vision3-2006.pdf">
+http://iusti.polytech.univ-mrs.fr/~vicente/supportcours/vision3-2006.pdf</a></li>
+<li>ImageMagick (en anglais) <a href="http://www.imagemagick.org/Usage/convolve/">http://www.imagemagick.org/Usage/convolve/</a></li>
+</ul>
+</body></html>

@@ -1,0 +1,1660 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=UTF-8" />
+  <title>Tutoriel simulateur d'images et calculateur de temps de pose</title>
+</head>
+<body style="color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee"
+ vlink="#551a8b">
+<p class="date">Date de
+mise &agrave; jour : 12 novembre 2011<br />
+</p>
+<h1>Tutoriel simulateur d'images
+et calculateur de temps de pose</h1>
+Afin de tester une fonction de traitement d'image, il peut
+&ecirc;tre
+utile de g&eacute;n&eacute;rer une image ou une
+s&eacute;rie d'images
+artificielles si l'on n'a pas de cam&eacute;ra. AudeLA permet de
+g&eacute;n&eacute;rer des images artificielles en tenant compte
+de la
+position des &eacute;toiles donn&eacute;es dans un catalogue et
+en
+ajoutant les caract&eacute;ristiques de r&eacute;ponse et de
+bruit de
+l'instrumentation. <br />
+<br />
+Par ailleurs, &eacute;tant donn&eacute; les
+caract&eacute;ristiques
+d'une instrumentation, il est int&eacute;ressant de
+d&eacute;terminer,
+de fa&ccedil;on th&eacute;orique, le temps de pose
+id&eacute;al pour
+obtenir un bon rapport signal sur bruit d'une &eacute;toile de
+magnitude connue. Un tel calcul est habituellement not&eacute; ETC
+pour
+Exposure Time Calculator. Les calculs reposent sur les m&ecirc;mes
+concepts que le simulateur d'images. <br />
+<br />
+Dans ce document, nous commen&ccedil;ons par d&eacute;crire la
+th&eacute;orie utilis&eacute;e pour
+g&eacute;n&eacute;rer une image ou
+pour calculer un temps de pose id&eacute;al puis nous
+d&eacute;crivons
+les fonction d'ETC et de simulation d'image.<br />
+<br />
+Notons, en r&eacute;sum&eacute;, que la
+g&eacute;n&eacute;ration des
+images de synth&egrave;se est facilit&eacute;e par
+l'utilisation des
+fonctions simulimage et simulimage2 et que le calcul ETC est
+r&eacute;alis&eacute; par les fonctions commen&ccedil;ant
+par etc_. Ces
+fonctions sont d&eacute;crites aux paragraphes 2 et 3 de ce
+document.<br />
+<h1>1. Th&eacute;orie de la
+g&eacute;n&eacute;ration des signaux et des
+bruits dans un pixel de cam&eacute;ra num&eacute;rique</h1>
+<h2>1.1 Inputs parameters</h2>
+<h3>1.1.1 OBJECT</h3>
+<ul>
+  <li>M : Absolute stellar
+magnitude</li>
+  <li>DL_Mpc : Distance luminosity
+(Mpc)</li>
+  <li>m : Apparent stellar
+magnitude</li>
+  <li>Band : Photometric Band (B,
+V, R, I or
+C)</li>
+</ul>
+<h3>1.1.2. FILTER</h3>
+<ul>
+  <li><font face="">l</font>
+:
+Central wavelength of the photometric band (&micro;m)</li>
+  <li><font face="">Dl</font>
+:
+Bandpass width of the photometric band (&micro;m)</li>
+  <li>Fm0 : Flux at magnitude zero
+of the
+photometric band (Jy)</li>
+</ul>
+<p style="margin-bottom: 0cm;"><br />
+</p>
+<table border="1" cellpadding="1" cellspacing="1" width="576">
+  <col width="40" /> <col width="70" /> <col width="120" /> <col
+ width="86" /> <col width="243" /> <tbody>
+    <tr>
+      <td width="40">
+      <p align="center"><font color="#000000"><b>Band </b></font></p>
+      </td>
+      <td width="70">
+      <p align="center"><font color="#000000"><b><font face="">l</font>
+      </b></font></p>
+      </td>
+      <td width="120">
+      <p align="center"><font color="#000000"><font face=""><b>DL/l</b></font></font></p>
+      </td>
+      <td width="86">
+      <p align="center"><font color="#000000"><b>Flux
+at m=0 </b></font> </p>
+      </td>
+      <td width="243">
+      <p align="center"><font color="#000000"><b>Reference </b></font></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="40">
+      <p align="center"><br />
+      </p>
+      </td>
+      <td width="70">
+      <p align="center"><font color="#000000"><b>&micro;m </b></font></p>
+      </td>
+      <td width="120">
+      <p align="center"><font color="#000000"><b>&micro;m </b></font></p>
+      </td>
+      <td width="86">
+      <p align="center"><font color="#000000"><b>Jy </b></font></p>
+      </td>
+      <td width="243">
+      <p align="center"><br />
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="40">
+      <p align="left"><font color="#000000">U </font> </p>
+      </td>
+      <td width="70">
+      <p align="left"><font color="#000000">0.36 </font> </p>
+      </td>
+      <td width="120">
+      <p align="left"><font color="#000000">0.15 </font> </p>
+      </td>
+      <td width="86">
+      <p align="left"><font color="#000000">1810 </font> </p>
+      </td>
+      <td width="243">
+      <p align="left"><font color="#000000">Bessel (1979) </font> </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="40">
+      <p align="left"><font color="#000000">B </font> </p>
+      </td>
+      <td width="70">
+      <p align="left"><font color="#000000">0.44 </font> </p>
+      </td>
+      <td width="120">
+      <p align="left"><font color="#000000">0.22 </font> </p>
+      </td>
+      <td width="86">
+      <p align="left"><font color="#000000">4260 </font> </p>
+      </td>
+      <td width="243">
+      <p align="left"><font color="#000000">Bessel (1979) </font> </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="40">
+      <p align="left"><font color="#000000">V </font> </p>
+      </td>
+      <td width="70">
+      <p align="left"><font color="#000000">0.55 </font> </p>
+      </td>
+      <td width="120">
+      <p align="left"><font color="#000000">0.16 </font> </p>
+      </td>
+      <td width="86">
+      <p align="left"><font color="#000000">3640 </font> </p>
+      </td>
+      <td width="243">
+      <p align="left"><font color="#000000">Bessel (1979) </font> </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="40">
+      <p align="left"><font color="#000000">R </font> </p>
+      </td>
+      <td width="70">
+      <p align="left"><font color="#000000">0.64 </font> </p>
+      </td>
+      <td width="120">
+      <p align="left"><font color="#000000">0.23 </font> </p>
+      </td>
+      <td width="86">
+      <p align="left"><font color="#000000">3080 </font> </p>
+      </td>
+      <td width="243">
+      <p align="left"><font color="#000000">Bessel (1979) </font> </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="40">
+      <p align="left"><font color="#000000">I </font> </p>
+      </td>
+      <td width="70">
+      <p align="left"><font color="#000000">0.79 </font> </p>
+      </td>
+      <td width="120">
+      <p align="left"><font color="#000000">0.19 </font> </p>
+      </td>
+      <td width="86">
+      <p align="left"><font color="#000000">2550 </font> </p>
+      </td>
+      <td width="243">
+      <p align="left"><font color="#000000">Bessel (1979) </font> </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="40">
+      <p align="left"><font color="#000000">J </font> </p>
+      </td>
+      <td width="70">
+      <p align="left"><font color="#000000">1.26 </font> </p>
+      </td>
+      <td width="120">
+      <p align="left"><font color="#000000">0.16 </font> </p>
+      </td>
+      <td width="86">
+      <p align="left"><font color="#000000">1600 </font> </p>
+      </td>
+      <td width="243">
+      <p align="left"><font color="#000000">Campins, Reike, &amp;
+Lebovsky (1985) </font> </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="40">
+      <p align="left"><font color="#000000">H </font> </p>
+      </td>
+      <td width="70">
+      <p align="left"><font color="#000000">1.60 </font> </p>
+      </td>
+      <td width="120">
+      <p align="left"><font color="#000000">0.23 </font> </p>
+      </td>
+      <td width="86">
+      <p align="left"><font color="#000000">1080 </font> </p>
+      </td>
+      <td width="243">
+      <p align="left"><font color="#000000">Campins, Reike, &amp;
+Lebovsky (1985) </font> </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="40">
+      <p align="left"><font color="#000000">K </font> </p>
+      </td>
+      <td width="70">
+      <p align="left"><font color="#000000">2.22 </font> </p>
+      </td>
+      <td width="120">
+      <p align="left"><font color="#000000">0.23 </font> </p>
+      </td>
+      <td width="86">
+      <p align="left"><font color="#000000">670 </font> </p>
+      </td>
+      <td width="243">
+      <p align="left"><font color="#000000">Campins, Reike, &amp;
+Lebovsky (1985) </font> </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="40">
+      <p align="left"><font color="#000000">g </font> </p>
+      </td>
+      <td width="70">
+      <p align="left"><font color="#000000">0.52 </font> </p>
+      </td>
+      <td width="120">
+      <p align="left"><font color="#000000">0.14 </font> </p>
+      </td>
+      <td width="86">
+      <p align="left"><font color="#000000">3730 </font> </p>
+      </td>
+      <td width="243">
+      <p align="left"><font color="#000000">Schneider, Gunn, &amp;
+Hoessel (1983) </font> </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="40">
+      <p align="left"><font color="#000000">r </font> </p>
+      </td>
+      <td width="70">
+      <p align="left"><font color="#000000">0.67 </font> </p>
+      </td>
+      <td width="120">
+      <p align="left"><font color="#000000">0.14 </font> </p>
+      </td>
+      <td width="86">
+      <p align="left"><font color="#000000">4490 </font> </p>
+      </td>
+      <td width="243">
+      <p align="left"><font color="#000000">Schneider, Gunn, &amp;
+Hoessel (1983) </font> </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="40">
+      <p align="left"><font color="#000000">i </font> </p>
+      </td>
+      <td width="70">
+      <p align="left"><font color="#000000">0.79 </font> </p>
+      </td>
+      <td width="120">
+      <p align="left"><font color="#000000">0.16 </font> </p>
+      </td>
+      <td width="86">
+      <p align="left"><font color="#000000">4760 </font> </p>
+      </td>
+      <td width="243">
+      <p align="left"><font color="#000000">Schneider, Gunn, &amp;
+Hoessel (1983) </font> </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="40">
+      <p align="left"><font color="#000000">z </font> </p>
+      </td>
+      <td width="70">
+      <p align="left"><font color="#000000">0.91 </font> </p>
+      </td>
+      <td width="120">
+      <p align="left"><font color="#000000">0.13 </font> </p>
+      </td>
+      <td width="86">
+      <p align="left"><font color="#000000">4810 </font> </p>
+      </td>
+      <td width="243">
+      <p align="left"><font color="#000000">Schneider, Gunn, &amp;
+Hoessel (1983) </font> </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p style="margin-bottom: 0cm;">For
+C band (clear) in visible spectrum,
+we can take :</p>
+<p style="margin-bottom: 0cm;"><font face="">l</font>
+=
+0.6 &micro;m, <font face="">Dl</font>
+: 0.3 &micro;m, Fm0
+= 3100
+Jy</p>
+<h3>1.1.3. LOCAL CONDITIONS</h3>
+<ul>
+  <li>E : Elevation above horizon
+(deg)</li>
+  <li>Tatm0 : Transmission of the
+atmosphere
+in the photometric band</li>
+  <li>seeing : Fwhm of the seeing
+(arcsec)</li>
+  <li>msky : Sky brightness in the
+photometric band (mag/arcsec2)</li>
+</ul>
+<p style="margin-bottom: 0cm;"><br />
+</p>
+<table border="1" cellpadding="1" cellspacing="1" rules="rows"
+ width="257">
+  <colgroup><col width="77" /></colgroup> <colgroup><col width="31" /><col
+ width="31" /><col width="31" /><col width="31" /><col width="34" /></colgroup><tbody>
+    <tr>
+      <td width="77">
+      <p align="center"><font color="#000000"><b>Lunar
+Age </b></font> </p>
+      </td>
+      <td width="31">
+      <p align="center"><font color="#000000"><b>U </b></font></p>
+      </td>
+      <td width="31">
+      <p align="center"><font color="#000000"><b>B </b></font></p>
+      </td>
+      <td width="31">
+      <p align="center"><font color="#000000"><b>V </b></font></p>
+      </td>
+      <td width="31">
+      <p align="center"><font color="#000000"><b>R </b></font></p>
+      </td>
+      <td width="34">
+      <p align="center"><font color="#000000"><b>I </b></font></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="77">
+      <p align="center"><font color="#000000"><b>(days) </b></font></p>
+      </td>
+      <td width="31">
+      <p align="left"><br />
+      </p>
+      </td>
+      <td width="31">
+      <p align="left"><br />
+      </p>
+      </td>
+      <td width="31">
+      <p align="left"><br />
+      </p>
+      </td>
+      <td width="31">
+      <p align="left"><br />
+      </p>
+      </td>
+      <td width="34">
+      <p align="left"><br />
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="77">
+      <p align="left"><font color="#000000">0 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">22.0 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">22.7 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">21.8 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">20.9 </font> </p>
+      </td>
+      <td width="34">
+      <p align="left"><font color="#000000">19.9 </font> </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="77">
+      <p align="left"><font color="#000000">3 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">21.5 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">22.4 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">21.7 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">20.8 </font> </p>
+      </td>
+      <td width="34">
+      <p align="left"><font color="#000000">19.9 </font> </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="77">
+      <p align="left"><font color="#000000">7 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">19.9 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">21.6 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">21.4 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">20.6 </font> </p>
+      </td>
+      <td width="34">
+      <p align="left"><font color="#000000">19.7 </font> </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="77">
+      <p align="left"><font color="#000000">10 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">18.5 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">20.7 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">20.7 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">20.3 </font> </p>
+      </td>
+      <td width="34">
+      <p align="left"><font color="#000000">19.5 </font> </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="77">
+      <p align="left"><font color="#000000">14 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">17.0 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">19.5 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">20.0 </font> </p>
+      </td>
+      <td width="31">
+      <p align="left"><font color="#000000">19.9 </font> </p>
+      </td>
+      <td width="34">
+      <p align="left"><font color="#000000">19.2 </font> </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3>1.1.4. OPTICS</h3>
+<ul>
+  <li>D : Optic diameter (m)</li>
+  <li>F/D : Focal diameter ratio</li>
+  <li>Topt : Transmission of the
+optics in
+the photometric band (Reflec=0.8, Refrac=0.95)</li>
+  <li>Fwhm_psf_opt : Fwhm of the
+point spread
+function in the image plane (m)</li>
+</ul>
+<h3>1.1.5. CCD</h3>
+<ul>
+  <li>naxis1 : Number of pixels on
+axis1</li>
+  <li>cellsize1 : Photocell size
+on axis1 (m)</li>
+  <li>bin1 : Binning on axis1
+(photocells/pixel)</li>
+  <li>naxis2 : Number of pixels on
+axis2</li>
+  <li>cellsize2 : Photocell size
+on axis2 (m)</li>
+  <li>bin2 : Binning on axis2
+(photocells/pixel)</li>
+  <li><font face="">h</font>
+:
+CCD Quantum efficiency at <font face="">l</font>
+(electron/photon)</li>
+  <li>N_ro : Readout noise
+(electrons)</li>
+  <li>C_th : Thermic coefficient
+(electrons/sec/photocell)</li>
+  <li>G : CCD gain (electrons/ADU)</li>
+  <li>Em : Electron multiplier
+(&gt;1 if
+EMCCD, else =1)</li>
+  <li>t : Exposure time (sec)</li>
+</ul>
+<h2>1.2. Preliminary calculations</h2>
+<h3>1.2.1. OPTICS</h3>
+Focal length (m) :
+<p style="margin-bottom: 0cm;">Foclen
+= (F/D) * D</p>
+<p style="margin-bottom: 0cm;"><br />
+Pixels as result of binning of
+photocells on axis 1 (m) :<br />
+</p>
+<p style="margin-bottom: 0cm;">pixsize1
+= cellsize1 * Bin1</p>
+<p style="margin-bottom: 0cm;"><br />
+</p>
+<p style="margin-bottom: 0cm;">Pixels
+as result of binning of
+photocells on axis 2 (m) :<br />
+</p>
+<p style="margin-bottom: 0cm;">pixsize2
+= cellsize2 * Bin2</p>
+<p style="margin-bottom: 0cm;"><br />
+</p>
+<p style="margin-bottom: 0cm;">Pixel
+spatial sampling on axis1
+(arcsec/pix) :</p>
+<p style="margin-bottom: 0cm;">cdelt1
+= 2 * atan ( pixsize1 / Foclen /
+2) * <span style="font-family: Symbol,serif;">180 / pi</span><font
+ face=""> * 3600</font></p>
+<p style="margin-bottom: 0cm;"><font face=""><br />
+</font></p>
+<p style="margin-bottom: 0cm;"><font face="">Pixel spatial sampling on
+axis2
+(arcsec/pix) :</font></p>
+<p style="margin-bottom: 0cm;"><font face="">cdelt2 = 2 * atan (
+pixsize2 /
+Foclen /
+2) * <span style="font-family: Symbol,serif;">180 / pi</span><font
+ face=""> * 3600</font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><br />
+</font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face="">Pixel solid
+angle (arcsec2/pix) :</font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face="">W</font>
+=
+cdelt1 * cdelt2</font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><br />
+</font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face="">Field of
+view of the axis1 CCD
+image
+(deg) :</font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face="">FoV1 = 2 *
+atan ( naxis1 * cellsize1 /
+foclen / 2) * 180 / pi<font face=""> * 3600</font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><br />
+</font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face="">Field
+of view of the axis2 CCD
+image
+(deg) :</font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face="">FoV2
+= 2 * atan ( naxis2 * cellsize2 /
+foclen / 2) * 180 / pi<font face=""> * 3600</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face=""><br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Fwhm of the seeing in the image
+plane
+(m) :</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Fwhm_psf_seeing = seeing / 3600
+* pi /
+180 * Foclen</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face=""><br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Fwhm of the PSF in the image
+plane (m) :<br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Fwhm_psf = sqrt ( Fwhm_psf_opt^2
++
+Fwhm_psf_seeing^2 )</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face=""><br />
+Flux fraction in the brightest
+pixel in
+any case (numerical algorithm) for the best case (max flux at the
+center of the pixel). For the worst case (max flux at the corner of
+the pixel), take x1=0 and y1=0 :</font></font></font></font></p>
+<pre><font face=""><font face=""><font face=""><font face="">oversampling = 20; (must be even &gt;10)<br />sigma = Fwhm_psf / (2*sqrt(2*log(2)));<br />sigma2=sigma*sigma;<br />a1d=1 / sigma / sqrt(2*<font
+ face="">p</font>);<br />a2d=a1d*a1d;<br />if (pixsize1&gt;=pixsize2)<br />&nbsp; p=pixsize2;<br />&nbsp; P=pixsize1;<br />else <br /> p=pixsize1;<br />&nbsp; P=pixsize2;<br />end<br />dp=p/oversampling;<br />som=0;<br />x1=-p/2; <br />y1=-P/2;<br />for x=x1:dp:x1+p<br />&nbsp; dx2=x*x;<br /> &nbsp;for y=y1:dp:y1+P<br />&nbsp; dy2=y*y;<br />&nbsp; d2=dy2+dx2;<br />&nbsp; som=som+exp(-0.5*d2/sigma2);<br />&nbsp; end<br />end<br />fpix=som*a2d*dp*dp;</font></font></font></font></pre>
+<h3><font face=""><font face=""><font face=""><font face="">1.2.2.
+OBJECT </font></font></font></font></h3>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Apparent magnitude knowing
+absolute
+magnitude and distance :</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">m = M + 5 * log10 (DL_Mpc * 1e6
+/ 10)</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face=""><br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Total flux of the object outside
+atmosphere (Jy) :<br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">F_Jy = Fm0 * 10 ^ ( -0.4 * m )</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face=""><br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Total flux of the object outside
+atmosphere (photons / sec /m2) :<br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">F_ph = F_Jy * 1.51e7 * <font face="">Dl/l</font></font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face=""><br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Transmission of the atmosphere
+at
+elevation :</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Tatm = Tatm0 * sin(E)</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face=""><br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Total flux of the object after
+passed
+thru the optics (photons / object) :<br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Ftot_ph = F_ph * <font face="">p</font>
+* D^2 / 4 * Tatm * Topt * t </font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face=""><br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Total flux of the object after
+passed
+thru the optics (electrons / object) :<br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Ftot_el = Ftot_ph * <font face="">h</font></font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face=""><br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Brightest pixel flux of the
+object
+after passed thru the optics (electrons / pixel) :<br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Fpix_el = Ftot_el * fpix</font></font></font></font></p>
+<h3><font face=""><font face=""><font face=""><font face="">1.2.3. SKY
+BRIGHTNESS</font></font></font></font></h3>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Brightness of the sky
+(Jy/arsec2) :<br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Sky_Jy = Fm0 * 10 ^ ( -0.4 *
+msky )</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face=""><br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Brightness of the sky (photons /
+sec
+/m2) :<br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Sky_ph = Sky_Jy * 1.51e7 * <font face="">Dl/l</font></font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face=""><br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Brightness of the sky after
+passed thru
+the optics (photons / pixel) :<br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Skypix_ph = Sky_ph * <font face="">p</font>
+* D^2 / 4 * <font face="">W</font>
+* Topt * t </font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face=""><br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Brightness of the sky after
+passed thru
+the optics (electrons / pixel) :<br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Skypix_el = Skytot_ph * <font face="">h</font></font></font></font></font></p>
+<h3><font face=""><font face=""><font face=""><font face="">1.2.4. CCD</font></font></font></font></h3>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">EMCCD excess noise factor
+(empirical
+formula derived from a figure of a paper) :</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">fex = 1 + ( 2/pi * atan(
+(Em-1)*3 ) )^3</font></font></font></font></p>
+<h2><font face=""><font face=""><font face=""><font face="">1.3.
+Signals and noises</font></font></font></font></h2>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">All expressions are in
+(electrons/pixel). In order to convert into (ADUs/pixel) divide them
+by G.</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Thermic signal (electrons/pixel)
+:<br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">S_th = C_th * Bin1 * Bin2 * t *
+Em</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face=""><br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Sky signal (electrons/pixel) :<br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">S_sk = Skypix_el * Em</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face=""><br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Object signal (electrons/pixel) :<br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">S_ph = Fpix_el * Em</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face=""><br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Thermic noise (electrons/pixel) :<br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">N_th = sqrt(C_th * Bin1 * Bin2 *
+t *
+fex) * Em</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face=""><br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Sky noise (electrons/pixel) :<br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">N_sk = sqrt(Skypix_el * fex) * Em</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face=""><br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Object noise (electrons/pixel) =
+shot
+noise :<br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">N_ph = sqrt(Fpix_el * fex) * Em</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face=""><br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Total noise (electrons/pixels) :<br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">N_tot = sqrt ( N_ro^2 + N_th^2 +
+N_sk^2
++ N_ph^2 )</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face=""><br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">Object signal/noise at the
+brightest
+pixel :<br />
+</font></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">SNR_obj = S_ph / N_tot</font></font></font></font></p>
+<h2><font face=""><font face=""><font face=""><font face="">1.4.
+Searching for an exposure
+time given a
+signal/noise and a magnitude</font></font></font></font></h2>
+<font face=""><font face=""><font face=""><font face="">We want to find
+the t value
+knowing the
+SNR_obj (and knowing the magnitude of the object). We start with the
+SNR formula :</font></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">(SNR_obj)^2 *
+N_tot^2 = S_ph^2</font></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">We express all
+noise sources :</font></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">(SNR_obj)^2 * (
+N_ro^2 + N_th^2
++
+N_sk^2 + N_ph^2 ) = S_ph^2</font></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">We develop all
+parameters
+extracting
+time :</font></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">N_th^2 = C_th *
+Bin1 * Bin2 *
+fex *
+Em^2 * t</font></font></font></font>
+<br />
+<br />
+<font face=""><font face=""><font face=""><font face="">N_sk^2 =
+Skypix_el * fex * Em^2
+=
+(Sky_ph * <font face="">p</font>
+* D^2 / 4 * <font face="">W</font>
+* Topt * <font face="">h</font><font face="Times New Roman, serif">
+* fex * Em^2</font>) * t <br />
+<br />
+</font></font></font></font><font face=""><font face=""><font face=""><font
+ face="">N_ph^2 = Fpix_el * fex * Em^2 =
+(F_ph *
+<font face="">p</font>
+* D^2 / 4 * Tatm * Topt * <font face="">h</font>
+* fpix * fex * Em^2) * t</font></font></font></font>
+<br />
+<br />
+<font face=""><font face=""><font face=""><font face="">S_ph^2 =
+(Fpix_el * Em)^2 =
+(F_ph * <font face="">p</font>
+* D^2 / 4 * Tatm * Topt * <font face="">h</font>
+* fpix
+* Em)^2 * t^2</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">We obtain the
+equation C + B*t =
+-A*t^2
+where we see :</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">C = (SNR_obj)^2
+* ( N_ro^2)</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">B = (SNR_obj)^2
+* [ (C_th * Bin1
+* Bin2
+* fex * Em^2) + (Sky_ph * <font face="">p</font>
+* D^2 /
+4 * <font face="">W</font>
+* Topt * <font face="">h</font><font face="Times New Roman, serif">
+* fex * Em^2</font>) + (F_ph * <font face="">p</font>
+*
+D^2 / 4 * Tatm * Topt * <font face="">h</font>
+* fpix *
+fex * Em^2) ]</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">A = - (F_ph * <font
+ face="">p</font>
+* D^2 / 4 * Tatm * Topt * <font face="">h</font>
+* fpix
+* Em)^2</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">We have A&lt;0,
+B&gt;0
+and C &gt;0.
+From the equation A*t^2 + B*t + C = 0, we can find the t value :</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">D = B*B - 4*A*C
+(always positive)</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">t = ( -B -
+sqrt(D) ) / (2*A)</font></font></font></font>
+<h2><font face=""><font face=""><font face=""><font face="">1.5.
+Searching for a magnitude
+given an exposure
+time and a signal/noise</font></font></font></font></h2>
+<font face=""><font face=""><font face=""><font face="">We want to find
+the m value
+knowing the
+SNR_obj (and knowing the exposure time of the object). We start with
+the SNR formula :</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">(SNR_obj)^2 *
+N_tot^2 = S_ph^2</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">We express all
+noise sources :</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">(SNR_obj)^2 * (
+N_ro^2 + N_th^2
++
+N_sk^2 + N_ph^2 ) = S_ph^2</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">We develop all
+parameters
+extracting
+time :</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">N_th^2 = C_th *
+Bin1 * Bin2 *
+fex *
+Em^2 * t</font></font></font></font>
+<br />
+<br />
+<font face=""><font face=""><font face=""><font face="">N_sk^2 =
+Skypix_el * fex * Em^2
+=
+(Sky_ph * <font face="">p</font>
+* D^2 / 4 * <font face="">W</font>
+* Topt * <font face="">h</font><font face="Times New Roman, serif">
+* fex * Em^2</font> * t)</font></font></font></font>
+<br />
+<br />
+<font face=""><font face=""><font face=""><font face="">N_ph^2 =
+Fpix_el * fex * Em^2 =
+F_ph *
+(<font face="">p</font>
+* D^2 / 4 * Tatm * Topt * <font face="">h</font>
+* fpix * fex * Em^2 * t)</font></font></font></font>
+<br />
+<br />
+<font face=""><font face=""><font face=""><font face="">S_ph^2 =
+(Fpix_el * Em)^2 =
+F_ph^2 * (<font face="">p</font>
+* D^2 / 4 * Tatm * Topt * <font face="">h</font>
+* fpix
+* Em * t)^2</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">We obtain the
+equation C +
+B*F_ph =
+-A*F_ph^2 where we see :</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">C = (SNR_obj)^2
+* [( N_ro^2) +
+(C_th *
+Bin1 * Bin2 * fex * Em^2 * t) + (Sky_ph * <font face="">p</font>
+* D^2 / 4 * <font face="">W</font>
+* Topt * <font face="">h</font><font face="Times New Roman, serif">
+* fex * Em^2 * t</font>)]</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">B = (SNR_obj)^2
+* (<font face="">p</font>
+* D^2 / 4 * Tatm * Topt * <font face="">h</font>
+* fpix
+* fex * Em^2 *t)</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">A = - (<font
+ face="">p</font>
+* D^2 / 4 * Tatm * Topt * <font face="">h</font>
+* fpix
+* Em * t)^2</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">We have A&lt;0,
+B&gt;0
+and C &gt;0.
+From the equation A*t^2 + B*t + C = 0, we can find the t value :</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">D = B*B - 4*A*C
+(always positive)</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">Total flux of
+the object outside
+atmosphere (photons / sec /m2) :<br />
+</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="">F_ph = ( -B -
+sqrt(D) ) / (2*A)</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">Total flux of
+the object outside
+atmosphere (Jy) :<br />
+</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="">F_Jy = F_ph /
+(1.51e7 * <font face="">Dl/l)</font></font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face="" /></font></font></font><br />
+<font face=""><font face=""><font face=""><font face="">The magnitude :<br />
+</font></font></font></font>
+<br />
+<font face=""><font face=""><font face=""><font face=""><font
+ face="Times New Roman, serif">m =
+-2.5 *log10 ( F_Jy/Fm0 )</font></font></font></font></font>
+<p style="margin-bottom: 0cm;"></p>
+<h1><font face=""><font face=""><font face=""><font face="">2.
+Utilisation de l'Exposure
+Time Calculator</font></font></font></font></h1>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">L'Exposure Time Calculator (ETC)
+utilise
+la th&eacute;orie d&eacute;crite dans le paragraphe 1 et
+utilise une
+s&eacute;rie de fonctions qui sont d&eacute;crites dans ce
+paragraphe.<br />
+</font></font></font></font></p>
+<h2><font face=""><font face=""><font face=""><font face="">2.1.
+L'initialisation de l'ETC</font></font></font></font></h2>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">L'ETC doit d'abord
+&ecirc;tre
+initialis&eacute; avec la fonction etc_init utilis&eacute;e
+dans la Console de AudeLA :</font></font></font></font></p>
+<pre><font face=""><font face=""><font face=""><font face="">etc_init</font></font></font></font></pre>
+<font face=""><font face=""><font face=""><font face="">L'initiatialisation
+donne des
+valeurs par d&eacute;faut &agrave; la
+valeur des configurations instrumentales et
+atmosph&eacute;riques. L'ETC de AudeLA d&eacute;finit deux
+types
+de configuration :
+</font></font></font></font>
+<ul>
+  <font face=""><font face=""><font face=""><font face=""> <li>Les
+param&egrave;tres : Ce sont toutes les valeurs qui vont
+d&eacute;finir le mat&eacute;riel utilis&eacute; et les
+conditions
+atmosph&eacute;riques (cf. paragraphes 1.1.2 &agrave; 1.1.5).</li>
+  <li>Les conditions
+d'entr&eacute;e : Ce sont les donn&eacute;es
+d'entr&eacute;e qui seront utilis&eacute;es par les fonctions
+de
+calcul (cf. paragraphe 1.1.1).</li>
+  </font></font></font></font>
+</ul>
+<h2><font face=""><font face=""><font face=""><font face="">2.2.
+Param&egrave;tres de
+l'ETC</font></font></font></font></h2>
+<font face=""><font face=""><font face=""><font face="">On peut lister
+les
+param&egrave;tres disponibles en utilisant la
+fonction etc_params_set<br />
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">etc_params_set<br /># C_th Em G N_ro bin1 bin2 eta naxis1 naxis2 photocell1 photocell2 Dl Fm0 l Elev Tatm0 msky seeing band D FonD Fwhm_psf_opt Topt <br /></font></font></font></font></pre>
+<p style="margin-bottom: 0cm;"><font face=""><font face=""><font face=""><font
+ face="">On peut lire la valeur courante
+d'un
+param&egrave;tre :</font></font></font></font></p>
+<pre><font face=""><font face=""><font face=""><font face="">etc_params_set C_th<br /># 0.002 "Thermic coefficient (electrons/sec/photocell)"</font></font></font></font><font
+ face=""><font face=""><font face=""><font face=""><br /></font></font></font></font></pre>
+<font face=""><font face=""><font face=""><font face="">On peut
+modifier la valeur d'un
+param&egrave;tre :</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">etc_params_set C_th 0.4<br /># 0.4 "Thermic coefficient (electrons/sec/photocell)"</font></font></font></font></pre>
+<font face=""><font face=""><font face=""><font face="">On peut
+afficher tous les param&egrave;tres d'un seul coup avec
+etc_disp (cf. paragraphe 2.4).<br />
+<br />
+Pour simplifier la t&acirc;che, pour quelques cam&eacute;ras
+connues,
+la fonction etc_set_camera permet de modifier les valeurs de
+param&egrave;tres en cons&eacute;quence. <br />
+<br />
+Pour afficher la liste des cam&eacute;ras actuellement
+support&eacute;es :<br />
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">etc_set_camera<br /># {Andor DW436} {Audine Kaf401ME}</font></font></font></font></pre>
+<font face=""><font face=""><font face=""><font face="">Pour Choisir
+une
+cam&eacute;ra :<br />
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">etc_set_camera "Audine Kaf401ME"</font></font></font></font></pre>
+<h2><font face=""><font face=""><font face=""><font face="">2.3
+Entr&eacute;es des
+calculs ETC</font></font></font></font></h2>
+<font face=""><font face=""><font face=""><font face="">On peut lister
+les
+param&egrave;tres disponibles en utilisant la
+fonction etc_params_set :<br />
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">etc_inputs_set<br /># t snr DL_pc M m </font></font></font></font></pre>
+<font face=""><font face=""><font face=""><font face="">On peut lire la
+valeur courante
+d'une entr&eacute;e. Par exemple, si
+l'on souhaite utiliser un calcul qui a besoin de conna&icirc;tre la
+magnitude apparente d'un astre :<br />
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">etc_inputs_set m<br /># 12.0102999566 "Apparent stellar magnitude in the V band"</font></font></font></font></pre>
+<font face=""><font face=""><font face=""><font face="">On peut
+modifier la valeur d'un
+param&egrave;tre :<br />
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">etc_inputs_set m 9.5<br /># 9.5 "Apparent stellar magnitude in the V band"</font></font></font></font></pre>
+<font face=""><font face=""><font face=""><font face="">A&nbsp;noter
+que les
+entr&eacute;es DL_pc (la distance en m&eacute;ga
+parsec), la magnitude absolue M et la magnitude apparente m sont
+reli&eacute;es. Ainsi, la modification d'une valeur influera les
+autres.
+</font></font></font></font>
+<h2><font face=""><font face=""><font face=""><font face="">2.4
+Affichage de tous les
+param&egrave;tres et entr&eacute;es ETC</font></font></font></font></h2>
+<font face=""><font face=""><font face=""><font face="">On peut
+afficher les valeurs de
+tous les param&egrave;tres et
+de toutes les entr&eacute;es de l'ETC d'un seul coup avec etc_disp
+:
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">etc_disp<br /># <br />===== input-ccd<br /># t = 30 : Exposure time (sec)<br /># <br />===== input-constraint<br /># snr = 5 : SNR constrained<br /># <br />===== input-object<br /># DL_pc = 40e6 : Distance luminosity (pc)<br /># M = -21 : Absolute stellar magnitude in the V band<br /># m = 12.0102999566 : Apparent stellar magnitude in the V band<br /># <br /># ===== param-ccd<br /># C_th = 0.4 : Thermic coefficient (electrons/sec/photocell)<br /># Em = 1 : Electron multiplier (&gt;1 if EMCCD, else =1)<br /># G = 1.8 : CCD gain (electrons/ADU)<br /># N_ro = 8.5 : Readout noise (electrons/pixel)<br /># bin1 = 1 : Binning on axis1 (photocells/pixel)<br /># bin2 = 1 : Binning on axis2 (photocells/pixel)<br /># eta = 0.9 : CCD Quantum efficiency in the photometric band (electron/photon)<br /># naxis1 = 2048 : Number of pixels on an axis1<br /># naxis2 = 2048 : Number of pixels on an axis2<br /># photocell1 = 13.5e-6 : Photocell size on axis1 (m)<br /># photocell2 = 13.5e-6 : Photocell size on axis2 (m)<br /># <br />===== param-filter<br /># Dl = 0.088 : Wavelength bandpass of the filter (micrometers)<br /># Fm0 = 3640 : Flux for magnitude zero for the filter (Jy)<br /># l = 0.55 : Central wavelength of the filter (micrometers)<br /># <br />===== param-local<br /># Elev = 65 : Elevation above horizon (deg)<br /># Tatm0 = 0.5 : Zenith transmission of the atmosphere in the photometric band<br /># msky = 21.8 : Sky brightness in the V band at moon age 0 day (mag/arcsec2)<br /># seeing = 3.0 : Fwhm of the seeing (arcsec)<br /># <br />===== param-object<br /># band = V : Photometric system symbol<br /># <br />===== param-optic<br /># D = 0.3 : Optic diameter (m)<br /># FonD = 4 : Focal diameter ratio<br /># Fwhm_psf_opt = 15e-6 : Fwhm of the point spread function in the image plane (m)<br /># Topt = 0.5776 : Transmission of the optics in the photometric band (Reflec=0.8, Refrac=0.95)<br /></font></font></font></font></pre>
+<h2><font face=""><font face=""><font face=""><font face="">2.5.
+Calculer avec l'ETC</font></font></font></font></h2>
+<font face=""><font face=""><font face=""><font face="">L'ETC fournit
+les fonctions de
+calcul suivantes :<br />
+<br />
+</font></font></font></font>
+<ul>
+  <font face=""><font face=""><font face=""><font face=""> <li>etc_snr2t_computations
+: Calculer un temps d'exposition (t) en
+fonction d'un rapport signal sur bruit (SNR) et de la magnitude
+apparente (m).</li>
+  <li>etc_t2snr_computations :
+Calculer un rapport signal sur bruit
+(SNR) en fonction d'un temps d'exposition (t) et de la magnitude
+apparente (m).</li>
+  <li>etc_snr2m_computations :
+Calculer une magnitude apparente (m) en
+fonction d'un rapport signal sur bruit (SNR) et d'un temps d'exposition
+(t).</li>
+  </font></font></font></font>
+</ul>
+<font face=""><font face=""><font face=""><font face="">Ces fonctions
+n'ont pas de
+param&egrave;tres car elles utilisent les
+valeurs configur&eacute;es avec etc_params_set (cf. paragraphe 2.2)
+et
+etc_inputs_set (cf. paragraphe 2.3).<br />
+</font></font></font></font>
+<h2><font face=""><font face=""><font face=""><font face="">2.6.
+Exemples de calculs ETC</font></font></font></font></h2>
+<h3><font face=""><font face=""><font face=""><font face="">2.6.1.
+Calcul d'une magnitude
+limite</font></font></font></font></h3>
+<font face=""><font face=""><font face=""><font face="">Nous voulons
+calculer la
+magnitude limite d'un t&eacute;lescope D=20cm
+et F/D=10 avec tous les autres param&egrave;tres par
+d&eacute;faut. Une
+magnitude limite est g&eacute;n&eacute;ralement
+d&eacute;finie par un
+rapport signal sur bruit SNR=3. Pour une pose de 30 secondes, on
+&eacute;crira :<br />
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">etc_init<br />etc_params_set D 0.20<br />etc_params_set FonD 10<br />etc_inputs_set snr 3<br />etc_inputs_set t 30<br />etc_snr2m_computations<br /># 17.285256851</font></font></font></font></pre>
+<font face=""><font face=""><font face=""><font face="">On trouve ainsi
+une magnitude
+17.2. Par d&eacute;faut, les
+param&egrave;tres de la cam&eacute;ra sont ceux d'une Andor
+DW436 avec
+un CCD aminci. On peut maintenant effectuer le m&ecirc;me calcul en
+choisissant une cam&eacute;ra Audine :<br />
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">etc_init<br />etc_set_camera "Audine Kaf401ME"<br />etc_params_set D 0.20<br />etc_params_set FonD 10<br />etc_inputs_set snr 3<br />etc_inputs_set t 30<br />etc_snr2m_computations<br /># 15.721193582</font></font></font></font></pre>
+<font face=""><font face=""><font face=""><font face="">On voit
+nettement l'avantage
+d'utiliser un CCD aminci !<br />
+<br />
+Il est int&eacute;ressant d'examiner l'ensemble de tout le
+d&eacute;tail du calcul avec etc_disp :<br />
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">etc_disp<br /># <br />===== comp1<br /># F_Jy = 0.0571454163189 : Total flux of the object outside atmosphere (Jy)<br /># F_ph = 138063.325826 : Total flux of the object outside atmosphere (photons / sec /m2)<br /># FoV1 = 0.198014016908 : Field of view of the CCD image on axis1 (deg)<br /># FoV2 = 0.132009417601 : Field of view of the CCD image on axis2 (deg)<br /># Foclen = 2.0 : Focal length (m)<br /># Fpix_el = 1280.91200087 : Brightest pixel flux of the object after passed thru the optics (electrons / pixel)<br /># Ftot_el = 17029.1261651 : Total flux of the object after passed thru the optics (electrons / object)<br /># Ftot_ph = 34058.2523303 : Total flux of the object after passed thru the optics (photons / object)<br /># Fwhm_psf = 3.27285731343e-05 : Fwhm of the PSF in the image plane (m)<br /># Fwhm_psf_seeing = 2.90888208666e-05 : Fwhm of the seeing in the image plane (m)<br /># Sky_Jy = 6.93587701339e-06 : Brightness of the sky (Jy/arsec2)<br /># Sky_ph = 16.7570788644 : Brightness of the sky (photons / sec /m2)<br /># Skypix_el = 3.92954189887 : Brightness of the sky after passed thru the optics (electrons / pixel)<br /># Skypix_ph = 7.85908379773 : Brightness of the sky after passed thru the optics (photons / pixel)<br /># Tatm = 0.453153893518 : Transmission of the atmosphere at elevation<br /># W = 0.861539698493 : Pixel solid angle (arcsec2/pix)<br /># cdelt1 = 0.92819162811 : Pixel spatial sampling on axis1 (arcsec/pix)<br /># cdelt2 = 0.92819162811 : Pixel spatial sampling on axis2 (arcsec/pix)<br /># fex = 1.0 : EMCCD excess noise factor (empirical formula derived from a figure of a paper)<br /># fpix1 = 0.0752188919416 : Flux fraction in the brightest pixel in the favorable case (max flux at the center of the pixel)<br /># fpix2 = 0.0715280179357 : Flux fraction in the brightest pixel in the intermediate case<br /># fpix3 = 0.0680182493763 : Flux fraction in the brightest pixel in the worst case (max flux at the corner of the pixel)<br /># pixsize1 = 9e-06 : Pixel length on axis1 (m)<br /># pixsize2 = 9e-06 : Pixel length on axis2 (m)<br /># <br />===== compsnr<br /># m = 15.721193582 : Apparent magnitude computed from a SNR and exposure value constrained<br /># <br />===== input-ccd<br /># t = 30 : Exposure time (sec)<br /># <br />===== input-constraint<br /># snr = 3 : SNR constrained<br /># <br />===== input-object<br /># DL_pc = 40e6 : Distance luminosity (pc)<br /># M = -21 : Absolute stellar magnitude in the V band<br /># m = 12.0102999566 : Apparent stellar magnitude in the V band<br /># <br />===== param-ccd<br /># C_th = 0.2 : Thermic coefficient (electrons/sec/photocell)<br /># Em = 1 : Electron multiplier (&gt;1 if EMCCD, else =1)<br /># G = 2.1 : CCD gain (electrons/ADU)<br /># N_ro = 12 : Readout noise (electrons/pixel)<br /># bin1 = 1 : Binning on axis1 (photocells/pixel)<br /># bin2 = 1 : Binning on axis2 (photocells/pixel)<br /># eta = 0.5 : CCD Quantum efficiency in the photometric band (electron/photon)<br /># naxis1 = 768 : Number of pixels on an axis1<br /># naxis2 = 512 : Number of pixels on an axis2<br /># photocell1 = 9e-6 : Photocell size on axis1 (m)<br /># photocell2 = 9e-6 : Photocell size on axis2 (m)<br /># <br />===== param-filter<br /># Dl = 0.088 : Wavelength bandpass of the filter (micrometers)<br /># Fm0 = 3640 : Flux for magnitude zero for the filter (Jy)<br /># l = 0.55 : Central wavelength of the filter (micrometers)<br /># <br />===== param-local<br /># Elev = 65 : Elevation above horizon (deg)<br /># Tatm0 = 0.5 : Zenith transmission of the atmosphere in the photometric band<br /># msky = 21.8 : Sky brightness in the V band at moon age 0 day (mag/arcsec2)<br /># seeing = 3.0 : Fwhm of the seeing (arcsec)<br /># <br />===== param-object<br /># band = V : Photometric system symbol<br /># <br />===== param-optic<br /># D = 0.20 : Optic diameter (m)<br /># FonD = 10 : Focal diameter ratio<br /># Fwhm_psf_opt = 15e-6 : Fwhm of the point spread function in the image plane (m)<br /># Topt = 0.5776 : Transmission of the optics in the photometric band (Reflec=0.8, Refrac=0.95)<br /></font></font></font></font></pre>
+<h3><font face=""><font face=""><font face=""><font face="">2.6.2.
+Calcul d'un temps
+d'exposition id&eacute;al</font></font></font></font></h3>
+<font face=""><font face=""><font face=""><font face="">On appelle
+temps d'exposition
+id&eacute;al, &eacute;tant donn&eacute;
+une magnitude (m), le temps (t) n&eacute;cessaire pour atteindre
+une
+certaine valeur de rapport signal sur bruit (SNR). La valeur du SNR
+d&eacute;pend de la pr&eacute;cision que l'on souhaite avoir
+sur la
+magnitude. En g&eacute;n&eacute;ral, une bonne approximation
+est :<br />
+<br />
+</font></font></font></font>
+<div style="text-align: center;"><font face=""><font face=""><font
+ face=""><font face="">SNR = 1 / (Pr&eacute;cision
+en
+magnitude)<br />
+</font></font></font></font></div>
+<font face=""><font face=""><font face=""><font face=""><br />
+Par exemple, si l'on souhaite une pr&eacute;cision de 0.01
+magnitude,
+il faudra atteindre un SNR = 1/0.01 = 100.<br />
+<br />
+Prenons le cas d'un t&eacute;lescope D=20cm et F/D=10 avec tous les
+autres param&egrave;tres par d&eacute;faut. Pour une magnitude
+m=11 et
+SNR=100 :<br />
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">etc_init<br />etc_params_set D 0.20<br />etc_params_set FonD 10<br />etc_inputs_set m 11<br />etc_inputs_set snr 100<br />etc_snr2t_computations<br /># 28.0398673386</font></font></font></font></pre>
+<font face=""><font face=""><font face=""><font face="">Il faut donc
+id&eacute;alement poser 28 secondes.<br />
+</font></font></font></font>
+<h3><font face=""><font face=""><font face=""><font face="">2.6.2.
+Calcul d'un temps
+d'exposition pour d&eacute;tecter une
+supernova &agrave; z=0.1</font></font></font></font></h3>
+<font face=""><font face=""><font face=""><font face="">Dans les
+&eacute;tudes de
+cosmologie, on utilise la notion de redshift
+(z) qui est reli&eacute; &agrave; la distance d'un objet. La
+distance
+qui nous int&eacute;resse est appel&eacute;e "distance
+luminosit&eacute;", not&eacute;e habituellement DL. Avec
+AudeLA, on
+peut la calculer avec la fonction mc_cosmology_calculator :<br />
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">mc_cosmology_calculator 0.1<br /># {H0 71.000000 {current Hubble constant km/s/Mpc}} {Omega_M 0.270000 {Omega_matter}} {Omega_vac 0.730000 {Omega_vac = 1-Omega_M gives a flat Universe}} {z 0.100000 redshift} {cz 29979.245800 {non relativistic velocity km/s}} {DTT_Gyr 1.287066 {time from z to now in Gyr}} {age_Gyr 13.680177 {age of Universe in Gyr}} {zage_Gyr 12.393111 {age of Universe at redshift z in Gyr}} {DCMR_Mpc 413.871021 {comoving radial distance in Mpc}} {V_Gpc 0.296950 {comoving volume within redshift z in Gpc3}} {DA_Mpc 376.246333 {angular size distance in Mpc}} {kpc_DA 1.824094 {angular scale in kpc/arcsec}} {DL_Mpc 455.258063 {luminosity distance in Mpc}} </font></font></font></font></pre>
+<font face=""><font face=""><font face=""><font face="">On notera que
+&nbsp;DL_Mpc =
+455 m&eacute;ga parsecs (Mpc). Le calcul
+nous signale aussi que la lumi&egrave;re aura voyag&eacute;
+pendant
+DTT_Gyr = 1.3 milliard d'ann&eacute;es.<br />
+<br />
+Une supernova de type Ia culmine en &eacute;clat autour de la
+magnitude
+absolue M=-21 en bande V.<br />
+<br />
+Prenons le cas d'un t&eacute;lescope D=20cm et F/D=10 avec tous les
+autres param&egrave;tres par d&eacute;faut. Pour une magnitude
+M=-21
+&agrave; une distance DL_pc=455e6 parsecs et SNR=5
+(d&eacute;tection
+mesurable) :<br />
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">etc_init<br />etc_params_set D 0.20<br />etc_params_set FonD 10<br />etc_inputs_set M -21<br />etc_inputs_set DL_pc 455e6<br />etc_inputs_set snr 5<br />etc_snr2t_computations<br /># 59.2449949385<br /></font></font></font></font></pre>
+<font face=""><font face=""><font face=""><font face="">Ainsi, pour
+d&eacute;tecter
+une supernova &agrave; z=0.1 avec un SNR=5
+il faut poser 1 minute. La magnitude apparente correspondante peut
+&ecirc;tre aussi affich&eacute;e :<br />
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">etc_inputs_set m<br /># 17.2900569833 "Apparent stellar magnitude in the V band"<br /></font></font></font></font></pre>
+<h1><font face=""><font face=""><font face=""><font face="">3.
+Utilisation du simulateur
+d'images</font></font></font></font></h1>
+<font face=""><font face=""><font face=""><font face="">La
+g&eacute;n&eacute;ration d'une image de synth&egrave;se est
+facilit&eacute;e par l'utilisation de la fonction simulimage qui
+utilise la fonction IMA/SERIES Catchart de libTT.<br />
+<br />
+La fonction simulimage a besoin d'une image charg&eacute;e en
+m&eacute;moire pour d&eacute;terminer les dimensions de l'image
+de
+sortie. La fonction simulimage fait intervenir de tr&egrave;s
+nombreux
+param&egrave;tres. Examinons-les.<br />
+<br />
+Param&egrave;tres concernant l'&eacute;chelle et le centrage du
+champ
+&agrave; simuler :<br />
+<br />
+</font></font></font></font>
+<ul>
+  <font face=""><font face=""><font face=""><font face=""> <li>Angle_ra
+: Coordonn&eacute;e d'ascension droite (J2000.0) pour le
+centre du champ.</li>
+  <li>Angle_dec :
+Coordonn&eacute;e de d&eacute;clinaison (J2000.0)
+pour le centre du champ.</li>
+  <li>pixsize1_mu : Longueur
+physique d'un pixel, apr&egrave;s binning,
+sur X (microm&egrave;tres).</li>
+  <li>pixsize2_mu
+:&nbsp;Longueur physique d'un pixel, apr&egrave;s
+binning, sur Y (microm&egrave;tres).</li>
+  <li>foclen_m : Longueur focale
+de l'optique.</li>
+  </font></font></font></font>
+</ul>
+<font face=""><font face=""><font face=""><font face="">Il y a
+possibilit&eacute; de
+r&eacute;cup&eacute;rer directement les
+param&egrave;tres WCS de l'image d'entr&eacute;e si elle
+est&nbsp;calibr&eacute;e. Dans ce cas, il faut mettre tous les
+param&egrave;tres pr&eacute;c&eacute;dents &agrave; la
+valeur *.<br />
+<br />
+Param&egrave;tres concernant le catalogue d'&eacute;toiles.
+Aller au tutoriel sur la calibration astrom&eacute;trique pour plus
+de
+renseignements sur les catalogues d'&eacute;toiles :<br />
+</font></font></font></font>
+<ul>
+  <font face=""><font face=""><font face=""><font face=""> <li>USNO|MICROCAT
+: Choix d'un type de catalogue de calibration.</li>
+  <li>cat_folder :&nbsp;Le
+chemin du dossier dans lequel se trouve le
+catalogue de
+calibration.</li>
+  </font></font></font></font>
+</ul>
+<font face=""><font face=""><font face=""><font face="">Param&egrave;tres
+concernant
+l'instrument et les conditions
+d'observation :<br />
+</font></font></font></font>
+<ul>
+  <font face=""><font face=""><font face=""><font face=""> <li>exposure_s
+: Temps de pose (secondes).</li>
+  <li>fwhm_pix : Largeur
+&agrave; mi-hauteur des &eacute;toiles (pixels).</li>
+  <li>teldiam_m :
+Diam&egrave;tre du t&eacute;lescope (m&egrave;tres).</li>
+  <li>colfilter : Symbole du
+filtre (UBVRIJHK).</li>
+  <li>sky_brightness_mag/arcsec2 :
+Magnitude du fond de ciel
+(mag/arcsec2).</li>
+  <li>quantum_efficiency :
+Efficacit&eacute; quantique du pixel
+(&eacute;lectron/photon).</li>
+  <li>gain_e/ADU : Gain de
+cha&icirc;ne de la cam&eacute;ra CCD
+(&eacute;lectrons/ADU).</li>
+  <li>readout_noise_e : Bruit de
+lecture de la cam&eacute;ra CCD
+(&eacute;lectrons).</li>
+  <li>shutter_mode : Mode de
+l'obturateur&nbsp;(= 0 si obturateur
+ferm&eacute;, = 1 si obturateur synchro).</li>
+  <li>bias_level_ADU : Niveau
+constant du bias (ADU).</li>
+  <li>thermic_response_e/pix/sec :
+R&eacute;ponse thermique moyenne
+(&eacute;lectron/pixel/sec).</li>
+  <li>Tatm : Transmission
+atmosph&eacute;rique (entre 0 et 1).</li>
+  <li>Topt : Transmission de
+l'optique du t&eacute;lescope (entre 0 et
+1);</li>
+  <li>EMCCD_mult : Multiplication
+&eacute;lectronique dans le cas d'un
+EMCCD.</li>
+  <li>flat_type :&nbsp;= 0
+pour ne pas tenir compte d'une
+r&eacute;ponse de flat (par
+d&eacute;faut), = 1 pour tenir compte d'un vignettage parabolique.</li>
+  </font></font></font></font>
+</ul>
+<font face=""><font face=""><font face=""><font face="">Param&egrave;tres
+concernant
+l'ajout ou le remplacement d'une
+&eacute;toile. Ces param&egrave;tres sont utiles lorsque l'on
+souhaite
+simuler une image avec une &eacute;toile variable ou une supernova :<br />
+<br />
+</font></font></font></font>
+<ul>
+  <font face=""><font face=""><font face=""><font face=""> <li>newstar_type
+: REPLACE pour remplacer l'&eacute;toile du
+catalogue situ&eacute;e &agrave; moins d'un pixel de la
+position, ADD
+pour ajouter aux &eacute;toiles du catalogue.</li>
+  <li>newstar_ra
+:&nbsp;Coordonn&eacute;e d'ascension droite (J2000.0)
+de l'&eacute;toile.</li>
+  <li>newstar_dec
+:&nbsp;Coordonn&eacute;e de d&eacute;clinaison
+(J2000.0) de l'&eacute;toile.</li>
+  <li>newstar_mag : Magnitude de
+l'&eacute;toile.</li>
+  </font></font></font></font>
+</ul>
+<font face=""><font face=""><font face=""><font face="">Lorsque l'on
+souhaite simuler
+une s&eacute;rie d'images du m&ecirc;me
+champ, on utilise la fonction simulimage2. Les param&egrave;tres de
+cette fonction sont les m&ecirc;mes que pour simulimage sauf qu'il
+y
+a 5 param&egrave;tres &agrave; ajouter au d&eacute;part :<br />
+<br />
+</font></font></font></font>
+<ul>
+  <font face=""><font face=""><font face=""><font face=""> <li>out
+: Nom g&eacute;n&eacute;rique des images de sortie.</li>
+  <li>ListDatesObsUTC : Liste Tcl
+contenant des dates pour les images
+&agrave; simuler.</li>
+  <li>variable_type : Type de
+variabilit&eacute; pour l'&eacute;toile
+&agrave; ajouter.</li>
+  <li>naxis1 : Dimension sur X
+des&nbsp;images de sortie.</li>
+  <li>naxis2 : Dimension sur Y
+des&nbsp;images de sortie.</li>
+  </font></font></font></font>
+</ul>
+<font face=""><font face=""><font face=""><font face="">ListDatesObsUTC
+est une liste
+qui contient les param&egrave;tres de
+l'&eacute;toile &agrave; ajouter. Les choix sont les suivants :<br />
+<br />
+</font></font></font></font>
+<ul>
+  <font face=""><font face=""><font face=""><font face=""> <li>FOURIER
+ra dec jdphase c ?a1? ?b1? ?a2? ?b2? ?a3? ?b3? ?a4? ?b4?
+?a5? ?b5? : (ra,dec) sont les coordonn&eacute;es J2000, jdphase est
+la
+date h&eacute;liocentrique de phase nulle, les coefficients (a,b,c)
+sont
+d&eacute;finis par la s&eacute;rie de Fourier de la courbe de
+lumi&egrave;re : mag = c + somme(k=1 &agrave; 5) [
+a(k)*cos(2*pi*phase)
++ b(k)*sin(2*pi*phase) ]</li>
+  <li>SN type ra dec jdmax magVmax
+: Type est le type de la supernova (Ia,
+Ibc ,Ic IIP, IIL, IIn, 91bg, 91T), (ra,dec) sont les
+coordonn&eacute;es
+J2000, jdmax la date du maximum et magVmax la magnitude V au moment du
+maximum.</li>
+  </font></font></font></font>
+</ul>
+<h2><font face=""><font face=""><font face=""><font face="">3.1.
+Simuler une image pour la
+comparer &agrave;&nbsp;une image
+existante</font></font></font></font></h2>
+<font face=""><font face=""><font face=""><font face="">Nous allons
+charger l'image de
+Messier 57 fournie avec la distribution
+de AudeLA.<br />
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">loadima m57</font></font></font></font></pre>
+<font face=""><font face=""><font face=""><font face=""><img
+ style="width: 347px; height: 236px;" alt=""
+ src="images/m57_initial.jpg" /><br />
+<br />
+Cette image est d&eacute;j&agrave; calibr&eacute;e WCS et
+nous allons
+utiliser ces mots cl&eacute;s pour la simulation d'image (placer
+des *
+pour les premiers param&egrave;tres). En cons&eacute;quence,
+l'image
+simul&eacute;e sera centr&eacute;e et aura exactement la
+m&ecirc;me
+&eacute;chelle que l'image r&eacute;elle. Les
+caract&eacute;ristiques de
+la prise de vue de l'image r&eacute;elle &eacute;taient :<br />
+<br />
+</font></font></font></font>
+<ul>
+  <font face=""><font face=""><font face=""><font face=""> <li>exposure_s
+= 30&nbsp;secondes</li>
+  <li>fwhm_pix = 2.3 pixels</li>
+  <li>teldiam_m = 0.20 m</li>
+  <li>colfilter = C</li>
+  <li>sky_brightness_mag/arcsec2 =
+20.5 mag/arcsec2</li>
+  <li>quantum_efficiency = 0.4
+electron/photon</li>
+  <li>gain_e/ADU =
+3&nbsp;electrons/ADU</li>
+  <li>readout_noise_e = 15
+electrons</li>
+  <li>shutter_mode = 1 (obturateur
+synchro)</li>
+  <li>bias_level_ADU =
+&nbsp;300 ADU</li>
+  <li>thermic_response_e/pix/sec =
+0.4 electron/pixel/sec</li>
+  <li>Tatm = 0.6</li>
+  <li>Topt = 0.7</li>
+  <li>EMCCD_mult =1 (CCD classique)</li>
+  </font></font></font></font>
+</ul>
+<pre><font face=""><font face=""><font face=""><font face="">simulimage * * * * * USNO c:/d/usno 30 2.3 0.20 C 20.5 0.4 3 15 1 300 0.4 0.6 0.7 1 0</font></font></font></font></pre>
+<font face=""><font face=""><font face=""><font face=""><img
+ style="width: 346px; height: 236px;" alt=""
+ src="images/m57_simulimage.jpg" /><br />
+<br />
+On constate que l'image est tr&egrave;s proche de l'image
+r&eacute;elle. N&eacute;anmoins, la n&eacute;buleuse n'est
+pas
+synth&eacute;tis&eacute;e.<br />
+<br />
+Nous allons maintenant ajouter une &eacute;toile de magnitude 7 aux
+coordonn&eacute;es c&eacute;lestes 18h53m20s +33d00m51s
+(J2000.0) :<br />
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">simulimage * * * * * USNO c:/d/usno 30 2.3 0.20 C 20.5 0.4 3 15 1 300 0.4 0.6 0.7 1 0 ADD 18h53m20s +33d00m51s 7</font></font></font></font></pre>
+<font face=""><font face=""><font face=""><font face=""><img
+ style="width: 346px; height: 235px;" alt=""
+ src="images/m57_simulimage_newstar.jpg" /><br />
+<br />
+</font></font></font></font>
+<h2><font face=""><font face=""><font face=""><font face="">3.2.
+Simulation d'une
+s&eacute;rie d'images avec une &eacute;toile
+variable p&eacute;riodique</font></font></font></font></h2>
+<font face=""><font face=""><font face=""><font face="">Nous allons
+simuler 100 images
+d'une &eacute;toile variable
+d&eacute;finie par des coefficients de Fourier.<br />
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">simulimage2 test [mc_date2listdates 2011-11-11T00:00:00 0.021 100] {FOURIER 164.630566 67.529504 2011-11-08T00:00:00 0.28 12.5 -0.86 -0.53 -0.45 0.32 0.039 0.021} 200 200 164.589733 67.515479 13.5 13.5 0.84587 USNO c:/d/usno/ 90 2.5 0.25 R 20.0 0.07 1.8 8.5&nbsp; 1 1000 0.5 0.6 0.85 1 0</font></font></font></font></pre>
+<font face=""><font face=""><font face=""><font face="">Au
+d&eacute;part,
+appara&icirc;t la courbe de lumi&egrave;re
+th&eacute;orique pour les dates calcul&eacute;es :<br />
+<br />
+<img style="width: 416px; height: 436px;" alt=""
+ src="images/cdl1.jpg" /><br />
+<br />
+Au cours de la synth&egrave;se les images sont
+affich&eacute;es. La
+derni&egrave;re image ressemble &agrave; cela :<br />
+<br />
+<img style="width: 198px; height: 199px;" alt=""
+ src="images/test100.jpg" /><br />
+<br />
+L'&eacute;toile ajout&eacute;e est la plus brillante
+situ&eacute;e en
+haut &agrave; gauche du centre de l'image. On voit nettement sont
+&eacute;clat varier au cours de la synth&egrave;se.<br />
+<br />
+On peut alors utiliser les fonctions de photom&eacute;trie relative
+pour extraire automatiquement les &eacute;toiles variables et
+calculer
+la p&eacute;riode de notre variable :<br />
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">photrel_wcs2cat test 100 new<br />photrel_cat2var test<br />photrel_cat2per test test&nbsp;164.630566 67.529504 C 0</font></font></font></font></pre>
+<font face=""><font face=""><font face=""><font face="">A la fin on a
+un nouveau
+graphique :<br />
+<br />
+<img style="width: 616px; height: 636px;" alt=""
+ src="images/cdl1.png" /><br />
+<br />
+La p&eacute;riode trouv&eacute;e est de 6.7212 heures qu'il
+faut
+comparer &agrave; 6.7200 heures (0.28 jour). <br />
+</font></font></font></font>
+<h2><font face=""><font face=""><font face=""><font face="">3.3.
+Simulation d'une
+s&eacute;rie d'images avec une supernova</font></font></font></font></h2>
+<font face=""><font face=""><font face=""><font face="">Nous allons
+simuler 60 images en
+filtre R (une par nuit &agrave; partir
+du 11 novembre 2011) d'une supernova de type Ia qui culminera le 30
+novembre 2011 &agrave; la magnitude V=15.<br />
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">simulimage2 test [mc_date2listdates 2011-11-11T00:00:00 1 60] {SN Ia 164.630566 67.529504 2011-11-30T00:00:00 15} 200 200 164.589733 67.515479 13.5 13.5 0.84587 USNO c:/d/usno/ 90 2.5 0.25 R 20.0 0.07 1.8 8.5&nbsp; 1 1000 0.5 0.6 0.85 1 0</font></font></font></font></pre>
+<font face=""><font face=""><font face=""><font face="">Au
+d&eacute;part,
+appara&icirc;t la courbe de lumi&egrave;re
+th&eacute;orique pour les dates calcul&eacute;es :<br />
+<br />
+<img style="width: 416px; height: 436px;" alt=""
+ src="images/cdl2.jpg" /><br />
+<br />
+On peut alors utiliser les fonctions de photom&eacute;trie relative
+pour
+extraire automatiquement les &eacute;toiles variables et calculer
+la
+p&eacute;riode
+de notre variable :<br />
+</font></font></font></font>
+<pre><font face=""><font face=""><font face=""><font face="">photrel_wcs2cat test 60 new<br />photrel_cat2var test<br />photrel_cat2per test test&nbsp;164.630566 67.529504 C 0</font></font></font></font></pre>
+<font face=""><font face=""><font face=""><font face="">A la fin on a
+un nouveau
+graphique :<br />
+<br />
+<img style="width: 616px; height: 636px;" alt=""
+ src="images/cdl2.png" /><br />
+<br />
+La courbe n'est pas r&eacute;p&eacute;t&eacute;e
+au-del&agrave;
+de la phase 1&nbsp;donc le ph&eacute;nom&egrave;ne n'a pas
+&eacute;t&eacute; trouv&eacute; p&eacute;riodique, ce qui est tou
+&agrave; fait normal.<br />
+<br />
+<br />
+<br />
+</font></font></font></font>
+</body>
+</html>

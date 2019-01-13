@@ -1,0 +1,171 @@
+2005-10-22  Denis MARCHAIS <denis.marchais@free.fr>
+	* libquicka: null pointer crash fixed.
+
+2005-07-23  Denis MARCHAIS <denis.marchais@free.fr>
+	* liblx200: Added 'correct' command.
+
+2005-07-11  Denis MARCHAIS <denis.marchais@free.fr>
+	* Release of [AUDELA-1_3_0]
+
+2005-07-06  Michel PUJOL  <michel-pujol@wanadoo.fr>
+	* libaudela: color buffers update.
+	* librgb: update of librgb.
+	* libwebcam: update.
+
+2005-06-21  Denis MARCHAIS <denis.marchais@free.fr>
+	* Release of [AUDELA-1_3_0-RC5]
+	
+2005-06-17  Alain KLOTZ  <alain.klotz@free.fr>
+	* libaudela: Fix the opening file bug for filenames with special FITS extensions.
+	* libaudela: Fix a problem during FITS saving while MIPS-HI/LO were missing (bis).
+
+2005-06-15  Denis MARCHAIS  <denis.marchais@free.fr>
+	* mac: minor updates in a lot of files to enable compilation and execution
+	under MacOS-X.
+	
+2005-06-11  Michel PUJOL  <michel-pujol@wanadoo.fr>
+	* libaudela: Fix for FITS filename extension.
+
+2005-06-05  Denis MARCHAIS  <denis.marchais@free.fr>
+	* libtt: fix a crash when opening HST FITS files (strange multiple blank lines in
+	the FITS header, seems to be FITS compliant said FITSVerify !!!).
+	
+2005-04-26  Denis MARCHAIS  <denis.marchais@free.fr>
+	* libtt: bug in correction (2005-03-31), making interpolation-based
+	processings erroneous.
+	* libaudine: crash condition fixed when using cam1 read.
+
+2005-04-20  Denis MARCHAIS  <denis.marchais@free.fr>
+	* libaudela: crash condition fixed while trying to save an image missing
+	MIPS-HI/MIPS-LO keywords (bug found by Jacques MICHELET). Also replaced
+	almost all callocs by faster mallocs.
+
+2005-04-17  Denis MARCHAIS  <denis.marchais@free.fr>
+	* libaudine: removed audine_kafinv function, replaced with a new 
+	lightweight method. 
+
+2005-04-16  Denis MARCHAIS  <denis.marchais@free.fr>
+	* libaudela: Fix for top-bottom mirror while saving color pictures to
+	FITS b&w format.
+
+2005-04-13  Denis MARCHAIS  <denis.marchais@free.fr>
+	* libaudela: Fix for pixel (1,1) being reseted to 0 some times.
+
+2005-04-05  Denis MARCHAIS  <denis.marchais@free.fr>
+	* libcookbook: removed fine time profiling for better cross-platform
+	compatibility. Also fixed an unresolved link (cam_test_out).
+
+2005-04-05  Jacques MICHELET  <jacques.michelet@laposte.net>
+	* libjm: release of new libjm, v3.01.
+
+2005-04-04  Michel PUJOL  <michel-pujol@wanadoo.fr>
+	* tkhtml, helpviewer: update for these libraries.
+
+2005-04-03  Denis MARCHAIS  <denis.marchais@free.fr>
+	* include/system.h: added interrupt support for 2.0.x kernel series.
+	* libtel/util.c: interrupt handling updated with macros AUDELA_CLI/STI.
+
+2005-04-01  Denis MARCHAIS  <denis.marchais@free.fr>
+	* ethernaude: contrib+libcam updated with MM's code version 12/03/2005.
+
+2005-03-31  Benoit MAUGIS  <maugis@clipper.ens.fr>
+	* libtt: bug fix in tt_util2.c:tt_util_regima1.
+
+2005-03-23  Denis MARCHAIS <denis.marchais@free.fr>
+	* Release of [AUDELA-1_3_0-RC4]
+
+2005-03-22  Michel PUJOL  <michel-pujol@wanadoo.fr>
+	* libaudela: revival of buf1 pointer, and other updates.
+
+2005-03-10  Alain KLOTZ  <alain.klotz@free.fr>
+	* libmc: several updates in mc_macr2.c.
+
+2005-03-03  Denis MARCHAIS <denis.marchais@free.fr>
+	* Release of [AUDELA-1_3_0-RC3]
+
+2005-03-01  Denis MARCHAIS  <denis.marchais@free.fr>
+	* libfli: updated to manufacturer driver's v1.13.
+	* libfli: some modifications on this driver to make it compile on different 
+	linux distribs.
+	* tkhtml: added the .so library for linux.
+	* blt: added the .so library for linux.
+	* img: added the .so library for linux.
+
+2005-02-27  Denis MARCHAIS  <denis.marchais@free.fr>
+	* libcams: libcam_bloquer/debloquer made available only for linux because of
+	win2k/nt/xp crashes.
+
+2005-02-26  Denis MARCHAIS  <denis.marchais@free.fr>
+	* libbm: add vc60 missing directory for win32 build.
+
+2005-02-26  Robert DELMAS  <delmas.robert@wanadoo.fr>
+	* audace: corrected threshold display for linux.
+
+2005-02-26  Denis MARCHAIS  <denis.marchais@free.fr>
+	* Makefile: remove all CVS subdirectories for win32 
+	binary archive.
+	* Readme: update of configure text + configure command for Debian3.0
+
+2005-02-26  Benjamin MAUCLAIRE  <bmauclaire@free.fr>
+	* audela.sh / audela.pl: update of these files.
+
+2005-02-25  Michel PUJOL  <michel-pujol@wanadoo.fr>
+	* libaudela: bugfix for bad window offset in buf1 centro, and error
+	in astromparam handling.
+	* porttalk: change path to porttalk.sys, and added porttalk.reg.
+
+2005-02-22  Denis MARCHAIS <denis.marchais@free.fr>
+	* Release of [AUDELA-1_3_0-RC2]
+
+2005-01-19  Denis MARCHAIS  <denis.marchais@free.fr>
+	* cookbook: import of a bug-fixed version.
+
+2005-01-19  Denis MARCHAIS  <denis.marchais@free.fr>
+	* (lib)ethernaude: updated source tree with latest version
+	(ethernaude website + Michel's message today).
+
+2005-01-19  Denis MARCHAIS  <denis.marchais@free.fr>
+	* libbm: updated source tree with latest 1.02 libbm
+
+2005-01-09  Michel PUJOL  <michel-pujol@wanadoo.fr>
+	* libaudela: added color buffer capability.
+	* webcam: windowing during acquisition.
+
+2004-11-11  Denis MARCHAIS  <denis.marchais@free.fr>
+	* General: Updated all the MSVC project files for the new
+	directory architecture.
+
+2004-11-08  Denis MARCHAIS  <denis.marchais@free.fr>
+	* General: Changed the whole directory architecture, plus added
+	the GPL header to all files. Makefiles updated for linux.
+
+2004-11-06  Denis MARCHAIS  <denis.marchais@free.fr>
+	* libtt: Cleaned libtt directory. libjpeg and cfitsio are now in
+	external directory. Libtt requires the .a files exist in directory
+	external/lib.
+
+2004-10-29  Sylvain GIRARD  <zesly@wanadoo.fr>
+	* K2 driver: Developped the the K2 driver, first available at
+	http://perso.wanadoo.fr/zesly/k2_audela.html. Update for new
+	libcam drivers by DM.
+
+2004-10-26  Benjamin MAUCLAIRE  <mauclaire@underlands.org>
+	* libbm: inserted the first release of libbm.
+	
+2004-10-25  Denis MARCHAIS  <denis.marchais@free.fr>
+	* All libcams: Change the camera driver calls to enable multicameras
+	on Linux.
+
+2004-10-25  Alain KLOTZ  <alain.klotz@free.fr>
+	* libgsl: /* comment to be written */
+
+2004-10-12  Denis MARCHAIS  <denis.marchais@free.fr>
+	* configure.in: Added a rule to detect GSL installation path.
+
+2004-10-08  Denis MARCHAIS  <denis.marchais@free.fr>
+	* All modules: Moved common Makefile parts to a pair of files in
+	common subdir, and removed all Makefile.in process from modules.
+	* configure.in: Added a rule to detect TCL installation path.
+
+2004-09-24  Michel MEUNIER  <michel.meunier@tiscali.fr>
+	* Ethernaude: inserted the latest ethernaude driver.

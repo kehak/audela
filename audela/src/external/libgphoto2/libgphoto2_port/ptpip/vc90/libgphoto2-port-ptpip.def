@@ -1,0 +1,6 @@
+LIBRARY libgphoto2_port_ptpip
+EXPORTS 
+    gp_port_library_type
+    gp_port_library_list
+    gp_port_library_operations
+

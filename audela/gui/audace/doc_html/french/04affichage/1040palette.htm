@@ -1,0 +1,464 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Palette</title>
+</head>
+
+<body>
+<p class="date">Date de mise &#224; jour : 11 avril 2018</p>
+<h1>Palette</h1>
+<p><span style="font-weight: bold;">Note 1 :</span> Les
+r&#233;glages de la palette modifient uniquement l'affichage et
+en aucun cas le fichier image. En cons&#233;quences :</p>
+<ul>
+<li>Le choix de la palette et des r&#233;glages d&#233;pend de ce
+que l'utilisateur veut mettre en &#233;vidence ou de ses choix
+esth&#233;tiques. Il se peut qu'une palette (cas de Egalisation)
+donne des r&#233;sultats d&#233;cevants si elle n'est pas
+appliqu&#233;e &#224; une image ayant des caract&#233;ristiques
+particuli&#232;res.</li>
+<li>Les commandes <b>Fichier/Enregistrer</b> et
+<b>Fichier/Enregistrer sous...</b> d'Aud'ACE ne permettront pas
+de sauver l'image telle que visualis&#233;e. Pour cela il faudra
+utiliser un fonction d'exportation ou de sauvegarde sp&#233;ciale
+(CF <a href="#export">Exporter l'image)</a>.</li>
+</ul>
+<p><span style="font-weight: bold;">Note 2 :</span> L'histogramme
+des valeurs est fonction du choix des seuils de la visu. Les
+r&#233;glages ne sont valides que dans l'intervalle de ces
+seuils.</p>
+<p><span style="font-weight: bold;">Note 3 :</span> Chaque visu
+dispose de ces propres r&#233;glages. La palette
+s&#233;lectionn&#233;e (<b>palette lin&#233;aire</b> par
+d&#233;faut) est active m&#234;me lorsque la fen&#234;tre de
+r&#233;glage est ferm&#233;e.</p>
+<h2>1. Description de la fen&#234;tre</h2>
+<table cellpadding="10">
+<tbody>
+<tr align="left">
+<td><img src="images/lineaire.gif" /></td>
+<td>
+<p>Elle comporte (de haut en bas) :</p>
+<ul>
+<li>Une zone graphique affichant l'<a href=
+"#histogram">histogramme</a> des intensit&#233;s et la fonction
+de transfert. L'&#233;chelle de droite donne le poids % de chaque
+pas de l'histogramme.</li>
+<li>Une case &#224; cocher pour afficher l'histogramme de l'image
+du buffer ainsi que deux butons permettant de choisir une
+&#233;chelle lin&#233;aire ou logarithmique..</li>
+<li>Une ligne de r&#233;glage de la <a href=
+"#niveaux">Dynamique</a>.</li>
+<li>Si l'image est RVB, les r&#233;glages peuvent s'appliquer, au
+choix, aux trois plans (RVB) ou ind&#233;pendamment &#224; chaque
+plan couleur R ou V ou B (CF paragraphe <a href="#plan">4. Choix
+du plan couleur)</a>.</li>
+<li>Des r&#233;glages suppl&#233;mentaires sont propos&#233;s en
+fonction de la palette choisie. L'effet des r&#233;glages est
+imm&#233;diat et &#233;vite de t&#226;tonner dans la recherche de
+coefficients adapt&#233;s.</li>
+<li>Une combobox permettant de choisir la <a href=
+"#palette">palette</a> (fonction de transfert).</li>
+<li>Une zone comportant une case &#224; cocher pour <a href=
+"#inverse">inverser</a> la palette et les boutons des commandes
+<a href="#mypal"><b>D&#233;finir ma palette</b></a> et
+<b><a href="#export">Exporter l'image</a></b>.</li>
+<li>Un bandeau de <a href="#cmdes">commandes</a>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<h2><b>2. <a name="histogram" id=
+"histogram">Histogramme</a></b></h2>
+<p>L'histogramme normalis&#233; est calcul&#233; sur la plage des
+seuils s&#233;lectionn&#233;s &#224; chaque chargement d'image ou
+de changement de seuils. Compte tenu du temps de calcul
+mobilis&#233; par cette fonction, notamment pour les grandes
+images, il est pr&#233;f&#233;rable de limiter le nombre de
+changements.<br />
+Dans tous les cas, sont calcul&#233;s les seuils haut et bas, les
+valeurs maximale, minimale et moyenne de l'image (fonction stat
+pour les programmeurs).<br />
+L'histogramme (en %) est ensuite calcul&#233; en fonction des
+seuils s&#233;lectionn&#233;s dans Aud'ACE :</p>
+<ul>
+<li><b>Pas de calcul automatique</b> : Minimum = seuil bas de
+l'image, maximum = seuil haut de l'image.<br /></li>
+<li><b>Seuils Aud'ACE</b> : Minimum = valeur minimale de l'image,
+maximum = valeur maximale de l'image.<br /></li>
+<li><b>Seuils Iris</b> : Valeurs de seuil indiqu&#233;es dans la
+configuration.<br /></li>
+<li><b>Seuils en % de l'histogramme</b> : Les seuils minimum et
+maximum sont recalcul&#233;s en tenant compte des r&#233;glages
+utilisateurs dans Aud'ACE.<br /></li>
+<li><b>Seuils initiaux</b> : Minimum = valeur du mot cl&#233;
+MIPS-LO, maximum = valeur du mot cl&#233; MIPS-HI.</li>
+</ul>
+<p>Les exemples ci-dessous mettent en &#233;vidence l'impact des
+seuils sur l'image avec une palette donn&#233;e (lin&#233;aire
+dans l'exemple).</p>
+<table cellpadding="10">
+<tbody>
+<tr align="center">
+<td>Seuils Aud'ACE</td>
+<td>Seuils IRIS : 200-1000</td>
+<td>Seuils 5% - 95% de l'histogramme</td>
+<td>Seuils initiaux</td>
+</tr>
+<tr>
+<td><img src="images/histo_stat.gif" /></td>
+<td><img src="images/histo_iris.gif" /></td>
+<td><img src="images/histo_5_95.gif" /></td>
+<td><img src="images/histo_seuils_initiaux.gif" /></td>
+</tr>
+</tbody>
+</table>
+<p>Une image d'astronomie contient beaucoup de fond du ciel et
+l'essentiel de le distribution de l'histogramme est centr&#233;
+sur les valeurs faibles. Une &#233;chelle lin&#233;aire n'a donc,
+la plupart du temps, pas beaucoup d'int&#233;r&#234;t. Une
+&#233;chelle logarithmique offre une tr&#232;s grande amplitude
+de la repr&#233;sentation des valeurs. L'utilisateur peut choisir
+l'une ou l'autre des repr&#233;sentations.</p>
+<p>La s&#233;lection de cette fonction donne aussi acc&#232;s aux
+r&#233;glages de la dynamique pour les palettes
+<b>Lin&#233;aire</b>, <b>Rampe</b>, <b>Gamma</b>, <b>Courbe
+BSpline</b> et <b>Sigmo&#239;de</b>.</p>
+<h2>3. <a name="niveaux" id="niveaux">Dynamique</a></h2>
+<p>Les fonctions <b>Egalisation</b>, <b>Palette Iris</b> et
+<b>Palette arc en ciel</b> sont automatiquement calcul&#233;es
+sur l'ensemble de l'histogramme et, en cons&#233;quence, ne
+proposent pas le r&#233;glage de la dynamique. Les r&#233;glages
+de dynamique sont accessibles pour les autres palettes en
+conjonction avec la visualisation des histogrammes (option &#224;
+cocher).</p>
+<p>Pour d&#233;finir le seuil en dessous duquel la sortie sera
+&#233;gale &#224; 0, cliquer sur la pipette noire, cliquer sur un
+point noir de l'image puis appuyer sur <b>OK</b>.</p>
+<p><img src="images/pipette.gif" /></p>
+<p>Pour d&#233;finir le seuil au dessus duquel la sortie sera
+&#233;gale &#224; 255, cliquer sur la pipette blanche, cliquer
+sur un point blanc de l'image puis appuyer sur <b>OK</b>.</p>
+<p>Pour faciliter le choix du pixel, l'outil <b>Loupe</b> peut
+&#234;tre activ&#233;.</p>
+<p>Les r&#233;glettes de <a href="#lumen">luminosit&#233; et de
+contraste</a> se positionnent automatiquement &#224; la bonne
+valeur. Les niveaux peuvent &#234;tre ajust&#233;s manuellement
+&#224; l'aide de ces r&#233;glettes.</p>
+<h2><a name="plan" id="plan">4.</a> Choix du plan couleur</h2>
+<p>Pour une image en noir et blanc la fonction de transfert est
+grise.</p>
+<p>Le choix <b>RVB</b> applique la luminosit&#233;, le contraste,
+la palette et l'inversion de mani&#232;re identique &#224; chaque
+plan couleur. De ce fait les trois courbes R, V et B sont
+superpos&#233;es et seule la courbe R est apparente.</p>
+<table cellpadding="10">
+<tbody>
+<tr align="left">
+<td><img src="images/rgb.gif" /></td>
+<td>Il est aussi possible d'appliquer des param&#232;tres
+sp&#233;cifiques &#224; chaque plan. Le retour &#224; l'option
+<b>RVB</b> fait appara&#238;tre les trois fonctions de transfert
+cr&#233;&#233;es.</td>
+</tr>
+</tbody>
+</table>
+<h2><a name="lumen" id="lumen">5.</a> Luminosit&#233; et
+contraste</h2>
+<p>Les r&#233;glages de la luminosit&#233; et du contraste
+d&#233;finissent une bo&#238;te {x0 y0 x1 y1} de confinement de
+la fonction de transfert mat&#233;rialis&#233;e sur le graphique
+par des lignes en pointill&#233;s. Cette bo&#238;te peut
+&#234;tre grande ou petite et &#234;tre positionn&#233;e
+n'importe o&#249; dans l'espace {0 0 255 255}. La commutation
+entre les fonctions <b>Lin&#233;aire</b>, <b>Rampe</b>,
+<b>Gamma</b>, <b>Courbe BSpline</b> et <b>Sigmo&#239;de</b>
+conserve le r&#233;glage du contraste et de la luminosit&#233;.
+En g&#233;n&#233;ral il est recommand&#233; de garder l'amplitude
+maximale pour la sortie.</p>
+<h2>6.<a name="palette" id="palette">Palettes
+disponibles</a></h2>
+<div style="margin-left: 2em;">
+<ol>
+<li>
+<h3>Lin&#233;aire</h3>
+<table cellpadding="10">
+<tbody>
+<tr align="left">
+<td><img src="images/multimodal.gif" /></td>
+<td>La fonction de transfert strictement lin&#233;aire ne
+privil&#233;gie aucune zone de gris.
+<p>La plage de lin&#233;arit&#233; peut &#234;tre ajust&#233;e
+avec les r&#233;glages de luminosit&#233; et de contraste pour
+recadrer la dynamique, ce qui &#233;quivaut &#224; &#233;tirer
+l'histogramme.</p>
+<p>Un point interm&#233;diaire peut &#234;tre cr&#233;&#233; de
+mani&#232;re &#224; pouvoir comprimer une partie tout en dilatant
+l'autre partie (r&#233;partition multimodales), pour cela il
+suffit de saisir un point de la droite avec la souris (la droite
+change d'&#233;paisseur lorsqu'elle est s&#233;lectionn&#233;e)
+puis, sans rel&#226;cher le bouton, de d&#233;placer le point sur
+le graphique. Un seul point peut &#234;tre utilis&#233;.</p>
+<p>Si la droite bris&#233;e ne convient pas il suffit d'appuyer
+sur le bouton <b>Lin&#233;ariser</b> ou de modifier le contraste
+ou la luminosit&#233; pour revenir &#224; une fonction
+lin&#233;aire.</p>
+<p><img src="images/sol_lineaire.gif" /></p>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<h3>Rampe</h3>
+<table cellpadding="10">
+<tbody>
+<tr align="left">
+<td><img src="images/rampe.gif" /></td>
+<td>Elle d&#233;coupe la plage de transfert en zones
+&#233;quidistantes. Le nombre de pas est r&#233;glable entre 5 et
+15 pas.<br />
+<br />
+<img src="images/sol_rampe.gif" /></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<h3>Gamma</h3>
+<p>Le coefficient <b>gamma</b> permet de modifier l'allure de la
+fonction de transfert :</p>
+<table cellpadding="10">
+<tbody>
+<tr align="left">
+<td><img src="images/gamma_log.gif" /></td>
+<td>
+<h4>coefficient gamma &lt; 1</h4>
+<p>Augmentation du contraste dans les zones sombres. Cette
+fonction est &#233;quivalente &#224; une fonction
+logarithmique.</p>
+<p><img src="images/sol_gamma_log.gif" /></p>
+</td>
+</tr>
+<tr>
+<td>
+<h4>coefficient gamma = 1 = Fonction lin&#233;aire.</h4>
+</td>
+</tr>
+<tr>
+<td><img src="images/gamma_exp.gif" /></td>
+<td>
+<h4>coefficient gamma &gt; 1</h4>
+<p>Augmentation du contraste dans les zones claires. Cette
+fonction est &#233;quivalente &#224; une fonction
+exponentielle.</p>
+<p><img src="images/sol_gamma_exp.gif" /></p>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<h3>Courbe BSpline<br /></h3>
+<table cellpadding="10">
+<tbody>
+<tr align="left">
+<td><img src="images/bspline.gif" /></td>
+<td>La courbe de transfert est ajustable librement dans le cadre
+de la bo&#238;te de confinement. Par d&#233;faut, la courbe est
+lin&#233;aire. Il suffit de saisir un point de la courbe avec la
+souris (la courbe change d'&#233;paisseur lorsqu'elle est
+s&#233;lectionn&#233;e) puis, sans rel&#226;cher le bouton, de
+d&#233;placer le point sur le graphique. Plusieurs points peuvent
+&#234;tre utilis&#233;s.
+<p>Si la courbe ne convient pas il suffit d'appuyer sur le bouton
+<b>Lin&#233;ariser</b> ou de modifier le contraste ou la
+luminosit&#233; pour revenir &#224; une fonction
+lin&#233;aire.</p>
+<p><img src="images/sol_bspline.gif" /></p>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<h3>Sigmo&#239;de (arctangente)</h3>
+<table cellpadding="10">
+<tbody>
+<tr align="left">
+<td><img src="images/sigmoide.gif" /></td>
+<td>La courbe de transfert s'inscrit automatiquement dans la
+bo&#238;te de confinement. Elle accentue le contraste des zones
+moyennes.<br />
+<br />
+<img src="images/sol_sigmoide.gif" /></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<h3>Egalisation d'histogramme</h3>
+<table cellpadding="10">
+<tbody>
+<tr align="left">
+<td><img src="images/egalisation.gif" /></td>
+<td>
+<p>Cette option, sans r&#233;glage, active automatiquement le
+calcul et l'affichage de la courbe de transfert correspondant
+&#224; l'histogramme cumul&#233;, ce qui &#233;quivaut &#224;
+maximiser l'entropie de l'image. Si les courbes de distribution
+des plans couleurs ne co&#239;ncident pas (cf. ci-contre) l'image
+appara&#238;tra color&#233;e au lieu d'&#234;tre grise.</p>
+<p>Cette fonction peut avoir de l'utilit&#233; si le fond du ciel
+occupe peu de surface. La bo&#238;te de confinement
+s&#233;lectionne l'ensemble de la plage et les r&#233;glages de
+luminosit&#233; et de contraste ne sont pas accessibles.</p>
+<p><img src="images/lune_egalisation.gif" /></p>
+<p>L'histogramme cumul&#233; est sp&#233;cifique &#224; une image
+particuli&#232;re, ce ne serait pas une bonne id&#233;e de faire
+de cette fonction celle appel&#233;e au d&#233;marrage, cette
+palette est inadapt&#233;e &#224; une image ayant un histogramme
+diff&#233;rent, de plus le calcul de la distribution prend du
+temps.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<h3>Palette Iris</h3>
+<table cellpadding="10">
+<tbody>
+<tr align="left">
+<td><img src="images/iris.gif" /></td>
+<td>
+<p>Cette palette est en lecture seule, sans r&#233;glage. Elle a
+pour effet de coloriser une image selon la palette couleur du
+logiciel Iris, m&#234;me une image en Noir et Blanc. La
+bo&#238;te de confinement s&#233;lectionne l'ensemble de la plage
+et les r&#233;glages de luminosit&#233; et de contraste ne sont
+pas accessibles.</p>
+<p><img src="images/sol_iris.gif" /></p>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<h3>Palette arc en ciel</h3>
+<table cellpadding="10">
+<tbody>
+<tr align="left">
+<td><img src="images/arc_en_ciel.gif" /></td>
+<td>
+<p>Cette palette est en lecture seule, sans r&#233;glage. Elle a
+pour effet de coloriser une image, m&#234;me une image en Noir et
+Blanc. La bo&#238;te de confinement s&#233;lectionne l'ensemble
+de la plage et les r&#233;glages de luminosit&#233; et de
+contraste ne sont pas accessibles.</p>
+<p><img src="images/sol_rainbow.gif" /></p>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<h3><a name="mypal" id="mypal">Ma palette</a></h3>
+<table cellpadding="10">
+<tbody>
+<tr align="left">
+<td><img src="images/ma_palette.gif" /></td>
+<td>Il est tr&#232;s facile de construire une palette
+sp&#233;cifique qui sera rappel&#233;e syst&#233;matiquement
+&#224; l'ouverture d'une image sans avoir &#224; retrouver les
+bons r&#233;glages. Les r&#233;glages &#233;tant effectu&#233;s,
+il suffit d'appuyer sur le bouton <b>D&#233;finir ma palette</b>
+uniquement (pas d'appuis additionnels sur Appliquer et/ou OK)
+:<br />
+<ul>
+<li>La fonction de transfert initiale, les valeurs de la
+luminosit&#233; et du contraste disparaissent.</li>
+<li>La fonction de transfert s&#233;lectionn&#233;e est <b>Ma
+palette</b>.</li>
+<li>Les valeurs num&#233;riques de cette palette sont
+stock&#233;es dans le r&#233;pertoire
+<b>$audace(rep_userPalette)</b> sous le nom
+<b>mypal_${visuNo}.pal</b>, donc mypal_1.pal pour la visu
+num&#233;ro 1 qui correspond &#224; la fen&#234;tre principale
+d'Aud'ACE, mypal_2.pal pour la visu num&#233;ro 2 qui correspond
+&#224; une nouvelle fen&#234;tre affich&#233;e par le menu
+d&#233;roulant <span style="font-weight: bold;">Affichage</span> 
+--&gt; <span style="font-weight: bold;">Nouvelle 'visu'</span> et
+ainsi de suite pour la visu num&#233;ro 3, etc.<br /></li>
+<li>Si elle existe, la s&#233;lection de la fonction <b>Ma
+palette</b> entra&#238;ne sa recopie vers le fichier
+<b>$audace(rep_temp)/fonction_transfert_${visuNo}.pal</b> , soit
+fonction_transfert_1.pal pour la fen&#234;tre principale
+d'Aud'ACE.<br /></li>
+<li>Elle sera pr&#233;sente &#224; l'ouverture d'Aud'ACE si elle
+est pr&#233;sente &#224; sa fermeture.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<h2>7. <a name="inverse" id="inverse">Inversion de
+palette</a></h2>
+<table cellpadding="10">
+<tbody>
+<tr align="left">
+<td><img src="images/inverse.gif" /></td>
+<td>
+<p>Cette commande permet d'inverser (n&#233;gatif) n'importe
+quelle palette.</p>
+<p><img src="images/sol_inverse.gif" /></p>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>8. <a name="export" id="export">Exporter l'image</a></h2>
+<p>Pour les plate-formes Windows, le bouton <b>Exporter vers le
+Presse-papiers</b> permet de transf&#232;rer la totalit&#233; de
+l'image visualis&#233;e, et seulement elle, au format bmp vers le
+Presse-Papiers. Si l'image a une grande taille, l'ex&#233;cution
+de cette commande peut prendre un certain temps.</p>
+<p>Cette image peut &#234;tre import&#233;e dans un logiciel de
+visualisation qui comporte cette fonction, par exemple :<br />
+<b>Paint Shop Pro</b> : Menu <b>Edition/Coller comme nouvelle
+image</b>.<br />
+<b>Xnview</b> : Menu <b>Edition/Importer le
+Presse-papiers</b>.<br />
+<b>Photoshop</b> : Menu <b>Fichier/Nouveau</b> puis
+<b>Edition/Coller</b>.</p>
+<p>Sous les autres plate-formes que Windows, le bouton
+<b>Exporter l'image</b> permet de sauver l'image telle
+que visualis&#233;e (au m&#234;me zoom) vers un fichier .png. Par
+d&#233;faut l'image porte le nom <b>captureVisu1</b> pour la visu
+N&#176;1 et le r&#233;pertoire est celui des images.</p>
+<h2>9. <a name="cmdes" id="cmdes">Bandeau de commandes</a></h2>
+<p><img src="images/commandes.gif" /></p>
+<p>Ce bandeau regroupe les commandes suivantes :</p>
+<ul>
+<li>Le choix de la palette et les valeurs des param&#232;tres
+sont sauvegard&#233;s si l'une des commandes <b>Appliquer</b> ou
+<b>OK</b> est utilis&#233;e. Ils sont restaur&#233;s lors du
+d&#233;marrage d'Aud'ACE.</li>
+<li>La commande <b>R&#233;initialiser</b> permet de restaurer les
+r&#233;glages valides lors du lancement d'Aud'ACE ou, si la
+commande <b>Appliquer</b> a &#233;t&#233; utilis&#233;e, les
+r&#233;glages enregistr&#233;s.</li>
+<li>La commande <b>Aide</b> appelle cette page html.</li>
+<li>La commande <b>Fermer</b> ferme la fen&#234;tre sans annuler
+les r&#233;glages courants.</li>
+</ul>
+<h2>10. Quelques r&#233;f&#233;rences</h2>
+<ul>
+<li>K. Okano <a href="http://www.asahi-net.or.jp/%7Ert6k-okn/">http://www.asahi-net.or.jp/~rt6k-okn/</a></li>
+</ul>
+</div>
+</body></html>

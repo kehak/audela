@@ -1,0 +1,54 @@
+set visuNo 1
+set bufNo [::confVisu::getBufNo $visuNo]
+#--   le nom de la tablelist des fichiers
+set w ".audace.prtr.usr.choix.tablelist"
+#--   le nom de la zone de cmd
+set z ".audace.prtr.usr.table"
+set ::conf(extension,defaut) .fit
+
+variable SETUP {
+   file copy -force [file join $::conf(testaudela,rep_images) m57.fit] [file join $::audace(rep_images)  m57.fit]
+   file copy -force [file join $::conf(testaudela,rep_images) m57.fit] [file join $::audace(rep_images) lulu.fit]
+   loadima m57.fit
+}
+
+variable CLEANUP {
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+   foreach file [list m57.fit lulu.fit toto2.fit toto3.fit] {
+      file delete $file
+   }
+}
+
+#-----------------------------------------------------------------------------
+#--   le test porte sur : la calibration WCS d'une serie de deux images
+#-----------------------------------------------------------------------------
+#--   test de calibration WCS par lot
+test analyse_calibwcs_lot {calibration wcs de deux images} -constraints {AUDACE} -setup $SETUP -body {
+   #--   clic sur le menu "Analyse/Calibrer/Calibration WCS par lot..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,calibration)" "$::caption(audace,menu,calibwcs)..."
+   #--   selectionne aussi lulu
+   ::testaudela::clicCheckButton [$w windowpath lulu,0] 1
+   #--   sélectionne le catalogue USNO (indice 0)
+   ::testaudela::clicCombobox $z.funoptions.comboastromcatalog.astromcatalog \@0
+   #-- saisit le nom de sortie
+   set name_out "toto2"
+   ::testaudela::putLabelEntry $z.sortie.out "$name_out"
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+   #--   procedure de controle
+   set result 0
+   if {[file exists toto2.fit]} {
+      incr result
+   }
+   if {[file exists toto3.fit]} {
+      incr result
+   }
+   if {[lindex [buf$bufNo getkwd CATASTAR] 1] == 200} {
+      incr result
+   }
+   return $result
+} -cleanup $CLEANUP -result "3"
+

@@ -1,0 +1,156 @@
+				   
+                  fitsTcl 2.1.1 Installation Guide
+
+
+   fitsTcl is a TCL interface to the CFITSIO astronomical library
+   which provides access to FITS data files.  It can be used either by
+   itself within the standard tcl/tk applications tclsh and wish, or
+   within the fv software package also distributed by the HEASARC at
+   NASA Goddard.
+
+   The fitsTcl User's Guide is located in the fitsTcl.html file
+   distributed with fitsTcl2.1.1 and located on the web at:
+
+        http://heasarc.gsfc.nasa.gov/ftools/fv/fitsTcl.html
+
+   Send any bug reports to ftoolshelp@athena.gsfc.nasa.gov.
+
+   fitsTcl can be built under Unix/Linux (PowerPC or Intel), MacOS,
+   and Windows.  You will need a version of Tcl8.x, available either
+   from Scriptics (www.scriptics.com) or HEASARC as part of the fv
+   distribution (heasarc.gsfc.nasa.gov/ftools/fv).  Read the following
+   for instructions for building on each platform.
+
+
+
+********************************************************************************
+                         UNIX (including Mac OS X)
+********************************************************************************
+
+
+   To build the fitsTcl shared library do the following:
+
+      1.  Unpack the compressed fitsTcl tar file and enter the fitsTcl2.1.1
+          directory.
+
+      2.  Download the latest version of the cfitsio source code (for UNIX)
+          from:
+
+          http://heasarc.gsfc.nasa.gov/docs/software/lheasoft/fitsio/fitsio.html
+
+          and unpack the source tar file.
+
+      3.  Configure fitsTcl for your system with the command
+
+             ./configure [optional arguments]
+
+          where the optional arguments are:
+
+             --prefix=DIR1 --with-cfitsio=DIR2 --with-tcl-includes=DIR3
+
+             DIR1 is the installation path (default is /usr/local)
+
+             DIR2 is the path to the cfitsio source directory
+                  (default is ./cfitsio)
+
+             DIR3 is the path to the location of the tcl.h header file
+                  (default is $prefix/include or /usr/include).
+
+          These may be considered optional only if the defaults are valid
+          for your system/setup.
+
+          The final library will be installed in the directory DIR1/lib
+          which must exist.  Note that the library itself does not depend
+          on the value of DIR1, only the installation step in the Makefile.
+
+      4.  Build fitsTcl with the command
+
+             make
+
+      5.  Install fitsTcl either with the command
+
+             make install
+
+          which will place it in the DIR1/lib directory, or move the
+          library (libfitstcl.so, or libfitstcl.dylib under Mac OS X)
+          manually to where you want it.
+
+      To use fitsTcl, startup tclsh or wish and type the command
+
+          load libfitstcl.so (libfitstcl.dylib on Mac OS X)
+
+      You may need to specify an explicit path to the library or set
+      the LD_LIBRARY_PATH (DYLD_LIBRARY_PATH on Mac OS X) to its location.
+
+
+********************************************************************************
+                                    MacOS 
+********************************************************************************
+
+
+   To build fitsTcl extension do the following:
+
+      1.  Download and build the Mac TCL software available from
+          Scriptics (www.scriptics.com).
+
+      2.  Download and expand the fitsTcl distribution, which will
+          create a fitsTcl2.1.1 subdirectory.
+
+      3.  Download the latest version of the cfitsio source code from:
+
+          http://heasarc.gsfc.nasa.gov/docs/software/lheasoft/fitsio/fitsio.html
+
+          and untar it under the fitsTcl2.1.1 directory (i.e. such that
+          you have a fitsTcl2.1.1/cfitsio directory).
+
+      4.  Debinhex and expand the file fitsTcl.sit.hqx, creating
+          a fitsTcl folder containing a Codewarrior 5 project file,
+          fitsTcl.p.
+
+      5.  Open the new project file and update the Access Paths to
+          point to your TCL source tree.
+
+      6.  Build the 'fitsTcl DLL' target.  This will create a file
+          fitsTcl.dll in the fitsTcl directory.  Move it to where ever
+          is convenient and use 'load fitsTcl.dll' to load it into
+          tclsh or wish.
+
+   (Note: We do not distribute a binary version of the plugin since it
+   is dependent on the major TCL version -- 8.0, 8.1, etc -- used in
+   building it.  We may distribute one, though, if there is sufficient
+   demand for use with a particular TCL release.)
+
+
+
+********************************************************************************
+                               MS Windows
+********************************************************************************
+
+
+   Building fitsTcl requires Microsoft Visual C++.  A Borland C v5
+   makefile is also included, although it has not been updated since
+   the last release.
+
+   To build fitsTcl DLL do the following:
+
+      1.  Download and build the Windows TCL software available from
+          Scriptics (www.scriptics.com).
+
+      2.  Download and expand the fitsTcl distribution, which will
+          create a fitsTcl2.1.1 subdirectory.
+
+      3.  Download the latest version of the cfitsio source code from:
+
+          http://heasarc.gsfc.nasa.gov/docs/software/lheasoft/fitsio/fitsio.html
+
+          and untar it under the fitsTcl2.1.1 directory (i.e. such that
+          you have a fitsTcl2.1.1/cfitsio directory).
+
+      4.  Edit the file makefile.vc (or makefile.bc5) and update the
+          paths for your specific setup.  We have our source tree at
+          D:\FV_SRC.  Replace this and the TCL8.2.2 references as
+          appropriate.
+
+      5.  Type the command 'nmake -f makefile.vc'.  This will build
+          a fitstcl.dll file.  Move it to where ever is convenient and
+          use 'load fitstcl.dll' to load it into tclsh or wish.

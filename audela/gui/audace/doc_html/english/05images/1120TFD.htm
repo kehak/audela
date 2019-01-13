@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<!--
+        1110TFD.htm
+
+        Copyright 2010 jacques michelet <jacques.michelet@laposte.net>
+
+        This program is free software; you can redistribute it and/or modify
+        it under the terms of the GNU General Public License as published by
+        the Free Software Foundation; either version 2 of the License, or
+        (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU General Public License for more details.
+
+        You should have received a copy of the GNU General Public License
+        along with this program; if not, write to the Free Software
+        Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+        MA 02110-1301, USA.
+-->
+  <title>Discrete Fourier Transform</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="generator" content="Geany 0.18">
+</head>
+<body>
+<p class="date">Update: 08 January 2010</p>
+<h1>Discrete Fourier Transform</h1>
+<p>The <b>Discrete Fourier Transform (DFT)</b> translates a
+spatial-domain image into two frequency (or Fourier) domain images.
+Mathematically speaking, this a complex transformation. So, depending
+on the output format, the frequency domain images will be different :
+</p>
+<ul>
+  <li> <em>Cartesian</em> format : the first output image will contain
+the <b>real part</b> of the DFT, while the second image will contain
+the <b>imaginary part</b>. The real part image will be an "even"
+image, as it shows some symetries with respect to the images axes. And
+the imaginary part image will be an "odd" image.</li>
+  <li> <em>Polar</em> format : the first output image will contain the
+    <b>modulus</b> of the DFT, the second one the <b>argument</b>. The
+modulus image can be considered as the root square of the power
+spectrum of the original image. Hence it is a "even" image, while the
+other is an "odd" one.</li>
+</ul>
+<p>With the <em>order</em> parameter, one can choose where frequencies
+are located in the resulting files :
+</p>
+<ul>
+  <li><em>Centered</em> : The DFT <b>low frequencies</b> are gathered
+in the center neigthborhood of the image. The FITS header is updated
+with the DFT_ORD keyword which parameter is the string <em>CENTERED</em>.</li>
+  <li><em>Regular</em> : The DFT <b>high frequencies</b> are gathered
+in the center neigthborhood of the image. The FITS header is updated
+with the DFT_ORD keyword which parameter is the string <em>REGULAR</em>.</li>
+</ul>
+<p>The user may choose to process the displayed image, or to process a
+file stored on a hard disk.<br>
+When processing the previously displayed image, two resulting files
+will be created which names will depend on the selected format<span
+ style="font-style: italic;"></span><span style="font-style: italic;"></span>.
+If the format is set to <span style="font-style: italic;">polar</span>,
+the files will be named as "<span style="font-style: italic;">modulus.fit</span>"
+and "<span style="font-style: italic;">argument.fit</span>". If the
+format is set to <span style="font-style: italic;">cartesian</span>,
+the names will be "<span style="font-style: italic;">real.fit</span>"
+and "<span style="font-style: italic;">imaginary.fit</span>". <span
+ style="text-decoration: underline;">If there were some files with the
+very same names, their content will be overridden</span>.<br>
+If the user prefers to directly work on file, he will be able to select
+the names of the resulting files.<br>
+In both cases, when the processing is complete, the displayed image is
+the first output image, i.e., depending on the selected format, the
+real part or the modulus of the DFT operator.</p>
+<p>The output images are encoded into unsigned 16-bits words. As the
+DFT result is signed, pixels values are shifted and normalised to fit
+the [0-32767] interval. The keywords <em>DFT_OFFS</em> and <em>DFT_NORM</em>
+contain respectively the shift and normalisation values.
+</p>
+</body>
+</html>

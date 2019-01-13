@@ -1,0 +1,6 @@
+ROOT   = @DEV_ROOT@
+
+include $(ROOT)/Makefile.defs
+
+include $(ROOT)/Makefile.rules
+

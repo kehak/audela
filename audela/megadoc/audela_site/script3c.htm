@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Faire de la photom&eacute;trie rapide en mode scan</title>
+</head>
+
+<body>
+<p>Occultations d'&eacute;toiles par ast&eacute;ro&iuml;des, &eacute;toiles &agrave; sursaut sont d'autant de sujets d'observations qui n&eacute;cessitent des mesures tr&egrave;s r&eacute;solues dans le temps. Le mode scan (accessible &agrave; certaines cam&eacute;ras seulement) permet d'y arriver.</p>
+<h3> 1. Qu'est-ce que le scan ?</h3>
+<p>Dans une cam&eacute;ra CCD, l'image optique est transform&eacute;e en image &eacute;lectronique gr&acirc;ce &agrave; un capteur CCD. Celui-ci est constitu&eacute; d'une mosa&iuml;que de petits pav&eacute;s d'une dizaine de microm&egrave;tres de cot&eacute;, accol&eacute;s les uns aux autres: ce sont les pixels. Ils transforment la lumi&egrave;re incidente en signal &eacute;lectrique, propre &agrave; chaque pixel. Le composant CCD Kaf-400 et sa famille d&eacute;riv&eacute;e (Kaf-401, Kaf-401E) sont largement utilis&eacute;s dans les cam&eacute;ras CCD. Il est constitu&eacute; d'une mosa&iuml;que de 768 x 512 pixels de 9 microns de c&ocirc;t&eacute;. A la fin de la pose, les pixels sont transf&eacute;r&eacute;s un &agrave; un, les uns derri&egrave;re les autres, vers l'ordinateur qui reconstitue l'image sur l'&eacute;cran. Le transfert s'effectue ligne par ligne vers l'ordinateur. Le graphe ci dessous montre comment s'effectue ce transfert : </p>
+<p align="center"><img src="images/scan_fast/ccd1.gif" height="139" width="500" />
+<p>Le transfert des pixels est r&eacute;alis&eacute; en d&eacute;calant toute l'image d'une ligne vers le bas. La ligne la plus en bas (le registre horizontal) contient les pixels (not&eacute;s ABCDE sur le graphe) mais qui ont la particularit&eacute; d'&ecirc;tre masqu&eacute;s de la lumi&egrave;re. Cette ligne masqu&eacute;e (le registre horizontal) est alors transf&eacute;r&eacute;e vers l'ordinateur. Enfin, on effectue &agrave; nouveau le d&eacute;calage de toute l'image d'une ligne vers le bas (FGHIJ se retrouvent dans le registre horizontal), etc... </p>
+<p>On remarquera que l'image semble "glisser" verticalement sur la trame du composant CCD au cours du transfert de l'image. La m&eacute;thode du scan consiste &agrave; lire l'image en continu pendant le "glissement" des lignes du CCD. On peut ainsi : </p>
+<ul>
+  <li> Si le "glissement" des lignes du CCD est synchronis&eacute;e avec le d&eacute;filement du ciel lorsque la monture du t&eacute;lescope est fixe. Le r&eacute;sultat est que l'on obtient une image sous la forme d'une bande sur le ciel. Cette m&eacute;thode est tr&egrave;s peu employ&eacute;e par les amateurs car elle n&eacute;cessite deux r&eacute;glages : orienter les lignes de la cam&eacute;ra parfaitement sur le mouvement de d&eacute;filement du ciel et trouver la valeur de synchronisation pour le transfert du CCD (cela consiste &agrave; entrer la bonne valeur dans le logiciel qui pilote la cam&eacute;ra). N&eacute;anmoins, quand on y regarde de plus pr&egrave;s, ces deux r&eacute;glages sont infiniment plus simples que ceux d'un moteur d'entra&icirc;nement du t&eacute;lescope.</li>
+</ul>
+<ul>
+  <li> Si le moteur d'entra&icirc;nement du t&eacute;lescope compense le mouvement du ciel, on obtient un fil&eacute; pour chaque &eacute;toile de l'image. Ce fil&eacute; peut montrer des variations d'&eacute;clats ce qui permet d'analyser un ph&eacute;nom&egrave;ne photom&eacute;trique en d&eacute;tail.</li>
+</ul>
+<h3> 2. Observation d'une occultation d'&eacute;toile par un ast&eacute;ro&iuml;de</h3>
+<p> Rappelons que l'observation de tels &eacute;v&egrave;nements permet d'affiner la connaissance de l'orbite de l'ast&eacute;ro&iuml;de occulteur car la position des &eacute;toiles occult&eacute;es a &eacute;t&eacute; mesur&eacute;e de mani&egrave;re tr&egrave;s pr&eacute;cise (par le satellite Hipparcos dans le cas pr&eacute;sent). Le ph&eacute;nom&egrave;ne est similaire aux &eacute;clipses visibles depuis la Terre. La trajectoire des occultations pr&eacute;vues sont disponibles sur Internet. Les dimensions de l'ast&eacute;ro&iuml;de peuvent &ecirc;tre estim&eacute;es par simple mesure de la dur&eacute;e de l'occultation, et si suffisamment d'observateurs assistent au ph&eacute;nom&egrave;ne, la forme de la petite plan&egrave;te peut &ecirc;tre d&eacute;duite. </p>
+<p>Observer une occultation, c'est non seulement y assister (oui ou non elle a bien eu lieu &agrave; ma position g&eacute;ographique), mais &eacute;galement pouvoir mesurer la dur&eacute;e du ph&eacute;nom&egrave;ne. Historiquement, les premiers suivis d'occultation stellaires par ast&eacute;ro&iuml;de ont eu lieu avec l'oeil, puis avec des cam&eacute;ras vid&eacute;o intensifi&eacute;es. La cam&eacute;ra CCD en mode scan permet d'enregistrer le ph&eacute;nom&egrave;ne avec une excellente pr&eacute;cision. </p>
+<h3> 2.1. Le script</h3>
+<p>Le script occult.tcl permet de r&eacute;gler les param&egrave;tres de l'ocultation et de lancer la mesure automatiquement. </p>
+<pre># === fichier script : occult.tcl pour Audace</pre>
+<pre>#</pre>
+<pre># --- date de debut d'execution du script (H-5min)</pre>
+<pre>set occult_date [mc_date2jd {2000 9 10 0 34 00} ]</pre>
+<pre># --- date de debut du scan</pre>
+<pre>set occult_datedeb [mc_date2jd {2000 9 10 0 38 00} ]</pre>
+<pre># --- coordonn&eacute;es &agrave; pointer</pre>
+<pre>set occult_ra 0h32m31s</pre>
+<pre>set occult_dec +10d29m12s</pre>
+<pre># --- param&egrave;tres du scan</pre>
+<pre>set occult_largeur 384</pre>
+<pre>set occult_hauteur 1500</pre>
+<pre>set occult_binning 2</pre>
+<pre>set occult_intervalle_de_temps 300</pre>
+<pre># --- attend le debut de l'experience</pre>
+<pre>while {[mc_date2jd now]&lt;=$occult_date} {}</pre>
+<pre># ---- pointe le telescope</pre>
+<pre>tel1 goto [list $occult_ra $occult_dec]</pre>
+<pre># ---- fait une pose de champ</pre>
+<pre>acq 5 2</pre>
+<pre>saveima image-champ.fit</pre>
+<pre># ---- attend le bon moment</pre>
+<pre>while {[mc_date2jd now]&lt;=$occult_datedeb} { }</pre>
+<pre># ---- commence le scan</pre>
+<pre>cam1 scan $occult_largeur $occult_hauteur $occult_binning $occult_intervalle_de_temps</pre>
+<pre>vwait status_cam1</pre>
+<pre>saveima image-scan.fit</pre>
+<pre># ---- fin du script</pre>
+<p>A l'issu de ce script on r&eacute;cup&egrave;re deux images : </p>
+<ul>
+  <li> image-champ.fit : image du champ.</li>
+  <li> image-scan.fit : image du scan sur lequel on recherche la train&eacute;e de l'&eacute;toile occult&eacute;e.</li>
+</ul>
+<h3> 2.2. Application du script</h3>
+<p>Une occultation de l'&eacute;toile HIP 11333 par l'ast&eacute;ro&iuml;de Palma &eacute;tait pr&eacute;dite pour le 7 Ao&ucirc;t 2000 vers 3h25m TU. Le mat&eacute;riel est une cam&eacute;ra Audine sans obturateur fix&eacute;e au foyer F/6 d'un t&eacute;lescope LX200 de 200 mm de diam&egrave;tre. L'image suivante montre le champ de l'astre en question. HIP11333 est une &eacute;toile de magnitude V = 7.28 (B-V=1.69). La chute d'&eacute;clat pr&eacute;vue due &agrave; l'occultation devait &ecirc;tre de 5 magnitudes et la dur&eacute;e maximale de l'occultation de 8.2 secondes.. </p>
+<p align="center"><img src="images/scan_fast/palma1.gif" height="256" width="384" /> </p>
+<p>Image du champ de HIP11333 &agrave; 3h21 TU, soit 4 minutes avant l'occultation. Int&eacute;gration 10 secondes en binning 2x2 (384x256 pixels) HIP 11333 fut plac&eacute;e dans le cadre blanc d&eacute;limitant la partie &agrave; scanner. Les train&eacute;es li&eacute;es &agrave; l'absence d'obturateur : ce ph&eacute;nom&egrave;ne s'appelle le smearing.</p>
+<p>La m&eacute;thode d'observation consiste &agrave; effectuer une image en drift-scan alors que le t&eacute;lescope suit l'&eacute;toile. Ainsi, l'image de l'&eacute;toile d&eacute;file sous les pixels du CCD pendant la pose. On r&eacute;cup&egrave;re une image dont l'axe de d&eacute;calage des lignes est celui de fil&eacute; des &eacute;toiles, et correspond &agrave; un axe temporel "fictif". La r&eacute;solution temporelle de cet axe est fix&eacute;e par la dur&eacute;e s&eacute;parant deux d&eacute;calages de lignes du CCD. </p>
+<p>Nous montrons ici un r&eacute;sultat concret. pour la r&eacute;alisation de l'acquisition du scan, la fonction cam1 scan a &eacute;t&eacute; param&eacute;tr&eacute;e par un d&eacute;calage des lignes &agrave; 200 millisecondes, en reconstituant un binning 2x2. L'image f&ucirc;t commenc&eacute;e &agrave; 3h21m45s TU et a dur&eacute; 10 minutes, ce qui correspond &agrave; un axe temporel de 3000 pixels, repr&eacute;sentant chacun un intervalle de temps de 200 ms. Comme le montre l'image, pr&eacute;sent&eacute;e ci dessous, il n'y a pas eu d'occultation. Deux occultations manuelles ont &eacute;t&eacute; faites pendant la pose afin de v&eacute;rifier la calibration interne de l'acquisition par le logiciel. </p>
+<p>Compar&eacute;e &agrave; la technique traditionnelle qui consiste &agrave; faire une pose classique en arr&ecirc;tant le moteur et en esp&eacute;rant que l'occultation ait lieu &agrave; l'heure dite, cette m&eacute;thode permet de gagner sur les points suivants : </p>
+<ul>
+  <li> la dur&eacute;e d'enregistrement n'est pas limit&eacute;e, donc il est possible de d&eacute;clencher l'observation un peu plus t&ocirc;t que la date pr&eacute;vue, afin de tenir compte des incertitudes de la pr&eacute;vision,</li>
+  <li> la r&eacute;solution temporelle est compl&egrave;tement r&eacute;glable. Elle est limit&eacute;e en fait par les performances de l'ordinateur qui ex&eacute;cute le logiciel (quantit&eacute; de m&eacute;moire, vitesse du processeur, etc.)</li>
+</ul>
+<p>Cette m&eacute;thode devrait permettre d'obtenir des observations pr&eacute;cises et fiables, mais il reste &agrave; effectuer des mesures suppl&eacute;mentaires pour valider la m&eacute;thode. Il est certain que les profils d'ombre des ast&eacute;ro&iuml;des seront bien mieux d&eacute;termin&eacute;s gr&acirc;ce &agrave; cette m&eacute;thode. </p>
+<p align="center"><img src="images/scan_fast/palma2.gif" height="3000" width="100" /></p>
+</body>
+</html>

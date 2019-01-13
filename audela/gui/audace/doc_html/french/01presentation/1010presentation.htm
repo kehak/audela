@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Premiers pas</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 10 mars 2005</p>
+<h1>Premiers pas </h1>
+<p>Aud'ACE est une interface logicielle conviviale et puissante qui permet d'acqu&eacute;rir, de visualiser, de traiter des images, de piloter des t&eacute;lescopes, de cr&eacute;er et de lancer des scripts. Nous allons vous pr&eacute;senter l'utilisation et la configuration de cette interface. </p>
+<h3> 1. Ouverture de l'interface Aud'ACE</h3>
+<p> Pour acc&eacute;der &agrave; l'interface Aud'ACE, il suffit d'ex&eacute;cuter le programme audela.exe qui se trouve dans le r&eacute;pertoire bin, lui-m&ecirc;me situ&eacute; dans le r&eacute;pertoire d'installation du logiciel. L'interface suivante doit alors appara&icirc;tre &agrave; l'&eacute;cran : </p>
+<img src="images/image01.gif" alt="" width="478" height="314" />
+<p>Vous remarquez les 6 petits drapeaux en haut de l'interface (un fran&ccedil;ais, un italien, un espagnol, un allemand, un danois et un anglais) qui suivent le texte Choix de la langue. Ils vont nous permettre de choisir la langue des interfaces AudeLA (la capture d'&eacute;cran ci-dessus) et Aud'ACE. Pour faire ce choix de langue, il suffit tout naturellement de cliquer avec le bouton gauche de la souris sur le drapeau national correspondant. Dans le cas de la capture d'&eacute;cran ci-dessus, l'interface Aud'ACE sera enti&egrave;rement en langue fran&ccedil;aise. </p>
+<p>La structure d'Aud'ACE permet son ouverture vers de nouvelles langues. Il suffit que les personnes int&eacute;ress&eacute;es par ce travail se fassent conna&icirc;tre, les fichiers concern&eacute;s (tous inclus dans le r&eacute;pertoire caption) leurs seront transmis pour traduction. Avis aux volontaires... </p>
+<p>Outre l'ouverture de l'interface Aud'ACE par un simple appui sur le bouton correspondant, un bouton Tutorial vous donne acc&egrave;s &agrave; un didacticiel que nous vous invitons &agrave; parcourir. Il s'adresse essentiellement aux d&eacute;butants. Ce didacticiel n'est disponible qu'en version fran&ccedil;aise et anglaise. Si vous choisissez la langue italienne, espagnole, allemande ou danoise, par d&eacute;faut le didacticiel sera toujours en anglais. </p>
+<p>L'interface AudeLA poss&egrave;de &eacute;galement un bouton Lancer qui permet d'ex&eacute;cuter un script au format tcl. Dans l'exemple ci-dessus, ce bouton vous permet de lancer le script test.tcl qui est dans le r&eacute;pertoire test, lui-m&ecirc;me inclus dans le r&eacute;pertoire d'installation d'Aud'ACE. Il existe bien d'autres solutions pour ex&eacute;cuter un script au format tcl, nous verrons cela un peu plus loin. </p>
+<p>Lorsque vous avez choisi votre langue et que vous ne souhaitez plus en changer, il est possible d'acc&eacute;der directement &agrave; l'interface Aud'ACE &agrave; chaque nouveau lancement (ex&eacute;cution du programme audela.exe). Pour cela, il vous suffit tout simplement de cocher la case pr&eacute;c&eacute;dent Ne plus afficher cette interface :</p>
+<img src="images/image02.gif" alt="" width="478" height="314" />
+<p>A chaque nouveau lancement du programme audela.exe vous lancez directement l'interface Aud'ACE sans passer par l'&eacute;tape interm&eacute;diaire de l'interface AudeLA.</p>
+<p><a name="Interface_AudeLA" id="Interface_AudeLA"></a>Si vous souhaitez &agrave; nouveau passer par l'interm&eacute;diaire de l'interface AudeLA pour consulter le Tutorial ou changer la langue par exemple, il vous suffit d'en faire la demande directement &agrave; partir du menu d&eacute;roulant Configuration --&gt; G&eacute;n&eacute;ral... :</p>
+<img src="images/image03.gif" alt="" width="639" height="507" />
+<p>Par simple clic du bouton gauche de la souris sur G&eacute;n&eacute;ral..., vous obtenez alors la bo&icirc;te de dialogue suivante :</p>
+<img src="images/image04.gif" alt="" width="292" height="225" />
+<p>Le bouton Oui en face S&eacute;lection de la langue ou Tutorial caract&eacute;rise l'&eacute;tat actuel du logiciel. Au prochain lancement de audela.exe, l'interface AudeLA appara&icirc;tra. Vous aurez ainsi acc&egrave;s &agrave; la s&eacute;lection de la langue et au didacticiel.</p>
+<p>Si vous actionnez le bouton Oui en face de Message d'erreur de Porttalk (s'il existe), il se transforme en Non. Vous ne verrez donc pas l'&eacute;dition de ce message, s'il vous concerne bien s&ucirc;r, au prochain lancement de audela.exe.</p>
+<p>Maintenant, nous allons entrer dans le vif du sujet et ouvrir l'interface Aud'ACE. C'est l'objet du paragraphe suivant. </p>
+<h3> 2. Aud'ACE et sa Console</h3>
+<p> Cliquer sur le bouton Aud'ACE de l'interface AudeLA. Voici ce que vous devez voir sur votre &eacute;cran : </p>
+<img src="images/image05.gif" alt="" width="738" height="511" />
+<p>Aud'ACEest constitu&eacute; de deux fen&ecirc;tres. </p>
+<p>Nota : La fen&ecirc;tre Console peut &ecirc;tre positionn&eacute;e diff&eacute;remment par rapport &agrave; la fen&ecirc;tre principale.</p>
+<p>La fen&ecirc;tre principale contient : </p>
+<ul>
+  <li>Une barre de menus (en haut) qui permet d'&eacute;voluer dans le logiciel en toute convivialit&eacute;.</li>
+  <li>Une zone d'affichage des images (fond bleu-vert). </li>
+  <li>Une zone de r&eacute;glages et d'informations (en bas) qui permet de r&eacute;gler les seuils de visualisation avec des curseurs, de lire la valeur des pixels &agrave; l'aide de la souris, de conna&icirc;tre la date et l'heure TU du moment, ainsi que la cam&eacute;ra CCD et &eacute;ventuellement le t&eacute;lescope automatis&eacute; connect&eacute;s &agrave; l'interface.</li>
+</ul>
+<p>La seconde fen&ecirc;tre appel&eacute;e Console est une fen&ecirc;tre affichant du texte. Elle est constitu&eacute;e d'un &eacute;diteur de texte et d'une ligne de commande situ&eacute;e en bas de la fen&ecirc;tre. La Console permet d'envoyer des commandes &eacute;volu&eacute;es qui ne seraient pas disponibles &agrave; partir des menus d&eacute;roulants de la fen&ecirc;tre principale. </p>
+<p>En fonction de la configuration de votre mat&eacute;riel informatique (diagonale de l'&eacute;cran) et de vos go&ucirc;ts personnels, il est possible de changer la taille et la position respectives des 2 fen&ecirc;tres d&eacute;crites ci-dessus. Il est donc tout &agrave; fait possible de d&eacute;placer la Console dans le coin sup&eacute;rieur droit de votre &eacute;cran par exemple, et d'agrandir au maximum la fen&ecirc;tre principale en la draguant avec la souris. Dans ce cas, &agrave; la fermeture du logiciel, la bo&icirc;te de dialogue suivante appara&icirc;tra : </p>
+<img src="images/image06.gif" alt="" width="458" height="126" />
+<p>Si vous appuyez sur le bouton Oui, alors votre nouvelle configuration (tailles et positions de la fen&ecirc;tre principale et de la Console) sera sauvegard&eacute;e. A la prochaine ouverture d'Aud'ACE, vous aurez le plaisir de la retrouver. Vous pouvez &eacute;galement appuyer sur le bouton Non si vous ne souhaitez pas sauvegarder cette nouvelle configuration en quittant le programme, ou encore appuyer sur le bouton Annuler pour retourner &agrave; l'interface Aud'ACE. </p>
+<p>Mais avant d'utiliser le logiciel Aud'ACE, il est n&eacute;cessaire de le configurer correctement. C'est l'objet du paragraphe suivant. </p>
+</body>
+
+</html>

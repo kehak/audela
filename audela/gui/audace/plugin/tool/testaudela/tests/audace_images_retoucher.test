@@ -1,0 +1,185 @@
+set visuNo 1
+set bufNo [::confVisu::getBufNo $visuNo]
+#--   le nom de la tablelist des fichiers
+set w ".audace.prtr.usr.choix.tablelist"
+#--   le nom de la zone de cmd
+set z ".audace.prtr.usr.table"
+set ::conf(extension,defaut) .fit
+
+#-- Test a batir : UNSMEAR
+
+#-----------------------------------------------------------------------------
+#--  Le test COSMIC a pour entree une images N&B a traiter
+#-----------------------------------------------------------------------------
+test imaseries_cosmic {corrige un pixel chaud de hd21620-5.fit} -constraints {AUDACE} -setup {
+   set ::conf(fichier,compres) 0
+   file copy -force [file join $::conf(testaudela,rep_images) hd21620-5.fit] $::audace(rep_images)
+   loadima [file join $::audace(rep_images) hd21620-5.fit]
+} -body {
+   #--   clic sur le menu "Images/Retoucher/Supprimer un cosmic..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,improve)" "$::caption(audace,menu,cosmic)..."
+   #--   saisit la valeur
+   set cosmic_threshold "400"
+   ::testaudela::putLabelEntry $z.funoptions.cosmic_threshold $cosmic_threshold
+   #-- saisit le nom de sortie
+   set name_out "cosmic"
+   ::testaudela::putLabelEntry $z.sortie.out "$name_out"
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--- j'affiche la map dans une nouvelle visu
+   set visu2 [confVisu::create]
+   set bufNo2 [::confVisu::getBufNo $visu2]
+   buf$bufNo2 load "@map.fit"
+   ::confVisu::autovisu $visu2
+   visu$visu2 cut { 32000 0 }
+   visu$visu2 disp
+   update
+   after 5000
+   ::confVisu::close $visu2
+   update
+   return 0
+} -cleanup {
+#--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+   set liste [list hd21620-5 $name_out]
+   file delete  -force  "@map.fit"
+   ttscript2 "IMA/SERIES . \"$liste\" * * .fit . . . . DELETE"
+} -result "0"
+
+#-----------------------------------------------------------------------------
+#--  Le test HOTPIXEL a pour entree une images N&B synthetique a traiter
+#-----------------------------------------------------------------------------
+test imaseries_hotpixel {corrige des pixels chauds} -constraints {AUDACE} -setup {
+   set ::conf(fichier,compres) "0"
+   buf$bufNo setpixels CLASS_GRAY 50 50 FORMAT_BYTE COMPRESS_NONE 0
+   #--   place un point chaud a {25 25}
+   buf$bufNo setpix [list 25 25] 255
+   #--   place une ligne chaude a y =5
+   for {set c 1} {$c <= 50} {incr c} {
+      buf$bufNo setpix [list $c 5] 255
+   }
+   #--   place une colonne chaude a x =5
+   for {set l 1} {$l <= 50} {incr l} {
+      buf$bufNo setpix [list 5 $l] 255
+   }
+   buf$bufNo save hotpixel.fit
+} -body {
+   #--   clic sur le menu "Images/Retoucher/Supprimer des points chauds..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,improve)" "$::caption(audace,menu,hotpixel)..."
+   ::testaudela::clicCheckButton [$w windowpath hotpixel,0] 1
+   #--   saisit la valeur
+   set hot_pixel_list "P 25 25 L 5 C 5"
+   ::testaudela::putLabelEntry $z.funoptions.hot_pixel_list $hot_pixel_list
+   #-- saisit le nom de sortie
+   set name_out "hot"
+   ::testaudela::putLabelEntry $z.sortie.out "$name_out"
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   set result "0"
+   #--   teste l'intensite du point {25 25}
+   if {[lindex [buf$bufNo getpix [list 25 25]] 1] == 0} {incr result}
+   #--   teste l'intensite du point {1 5} (ligne 5)
+   if {[lindex [buf$bufNo getpix [list 1 5]] 1] == 0} {incr result}
+   #--   teste l'intensite du point {5 1} (colonne 5)
+   if {[lindex [buf$bufNo getpix [list 5 1]] 1] == 0} {incr result}
+   return $result
+} -cleanup {
+#--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+   set liste [list hotpixel $name_out]
+   ttscript2 "IMA/SERIES . \"$liste\" * * .fit . . . . DELETE"
+} -result "3"
+
+#-----------------------------------------------------------------------------
+#--   Le test BACK a pour entree une images RGB a traiter
+#--   le test porte sur la concordance des intensites R G B constatees avec celles d'une image de reference
+#-----------------------------------------------------------------------------
+#--   nature du test IMA/SERIES BACK :
+#     concordance des intensites R G B constatees avec celles
+#     de l'image de reference obtenue par la voie classique
+test imaseries_back {soustraire le fond du ciel de rz_rgbr_8} -constraints {AUDACE} -setup {
+   set ::conf(fichier,compres) "0"
+   ::blt::vector create attendu mesure -watchunset 1
+   file copy -force [file join $::conf(testaudela,rep_images) rz_rgbr_8.fit] $::audace(rep_images)
+} -body {
+   #--   clic sur le menu "Images/Retoucher/Soustraire le fond du ciel..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,improve)" "$::caption(audace,menu,subsky)..."
+   #--   selectionne rz_rgbr_8
+   ::testaudela::clicCheckButton [$w windowpath rz_rgbr_8,0] 1
+   #--   saisit la valeur de normalisation
+   set back_kernel "4"
+  ::testaudela::putLabelEntry $z.funoptions.back_kernel $back_kernel
+   #--   saisit la valeur de normalisation
+   set back_threshold "0"
+   ::testaudela::putLabelEntry $z.funoptions.back_threshold $back_threshold
+   #-- saisit le nom de sortie
+   set name_out "soustraction_fond"
+   ::testaudela::putLabelEntry $z.sortie.out $name_out
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   set result 0
+   #--   mesure sur une image réalisée par la voie classique
+   attendu set [list 18156 14575 8381]
+   mesure set [lrange [buf$bufNo getpix [list 210 150 ]] 1 end]
+   #--   calcule la difference
+   attendu expr {round(attendu-mesure)}
+   #--   compte le nombre de resultats nuls
+   set result [llength [attendu search 0]]
+   return $result
+ } -cleanup {
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+   set liste [list rz_rgbr_8 $name_out]
+   ttscript2 "IMA/SERIES . \"$liste\" * * .fit . . . . DELETE"
+   ::blt::vector destroy attendu mesure
+ } -result "3"
+
+#-----------------------------------------------------------------------------
+#--  Le test OPT a pour entree une images RGB a traiter avec deux images RGB compressees venant d'un autre repertoire
+#--   le test porte sur la concordance des intensites R G B constatees avec celles d'une image de reference
+#-----------------------------------------------------------------------------
+test imaseries_optimisation_du_noir {optimisation du noir de rz_cfa_rgbr_8} -constraints {AUDACE} -setup {
+   file copy -force [file join $::conf(testaudela,rep_images) rz_cfa_rgbr_8.fit.gz] $::audace(rep_images)
+   loadima [file join $::audace(rep_images) rz_cfa_rgbr_8.fit.gz]
+   set coords [list 198 51]
+   set ::conf(fichier,compres) "1"
+} -body {
+
+   #--   clic sur le menu "Images/Retoucher/Soustraire le fond du ciel..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,improve)" "$::caption(audace,menu,opt_noir)..."
+   ::testaudela::putLabelEntry $z.funoptions.bias [file join $::conf(testaudela,rep_images) rz_bias_rgbr_8.fit.gz]
+   ::testaudela::putLabelEntry $z.funoptions.dark [file join $::conf(testaudela,rep_images) rz_dark_rgbr_8.fit.gz]
+   #-- saisit le nom de sortie
+   set name_out "opt"
+   ::testaudela::putLabelEntry $z.sortie.out $name_out
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   set result 0
+   set mesure [lrange [buf$bufNo getpix $coords] 1 end]
+   set attendu "37598"
+   if {[expr {int($mesure)-$attendu}] == 0} {incr result}
+   return $result
+ } -cleanup {
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+   set liste [list rz_cfa_rgbr_8 $name_out]
+   ttscript2 "IMA/SERIES . \"$liste\" * * \".fit.gz\" . . . . DELETE"
+   set ::conf(extension,defaut) .fit
+   set ::conf(fichier,compres) 0
+ } -result "1"
+

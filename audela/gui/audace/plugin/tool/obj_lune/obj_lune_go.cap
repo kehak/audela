@@ -1,0 +1,61 @@
+#
+# Fichier : obj_lune_go.cap
+# Mise a jour $Id: obj_lune_go.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(obj_lune_go,obj_lune)         "Destination Moon"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(obj_lune_go,obj_lune)      "Objectif Lune"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(obj_lune_go,obj_lune)      "Obiettivo Luna"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(obj_lune_go,obj_lune)      "Objetivo: La Luna"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(obj_lune_go,obj_lune)      "Mond Ziel"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(obj_lune_go,obj_lune)      "Objectivo Lua"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(obj_lune_go,obj_lune)      "Destination Månen"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(obj_lune_go,obj_lune)      "Destination Moon"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(obj_lune_go,obj_lune)      "Destination Moon"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

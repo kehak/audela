@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Modèle de pointage V2</title>
+</head>
+
+<body>
+<p class="date">Date de mise à jour : 21 août 2013</p>
+<h1>Modèle de pointage V2</h1>
+<p>Le pointage d'un télescope est réalisé à
+partir de coordonnées lues dans des catalogues. Ces
+coordonnées ne sont pas exactement celles à envoyer au
+télescope. Il faut d'abord corriger les coordonnées
+catalogues en coordonnées apparentes qui prennent en compte
+les mouvements de la Terre, à savoir la précession, la nutation, les aberrations (annuelle et diurne),
+la parallaxe annuelle, les mouvements propres et la réfraction. Il faut ensuite corriger les
+coordonnées apparentes en coordonnées télescopes
+pour prendre en compte les imperfections
+électromécaniques du télescope, ce qui exige un
+apprentissage. Pour cela, on effectue des pointages
+d'étoiles du catalogue Hipparcos, réputé pour sa
+grande précision. Nul besoin de le télécharger,
+Aud'ACE inclut un extrait des étoiles les plus brillantes.
+Le pointage pour l'apprentissage doit être fait
+régulièrement sur le ciel.</p>
+<p>La sélection du menu <b>Télescope/Modèle de
+pointage V2</b> ouvre la fenêtre principale de l'outil :</p>
+<img style="width: 388px; height: 400px;" alt="" src="images/modpoi.gif" />
+<p>Si un modèle a déjà été
+créé, il peut être appelé, modifié ou
+enregistré par le menu <b>Fichier/Ouvrir</b>. Dans le cas
+contraire il est conseillé de suivre les étapes
+décrites ci-dessous.</p>
+<h2>1. Processus de définition de l'horizon</h2>
+<table summary="">
+<tbody>
+<tr>
+<td colspan="2"><b>Préalable impératif : Définir
+la position du télescope dans la fenêtre
+Configuration/Position de l'observateur sinon Aud'ACE
+considèrera que vous êtes à l'OHP !</b></td>
+</tr>
+<tr>
+<td>Le menu <b>Edition/Modifier l'horizon</b> ouvre une nouvelle
+fenêtre permettant de définir un horizon
+spécifique.</td>
+<td><img style="width: 323px; height: 200px;" alt="" src="images/horizon0.gif" /></td>
+</tr>
+<tr>
+<td>Définir un nom de l'horizon comme <b>monHorizon</b> ou
+<b>hautFolin</b>. L'inscrire dans la fenêtre qui s'ouvre en
+appuyant sur le bouton <b>Nouvel horizon</b> et sélectionner
+le format des données {ALTAZ|HADEC}.</td>
+<td><img style="width: 208px; height: 174px;" alt="" src="images/nomHorizon.gif" /></td>
+</tr>
+<tr>
+<td>Valider en appuyant sur <b>OK</b>. Retour à la
+fenêtre principale pour définir les coordonnées de
+l'horizon choisi dans le format choisi.</td>
+<td><img style="width: 323px; height: 200px;" alt="" src="images/horizonNomme.gif" /></td>
+</tr>
+<tr>
+<td>Ici le modèle d'horizon est <b>ALTAZ</b>. Dans la
+fenêtre <b>Coordonnées</b>, entrer la liste des couples
+de valeurs {azimut - élévation} en degrés
+caractérisant la ligne d'horizon locale.<br />
+Le format de données HADEC est un triplet {angle de
+déclinaison (-90° à +90°) - angle horaire du
+couchant (Ouest) - angle horaire du levant (Est)}.<br />
+<b>Notes</b> :
+<ul>
+<li><b>le SUD a pour azimut 0°</b>,</li>
+<li>n'indiquer que les points caractéristiques,
+l'interpolation fera le reste,</li>
+<li>l'ordre de saisie des azimut n'a pas d'importance,</li>
+<li>bien que cela n'ait pas beaucoup de sens, les angles
+acceptent des décimales.</li>
+</ul>
+</td>
+<td><img style="width: 323px; height: 200px;" alt="" src="images/horizonCoord.gif" /></td>
+</tr>
+<tr>
+<td>Après vérification de la liste, l'appui sur
+<b>OK</b> provoque l'affichage du profil sur les 360° de
+l'horizon tel que défini.<br />
+Le titre rappelle le nom de l'horizon et les coordonnées GPS
+prises en compte.</td>
+<td><img style="width: 372px; height: 200px;" alt="" src="images/horizonGraph.gif" /></td>
+</tr>
+<tr>
+<td colspan="2">Vérifier qu'il n'y a pas d'oubli ou
+d'erreur. A ce stade l'horizon comporte un nom et des
+coordonnées. Appuyer sur <b>Fermer</b> pour revenir au
+modèle de pointage.<br />
+Pas d'inquiétude : <b>Aud'ACE</b> a mémorisé cet
+horizon dans le répertoire <b>$audace(rep_home)/modpoi</b>
+sous forme de fiche au format .xml.<br />
+A tout moment il est possible de modifier une coordonnée ou
+de redessiner le graphique.<br /></td>
+</tr>
+</tbody>
+</table>
+<h3>Fonction des boutons spécifiques :</h3>
+<ul>
+<li><b>Copier</b> permet de copier les coordonnées de
+l'horizon courant vers un horizon avec un nouveau nom et de
+modifier les valeurs souhaitées sans avoir à ressaisir
+toutes les coordonnées.</li>
+<li><b>Supprimer</b> supprime complètement (nom, type,
+coordonnées) un horizon.</li>
+<li><b>Importer de Cartes du Ciel</b> et <b>Exporter pour Cartes
+du Ciel</b> ne sont actifs que si <b>Cartes du Ciel</b> est
+installé.
+<ul>
+<li><b>Importer de Cartes du Ciel</b> créé un horizon
+ALTAZ ayant pour nom la racine du fichier .txt. Ouvre le
+répertoire <b>Data/Horizon</b> de <b>Cartes du Ciel</b>. Les
+valeurs sont affichées après correction d'azimut.</li>
+<li><b>Exporter pour Cartes du Ciel</b> créé un fichier
+.txt portant le nom de l'horizon. Il est localisé dans le
+répertoire : <b>$audace(rep_home)/modpoi/horizon</b>. Pour
+que <b>Cartes du Ciel</b> prenne en compte cet horizon, indiquer
+ce chemin dans son menu <b>Configuration/Observatoire... onglet
+Horizon</b>.</li>
+</ul>
+</li>
+</ul>
+<h2>2. Elaboration d'un modèle de pointage</h2>
+<p>La méthode consiste à calculer des coefficients de
+correction en fonction d'écarts entre des positions
+réelles et des positions théoriques, il est
+préférable de <b>connecter et d'initialiser le
+télescope ainsi que la caméra</b> avant d'activer le
+menu <b>Edition/Modifier le modèle de pointage</b>. Une
+série de panneaux guide le travail de l'utilisateur.<br />
+</p>
+<table summary="">
+<tbody>
+<tr>
+<td>Explication succincte du mode opératoire.</td>
+<td><img style="width: 336px; height: 400px;" alt="" src="images/wiz1.gif" /></td>
+</tr>
+<tr>
+<td>Paramétrage. L'appui sur le bouton <b>Suivant</b>
+provoque l'affichage de deux fenêtres : L'une
+représente l'horizon (cf. la fenêtre ci-dessous) et la seconde le
+programme de mesures (cf.&nbsp; la fenêtre suivant l'horizon ci-dessous).</td>
+<td><img style="width: 336px; height: 400px;" alt="" src="images/wiz1b.gif" /></td>
+</tr>
+<tr>
+<td>Affichage de l'horizon sélectionné avec la position
+théorique des zones de mesures. La zone
+sélectionnée dans le tableau suivant est cerclée
+de bleu sur le graphique.</td>
+<td><img style="width: 415px; height: 200px;" alt="" src="images/wizardHoriz.gif" /></td>
+</tr>
+<tr>
+<td>Séquence de mesures à faire. Dans l'exemple
+ci-contre, une liste de 6 couples {azimut - hauteur} est
+proposée. Il est temps de commencer les mesures, c'est
+à dire une séquence comprenant :
+<ul>
+<li>Sélection d'une étoile proche de la zone
+visée.</li>
+<li>Pointage avec le télescope.</li>
+<li>Centrage de l'étoile dans le champ de la
+caméra.</li>
+<li>Mesure des écarts.</li>
+</ul>
+</td>
+<td><img style="width: 336px; height: 400px;" alt="" src="images/wiz2.gif" /></td>
+</tr>
+<tr>
+<td>L'appui sur le bouton <b>#HIP</b> d'une sélection ouvre
+la fenêtre ci-contre. Sélectionner l'une des étoiles
+proposées. Puis activer <b>Pointer</b>.</td>
+<td><img style="width: 336px; height: 400px;" alt="" src="images/wiz3.gif" /></td>
+</tr>
+<tr>
+<td>La raquette virtuelle permet le centrage précis de l'étoile
+dans le champ de la caméra. Puis activer <b>Etoile
+centrée</b> pour valider le centrage de l'étoile, ce qui provoque le retour au panneau de
+sélection de la zone à pointer.<br />
+Note : Dernière chance de connecter le télescope si ce
+n'est pas déjà fait sinon les commandes seront
+désactivées.</td>
+<td><img style="width: 336px; height: 400px;" alt="" src="images/wiz4.gif" /></td>
+</tr>
+<tr>
+<td>Le bouton <b>HIP</b> porte le numéro de l'étoile
+pointée et est de couleur verte. Les décalages mesurés sont affichés
+dans la partie droite du panneau. Sélectionner la zone-cible
+suivante et recommencer le cycle.</td>
+<td><img style="width: 336px; height: 400px;" alt="" src="images/wiz2b.gif" /></td>
+</tr>
+<tr>
+<td>Le graphique de l'horizon est complété avec la
+position observée de l'étoile (point vert cerclé
+de bleu).</td>
+<td><img style="" height:="400" alt="215" src="images/wizHorizCompleted.gif" /></td>
+</tr>
+<tr>
+<td>Lorsque la séquence de mesures est complète, un
+bouton <b>Calcul</b> apparaît.</td>
+<td><img style="width: 336px; height: 400px;" alt="" src="images/wiz2c.gif" /></td>
+</tr>
+<tr>
+<td>Le nom, la nature et la valeur (en arcmin) des coefficients
+calculés sont affichés dans la fenêtre ci-contre :
+<ul>
+<li>IH : Décalage du codeur H.</li>
+<li>ID : Décalage du codeur D.</li>
+<li>NP : Non perpendicularité H/D.</li>
+<li>CH : Erreur de collimation.</li>
+<li>ME : Désalignement N/S de l'axe polaire.</li>
+<li>MA : Désalignement E/O de l'axe polaire.</li>
+<li>FO : Flexion de la fourche.</li>
+<li>MT : Flexion de la monture.</li>
+<li>DAF : Flexion de l'axe delta.</li>
+<li>TF : Flexion du tube optique.</li>
+<li>Une ligne indique le chi² (&#935;²), c'est à dire le niveau de
+confiance que l'on peut accorder au modèle de pointage ainsi que
+l'intervalle de confiance exprimé en nombre de sigma. Pour
+un niveau de confiance de :
+<ul>
+<li>68% : La probabilité d'obtenir cette valeur de
+&#935;² avec des valeurs aléatoires est égale
+à 32%, donc relativement élevée. Les valeurs sont
+dans un intervalle de ± 1*sigma. Les coefficients ne sont
+probablement pas significatifs.</li>
+<li>95% : La probabilité d'obtenir cette valeur de
+&#935;² avec des valeurs aléatoires est égale
+à 5%, les valeurs sont dans un intervalle de ± 2*sigma.
+Les coefficients sont peut-être significatifs.</li>
+<li>99.7% : La probabilité d'obtenir cette valeur de
+&#935;² avec des valeurs aléatoires est égale
+à 0.3%, donc très faible. Les valeurs sont dans un
+intervalle de ± 3*sigma. Les coefficients sont
+significatifs.</li>
+</ul>
+Un modèle de pointage valide doit bénéficier d'un niveau de
+confiance supérieur à 99.7% et d'intervalle
+supérieur à ± 3*sigma.</li>
+</ul>
+</td>
+<td><img style="width: 324px; height: 420px;" alt="" src="images/wiz5.gif" /></td>
+</tr>
+<tr>
+<td>Retour à la fenêtre principale, les résultats
+sont affichés. L'analyse du &#935;² est
+rappelée.<br />
+<b>Note :</b> Si le &#935;² est invalide le niveau de confiance est égal à 0% et le nombre de sigma est égal à 0.<br />
+Pour appliquer le modèle de pointage à la monture, il faut utiliser la
+commande <b>Appliquer ce modèle à la monture</b>.</td>
+<td><img style="width: 410px; height: 420px;" alt="" src="images/wiz6.gif" /></td>
+</tr>
+<tr>
+<td>Lors de la fermeture de cette fenêtre, indiquer s'il
+faut enregistrer le modèle de pointage pour un usage
+ultérieur en lui donnant un nom.<br />
+Il sera sélectionnable à l'aide du bouton
+<b>Configurer</b> de l'option <b>Modèle de pointage</b> dans
+le bas de la fenêtre de configuration des télescopes.</td>
+<td><img style="width: 415px; height: 129px;" alt="" src="images/saveModPoi.gif" /></td>
+</tr>
+</tbody>
+</table>
+</body></html>

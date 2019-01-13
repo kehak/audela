@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Calibration WCS par lot</title>
+</head>
+
+<body>Date de mise à jour : 29 décembre 2015
+<h1>Calibrer - Calibration WCS par lot</h1>
+<h2>L'interface</h2>
+<p>Elle donne la liste des images présentes dans le
+répertoire comportant exclusivement les mots clés WCS optiques (RA DEC FOCLEN CROTA2 PIXSIZE1 PIXSIZE2) :</p>
+<ul>
+<li>Nom court de l'image, sans extension.</li>
+<li>Type M (monochrome) ou C (couleurs).</li>
+<li>Dimensions de l'image (NAXIS1 et NAXIS2).</li>
+</ul>
+<p><b>Note 1</b> : Si une image est présente dans la visu
+lors du lancement de l'interface la ligne correspondante est
+cochée.<br />
+<b>Note 2</b> : La sélection de la première image
+provoque l'affichage des valeurs de ses mots clés WCS. Si le
+traitement est lancé sans modification, ces paramètres
+s'imposeront à toutes les images suivantes.<br />
+<b>Note 3</b> : Les images seront traitées dans l'ordre
+d'affichage et nom pas dans l'ordre de sélection.</p>
+<p><img src="images/calibwcsbatch.gif" /></p>
+<p>L'interface est partiellement configurable par l'utilisateur
+pour l'adapter à la longueur de la liste et à la longueur
+des noms.</p>
+<h2>Les familles de commandes</h2>
+<h3>1. Tout sélectionner</h3>
+<p>Le fait de cocher cette commande a pour effet de cocher toutes
+les images.<br />
+Le fait de décocher cette commande a pour effet de
+désélectionner toutes les images
+sélectionnées.</p>
+<h3>2. Les paramètres</h3>
+<h4>Les paramètres numériques</h4>
+<p>Les valeurs des mots clés affichées pour RA, DEC,
+PIXSIZE1, PIXSIZE2, FOCLEN et CROTA2 sont celles de la
+première image sélectionnée (soit par
+l'utilisateur, soit la première de la liste obtenue par <b>Tout
+sélectionner</b>). Elles sont modifiables par l'utilisateur.
+Les paramètres CRPIX1 et CRPIX2 sont calculés
+automatiquement pour le centre de l'image. Il est donc possible
+de traiter des images de tailles différentes mais prises
+avec les paramètres affichés.</p>
+<h4>Catalogues de calibration</h4>
+<p>Deux formats de catalogue sont disponibles : <b>MICROCAT</b>
+et <b>USNO</b>.<br />
+Le choix de l'utilisateur est mémorisé.<br />
+L'intégrité du catalogue affiché dans le
+sélecteur est vérifiée à l'ouverture de
+l'interface ou lors d'un changement de sélection. Un
+avertissement est émis si le chemin du répertoire du
+catalogue n'est pas défini, incorrect ou si le catalogue est
+incomplet et la fenêtre de configuration des
+répertoires s'ouvre.</p>
+<h3>3. Image de sortie</h3>
+<p>Il est inutile de préciser l'extension des images car
+c'est automatiquement celle sélectionnée dans
+<b>Configuration/Fichiers images...</b>.</p>
+<p>Cette entrée permet de définir le répertoire et
+le nom générique des images calibrées.
+Le nom générique des images peut être différent ou identique à
+celui des images d'entrée. Les images peuvent être indexée ou non.
+Exemples de saisie :</p>
+<ul>
+<li>Un seul point <b>.</b> : Les images produites remplacent
+celles existantes (même répertoire et même
+nom).</li>
+<li>Un nom tel que <b>toto</b> : Une série d'images sera
+produite dans le même répertoire, son nom
+générique sera <b>toto</b> indexé à partir de
+1.</li>
+<li>Un nom tel que <b>toto6</b> : Une série d'images sera
+produite dans le même répertoire, son nom
+générique sera <b>toto</b> indexé à partir de
+6.</li>
+<li><b>chemin_du_répertoire</b> : Les images calibrées
+seront dans le répertoire désigné, les images
+porteront le même nom que les images à traiter. Un
+bouton <b>...</b> permet de sélectionner un répertoire
+existant.</li>
+<li><b>chemin_du_répertoire/toto</b> : Une série
+indexée à partir de 1 sera produite dans le
+répertoire désigné.</li>
+<li><b>chemin_du_répertoire/toto2</b> : Une série
+indexée à partir de 2 sera produite dans le
+répertoire désigné.</li>
+</ul>
+<p>Par convention le nom générique d'un fichier de sortie doit être composé
+exclusivement de caractères alphanumériques, de tiret <b>-</b> ou d'underscore <b>_</b>.</p>
+<p>La liste des images du répertoire courant est
+rafraîchie dès qu'une image est produite. Cette liste
+est évidemment inchangée si le répertoire de
+destination est différent.
+</p><h3>4. Divers</h3>
+<h4>Afficher l'image à la fin du traitement</h4>
+<p>L'activation de cette commande permet d'afficher la
+dernière image produite.</p>
+<h4>Afficher les scripts</h4>
+<p>L'activation de cette commande permet d'éditer les
+scripts tt dans la Console au fur et à mesure de leur appel.
+C'est utile pour le débug ou pour connaître la
+séquence des fonctions TT appelées.</p>
+<h4>Ligne de message</h4>
+<p>Cette ligne indique le nombre d'images sélectionnées
+et des informations diverses durant le traitement.</p>
+<h2>Suivi du traitement</h2>
+<p>Une barre de progression informe sur l'image traitée et
+le nombre d'étoiles détectées :</p>
+<p><img src="images/calibwcs_progressbar.gif" /></p>
+<h2>Pour les programmeurs</h2>
+<p>L'appel de la fonction <b>::prtr::getKwdValue chemin_complet_du fichier</b> retourne les valeurs de NAXIS1, NAXIS2 et CATASTAR
+sans avoir besoin d'ouvrir l'image dans une visu.</p>
+</body></html>

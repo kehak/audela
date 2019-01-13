@@ -1,0 +1,135 @@
+
+set bufNo 0
+set fileNameAccent "m 57é"
+
+#-------------------------------------------------------------------------------
+test bufcreate {creation d'un buffer} {
+   set bufNo [buf::create]
+   buf$bufNo extension $::conf(extension,defaut)
+} "$::conf(extension,defaut)"
+
+#-------------------------------------------------------------------------------
+test bufloadfits {chargement d'un fichier sans l'extension } {
+   buf$bufNo load [file join $::conf(testaudela,rep_images) m57]
+   set pixIntensity [lindex [buf$bufNo getpix { 2 2 }] 1]
+   return [ expr $pixIntensity ]
+} [ expr 332.000000 ]
+
+#-------------------------------------------------------------------------------
+test bufloadfitsAccent {chargement d'un fichier avec accent} {
+   #--- je cree un fichier fichier dont le nom contient des caracteres accentues
+   file copy -force [file join $::conf(testaudela,rep_images) m57.fit]  $::audace(rep_images)/$fileNameAccent$::conf(extension,defaut)
+   #--- je charge ce fichier
+   buf$bufNo load $::audace(rep_images)/$fileNameAccent
+   set pixIntensity [lindex [buf$bufNo getpix { 2 2 }] 1]
+   return [ expr $pixIntensity ]
+} [ expr 332.000000 ]
+
+#-------------------------------------------------------------------------------
+test bufadd {addition d'un fichier} {
+   buf$bufNo load [file join $::conf(testaudela,rep_images) m57.fit]
+   buf$bufNo add $::audace(rep_images)/$fileNameAccent  10
+   set pixIntensity [lindex [buf$bufNo getpix { 2 2 }] 1]
+   return [ expr $pixIntensity ]
+} [ expr 674.000000 ]
+
+#-------------------------------------------------------------------------------
+test bufsub {soustraction d un fichier} {
+   buf$bufNo load [file join $::conf(testaudela,rep_images) m57.fit]
+   buf$bufNo sub $::audace(rep_images)/$fileNameAccent 10
+   set pixIntensity [lindex [buf$bufNo getpix { 2 2 }] 1]
+   return [ expr $pixIntensity ]
+} [ expr 10.000000 ]
+
+#-------------------------------------------------------------------------------
+test bufsubbuf {soustraction d un autre buffer} {
+   buf$bufNo clear
+   #--- je cree une image 100 x 50, avec intensité 10
+   buf$bufNo setpixels CLASS_GRAY 100 50 FORMAT_FLOAT COMPRESS_NONE 0
+   buf$bufNo offset 10
+   #--- je cree un buffer avec une image de la meme taille , intensité 2
+   set darkBufNo [::buf::create]
+   buf$darkBufNo setpixels CLASS_GRAY 100 50 FORMAT_FLOAT COMPRESS_NONE 0
+   buf$darkBufNo offset 2
+   #--- je soustrais les buffers
+   buf$bufNo sub $darkBufNo
+   set pixIntensity [lindex [buf$bufNo getpix { 2 2 }] 1]
+   #--- je nettoie les buffers
+   buf$bufNo clear
+   ::buf::delete $darkBufNo
+   return [ expr $pixIntensity ]
+} [ expr 8.000000 ]
+
+#-------------------------------------------------------------------------------
+test bufopt {optimisation du noir } {
+   buf$bufNo load [file join $::conf(testaudela,rep_images) m57.fit]
+   #--- optimisation du noir
+   buf$bufNo opt $::audace(rep_images)/$fileNameAccent$::conf(extension,defaut) $::audace(rep_images)/$fileNameAccent$::conf(extension,defaut)
+} ""
+
+#-------------------------------------------------------------------------------
+test bufdiv {division par un fichier} {
+   buf$bufNo load [file join $::conf(testaudela,rep_images) m57.fit]
+   set pix1 [lindex [buf$bufNo getpix { 2 2 }] 1]
+   #--- je divise l'image par elle meme  avec un gain de 10
+   #--- je verifie que le parametre peut contenir un nom avec un accent
+   buf$bufNo div $::audace(rep_images)/$fileNameAccent$::conf(extension,defaut) 10.0
+   #--- je recupere l'intensite d'un pixel (tous les pixels doivent valoir 10)
+   set pix2 [lindex [buf$bufNo getpix { 2 2 }] 1]
+   if { $pix2 == [expr ($pix1 / $pix1 )*10.0 ] } {
+      return ""
+   } else {
+      return "valeur $pix2 differente de celle attendue [expr ($pix1 / $pix1 )*10.0 ]"
+   }
+   #--- je nettoie les buffers
+   buf$bufNo clear
+   ::buf::delete $darkBufNo
+   return $result
+} ""
+
+#-------------------------------------------------------------------------------
+test bufloadfits2 {chargement d un fichier fits qui n'existe pas} {
+   set fileName $::audace(rep_images)/m58.fit
+   set result [ catch { buf$bufNo load $fileName } msg ]
+   return $result
+} "1"
+
+#-------------------------------------------------------------------------------
+test bufloadjpg {chargement d'un fichier JPG} {
+   set result [buf$bufNo load [file join $::conf(testaudela,rep_images) 47toucan.jpg] ]
+   return $result
+} ""
+
+#-------------------------------------------------------------------------------
+test bufimaseries1 {imaseries ajoute un offset=10} {
+   #--- je charge m57.fit
+   buf$bufNo load [file join $::conf(testaudela,rep_images) m57.fit]
+   #--- je memorise l'intensite du pixel a la position (100,100)
+   set pix1 [lindex [buf$bufNo getpix {100 100}] 1]
+   #--- j'applique un offset=10
+   buf$bufNo imaseries "OFFSET offset=10"
+   set pix2 [lindex [buf$bufNo getpix {100 100}] 1]
+   if { $pix2 == [expr $pix1 + 10 ] } {
+      return ""
+   } else {
+      return "valeur $pix2 diffrente de celle attendue [expr $pix1 + 10 ]"
+   }
+   return $result
+} ""
+
+#-------------------------------------------------------------------------------
+test bufdelete {buf delete} {
+   buf::delete $bufNo
+   #--- je supprime le fichier temporaire
+   file delete -force $::audace(rep_images)/$fileNameAccent$::conf(extension,defaut)
+   if { $::conf(extension,defaut) != ".fit" } {
+      file delete -force $::audace(rep_images)/m57$::conf(extension,defaut)
+   }
+} ""
+
+#-------------------------------------------------------------------------------
+#test filecfa2rgb {conversion cfa2rgb sans buffer} {
+#   set result [cfa2rgb  $::audace(rep_images)/m3.crw 1  $::audace(rep_images)/m3.fit]
+#   return $result
+#} "$::audace(rep_images)/m3.fit"
+

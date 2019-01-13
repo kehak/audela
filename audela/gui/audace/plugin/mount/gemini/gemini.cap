@@ -1,0 +1,196 @@
+#
+# Fichier : gemini.cap
+# Mise a jour $Id: gemini.cap 14486 2018-09-21 14:29:32Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(gemini,monture)                    "GEMINI"
+set caption(gemini,mode)                       "Mode"
+set caption(gemini,host)                       "Host"
+set caption(gemini,port)                       "Port"
+set caption(gemini,configurer)                 "Set up"
+set caption(gemini,controle)                   "Control"
+set caption(gemini,raquette_tel)               "Hand controller on screen"
+
+set caption(gemini,install_1)                  "End of GEMINI plugin installation"
+set caption(gemini,install_2)                  "libgemini.dll library updated."
+
+set caption(gemini,port_gemini)                "GEMINI Port"
+set caption(gemini,2points)                    ":"
+
+set caption(gemini,titre_site_web)             "Reference Web Site:"
+set caption(gemini,site_gemini)                "http://www.losmandy.com/"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(gemini,monture)                 "GEMINI"
+   set caption(gemini,mode)                    "Mode"
+   set caption(gemini,host)                    "Host"
+   set caption(gemini,port)                    "Port"
+   set caption(gemini,configurer)              "Configurer"
+   set caption(gemini,controle)                "Contrôle"
+   set caption(gemini,raquette_tel)            "Raquette à l'écran"
+
+   set caption(gemini,install_1)               "Fin de l'installation du plugin GEMINI"
+   set caption(gemini,install_2)               "La librairie libgemini.dll a été mise à jour."
+
+   set caption(gemini,port_gemini)             "Port GEMINI"
+   set caption(gemini,2points)                 ":"
+
+   set caption(gemini,titre_site_web)          "Site Web de référence :"
+   set caption(gemini,site_gemini)             "http://www.losmandy.com/"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(gemini,monture)                 "GEMINI"
+   set caption(gemini,mode)                    "Modalita`"
+   set caption(gemini,host)                    "Host"
+   set caption(gemini,port)                    "Porta"
+   set caption(gemini,configurer)              "Configurare"
+   set caption(gemini,controle)                "Controllo"
+   set caption(gemini,raquette_tel)            "Pulsantiera a schermo"
+
+   set caption(gemini,install_1)               "Fine installazione del plugin GEMINI"
+   set caption(gemini,install_2)               "La libreria libgemini.dll è stata aggiornata."
+
+   set caption(gemini,port_gemini)             "Porta GEMINI"
+   set caption(gemini,2points)                 ":"
+
+   set caption(gemini,titre_site_web)          "Sito Web di riferimento:"
+   set caption(gemini,site_gemini)             "http://www.losmandy.com/"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(gemini,monture)                 "GEMINI"
+   set caption(gemini,mode)                    "Modo"
+   set caption(gemini,host)                    "Host"
+   set caption(gemini,port)                    "Puerto"
+   set caption(gemini,configurer)              "Configurar"
+   set caption(gemini,controle)                "Control"
+   set caption(gemini,raquette_tel)            "Controlador virtual"
+
+   set caption(gemini,install_1)               "Fin de la instalación del plugin GEMINI"
+   set caption(gemini,install_2)               "Libreria libgemini.dll actualizada."
+
+   set caption(gemini,port_gemini)             "Puerto GEMINI"
+   set caption(gemini,2points)                 ":"
+
+   set caption(gemini,titre_site_web)          "Sitio Web de referencia:"
+   set caption(gemini,site_gemini)             "http://www.losmandy.com/"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(gemini,monture)                 "GEMINI"
+   set caption(gemini,mode)                    "Modus"
+   set caption(gemini,host)                    "Host"
+   set caption(gemini,port)                    "Port"
+   set caption(gemini,configurer)              "Konfigurieren"
+   set caption(gemini,controle)                "Kontroll"
+   set caption(gemini,raquette_tel)            "Hand Kontroller am Bildschirm"
+
+   set caption(gemini,install_1)               "Ende der GEMINI-Plugin-Installation"
+   set caption(gemini,install_2)               "Die libgemini.dll Bibliothek ist aktualisiert."
+
+   set caption(gemini,port_gemini)             "GEMINI Port"
+   set caption(gemini,2points)                 ":"
+
+   set caption(gemini,titre_site_web)          "Referenz Webseite:"
+   set caption(gemini,site_gemini)             "http://www.losmandy.com/"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(gemini,monture)                 "GEMINI"
+   set caption(gemini,mode)                    "Modo"
+   set caption(gemini,host)                    "Host"
+   set caption(gemini,port)                    "Porta"
+   set caption(gemini,configurer)              "Configuração"
+   set caption(gemini,controle)                "Controlo"
+   set caption(gemini,raquette_tel)            "Controlador de mão no ecrã"
+
+   set caption(gemini,install_1)               "Fin da instalação do plugin GEMINI"
+   set caption(gemini,install_2)               "A livraria libgemini.dll foi actualizada."
+
+   set caption(gemini,port_gemini)             "Porta GEMINI"
+   set caption(gemini,2points)                 ":"
+
+   set caption(gemini,titre_site_web)          "Site Web de referência:"
+   set caption(gemini,site_gemini)             "http://www.losmandy.com/"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(gemini,monture)                 "GEMINI"
+   set caption(gemini,mode)                    "Mode"
+   set caption(gemini,host)                    "Host"
+   set caption(gemini,port)                    "Port"
+   set caption(gemini,configurer)              "Set up"
+   set caption(gemini,controle)                "Control"
+   set caption(gemini,raquette_tel)            "Hand controller on screen"
+
+   set caption(gemini,install_1)               "End of GEMINI plugin installation"
+   set caption(gemini,install_2)               "libgemini.dll library updated."
+
+   set caption(gemini,port_gemini)             "GEMINI Port"
+   set caption(gemini,2points)                 ":"
+
+   set caption(gemini,titre_site_web)          "Reference Web Site:"
+   set caption(gemini,site_gemini)             "http://www.losmandy.com/"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(gemini,monture)                 "GEMINI"
+   set caption(gemini,mode)                    "Mode"
+   set caption(gemini,host)                    "Host"
+   set caption(gemini,port)                    "Port"
+   set caption(gemini,configurer)              "Set up"
+   set caption(gemini,controle)                "Control"
+   set caption(gemini,raquette_tel)            "Hand controller on screen"
+
+   set caption(gemini,install_1)               "End of GEMINI plugin installation"
+   set caption(gemini,install_2)               "libgemini.dll library updated."
+
+   set caption(gemini,port_gemini)             "GEMINI Port"
+   set caption(gemini,2points)                 ":"
+
+   set caption(gemini,titre_site_web)          "Reference Web Site:"
+   set caption(gemini,site_gemini)             "http://www.losmandy.com/"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(gemini,monture)                 "GEMINI"
+   set caption(gemini,mode)                    "Mode"
+   set caption(gemini,host)                    "Host"
+   set caption(gemini,port)                    "Port"
+   set caption(gemini,configurer)              "Set up"
+   set caption(gemini,controle)                "Control"
+   set caption(gemini,raquette_tel)            "Hand controller on screen"
+
+   set caption(gemini,install_1)               "End of GEMINI plugin installation"
+   set caption(gemini,install_2)               "libgemini.dll library updated."
+
+   set caption(gemini,port_gemini)             "GEMINI Port"
+   set caption(gemini,2points)                 ":"
+
+   set caption(gemini,titre_site_web)          "Reference Web Site:"
+   set caption(gemini,site_gemini)             "http://www.losmandy.com/"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

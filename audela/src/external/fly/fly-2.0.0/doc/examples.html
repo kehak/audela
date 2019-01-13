@@ -1,0 +1,137 @@
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head>
+  <title>images on the fly: Examples
+ </title>
+  <link rev="made" href="mailto:martin@gleeson.com" />
+  <link rel="stylesheet" href="style.css" media="screen" />
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta name="description"
+     content="Examples using Fly." />
+
+  <meta name="robots"
+     content="nofollow" />
+</head>
+ <body>
+ <table class="maintable">
+  <tr>
+   <td class="maincontent">
+     <!-- ====================================================================== -->
+     <hr class="divider" />
+     <h1>fly: examples</h1>
+     <!-- ====================================================================== -->
+     <hr class="divider" />
+     <p>  If you are using fly from within a CGI program, here are some examples:</p>
+ <dl>
+  <dt><strong>Perl</strong></dt>
+  <dd><p>If you use perl, you should really use Lincoln Stein's
+      <a href="http://stein.cshl.org/WWW/software/GD/">GD.pm</a>.</p>
+      <p>Nevertheless...</p>
+  <pre>#!/usr/local/bin/perl
+
+$flyprog = &quot;/usr/local/bin/fly&quot;;
+$outfile = &quot;temp.png&quot;;
+
+open(FLY,&quot;| $flyprog -o $outfile &quot;);
+print FLY &quot;new\n&quot;;
+print FLY &quot;size 256,256\n&quot;;
+print FLY &quot;type png\n&quot;;
+print FLY &quot;fill 1,1,255,255,255\n&quot;;
+print FLY &quot;circle 128,128,180,0,0,0\n&quot;;
+print FLY &quot;fill 128,128,255,255,0\n&quot;;
+print FLY &quot;arc 128,128,120,120,0,180,0,0,0\n&quot;;
+print FLY &quot;circle 96,96,10,0,0,0\n&quot;;
+print FLY &quot;circle 160,96,10,0,0,0\n&quot;;
+print FLY &quot;fill 96,96,0,0,0\n&quot;;
+print FLY &quot;fill 160,96,0,0,0\n&quot;;
+close(FLY);
+</pre>
+ </dd>
+  <dt><strong>csh</strong></dt>
+  <dd><pre>
+#!/bin/csh
+# test out fly!
+
+cat &gt; /tmp/fly.$$ &lt;&lt;EOD
+new
+size 256,256
+type jpeg
+fill 1,1,255,255,255
+circle 128,128,180,0,0,0
+fill 128,128,255,255,0
+arc 128,128,120,120,0,180,0,0,0
+circle 96,96,10,0,0,0
+circle 160,96,10,0,0,0
+fill 96,96,0,0,0
+fill 160,96,0,0,0
+EOD
+
+fly -i /tmp/fly.$$ -o test.jpeg
+</pre>
+ </dd>
+  <dt>Fly Scripts</dt>
+  <dd><p>You can even create your own fly &quot;scripts&quot;!</p>
+  <pre>
+#!/usr/local/bin/fly -q
+new
+size 256,256
+type gif
+fill 1,1,255,255,255
+&lt;etc&gt;
+</pre>
+   <p>Thanks to Andrew Finkenstadt &lt;andyf@simutronics.com&gt; for noting
+      this unintentional feature of fly.</p>
+</dd>
+ <dt><strong>C</strong>
+</dt>
+ <dd>If you're using C, then you might as well <a
+     href="http://www.boutell.com/gd/">use gd!!</a>
+</dd>
+</dl>
+ <p>Can you guess what the above examples produce?
+    <a href="example.gif">Here's the answer!</a>
+</p>
+<p>I have created a Fly Tester CGI program that lets you test fly
+    commands quickly in a convenient interface. The program is in the
+    examples directory in the fly distribution.
+</p>
+  </td>
+   <td class="mainmenutop">
+    <p class="navigation-centred"><a href="http://martin.gleeson.com/fly/"><img
+         src="fly-logo.gif" class="borderless" alt=" [fly] " width="157" height="52" /></a>
+   </p>
+    <ul class="navigation">
+     <li><a class="navigation" href="index.html">Home</a> </li>
+     <li><a class="navigation" href="installation.html">Download &amp; Installation.</a> </li>
+     <li><a class="navigation" href="using.html">How to use fly.</a> </li>
+     <li><a class="navigation" href="examples.html">Examples.</a> </li>
+     <li><a class="navigation" href="outthere.html">Fly on the Web.</a> </li>
+     <li><a class="navigation" href="FAQ.html">Frequently Asked Questions.</a> </li>
+     <li><a class="navigation" href="release-notes.html">Contributors and Release notes.</a> </li>
+     <li><a class="navigation" href="feedback.html">Feedback &amp; Mailing Lists.</a> </li>
+     <li><a class="navigation" href="copyright.html">Credits &amp; Copyright Information.</a></li>
+    </ul>
+   </td>
+ </tr>
+  <tr>
+   <td class="mainmenubottom">
+   <p class="pagedetails"><tt>Created: 21 June 1995<br />
+    Last modified: 25 November 2001<br />
+    Copyright &#169; 1995-2001 <a href="http://martin.gleeson.com/"
+    class="writtenurl">Martin Gleeson.</a></tt><br />
+    <small>&lt;URL:<a href="http://martin.gleeson.com/fly/examples.html"
+    class="writtenurl">http://martin.gleeson.com/fly/examples.html</a>&gt;</small>
+   </p>
+  </td>
+   <td>
+     <p class="rightfooter"><a href="http://validator.w3.org/check/referer"><img
+       src="http://www.w3.org/Icons/valid-xhtml10" class="borderless"
+       alt="[Valid XHTML 1.0!]" height="31" width="88" /></a>
+    </p>
+  </td>
+ </tr>
+</table>
+</body>
+</html>

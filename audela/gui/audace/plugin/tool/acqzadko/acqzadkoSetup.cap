@@ -1,0 +1,133 @@
+#
+# Fichier : acqzadkoSetup.cap
+# Mise a jour $Id: acqzadkoSetup.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(acqzadkoSetup,titre)                     "AcquisitionZADKO - Setup"
+set caption(acqzadkoSetup,en-tete_fits)              "FITS Header"
+set caption(acqzadkoSetup,mots_cles)                 "Keywords"
+set caption(acqzadkoSetup,texte1)                    "Display messages on the Terminal"
+set caption(acqzadkoSetup,texte2)                    "Record dates in the log file"
+set caption(acqzadkoSetup,texte3)                    "Aural warning when the series ends"
+set caption(acqzadkoSetup,texte4)                    "Ask whether the user wants existing file to be replaced"
+set caption(acqzadkoSetup,texte5)                    "Prompt the user if the index starts with a value different from 1"
+set caption(acqzadkoSetup,texte6)                    "Save an interrupted acquisition"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(acqzadkoSetup,titre)                  "AcquisitionZADKO - Configuration"
+   set caption(acqzadkoSetup,en-tete_fits)           "En-tête FITS"
+   set caption(acqzadkoSetup,mots_cles)              "Mots clés"
+   set caption(acqzadkoSetup,texte1)                 "Afficher les messages dans la Console"
+   set caption(acqzadkoSetup,texte2)                 "Enregistrer les dates dans le fichier log"
+   set caption(acqzadkoSetup,texte3)                 "Alarme sonore de fin de série"
+   set caption(acqzadkoSetup,texte4)                 "Demander l'autorisation de remplacer un fichier existant"
+   set caption(acqzadkoSetup,texte5)                 "Signaler que l'index de départ est différent de 1"
+   set caption(acqzadkoSetup,texte6)                 "Enregistrer une acquisition interrompue"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(acqzadkoSetup,titre)                  "AcquisizioneZADKO - Configurazione"
+   set caption(acqzadkoSetup,en-tete_fits)           "Intestazione FITS"
+   set caption(acqzadkoSetup,mots_cles)              "Parole chiave"
+   set caption(acqzadkoSetup,texte1)                 "Mostra messaggio sul terminale"
+   set caption(acqzadkoSetup,texte2)                 "Salvataggio date nel file di log"
+   set caption(acqzadkoSetup,texte3)                 "Segnale acustico quando finisce la serie"
+   set caption(acqzadkoSetup,texte4)                 "Domandare l'autorizzazione di rimpiazzare un file esistente"
+   set caption(acqzadkoSetup,texte5)                 "Segnalare che l'indice di partenza sia differente da 1"
+   set caption(acqzadkoSetup,texte6)                 "Salvare una acquisizione interrotta"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(acqzadkoSetup,titre)                  "AdquisiciónZADKO - Configuración"
+   set caption(acqzadkoSetup,en-tete_fits)           "Cabecera FITS"
+   set caption(acqzadkoSetup,mots_cles)              "Palabras clave"
+   set caption(acqzadkoSetup,texte1)                 "Mostrar mensajes en la Consola"
+   set caption(acqzadkoSetup,texte2)                 "Grabar fechas en el fichero de log"
+   set caption(acqzadkoSetup,texte3)                 "Alarma sonora cuando la serie termina"
+   set caption(acqzadkoSetup,texte4)                 "Pedir autorización para reemplazar un fichero existente"
+   set caption(acqzadkoSetup,texte5)                 "Avisar que el indice empieza con un valor diferente de 1"
+   set caption(acqzadkoSetup,texte6)                 "Guardar una adquisición interrumpida"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(acqzadkoSetup,titre)                  "BelichtungZADKO - Konfiguration"
+   set caption(acqzadkoSetup,en-tete_fits)           "FITS Header"
+   set caption(acqzadkoSetup,mots_cles)              "Stichwörter"
+   set caption(acqzadkoSetup,texte1)                 "Die Nachrichten am Bildschirm zeigen"
+   set caption(acqzadkoSetup,texte2)                 "Die Zeit in die Log Datei speichern"
+   set caption(acqzadkoSetup,texte3)                 "Ton Alarm wenn die Serie endet"
+   set caption(acqzadkoSetup,texte4)                 "Die Zulassung eine vorhandene Datei zu ersetzen fragen"
+   set caption(acqzadkoSetup,texte5)                 "Dass der Anfang Index nicht 1 ist veranlassen"
+   set caption(acqzadkoSetup,texte6)                 "Eine unterbrochene Übernahme speichern"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(acqzadkoSetup,titre)                  "AquisiçãoZADKO - Configuração"
+   set caption(acqzadkoSetup,en-tete_fits)           "Cabeçalho FITS"
+   set caption(acqzadkoSetup,mots_cles)              "Palavras-chave"
+   set caption(acqzadkoSetup,texte1)                 "Mostrar mensagens na Consola"
+   set caption(acqzadkoSetup,texte2)                 "Guardar datas no ficheiro log"
+   set caption(acqzadkoSetup,texte3)                 "Alarme sonoro quando a série terminar"
+   set caption(acqzadkoSetup,texte4)                 "Pedir a autorização para substituir um ficheiro existente"
+   set caption(acqzadkoSetup,texte5)                 "Indicar que o índice de partida é diferente de 1"
+   set caption(acqzadkoSetup,texte6)                 "Salvar uma aquisição interrompida"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(acqzadkoSetup,titre)                  "AcquisitionZADKO - Setup"
+   set caption(acqzadkoSetup,en-tete_fits)           "FITS Header"
+   set caption(acqzadkoSetup,mots_cles)              "Keywords"
+   set caption(acqzadkoSetup,texte1)                 "Display messages on the Terminal"
+   set caption(acqzadkoSetup,texte2)                 "Record dates in the log file"
+   set caption(acqzadkoSetup,texte3)                 "Aural warning when the series ends"
+   set caption(acqzadkoSetup,texte4)                 "Ask whether the user wants existing file to be replaced"
+   set caption(acqzadkoSetup,texte5)                 "Prompt the user if the index starts with a value different from 1"
+   set caption(acqzadkoSetup,texte6)                 "Save an interrupted acquisition"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(acqzadkoSetup,titre)                  "AcquisitionZADKO - Setup"
+   set caption(acqzadkoSetup,en-tete_fits)           "FITS Header"
+   set caption(acqzadkoSetup,mots_cles)              "Keywords"
+   set caption(acqzadkoSetup,texte1)                 "Display messages on the Terminal"
+   set caption(acqzadkoSetup,texte2)                 "Record dates in the log file"
+   set caption(acqzadkoSetup,texte3)                 "Aural warning when the series ends"
+   set caption(acqzadkoSetup,texte4)                 "Ask whether the user wants existing file to be replaced"
+   set caption(acqzadkoSetup,texte5)                 "Prompt the user if the index starts with a value different from 1"
+   set caption(acqzadkoSetup,texte6)                 "Save an interrupted acquisition"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(acqzadkoSetup,titre)                  "AcquisitionZADKO - Setup"
+   set caption(acqzadkoSetup,en-tete_fits)           "FITS Header"
+   set caption(acqzadkoSetup,mots_cles)              "Keywords"
+   set caption(acqzadkoSetup,texte1)                 "Display messages on the Terminal"
+   set caption(acqzadkoSetup,texte2)                 "Record dates in the log file"
+   set caption(acqzadkoSetup,texte3)                 "Aural warning when the series ends"
+   set caption(acqzadkoSetup,texte4)                 "Ask whether the user wants existing file to be replaced"
+   set caption(acqzadkoSetup,texte5)                 "Prompt the user if the index starts with a value different from 1"
+   set caption(acqzadkoSetup,texte6)                 "Save an interrupted acquisition"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

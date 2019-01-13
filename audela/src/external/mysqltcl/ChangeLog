@@ -1,0 +1,3 @@
+20081214: <denis.marchais@free.fr>
+	* Removed pkgIndex.tcl from CLEANFILES variable since when "make clean", pkgIndex used to be
+	deleted, though it was automatically created by the configure script.

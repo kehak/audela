@@ -1,0 +1,223 @@
+#
+# Fichier : bddimages_recherche.cap
+# $Id: bddimages_recherche.cap 13886 2016-05-22 21:55:06Z jberthier $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+set caption(bddimages_recherche,main_title)     "BddImages - Navigation dans la base"
+set caption(bddimages_recherche,titre)          "Navigation dans la base de données"
+set caption(bddimages_recherche,label_nbimg)    "Nb d'images au total :"
+set caption(bddimages_recherche,label_nbimgins) "Nb d'images insérées :"
+set caption(bddimages_recherche,label_nbimgerr) "Nb d'images en erreur :"
+set caption(bddimages_recherche,label_nbheader) "Nb de header :"
+
+set caption(bddimages_recherche,connect)        "Connexion à MySql"
+set caption(bddimages_recherche,inser)          "Insertion"
+set caption(bddimages_recherche,refresh)        "Rafraîchir"
+set caption(bddimages_recherche,lectentete)     "Lecture des en-têtes"
+set caption(bddimages_recherche,inserauto)      "Insertion continue"
+set caption(bddimages_recherche,inserall)       "Insérer tout"
+set caption(bddimages_recherche,aide)           "Aide"
+set caption(bddimages_recherche,fermer)         "Fermer"
+set caption(bddimages_recherche,selectall)      "Sélectionner tout"
+set caption(bddimages_recherche,voirimg)        "Voir l'image"
+set caption(bddimages_recherche,voirheader)     "Voir le header"
+set caption(bddimages_recherche,delete)         "Suppression"
+set caption(bddimages_recherche,define)         "Modification simple"
+set caption(bddimages_recherche,definenew)      "Modification avancée"
+set caption(bddimages_recherche,associate)      "Associer"
+set caption(bddimages_recherche,disassociate)   "Enlever de la liste"
+set caption(bddimages_recherche,sbias)          "Faire un super offset"
+set caption(bddimages_recherche,sdark)          "Faire un super dark"
+set caption(bddimages_recherche,sflat)          "Faire un super flat"
+set caption(bddimages_recherche,deflat)         "Pretraitements des images"
+set caption(bddimages_recherche,setwcs)         "Creer le WCS"
+set caption(bddimages_recherche,astroid)        "Astroid"
+set caption(bddimages_recherche,msg_erreur)     "Erreur"
+set caption(bddimages_recherche,msg_internet)   "Erreur connexion"
+
+# -- Colonnes de la table --
+set caption(bddimages_recherche,etat)           "Etat"
+set caption(bddimages_recherche,nom)            "Nom"
+set caption(bddimages_recherche,dateobs)        "Date"
+set caption(bddimages_recherche,telescope)      "Site"
+set caption(bddimages_recherche,taille)         "Taille"
+set caption(bddimages_recherche,erreur)         "Erreur"
+
+# -- Erreurs --
+set caption(bddimages_recherche,err0)           "Image insérée"
+set caption(bddimages_recherche,err1)           "Image existante dans la base"
+set caption(bddimages_recherche,err101)         "Création table images impossible"
+set caption(bddimages_recherche,err102)         ""
+set caption(bddimages_recherche,err103)         ""
+set caption(bddimages_recherche,err104)         ""
+set caption(bddimages_recherche,err105)         "Impossible de supprimer l'image dans incoming"
+set caption(bddimages_recherche,err205)         ""
+set caption(bddimages_recherche,err206)         "Création nouvelle table images_ impossible"
+
+set caption(search,fichier)                     "Liste"
+set caption(search,ouvre)                       "Ouvrir (Ctrl+O)"
+set caption(search,sauve)                       "Sauver (Ctrl+S)"
+set caption(search,sauvess)                     "Sauver sous..."
+set caption(search,fermer_B)                    "Fermer (Crtl+Q)"
+set caption(search,image)                       "Image"
+set caption(search,charge)                      "Charger (Ctrl+L)"
+set caption(search,entete_FITS)                 "En-tête FITS"
+set caption(search,aide)                        "Aide"
+set caption(search,aide_skybot)                 "Aide - SkyBoT"
+set caption(search,code_uai)                    "Codes UAI"
+
+set caption(bddimages_recherche,new_list_i)     "Nouvelle Liste intelligente"
+set caption(bddimages_recherche,new_list_n)     "Nouvelle Liste normale"
+set caption(bddimages_recherche,edit)           "Editer la liste"
+set caption(bddimages_recherche,delete_list)    "Supprimer la liste"
+
+set caption(bddimages_recherche,nointelist)     "Please create at least one list"
+
+set caption(bddimages_recherche,button_unktype) "Toggle type unknown"
+set caption(bddimages_recherche,button_offset)  "Toggle type OFFSET"
+set caption(bddimages_recherche,button_dark)    "Toggle type DARK"
+set caption(bddimages_recherche,button_flat)    "Toggle type FLAT"
+set caption(bddimages_recherche,button_img)     "Toggle type IMG"
+set caption(bddimages_recherche,button_unkstate) "Toggle state UNKNOWN"
+set caption(bddimages_recherche,button_cata)    "Toggle state CATA"
+set caption(bddimages_recherche,button_corr)    "Toggle state CORR"
+set caption(bddimages_recherche,button_raw)     "Toggle state RAW"
+
+set caption(bddimages_recherche,confirmQuest)   "Are you sure you want to definitively delete the selected images?"
+set caption(bddimages_recherche,confirmWCS)     "Are you sure you want to create WCS?"
+set caption(bddimages_recherche,confirmNo)      "Cancel"
+set caption(bddimages_recherche,confirmYes)     "Yes"
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+   set caption(bddimages_recherche,main_title)     "BddImages - Navigation dans la base"
+   set caption(bddimages_recherche,titre)          "Navigation dans la base de données"
+   set caption(bddimages_recherche,label_nbimg)    "Nb d'images au total :"
+   set caption(bddimages_recherche,label_nbimgins) "Nb d'images insérées :"
+   set caption(bddimages_recherche,label_nbimgerr) "Nb d'images en erreur :"
+   set caption(bddimages_recherche,label_nbheader) "Nb de header :"
+
+   set caption(bddimages_recherche,connect)        "Connexion à MySql"
+   set caption(bddimages_recherche,inser)          "Insertion"
+   set caption(bddimages_recherche,refresh)        "Rafraîchir"
+   set caption(bddimages_recherche,lectentete)     "Lecture des en-têtes"
+   set caption(bddimages_recherche,inserauto)      "Insertion continue"
+   set caption(bddimages_recherche,inserall)       "Insérer tout"
+   set caption(bddimages_recherche,aide)           "Aide"
+   set caption(bddimages_recherche,fermer)         "Fermer"
+   set caption(bddimages_recherche,selectall)      "Sélectionner tout"
+   set caption(bddimages_recherche,voirimg)        "Voir l'image"
+   set caption(bddimages_recherche,voirheader)     "Voir le header"
+   set caption(bddimages_recherche,delete)         "Suppression"
+   set caption(bddimages_recherche,define)         "Modification simple"
+   set caption(bddimages_recherche,definenew)      "Modification avancée"
+   set caption(bddimages_recherche,associate)      "Associer"
+   set caption(bddimages_recherche,disassociate)   "Enlever de la liste"
+   set caption(bddimages_recherche,sbias)          "Faire un super offset"
+   set caption(bddimages_recherche,sdark)          "Faire un super dark"
+   set caption(bddimages_recherche,sflat)          "Faire un super flat"
+   set caption(bddimages_recherche,deflat)         "Pretraitements des images"
+   set caption(bddimages_recherche,setwcs)         "Creer le WCS"
+   set caption(bddimages_recherche,astroid)        "Astroid"
+   set caption(bddimages_recherche,photom)         "Photometrie"
+   set caption(bddimages_recherche,astrom)         "Astrometrie"
+   set caption(bddimages_recherche,binast)         "Binast"
+   set caption(bddimages_recherche,cata)           "Gestion des sources"
+   set caption(bddimages_recherche,msg_erreur)     "Erreur"
+   set caption(bddimages_recherche,msg_internet)   "Erreur connexion"
+
+   # -- Colonnes de la table --
+   set caption(bddimages_recherche,etat)           "Etat"
+   set caption(bddimages_recherche,nom)            "Nom"
+   set caption(bddimages_recherche,dateobs)        "Date"
+   set caption(bddimages_recherche,telescope)      "Site"
+   set caption(bddimages_recherche,taille)         "Taille"
+   set caption(bddimages_recherche,erreur)         "Erreur"
+
+   # -- Erreurs --
+   set caption(bddimages_recherche,err0)           "Image insérée"
+   set caption(bddimages_recherche,err1)           "Image existante dans la base"
+   set caption(bddimages_recherche,err101)         "Création table images impossible"
+   set caption(bddimages_recherche,err102)         ""
+   set caption(bddimages_recherche,err103)         ""
+   set caption(bddimages_recherche,err104)         ""
+   set caption(bddimages_recherche,err105)         "Impossible de supprimer l'image dans incoming"
+   set caption(bddimages_recherche,err205)         ""
+   set caption(bddimages_recherche,err206)         "Création nouvelle table images_ impossible"
+
+   set caption(search,fichier)                     "Liste"
+   set caption(search,ouvre)                       "Ouvrir (Ctrl+O)"
+   set caption(search,sauve)                       "Sauver (Ctrl+S)"
+   set caption(search,sauvess)                     "Sauver sous..."
+   set caption(search,fermer_B)                    "Fermer (Crtl+Q)"
+   set caption(search,image)                       "Image"
+   set caption(search,charge)                      "Charger (Ctrl+L)"
+   set caption(search,entete_FITS)                 "En-tête FITS"
+   set caption(search,aide)                        "Aide"
+   set caption(search,aide_skybot)                 "Aide - SkyBoT"
+   set caption(search,code_uai)                    "Codes UAI"
+
+   set caption(bddimages_recherche,new_list_i)     "Nouvelle Liste intelligente"
+   set caption(bddimages_recherche,new_list_n)     "Nouvelle Liste normale"
+   set caption(bddimages_recherche,edit)           "Editer la liste"
+   set caption(bddimages_recherche,delete_list)    "Supprimer la liste"
+
+
+   set caption(bddimages_recherche,nointelist)     "Veuillez créer au moins une liste"
+
+   set caption(bddimages_recherche,button_unktype) "(De)selectionne type UNKNOWN"
+   set caption(bddimages_recherche,button_offset)  "(De)selectionne type OFFSET"
+   set caption(bddimages_recherche,button_dark)    "(De)selectionne type DARK"
+   set caption(bddimages_recherche,button_flat)    "(De)selectionne type FLAT"
+   set caption(bddimages_recherche,button_img)     "(De)selectionne type IMG"
+   set caption(bddimages_recherche,button_unkstate) "(De)selectionne état UNKNOWN"
+   set caption(bddimages_recherche,button_cata)    "Toggle state CATA"
+   set caption(bddimages_recherche,button_corr)    "(De)selectionne état CORR"
+   set caption(bddimages_recherche,button_raw)     "(De)selectionne état RAW"
+
+   set caption(bddimages_recherche,confirmQuest)   "Etes vous sur de vouloir effacer définitivement les images sélectionnées ?"
+   set caption(bddimages_recherche,confirmWCS)     "Etes vous sur de vouloir creer le WCS ?"
+   set caption(bddimages_recherche,confirmNo)      "Annuler"
+   set caption(bddimages_recherche,confirmYes)     "Oui"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

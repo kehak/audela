@@ -1,0 +1,47 @@
+
+variable SETUP {
+   load $::audela_start_dir/libtclsimple[info sharedlibextension]
+}
+
+#-------------------------------------------------------------------------------
+test absimple_producer_create {producer creation}  -constraints {ASTROBRICK} -setup $SETUP -body {
+   console::disp " absimple_producer debut \n"
+   set producerNo [producer::create]
+   console::disp "producer=$producerNo\n"
+   producer$producerNo acq 1000 
+   console::disp "producer$producerNo acq started\n"
+   
+   set result [producer$producerNo waitMessage ]   
+   console::disp "result $result \n"
+
+   set result [producer$producerNo waitMessage ]   
+   console::disp "result $result \n"
+
+   set result [producer$producerNo waitMessage ]   
+   console::disp "result $result \n"
+   producer::delete $producerNo
+   return $result
+} -cleanup { 
+   
+} -result "3"
+
+#-------------------------------------------------------------------------------
+test absimple_producer_list { producer list} -constraints {ASTROBRICK} -setup $SETUP -body {
+   set result [list]
+   set prodNo1 [producer::create]
+   set prodNo2 [producer::create]
+   set prodNo3 [producer::create]
+   lappend result [llength [producer::list]]
+   console::disp "list A= [producer::list] \n"
+   producer::delete $prodNo2
+   console::disp "list B= [producer::list] \n"
+   lappend result [llength [producer::list] ]
+   producer::delete $prodNo1
+   producer::delete $prodNo3
+   lappend result [llength [producer::list] ]
+   console::disp "list C= [producer::list] \n"
+   return $result
+} -cleanup { 
+   
+} -result {3 2 0}
+

@@ -1,0 +1,136 @@
+
+/*============== Adresse des sous pages du menu Analyse ==================*/
+
+/*!
+  @page analyse_histogramme           Histogramme
+  @htmlinclude "../gui/audace/doc_html/french/07analyse/1010histogramme.htm"
+
+  @page analyse_coupe                 Coupe
+  @htmlinclude "../gui/audace/doc_html/french/07analyse/1020coupe.htm"
+
+  @page analyse_statistiques          Statistiques
+  @htmlinclude "../gui/audace/doc_html/french/07analyse/1030statistiques.htm"
+
+  @page analyse_psf                   PSF ToolBox
+  @htmlinclude "../gui/audace/doc_html/french/07analyse/1110psf.htm"
+
+  @page analyse_extraire              Extraire
+  Les détail des fonctions utilisables dans l'interface commune sont dans cette aide :
+  @htmlinclude "../doc/libtt/ttus1-fr.htm"
+
+  @page analyse_calibwcs_batch        Calibration WCS par lot
+  @htmlinclude "../gui/audace/doc_html/french/07analyse/1080calibwcsbatch.htm"
+
+  @page analyse_calibwcs_une_image    Calibration WCS d'une seule image
+  Un  tutoriel très complet est ici @ref tuto_photometrie
+
+  @page plugin_tool_fieldchart        Carte de champ
+  Références :
+  - fonctions ::fieldchart
+  - fichier   fieldchart.tcl
+  @htmlinclude "../gui/audace/plugin/tool/fieldchart/french/fieldchart.htm"
+
+  @page plugin_tool_collector         Collector
+  Références :
+  - fonctions ::collector
+  - fichier   collector.tcl
+  @htmlinclude "../gui/audace/plugin/tool/collector/french/collector.htm"
+
+  @page plugin_tool_calaphot          Courbes de lumière (Calaphot)
+  Références :
+  - fonctions ::CalaPhot
+  - fichier   calaphot.tcl
+  @htmlinclude "../gui/audace/plugin/tool/calaphot/french/calaphot.htm"
+
+  @page plugin_tool_catalogexplorer   Explorateur de catalogues
+  Références :
+  - fonctions ::catalogexplorer
+  - fichier   catalogexplorer.tcl
+  @htmlinclude "../gui/audace/plugin/tool/catalogexplorer/french/catalogexplorer.htm"
+
+  @page plugin_tool_vo_tools         Observatoire Virtuel
+  @htmlinclude "../gui/audace/plugin/tool/vo_tools/french/vo_tools.htm"
+
+  @page plugin_tool_afrho            Paramètre AfRho (Comète)
+  @htmlinclude "../gui/audace/plugin/tool/afrho/french/afrho.htm"
+*/
+
+/*cette page contient la théorie, l'interface, le namespace et le fichier*/
+
+/*!
+  @page plugin_tool_echip           Paramètres électroniques
+  Références :
+  - un peu de théorie @ref tuto_electronic
+  - fonctions de l'interface @ref ::echip
+  - fichier @ref echip.tcl
+  - proc centrale @ref electronic_chip
+  @htmlinclude "../gui/audace/plugin/tool/echip/french/echip.htm"
+
+  @page plugin_tool_satellites      Satellites artificiels
+  Références :
+  - fonctions ::satellites
+  - fichier   satellites.tcl
+  @htmlinclude "../gui/audace/plugin/tool/satellites/french/satellites.htm"
+
+  @page analyse_spcaudace           Spectroscopie : SpcAud'ACE
+  <a target="_blank" href="http://wsdiscovery.free.fr/spcaudace/"><B>le site de SpcAud'ACE</B></A>
+
+  @page plugin_tool_sn_tarot       Tarot Supernovae
+  Références :
+  - fonctions ::sn_tarot
+  - fichier   sn_tarot_go.tcl
+  @htmlinclude "../gui/audace/plugin/tool/sn_tarot/french/sn_tarot.htm"
+*/
+
+/*============== Adresse des sous pages du menu Camera ========*/
+
+/*!
+  @page plugin_tool_atos       A.T.O.S.
+  @htmlinclude "../gui/audace/plugin/tool/atos/french/atos.htm"
+
+  @page plugin_tool_eshel      Acquisition et Traitement eShel
+  Références :
+  - fonctions @ref ::eshel
+  - fichiers  @ref eshel.tcl
+  @htmlinclude "../gui/audace/plugin/tool/eshel/french/eshel.htm"
+
+  @page plugin_tool_acqapn     Acquisition APN Coolpix
+  @htmlinclude "../gui/audace/plugin/tool/acqapn/french/acqapn.htm"
+
+  @page plugin_tool_acqdlsr    Acquisition DSLR
+  @htmlinclude "../gui/audace/plugin/tool/acqdslr/french/acqdslr.htm"
+
+  @page plugin_tool_acqvideo   Acquisition Vidéo
+  @htmlinclude "../gui/audace/plugin/tool/acqvideo/french/acqvideoSetup.htm"
+
+  @page plugin_tool_scan       Drift Scan
+  @htmlinclude "../gui/audace/plugin/tool/scan/french/scanSetup.htm"
+
+  @page plugin_tool_foc        Focalisation
+  Références :
+  - fonctions @ref ::foc
+  - fichiers  @ref foc.tcl
+  @htmlinclude "../gui/audace/plugin/tool/foc/french/foc.htm"
+
+  @page plugin_tool_scanfast   Scan rapide
+  @htmlinclude "../gui/audace/plugin/tool/scanfast/french/scanfastSetup.htm"
+
+  @page plugin_tool_spytimer   SpyTimer Canon
+  Références :
+  - fonctions @ref ::spytimer
+  - fichiers  @ref spytimer.tcl
+  @htmlinclude "../gui/audace/plugin/tool/spytimer/french/spytimer.htm"
+
+  @page plugin_tool_supernovae Supernovae (Acquisition & Visionneuse)
+  @htmlinclude "../gui/audace/plugin/tool/supernovae/french/supernovae.htm"
+*/
+
+/*================ Adresse des sous pages du menu Telescope ============*/
+
+/*!
+  @page plugin_tool_autoguider           Autoguidage
+  @htmlinclude "../gui/audace/plugin/tool/autoguider/french/autoguider.htm"
+
+  @page plugin_tool_modpoi2              Modèle de pointage V2
+  @htmlinclude "../gui/audace/plugin/tool/modpoi2/french/modpoi2.htm"
+*/

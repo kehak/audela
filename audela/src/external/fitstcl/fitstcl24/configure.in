@@ -1,0 +1,328 @@
+dnl Process this file with autoconf to produce a configure script.
+
+dnl disable caching to avoid sticky mistakes
+dnl ----------------------------------------------------------------------------
+dnl define([AC_CACHE_LOAD], )
+dnl define([AC_CACHE_SAVE], )
+dnl ----------------------------------------------------------------------------
+
+AC_INIT
+AC_CONFIG_SRCDIR([Makefile.in])
+AC_REVISION($Revision: 1.19 $)
+AC_PREREQ(2.59)
+
+if test $cache_file = ./config.cache; then
+  cache_file=`pwd`/config.cache
+fi
+
+# Tcl:
+#-------------------------------------------
+AC_ARG_WITH(
+  tcl,
+  [ --with-tcl Path to tcl library ],
+  TCL_PATH=$withval
+)
+AC_ARG_WITH(
+  tcl-includes,
+  [ --with-tcl-includes Path to tcl include files ],
+  TCL_INCLUDES=$withval
+)
+AC_SUBST(TCL_PATH)
+# Make sure we have tcl.h before proceeding:
+#-------------------------------------------
+AC_MSG_CHECKING([for tcl header file])
+TCL_INC_PATH=
+for dir in $TCL_INCLUDES $prefix/include /usr/include ; do
+    if test -r $dir/tcl.h; then
+        TCL_INC_PATH=$dir
+        AC_MSG_RESULT($dir)
+        break
+    fi
+done
+if test -z "$TCL_INC_PATH"; then
+    AC_MSG_RESULT([no])
+    AC_MSG_ERROR(Cannot find Tcl header. Use --with-tcl-includes to specify the location of tcl.h on your system.)
+fi
+AC_SUBST(TCL_INC_PATH)
+
+# CFITSIO:
+#-------------------------------------------
+AC_ARG_WITH(
+  cfitsio,
+  [ --with-cfitsio Path to cfitsio source ],
+  CFITSIO=$withval
+)
+# Make sure we have cfitsio before proceeding:
+#-------------------------------------------
+AC_MSG_CHECKING([for cfitsio source directory])
+CFITSIODIR=
+for dir in $CFITSIO ./cfitsio ; do
+    if test -r $dir/eval_defs.h; then
+        CFITSIODIR=$dir
+        AC_MSG_RESULT($dir)
+        break
+    fi
+done
+if test -z "$CFITSIODIR"; then
+    AC_MSG_RESULT([no])
+    AC_MSG_ERROR(Cannot find cfitsio.  Use --with-cfitsio to specify the location of the cfitsio source code.)
+fi
+AC_SUBST(CFITSIODIR)
+
+#-------------------------------------------
+AC_ARG_ENABLE(
+  shared,
+  [ --disable-shared Produce static binaries ],
+  lhea_shared=$enableval,
+  lhea_shared=yes,
+  lhea_shared=no
+)
+AC_ARG_ENABLE(
+  static,
+  [ --enable-static Produce static binaries ],
+  [ if test $enableval = yes; then lhea_shared=no; fi ]
+)
+
+if test $lhea_shared = yes; then
+  C_LIB_OPTION=shared
+else
+  C_LIB_OPTION=static
+fi
+AC_SUBST(C_LIB_OPTION)
+
+#-------------------------------------------------------------------------------
+
+# Determine system type
+#-------------------------------------------------------------------------------
+BIN_EXT=
+if test "x$EXT" = x; then EXT=lnx; fi
+if test "x$BINDIR" = x; then
+  AC_CHECK_PROG(UNAME, uname, uname, nouname)
+  if test $UNAME = nouname; then
+    AC_MSG_ERROR(HEAsoft: Unable to guess system type. Please set it using --with-bindir option)
+  fi
+  changequote(,)
+  BINDIR=`$UNAME -s 2> /dev/null`_`$UNAME -r 2> /dev/null | sed 's:[^0-9]*\([0-9][0-9]*\.[0-9]*\).*:\1:'`
+  changequote([,])
+  lhea_machine=`$UNAME -m 2> /dev/null`
+  BIN_EXT=
+  case $BINDIR in
+    CYGWIN*)
+      BINDIR=CYGWIN32_`$UNAME -a 2> /dev/null | awk '{ print $4 }'`
+      lhea_machine=
+      BIN_EXT=".exe"
+      EXT=win
+      ;;
+    Linux*)
+      EXT=lnx
+      ;;
+    Darwin*)
+      EXT=darwin
+      lhea_machine=`$UNAME -p`
+      ;;
+    SunOS_5*)
+      EXT=sol
+      lhea_machine=`$UNAME -p`
+      ;;
+    *)
+      AC_MSG_ERROR(Unable to recognize your system. Please make sure this platform is supported.)
+      ;;
+  esac
+  if test x$lhea_machine != x; then
+    BINDIR=$BINDIR"_"$lhea_machine
+  fi
+fi
+AC_SUBST(BINDIR)
+AC_SUBST(BIN_EXT)
+AC_SUBST(EXT)
+#-------------------------------------------------------------------------------
+
+# Checks for programs.
+#-------------------------------------------------------------------------------
+# Try first to find a proprietary C compiler, then gcc
+if test "x$CC" = x; then
+  AC_CHECK_PROGS(CC, cc)
+fi
+# Set up flags to use the selected compiler
+#
+AC_PROG_CC
+if test "$cross_compiling" = yes; then
+  AC_MSG_WARN(Cannot run a simple C executable on your system:)
+  AC_MSG_WARN(There may be something wrong with your compiler,)
+  AC_MSG_WARN(or perhaps you are trying to cross-compile?)
+  AC_MSG_WARN(Cross-compiling is not supported within HEAsoft.)
+  AC_MSG_WARN(Please make sure your compiler is working.)
+  AC_MSG_WARN(Contact the FTOOLS help desk for further assistance.)
+  AC_MSG_ERROR(Cross-compiling is not allowed.)
+fi
+if test "x$GCC" = x; then
+  GCC=no
+fi
+
+AC_PROG_RANLIB
+if test $EXT = darwin; then
+  RANLIB="$RANLIB -cs"
+fi
+
+#-------------------------------------------------------------------------------
+
+# Checks for libraries.
+#-------------------------------------------------------------------------------
+
+# X
+XLIBS=
+XLIBPTH=
+XINCLUDES=
+
+# socket and nsl libraries -- only if needed
+AC_CHECK_FUNC(gethostbyname, [], [AC_CHECK_LIB(nsl, gethostbyname)])
+AC_CHECK_FUNCS(connect accept, [], [AC_CHECK_LIB(socket, main, , , [ $XLIBS ])])
+
+# Prepend the standard location X11 bin directory (if it exists) to PATH
+# to assist AC_PATH_X in finding headers & libraries:
+if test -d /usr/X11R6/bin; then
+  if test "x$PATH" != x; then
+    PATH=$PATH:/usr/X11R6/bin
+  else
+    PATH=/usr/X11R6/bin
+  fi
+  export PATH
+fi
+AC_PATH_X
+
+if test "x$no_x" != xyes; then
+  USE_X=yes
+  no_x=no
+  if test `echo $x_includes | grep -c /` -ne 0; then
+    XINCLUDES="-I$x_includes"
+  fi
+  if test `echo $x_libraries | grep -c /` -ne 0; then
+    XLIBPTH="-L$x_libraries "
+  fi
+  XLIBS="$XLIBPTH-lX11"
+dnl xpa sometimes needs Xt
+dnl this doesn't work at the moment:
+dnl AC_CHECK_LIB(Xt, main, XLIBS="$XLIBS -lXt")
+  if test -f $x_libraries/libXt.a; then
+    XLIBS="$XLIBS -lXt"
+  fi
+  # dnet_stub
+  AC_CHECK_LIB(dnet_stub, getnodebyname, XLIBS="$XLIBS -ldnet_stub")
+else
+  USE_X=no
+fi
+AC_SUBST(USE_X)
+AC_SUBST(XINCLUDES)
+AC_SUBST(XLIBPTH)
+AC_SUBST(XLIBS)
+
+# dl
+AC_CHECK_LIB(dl, dlopen)
+if test `echo $LIBS | grep -c '\-ldl'` -eq 0; then
+  AC_CHECK_LIB(dld, dlopen)
+fi
+
+#-------------------------------------------------------------------------------
+# Checks for header files.
+#-------------------------------------------------------------------------------
+AC_HEADER_STDC
+AC_CHECK_HEADERS(
+  dirent.h fcntl.h limits.h malloc.h string.h sys/time.h unistd.h
+)
+AC_HEADER_TIME
+AC_FUNC_ALLOCA
+#-------------------------------------------------------------------------------
+
+# Checks for typedefs, structures, and compiler characteristics.
+#-------------------------------------------------------------------------------
+AC_C_CONST
+AC_TYPE_MODE_T
+AC_TYPE_SIZE_T
+AC_STRUCT_TM
+#-------------------------------------------------------------------------------
+
+# Tweak compiler flags as needed
+#-------------------------------------------------------------------------------
+case $EXT in
+  darwin)
+    CFLAGS="$CFLAGS -Dunix"
+    ;;
+  lnx)
+    ;;
+  sol)
+    AC_DEFINE(HAVE_POSIX_SIGNALS)
+    ;;
+  *)
+    ;;
+esac
+#-------------------------------------------------------------------------------
+
+# Shared library section
+#-------------------------------------------------------------------------------
+LD_FLAGS=
+SHLIB_SUFFIX=".so"
+SHLIB_LD_LIBS=""
+lhea_shlib_cflags=
+lhea_shlib_fflags=
+if test $lhea_shared = yes; then
+  case $EXT in
+    darwin)
+      SHLIB_LD="$CC -dynamiclib -flat_namespace -undefined suppress"
+      SHLIB_SUFFIX=".dylib"
+      lhea_shlib_cflags='-fPIC -fno-common'
+      lhea_shlib_fflags='-fPIC -fno-common'
+      ;;
+    lnx)
+      SHLIB_LD=":"
+      ;;
+    sol)
+      SHLIB_LD="/usr/ccs/bin/ld -G"
+      SHLIB_LD_LIBS='${LIBS}'
+      lhea_shlib_cflags="-KPIC"
+      lhea_shlib_fflags="-KPIC"
+      ;;
+    win)
+      SHLIB_LD="$CC -shared"
+      SHLIB_SUFFIX=".dll"
+      ;;
+    *)
+      AC_MSG_WARN(Unable to determine how to make a shared library)
+      ;;
+  esac
+  # Darwin uses gcc, but uses -dynamiclib flag
+  if test $GCC = yes -a $EXT != darwin; then
+    SHLIB_LD="$CC -shared"
+    lhea_shlib_cflags='-fPIC'
+  fi
+  if test "x$lhea_shlib_cflags" != x; then
+    CFLAGS="$CFLAGS $lhea_shlib_cflags"
+  fi
+else
+  SHLIB_LD=:
+fi
+
+AC_SUBST(LD_FLAGS)
+AC_SUBST(SHLIB_LD)
+AC_SUBST(SHLIB_LD_LIBS)
+AC_SUBST(SHLIB_SUFFIX)
+#-------------------------------------------------------------------------------
+
+# Checks for library functions.
+#-------------------------------------------------------------------------------
+AC_FUNC_MEMCMP
+AC_TYPE_SIGNAL
+AC_FUNC_STRFTIME
+AC_CHECK_FUNCS(getcwd socket strcspn strspn strstr strtod strtol)
+#-------------------------------------------------------------------------------
+
+# Construct TCL_LIB:
+#-------------------------------------------------------------------------------
+for tclversion in 8 8.5 8.4; do
+   if test -e "$TCL_PATH/libtcl${tclversion}${SHLIB_SUFFIX}"; then
+     TCL_LIB="tcl${tclversion}"
+   fi
+done
+AC_SUBST(TCL_LIB)
+
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT

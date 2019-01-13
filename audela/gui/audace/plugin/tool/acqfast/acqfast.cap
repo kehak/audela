@@ -1,0 +1,709 @@
+#
+# Fichier : acqfast.cap
+# Mise a jour $Id: acqfast.cap 10512 2014-02-09 10:19:45Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(acqfast,menu)                      "Fast Imaging"
+set caption(acqfast,titre)                     "Fast Imaging"
+set caption(acqfast,help_titre1)               "Help for the Tool:"
+set caption(acqfast,help_titre)                "Help for this Tool"
+set caption(acqfast,configuration)             "Setup"
+set caption(acqfast,pose)                      "Exp."
+set caption(acqfast,videomode)                 "Video Mode"
+set caption(acqfast,framerate)                 "Framerate"
+set caption(acqfast,continu)                   "Continuous Imaging"
+
+set caption(acqfast,pbouvfichcons)             "Problem when opening the log file.\n"
+set caption(acqfast,pbouvfichbackcons)         "Problem when opening the backup file.\n"
+set caption(acqfast,pb)                        "Problem"
+set caption(acqfast,pbouvfich)                 "Unable to open the log file.\n \
+   Change the tool now and check\nyou can access the image folder."
+set caption(acqfast,ouvsess)                   "----- Opening a New Acquisition Session (rev %s)\n"
+set caption(acqfast,affheure)                  "%s, %s UT (all time values in this file are expressed in UT).\n\n"
+set caption(acqfast,finsess)                   "----- Session ends at %s UT\n\n"
+set caption(acqfast,pbfermfichcons)            "Problem when closing log file.\n"
+set caption(acqfast,selcam)                    "You must select a camera first\n(Setup/Camera)."
+set caption(acqfast,saistps)                   "Enter an exposure time"
+set caption(acqfast,sec)                       "sec."
+set caption(acqfast,startlog)                  "At %s started a new acquisition:\n   exposure: %f\n   videomode: %s\n   framerate: %f   initial frame: %d\n"
+set caption(acqfast,pauselog)                  "Acquisition paused at %s at frame %d\n\n"
+set caption(acqfast,stoplog)                   "Acquisition stopped at %s at frame %d\n\n"
+set caption(acqfast,resumelog)                 "Acquisition restarted at %s at frame %d\n\n"
+
+#--- enregistrement
+set caption(acqfast,sauvegde)                  "Save"
+set caption(acqfast,nom)                       "Filename"
+set caption(acqfast,donnomfich)                "Define the file name."
+set caption(acqfast,nomblanc)                  "The file name must not contain any space."
+set caption(acqfast,saisind)                   "Enter the index value."
+set caption(acqfast,conf)                      "Confirm"
+set caption(acqfast,fichdeja_1)                "This file already exists:"
+set caption(acqfast,fichdeja_2)                "\nAre you sure you want to save?"
+set caption(acqfast,demsauv)                   "Saving required by the user at %s UT\n"
+set caption(acqfast,enreg_en_cours)            "Saving"
+set caption(acqfast,buffer)                    "Buffer"
+set caption(acqfast,of)                        "of"
+
+set caption(acqfast,pbmesserr)                 "Problem with error message"
+
+set caption(acqfast,gps)                       "GPS"
+
+set caption(acqfast,precedent)                 "PREVIOUS"
+set caption(acqfast,suivant)                   "NEXT"
+set caption(acqfast,display)                   "SHOW"
+
+set caption(acqfast,frame)                     "Frame"
+set caption(acqfast,on)                        "on"
+
+set caption(acqfast,extensionFITS)             "Files Extension FITS:"
+set caption(acqfast,rechargeScripts)           "Reload Scripts\n\n"
+
+set caption(acqfast,videomode)                 "Video mode"
+set caption(acqfast,ffr)                       "FFR"
+set caption(acqfast,itr)                       "ITR"
+
+set caption(acqfast,saisfr)                    "Enter a frame rate or choose ITR"
+
+set caption(acqfast,start)                     "START"
+set caption(acqfast,stop)                      "STOP\n(Esc)"
+set caption(acqfast,pause)                     "PAUSE"
+
+set caption(acqfast,live)                      "GO LIVE"
+set caption(acqfast,stoplive)                  "STOP"
+
+set caption(acqfast,unsaved_seq)               "A sequence of images is already in memory:\nstarting a new sequence will delete it.\nStart new sequence?"
+
+set caption(acqfast,cycle)                     "START CYCLE"
+set caption(acqfast,browse)                    "..."
+set caption(acqfast,folder)                    "From Folder:"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(acqfast,menu)                   "Fast Imaging"
+   set caption(acqfast,titre)                  "Fast Imaging"
+   set caption(acqfast,help_titre1)            "Help for the Tool:"
+   set caption(acqfast,help_titre)             "Help for this Tool"
+   set caption(acqfast,configuration)          "Setup"
+   set caption(acqfast,pose)                   "Exp."
+   set caption(acqfast,videomode)              "Video Mode"
+   set caption(acqfast,framerate)              "Framerate"
+   set caption(acqfast,continu)                "Continuous Imaging"
+
+   set caption(acqfast,pbouvfichcons)          "Problem when opening the log file.\n"
+   set caption(acqfast,pbouvfichbackcons)      "Problem when opening the backup file.\n"
+   set caption(acqfast,pb)                     "Problem"
+   set caption(acqfast,pbouvfich)              "Unable to open the log file.\n \
+      Change the tool now and check\nyou can access the image folder."
+   set caption(acqfast,ouvsess)                "----- Opening a New Acquisition Session (rev %s)\n"
+   set caption(acqfast,affheure)               "%s, %s UT (all time values in this file are expressed in UT).\n\n"
+   set caption(acqfast,finsess)                "----- Session ends at %s UT\n\n"
+   set caption(acqfast,pbfermfichcons)         "Problem when closing log file.\n"
+   set caption(acqfast,selcam)                 "You must select a camera first\n(Setup/Camera)."
+   set caption(acqfast,saistps)                "Enter an exposure time"
+   set caption(acqfast,sec)                    "sec."
+   set caption(acqfast,startlog)               "At %s started a new acquisition:\n   exposure: %f\n   videomode: %s\n   framerate: %f   initial frame: %d\n"
+   set caption(acqfast,pauselog)               "Acquisition paused at %s at frame %d\n\n"
+   set caption(acqfast,stoplog)                "Acquisition stopped at %s at frame %d\n\n"
+   set caption(acqfast,resumelog)              "Acquisition restarted at %s at frame %d\n\n"
+
+   #--- enregistrement
+   set caption(acqfast,sauvegde)               "Save"
+   set caption(acqfast,nom)                    "Filename"
+   set caption(acqfast,donnomfich)             "Define the file name."
+   set caption(acqfast,nomblanc)               "The file name must not contain any space."
+   set caption(acqfast,saisind)                "Enter the index value."
+   set caption(acqfast,conf)                   "Confirm"
+   set caption(acqfast,fichdeja_1)             "This file already exists:"
+   set caption(acqfast,fichdeja_2)             "\nAre you sure you want to save?"
+   set caption(acqfast,demsauv)                "Saving required by the user at %s UT\n"
+   set caption(acqfast,enreg_en_cours)         "Saving"
+   set caption(acqfast,buffer)                 "Buffer"
+   set caption(acqfast,of)                     "of"
+
+   set caption(acqfast,pbmesserr)              "Problem with error message"
+
+   set caption(acqfast,gps)                    "GPS"
+
+   set caption(acqfast,precedent)              "PRECEDANT"
+   set caption(acqfast,suivant)                "SUIVANT"
+   set caption(acqfast,display)                "MONTRE"
+
+   set caption(acqfast,frame)                  "Image"
+   set caption(acqfast,on)                     "sur"
+
+   set caption(acqfast,extensionFITS)          "Extension des fichiers FITS :"
+   set caption(acqfast,rechargeScripts)        "Re-charge les scripts\n\n"
+
+   set caption(acqfast,videomode)              "Mode vidéo"
+   set caption(acqfast,ffr)                    "FFR"
+   set caption(acqfast,itr)                    "ITR"
+
+   set caption(acqfast,saisfr)                 "Enter a frame rate or choose ITR"
+
+   set caption(acqfast,start)                  "START"
+   set caption(acqfast,stop)                   "STOP\n(Esc)"
+   set caption(acqfast,pause)                  "PAUSE"
+
+   set caption(acqfast,live)                   "GO LIVE"
+   set caption(acqfast,stoplive)               "STOP"
+
+   set caption(acqfast,unsaved_seq)            "A sequence of images is already in memory:\nstarting a new sequence will delete it.\nStart new sequence?"
+
+   set caption(acqfast,cycle)                  "START CYCLE"
+   set caption(acqfast,browse)                 "..."
+   set caption(acqfast,folder)                 "From Folder:"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(acqfast,menu)                   "Fast Imaging"
+   set caption(acqfast,titre)                  "Fast Imaging"
+   set caption(acqfast,help_titre1)            "Help for the Tool:"
+   set caption(acqfast,help_titre)             "Help for this Tool"
+   set caption(acqfast,configuration)          "Setup"
+   set caption(acqfast,pose)                   "Exp."
+   set caption(acqfast,videomode)              "Video Mode"
+   set caption(acqfast,framerate)              "Framerate"
+   set caption(acqfast,continu)                "Continuous Imaging"
+
+   set caption(acqfast,pbouvfichcons)          "Problem when opening the log file.\n"
+   set caption(acqfast,pbouvfichbackcons)      "Problem when opening the backup file.\n"
+   set caption(acqfast,pb)                     "Problem"
+   set caption(acqfast,pbouvfich)              "Unable to open the log file.\n \
+      Change the tool now and check\nyou can access the image folder."
+   set caption(acqfast,ouvsess)                "----- Opening a New Acquisition Session (rev %s)\n"
+   set caption(acqfast,affheure)               "%s, %s UT (all time values in this file are expressed in UT).\n\n"
+   set caption(acqfast,finsess)                "----- Session ends at %s UT\n\n"
+   set caption(acqfast,pbfermfichcons)         "Problem when closing log file.\n"
+   set caption(acqfast,selcam)                 "You must select a camera first\n(Setup/Camera)."
+   set caption(acqfast,saistps)                "Enter an exposure time"
+   set caption(acqfast,sec)                    "sec."
+   set caption(acqfast,startlog)               "At %s started a new acquisition:\n   exposure: %f\n   videomode: %s\n   framerate: %f   initial frame: %d\n"
+   set caption(acqfast,pauselog)               "Acquisition paused at %s at frame %d\n\n"
+   set caption(acqfast,stoplog)                "Acquisition stopped at %s at frame %d\n\n"
+   set caption(acqfast,resumelog)              "Acquisition restarted at %s at frame %d\n\n"
+
+   #--- enregistrement
+   set caption(acqfast,sauvegde)               "Save"
+   set caption(acqfast,nom)                    "Filename"
+   set caption(acqfast,donnomfich)             "Define the file name."
+   set caption(acqfast,nomblanc)               "The file name must not contain any space."
+   set caption(acqfast,saisind)                "Enter the index value."
+   set caption(acqfast,conf)                   "Confirm"
+   set caption(acqfast,fichdeja_1)             "This file already exists:"
+   set caption(acqfast,fichdeja_2)             "\nAre you sure you want to save?"
+   set caption(acqfast,demsauv)                "Saving required by the user at %s UT\n"
+   set caption(acqfast,enreg_en_cours)         "Saving"
+   set caption(acqfast,buffer)                 "Buffer"
+   set caption(acqfast,of)                     "of"
+
+   set caption(acqfast,pbmesserr)              "Problem with error message"
+
+   set caption(acqfast,gps)                    "GPS"
+
+   set caption(acqfast,precedent)              "PRECEDENTE"
+   set caption(acqfast,suivant)                "SUCCESSIVO"
+   set caption(acqfast,display)                "MOSTRA"
+
+   set caption(acqfast,frame)                  "Immagine"
+   set caption(acqfast,on)                     "di"
+
+   set caption(acqfast,extensionFITS)          "Estensione del file FITS:"
+   set caption(acqfast,rechargeScripts)        "Rilancia gli script\n\n"
+
+   set caption(acqfast,videomode)              "Modo video"
+   set caption(acqfast,ffr)                    "FFR"
+   set caption(acqfast,itr)                    "ITR"
+
+   set caption(acqfast,saisfr)                 "Enter a frame rate or choose ITR"
+
+   set caption(acqfast,start)                  "START"
+   set caption(acqfast,stop)                   "STOP\n(Esc)"
+   set caption(acqfast,pause)                  "PAUSE"
+
+   set caption(acqfast,live)                   "GO LIVE"
+   set caption(acqfast,stoplive)               "STOP"
+
+   set caption(acqfast,unsaved_seq)            "A sequence of images is already in memory:\nstarting a new sequence will delete it.\nStart new sequence?"
+
+   set caption(acqfast,cycle)                  "START CYCLE"
+   set caption(acqfast,browse)                 "..."
+   set caption(acqfast,folder)                 "From Folder:"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(acqfast,menu)                   "Fast Imaging"
+   set caption(acqfast,titre)                  "Fast Imaging"
+   set caption(acqfast,help_titre1)            "Help for the Tool:"
+   set caption(acqfast,help_titre)             "Help for this Tool"
+   set caption(acqfast,configuration)          "Setup"
+   set caption(acqfast,pose)                   "Exp."
+   set caption(acqfast,videomode)              "Video Mode"
+   set caption(acqfast,framerate)              "Framerate"
+   set caption(acqfast,continu)                "Continuous Imaging"
+
+   set caption(acqfast,pbouvfichcons)          "Problem when opening the log file.\n"
+   set caption(acqfast,pbouvfichbackcons)      "Problem when opening the backup file.\n"
+   set caption(acqfast,pb)                     "Problem"
+   set caption(acqfast,pbouvfich)              "Unable to open the log file.\n \
+      Change the tool now and check\nyou can access the image folder."
+   set caption(acqfast,ouvsess)                "----- Opening a New Acquisition Session (rev %s)\n"
+   set caption(acqfast,affheure)               "%s, %s UT (all time values in this file are expressed in UT).\n\n"
+   set caption(acqfast,finsess)                "----- Session ends at %s UT\n\n"
+   set caption(acqfast,pbfermfichcons)         "Problem when closing log file.\n"
+   set caption(acqfast,selcam)                 "You must select a camera first\n(Setup/Camera)."
+   set caption(acqfast,saistps)                "Enter an exposure time"
+   set caption(acqfast,sec)                    "sec."
+   set caption(acqfast,startlog)               "At %s started a new acquisition:\n   exposure: %f\n   videomode: %s\n   framerate: %f   initial frame: %d\n"
+   set caption(acqfast,pauselog)               "Acquisition paused at %s at frame %d\n\n"
+   set caption(acqfast,stoplog)                "Acquisition stopped at %s at frame %d\n\n"
+   set caption(acqfast,resumelog)              "Acquisition restarted at %s at frame %d\n\n"
+
+   #--- enregistrement
+   set caption(acqfast,sauvegde)               "Save"
+   set caption(acqfast,nom)                    "Filename"
+   set caption(acqfast,donnomfich)             "Define the file name."
+   set caption(acqfast,nomblanc)               "The file name must not contain any space."
+   set caption(acqfast,saisind)                "Enter the index value."
+   set caption(acqfast,conf)                   "Confirm"
+   set caption(acqfast,fichdeja_1)             "This file already exists:"
+   set caption(acqfast,fichdeja_2)             "\nAre you sure you want to save?"
+   set caption(acqfast,demsauv)                "Saving required by the user at %s UT\n"
+   set caption(acqfast,enreg_en_cours)         "Saving"
+   set caption(acqfast,buffer)                 "Buffer"
+   set caption(acqfast,of)                     "of"
+
+   set caption(acqfast,pbmesserr)              "Problem with error message"
+
+   set caption(acqfast,gps)                    "GPS"
+
+   set caption(acqfast,precedent)              "PREVIOUS"
+   set caption(acqfast,suivant)                "NEXT"
+   set caption(acqfast,display)                "SHOW"
+
+   set caption(acqfast,frame)                  "Frame"
+   set caption(acqfast,on)                     "on"
+
+   set caption(acqfast,extensionFITS)          "Extensión del ficheros FITS:"
+   set caption(acqfast,rechargeScripts)        "Recargar scripts\n\n"
+
+   set caption(acqfast,videomode)              "Video mode"
+   set caption(acqfast,ffr)                    "FFR"
+   set caption(acqfast,itr)                    "ITR"
+
+   set caption(acqfast,saisfr)                 "Enter a frame rate or choose ITR"
+
+   set caption(acqfast,start)                  "START"
+   set caption(acqfast,stop)                   "STOP\n(Esc)"
+   set caption(acqfast,pause)                  "PAUSE"
+
+   set caption(acqfast,live)                   "GO LIVE"
+   set caption(acqfast,stoplive)               "STOP"
+
+   set caption(acqfast,unsaved_seq)            "A sequence of images is already in memory:\nstarting a new sequence will delete it.\nStart new sequence?"
+
+   set caption(acqfast,cycle)                  "START CYCLE"
+   set caption(acqfast,browse)                 "..."
+   set caption(acqfast,folder)                 "From Folder:"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(acqfast,menu)                   "Fast Imaging"
+   set caption(acqfast,titre)                  "Fast Imaging"
+   set caption(acqfast,help_titre1)            "Help for the Tool:"
+   set caption(acqfast,help_titre)             "Help for this Tool"
+   set caption(acqfast,configuration)          "Setup"
+   set caption(acqfast,pose)                   "Exp."
+   set caption(acqfast,videomode)              "Video Mode"
+   set caption(acqfast,framerate)              "Framerate"
+   set caption(acqfast,continu)                "Continuous Imaging"
+
+   set caption(acqfast,pbouvfichcons)          "Problem when opening the log file.\n"
+   set caption(acqfast,pbouvfichbackcons)      "Problem when opening the backup file.\n"
+   set caption(acqfast,pb)                     "Problem"
+   set caption(acqfast,pbouvfich)              "Unable to open the log file.\n \
+      Change the tool now and check\nyou can access the image folder."
+   set caption(acqfast,ouvsess)                "----- Opening a New Acquisition Session (rev %s)\n"
+   set caption(acqfast,affheure)               "%s, %s UT (all time values in this file are expressed in UT).\n\n"
+   set caption(acqfast,finsess)                "----- Session ends at %s UT\n\n"
+   set caption(acqfast,pbfermfichcons)         "Problem when closing log file.\n"
+   set caption(acqfast,selcam)                 "You must select a camera first\n(Setup/Camera)."
+   set caption(acqfast,saistps)                "Enter an exposure time"
+   set caption(acqfast,sec)                    "sec."
+   set caption(acqfast,startlog)               "At %s started a new acquisition:\n   exposure: %f\n   videomode: %s\n   framerate: %f   initial frame: %d\n"
+   set caption(acqfast,pauselog)               "Acquisition paused at %s at frame %d\n\n"
+   set caption(acqfast,stoplog)                "Acquisition stopped at %s at frame %d\n\n"
+   set caption(acqfast,resumelog)              "Acquisition restarted at %s at frame %d\n\n"
+
+   #--- enregistrement
+   set caption(acqfast,sauvegde)               "Save"
+   set caption(acqfast,nom)                    "Filename"
+   set caption(acqfast,donnomfich)             "Define the file name."
+   set caption(acqfast,nomblanc)               "The file name must not contain any space."
+   set caption(acqfast,saisind)                "Enter the index value."
+   set caption(acqfast,conf)                   "Confirm"
+   set caption(acqfast,fichdeja_1)             "This file already exists:"
+   set caption(acqfast,fichdeja_2)             "\nAre you sure you want to save?"
+   set caption(acqfast,demsauv)                "Saving required by the user at %s UT\n"
+   set caption(acqfast,enreg_en_cours)         "Saving"
+   set caption(acqfast,buffer)                 "Buffer"
+   set caption(acqfast,of)                     "of"
+
+   set caption(acqfast,pbmesserr)              "Problem with error message"
+
+   set caption(acqfast,gps)                    "GPS"
+
+   set caption(acqfast,precedent)              "PREVIOUS"
+   set caption(acqfast,suivant)                "NEXT"
+   set caption(acqfast,display)                "SHOW"
+
+   set caption(acqfast,frame)                  "Frame"
+   set caption(acqfast,on)                     "on"
+
+   set caption(acqfast,extensionFITS)          "Erweiterung Dateien FITS:"
+   set caption(acqfast,rechargeScripts)        "Skripten neu laden \n\n"
+
+   set caption(acqfast,videomode)              "Video mode"
+   set caption(acqfast,ffr)                    "FFR"
+   set caption(acqfast,itr)                    "ITR"
+
+   set caption(acqfast,saisfr)                 "Enter a frame rate or choose ITR"
+
+   set caption(acqfast,start)                  "START"
+   set caption(acqfast,stop)                   "STOP\n(Esc)"
+   set caption(acqfast,pause)                  "PAUSE"
+
+   set caption(acqfast,live)                   "GO LIVE"
+   set caption(acqfast,stoplive)               "STOP"
+
+   set caption(acqfast,unsaved_seq)            "A sequence of images is already in memory:\nstarting a new sequence will delete it.\nStart new sequence?"
+
+   set caption(acqfast,cycle)                  "START CYCLE"
+   set caption(acqfast,browse)                 "..."
+   set caption(acqfast,folder)                 "From Folder:"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(acqfast,menu)                   "Fast Imaging"
+   set caption(acqfast,titre)                  "Fast Imaging"
+   set caption(acqfast,help_titre1)            "Help for the Tool:"
+   set caption(acqfast,help_titre)             "Help for this Tool"
+   set caption(acqfast,configuration)          "Setup"
+   set caption(acqfast,pose)                   "Exp."
+   set caption(acqfast,videomode)              "Video Mode"
+   set caption(acqfast,framerate)              "Framerate"
+   set caption(acqfast,continu)                "Continuous Imaging"
+
+   set caption(acqfast,pbouvfichcons)          "Problem when opening the log file.\n"
+   set caption(acqfast,pbouvfichbackcons)      "Problem when opening the backup file.\n"
+   set caption(acqfast,pb)                     "Problem"
+   set caption(acqfast,pbouvfich)              "Unable to open the log file.\n \
+      Change the tool now and check\nyou can access the image folder."
+   set caption(acqfast,ouvsess)                "----- Opening a New Acquisition Session (rev %s)\n"
+   set caption(acqfast,affheure)               "%s, %s UT (all time values in this file are expressed in UT).\n\n"
+   set caption(acqfast,finsess)                "----- Session ends at %s UT\n\n"
+   set caption(acqfast,pbfermfichcons)         "Problem when closing log file.\n"
+   set caption(acqfast,selcam)                 "You must select a camera first\n(Setup/Camera)."
+   set caption(acqfast,saistps)                "Enter an exposure time"
+   set caption(acqfast,sec)                    "sec."
+   set caption(acqfast,startlog)               "At %s started a new acquisition:\n   exposure: %f\n   videomode: %s\n   framerate: %f   initial frame: %d\n"
+   set caption(acqfast,pauselog)               "Acquisition paused at %s at frame %d\n\n"
+   set caption(acqfast,stoplog)                "Acquisition stopped at %s at frame %d\n\n"
+   set caption(acqfast,resumelog)              "Acquisition restarted at %s at frame %d\n\n"
+
+   #--- enregistrement
+   set caption(acqfast,sauvegde)               "Save"
+   set caption(acqfast,nom)                    "Filename"
+   set caption(acqfast,donnomfich)             "Define the file name."
+   set caption(acqfast,nomblanc)               "The file name must not contain any space."
+   set caption(acqfast,saisind)                "Enter the index value."
+   set caption(acqfast,conf)                   "Confirm"
+   set caption(acqfast,fichdeja_1)             "This file already exists:"
+   set caption(acqfast,fichdeja_2)             "\nAre you sure you want to save?"
+   set caption(acqfast,demsauv)                "Saving required by the user at %s UT\n"
+   set caption(acqfast,enreg_en_cours)         "Saving"
+   set caption(acqfast,buffer)                 "Buffer"
+   set caption(acqfast,of)                     "of"
+
+   set caption(acqfast,pbmesserr)              "Problem with error message"
+
+   set caption(acqfast,gps)                    "GPS"
+
+   set caption(acqfast,precedent)              "PREVIOUS"
+   set caption(acqfast,suivant)                "NEXT"
+   set caption(acqfast,display)                "SHOW"
+
+   set caption(acqfast,frame)                  "Frame"
+   set caption(acqfast,on)                     "on"
+
+   set caption(acqfast,extensionFITS)          "Extensão do ficheiros FITS:"
+   set caption(acqfast,rechargeScripts)        "Recarregar scripts\n\n"
+
+   set caption(acqfast,videomode)              "Video mode"
+   set caption(acqfast,ffr)                    "FFR"
+   set caption(acqfast,itr)                    "ITR"
+
+   set caption(acqfast,saisfr)                 "Enter a frame rate or choose ITR"
+
+   set caption(acqfast,start)                  "START"
+   set caption(acqfast,stop)                   "STOP\n(Esc)"
+   set caption(acqfast,pause)                  "PAUSE"
+
+   set caption(acqfast,live)                   "GO LIVE"
+   set caption(acqfast,stoplive)               "STOP"
+
+   set caption(acqfast,unsaved_seq)            "A sequence of images is already in memory:\nstarting a new sequence will delete it.\nStart new sequence?"
+
+   set caption(acqfast,cycle)                  "START CYCLE"
+   set caption(acqfast,browse)                 "..."
+   set caption(acqfast,folder)                 "From Folder:"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(acqfast,menu)                   "Fast Imaging"
+   set caption(acqfast,titre)                  "Fast Imaging"
+   set caption(acqfast,help_titre1)            "Help for the Tool:"
+   set caption(acqfast,help_titre)             "Help for this Tool"
+   set caption(acqfast,configuration)          "Setup"
+   set caption(acqfast,pose)                   "Exp."
+   set caption(acqfast,videomode)              "Video Mode"
+   set caption(acqfast,framerate)              "Framerate"
+   set caption(acqfast,continu)                "Continuous Imaging"
+
+   set caption(acqfast,pbouvfichcons)          "Problem when opening the log file.\n"
+   set caption(acqfast,pbouvfichbackcons)      "Problem when opening the backup file.\n"
+   set caption(acqfast,pb)                     "Problem"
+   set caption(acqfast,pbouvfich)              "Unable to open the log file.\n \
+      Change the tool now and check\nyou can access the image folder."
+   set caption(acqfast,ouvsess)                "----- Opening a New Acquisition Session (rev %s)\n"
+   set caption(acqfast,affheure)               "%s, %s UT (all time values in this file are expressed in UT).\n\n"
+   set caption(acqfast,finsess)                "----- Session ends at %s UT\n\n"
+   set caption(acqfast,pbfermfichcons)         "Problem when closing log file.\n"
+   set caption(acqfast,selcam)                 "You must select a camera first\n(Setup/Camera)."
+   set caption(acqfast,saistps)                "Enter an exposure time"
+   set caption(acqfast,sec)                    "sec."
+   set caption(acqfast,startlog)               "At %s started a new acquisition:\n   exposure: %f\n   videomode: %s\n   framerate: %f   initial frame: %d\n"
+   set caption(acqfast,pauselog)               "Acquisition paused at %s at frame %d\n\n"
+   set caption(acqfast,stoplog)                "Acquisition stopped at %s at frame %d\n\n"
+   set caption(acqfast,resumelog)              "Acquisition restarted at %s at frame %d\n\n"
+
+   #--- enregistrement
+   set caption(acqfast,sauvegde)               "Save"
+   set caption(acqfast,nom)                    "Filename"
+   set caption(acqfast,donnomfich)             "Define the file name."
+   set caption(acqfast,nomblanc)               "The file name must not contain any space."
+   set caption(acqfast,saisind)                "Enter the index value."
+   set caption(acqfast,conf)                   "Confirm"
+   set caption(acqfast,fichdeja_1)             "This file already exists:"
+   set caption(acqfast,fichdeja_2)             "\nAre you sure you want to save?"
+   set caption(acqfast,demsauv)                "Saving required by the user at %s UT\n"
+   set caption(acqfast,enreg_en_cours)         "Saving"
+   set caption(acqfast,buffer)                 "Buffer"
+   set caption(acqfast,of)                     "of"
+
+   set caption(acqfast,pbmesserr)              "Problem with error message"
+
+   set caption(acqfast,gps)                    "GPS"
+
+   set caption(acqfast,precedent)              "PREVIOUS"
+   set caption(acqfast,suivant)                "NEXT"
+   set caption(acqfast,display)                "SHOW"
+
+   set caption(acqfast,frame)                  "Frame"
+   set caption(acqfast,on)                     "on"
+
+   set caption(acqfast,extensionFITS)          "Files Extension FITS:"
+   set caption(acqfast,rechargeScripts)        "Reload Scripts\n\n"
+
+   set caption(acqfast,videomode)              "Video mode"
+   set caption(acqfast,ffr)                    "FFR"
+   set caption(acqfast,itr)                    "ITR"
+
+   set caption(acqfast,saisfr)                 "Enter a frame rate or choose ITR"
+
+   set caption(acqfast,start)                  "START"
+   set caption(acqfast,stop)                   "STOP\n(Esc)"
+   set caption(acqfast,pause)                  "PAUSE"
+
+   set caption(acqfast,live)                   "GO LIVE"
+   set caption(acqfast,stoplive)               "STOP"
+
+   set caption(acqfast,unsaved_seq)            "A sequence of images is already in memory:\nstarting a new sequence will delete it.\nStart new sequence?"
+
+   set caption(acqfast,cycle)                  "START CYCLE"
+   set caption(acqfast,browse)                 "..."
+   set caption(acqfast,folder)                 "From Folder:"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(acqfast,menu)                   "Fast Imaging"
+   set caption(acqfast,titre)                  "Fast Imaging"
+   set caption(acqfast,help_titre1)            "Help for the Tool:"
+   set caption(acqfast,help_titre)             "Help for this Tool"
+   set caption(acqfast,configuration)          "Setup"
+   set caption(acqfast,pose)                   "Exp."
+   set caption(acqfast,videomode)              "Video Mode"
+   set caption(acqfast,framerate)              "Framerate"
+   set caption(acqfast,continu)                "Continuous Imaging"
+
+   set caption(acqfast,pbouvfichcons)          "Problem when opening the log file.\n"
+   set caption(acqfast,pbouvfichbackcons)      "Problem when opening the backup file.\n"
+   set caption(acqfast,pb)                     "Problem"
+   set caption(acqfast,pbouvfich)              "Unable to open the log file.\n \
+      Change the tool now and check\nyou can access the image folder."
+   set caption(acqfast,ouvsess)                "----- Opening a New Acquisition Session (rev %s)\n"
+   set caption(acqfast,affheure)               "%s, %s UT (all time values in this file are expressed in UT).\n\n"
+   set caption(acqfast,finsess)                "----- Session ends at %s UT\n\n"
+   set caption(acqfast,pbfermfichcons)         "Problem when closing log file.\n"
+   set caption(acqfast,selcam)                 "You must select a camera first\n(Setup/Camera)."
+   set caption(acqfast,saistps)                "Enter an exposure time"
+   set caption(acqfast,sec)                    "sec."
+   set caption(acqfast,startlog)               "At %s started a new acquisition:\n   exposure: %f\n   videomode: %s\n   framerate: %f   initial frame: %d\n"
+   set caption(acqfast,pauselog)               "Acquisition paused at %s at frame %d\n\n"
+   set caption(acqfast,stoplog)                "Acquisition stopped at %s at frame %d\n\n"
+   set caption(acqfast,resumelog)              "Acquisition restarted at %s at frame %d\n\n"
+
+   #--- enregistrement
+   set caption(acqfast,sauvegde)               "Save"
+   set caption(acqfast,nom)                    "Filename"
+   set caption(acqfast,donnomfich)             "Define the file name."
+   set caption(acqfast,nomblanc)               "The file name must not contain any space."
+   set caption(acqfast,saisind)                "Enter the index value."
+   set caption(acqfast,conf)                   "Confirm"
+   set caption(acqfast,fichdeja_1)             "This file already exists:"
+   set caption(acqfast,fichdeja_2)             "\nAre you sure you want to save?"
+   set caption(acqfast,demsauv)                "Saving required by the user at %s UT\n"
+   set caption(acqfast,enreg_en_cours)         "Saving"
+   set caption(acqfast,buffer)                 "Buffer"
+   set caption(acqfast,of)                     "of"
+
+   set caption(acqfast,pbmesserr)              "Problem with error message"
+
+   set caption(acqfast,gps)                    "GPS"
+
+   set caption(acqfast,precedent)              "PREVIOUS"
+   set caption(acqfast,suivant)                "NEXT"
+   set caption(acqfast,display)                "SHOW"
+
+   set caption(acqfast,frame)                  "Frame"
+   set caption(acqfast,on)                     "on"
+
+   set caption(acqfast,extensionFITS)          "Files Extension FITS:"
+   set caption(acqfast,rechargeScripts)        "Reload Scripts\n\n"
+
+   set caption(acqfast,videomode)              "Video mode"
+   set caption(acqfast,ffr)                    "FFR"
+   set caption(acqfast,itr)                    "ITR"
+
+   set caption(acqfast,saisfr)                 "Enter a frame rate or choose ITR"
+
+   set caption(acqfast,start)                  "START"
+   set caption(acqfast,stop)                   "STOP\n(Esc)"
+   set caption(acqfast,pause)                  "PAUSE"
+
+   set caption(acqfast,live)                   "GO LIVE"
+   set caption(acqfast,stoplive)               "STOP"
+
+   set caption(acqfast,unsaved_seq)            "A sequence of images is already in memory:\nstarting a new sequence will delete it.\nStart new sequence?"
+
+   set caption(acqfast,cycle)                  "START CYCLE"
+   set caption(acqfast,browse)                 "..."
+   set caption(acqfast,folder)                 "From Folder:"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(acqfast,menu)                   "Fast Imaging"
+   set caption(acqfast,titre)                  "Fast Imaging"
+   set caption(acqfast,help_titre1)            "Help for the Tool:"
+   set caption(acqfast,help_titre)             "Help for this Tool"
+   set caption(acqfast,configuration)          "Setup"
+   set caption(acqfast,pose)                   "Exp."
+   set caption(acqfast,videomode)              "Video Mode"
+   set caption(acqfast,framerate)              "Framerate"
+   set caption(acqfast,continu)                "Continuous Imaging"
+
+   set caption(acqfast,pbouvfichcons)          "Problem when opening the log file.\n"
+   set caption(acqfast,pbouvfichbackcons)      "Problem when opening the backup file.\n"
+   set caption(acqfast,pb)                     "Problem"
+   set caption(acqfast,pbouvfich)              "Unable to open the log file.\n \
+      Change the tool now and check\nyou can access the image folder."
+   set caption(acqfast,ouvsess)                "----- Opening a New Acquisition Session (rev %s)\n"
+   set caption(acqfast,affheure)               "%s, %s UT (all time values in this file are expressed in UT).\n\n"
+   set caption(acqfast,finsess)                "----- Session ends at %s UT\n\n"
+   set caption(acqfast,pbfermfichcons)         "Problem when closing log file.\n"
+   set caption(acqfast,selcam)                 "You must select a camera first\n(Setup/Camera)."
+   set caption(acqfast,saistps)                "Enter an exposure time"
+   set caption(acqfast,sec)                    "sec."
+   set caption(acqfast,startlog)               "At %s started a new acquisition:\n   exposure: %f\n   videomode: %s\n   framerate: %f   initial frame: %d\n"
+   set caption(acqfast,pauselog)               "Acquisition paused at %s at frame %d\n\n"
+   set caption(acqfast,stoplog)                "Acquisition stopped at %s at frame %d\n\n"
+   set caption(acqfast,resumelog)              "Acquisition restarted at %s at frame %d\n\n"
+
+   #--- enregistrement
+   set caption(acqfast,sauvegde)               "Save"
+   set caption(acqfast,nom)                    "Filename"
+   set caption(acqfast,donnomfich)             "Define the file name."
+   set caption(acqfast,nomblanc)               "The file name must not contain any space."
+   set caption(acqfast,saisind)                "Enter the index value."
+   set caption(acqfast,conf)                   "Confirm"
+   set caption(acqfast,fichdeja_1)             "This file already exists:"
+   set caption(acqfast,fichdeja_2)             "\nAre you sure you want to save?"
+   set caption(acqfast,demsauv)                "Saving required by the user at %s UT\n"
+   set caption(acqfast,enreg_en_cours)         "Saving"
+   set caption(acqfast,buffer)                 "Buffer"
+   set caption(acqfast,of)                     "of"
+
+   set caption(acqfast,pbmesserr)              "Problem with error message"
+
+   set caption(acqfast,gps)                    "GPS"
+
+   set caption(acqfast,extensionFITS)          "Files Extension FITS:"
+   set caption(acqfast,rechargeScripts)        "Reload Scripts\n\n"
+
+   set caption(acqfast,frame)                  "Frame"
+   set caption(acqfast,on)                     "on"
+
+   set caption(acqfast,precedent)              "PREVIOUS"
+   set caption(acqfast,suivant)                "NEXT"
+   set caption(acqfast,display)                "SHOW"
+
+   set caption(acqfast,videomode)              "Video mode"
+   set caption(acqfast,ffr)                    "FFR"
+   set caption(acqfast,itr)                    "ITR"
+
+   set caption(acqfast,saisfr)                 "Enter a frame rate or choose ITR"
+
+   set caption(acqfast,start)                  "START"
+   set caption(acqfast,stop)                   "STOP\n(Esc)"
+   set caption(acqfast,pause)                  "PAUSE"
+
+   set caption(acqfast,live)                   "GO LIVE"
+   set caption(acqfast,stoplive)               "STOP"
+
+   set caption(acqfast,unsaved_seq)            "A sequence of images is already in memory:\nstarting a new sequence will delete it.\nStart new sequence?"
+
+   set caption(acqfast,cycle)                  "START CYCLE"
+   set caption(acqfast,browse)                 "..."
+   set caption(acqfast,folder)                 "From Folder:"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

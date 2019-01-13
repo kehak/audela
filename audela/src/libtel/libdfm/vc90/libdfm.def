@@ -1,0 +1,2 @@
+LIBRARY libdfm
+EXPORTS Dfm_Init @1

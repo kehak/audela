@@ -1,0 +1,502 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Acquisition APN CoolPix (Appareil Photo Num&eacute;rique Nikon CoolPix)</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 10 novembre 2007</p>
+<h1>Acquisition APN CoolPix (Appareil Photo Num&eacute;rique Nikon CoolPix) </h1>
+<h2><a name="sommaire" id="sommaire">Sommaire :</a></h2>
+<ul>
+  <li><a href="#ancre1">1. Avant de commencer</a></li>
+  <li><a href="#ancre2">2. Mat&eacute;riel n&eacute;cessaire</a></li>
+  <li><a href="#ancre3">3. R&eacute;glages d'Aud'ACE</a></li>
+  <li><a href="#ancre4">4. Pr&eacute;sentation rapide de l'outil Acquisition APN CoolPix</a></li>
+  <li><a href="#ancre5">5. R&eacute;glages vid&eacute;o</a></li>
+  <li><a href="#ancre6">6. Options Param&egrave;tres</a></li>
+  <li><a href="#ancre7">7. S&eacute;lection du mod&egrave;le d'APN</a></li>
+  <li><a href="#ancre8">8. Options</a></li>
+  <li><a href="#ancre9">9. Connexion / D&eacute;connexion du port s&eacute;rie</a></li>
+  <li><a href="#ancre10">10. Photos</a></li>
+  <li><a href="#ancre11">11. Gestion de la m&eacute;moire et des images</a></li>
+  <li><a href="#ancre12">12. Poses</a></li>
+  <li><a href="#ancre13">13. Messages sur la Console</a></li>
+  <li><a href="#ancre14">14. Probl&egrave;me</a></li>
+  <li><a href="#ancre15">15. Options en d&eacute;tail</a></li>
+  <li><a href="#ancre16">16. Astuces pratiques</a></li>
+  <li><a href="#ancre17">17. Pour en savoir plus</a></li>
+</ul>
+
+<h2><a name="ancre1" id="ancre1">1. Avant de commencer</a> <a href="#sommaire"><img  src="images/i.gif" alt="sommaire" /></a></h2>
+<h3>1.1 Compatibilit&eacute; de l'APN</h3>
+<p>Votre APN est-il compatible totalement ? Partiellement ? Pas du tout ?</p>
+<p>Pour le savoir consultez la liste &eacute;tablie par <a href="http://www.harbortronics.com/compatibility.htm">Harbortronics</a> ou celle de <a href="http://photopc.sourceforge.net/cameras.html">photopc</a>.</p>
+<p>Si vous disposez d'un c&acirc;ble de liaison s&eacute;rie vous pouvez essayer le programme-test <a href="http://mineray.com/harbortronics.download/digisnap.exe">digisnap.exe</a> d'Harbortronics.</p><br />
+<h3>1.2 Alimentation de l'APN</h3>
+<p>Avant de commencer un travail assurez-vous que la <strong>batterie</strong> de votre APN est charg&eacute;e ou qu'il b&eacute;n&eacute;ficie d'une alimentation permanente adapt&eacute;e (Cf notice du constructeur) faute de quoi il se mettra rapidement en s&eacute;curit&eacute; et ne r&eacute;pondra plus &agrave; vos sollicitations.</p><br />
+<h3>1.3 Pr&eacute;paration de l'APN</h3>
+<p>Allez dans les r&eacute;glages de l'APN et notez <strong>le standard vid&eacute;o s&eacute;lectionn&eacute;</strong> (NTSC, PAL). Cette information sera n&eacute;cessaire (Cf <a href="#ancre5-5">paragraphe 5.5</a>) pour obtenir une image vid&eacute;o de qualit&eacute;.</p>
+<p>L'APN contient des automatismes destin&eacute;s &agrave; &eacute;conomiser l'&eacute;nergie : R&eacute;glez <strong>le d&eacute;lai avant extinction</strong> sur le maximum sinon il se mettra en veille au bout de quelques secondes d'inactivit&eacute;.</p>
+<p>Si vous ne l'avez pas d&eacute;j&agrave; fait, faites une <strong>sauvegarde</strong> de vos pr&eacute;cieuses photos sur le support de votre choix et lib&eacute;rez de l'espace dans la <strong>m&eacute;moire</strong> de votre APN.</p>
+<p>Si vous avez effac&eacute; les images un peu trop vite ou par m&eacute;garde ou si vous avez fait une fausse manoeuvre vous pouvez encore r&eacute;cup&eacute;rer vos fichiers, au moins partiellement, avec <a href="http://www.pcinspector.de/file_recovery/fr/welcome.htm">PC inspector</a>.</p><br />
+<h2><a name="ancre2" id="ancre2">2. Mat&eacute;riel n&eacute;cessaire</a><a href="#sommaire"><img  src="images/i.gif" alt="sommaire" /></a></h2>
+<h3>2.1 Ports PC</h3>
+<p>Il faut disposer d'au moins <strong>un port s&eacute;rie et un port USB libres</strong> ou de <strong>deux ports USB libres</strong>, sans compter les ports n&eacute;cessaires aux autres applications.</p><br />
+<h3>2.2 Mat&eacute;riel n&eacute;cessaire</h3>
+<ul>
+  <li>Un <strong>c&acirc;ble s&eacute;rie SC-EW3</strong> (r&eacute;f&eacute;rence Nikon) ou &eacute;quivalent connect&eacute; sur le port s&eacute;rie ou sur un port USB &agrave; travers un c&acirc;ble de conversion USB/s&eacute;rie.</li>
+  <li>Une <strong>interface vid&eacute;o</strong> connect&eacute;e sur un port USB, par exemple Dazzle Digital Video Creator 80 (environ 90 Euros), Pinnacle Linx USB Plus (environ 69 Euros), Belkin Video Bus II F5U208.</li>
+</ul><br />
+<h3>2.3 Raccords pour un t&eacute;lescope ou une lunette</h3>
+<p>Si vous voulez fixer votre APN &agrave; un t&eacute;lescope, une lunette, un microscope, etc., il vous faut un ou plusieurs <strong>raccords adapt&eacute;s</strong> au diam&egrave;tre de l'objectif photo (variable suivant l'APN), &agrave; celui de la lunette et aux caract&eacute;ristiques optiques du dispositif global.</p>
+<p><img src="images/raccords.gif" hspace="20" alt="raccords entre l'APN et l'objectif" align="left" /></p>
+<p>Voici un exemple de montage, de la droite vers la gauche : Bague Nikon UR-E8 se vissant sur l'objectif du Coolpix 5700, bague de conversion Nextphoto UR-E8 vers 37/45 mmm, adptateur 2LE-PLUS sur oculaires de diam&egrave;tre externe de 45 &agrave; 60 mm.</p>
+<p>Renseignez-vous aupr&egrave;s de votre revendeur ou aupr&egrave;s de magasins sp&eacute;cialis&eacute;s ou encore sur le net.</p><br />
+<h2><a name="ancre3" id="ancre3">3. R&eacute;glages d'Aud'ACE</a> <a href="#sommaire"><img  src="images/i.gif" alt="sommaire" /></a></h2>
+<p>Pour acc&eacute;der au viseur vid&eacute;o, rep&eacute;rez le port USB sur lequel est connect&eacute;e votre interface vid&eacute;o.</p>
+<p>Ensuite s&eacute;lectionnez la cam&eacute;ra WebCam par le menu d&eacute;roulant <strong>Configuration / Cam&eacute;ra</strong>. Vous pouvez aussi faire ces r&eacute;glages directement &agrave; partir de l'outil <strong>Acquisition APN CoolPix</strong> par la bouton <strong>Vid&eacute;o Connecte</strong>.</p>
+<p>Pour acc&eacute;der aux r&eacute;glages de l'APN CoolPix, il suffit de cliquer sur le bouton <strong>R&eacute;glages</strong> de l'outil <strong>Acquisition APN CoolPix</strong>.</p><br />
+<h2><a name="ancre4" id="ancre4">4. Pr&eacute;sentation rapide de l'outil Acquisition APN CoolPix</a> <a href="#sommaire"><img src="images/i.gif" alt="sommaire" /></a></h2>
+<p>Allez dans <code>Aud'ACE / Outils</code> et s&eacute;lectionnez <code>Acquisition APN CoolPix</code>. L'interface suivante s'affiche :</p>
+<img src="images/acqapn.gif" hspace="20" alt="panneau acquisition APN" align="left" />
+<p><br />Le bouton <code>Acquisition APN CoolPix</code> donne acc&egrave;s &agrave; l'aide correspondante.<br />Un menu d&eacute;roulant propose de choisir un mod&egrave;le d'APN. Ce choix permet de charger des donn&eacute;es sp&eacute;cifiques &agrave; chaque APN et d'adapter certains param&egrave;tres de la fen&ecirc;tre, par exemple la focale minimale et maximale du zoom.<br />La fen&ecirc;tre annexe <code>+ Infos</code> appara&icirc;t en actionnant le bouton correspondant (Cf 7. <a href="#ancre7">S&eacute;lection du mod&egrave;le d'APN)</a><br />Sous-panneau <code>Vid&eacute;o</code> (Cf 5. <a href="#ancre5">R&eacute;glages vid&eacute;o)</a> Le bouton <code>Vid&eacute;o Connecte</code> change d'&eacute;tat selon l'&eacute;tat de la connexion vid&eacute;o.<br />Le bouton <code>R&eacute;glages</code> appelle la boite de configuration de l'APN. Le r&eacute;glage de la vitesse de communication du port s&eacute;rie est accessible.</p>
+<p>Sous-panneau <code>Options</code> (Cf 8. <a href="#ancre8">Options)</a><br />Les deux menus suivants sont coupl&eacute;s :<br />Le premier affiche le nom de la variable s&eacute;lectionn&eacute;e.<br />Le second affiche la valeur de cette variable.</p>
+<p>Deux &eacute;chelles permettent de r&eacute;gler :<br />Le <code>zoom optique.</code><br />La <code>correction d'exposition</code>.</p>
+<p>Le bouton <code>Param&egrave;tres</code> permet d'acc&eacute;der &agrave; des commandes particuli&egrave;res (Cf 6. <a href="#ancre6">Options <code>Param&egrave;tres</code></a>).</p>
+<p>Sous-panneau <code>Photos</code> (Cf 10. <a href="#ancre10">Photos</a>)<br />Le bouton <code>Connecter</code> g&egrave;re la connexion s&eacute;rie avec l'APN.</p>
+<br clear="left" /><br />
+<h2><a name="ancre5" id="ancre5">5. R&eacute;glages vid&eacute;o</a> <a href="#sommaire"><img src="images/i.gif" alt="sommaire" /></a></h2>
+<p>Pour utiliser la vid&eacute;o et voir le viseur de votre APN dans l'interface Aud'ACE, il est indispensable de le raccorder &agrave; votre interface vid&eacute;o et de raccorder celle-ci &agrave; un port USB de votre PC.</p><br />
+<h3>5.1 Connexion</h3>
+<p>Lorsque aucune connexion vid&eacute;o n'existe, le bouton affiche simplement le texte <code>Vid&eacute;o Connecte</code>. Appuyez sur ce bouton : La boite <code>Configuration de la cam&eacute;ra</code> s'affiche sur l'onglet <code>WebCam</code> (voir ci-dessous).</p>
+<img src="images/confcam.gif" hspace="20" alt="panneau confcam" />
+<p>V&eacute;rifiez et, si n&eacute;cessaire, modifiez la s&eacute;lection du canal vid&eacute;o USB.</p>
+<p>Les boutons <code>S&eacute;lection de la source vid&eacute;o</code> et <code>S&eacute;lection du format vid&eacute;o</code> sont inactifs tant qu'aucune connexion vid&eacute;o n'existe.</p>
+<p>Cliquez sur <code>OK</code>. La fen&ecirc;tre dispara&icirc;t.</p>
+<p>Le bouton <code>Vid&eacute;o Connecte</code> de l'outil <code>Acquisition APN CoolPix</code> passe &agrave; <code>Vid&eacute;o On</code>. Appuyez sur ce bouton. L'image vid&eacute;o appara&icirc;t. Le texte du bouton devient <code>Vid&eacute;o Off</code>. Le bouton de commande de la vid&eacute;o est &agrave; &eacute;tats multiples : Son affichage indique l'effet qui se produira. L'appui sur le bouton <code>Vid&eacute;o Off</code> provoque la disparition de l'image et le texte du bouton se modifie en <code>Vid&eacute;o On</code>.</p><br />
+<p><a name="ancre_coolpix" id="ancre_coolpix">Pour connecter l'APN CoolPix, appuyez sur le bouton <code>R&eacute;glages</code> de l'outil <code>Acquisition APN CoolPix</code>.</p>
+<img src="images/coolpix.gif" hspace="20" alt="panneau coolpix" />
+<p>Vous pouvez ainsi adapter la vitesse de communication du port s&eacute;rie (r&eacute;glage par d&eacute;faut : 115 200 bauds).</p><br />
+<h3>5.2 Visualisation des photos contenues dans l'APN</h3>
+<img src="images/preview.gif" hspace="20" alt="pr&eacute;visualisation" align="left" />
+<p>Vous pouvez visualiser les photos contenues dans la m&eacute;moire de votre APN sans avoir &agrave; le raccorder &agrave; un t&eacute;l&eacute;viseur. Passez simplement en mode  &quot;Preview&quot; sur votre APN. Proc&eacute;dez comme si l'APN &eacute;tait raccord&eacute; &agrave; un t&eacute;l&eacute;viseur (Cf notice de votre appareil).</p>
+<p>A gauche un exemple d'affichage.</p>
+<p>A la fin de l'usage de la fonction de visualisation, n'oubliez pas de revenir en mode normal. <strong>Si vous restez en mode &quot;Preview&quot; vous aurez l'impression que votre APN ne r&eacute;pond plus. Inutile de paniquer et d'appeler le SAV de votre APN : V&eacute;rifiez d'abord si le mode normal est s&eacute;lectionn&eacute;.</strong></p>
+<br clear="left" /><br />
+<h3>5.3 Visualisation du viseur</h3>
+<p><img src="images/video.gif" hspace="20" alt="visualisation du viseur" align="left" /></p>
+<p><strong>Si votre APN dispose d'un viseur &eacute;lectronique (un petit CCD)</strong>, la fen&ecirc;tre vid&eacute;o affiche le contenu de son viseur. Elle permet de faire, sans effort, une vis&eacute;e pr&eacute;cise et la v&eacute;rification des r&eacute;glages de prise de vue.</p><br />
+<p><img src="images/reglage.gif" hspace="20" alt="visualisation des r&eacute;glages" align="left" /></p>
+<p>Encore plus int&eacute;ressant : Vous pouvez modifier tous les r&eacute;glages &agrave; partir de votre APN et les visualiser sur l'&eacute;cran de votre PC au lieu du viseur ou de l'&eacute;cran LCD de votre APN.</p><br />
+<h3>5.4 Remarques sur la connexion vid&eacute;o</h3>
+<img src="images/videoerreur.gif" hspace="20" alt="cam&eacute;ra pas trouv&eacute;e" align="left" />
+<br clear="left" />
+<p><strong>Si en lan&ccedil;ant la connexion vid&eacute;o vous obtenez le message ci-dessus c'est que la connexion vid&eacute;o n'a pas pu &ecirc;tre &eacute;tablie. Un oubli en est la cause la plus courante. V&eacute;rifiez l'alimentation de l'APN (position <code>ON</code>) et les connexions de l'interface vid&eacute;o au port USB du PC et &agrave; l'APN.<br />Retournez dans l'interface de configuration des cam&eacute;ras et s&eacute;lectionnez &agrave; nouveau l'onglet <code>WebCam</code> (par mesure de s&eacute;curit&eacute;, en l'absence de d&eacute;tection d'un APN, c'est la cam&eacute;ra Audine qui a &eacute;t&eacute; s&eacute;lectionn&eacute;e).</strong></p><br />
+<h3><a name="ancre5-5" id="ancre5-5">5.5 Autres r&eacute;glages vid&eacute;o</h3>
+<p>Lorsque la connexion vid&eacute;o est &eacute;tablie le menu d&eacute;roulant <code>Configuration / Cam&eacute;ra</code> rappelle la boite de configuration de la WebCam. Les r&eacute;glages vid&eacute;o sont maintenant accessibles :</p><br />
+<p><img src="images/videosource.gif" hspace="20" alt="s&eacute;lection de la source vid&eacute;o" align="left" /></p>
+<p>Modification notamment du standard vid&eacute;o (bouton <code>S&eacute;lection de la source vid&eacute;o</code>) :<br />Si l'image vid&eacute;o est z&eacute;br&eacute;e vous avez sans doute int&eacute;r&ecirc;t &agrave; choisir un autre standard vid&eacute;o. Pour obtenir une image de qualit&eacute; s&eacute;lectionnez le m&ecirc;me standard (PAL ou NTSC) que celui s&eacute;lectionn&eacute; dans l'APN.</p><br />
+<p><img src="images/videoformat.gif" hspace="20" alt="s&eacute;lection du format vid&eacute;o" align="left" /></p>
+<p>Modification du format de l'image (bouton <code>S&eacute;lection du format vid&eacute;o</code>).</p><br />
+<p><strong>Pour quitter la boite <code>Configuration de la cam&eacute;ra</code> appuyez sur le bouton <code>Fermer</code> pour &eacute;viter de relancer la connexion vid&eacute;o qui existe d&eacute;j&agrave;.</strong></p>
+<p>Sur l'interface principale d'Aud'ACE vous pouvez r&eacute;gler l'&eacute;chelle de l'image vid&eacute;o par le menu d&eacute;roulant <code>Affichage / Zoom</code>. L'image est ajust&eacute;e en temps r&eacute;el.</p><br />
+<h2><a name="ancre6" id="ancre6">6. Options Param&egrave;tres</a> <a href="#sommaire"><img  src="images/i.gif" alt="sommaire" /></a></h2>
+<img src="images/parametres.gif" hspace="20" alt="fen&ecirc;tre action" align="left" />
+<br clear="left" />
+<p>L'appui sur le bouton <code>Param&egrave;tres</code> provoque l'affichage de la fen&ecirc;tre annexe <code>Action</code> comportant trois boutons :</p>
+<ul>
+  <li>Le bouton <code>M&eacute;moriser</code> commande la sauvegarde des r&eacute;glages personnels dans le fichier de configuration config.ini.</li>
+  <li>Le bouton <code>R&eacute;initialiser</code> rappelle la valeur des variables sauvegard&eacute;e dans le fichier config.ini.</li>
+  <li>Le bouton <code>Editer</code> permet d'envoyer vers la Console la valeur des variables les plus importantes.</li>
+</ul>
+<br clear="left" />
+<h2><a name="ancre7" id="ancre7">7. S&eacute;lection du mod&egrave;le d'APN</a> <a href="#sommaire"><img src="images/i.gif" alt="sommaire" /></a></h2>
+<img src="images/model.gif"  hspace="20" alt="liste des APN" align="left" />
+<p>S&eacute;lectionnez votre APN dans le menu. Cette s&eacute;lection est importante car elle configure l'outil en ad&eacute;quation avec votre APN.</p>
+<br clear="left" /><br />
+<h3>7.1 Informations suppl&eacute;mentaires</h3>
+<p>Appuyez sur le bouton <code>+ Infos</code>.</p>
+<p>Une fen&ecirc;tre annexe donne les caract&eacute;ristiques techniques du CCD utilis&eacute; dans l'APN : Nombre de pixels en longueur et en largeur ainsi que la taille (en microns) de chaque pixel. La s&eacute;lection d'un autre APN provoque le rafra&icirc;chissement du contenu de la fen&ecirc;tre.</p>
+<img src="images/info.gif" hspace="20" alt="fen&ecirc;tre d'information sur l'APN" align="left" /> <img src="images/info_all.gif" hspace="20"  alt="fen&ecirc;tre d'information remplie" align="right" />
+<p>Lorsque la connexion s&eacute;rie n'est pas &eacute;tablie, certaines informations ne sont pas renseign&eacute;es (image de gauche).</p>
+<p>Lorsque la connexion s&eacute;rie est &eacute;tablie le texte du bouton <code>+ Infos</code> passe en caract&egrave;res gras.</p>
+<p>La fen&ecirc;tre annexe contient bien plus d'informations et notamment la charge de la batterie, le nombre de photos enregistr&eacute;es dans l'APN, la m&eacute;moire disponible pour d'autres photos.</p>
+<p>La plupart de ces informations ne n&eacute;cessitent pas de rafra&icirc;chissement. Seul le nombre de poses est actualis&eacute; dynamiquement mais pas la m&eacute;moire disponible.</p>
+<br clear="all" />
+<h3>7.2 Compl&eacute;ment de la base de donn&eacute;es avec les caract&eacute;ristiques techniques d'un autre APN</h3>
+<p>Si le nom commercial d'un APN n'appara&icirc;t pas dans la liste des options, vous pouvez compl&eacute;ter la base situ&eacute;e dans le fichier gui/audace/plugin/tool/acqapn/apnbase.tcl. Compl&eacute;ter les variables suivantes en consultant le manuel accompagnant votre mat&eacute;riel :</p>
+<table summary="base de donn&eacute;es">
+  <tr>
+    <th align="left">variable</th>
+    <th align="left">qu'est-ce que c'est ?</th>
+    <th align="left">exemple</th>
+  </tr>
+  <tr>
+    <td><code>apn_base(model)</code></td>
+    <td>nom de votre apn</td>
+    <td>Coolpix 5700</td>
+  </tr>
+  <tr>
+    <td><code>apn_base(ccd)</code></td>
+    <td>nombre de pixels</td>
+    <td>2560x1920</td>
+  </tr>
+  <tr>
+    <td><code>apn_base(pixel_size)</code></td>
+    <td>taille des pixels</td>
+    <td>3.406 microns</td>
+  </tr>
+  <tr>
+    <td><code>apn_base(H_focus)</code></td>
+    <td>focale maximale</td>
+    <td>70.7</td>
+  </tr>
+  <tr>
+    <td><code>apn_base(L_focus</code></td>
+    <td>focale minimale</td>
+    <td>8.8</td>
+  </tr>
+</table>
+<p><strong>Recommandations</strong> : Le plus simple est encore d'ajouter vos valeurs au d&eacute;but de chaque liste ce qui aura pour effet d'afficher le nom de votre APN en premier dans la liste. Respectez le format (pas d'espace, pas de virgule). V&eacute;rifiez que l'affichage se fait correctement. <strong>Ne modifiez aucune autre variable de ce fichier sous peine d'obtenir des r&eacute;sultats al&eacute;atoires ou erron&eacute;s.</strong></p><br />
+<h2><a name="ancre8" id="ancre8">8. Options</a> <a href="#sommaire"><img src="images/i.gif" alt="sommaire" /></a></h2>
+<img src="images/variables.gif" hspace="20" alt="choix de la variable" align="left" /> <img src="images/valeur.gif" hspace="20" alt="choix de la valeur" align="right" />
+<p>Deux menus d&eacute;roulants sont associ&eacute;s : L'un donne le nom de la variable et le second donne sa valeur parmi les valeurs possibles.</p>
+<p>Modifiez la s&eacute;lection d'une variable. La seconde fen&ecirc;tre indique la valeur prise par cette variable.<br />Pour modifier cette valeur s&eacute;lectionnez-en une dans la liste des valeurs possibles. La s&eacute;lection est affich&eacute;e dans la fen&ecirc;tre.</p>
+<p>La liste des variables est visible dans l'image de gauche. Ces noms ne sont pas traduits car ils sont utilis&eacute;s comme param&egrave;tres de commande du logiciel photopc.exe.</p>
+<p>Par exemple, la variable <code>lens</code> peut prendre les valeurs <code>Telephoto</code>, <code>FishEye</code> ou <code>Wide</code>.</p>
+<br clear="all" />
+<p>Deux variables num&eacute;riques sont accessibles : <code>zoom</code> et <code>correction d'exposition</code>.</p><br />
+<h2><a name="ancre9" id="ancre9">9. Connexion / D&eacute;connexion du port s&eacute;rie</a> <a href="#sommaire"><img src="images/i.gif" alt="sommaire" /></a></h2>
+<p>Lors de l'&eacute;tablissement de la connexion s&eacute;rie (bouton <code>Connecter</code>) :</p>
+<ul>
+  <li>Le port s&eacute;rie est identifi&eacute; automatiquement, vous n'avez donc pas &agrave; vous en pr&eacute;occuper. La vitesse de communication est fix&eacute;e &agrave; 115200 bauds. Si vos communications s'&eacute;tablissent correctement, ne modifiez pas ce r&eacute;glage.</li>
+  <li>L'APN est mis &agrave; l'heure TU du PC. Si vous avez pris la pr&eacute;caution de mettre celui-ci &agrave; l'heure avant la session, vos photos seront horodat&eacute;es correctement (Cf 11.<a href="#ancre11">Poses</a>).</li>
+  <li>L'APN renvoie des informations sur les r&eacute;glages. Celles-ci sont m&eacute;moris&eacute;es. Lors de la d&eacute;connexion ces informations sont renvoy&eacute;es &agrave; l'APN qui est remis dans son &quot;&eacute;tat d'origine&quot; avant la session de travail. Si vous quitter en fermant Aud'ACE sans appuyer sur le bouton <code>D&eacute;connecter</code>, l'APN reste r&eacute;gl&eacute; sur les param&egrave;tres de la derni&egrave;re photo.</li>
+</ul><br />
+<h2><a name="ancre10" id="ancre10">10. Photos</a> <a href="#sommaire"><img src="images/i.gif" alt="sommaire" /></a></h2>
+<p><img src="images/go.gif" hspace="20" alt="go sans image" align="left" /> <img src="images/goplus.gif" hspace="20" alt="go avec images" align="right" /></p>
+<p><br />Le bouton <code>Connecter</code> permet d'&eacute;tablir la connexion s&eacute;rie avec l'APN.</p>
+<p>Lorsque celle-ci est &eacute;tablie l'outil affiche un nouveau bouton <code>Go</code>.</p>
+<p>Un nouveau sous-panneau <code>Poses</code> consacr&eacute; aux poses appara&icirc;t &eacute;galement.</p>
+<p>Si la m&eacute;moire de l'APN n'est pas vide, un menu d&eacute;roulant affiche la liste des poses m&eacute;moris&eacute;es (vue de droite). Le bouton <code>M&eacute;moire</code> permet d'acc&eacute;der &agrave; des fonctions de gestion des images stock&eacute;es dans l'APN.</p>
+<p>La derni&egrave;re pose de la liste est affich&eacute;e dans la fen&ecirc;tre d&eacute;roulante.</p>
+<br clear="all" /><br />
+<p><img src="images/liste.gif" hspace="20" alt="liste des poses" align="left" /></p>
+<p>Le menu d&eacute;roulant donne la liste de toutes les images stock&eacute;es dans l'APN.</p>
+<br clear="all" />
+<h2><a name="ancre11" id="ancre11">11. Gestion de la m&eacute;moire et des images</a> <a href="#sommaire"><img src="images/i.gif" alt="sommaire" /></a></h2>
+<p><img src="images/images.gif" hspace="20" alt="panneau images" align="left" /></p>
+<p>L'appui sur le bouton <code>M&eacute;moire</code> ouvre une fen&ecirc;tre secondaire <code>Images</code>. Elle permet d'acc&eacute;der &agrave; des fonctions de gestion de la m&eacute;moire de l'APN et aux images qui y sont stock&eacute;es.</p>
+<p>Le nom de la derni&egrave;re image acquise, avec son extension, est automatiquement recopi&eacute; dans la fen&ecirc;tre de saisie de l'image &agrave; charger.</p>
+<p><img src="images/grumble.gif" hspace="20" alt="changement de nom" align="left" /></p>
+<h3>11.1 Effacement des images stock&eacute;es dans l'APN</h3>
+<p>Le bouton <code>Effacer</code> et ses options permettent d'effacer la derni&egrave;re image prise ou toutes les images stock&eacute;es dans la m&eacute;moire de l'APN (&eacute;quivalent d'un RAZ m&eacute;moire).</p><br />
+<h3>11.2 Transfert des images de l'APN vers le PC et affichage</h3>
+<p>Le bouton <code>Charger</code> provoque le transfert et la sauvegarde de l'image s&eacute;lectionn&eacute;e. Par d&eacute;faut, les images transf&eacute;r&eacute;es de l'APN vers le PC sont stock&eacute;es dans le sous-r&eacute;pertoire <code>images</code> du r&eacute;pertoire d'installation d'Aud'ACE.</p>
+<p>Vous pouvez modifier cette destination par le menu d&eacute;roulant <code>Configuration / R&eacute;pertoires</code>.<br />Il est possible de sauvegarder l'image sous un nom diff&eacute;rent de celui utilis&eacute; dans l'APN. Dans ce cas n'oubliez pas de rajouter l'extension ".JPG" ou ".jpg".</p>
+<p>Vous avez le choix : Transf&eacute;rer l'image ou sa miniature, l'afficher ou non.</p>
+<p>En cochant la case <code>Afficher de suite</code> l'image transf&eacute;r&eacute;e sera affich&eacute;e dans la fen&ecirc;tre principale d'Aud'ACE.</p>
+<p>En cochant la case <code>Miniature</code> vous transf&eacute;rez une miniature de quelques Ko au lieu de l'image compl&egrave;te. L'inconv&eacute;nient de la petite taille de la miniature devient un avantage en terme de vitesse de transfert : Le temps d'affichage n'est li&eacute; qu'au temps d'ouverture du visualisateur.</p>
+<p><strong>Notes : Si vous souhaitez d'abord transf&eacute;rer une miniature puis l'image r&eacute;elle n'oubliez pas de changer le nom de l'une ou l'autre, faute de quoi le deuxi&egrave;me transfert &eacute;crasera le premier car les deux fichiers porteraient le m&ecirc;me nom.</strong></p>
+<p>Par d&eacute;faut la connexion s&eacute;rie est &eacute;tablie &agrave; 115 200 bauds. La vitesse de chargement varie de 9,0 &agrave; 9,5 Ko / seconde. En cons&eacute;quence il faut plus de 60 secondes pour charger un fichier de 600 Ko. <strong>Il est alors pr&eacute;f&eacute;rable d'utiliser la proc&eacute;dure habituelle via le port USB.</strong> N'utiliser la liaison s&eacute;rie qu'en cas de n&eacute;cessit&eacute; ou pour charger de petits fichiers.</p>
+<p>La taille des fichiers varie consid&eacute;rablement en fonction du travail :</p>
+<ul>
+  <li>Des &quot;darks&quot; (avec le cache devant l'objectif) donnent des fichiers de 41 Ko &agrave; 129 Ko suivant le mode de compression utilis&eacute; (VGA &agrave; Fine). Le temps de transfert de 6 &agrave; 15 secondes est parfaitement acceptable dans ces conditions.</li>
+  <li>Les miniatures (thumbnails) sont encore plus petites et l&agrave; encore la commande de transfert est fort utile.</li>
+</ul><br />
+<h3>11.3 Traitement des images</h3>
+<p>Le bouton <code>Traiter l'image</code> ouvre l'image dans votre visualisateur (par exemple Irfanview, Xnview, Paint Shop Pro, etc.) pour la recadrer, la rogner, la retourner, etc. Vous pouvez fixer le choix du visualisateur par le menu d&eacute;roulant <code>Configuration / Editeurs</code>.</p>
+<p>Le nom de l'image trait&eacute;e est celui figurant dans la fen&ecirc;tre situ&eacute;e au-dessus du bouton. Toute image effectivement stock&eacute;e dans le sous-r&eacute;pertoire des images peut &ecirc;tre ouverte dans le visualisateur.</p><br />
+<h2><a name="ancre12" id="ancre12">12. Poses</a> <a href="#sommaire"><img src="images/i.gif" alt="sommaire" /></a></h2>
+<p>Ce sous-panneau permet de pr&eacute;ciser le programme de prises de vues :</p>
+<p><img src="images/poses1.gif" hspace="20" alt="une pose" align="left" /></p>
+<p>L'utilisateur a le choix entre un temps de pose auto(matique), un temps exprim&eacute; en microsecondes ou un temps exprim&eacute; en 1/n comme en photo. Il peut pr&eacute;ciser le <code>nombre de poses</code>, le <code>d&eacute;lai</code> avant le d&eacute;marrage (en secondes).<br />La validit&eacute; de l'information est v&eacute;rifi&eacute;e d&egrave;s la saisie. Si elle comporte une erreur, la saisie est annul&eacute;e et une fen&ecirc;tre d'avertissement donne des indications pour guider l'utilisateur.</p>
+<p><img src="images/poses2.gif" hspace="20" alt="plusieurs poses" align="left" /></p>
+<p>La fen&ecirc;tre de saisie de <code>l'intervalle</code> n'est utile que si vous demandez plus d'une pose.<br />Compte tenu de la r&eacute;activit&eacute; des APN, il est recommand&eacute; de programmer un intervalle d'au moins 20 secondes.<br />Ce temps est un peu sup&eacute;rieur &agrave; celui de la prise de vue et de la sauvegarde de l'image dans la m&eacute;moire : Pendant ce temps l'APN ne r&eacute;pond pas.<br />En cas d'erreur de saisie une fen&ecirc;tre d'avertissement indique la nature du probl&egrave;me et l'&eacute;l&eacute;ment de solution.<br />Dans certains cas les fen&ecirc;tres de saisie sont accompagn&eacute;es d'une aide dynamique.</p>
+<p>Le bouton <code>Go</code> lance le programme de prises de vues. Si un d&eacute;lai est demand&eacute;, le bouton affiche <code>Attente</code>. Il affiche <code>En cours</code> durant la s&eacute;quence de prise de vues.</p>
+<p><img src="images/gel.gif" hspace="20" alt="gel des commandes" align="left" /></p>
+<p>Durant les &eacute;changes avec l'APN (entr&eacute;e en communication, prises de vue, chargement ou suppression d'images, d&eacute;connexion) les principales commandes sont inactives. Elles redeviennent actives lorsque la commande a &eacute;t&eacute; ex&eacute;cut&eacute;e.<br />Il en est ainsi des entr&eacute;es et des boutons <code>Vid&eacute;o Connecte, Connecter, Go, M&eacute;moire, Effacer et Charger</code>.</p><br />
+<p>Lors des prises de vue, la Console affiche le label de la photo prise par l'APN ainsi que l'heure TU de prise de vue.</p>
+<p>Au total on dispose de trois temps :</p>
+<ul>
+  <li>Sur la Console : L'heure de prise de vue en temps TU (celui en bas de l'interface Aud'ACE) ; Il s'agit d'un temps estim&eacute; compte tenu de la dur&eacute;e des op&eacute;rations. L'&eacute;cart est au plus d'une seconde avec le temps de l'APN.</li>
+  <li>Celui r&eacute;f&eacute;renc&eacute; dans les images (donn&eacute;es Exif), ce temps correspond au temps TU donn&eacute; par l'horloge interne de l'APN (d'o&ugrave; l'importance de la mise &agrave; l'heure).</li>
+  <li>Celui trouv&eacute; dans le r&eacute;pertoire <code>gui/audace/plugin/tool/acqapn/saverep.log</code> : Il s'agit du temps local du PC.</li>
+</ul><br />
+<h2><a name="ancre13" id="ancre13">13. Messages sur la Console</a> <a href="#sommaire"><img src="images/i.gif" alt="sommaire" /></a></h2>
+<img src="images/console.gif" hspace="20" alt="message sur la console" align="left" />
+<br clear="left" />
+<p>Les messages sur la Console permettent de suivre les principales op&eacute;rations :</p>
+<ul>
+  <li>Connexion.</li>
+  <li>Options initiales (lors de la connexion).</li>
+  <li>Prises de vues (r&eacute;f&eacute;rences de l'APN et heure).</li>
+  <li>Transfert.</li>
+  <li>Effacement de fichiers.</li>
+  <li>D&eacute;connexion.</li>
+</ul>
+<p>Vous pouvez aussi &eacute;diter les principales variables de r&eacute;glage gr&acirc;ce aux boutons <code>Param&egrave;tres</code> et <code>Editer</code>.</p><br />
+<h2><a name="ancre14" id="ancre14">14. Probl&egrave;me</a> <a href="#sommaire"><img src="images/i.gif" alt="sommaire" /></a></h2>
+<img src="images/erreur.gif" hspace="20" alt="message d'erreur" align="left" />
+<br clear="left" />
+<p>L'absence ou la perte de communication avec l'APN constitue la source majeure de difficult&eacute;. Elle peut &ecirc;tre le fait :</p>
+<ul>
+  <li>De l'alimentation (batterie trop faible, oubli de mise en position de marche).</li>
+  <li>Du fait que vous avez allum&eacute; l'APN apr&egrave;s avoir appuy&eacute; sur le bouton <code>Connecter</code>. Dans ce cas r&eacute;appuyez sur le bouton.</li>
+  <li>Du c&acirc;ble s&eacute;rie de liaison entre le PC et l'APN (c&acirc;ble non connect&eacute;, c&acirc;ble inadapt&eacute; ou cass&eacute;).</li>
+  <li>De la qualit&eacute; de la communication. Baissez la vitesse de communication dans la boite <code>Configuration de la cam&eacute;ra</code> et relancer la connexion.</li>
+</ul><br />
+<p>Si votre APN fonctionne sur piles ou accumulateurs int&eacute;gr&eacute;s il ne r&eacute;pondra plus lorsque le niveau de charge sera devenu insuffisant, exactement comme durant l'usage normal.</p><br />
+<h2><a name="ancre15" id="ancre15">15. Options en d&eacute;tail</a> <a href="#sommaire"><img src="images/i.gif" alt="sommaire" /></a></h2>
+<p>Votre APN comporte de tr&egrave;s nombreuses options de r&eacute;glages d&eacute;crites dans les manuels. Certaines sont tr&egrave;s sp&eacute;cifiques. Les possibilit&eacute;s propos&eacute;es sont limit&eacute;es aux plus communes.</p><br />
+<h3>15.1 S&eacute;lection de l'objectif (r&eacute;glage=lens) : <code>Telephoto Wide FishEye</code></h3>
+<h3>15.2 R&eacute;glage du flash (r&eacute;glage=flash) : <code>Off Auto Force AntiRedeye SlowSync</code></h3>
+<h3>15.3 Mise au point (r&eacute;glage=focus) : <code>Normal Infinity Macro</code></h3>
+<h3>15.4 Mesure de la lumi&egrave;re (r&eacute;glage=metering) : <code>Center Spot Matrix Spot-AF-Area</code></h3>
+<h3>15.5 Balance des blancs (r&eacute;glage=whitebalance) : <code>Auto Sunny Incandescent Fluorescent Flash Preset Cloudy</code></h3>
+<h3>15.6 Ajustement (r&eacute;glage=adjust) : <code>Standard Contrast+ Contrast- Brightness+ Brightness-</code></h3>
+<h3>15.7 Choix du format d'image (r&eacute;glage=format) : <code>VGA XGA SXGA UXGA 3:2 MAXI</code></h3>
+<p>Les valeurs propos&eacute;es sont fonction de la taille du CCD &eacute;quipant votre APN.</p>
+<p>La taille de l'image (et donc son poids en Ko) augmente avec le nombre de pixels. Ce peut &ecirc;tre un handicap pour sa diffusion &eacute;lectronique (et le temps de chargement) ou un avantage pour une impression de qualit&eacute; sans perte de d&eacute;tails.</p>
+<table summary="format">
+  <tr>
+    <th align="left">Standard</th>
+    <th align="center">Taille</th>
+    <th align="center">Format d'impression</th>
+  </tr>
+  <tr>
+    <td align="left">VGA</td>
+    <td align="center">640 X 480 pixels</td>
+    <td align="center">5 X 4 cm</td>
+  </tr>
+  <tr>
+    <td align="left">XGA</td>
+    <td align="center">1024 X 768 pixels</td>
+    <td align="center">9 X 6 cm</td>
+  </tr>
+  <tr>
+    <td align="left">SXGA</td>
+    <td align="center">1280 X 960 pixels</td>
+    <td align="center">11 X 8 cm</td>
+  </tr>
+  <tr>
+    <td align="left">UXGA</td>
+    <td align="center">1600 X 1200 pixels</td>
+    <td align="center">14 X 10 cm</td>
+  </tr>
+  <tr>
+    <td align="left">3:2 *</td>
+    <td align="center">2560 X 1704 pixels</td>
+    <td align="center">22 X 14 cm</td>
+  </tr>
+  <tr>
+    <td align="left">MAXI **</td>
+    <td align="center">2560 X 1920 pixels</td>
+    <td align="center">22 X 16 cm</td>
+  </tr>
+</table>
+<p>* le rapport 2560/1704 vaut environ 3/2</p>
+<p>** dimension du CCD 5M pixels du CoolPix 5700</p><br />
+<h3>15.8 R&eacute;glage du taux de compression (r&eacute;glage=compression) : <code>Basic Normal Fine Hi Raw</code></h3>
+<p>Vous pouvez opter pour :</p>
+<table summary="taux de compression">
+  <tr>
+    <th align="left">D&eacute;finition</th>
+    <th align="center">Codage</th>
+    <th align="center">Taux approximatif de compression</th>
+  </tr>
+  <tr>
+    <td align="left">Basic</td>
+    <td align="center">1 bit/pixel</td>
+    <td align="center">1:16</td>
+  </tr>
+  <tr>
+    <td align="left">Normal</td>
+    <td align="center">2 bit/pixel</td>
+    <td align="center">1:8</td>
+  </tr>
+  <tr>
+    <td align="left">Fine</td>
+    <td align="center">4 bit/pixel</td>
+    <td align="center">1:4</td>
+  </tr>
+  <tr>
+    <td align="left">Hi</td>
+    <td align="center">RGB</td>
+    <td align="center">aucun</td>
+  </tr>
+  <tr>
+    <td align="left">Raw</td>
+    <td align="center">?</td>
+    <td align="center">aucun</td>
+  </tr>
+</table><br />
+<h3>15.9 Combinaison format X compression (automatique)</h3>
+<p>Les taux de compression Basic, Normal et Fine se combinent avec tous les formats. Les images sont enregistr&eacute;es au standard JPEG.</p>
+<p>Hi n'est accessible qu'en standard 3 : 2 et MAXI. Les images sont enregistr&eacute;es au format TIFF. Le format RAW est accessible en standard NEF (Nikon).</p>
+<p>La taille des fichiers images est fonction du mix format x compression. Plus la taille de l'image est grande, moins une m&eacute;moire de taille donn&eacute;e peut en stocker. Par exemple une m&eacute;moire de 32 Mo pourra contenir 918 images VGA-Basic mais seulement 2 images en r&eacute;solution MAXI-Hi ! Votre s&eacute;ance de poses sera courte ou compos&eacute;e d'alternances de prises de vues, de transferts et de RAZ m&eacute;moire. Vivement les m&eacute;moires Microdrive (en gigabytes) &agrave; faible prix. A titre d'exemple, voici le poids relatif d'une photo prise dans diff&eacute;rents formats et sous diff&eacute;rents taux de compression par rapport au format VGA-Basic de 62 Ko.</p>
+<table summary="taux de tailles">
+  <tr>
+    <th>Compression/format</th>
+    <th>VGA</th>
+    <th>XGA</th>
+    <th>SXGA</th>
+    <th>UXGA</th>
+    <th>3:2</th>
+    <th>MAXI</th>
+  </tr>
+  <tr>
+    <td align="center">Basic</td>
+    <td align="center">1,0</td>
+    <td align="center">2,0</td>
+    <td align="center">2,7</td>
+    <td align="center">4,2</td>
+    <td align="center">8,2</td>
+    <td align="center">9,4</td>
+  </tr>
+  <tr>
+    <td align="center">Normal</td>
+    <td align="center">1,3</td>
+    <td align="center">3,9</td>
+    <td align="center">5,7</td>
+    <td align="center">8,7</td>
+    <td align="center">17,1</td>
+    <td align="center">19,2</td>
+  </tr>
+  <tr>
+    <td align="center">Fine</td>
+    <td align="center">2,2</td>
+    <td align="center">6,9</td>
+    <td align="center">10,8</td>
+    <td align="center">14,8</td>
+    <td align="center">28,5</td>
+    <td align="center">32,6</td>
+  </tr>
+  <tr>
+    <td align="center">Hi</td>
+    <td align="center"></td>
+    <td align="center"></td>
+    <td align="center"></td>
+    <td align="center"></td>
+    <td align="center">207,9</td>
+    <td align="center">92,5</td>
+  </tr>
+  <tr>
+    <td align="center">Raw</td>
+    <td align="center"></td>
+    <td align="center"></td>
+    <td align="center"></td>
+    <td align="center"></td>
+    <td align="center"></td>
+    <td align="center">126,4</td>
+  </tr>
+</table><br />
+<h3>15.10 Zoom</h3>
+<p>L'&eacute;chelle de r&eacute;glage du zoom est automatiquement configur&eacute;e en fonction du choix du mod&egrave;le d'APN.</p><br />
+<h3>15.11 Correction d'exposition</h3>
+<p>L'&eacute;chelle de r&eacute;glage de la correction va de -2.0 &agrave; +2.0 par pas de 1/3.</p><br />
+<h3>15.12 Mode (r&eacute;glage=mode) : <code>Record Play Thumbnail Off</code></h3>
+<p>Apr&egrave;s la prise de vue, affiche, durant 10 secondes et sur le LCD, le contenu du viseur (<code>Record</code>), l'image prise (<code>Play</code>), les miniatures (<code>Thumbnail</code>) ou reste &eacute;teint (<code>Off</code>). Cette derni&egrave;re position est celle de l'&eacute;conomie maximale.</p><br />
+<h3>15.13 Autres r&eacute;glages</h3>
+<p>Ils sont &agrave; effectuer manuellement sur votre APN.</p><br />
+<h3>15.14 Valeurs par d&eacute;faut</h3>
+<pre>
+Lens :         Telephoto
+Flash :        Off
+Format :       VGA
+Compression :  Basic
+Focus :        Normal
+Metering :     Spot
+Whitebalance : Sunny
+Adjust :       Standard
+Mode :         Off
+</pre>
+<p>Au d&eacute;marrage, les valeurs num&eacute;riques sont toujours fix&eacute;es de la mani&egrave;re suivante :</p>
+<pre>Correction d'exposition : +0.0
+Zoom :                    mini de votre APN
+</pre>
+<p>Si vous souhaitez fixer d'autres valeurs par d&eacute;faut, s&eacute;lectionner les r&eacute;glages voulus, appuyez sur les boutons <code>Param&egrave;tres</code> puis <code>M&eacute;moriser</code>.</p>
+<p>Si vous voulez v&eacute;rifier la prise en compte de vos choix, appuyez sur les boutons <code>Reinitialiser</code> puis <code>Editer</code>.</p><br />
+<h2><a name="ancre16" id="ancre16">16. Astuces pratiques</a> <a href="#sommaire"><img src="images/i.gif" alt="sommaire" /></a></h2>
+<img src="images/peripherique.gif" hspace="20" alt="liste des p&eacute;riph&eacute;riques" align="left" />
+<br clear="left" /><br />
+<p>Si vous connectez votre APN &agrave; un port USB de votre PC, il est reconnu comme un p&eacute;riph&eacute;rique de stockage. L'image ci-contre, prise sous Windows Millenium, illustre ce fait :</p>
+<ul>
+  <li>Dans les propri&eacute;t&eacute;s du syst&egrave;me, votre APN appara&icirc;t comme un disque USB.</li>
+  <li>Dans le syst&egrave;me, il est reconnu exactement comme un disque externe.</li>
+</ul>
+<p>Il n'est nul besoin de logiciels sp&eacute;ciaux ou d'interfaces particuli&egrave;res (parfois bien commodes il est vrai) pour y acc&eacute;der, l'explorer, rechercher des fichiers images, les supprimer ou les transf&eacute;rer.</p><br />
+<p>La preuve ?</p>
+<img src="images/exploration.gif" hspace="20" alt="exploration de la carte m&eacute;moire" align="left" />
+<br clear="left" />
+<p>Si vous &quot;cliquez&quot; sur ce disque externe il s'ouvre et affiche son ou ces fichiers.<br />Continuez.<br />Vous finirez par rep&eacute;rez les fichiers images reconnaissables &agrave; leur extension JPG ou MOV.</p>
+<p>On peut aussi &quot;uploader&quot; la m&eacute;moire de l'APN avec des images qu'il n'a pas prises ! Attention cependant, vous risquez de l'induire en erreur et de provoquer des comportements anormaux.</p>
+<p>Le fichier info.txt est pr&eacute;cieux car il contient les caract&eacute;ristiques de prise de vue de chaque photo.</p>
+<p><strong>Remarque</strong> : Les protocoles d'acc&egrave;s diff&egrave;rents selon le syst&egrave;me utilis&eacute; (voir la notice de votre APN) : Sous Windows vous avez le choix entre deux modes (PTP pour Windows XP et Mass Storage pour les autres syst&egrave;mes). Si vous ne pouvez pas faire l'exp&eacute;rience ci-dessus, d&eacute;branchez correctement votre appareil, allez dans le menu concernant les r&eacute;glages USB. S&eacute;lectionnez le protocole adapt&eacute; &agrave; votre syst&egrave;me. Refaites le test.</p><br />
+<h2><a name="ancre17" id="ancre17">17. Pour en savoir plus</a> <a href="#sommaire"><img src="images/i.gif" alt="sommaire" /></a></h2>
+<p>Vous pouvez consulter les sites qui suivent :</p>
+<p>Pour v&eacute;rifier la compatibilit&eacute; de votre APN :</p>
+<ul>
+  <li><a href="http://www.harbortronics.com/compatibility.htm">Harbortronics</a></li>
+  <li><a href="http://mineray.com/harbortronics.download/digisnap.exe">digisnap.exe</a></li>
+  <li><a href="http://photopc.sourceforge.net/cameras.html">photopc</a></li>
+</ul>
+<p>Le logiciel photopc.exe a &eacute;t&eacute; r&eacute;alis&eacute; par Eug&egrave;ne Crosser (merci &agrave; lui) :</p>
+<ul>
+  <li><a href="http://photopc.sourceforge.net/">Logiciel photopc</a></li>
+  <li><a href="http://www.math.ualberta.ca/imaging/protocol.html">Protocol photopc</a></li>
+  <li><a href="http://www.math.ualberta.ca/imaging/photopc.html">Manuel photopc</a></li>
+  <li><a href="http://vyskocil.free.fr/coolcom/MC-EU1%20Protocol.txt">Protocol MC-EU1</a></li>
+</ul>
+<p>D'autres logiciels sont disponibles pour l'affichage vid&eacute;o :</p>
+<ul>
+  <li><a href="http://velatron.com/dca/Hocus/">Velatron (Hocus Focus)</a></li>
+</ul>
+<p>Ou pour la prise de vue :</p>
+<ul>
+  <li><a href="http://www.ruwebit.net/">RuweBit.NET (Snappix)</a></li>
+  <li><a href="http://velatron.com/dca/TheForce/">Velatron (The Force)</a></li>
+</ul>
+<p>Comment connecter votre APN au micro :</p>
+<ul>
+  <li><a href="http://velatron.com/dca/Personal/Setup/Laptop.htm">Velatron (connexions)</a></li>
+</ul>
+<p>Connecteurs sp&eacute;ciaux pour bricoleurs :</p>
+<ul>
+  <li><a href="http://delphys.net/d.holmes/photos/coolpix_e990/e990_usb_cable.html">Holmes (connecteurs mixtes)</a></li>
+  <li><a href="http://www.astrosurf.com/astroscope/tips/serie_usb/serie_usb.htm">Le m&ecirc;me en fran&ccedil;ais</a></li>
+  <li><a href="http://www.dpreview.com/forums/read.asp?forum=1007&amp;page=1&amp;message=1016842">Et plus</a></li>
+  <li><a href="http://krinnicam.cjb.net/">Une bascule USB/RS 232</a></li>
+  <li><a href="http://www.harbortronics.com/">Harbortronics</a></li>
+  <li><a href="http://donaldgranger.home.att.net/nikon_cable_release.htm">Granger (c&acirc;ble de commande)</a></li>
+</ul>
+<p>Raccords photos :</p>
+<ul>
+  <li><a href="http://www.maison-astronomie.net/">Maison de l'astronomie</a></li>
+  <li><a href="http://www.europe-nikon.com/">Accessoires Nikon</a></li>
+  <li><a href="http://www.lensadapter.com/">LensPLus</a></li>
+  <li><a href="http://www.nextphoto.net/default.htm">NextPhoto</a></li>
+</ul>
+<p>Divers :</p>
+<ul>
+  <li><a href="http://www.photo-nette.com/glossaire.php">Vocabulaire photo</a></li>
+  <li><a href="http://astrosurf.com/buil/us/coolpix_raw/raw.htm">Le mode RAW</a></li>
+  <li><a href="http://e2500.narod.ru/coolpix.htm">Caract&eacute;ristiques des CoolPix</a></li>
+  <li><a href="http://www.astrosurf.com/astroscope/tips/tips_coolpix.htm">Trucs et astuces pour CoolPix</a></li>
+  <li><a href="http://www.salzgeber.at/articles/astrofocus/astrofocus.html">R&eacute;gler l'APN</a></li>
+</ul>
+<p>Logiciels pour le traitement d'images photo :</p>
+<ul>
+  <li><a href="http://www.takenet.or.jp/~ryuuji/minisoft/exifread/english/">ExifReader</a></li>
+  <li><a href="http://www.shortcourses.com/software/">Logiciels sp&eacute;cifiques</a></li>
+</ul>
+<p>Logiciels pour r&eacute;cup&eacute;rer des fichiers :</p>
+<ul>
+  <li><a href="http://www.pcinspector.de/file_recovery/fr/welcome.htm">PC inspector</a></li>
+</ul><br />
+</body>
+
+</html>

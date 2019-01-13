@@ -1,0 +1,191 @@
+#
+# Fichier : bddimages_define.cap
+# $Id: bddimages_define.cap 13886 2016-05-22 21:55:06Z jberthier $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+set caption(bddimages_define,main_title)     "BddImages - Modification des entêtes"
+set caption(bddimages_define,title)          "Modification des entêtes des images"
+set caption(bddimages_define,majCompat)      "Mise à jour compatibilité BddImages ?"
+set caption(bddimages_define,infoCompat)     "Ce choix permet d'assurer la compatibilité des images avec BddImages en ajoutant automatiquement les mots clés requiss."
+set caption(bddimages_define,addrule)        "Ajouter une règle"
+
+set caption(bddimages_define,toutes)         "toutes les"
+set caption(bddimages_define,nimporte)       "n'importe laquelle des"
+set caption(bddimages_define,elem)           "éléments"
+set caption(bddimages_define,alea)           "mode aléatoire"
+set caption(bddimages_define,dateobs)        "DATE-OBS"
+set caption(bddimages_define,telescope)      "Télescope"
+set caption(bddimages_define,plrecmod)       "le(s) plus récemment modifié(s)"
+set caption(bddimages_define,morecmod)       "le(s) moins récemment modifié(s)"
+set caption(bddimages_define,plrecajo)       "le(s) plus récemment ajouté(s)"
+set caption(bddimages_define,morecajo)       "le(s) moins récemment ajouté(s)"
+
+set caption(bddimages_define,ok)             "OK"
+set caption(bddimages_define,annuler)        "Annuler"
+set caption(bddimages_define,aide)           "Aide"
+
+
+
+
+
+set caption(bddimages_define,label_nbimg)    "Nb d'images au total :"
+set caption(bddimages_define,label_nbimgins) "Nb d'images insérées :"
+set caption(bddimages_define,label_nbimgerr) "Nb d'images en erreur :"
+set caption(bddimages_define,label_nbheader) "Nb de header :"
+
+set caption(bddimages_define,connect)        "Connexion à MySql"
+set caption(bddimages_define,inser)          "Insertion"
+set caption(bddimages_define,refresh)        "Rafraîchir"
+set caption(bddimages_define,lectentete)     "Lecture des en-têtes"
+set caption(bddimages_define,inserauto)      "Insertion continue"
+set caption(bddimages_define,inserall)       "Insérer tout"
+set caption(bddimages_define,fermer)         "Fermer"
+set caption(bddimages_define,selectall)      "Sélectionner tout"
+set caption(bddimages_define,voirimg)        "Voir l'image"
+set caption(bddimages_define,voirheader)     "Voir le header"
+set caption(bddimages_define,msg_erreur)     "Erreur"
+set caption(bddimages_define,msg_internet)   "Erreur connexion"
+
+# -- Colonnes de la table --
+set caption(bddimages_define,etat)           "Etat"
+set caption(bddimages_define,nom)            "Nom"
+set caption(bddimages_define,dateobs)        "Date"
+set caption(bddimages_define,telescope)      "Site"
+set caption(bddimages_define,taille)         "Taille"
+set caption(bddimages_define,erreur)         "Erreur"
+
+# -- ListBox --
+
+set caption(bddimages_define,contient)       "contient"
+set caption(bddimages_define,notcontient)    "ne contient pas"
+set caption(bddimages_define,voirvaleurs)    "voir valeurs"
+
+# -- Erreurs --
+set caption(bddimages_define,err0)           "Image insérée"
+set caption(bddimages_define,err1)           "Image existante dans la base"
+set caption(bddimages_define,err101)         "Création table images impossible"
+set caption(bddimages_define,err102)         ""
+set caption(bddimages_define,err103)         ""
+set caption(bddimages_define,err104)         ""
+set caption(bddimages_define,err105)         "Impossible de supprimer l'image dans incoming"
+set caption(bddimages_define,err205)         ""
+set caption(bddimages_define,err206)         "Création nouvelle table images_ impossible"
+
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+   set caption(bddimages_define,main_title)     "BddImages - Modification des entêtes"
+   set caption(bddimages_define,title)          "Modification des entêtes des images"
+   set caption(bddimages_define,majCompat)      "Mise à jour compatibilité BddImages ?"
+   set caption(bddimages_define,infoCompat)     "Ce choix permet d'assurer la compatibilité des images avec BddImages en ajoutant automatiquement les mots clés requis."
+   set caption(bddimages_define,addrule)        "Ajouter une règle"
+
+   set caption(bddimages_define,toutes)         "toutes les"
+   set caption(bddimages_define,nimporte)       "n'importe laquelle des"
+   set caption(bddimages_define,elem)           "éléments"
+   set caption(bddimages_define,alea)           "mode aléatoire"
+   set caption(bddimages_define,dateobs)        "DATE-OBS"
+   set caption(bddimages_define,telescope)      "Télescope"
+   set caption(bddimages_define,plrecmod)       "le(s) plus récemment modifié(s)"
+   set caption(bddimages_define,morecmod)       "le(s) moins récemment modifié(s)"
+   set caption(bddimages_define,plrecajo)       "le(s) plus récemment ajouté(s)"
+   set caption(bddimages_define,morecajo)       "le(s) moins récemment ajouté(s)"
+
+   set caption(bddimages_define,ok)             "OK"
+   set caption(bddimages_define,annuler)        "Annuler"
+   set caption(bddimages_define,aide)           "Aide"
+
+
+
+
+
+
+
+
+
+
+   set caption(bddimages_define,label_nbimg)    "Nb d'images au total :"
+   set caption(bddimages_define,label_nbimgins) "Nb d'images insérées :"
+   set caption(bddimages_define,label_nbimgerr) "Nb d'images en erreur :"
+   set caption(bddimages_define,label_nbheader) "Nb de header :"
+   
+   set caption(bddimages_define,connect)        "Connexion à MySql"
+   set caption(bddimages_define,inser)          "Insertion"
+   set caption(bddimages_define,refresh)        "Rafraîchir"
+   set caption(bddimages_define,lectentete)     "Lecture des en-têtes"
+   set caption(bddimages_define,inserauto)      "Insertion continue"
+   set caption(bddimages_define,inserall)       "Insérer tout"
+   set caption(bddimages_define,fermer)         "Fermer"
+   set caption(bddimages_define,selectall)      "Sélectionner tout"
+   set caption(bddimages_define,voirimg)        "Voir l'image"
+   set caption(bddimages_define,voirheader)     "Voir le header"
+   set caption(bddimages_define,msg_erreur)     "Erreur"
+   set caption(bddimages_define,msg_internet)   "Erreur connexion"
+   
+   # -- Colonnes de la table --
+   set caption(bddimages_define,etat)           "Etat"
+   set caption(bddimages_define,nom)            "Nom"
+   set caption(bddimages_define,dateobs)        "Date"
+   set caption(bddimages_define,telescope)      "Site"
+   set caption(bddimages_define,taille)         "Taille"
+   set caption(bddimages_define,erreur)         "Erreur"
+   
+   # -- ListBox --
+   
+   set caption(bddimages_define,contient)       "contient"
+   set caption(bddimages_define,notcontient)    "ne contient pas"
+   set caption(bddimages_define,voirvaleurs)    "voir valeurs"
+   
+   # -- Erreurs --
+   set caption(bddimages_define,err0)           "Image insérée"
+   set caption(bddimages_define,err1)           "Image existante dans la base"
+   set caption(bddimages_define,err101)         "Création table images impossible"
+   set caption(bddimages_define,err102)         ""
+   set caption(bddimages_define,err103)         ""
+   set caption(bddimages_define,err104)         ""
+   set caption(bddimages_define,err105)         "Impossible de supprimer l'image dans incoming"
+   set caption(bddimages_define,err205)         ""
+   set caption(bddimages_define,err206)         "Création nouvelle table images_ impossible"
+
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

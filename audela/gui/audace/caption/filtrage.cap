@@ -1,0 +1,115 @@
+#
+# Fichier : filtrage.cap
+# Mise a jour $Id: filtrage.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(filtrage,chargement)            "Loading File:"
+set caption(filtrage,fin_traitement)        "End of Processing."
+set caption(filtrage,pas_de_fichier)        "File Does Not Exist.\n"
+set caption(filtrage,charge_image)          "An image must be loaded.\n"
+set caption(filtrage,attention)             "Warning"
+set caption(filtrage,pas_image_memoire)     "No Image in Memory."
+set caption(filtrage,tracer)                "Please draw a square with your mouse."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(filtrage,chargement)         "Chargement du fichier :"
+   set caption(filtrage,fin_traitement)     "Fin du traitement."
+   set caption(filtrage,pas_de_fichier)     "Le fichier n'existe pas.\n"
+   set caption(filtrage,charge_image)       "Il faut charger une image.\n"
+   set caption(filtrage,attention)          "Attention"
+   set caption(filtrage,pas_image_memoire)  "Il n'y a pas d'image actuellement en mémoire."
+   set caption(filtrage,tracer)             "Veuillez tracer un cadre à la souris."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(filtrage,chargement)         "Caricamento del file:"
+   set caption(filtrage,fin_traitement)     "Fine del elaborazione."
+   set caption(filtrage,pas_de_fichier)     "Il file non esiste.\n"
+   set caption(filtrage,charge_image)       "Deve essere caricata un'immagine.\n"
+   set caption(filtrage,attention)          "Attenzione"
+   set caption(filtrage,pas_image_memoire)  "Nessuna immagine in memoria."
+   set caption(filtrage,tracer)             "Disegnare un quadrato con il mouse."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(filtrage,chargement)         "Cargando fichero:"
+   set caption(filtrage,fin_traitement)     "Fin de procesando."
+   set caption(filtrage,pas_de_fichier)     "El fichero no existe.\n"
+   set caption(filtrage,charge_image)       "Debe cargar una imagen.\n"
+   set caption(filtrage,attention)          "Aviso"
+   set caption(filtrage,pas_image_memoire)  "No existe una imágen cargada en la memoria."
+   set caption(filtrage,tracer)             "Porfavor, dibuje un recuadro con el ratón."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(filtrage,chargement)         "Datei laden:"
+   set caption(filtrage,fin_traitement)     "Aufbereitung Ende."
+   set caption(filtrage,pas_de_fichier)     "Die Datei existiert nicht.\n"
+   set caption(filtrage,charge_image)       "Ein Bild muss geladet sein.\n"
+   set caption(filtrage,attention)          "Achtung"
+   set caption(filtrage,pas_image_memoire)  "Es ist jetzt kein Bild im Speicher."
+   set caption(filtrage,tracer)             "Bitte, einen Rahmen mit der Mause zeichnen."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(filtrage,chargement)         "A carregar ficheiro:"
+   set caption(filtrage,fin_traitement)     "Fim do tratamento."
+   set caption(filtrage,pas_de_fichier)     "O Ficheiro Não Existe.\n"
+   set caption(filtrage,charge_image)       "É Necessário Carregar Uma Imagem.\n"
+   set caption(filtrage,attention)          "Aviso"
+   set caption(filtrage,pas_image_memoire)  "Sem Imagem em Memória."
+   set caption(filtrage,tracer)             "Por favor desenhe um quadrado com o rato."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(filtrage,chargement)         "Indlæs fil:"
+   set caption(filtrage,fin_traitement)     "Slut på processing."
+   set caption(filtrage,pas_de_fichier)     "Filen findes ikke.\n"
+   set caption(filtrage,charge_image)       "Et billede må indlæses.\n"
+   set caption(filtrage,attention)          "Advarsel"
+   set caption(filtrage,pas_image_memoire)  "Intet billede i memory."
+   set caption(filtrage,tracer)             "Tegn en ramme med musen."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(filtrage,chargement)         "Loading File:"
+   set caption(filtrage,fin_traitement)     "End of Processing."
+   set caption(filtrage,pas_de_fichier)     "File Does Not Exist.\n"
+   set caption(filtrage,charge_image)       "An image must be loaded.\n"
+   set caption(filtrage,attention)          "Warning"
+   set caption(filtrage,pas_image_memoire)  "No Image in Memory."
+   set caption(filtrage,tracer)             "Please draw a square with your mouse."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(filtrage,chargement)         "Loading File:"
+   set caption(filtrage,fin_traitement)     "End of Processing."
+   set caption(filtrage,pas_de_fichier)     "File Does Not Exist.\n"
+   set caption(filtrage,charge_image)       "An image must be loaded.\n"
+   set caption(filtrage,attention)          "Warning"
+   set caption(filtrage,pas_image_memoire)  "No Image in Memory."
+   set caption(filtrage,tracer)             "Please draw a square with your mouse."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

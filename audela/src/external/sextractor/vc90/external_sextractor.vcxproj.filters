@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{91f046b1-66c7-4d44-91ed-218fc1c51fe9}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat;for;f90</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{e8c79f89-8fcd-4304-974d-68d86fef3cbe}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;fi;fd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{d5c74f92-a1b4-45bc-b9b4-a56001b9f7f5}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\analyse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\assoc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\astrom.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\back.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\bpro.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\catout.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\wcs\cel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\check.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\clean.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\extract.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\field.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\filter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitsbody.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitscat.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitscheck.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitscleanup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitsconv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitshead.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitskey.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitsmisc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitsread.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitstab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitsutil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitswrite.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\flag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\graph.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\growth.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\image.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\interpolate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\wcs\lin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\makeit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\manobjlist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\misc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\neurro.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\pc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\photom.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\plist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\wcs\poly.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\prefs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\wcs\proj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\psf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\readimage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\refine.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\retina.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\scan.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\som.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\wcs\sph.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\wcs\tnx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\wcs\wcs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\wcs\wcstrig.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\weight.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\winpos.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\xml.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\assoc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\astrom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\back.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\bpro.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\wcs\cel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\check.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\clean.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\extract.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\field.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\filter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\fitscat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\flag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\growth.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\interpolate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\wcs\lin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\neurro.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\photom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\plist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\poly.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ssextractor-2.5.0\rc\prefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\wcs\proj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\psf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\retina.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\som.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\wcs\wcs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\wcs\wcstrig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\weight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,115 @@
+#
+# Fichier : serialport.cap
+# Mise a jour $Id: serialport.cap 9990 2013-08-18 17:29:05Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(serialport,titre)                "Serial Port"
+set caption(serialport,available)            "Serial Ports Available"
+set caption(serialport,used)                 "Used Serial Ports"
+set caption(serialport,refresh)              "Reload"
+set caption(serialport,port_exclus)          "COM port to be excluded (internal modem, etc.)"
+
+set caption(serialport,installNewVersion)    "Installation of library %s of plugin serialport v%s completed."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(serialport,titre)             "Port série"
+   set caption(serialport,available)         "Ports séries disponibles"
+   set caption(serialport,used)              "Ports séries utilisés"
+   set caption(serialport,refresh)           "Rafraîchir"
+   set caption(serialport,port_exclus)       "Port COM à exclure (modem interne, etc.)"
+
+   set caption(serialport,installNewVersion) "Fin de l'installation de la librairie %s du plugin serialport v%s."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(serialport,titre)             "Porta seriale"
+   set caption(serialport,available)         "Porte seriali disponibile"
+   set caption(serialport,used)              "Porte seriali utilizzate"
+   set caption(serialport,refresh)           "Rinfresca"
+   set caption(serialport,port_exclus)       "Porta COM da escludere (modem interno, ecc.)"
+
+   set caption(serialport,installNewVersion) "Installazione della libreria %s del plugin serialport v%s terminata."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(serialport,titre)             "Puerto serie"
+   set caption(serialport,available)         "Puertos serie disponibles"
+   set caption(serialport,used)              "Puertos serie utilizados"
+   set caption(serialport,refresh)           "Recargar"
+   set caption(serialport,port_exclus)       "Puerto COM a excluir (modem interno, etc.)"
+
+   set caption(serialport,installNewVersion) "Fin de la instalación de la libreria %s del plugin serialport v%s."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(serialport,titre)             "Serial Anschlüss"
+   set caption(serialport,available)         "Serial Anschlüssen verfügbar"
+   set caption(serialport,used)              "Serielle Schnittstelle"
+   set caption(serialport,refresh)           "Aktualisieren"
+   set caption(serialport,port_exclus)       "COM Port zu ausschließen (inneren Modem, etc.)"
+
+   set caption(serialport,installNewVersion) "Die Installation der Bibliothek %s ist vervollständigt der Plugin serialport v%s."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(serialport,titre)             "Porta série"
+   set caption(serialport,available)         "Portas série disponiveis"
+   set caption(serialport,used)              "Portas série utilizadas"
+   set caption(serialport,refresh)           "Actualizar"
+   set caption(serialport,port_exclus)       "Porta COM a excluir (modem interno, etc.)"
+
+   set caption(serialport,installNewVersion) "Instalação da livraria %s do plugin serialport v%s concluída."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(serialport,titre)             "Seriel port"
+   set caption(serialport,available)         "Serielle porte disponible"
+   set caption(serialport,used)              "Anvendte serielle porte"
+   set caption(serialport,refresh)           "Genindlæs"
+   set caption(serialport,port_exclus)       "COM-port som fravælges (indbygget modem osv.)"
+
+   set caption(serialport,installNewVersion) "Installation of library %s of plugin serialport v%s completed."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(serialport,titre)             "Serial Port"
+   set caption(serialport,available)         "Serial Ports Available"
+   set caption(serialport,used)              "Used Serial Ports"
+   set caption(serialport,refresh)           "Reload"
+   set caption(serialport,port_exclus)       "COM port to be excluded (internal modem, etc.)"
+
+   set caption(serialport,installNewVersion) "Installation of library %s of plugin serialport v%s completed."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(serialport,titre)             "Serial Port"
+   set caption(serialport,available)         "Serial Ports Available"
+   set caption(serialport,used)              "Used Serial Ports"
+   set caption(serialport,refresh)           "Reload"
+   set caption(serialport,port_exclus)       "COM port to be excluded (internal modem, etc.)"
+
+   set caption(serialport,installNewVersion) "Installation of library %s of plugin serialport v%s completed."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

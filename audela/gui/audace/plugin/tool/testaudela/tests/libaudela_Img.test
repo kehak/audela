@@ -1,0 +1,82 @@
+
+set visuNo 1
+set bufNo [confVisu::getBufNo $visuNo]
+
+set rep $::conf(testaudela,rep_images)
+
+#-------------------------------------------------------------------------------
+test libaudela_img_tcl1 {creation d'un buffer} { ignore } {
+   package require Img
+
+   set rep $::conf(testaudela,rep_images)
+   ##image create photo imageload -file $rep/47toucan.jpg
+   ##image create photo imageload -file $rep/hourglass.gif
+   ##image create photo imageload -file $rep/icone.png
+   image create photo imageload -file $rep/folder.png
+   set dataLength [string length [imageload data]]
+   set width [image width imageload]
+   set height [image height imageload]
+   console::disp "dataLength=$dataLength width=$width height=$height\n"
+   console::disp "data=[imageload data]\n"
+
+#  imageload write {$rep/aaa.gif} -format gif
+   image delete imageload
+} "$::conf(extension,defaut)"
+
+#-------------------------------------------------------------------------------
+test libaudela_img_buf1 {charge JPEG} { } {
+
+   buf$bufNo load [file join $::conf(testaudela,rep_images) 47toucan.jpg]
+   confVisu::autovisu $visuNo
+   update
+   ##after 2000
+   return ""
+} ""
+
+#-------------------------------------------------------------------------------
+test libaudela_img_buf1 {save JPEG couleur} { } {
+
+   buf$bufNo load [file join $::conf(testaudela,rep_images) 47toucan.jpg]
+   buf$bufNo save [file join $::audace(rep_images) aaa_color.jpg]
+   buf$bufNo load [file join $::audace(rep_images) aaa_color.jpg]
+   confVisu::autovisu $visuNo
+   update
+   after 1000
+   file delete [file join $::audace(rep_images) aaa_color.jpg]
+   return ""
+} ""
+
+#-------------------------------------------------------------------------------
+test libaudela_img_buf1 {save JPEG NB} { ignore } {
+
+   buf$bufNo load $rep/m57.fit
+   buf$bufNo save $rep/aaa_bw.jpg
+   buf$bufNo load $rep/aaa_bw.jpg
+   confVisu::autovisu $visuNo
+   update
+   after 2000
+   return ""
+} ""
+
+#-------------------------------------------------------------------------------
+test libaudela_img_save_gif {sauve gif} { ignore } {
+
+   buf$bufNo save $rep/aaa.gif
+   buf$bufNo load $rep/aaa.gif
+   confVisu::autovisu $visuNo
+   return ""
+} ""
+
+#-------------------------------------------------------------------------------
+test libaudela_img_save_gif {sauve png} { ignore } {
+
+   buf$bufNo load $rep/m57.fit
+   buf$bufNo save $rep/m57.png
+   confVisu::autovisu $visuNo
+   return ""
+} ""
+
+   #--- j'efface le buffer
+   loadima ""
+   after 300
+

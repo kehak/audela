@@ -1,0 +1,62 @@
+Rimae Alphonsus           14.0S   2.0W    80.0    44                                              Within crater of same name
+Rimae Apollonius          5.0N    53.0E   230.0                                                   Named from nearby crater
+Rimae Archimedes          26.6N   4.1W    169.0   22                                              Named from nearby crater
+Rimae Aristarchus         26.9N   47.5W   121.0   18  19                                          Named from nearby crater
+Rimae Arzachel            18.0S   2.0W    50.0    55                                              Within crater of same name
+Rimae Atlas               47.5N   43.6E   60.0    15                                              Within crater of same name
+Rimae Bode                10.0N   4.0W    70.0    33                                              Named from nearby crater
+Rimae Boscovich           9.8N    11.1E   40.0    34                                              Within crater of same name
+Rimae Bürg                44.5N   23.8E   147.0   14                                              Named from nearby crater
+Rimae Chacornac           29.0N   32.0E   120.0   14  25                                          Named from nearby crater
+Rimae Daniell             37.0N   26.0E   200.0   14                                              Named from nearby crater
+Rimae Darwin              19.3S   69.5W   143.0   50                                              Named from nearby crater
+Rimae de Gasparis         24.6S   51.1W   93.0    51                                              Named from nearby crater
+Rimae Doppelmayer         25.9S   45.1W   162.0   52                                              Named from nearby crater
+Rimae Focas               28.0S   98.0W   100.0                                                   Named from nearby crater
+Rimae Fresnel             28.0N   4.0E    90.0    22                                              Named from nearby crater
+Rimae Gassendi            18.0S   40.0W   70.0    52                                              Within crater of same name
+Rimae Gerard              46.0N   84.0W   100.0                                                   Named from nearby crater
+Rimae Goclenius           8.0S    43.0E   240.0   48                                              Named from nearby crater
+Rimae Golitsyn            25.1N   105.0W  36.0                                                    Part of Rimae Pettit
+Rimae Grimaldi            9.0N    64.0W   230.0   39                                              Named from nearby crater
+Rimae Gutenberg           5.0S    38.0E   330.0   47                                              Named from nearby crater
+Rimae Hase                29.4S   62.5E   83.0                                                    Named from nearby crater
+Rimae Herigonius          13.0S   37.0W   100.0                                                   Named from nearby crater
+Rimae Hevelius            1.0N    68.0W   182.0   28                                              Named from nearby crater
+Rimae Hippalus            25.5S   29.2W   191.0   52  53                                          Named from nearby crater
+Rimae Hypatia             0.4S    22.4E   206.0   46                                              Named from nearby crater
+Rimae Janssen             45.6S   40.0E   114.0   67                                              Within crater of same name
+Rimae Kopff               17.4S   89.6W   41.0                                                    Named from nearby crater
+Rimae Liebig              20.0S   45.0W   140.0                                                   Named from nearby crater
+Rimae Littrow             22.1N   29.9E   115.0   25                                              Named from nearby crater
+Rimae MacLear             13.0N   20.0E   110.0   35                                              Named from nearby crater
+Rimae Maestlin            2.0N    40.0W   80.0    29                                              Named from nearby crater
+Rimae Maupertuis          52.0N   23.0W   60.0    3                                               Named from nearby crater
+Rimae Menelaus            17.2N   17.9E   131.0   24                                              Named from nearby crater
+Rimae Mersenius           21.5S   49.2W   84.0    51                                              Named from nearby crater
+Rimae Opelt               13.0S   18.0W   70.0    42                                              Named from nearby crater
+Rimae Palmieri            28.0S   47.0W   150.0   51                                              Named from nearby crater
+Rimae Parry               6.1S    16.8W   82.0    42  43                                          Named from nearby crater
+Rimae Petavius            25.9S   58.9E   80.0    59                                              Within crater of same name
+Rimae Pettit              23.0S   92.0W   450.0                                                   Named from nearby crater
+Rimae Pitatus             28.5S   13.8W   94.0    54                                              Within crater of same name
+Rimae Plato               52.9N   3.2W    87.0    4                                               Named from nearby crater
+Rimae Plinius             17.9N   23.6E   124.0   24                                              Named from nearby crater
+Rimae Posidonius          32.0N   28.7E   70.0    14                                              Within crater of same name
+Rimae Prinz               27.0N   43.0W   80.0    19                                              Named from nearby crater
+Rimae Ramsden             33.9S   31.4W   108.0   63                                              Named from nearby crater
+Rimae Repsold             50.6N   81.7W   166.0   1                                       I       Named from nearby crater
+Rimae Riccioli            2.0N    74.0W   400.0   39                                              Named from nearby crater
+Rimae Ritter              3.0N    18.0E   100.0   35                                              Named from nearby crater
+Rimae Römer               27.0N   35.0E   110.0   25                                              Named from nearby crater
+Rimae Secchi              1.0N    44.0E   35.0    37                                              Named from nearby crater
+Rimae Sirsalis            15.7S   61.7W   426.0   39  50                                          Named from nearby crater
+Rimae Sosigenes           8.6N    18.7E   190.0   35                                              Named from nearby crater
+Rimae Stadius             10.5N   13.7W   69.0                                                    A Catena, not a Rima
+Rimae Sulpicius Gallus    21.0N   10.0E   90.0    23                                              Named from nearby crater
+Rimae Taruntius           5.5N    46.5E   25.0                                                    Within crater of same name
+Rimae Theaetetus          33.0N   6.0E    50.0    12                                              Named from nearby crater
+Rimae Triesnecker         4.3N    4.6E    215.0   33  34                                          Named from nearby crater
+Rimae Vasco da Gama       10.0N   82.0W   60.0                                                    Named from nearby crater
+Rimae Zupus               15.0S   53.0W   120.0   51                                              Named from nearby crater
+Voskresenskiy             28.0N   88.1W   49.0                                                    Leonid A.; Soviet rocketry scientist (1913-1965)

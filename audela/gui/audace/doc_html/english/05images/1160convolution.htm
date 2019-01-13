@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <title>Convolution</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="generator" content="Geany 0.18">
+</head>
+<body>
+<p class="date">Update: 08 January 2010</p>
+<h1>Convolution</h1>
+<p>The input images are processed into an output images through a <b>convolution</b>
+operator.</p>
+<p>If both input images do not have the same size, the smaller one
+should be entirely contained into the biggest, i.e. <b>both</b>
+dimensions of the smallest should be inferior to the dimensions of the
+biggest.</p>
+<p>The input image #2 plays the role of a convolution kernel, i.e. the
+convolution result is spatially shifted by a number of pixels that is
+the half if the width and the height of the image #2. This makes the
+result does not obey the causality law, but patterns of image #1 are
+kept in place.<br>
+</p>
+<p>The result of the convolution processing will be displayed and saved
+in the
+current image directory as "<span style="font-style: italic;">convolution.fit</span>".
+<span style="text-decoration: underline;">If there were a file with the
+very same name, its content will be overridden</span>.</p>
+<p>The output image is encoded in a floating point format. Its dynamic
+range is the same as the first input image, i.e. the extrema pixels
+values are unchanged.</p>
+</body>
+</html>

@@ -1,0 +1,394 @@
+#
+# Fichier : aud_menu_1.cap
+# Mise a jour $Id: aud_menu_1.cap 12754 2016-01-20 19:02:12Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(audace,menu,file)                "File"
+set caption(audace,menu,charger)             "Open"
+set caption(audace,menu,enregistrer)         "Save"
+set caption(audace,menu,enregistrer_sous)    "Save as"
+set caption(audace,menu,entete)              "FITS Header"
+set caption(audace,menu,nouveau_script)      "New Script"
+set caption(audace,menu,editer_script)       "Edit a script"
+set caption(audace,menu,lancer_script)       "Run a script"
+set caption(audace,menu,quitter)             "Exit"
+
+set caption(audace,pas_ouvrir_fichier)       "Cannot open file:"
+set caption(audace,fermeture_impossible)     "Aud'ACE cannot be stopped because of an on-going action in the tool: %s"
+set caption(audace,traitement_en-cours_1)    "# Des traitements sont en cours dans :"
+set caption(audace,traitement_en-cours_2)    "# Voulez-vous quitter néanmoins ?"
+
+set caption(audace,console_gagne)            "Access OK"
+set caption(audace,console_annule)           "Cancelled"
+set caption(audace,console_rate)             "Access not possible"
+
+set caption(audace,script)                   "Program"
+set caption(audace,boite_erreur)             "Error"
+set caption(audace,2points)                  ":"
+set caption(audace,script_termine)           "Completed"
+
+set caption(audace,enregistrer_config_1)     "Save new setup before quitting?"
+set caption(audace,enregistrer_config_2)     "(Press 'Cancel' to return to Aud'ACE)"
+set caption(audace,enregistrer_config_3)     "Save setup?"
+set caption(audace,enregistrer_config_4)     "Setup saving not required."
+set caption(audace,attention)                "Warning"
+set caption(audace,quitter)                  "Do you really want to exit?"
+
+set caption(newscript,pas_de_nom)            "noname.tcl"
+set caption(newscript,nouveau_script)        "New Script"
+set caption(newscript,parcourir)             "..."
+set caption(newscript,nom_script)            "File Name"
+set caption(newscript,ok)                    "OK"
+set caption(newscript,annuler)               "Cancel"
+set caption(newscript,aide)                  "Help"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(audace,menu,file)             "Fichier"
+   set caption(audace,menu,charger)          "Ouvrir"
+   set caption(audace,menu,enregistrer)      "Enregistrer"
+   set caption(audace,menu,enregistrer_sous) "Enregistrer sous"
+   set caption(audace,menu,entete)           "En-tête FITS"
+   set caption(audace,menu,nouveau_script)   "Nouveau script"
+   set caption(audace,menu,editer_script)    "Editer un script"
+   set caption(audace,menu,lancer_script)    "Lancer un script"
+   set caption(audace,menu,quitter)          "Quitter"
+
+   set caption(audace,pas_ouvrir_fichier)    "Impossible d'ouvrir le fichier :"
+   set caption(audace,fermeture_impossible)  "Impossible d'arrêter Aud'ACE car une opération est en cours dans l'outil : %s"
+   set caption(audace,traitement_en-cours_1) "Des traitements sont en cours dans :"
+   set caption(audace,traitement_en-cours_2) "Voulez-vous quitter néanmoins ?"
+
+   set caption(audace,console_gagne)         "Accès réussi"
+   set caption(audace,console_annule)        "Annulé"
+   set caption(audace,console_rate)          "Accès non possible"
+
+   set caption(audace,script)                "Programme"
+   set caption(audace,boite_erreur)          "Erreur"
+   set caption(audace,2points)               ":"
+   set caption(audace,script_termine)        "Terminé"
+
+   set caption(audace,enregistrer_config_1)  "Voulez-vous enregistrer la nouvelle configuration de Aud'ACE avant de quitter ?"
+   set caption(audace,enregistrer_config_2)  "(Appuyer sur 'Annuler' pour retourner à Aude'ACE)"
+   set caption(audace,enregistrer_config_3)  "Enregistrer la configuration ?"
+   set caption(audace,enregistrer_config_4)  "Pas d'enregistrement de configuration nécessaire."
+   set caption(audace,attention)             "Attention"
+   set caption(audace,quitter)               "Voulez-vous quitter ?"
+
+   set caption(newscript,pas_de_nom)         "noname.tcl"
+   set caption(newscript,nouveau_script)     "Nouveau script"
+   set caption(newscript,parcourir)          "..."
+   set caption(newscript,nom_script)         "Nom du fichier"
+   set caption(newscript,ok)                 "OK"
+   set caption(newscript,annuler)            "Annuler"
+   set caption(newscript,aide)               "Aide"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(audace,menu,file)             "File"
+   set caption(audace,menu,charger)          "Aprire"
+   set caption(audace,menu,enregistrer)      "Salvare"
+   set caption(audace,menu,enregistrer_sous) "Salvare come"
+   set caption(audace,menu,entete)           "Intestazione FITS"
+   set caption(audace,menu,nouveau_script)   "Nuovo script"
+   set caption(audace,menu,editer_script)    "Edita uno script"
+   set caption(audace,menu,lancer_script)    "Esegui uno script"
+   set caption(audace,menu,quitter)          "Esci"
+
+   set caption(audace,pas_ouvrir_fichier)    "Impossibile aprire il file:"
+   set caption(audace,fermeture_impossible)  "Impossibile arrestare Aud'ACE a causa di una operazione in corso nella utility: %s"
+   set caption(audace,traitement_en-cours_1) "# Des traitements sont en cours dans :"
+   set caption(audace,traitement_en-cours_2) "# Voulez-vous quitter néanmoins ?"
+
+   set caption(audace,console_gagne)         "Accesso riuscito"
+   set caption(audace,console_annule)        "Cancellato"
+   set caption(audace,console_rate)          "Accesso non possibile"
+
+   set caption(audace,script)                "Programma"
+   set caption(audace,boite_erreur)          "Errore"
+   set caption(audace,2points)               ":"
+   set caption(audace,script_termine)        "Completato"
+
+   set caption(audace,enregistrer_config_1)  "Volete salvare questa configurazione prima di uscire?"
+   set caption(audace,enregistrer_config_2)  "(Premere 'Cancella' per tornare ad Aud'ACE)"
+   set caption(audace,enregistrer_config_3)  "Salvare la configurazione?"
+   set caption(audace,enregistrer_config_4)  "Non e` richiesto il salvataggio della configurazione."
+   set caption(audace,attention)             "Attenzione"
+   set caption(audace,quitter)               "Vuoi veramente terminare?"
+
+   set caption(newscript,pas_de_nom)         "noname.tcl"
+   set caption(newscript,nouveau_script)     "Nuovo script"
+   set caption(newscript,parcourir)          "..."
+   set caption(newscript,nom_script)         "Nome file"
+   set caption(newscript,ok)                 "OK"
+   set caption(newscript,annuler)            "Cancellare"
+   set caption(newscript,aide)               "Aiuto"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(audace,menu,file)             "Fichero"
+   set caption(audace,menu,charger)          "Abrir"
+   set caption(audace,menu,enregistrer)      "Guardar"
+   set caption(audace,menu,enregistrer_sous) "Guardar como"
+   set caption(audace,menu,entete)           "Cabecera FITS"
+   set caption(audace,menu,nouveau_script)   "Nuevo script"
+   set caption(audace,menu,editer_script)    "Editar un script"
+   set caption(audace,menu,lancer_script)    "Ejecutar un script"
+   set caption(audace,menu,quitter)          "Salir"
+
+   set caption(audace,pas_ouvrir_fichier)    "No se puede abrir fichero:"
+   set caption(audace,fermeture_impossible)  "Imposible detener Aud'ACE debido a una operción en curso en la herramienta: %s"
+   set caption(audace,traitement_en-cours_1) "# Des traitements sont en cours dans :"
+   set caption(audace,traitement_en-cours_2) "# Voulez-vous quitter néanmoins ?"
+
+   set caption(audace,console_gagne)         "Acceso correcto"
+   set caption(audace,console_annule)        "Cancelado"
+   set caption(audace,console_rate)          "El acceso no es posible"
+
+   set caption(audace,script)                "Programa"
+   set caption(audace,boite_erreur)          "Error"
+   set caption(audace,2points)               ":"
+   set caption(audace,script_termine)        "Completado"
+
+   set caption(audace,enregistrer_config_1)  "¿ Guardar las nuevas preferencias antes de salir ?"
+   set caption(audace,enregistrer_config_2)  "(Pulsar 'Cancel' para volver a Aud'ACE)"
+   set caption(audace,enregistrer_config_3)  "¿ Guardar preferencias ?"
+   set caption(audace,enregistrer_config_4)  "No hace falta guardar las preferencias."
+   set caption(audace,attention)             "Aviso"
+   set caption(audace,quitter)               "¿ Desea realmente salir ?"
+
+   set caption(newscript,pas_de_nom)         "noname.tcl"
+   set caption(newscript,nouveau_script)     "Nuevo script"
+   set caption(newscript,parcourir)          "..."
+   set caption(newscript,nom_script)         "Nombre de fichero"
+   set caption(newscript,ok)                 "OK"
+   set caption(newscript,annuler)            "Cancelar"
+   set caption(newscript,aide)               "Ayuda"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(audace,menu,file)             "Datei"
+   set caption(audace,menu,charger)          "Öffnen"
+   set caption(audace,menu,enregistrer)      "Speichern"
+   set caption(audace,menu,enregistrer_sous) "Speichern mit"
+   set caption(audace,menu,entete)           "FITS Header"
+   set caption(audace,menu,nouveau_script)   "Neuen Skript"
+   set caption(audace,menu,editer_script)    "Ein Skript editieren"
+   set caption(audace,menu,lancer_script)    "Ein Skript ausführen"
+   set caption(audace,menu,quitter)          "Programm beenden"
+
+   set caption(audace,pas_ouvrir_fichier)    "Es ist unmöglich die Datei zu öffnen:"
+   set caption(audace,fermeture_impossible)  "Unmöglich Aud’ACE zu beenden weil eine Aktion im %s Werkzeug an ist."
+   set caption(audace,traitement_en-cours_1) "# Des traitements sont en cours dans :"
+   set caption(audace,traitement_en-cours_2) "# Voulez-vous quitter néanmoins ?"
+
+   set caption(audace,console_gagne)         "Zugriff gelungen"
+   set caption(audace,console_annule)        "Annulliert"
+   set caption(audace,console_rate)          "Unmöglichen Zugang"
+
+   set caption(audace,script)                "Programm"
+   set caption(audace,boite_erreur)          "Irrtum"
+   set caption(audace,2points)               ":"
+   set caption(audace,script_termine)        "Beendet"
+
+   set caption(audace,enregistrer_config_1)  "Wollen sie die neue Aude'ACE Gestalt bevor beenden speichern?"
+   set caption(audace,enregistrer_config_2)  "(Auf 'Annullieren' drücken um zu Aude'ACE zurückgehen)"
+   set caption(audace,enregistrer_config_3)  "Gestalt speichern ?"
+   set caption(audace,enregistrer_config_4)  "Keine Gestalt Speicherung notwendig."
+   set caption(audace,attention)             "Achtung"
+   set caption(audace,quitter)               "Wollen sie beenden ?"
+
+   set caption(newscript,pas_de_nom)         "noname.tcl"
+   set caption(newscript,nouveau_script)     "Neuen Skript"
+   set caption(newscript,parcourir)          "..."
+   set caption(newscript,nom_script)         "Dateien Namen"
+   set caption(newscript,ok)                 "OK"
+   set caption(newscript,annuler)            "Annullieren"
+   set caption(newscript,aide)               "Hilfe"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(audace,menu,file)             "Ficheiro"
+   set caption(audace,menu,charger)          "Abrir"
+   set caption(audace,menu,enregistrer)      "Guardar"
+   set caption(audace,menu,enregistrer_sous) "Guardar como"
+   set caption(audace,menu,entete)           "Cabeçalho FITS"
+   set caption(audace,menu,nouveau_script)   "Novo Script"
+   set caption(audace,menu,editer_script)    "Editar um script"
+   set caption(audace,menu,lancer_script)    "Executar um script"
+   set caption(audace,menu,quitter)          "Sair"
+
+   set caption(audace,pas_ouvrir_fichier)    "Impossível abrir ficheiro:"
+   set caption(audace,fermeture_impossible)  "Impossível parar Aud'ACE devido a uma operação em curso na ferramenta: %s"
+   set caption(audace,traitement_en-cours_1) "# Des traitements sont en cours dans :"
+   set caption(audace,traitement_en-cours_2) "# Voulez-vous quitter néanmoins ?"
+
+   set caption(audace,console_gagne)         "Acesso OK"
+   set caption(audace,console_annule)        "Cancelado"
+   set caption(audace,console_rate)          "O acesso não é possivel"
+
+   set caption(audace,script)                "Programa"
+   set caption(audace,boite_erreur)          "Erro"
+   set caption(audace,2points)               ":"
+   set caption(audace,script_termine)        "Terminado"
+
+   set caption(audace,enregistrer_config_1)  "Guardar nova configuração antes de sair?"
+   set caption(audace,enregistrer_config_2)  "(Prima 'Cancelar' para voltar ao Aud'ACE)"
+   set caption(audace,enregistrer_config_3)  "Guardar configuração?"
+   set caption(audace,enregistrer_config_4)  "Não é necessário guardar configuração."
+   set caption(audace,attention)             "Aviso"
+   set caption(audace,quitter)               "Tem a certeza que pretende sair?"
+
+   set caption(newscript,pas_de_nom)         "noname.tcl"
+   set caption(newscript,nouveau_script)     "Novo Script"
+   set caption(newscript,parcourir)          "..."
+   set caption(newscript,nom_script)         "Nome do Ficheiro"
+   set caption(newscript,ok)                 "OK"
+   set caption(newscript,annuler)            "Cancelar"
+   set caption(newscript,aide)               "Ajuda"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(audace,menu,file)             "Fil"
+   set caption(audace,menu,charger)          "Åbn"
+   set caption(audace,menu,enregistrer)      "Gem"
+   set caption(audace,menu,enregistrer_sous) "Gem som"
+   set caption(audace,menu,entete)           "FITS Header"
+   set caption(audace,menu,nouveau_script)   "Ny skript"
+   set caption(audace,menu,editer_script)    "Rediger en skript"
+   set caption(audace,menu,lancer_script)    "Kør en skript"
+   set caption(audace,menu,quitter)          "Afbryd"
+
+   set caption(audace,pas_ouvrir_fichier)    "Fil kan ikke åbnes:"
+   set caption(audace,fermeture_impossible)  "Aud'ACE kan ikke afsluttes, da anden proces kører i værktøjet: %s"
+   set caption(audace,traitement_en-cours_1) "# Des traitements sont en cours dans :"
+   set caption(audace,traitement_en-cours_2) "# Voulez-vous quitter néanmoins ?"
+
+   set caption(audace,console_gagne)         "Adgang: OK!"
+   set caption(audace,console_annule)        "Annulleret"
+   set caption(audace,console_rate)          "Ingen adgang"
+
+   set caption(audace,script)                "Program"
+   set caption(audace,boite_erreur)          "Fejl"
+   set caption(audace,2points)               ":"
+   set caption(audace,script_termine)        "Udført"
+
+   set caption(audace,enregistrer_config_1)  "Gem ny opsætning før afslutning?"
+   set caption(audace,enregistrer_config_2)  "(Tryk 'Annuller' for at vende tilbage til Aud'ACE)"
+   set caption(audace,enregistrer_config_3)  "Gem opsætning?"
+   set caption(audace,enregistrer_config_4)  "Gem opsætning - Er ikke nødvendig."
+   set caption(audace,attention)             "Advarsel"
+   set caption(audace,quitter)               "Ønsker du virkelig at afslutte?"
+
+   set caption(newscript,pas_de_nom)         "noname.tcl"
+   set caption(newscript,nouveau_script)     "Ny skript"
+   set caption(newscript,parcourir)          "..."
+   set caption(newscript,nom_script)         "Filnavn"
+   set caption(newscript,ok)                 "OK"
+   set caption(newscript,annuler)            "Annuller"
+   set caption(newscript,aide)               "Hjælp"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(audace,menu,file)             "Файл"
+   set caption(audace,menu,charger)          "Відкрити"
+   set caption(audace,menu,enregistrer)      "Зберегти"
+   set caption(audace,menu,enregistrer_sous) "Зберегти як"
+   set caption(audace,menu,entete)           "Заголовок FITS"
+   set caption(audace,menu,nouveau_script)   "Новий скрипт"
+   set caption(audace,menu,editer_script)    "Редагувати скрипт"
+   set caption(audace,menu,lancer_script)    "Запустити скрипт"
+   set caption(audace,menu,quitter)          "Вийти"
+
+   set caption(audace,pas_ouvrir_fichier)    "Не можу відкрити файл:"
+   set caption(audace,fermeture_impossible)  "Aud'ACE не може бути зупинено через поточну діяльність інструмента: %s"
+   set caption(audace,traitement_en-cours_1) "# Des traitements sont en cours dans :"
+   set caption(audace,traitement_en-cours_2) "# Voulez-vous quitter néanmoins ?"
+
+   set caption(audace,console_gagne)         "Є доступ"
+   set caption(audace,console_annule)        "Скасовано"
+   set caption(audace,console_rate)          "Доступ неможливий"
+
+   set caption(audace,script)                "Програма"
+   set caption(audace,boite_erreur)          "Помилка"
+   set caption(audace,2points)               ":"
+   set caption(audace,script_termine)        "Завершено"
+
+   set caption(audace,enregistrer_config_1)  "Зберегти нові налаштування перед виходом?"
+   set caption(audace,enregistrer_config_2)  "(Натисніть 'Скасувати' для повернення до Aud'ACE)"
+   set caption(audace,enregistrer_config_3)  "Зберегти налаштування?"
+   set caption(audace,enregistrer_config_4)  "Збереження налаштування не потрібне."
+   set caption(audace,attention)             "Увага"
+   set caption(audace,quitter)               "Ви дійсно хочете вийти?"
+
+   set caption(newscript,pas_de_nom)         "noname.tcl"
+   set caption(newscript,nouveau_script)     "Новий скрипт"
+   set caption(newscript,parcourir)          "..."
+   set caption(newscript,nom_script)         "Назва файлу"
+   set caption(newscript,ok)                 "Гаразд"
+   set caption(newscript,annuler)            "Скасувати"
+   set caption(newscript,aide)               "Допомога"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(audace,menu,file)             "Файл"
+   set caption(audace,menu,charger)          "Открыть"
+   set caption(audace,menu,enregistrer)      "Сохранить"
+   set caption(audace,menu,enregistrer_sous) "Сохранить как"
+   set caption(audace,menu,entete)           "Оглавление FITS"
+   set caption(audace,menu,nouveau_script)   "Новый скрипт"
+   set caption(audace,menu,editer_script)    "Редактировать скрипт"
+   set caption(audace,menu,lancer_script)    "Запустить скрипт"
+   set caption(audace,menu,quitter)          "Выход"
+
+   set caption(audace,pas_ouvrir_fichier)    "Не могу открыть файл:"
+   set caption(audace,fermeture_impossible)  "Aud'ACE не может быть остановлена из-за процессов в инструменте: %s"
+   set caption(audace,traitement_en-cours_1) "# Des traitements sont en cours dans :"
+   set caption(audace,traitement_en-cours_2) "# Voulez-vous quitter néanmoins ?"
+
+   set caption(audace,console_gagne)         "Доступ есть"
+   set caption(audace,console_annule)        "Отменено"
+   set caption(audace,console_rate)          "Доступ невозможен"
+
+   set caption(audace,script)                "Программа"
+   set caption(audace,boite_erreur)          "Ошибка"
+   set caption(audace,2points)               ":"
+   set caption(audace,script_termine)        "Завершено"
+
+   set caption(audace,enregistrer_config_1)  "Сохранить новые настройки перед выходом?"
+   set caption(audace,enregistrer_config_2)  "(Нажмите 'Отмена' для возврата к Aud'ACE)"
+   set caption(audace,enregistrer_config_3)  "Сохранить настройки?"
+   set caption(audace,enregistrer_config_4)  "Сохранение настроек не требуется."
+   set caption(audace,attention)             "Внимание"
+   set caption(audace,quitter)               "Вы действительно хотите выйти?"
+
+   set caption(newscript,pas_de_nom)         "noname.tcl"
+   set caption(newscript,nouveau_script)     "Новый скрипт"
+   set caption(newscript,parcourir)          "..."
+   set caption(newscript,nom_script)         "Название файла"
+   set caption(newscript,ok)                 "OK"
+   set caption(newscript,annuler)            "Отмена"
+   set caption(newscript,aide)               "Помощь"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

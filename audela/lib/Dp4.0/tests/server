@@ -1,0 +1,39 @@
+if {[lindex $argv 0] == "1"} {
+    load ../win/dp40.dll
+} else {
+    load ../unix/libdp40[info sharedlibextension]
+}
+
+source ../library/dp_atexit.tcl
+source ../library/dp_atclose.tcl
+source ../library/rpc.tcl
+source ../library/acl.tcl
+
+set s [dp_MakeRPCServer [lindex $argv 1]]
+if {[string match tcp* $s]} {
+
+set outFile stderr
+proc DebugOn {str} {
+    global outFile
+    traceProc $str "PrintTrace $outFile"
+}
+
+proc PrintTrace {f traceId level args} {
+    set fmtstr "%[set level]s"
+    set argstr [format %s $args]
+    if {[string length $argstr] > 60} {
+	set argstr "[string range $argstr 0 60] ..."
+    }
+    set cr [string first "\n" $argstr]
+    if {$cr != -1} {
+	incr cr -1
+	set argstr "[string range $argstr 0 $cr] ..."
+    }
+    puts $f "[format $fmtstr ""] $argstr"
+}
+vwait forever
+
+} else {
+    puts stdout "Error creating test RPC server"
+}
+

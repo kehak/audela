@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>RobObs - Outil d'observations robotiques</title>
+  <meta content="A. Klotz" name="author" />
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour :&nbsp;6 novembre 2011</p>
+<h1>RobObs - Observations robotiques </h1>
+<h3>1) Introduction </h3>
+<blockquote>
+  <p>L'observation robotique permet d'obtenir des mesures astronomiques
+avec un rendement tr&egrave;s &eacute;lev&eacute;. L'observatoire
+fonctionne sans la pr&eacute;sence de l'astronome, ce qui donne une
+importance particuli&egrave;re au logiciel qui doit assurer une grande
+fiabilit&eacute;.<br />
+On peut ainsi se lancer dans des programmes scientifiques qui exigent
+un tr&egrave;s grand nombre d'observations. Pour avoir un grand
+rendemment, le traitement&nbsp;d'image est effectu&eacute;
+automatiquement juste apr&egrave;s les acquisitions. Enfin, une analyse
+automatique permet aussi de r&eacute;duire les donn&eacute;es de
+fa&ccedil;on &agrave; obtenir des r&eacute;sultats format&eacute;s pour
+&ecirc;tre exploit&eacute;s directement par les astronomes (courbe de
+lumi&egrave;re par exemple).&nbsp;</p>
+  <p>Ainsi, l'astronome donne une liste de cibles et une
+strat&eacute;gie d'observation avant la nuit, l'observatoire robotique
+fonctionne de fa&ccedil;on autonome et fournit des fichiers de
+r&eacute;sultats &agrave; l'astronome le lendemain matin.</p>
+  <p>L'outil RobObs sert &agrave; piloter un observatoire robotique. Le
+script a &eacute;t&eacute; &eacute;crit &agrave; partir de
+l'exp&eacute;rience acquise de l'utilisation de AudeLA pour piloter les
+observatoires robotiques TAROT (http://tarot.obs-hp.fr). TAROT consiste
+en deux t&eacute;lescopes robotiques de 25 cm qui ont
+g&eacute;n&eacute;r&eacute; plus d'un million d'images en dix ans
+d'observation. Les t&eacute;lescopes TAROT ont notamment
+effectu&eacute; le suivi d'une centaine de sursauts gamma, plus de 7000
+courbes de lumi&egrave;res d'&eacute;toiles pulsantes,
+d&eacute;couverts 4 supernovae, mesur&eacute;s&nbsp;une trentaine
+d'occultations stellaires par des ast&eacute;ro&iuml;des&nbsp;et
+particip&eacute;s &agrave; de nombreuses campagnes d'observations
+diverses (novae, satellites, etc.).</p>
+  <p>Un observatoire pilot&eacute; par l'outil RoboObs comprend au
+minimum un t&eacute;lescope &eacute;quip&eacute; d'un pointage
+informatis&eacute;&nbsp;et d'une cam&eacute;ra num&eacute;rique
+support&eacute;s par AudeLA. N&eacute;anmoins, un mode de simulation
+permet d'utiliser RobObs sans avoir de t&eacute;lescope ni de
+cam&eacute;ra.</p>
+Il est utile d'assurer la s&eacute;curit&eacute; du t&eacute;lescope
+aux intemp&eacute;ries en &eacute;quipant l'observatoire robotique d'un
+syst&egrave;me de protection pilotable par ordinateur (coupole ou toit
+r&eacute;tractable). Enfin, l'emploi d'une station m&eacute;t&eacute;o
+ou d'un d&eacute;tecteur de nuages ou encore d'un capteur de pluie,
+permet de d&eacute;clencher la s&eacute;curit&eacute; de protection du
+t&eacute;lescope. Le logiciel AudeLA g&egrave;re d&eacute;j&agrave; la
+lecture de donn&eacute;es de certains capteurs
+m&eacute;t&eacute;orologiques (AAG, WXT 520 Vaisala, Vantage Pro,
+Lacrosse). En revanche, AudeLA ne pilote pas directement
+l'ouverture/fermeture des syst&egrave;mes de protection mais petite une
+adaptation du code de RobObs permet de le faire (cf. paragraphe TBW).<br />
+  <br />
+L'ordre des observations &agrave; effectuer est g&eacute;r&eacute; par
+un algorithme propre &agrave; l'outil RobObs. La strat&eacute;gie de
+choix des cibles &agrave; observer d&eacute;pend du th&egrave;me
+d'observation. Une s&eacute;rie de th&egrave;mes a &eacute;t&eacute;
+programm&eacute;e dans RobObs. Au prix d'une adaptation personnelle du
+code, RobObs peut ajouter n'importe quel type de strat&eacute;gie (cf.
+paragraphe TBW).<br />
+  <br />
+A la fin de chaque acquisition d'image, RobObs peut effectuer les
+corrections de dark, flat et cosm&eacute;tiques sur les images. De
+plus, RobObs effectue la&nbsp;calibration&nbsp;astrom&eacute;trie des
+images (ajout des mots cl&eacute; WCS). Enfin, un outil d'analyse
+automatique des images permet de mesurer l'&eacute;clat d'objets
+pr&eacute;s&eacute;lectionn&eacute;s.</blockquote>
+<h3>2) Param&eacute;trages </h3>
+<blockquote>
+  <p>Avant de lancer une observation robotique, il faut d&eacute;finir
+les param&egrave;tres de l'observatoire (monture, optique, imageur,
+etc.). Le remplissage consciencieux de ces param&egrave;tres permet de
+fiabiliser les observations. Ces param&egrave;tres restent valables de
+nuit en nuit.&nbsp;</p>
+  <p> Cliquer sur le bouton [Configuration].</p>
+</blockquote>
+<h3>3) Planification </h3>
+<blockquote>
+  <p>La planification permet de choisir la strat&eacute;gie
+d'observation au cours de la nuit.</p>
+  <p>Cliquer sur le bouton [Planification]</p>
+  <p>Les strat&eacute;gies actuellement programm&eacute;es sont les
+suivantes :</p>
+  <ul>
+    <li>Toujours au m&eacute;ridien</li>
+    <li>VTT RRLyr</li>
+    <li>Searching for supernovae</li>
+    <li>Courbes de lumi&egrave;res d'&eacute;toiles variables</li>
+    <li>Courbes de lumi&egrave;res d'ast&eacute;ro&iuml;des</li>
+    <li>Recherche d'ast&eacute;ro&iuml;des</li>
+  </ul>
+Une option permet de mettre en route le suivi d'alertes de sursauts
+gamma...</blockquote>
+<h3>4) Acquisitions</h3>
+<blockquote>
+  <p>L'acquisition consiste &agrave; effectuer une boucle sur des
+&eacute;tapes &agrave; effectuer s&eacute;quentiellement toute la nuit.
+Voici la liste des &eacute;tapes qui sont effectu&eacute;es au cours
+d'un tour de boucle:</p>
+  <ul>
+    <li>load_config : Charge la configuration de l'observatoire
+robotique</li>
+    <li>check_night :&nbsp;Calcule s'il fait jour ou s'il fait nuit</li>
+    <li>check_camera : Verifie si la camera est connectee ou non. Si
+aucune camera n'est definie alors RobObs generera des images simulees
+au cours de l'acquisition</li>
+    <li>check_telescope : Verifie si le telescope est connectee ou non.
+Si aucun telescope n'est defini alors RobObs simulera un pointage au
+cours des acquisitions</li>
+    <li>check_security : Verifie si les retours d'etat des securites de
+l'observatoire sont OK</li>
+    <li>next_scene : Calcule la prochaine scene a observer en fonction
+de la strat&eacute;gie d'observation. Une scene consiste en un pointage
+suivi d'un petit nombre de poses</li>
+    <li>setup_scene : Met en place les appareils de l'observatoire
+avant de commencer la scene (ex. extinction des lumieres)</li>
+    <li>goto_telescope : Pointage de la monture vers les coordonnees
+definies dans la scene a observer</li>
+    <li>goto_dome : Pointage eventuel du dome pour placer son ouverture
+en concordance avec le telescope</li>
+    <li>setup_intruments : Met en place les instruments avant de lancer
+la pose (ex. roue a filtre, spectro)</li>
+    <li>check_pointing : Verification du pointage avant de commencer
+les acquisitions</li>
+    <li>acquisition_camera : Acquisition des images et enregistrement
+sur le disque</li>
+    <li>correction_dark : Correction des effets thermiques</li>
+    <li>correction_flat : Correction des variations de sensibilite</li>
+    <li>correction_cosmetic : Correction des artefacts connus</li>
+    <li>calibration_astrometry :&nbsp;Analyse de l'image avec un
+catalogue astrometrique et complete l'entete FITS avec les mots cle WCS</li>
+    <li>calibration_photometry : Analyse de l'image avec un catalogue
+photometrique et complete l'entete FITS. Cree un catalogue des sources.</li>
+    <li>image_archive :&nbsp;Archivage des images et des catalogues de
+sources</li>
+    <li>light_curve :&nbsp;Extraction eventuelle de la courbe de
+lumiere d'une source</li>
+  </ul>
+  <p>Cliquer sur le bouton [Acquisition]</p>
+  <p>Une fen&ecirc;tre appara&icirc;t. Elle donne trois choix:</p>
+  <ul>
+    <li>D&eacute;marre : Appuyer sur ce bouton pour d&eacute;marrer la
+nuit robotique. A noter que l'on peut d&eacute;marrer les observations
+pendant qu'il fait jour. Les observations ne commencerons
+r&eacute;ellement qu'&agrave; la nuit tomb&eacute;e.</li>
+    <li>Pas &agrave; Pas : Dans ce mode, chaque &eacute;tape est
+effectu&eacute;e puis RobObs attend que l'utilisateur demande de passer
+&agrave; l'&eacute;tape suivante. Utile pour le debug.</li>
+    <li>Sortie : Sort de la grande boucle d'acquisitions.</li>
+  </ul>
+Une fois que la grande boucle a d&eacute;marr&eacute;e le bouotn
+[D&eacute;marre] s'appelle alors [Pause]. Il est ainsi pssible de
+stopper la boucle puis de la faire repartir ensuite.
+</blockquote>
+<h3></h3>
+</body>
+</html>

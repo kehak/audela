@@ -1,0 +1,2 @@
+LIBRARY libgsltcl
+EXPORTS Gsltcl_Init @1

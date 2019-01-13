@@ -1,0 +1,2 @@
+LIBRARY libcemes
+EXPORTS Cemes_Init @1

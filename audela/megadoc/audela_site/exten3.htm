@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/dev_template.dwt" codeOutsideHTMLIsLocked="false" -->
+<!-- DW6 -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>D&eacute;buter en langage C</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="keywords" content="astronomy, astronomie, software, Audace, audace, Audela, audela, CCD, ccd, association Aude, association AUDE, amateur astronomer, image, sky, ciel, telescope, télescope, star, étoile, galaxy, ccd camera, camera CCD, astrophotography, Audine, Christian Jasinski, logiciel d'astronomie, astronomy software, astronomie numérique, CCD sensor, astronome amateur">
+<meta name="description" content="Audela : un logiciel d'astronomie CCD libre et gratuit pour tous.  Audela is a free and open-source CCD astronomy software">
+<link rel="stylesheet" href="3col_leftNav.css" type="text/css">
+</head>
+<body> 
+<table id="topTable" cellspacing="0" cellpadding="0"> 
+  <tr> 
+    <td width="85%" valign="middle" id="pageTopLeft"><div align="left" class="style1">Audela</div></td> 
+    <td width="15%"><div align="right"><img src="images/background_a.gif" alt="Audela" width="50" height="50" align="middle"></div></td> 
+</table> 
+<div id="masthead"> 
+  <div id="globalNav"> <a href="index.htm">Accueil</a> | <a href="copi_interfa.htm">Copies d'&eacute;cran</a> | <a href="version_actu.htm">T&eacute;l&eacute;charger</a> | <a href="bug.php">Support</a> | <a href="dev.htm">Documentation</a> | <a href="english.htm">English Version </a></div> 
+  <h2 id="pageName"><!-- InstanceBeginEditable name="Page Title" -->D&eacute;buter en langage C<!-- InstanceEndEditable --></h2> 
+  <div id="breadCrumb"> <!-- InstanceBeginEditable name="Breadcrumb" --><a href="index.htm">Home page </a> / <a href="dev.htm">Le coin des développeurs</a> / <a href="exten3.htm">D&eacute;buter en langage C </a> / <!-- InstanceEndEditable --></div> 
+</div> 
+<!--begin content --> 
+<div class="devContent"> <!-- InstanceBeginEditable name="MainContent" --><center> 
+  <h2> D&eacute;buter en langage C</h2> 
+</center>
+<p>Ce manuel d'apprentissage du langage C ne se veut pas exhaustif. Il a pour but de donner les bases de ce langage pour donner envie &agrave; ceux qui veulent apprendre &agrave; programmer.</p>
+<h3> 1. Qu'est-ce que le C ?</h3>
+<p>Le C est l'un des plus anciens langage de programmation. Universellement employ&eacute;, il a une une syntaxe tr&egrave;s stable dans le cadre de d&eacute;finition des normes professionnelles. Ainsi, le langage Tcl a &eacute;t&eacute; lui m&ecirc;me &eacute;crit en langage C. C'est donc tout naturellement que Tcl accepte des extensions &eacute;crites en langage </p>
+<p>C. Un programme C se compose d'un fichier source qui contient le programme &eacute;crit avec la syntaxe du C. Le fichier source est ensuite compil&eacute; pour g&eacute;n&eacute;rer ce que l'on appelle un fichier objet. Ce fichier objet peut alors &ecirc;tre li&eacute; &agrave; d'autres fichiers objets afin de former le fichier ex&eacute;cutable ou bien une librairie dynamique. En g&eacute;n&eacute;ral, on assigne toujours les m&ecirc;mes suffixes aux fichiers : </p>
+<ul> 
+  <li> .c : pour un fichier source > </li> 
+  <li> .obj : pour un fichier objet (.o sous Linux). > </li> 
+  <li> .exe : pour un fichier ex&eacute;cutable (pas d'extension sous Linux) </li> 
+  <li> .dll ou .so : pour une biblioth&egrave;que dynamique. </li> 
+</ul>
+<p>Seuls les fichiers .c sont lisibles par un traitement de texte. </p>
+<h3> 2. Les bases du langage</h3>
+<p>Dans un fichier source C on distingue : </p>
+<ul> 
+  <li> Les directives de compilation : la ligne commence par le symbole # suivit de la directive. Par exemple pour assigner 3.1415926535 au nombre pi, on &eacute;crira : #define PI 3.1415926535 </li> 
+  <li> D&eacute;claration et types de variables : les variables utilis&eacute;es doivent &ecirc;tre d&eacute;clar&eacute;es avec leur type (entier, d&eacute;cimal, chaine de caract&egrave;res, etc.) </li> 
+  <li> Les fonctions : se sont v&eacute;ritablement les moteurs du programme. Il s'agit de blocs de texte d&eacute;finis par un nom, des arguemnts d'entr&eacute;e et un type de retour en sortie. La fonction main est tr&egrave;s sp&eacute;ciale. Elle est le point d'entr&eacute;e du programme lorsqu'il est ex&eacute;cut&eacute;. </li> 
+  <li> La d&eacute;claration des fonctions : Doit pr&eacute;c&eacute;der la d&eacute;finition des fonctions. </li> 
+</ul>
+<p>La compilation consiste &agrave; transformer le source C en langage compr&eacute;hensible par le processeur de l'ordinateur. La compilation se passe toujours en deux temps : cr&eacute;ation du code objet et liaison des objets pour g&eacute;n&eacute;rer le code ex&eacute;cutable. </p>
+<h3> 3. Equivalences BASIC-C</h3>
+<p>Voici quelques &eacute;quivalences pour comprendre la syntaxe de base du langage C. <br> 
+</p>
+<table border cols=2 width="100%" > 
+  <tr> 
+    <th> <center>
+         BASIC
+      </center></th> 
+    <th> <center>
+         C
+      </center></th> 
+  </tr> 
+  <tr> 
+    <td>a$ = "toto titi"</td> 
+    <td>strcpy(a,"toto titi");</td> 
+  </tr> 
+  <tr> 
+    <td>b = c + cos(5)</td> 
+    <td>b = c + cos(5)</td> 
+  </tr> 
+  <tr> 
+    <td>if (b&lt;5) then <br> 
+      e$=a$+" tutu" <br> 
+      endif</td> 
+    <td>if {b&lt;5} { <br> 
+      strcpy(e,a); <br> 
+      strcat(e," tutu"); <br> 
+      }</td> 
+  </tr> 
+  <tr> 
+    <td>for i=1 to imax <br> 
+      f(i)=i <br> 
+      endfor</td> 
+    <td>for (i=1 ; i&lt;=imax ; i++) { <br> 
+      f[i]=i; <br> 
+      }</td> 
+  </tr> 
+  <tr> 
+    <td>l=len(a$) <br> 
+      aa$=a$(i)</td> 
+    <td>l=(int)strlen(a) <br> 
+      aa=(char)a[i];</td> 
+  </tr> 
+  <tr> 
+    <td>call func1(a$)</td> 
+    <td>func1(a);</td> 
+  </tr> 
+  <tr> 
+    <td>sub func1(a$) <br> 
+      print a$ <br> 
+      endsub</td> 
+    <td>void func1 (char *a) { <br> 
+      printf("%s",a); <br> 
+      }</td> 
+  </tr> 
+  <tr> 
+    <td>open "toto.txt" for output as #1 <br> 
+      print #1, a$ <br> 
+      close #1</td> 
+    <td>f=fopen("toto.txt","w"); <br> 
+      fprintf(f,"%s",a); <br> 
+      fclose(f);</td> 
+  </tr> 
+</table>
+<p></p>
+<h3> 4. Tutorial pour apprendre le langage C</h3>
+<p>Vus sur le Web: </p>
+<p><a href="http://www.cs.cf.ac.uk/Dave/C/CE.html">http://www.cs.cf.ac.uk/Dave/C/CE.html</a> <br> 
+  <a href="http://www.pcsscreston.ca/SCHOOL/C-Files/Cweb/toc.htm">http://www.pcsscreston.ca/SCHOOL/C-Files/Cweb/toc.htm</a> </p>
+<center> 
+  <p>NOUS RECHERCHONS DES VOLONTAIRES POUR CONTINUER CETTE PAGE</p> 
+</center>
+<h3> 5. Pour programmer une extension Audela-Tcl</h3>
+<p>La meilleure fa&ccedil;on de proc&eacute;der est d'&eacute;tudier comment est &eacute;crite <a href="exten4.htm">la librairie libxx</a>, qui est un canevas d'extension pour Audela. Il suffit de changer son nom puis d'ajouter des fonctions pour cr&eacute;er tr&egrave;s rapidement votre premi&egrave;re librairie d'extension.</p>
+<!-- #BeginLibraryItem "/Library/modification date.lbi" --><p style="text-align: right;">
+<script language="javascript">
+<!-- Code after this will be ignored by older browsers
+
+// Assign the last modified date to the variable lastModDate
+	var lastModDate = document.lastModified;
+
+//Create an if statement to test the value of lastModDate
+if (lastModDate == 0) {
+	document.writeln("Dernière modification : date inconnue");
+}
+else {
+	document.writeln("Dernière modification : " + lastModDate);
+}
+
+// Stop hiding the code here -->
+</script>
+</p><!-- #EndLibraryItem --><!-- InstanceEndEditable --></div> 
+<!--end content --> 
+<div id="siteInfo"> 
+  <script language="JavaScript" src="email.js" type="text/javascript"></script> 
+  | <a href="#">English Version </a> | <a href="mailto:audeladev-subscribe@egroups.com">Mailing List Audela</a> | &copy;2004 Audela | <a href="http://www.technospeak.com">Design TechnoSpeak</a> </div> 
+<br> 
+</body>
+<!-- InstanceEnd --></html>

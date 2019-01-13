@@ -1,0 +1,343 @@
+#
+# Fichier : collector.cap
+# Mise a jour $Id: collector.cap 12605 2016-01-12 10:10:04Z rzachantke $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(collector,title)                 "Collector"
+
+set caption(collector,target)                "Target"
+set caption(collector,ra)                    "RA \[hms\]"
+set caption(collector,dec)                   "DEC \[dms\]"
+set caption(collector,equinox)               "Coordinates"
+set caption(collector,true)                  "Telescope Coordinates"
+set caption(collector,raTel)                 "RA \[hms\]"
+set caption(collector,decTel)                "DEC \[dms\]"
+set caption(collector,azTel)                 "Azimuth \[deg\]"
+set caption(collector,elevTel)               "Elevation \[deg\]"
+set caption(collector,haTel)                 "Hour Angle \[deg\]"
+
+set caption(collector,dynamic)               "Dynamic"
+set caption(collector,m)                     "Apparent Magnitude \[mag\]"
+set caption(collector,error)                 "Error ± \[mag\]"
+set caption(collector,t)                     "Exposure \[s\]"
+set caption(collector,snr)                   "Signal/Noise"
+set caption(collector,prior)                 "Priority"
+set caption(collector,prior_combo)           "[list "Exposition" "Magnitude" "Signal/Noise"]"
+
+set caption(collector,pose)                  "Image"
+set caption(collector,bin1)                  "Binning x"
+set caption(collector,bin2)                  "Binning y"
+set caption(collector,cdelt1)                "Sampling Width \[arcsec/pix\]"
+set caption(collector,cdelt2)                "Sampling Height \[arcsec/pix\]"
+set caption(collector,naxis1)                "Width (NAXIS1) \[pix\]"
+set caption(collector,naxis2)                "Height (NAXIS2) \[pix\]"
+set caption(collector,fov1)                  "FoV Width \[deg\]"
+set caption(collector,fov2)                  "FoV Height \[deg\]"
+set caption(collector,crota2)                "Rotation Angle \[deg\]"
+
+set caption(collector,local)                 "Local"
+set caption(collector,tu)                    "UT (Universal Time) \[Iso 8601\]"
+set caption(collector,jd)                    "Julian Day"
+set caption(collector,tsl)                   "LST (Local Sideral Time) \[hms\]"
+set caption(collector,gps)                   "Position"
+set caption(collector,modifGps)              "Modify"
+set caption(collector,moonphas)              "Moon Phase \[deg\]"
+set caption(collector,moonalt)               "Moon Elevation \[deg\]"
+
+set caption(collector,atm)                   "Weather"
+set caption(collector,temperature)           "Outdoor Temperature \[°C\]"
+set caption(collector,temprose)              "Dew Point \[°C\]"
+set caption(collector,pressure)              "Relative Air Pressure \[Pa\]"
+set caption(collector,humidity)              "Outdoor Humidity\[%\]"
+set caption(collector,winddir)               "Wind Direction (0=S 90=W 180=N 270=E) \[deg\]"
+set caption(collector,windsp)                "Wind Speed \[km\h]"
+set caption(collector,seeing)                "Seeing \[arcsec\]"
+set caption(collector,fwhm)                  "Fwhm \[pixel\]"
+set caption(collector,secz)                  "SECZ"
+set caption(collector,airmass)               "Airmass"
+
+set caption(collector,optic)                 "Optic"
+set caption(collector,telescop)              "Name"
+set caption(collector,modifOptic)            "Modify"
+set caption(collector,aptdia)                "Diameter \[m\]"
+set caption(collector,foclen)                "Focal Length \[m\]"
+set caption(collector,fond)                  "F/D"
+set caption(collector,resolution)            "Resolution \[arcsec\]"
+set caption(collector,ncfz)                  "New Critical Focus Zone \[mum\]"
+set caption(collector,focus_pos)             "Focuser position \[step\]"
+set caption(collector,modifFocus)            "Modify"
+set caption(collector,psf)                   "PSF \[mum\]"
+set caption(collector,filter)                "Filter"
+set caption(collector,band)                  "[list C U B G R I J H K z]"
+
+set caption(collector,cam)                   "Camera"
+set caption(collector,detnam)                "Name"
+set caption(collector,photocell1)            "Pixel Dim. x \[mum\]"
+set caption(collector,photocell2)            "Pixel Dim. y \[mum\]"
+set caption(collector,eta)                   "Quantum Efficiency \[electron/photon\]"
+set caption(collector,noise)                 "Readout Noise \[electron\]"
+set caption(collector,therm)                 "Thermic Coef. \[electron/sec/pix\]"
+set caption(collector,gain)                  "CCD Gain \[e/ADU\]"
+set caption(collector,ampli)                 "Electronic Amplification"
+set caption(collector,isospeed)              "ISO Sensitivity of DSLR \[iso\]"
+set caption(collector,newCam)                "New Camera"
+
+set caption(collector,tlscp)                 "Mount"
+set caption(collector,telname)               "Name (Model)"
+set caption(collector,suivi)                 "Tracking"
+set caption(collector,vra)                   "RA Speed \[deg/s\] WEST(-) EAST(+)"
+set caption(collector,vdec)                  "DEC Speed \[deg/s\] SOUTH(-) NORTH(+)"
+set caption(collector,vxPix)                 "X Speed \[pix/s\] WEST(-) EAST(+)"
+set caption(collector,vyPix)                 "Y Speed \[pix/s\] SOUTH(-) NORTH(+)"
+
+set caption(collector,german)                "Equatorial"
+set caption(collector,postel)                "Equatorial Mount Current Position"
+set caption(collector,west)                  "West"
+set caption(collector,east)                  "East"
+set caption(collector,elevInf)               "Elevation Lower Limit \[deg\]"
+set caption(collector,buteeEast)             "East Stop at \[h\]"
+set caption(collector,buteeWest)             "West Stop at \[h\]"
+set caption(collector,side)                  "Optical Tube Side"
+set caption(collector,legende)               "Color-Coding System:"
+set caption(collector,colFond)               "Background"
+set caption(collector,colReticule)           "Crosshair"
+set caption(collector,colTel)                "Telescop"
+set caption(collector,colSector)             "Forbidden Area"
+set caption(collector,colButee)              "Stops"
+
+set caption(collector,kwds)                  "Keywords"
+set caption(collector,observer)              "Observer"
+set caption(collector,modifObs)              "Modify"
+set caption(collector,sitename)              "Site Name"
+set caption(collector,origin)                "Organization Name"
+set caption(collector,iau_code)              "Observatory IAU Code"
+set caption(collector,imagetyp)              "Image Type"
+set caption(collector,imagetypes)            "Offset\nDark\nFlat\nObject\nVirtual\nLamp\nSpectre"
+set caption(collector,objname)               "Object Name"
+set caption(collector,editKwds)              "Edit Keywords"
+set caption(collector,kwdvalue)              "Value"
+set caption(collector,kwdtype)               "Type"
+set caption(collector,kwdcmt)                "Comment"
+set caption(collector,kwdunit)               "Unit"
+set caption(collector,writeKwds)             "Update Image Header"
+
+set caption(collector,config)                "Setup"
+set caption(collector,catname)               "Name of Stars Catalog"
+set caption(collector,catAcc)                "Path to the Catalog"
+set caption(collector,catalog)               "[list "MICROCAT" "USNO"]"
+set caption(collector,modifRep)              "Modify"
+set caption(collector,dispEtc)               "Edit etc_tools Parameters"
+set caption(collector,simulimage)            "Help of 'simulimage'"
+
+set caption(collector,syn)                   "Synthesize"
+set caption(collector,dss)                   "DSS Image"
+set caption(collector,hlp)                   "Help"
+set caption(collector,close)                 "Close"
+
+set caption(collector,attention)             "Warning"
+set caption(collector,invalid)               "%s is not a valid input for %s!"
+set caption(collector,noMatch)               "%s's value is not egal to %s"
+
+set caption(collector,loading)               "In progress..."
+set caption(collector,urlError)              "%s address cannot be accessed."
+set caption(collector,dssNotFound)           "%s not loaded. Reason: %s"
+
+set caption(collector,addSupprCam)           "Add/Suppress a camera"
+set caption(collector,camName)               "Give a name"
+set caption(collector,addCam)                "Add"
+set caption(collector,supprCam)              "Suppress"
+set caption(collector,cancel)                "Cancel"
+set caption(collector,modifObs)              "Modify"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(collector,title)              "Collector"
+
+   set caption(collector,target)             "Cible"
+   set caption(collector,ra)                 "AD \[hms\]"
+   set caption(collector,dec)                "DEC \[dms\]"
+   set caption(collector,equinox)            "Coordonnées"
+   set caption(collector,true)               "Coordonnées du télescope"
+   set caption(collector,raTel)              "AD \[hms\]"
+   set caption(collector,decTel)             "DEC \[dms\]"
+   set caption(collector,azTel)              "Azimut \[deg\]"
+   set caption(collector,elevTel)            "Hauteur \[deg\]"
+   set caption(collector,haTel)              "Angle horaire \[deg\]"
+
+   set caption(collector,dynamic)            "Dynamique"
+   set caption(collector,error)              "Erreur ± \[mag\]"
+   set caption(collector,m)                  "Magnitude apparente \[mag\]"
+   set caption(collector,t)                  "Exposition \[s\]"
+   set caption(collector,snr)                "Signal/Bruit"
+   set caption(collector,prior)              "Priorité"
+   set caption(collector,prior_combo)        "[list "Exposition" "Magnitude" "Signal/Bruit"]"
+
+   set caption(collector,pose)               "Vue"
+   set caption(collector,bin1)               "Binning sur la largeur (x)"
+   set caption(collector,bin2)               "Binning sur la hauteur (y)"
+   set caption(collector,cdelt1)             "Echantillonnage sur la largeur (x) \[arcsec/pix\]"
+   set caption(collector,cdelt2)             "Echantillonnage sur la hauteur (y) \[arcsec/pix\]"
+   set caption(collector,naxis1)             "Largeur (NAXIS1) \[pix\]"
+   set caption(collector,naxis2)             "Hauteur (NAXIS2) \[pix\]"
+   set caption(collector,fov1)               "Champ en largeur (x) \[deg\]"
+   set caption(collector,fov2)               "Champ en hauteur (y) \[deg\]"
+   set caption(collector,crota2)             "Angle de rotation \[deg\]"
+
+   set caption(collector,local)              "Local"
+   set caption(collector,modifGps)           "Modifier"
+   set caption(collector,tu)                 "TU (Temps Universel) \[Iso 8601\]"
+   set caption(collector,jd)                 "Jour Julien"
+   set caption(collector,tsl)                "TSL (Temps Sidéral Local) \[hms\]"
+   set caption(collector,gps)                "Position de l'observateur"
+   set caption(collector,modifgps)           "Modifier"
+   set caption(collector,moonphas)           "Phase de la Lune \[deg\]"
+   set caption(collector,moonalt)            "Hauteur de la Lune \[deg\]"
+
+   set caption(collector,atm)                "Météo"
+   set caption(collector,temperature)        "Température extérieure \[°C\]"
+   set caption(collector,temprose)           "Température de rosée \[°C\]"
+   set caption(collector,pressure)           "Pression atmosphérique relative \[Pa\]"
+   set caption(collector,humidity)           "Hygrométrie extérieure \[%\]"
+   set caption(collector,winddir)            "Direction du vent (0=S 90=W 180=N 270=E) \[deg\]"
+   set caption(collector,windsp)             "Vitesse du vent \[km/h\]"
+   set caption(collector,seeing)             "Seeing \[arcsec\]"
+   set caption(collector,fwhm)               "Fwhm \[pixel\]"
+   set caption(collector,secz)               "SECZ"
+   set caption(collector,airmass)            "Masse d'air"
+
+   set caption(collector,optic)              "Optique"
+   set caption(collector,telescop)           "Nom"
+   set caption(collector,modifOptic)         "Modifier"
+   set caption(collector,aptdia)             "Diamètre \[m\]"
+   set caption(collector,foclen)             "Focale \[m\]"
+   set caption(collector,fond)               "F/D"
+   set caption(collector,resolution)         "Pouvoir séparateur \[arcsec\]"
+   set caption(collector,ncfz)               "Zone critique du focus \[mum\]"
+   set caption(collector,focus_pos)          "Position du focaliseur \[pas\]"
+   set caption(collector,modifFocus)         "Modifier"
+   set caption(collector,psf)                "RIO (Réponse Impulsionnelle Optique) \[mum\]"
+   set caption(collector,filter)             "Filtre"
+   set caption(collector,band)               "[list C U B V R I J H K z]"
+
+   set caption(collector,cam)                "Caméra"
+   set caption(collector,detnam)             "Nom"
+   set caption(collector,photocell1)         "Taille pixel (x) \[mum\]"
+   set caption(collector,photocell2)         "Taille pixel (y) \[mum\]"
+   set caption(collector,eta)                "Rendement quantique \[electron/photon\]"
+   set caption(collector,noise)              "Bruit de lecture \[electron\]"
+   set caption(collector,therm)              "Coefficient thermique \[electron/sec/pix\]"
+   set caption(collector,gain)               "Gain \[electron/ADU\]"
+   set caption(collector,ampli)              "Amplification électronique"
+   set caption(collector,isospeed)           "Sensibilité ISO de l'APN \[iso\]"
+   set caption(collector,newCam)             "Nouvelle caméra"
+
+   set caption(collector,tlscp)              "Monture"
+   set caption(collector,telname)            "Nom (Modèle)"
+   set caption(collector,suivi)              "Suivi"
+   set caption(collector,vra)                "Vitesse AD \[deg/s\] OUEST(-) EST(+)"
+  set caption(collector,vdec)               "Vitesse DEC \[deg/s\] SUD(-) NORD(+)"
+   set caption(collector,vxPix)              "Vitesse en x \[pixels/s\] OUEST(-) EST(+)"
+   set caption(collector,vyPix)              "Vitesse en y \[pixels/s\] SUD(-) NORD(+)"
+
+   set caption(collector,german)             "Equatoriale"
+   set caption(collector,postel)             "Position actuelle de la monture équatoriale"
+   set caption(collector,west)               "Ouest"
+   set caption(collector,east)               "Est"
+   set caption(collector,elevInf)            "Elévation minimale \[deg\]"
+   set caption(collector,buteeEast)          "Angle horaire limite Est \[h\]"
+   set caption(collector,buteeWest)          "Angle horaire limite Ouest \[h\]"
+   set caption(collector,side)               "Tube côté"
+   set caption(collector,legende)            "Légende des couleurs :"
+   set caption(collector,colFond)            "Fond"
+   set caption(collector,colReticule)        "Réticule"
+   set caption(collector,colTel)             "Télescope"
+   set caption(collector,colSector)          "Zone interdite"
+   set caption(collector,colButee)           "Butées d'arrêt"
+
+   set caption(collector,kwds)               "Mots clés"
+   set caption(collector,observer)           "Observateur"
+   set caption(collector,modifObs)           "Modifier"
+   set caption(collector,sitename)           "Nom observatoire"
+   set caption(collector,origin)             "Nom de l'organisation"
+   set caption(collector,iau_code)           "Code UAI de l'observatoire"
+   set caption(collector,imagetyp)           "Type d'image"
+   set caption(collector,imagetypes)         "Offset\nDark\nFlat\nObject\nVirtuelle\nLampe\nSpectre"
+   set caption(collector,objname)            "Nom de l'objet"
+   set caption(collector,editKwds)           "Editer les mots clés"
+   set caption(collector,kwdvalue)           "Valeur"
+   set caption(collector,kwdtype)            "Type"
+   set caption(collector,kwdcmt)             "Description"
+   set caption(collector,kwdunit)            "Unité"
+   set caption(collector,writeKwds)          "Actualiser l'en-tête de l'image"
+
+   set caption(collector,config)             "Configuration"
+   set caption(collector,catname)            "Nom du catalogue d'étoiles"
+   set caption(collector,catalog)            "[list "MICROCAT" "USNO"]"
+   set caption(collector,catAcc)             "Chemin d'accès"
+   set caption(collector,modifRep)           "Modifier"
+   set caption(collector,dispEtc)            "Editer les paramètres etc_tools"
+   set caption(collector,simulimage)         "Aide de 'simulimage'"
+
+   set caption(collector,syn)                "Synthétiser"
+   set caption(collector,dss)                "Image DSS"
+   set caption(collector,hlp)                "Aide"
+   set caption(collector,close)              "Fermer"
+
+   set caption(collector,attention)          "Attention"
+   set caption(collector,invalid)            "%s n'est pas une entrée valide pour %s !"
+   set caption(collector,noMatch)            "la valeur de %s n'est pas égale à %s"
+   set caption(collector,noPosition)         "la valeur de %s n'est pas égale à %s"
+
+   set caption(collector,loading)            "En cours ..."
+   set caption(collector,urlError)           "L'adresse %s n'est pas accessible."
+   set caption(collector,dssNotFound)        "%s pas chargé ; motif : %s"
+
+   set caption(collector,addSupprCam)        "Ajout/Suppression d'une caméra"
+   set caption(collector,camName)            "Saisir son nom"
+   set caption(collector,addCam)             "Ajouter"
+   set caption(collector,supprCam)           "Supprimer"
+   set caption(collector,cancelCam)          "Annuler"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+
+# **************** Version danoise ****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

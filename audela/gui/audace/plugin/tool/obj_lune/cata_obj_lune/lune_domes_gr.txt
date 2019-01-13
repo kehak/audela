@@ -1,0 +1,23 @@
+Furnerius                 36.0S   60.6E           69                                              Furner, Georges; French mathematician (unkn-fl. 1643)
+Chaucy                    9.6N    38.6E                                                           
+Arago                     6.2N    21.4E           35                                              Dominique Francois Jean; French astronomer (1786-1853)
+Valentine                 10.0N   30.2W                                                           
+Vallis Alpes              48.5N   3.2E            4   12                                          Alpine Valley
+Near Hyginus              7.8N    6.3E            34                                              Caius Julius; Spanish astronomer (unkn-c. A.D. 100)
+Inside Flammarion         3.4S    3.7W            44                                              Camille; French astronomer (1842-1925)
+Beer                      27.1N   9.1W            21                                              Wilhelm; German astronomer (1797-1850)
+Birt                      22.4S   8.5W            57                                              William R.; British selenographer (1804-1881)
+Wallace D                 20.3N   8.7W            21                                              Alfred Russel; British natural historian (1823-1913)
+South of Gambart C        1.0N    15.2W           32                                              Jean Felix; French astronomer (1800-1836)
+East of Kies              26.3S   22.5W           53                                              Johann; German mathematician, astronomer (1713-1781)
+Near Hortensius           6.5N    28.0W           30                                              Hove, Martin van den; Dutch astronomer (1605-1639)
+Capuanus                  34.1S   26.7W           63                                              Francesco Capuano Di Manfredonia; Italian astronomer (c. 1400-unkn)
+Near Milichius            10.0N   30.2W           30                                              Milich, Jacob; German doctor, mathematician, astronomer (1501-1559)
+Lansberg D                0.3S    26.6W           42                                              Philippe van; Belgian astronomer (1561-1632)
+Herigonius                13.3S   33.9W           41                                              Herigone, Pierre; French mathematician, astronomer (fl. 1644)
+Gruithuisen               32.9N   39.7W           9                                               Franz von; German astronomer (1774-1852)
+Prinz                     25.5N   44.1W           19                                              Wilhelm; German-Belgian astronomer (1857-1910)
+Krieger                   29.0N   45.6W           19                                              Johann Nepomuk; German selenographer (1865-1902)
+Marius                    11.9N   50.8W           29                                              Mayer, Simon; German astronomer (1570-1624)
+Rumker                    40.8N   58.1W                                                           
+Darwin                    20.2S   69.5W           50                                              Charles; British natural scientist (1809-1882)

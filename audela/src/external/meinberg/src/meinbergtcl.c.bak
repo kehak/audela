@@ -1,0 +1,232 @@
+/* meinbergtcl.c
+ *
+ * This file is part of the AudeLA project : <http://software.audela.free.fr>
+ * Copyright (C) 1998-2004 The AudeLA Core Team
+ *
+ * Initial author : Alain KLOTZ <alain.klotz@free.fr>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+/***************************************************************************/
+/* Ce fichier contient du C melange avec des fonctions de l'interpreteur   */
+/* Tcl.                                                                    */
+/* Ainsi, ce fichier fait le lien entre Tcl et les fonctions en C pur qui  */
+/* sont disponibles dans les fichiers meinberg.cpp.                           */
+/***************************************************************************/
+/* Le include meinbergtcl.h ne contient des infos concernant Tcl.               */
+/***************************************************************************/
+#include "meinbergtcl.h"
+
+#include <mbgdevio.h>
+#include <mbgtime.h>
+#include <mbgutil.h>
+
+//rajout test linux
+//#include <macioctl.h>
+#include <mbgioctl.h>
+#include <pcpsdefs.h>
+
+
+//pour gerer la datation par GPS: declaration des variables globales
+MBG_DEV_HANDLE dh ;
+double date=-1;
+double DateGps;
+char DateGpst[150];
+
+
+int Cmd_meinbergtcl_gps(ClientData clientData, Tcl_Interp *interp, int argc, char *argv[])
+/****************************************************************************/
+/* I/O with GPS cards                                                  */
+/****************************************************************************/
+/* type of card curently read : meinberg
+meinberg_gps open 
+meinberg_gps reset 
+meinberg_gps read 
+meinberg_gps close 
+*/
+/****************************************************************************/
+{
+
+   char s[100];
+   int mode,i,k,devices_found;
+   char ws[200];
+   char year[5], month[5], day[5], hour[5], minute[5], sec[5], msec[5], p[10];
+   PCPS_UCAP_ENTRIES ucap_entries;
+   static PCPS_DEV dev;
+
+   if(argc<2) {
+      sprintf(s,"Usage: %s open|reset|read|close", argv[0]);
+      Tcl_SetResult(interp,s,TCL_VOLATILE);
+      return TCL_ERROR;
+   } else {
+      strcpy(s,"");
+
+      /* --- decodage des arguments ---*/
+      mode=0;
+      if (strcmp(argv[1],"open")==0) {
+         mode=1;
+      }
+      else if (strcmp(argv[1],"reset")==0) {
+         mode=2;
+      }
+      else if (strcmp(argv[1],"read")==0) {
+         mode=3;
+      }
+      else if (strcmp(argv[1],"close")==0) {
+         mode=4;
+      }
+      if (mode==0) {
+         sprintf(s,"Usage: %s open|read|close", argv[0]);
+         Tcl_SetResult(interp,s,TCL_VOLATILE);
+         return TCL_ERROR;
+      }
+      
+      /*There are 3 functions to deal with the meinberg capture events:
+
+	  \li mbg_clr_ucap_buff() clears the on-board FIFO buffer
+	  \li mbg_get_ucap_entries() returns the maximum number of entries
+	    and the currently saved number of entries in the buffer
+	  \li mbg_get_ucap_event() retrieves a capture event from the
+	    on-board FIFO, or 0000.0000 if the FIFO buffer is empty.
+	
+	  When using the time capture inputs the following hints might be helpful:
+	
+	  \li The corresponding DIP switches on the card must be set to the "ON"
+	  position in order to wire the input pins to the capture circuitry. See
+	  the user manual for the correct DIP switches.
+	  \li Capture events are stored in the on-board FIFO, and entries can be
+	  retrieved from the FIFO in different ways. Once an entry has been
+	  retrieved it is removed from the FIFO, so if several ways or
+	  applications are used at the same time to retrieve capture events from
+	  the FIFO then capture events may be missed by one application since they
+	  have already been retrieved by another application.
+	  \li The card provides 2 physical serial interfaces either of which may
+	  have been configured to send a serial ASCII string automatically
+	  whenever a capture event has occurred. Of course this would also remove
+	  those capture events from the FIFO buffer. So the settings of both
+	  serial ports should be checked to make sure none of the serial ports
+	  have been configured to send the capture string automatically. This has
+	  to be done only once for a card */
+      /* --- open meinberg ---*/
+      if (mode==1) {
+	devices_found = mbg_find_devices();
+	if ( devices_found == 0 ) {
+	        printf(s,"No GPS meinberg card found %s",argv[2]);
+		Tcl_SetResult(interp,s,TCL_VOLATILE);
+		return TCL_ERROR;
+	}
+	i=devices_found-1;
+   	dh = mbg_open_device( i );
+    	if ( dh == MBG_INVALID_DEV_HANDLE ) {
+		printf(s,"Can't open GPS device %s",argv[2]);
+		Tcl_SetResult(interp,s,TCL_VOLATILE);
+		return TCL_ERROR;
+	}
+	//print_dev_info( dh, &dev );
+	mbg_get_device_info( dh, &dev);
+    	printf(s,"Connection with %s is opened",argv[2]);
+        Tcl_SetResult(interp,s,TCL_VOLATILE);
+        return TCL_OK;
+      }
+      /* --- reset meinberg ---*/
+      /* --- remove every event on the FIFO controler on the GPS board ---*/
+      if (mode==2) {
+		  if ( PCPS_SUCCESS == mbg_clr_ucap_buff( dh ) ) {
+      		sprintf(s,"Capture buffer cleared for %s",argv[2]);
+			Tcl_SetResult(interp,s,TCL_VOLATILE);
+      		return TCL_OK;
+		  }	else {
+      		sprintf(s,"Failed to clear capture buffer for %s",argv[2]);
+			Tcl_SetResult(interp,s,TCL_VOLATILE);
+      		return TCL_ERROR;
+		  }
+	   }
+      /* --- read time meinberg ---*/
+      if (mode==3) {
+			// on veut recuperer le dernier evenement entres si dispo
+		   if ( _pcps_has_ucap( &dev ) ) {
+				PCPS_HR_TIME ucap_event;
+				// read all entries from capture buffer
+				date=0;
+				for (;;) {
+      				if ( PCPS_SUCCESS != mbg_get_ucap_entries( dh, &ucap_entries )) {
+						sprintf(s,"Failed to read user capture buffer entries for %s",argv[2]);
+						break;
+					}
+					if ( PCPS_SUCCESS != mbg_get_ucap_event( dh, &ucap_event )) {
+						sprintf(s,"Failed to read user capture event for %s",argv[2]);
+						break;
+					}
+
+					// If a user capture event has been read
+					// then it it removed from the clock's buffer.
+
+					// If no new capture event is available, the ucap.tstamp structure
+					// is set to 0.
+					// Alternatively, PCPS_UCAP_ENTRIES.used can be checked for the 
+					// number of events pending in the buffer.
+					if ( ucap_event.tstamp.sec == 0 ) // no new user capture event
+       				 break;
+ 
+      				// Format function taken from mbgutil.h
+     				mbg_str_pcps_hr_tstamp_utc( ws, sizeof( ws ), &ucap_event );
+     				// format iso
+     				for (k=6;k<=9;k++) { p[k-6]=ws[k]; 	}; p[k-6]='\0';
+					strcpy(year,p); 
+					for (k=3;k<=4;k++) { p[k-3]=ws[k]; } ; p[k-3]='\0';
+					strcpy(month,p);
+					for (k=0;k<=1;k++) { p[k]=ws[k]; } ; p[k]='\0';
+					strcpy(day,p);
+					for (k=12;k<=13;k++) { p[k-12]=ws[k]; } ; p[k-12]='\0';
+					strcpy(hour,p);
+					for (k=15;k<=16;k++) { p[k-15]=ws[k]; } ; p[k-15]='\0';
+					strcpy(minute,p);
+					for (k=18;k<=19;k++) { p[k-18]=ws[k]; } ; p[k-18]='\0';
+					strcpy(sec,p);
+					for (k=21;k<=23;k++) { p[k-21]=ws[k]; } ; p[k-21]='\0';
+					strcpy(msec,p);
+					sprintf(DateGpst,"%s-%s-%sT%s:%s:%s.%s", year, month, day, hour, minute, sec, msec );
+					date=1;
+    			}
+				
+				if (date==0) {
+					sprintf(s,"No GPS date available");
+					Tcl_SetResult(interp,s,TCL_VOLATILE);
+					return TCL_ERROR;
+				} else {
+					sprintf(s,"%s",DateGpst);
+					Tcl_SetResult(interp,s,TCL_VOLATILE);
+					return TCL_OK;
+				}
+		   }
+      }
+      /* --- close meinberg ---*/
+     if (mode==4) {
+			mbg_close_device( &dh );  
+			sprintf(s,"Connection with %s is closed",argv[2]);
+			Tcl_SetResult(interp,s,TCL_VOLATILE);
+			return TCL_OK;
+      }
+      /* --- ---*/
+      Tcl_SetResult(interp,s,TCL_VOLATILE);
+      return TCL_ERROR;
+   }
+}
+
+
+
+
+

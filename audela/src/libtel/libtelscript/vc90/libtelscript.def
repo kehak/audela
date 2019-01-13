@@ -1,0 +1,2 @@
+LIBRARY libtelscript
+EXPORTS Telscript_Init @1

@@ -1,0 +1,83 @@
+
+global caption
+set visuNo 1
+
+#-------------------------------------------------------------------------------
+test affichage_init {buf create} {AUDACE} {
+   #--- je charge l'image
+   loadima [file join $::conf(testaudela,rep_images) m57.fit]
+   update
+   #--- je choisis la fonction de transfert lineaire
+   set ::conf(fonction_transfert,visu$visuNo,mode) 1
+   #--- je choisis le menu "zoom x1"
+   clicMenu $visuNo $caption(audace,menu,display) "$caption(audace,menu,zoom) x 1"
+} ""
+
+#-------------------------------------------------------------------------------
+test affichage_reticule_actif {affiche le reticule} {AUDACE} {
+   #--- je clique sur le menu reticule
+   clicMenu $visuNo "$caption(audace,menu,display)" "$caption(crosshair,titre)"
+   #--- je clique le checkbutton pour afficher le reticule
+   clicCheckButton [confVisu::getBase $visuNo].confCrossHair.frame1.frameState.currentstate
+   #--- je ferme la fenetre
+   clicButton [confVisu::getBase $visuNo].confCrossHair.but_ok
+   #--- je verifie que le reticule est affiche
+   set result "[::confVisu::getCrosshair $visuNo]"
+   append result " [[::confVisu::getCanvas 1] gettags lineh]"
+   append result " [[::confVisu::getCanvas 1] gettags linev]"
+   update
+   after 300
+   return $result
+} "1 lineh linev"
+
+#-------------------------------------------------------------------------------
+test affichage_reticule_inactif {masque le reticule} {AUDACE} {
+   #--- je clique sur le menu reticule
+   clicMenu $visuNo "$caption(audace,menu,display)" "$caption(crosshair,titre)"
+   #--- je clique le check button pour afficher le reticule
+   clicCheckButton [confVisu::getBase $visuNo].confCrossHair.frame1.frameState.currentstate
+   #--- je ferme la fenetre
+   clicButton [confVisu::getBase $visuNo].confCrossHair.but_ok
+   #--- je verifie que le reticule n'est pas affiche
+   set result "[::confVisu::getCrosshair $visuNo]"
+   append result " [[::confVisu::getCanvas 1] gettags lineh]"
+   append result " [[::confVisu::getCanvas 1] gettags linev]"
+   update
+   after 300
+   return $result
+} "0  "
+
+#-------------------------------------------------------------------------------
+test affichage_reticule_actif {active et desactive le reticule sans fermer la fenetre} {AUDACE} {
+   #--- je clique sur le menu reticule
+   clicMenu $visuNo "$caption(audace,menu,display)" "$caption(crosshair,titre)"
+   #--- je clique le checkbutton pour afficher le reticule
+   clicCheckButton [confVisu::getBase $visuNo].confCrossHair.frame1.frameState.currentstate
+   #--- j'applique sans fermer la fenetre
+   clicButton [confVisu::getBase $visuNo].confCrossHair.but_appliquer
+   #--- je verifie que le reticule est affiche
+   if { [::confVisu::getCrosshair $visuNo] != "1" } {
+      return "Le réticule n'est pas affiché après avoir appliqué"
+   }
+   after 300
+   #--- je clique le checkbutton pour supprimer le reticule
+   clicCheckButton [confVisu::getBase $visuNo].confCrossHair.frame1.frameState.currentstate
+   #--- j'applique sans fermer la fenetre
+   clicButton [confVisu::getBase $visuNo].confCrossHair.but_appliquer
+   #--- je verifie que le reticule n'est pas affiche
+   if { [::confVisu::getCrosshair $visuNo] != "0" } {
+      return "Le réticule n'est pas supprimé après avoir appliqué"
+   }
+   after 300
+   #--- je ferme la fenetre
+   clicButton [confVisu::getBase $visuNo].confCrossHair.but_ok
+   #--- je verifie que le reticule n'est pas affiche
+   if { [::confVisu::getCrosshair $visuNo] != "0" } {
+      return "Le reticule n'est pas supprimé après avoir fermé la fenêtre"
+   }
+   return 1
+} "1"
+
+   #--- je vide la visu
+   ::confVisu::clear $visuNo
+

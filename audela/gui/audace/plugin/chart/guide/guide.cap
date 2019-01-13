@@ -1,0 +1,187 @@
+#
+# Fichier : guide.cap
+# Mise a jour $Id: guide.cap 9979 2013-08-17 17:51:36Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(guide,titre)                "Guide"
+set caption(guide,rechercher)           "Search\n(Guide)"
+set caption(guide,parcourir)            "..."
+set caption(guide,dossier)              "From Folder:"
+set caption(guide,site_web)             "Reference Web Site:"
+set caption(guide,site_web_ref)         "http://www.projectpluto.com"
+set caption(guide,attention)            "Warning"
+set caption(guide,option)               "Option:"
+set caption(guide,creation)             "Field Chart Creation with GUIDE"
+set caption(guide,non)                  "To use this option, GUIDE must already be running."
+set caption(guide,lance)                "Run GUIDE?"
+set caption(guide,verification)         "Check GUIDE is installed and selected\nin the 'Setup --> Chart' menu."
+set caption(guide,rate)                 "Access not possible"
+set caption(guide,gagne)                "Access OK"
+set caption(guide,installNewVersion)    "Installation of library %s of plugin guide v%s completed."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(guide,titre)             "Guide"
+   set caption(guide,rechercher)        "Recherche\n(Guide)"
+   set caption(guide,parcourir)         "..."
+   set caption(guide,dossier)           "A partir du dossier :"
+   set caption(guide,site_web)          "Site Web de référence :"
+   set caption(guide,site_web_ref)      "http://www.projectpluto.com"
+   set caption(guide,attention)         "Attention"
+   set caption(guide,option)            "Option :"
+   set caption(guide,creation)          "Création d'une carte de champ avec GUIDE"
+   set caption(guide,non)               "Pour utiliser cette option, le logiciel GUIDE doit déjà être lancé."
+   set caption(guide,lance)             "Voulez-vous lancer GUIDE ?"
+   set caption(guide,verification)      "Vérifiez que GUIDE est installé et sélectionné dans\nle menu 'Configuration --> Carte'."
+   set caption(guide,rate)              "Accès non possible"
+   set caption(guide,gagne)             "Accès réussi"
+   set caption(guide,installNewVersion) "Fin de l'installation de la librairie %s du plugin guide v%s."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(guide,titre)             "Guide"
+   set caption(guide,rechercher)        "Ricercare\n(Guide)"
+   set caption(guide,parcourir)         "..."
+   set caption(guide,dossier)           "Dalla cartella:"
+   set caption(guide,site_web)          "Sito Web di riferimento:"
+   set caption(guide,site_web_ref)      "http://www.projectpluto.com"
+   set caption(guide,attention)         "Attenzione"
+   set caption(guide,option)            "Opzione:"
+   set caption(guide,creation           "Creazione di una mappa del campo con GUIDE"
+   set caption(guide,non)               "Per utilizzare questa opzione, il programma GUIDE deve essere gia` in esecuzione."
+   set caption(guide,lance)             "Volete eseguire GUIDE?"
+   set caption(guide,verification)      "Verificare che GUIDE sia installato e\nselezionato nel menu 'Configurazione --> Mappa'."
+   set caption(guide,rate)              "Accesso non possibile"
+   set caption(guide,gagne)             "Accesso riuscito"
+   set caption(guide,installNewVersion) "Installazione della libreria %s del plugin guide v%s terminata."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(guide,titre)             "Guide"
+   set caption(guide,rechercher)        "Buscar\n(Guide)"
+   set caption(guide,parcourir)         "..."
+   set caption(guide,dossier)           "Desde la carpeta:"
+   set caption(guide,site_web)          "Sitio Web de referencia:"
+   set caption(guide,site_web_ref)      "http://www.projectpluto.com"
+   set caption(guide,attention)         "Aviso"
+   set caption(guide,option)            "Opción:"
+   set caption(guide,creation)          "Creación de un mapa de campo con GUIDE"
+   set caption(guide,non)               "Para utilizar esta opción, GUIDE debe estar ejecutándose."
+   set caption(guide,lance)             "Ejecutar GUIDE?"
+   set caption(guide,verification)      "Comproba si GUIDE está instalado y seleccionado\nen el menú 'Configuración --> Mapa'."
+   set caption(guide,rate)              "El acceso no es posible"
+   set caption(guide,gagne)             "Acceso correcto"
+   set caption(guide,installNewVersion) "Fin de la instalación de la libreria %s del plugin guide v%s."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(guide,titre)             "Guide"
+   set caption(guide,rechercher)        "Suchen\n(Guide)"
+   set caption(guide,parcourir)         "..."
+   set caption(guide,dossier)           "Vom Unterlagen:"
+   set caption(guide,site_web)          "Referenz Webseite:"
+   set caption(guide,site_web_ref)      "http://www.projectpluto.com"
+   set caption(guide,attention)         "Achtung"
+   set caption(guide,option)            "Wahl:"
+   set caption(guide,creation)          "Feldkarte mit GUIDE schaffen"
+   set caption(guide,non)               "Um diesen Wahl zu nützen, muss GUIDE schon gestart sein."
+   set caption(guide,lance)             "Wollen sie GUIDE starten ?"
+   set caption(guide,verification)      "Kontrolieren sie dass GUIDE in das Menu\n'Konfiguration --> Karte' installiert und gewählt ist."
+   set caption(guide,rate)              "Unmöglichen Zugang"
+   set caption(guide,gagne)             "Zugriff gelungen"
+   set caption(guide,installNewVersion) "Die Installation der Bibliothek %s ist vervollständigt der Plugin guide v%s."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(guide,titre)             "Guide"
+   set caption(guide,rechercher)        "Procurar\n(Guide)"
+   set caption(guide,parcourir)         "..."
+   set caption(guide,dossier)           "A partir da pasta:"
+   set caption(guide,site_web)          "Site Web de referencia:"
+   set caption(guide,site_web_ref)      "http://www.projectpluto.com"
+   set caption(guide,attention)         "Atenção"
+   set caption(guide,option)            "Opção:"
+   set caption(guide,creation)          "Criação de uma carta de campo com GUIDE"
+   set caption(guide,non)               "Para utilizar esta opção, o software GUIDE tem de estar em execução."
+   set caption(guide,lance)             "Deseja iniciar GUIDE ?"
+   set caption(guide,verification)      "Verifique que GUIDE se encontra instalado e seleccionado no\nmenu 'Configuração --> Carta'."
+   set caption(guide,rate)              "Acesso falhado"
+   set caption(guide,gagne)             "Acesso OK"
+   set caption(guide,installNewVersion) "Instalação da livraria %s do plugin guide v%s concluída."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(guide,titre)             "Guide"
+   set caption(guide,rechercher)        "Søg\n(Guide)"
+   set caption(guide,parcourir)         "..."
+   set caption(guide,dossier)           "Fra folder:"
+   set caption(guide,site_web)          "Henvisning til Websider:"
+   set caption(guide,site_web_ref)      "http://www.projectpluto.com"
+   set caption(guide,attention)         "Advarsel"
+   set caption(guide,option)            "Valg:"
+   set caption(guide,creation)          "Fremstil feltkort vha. GUIDE"
+   set caption(guide,non)               "For at benytte denne mulighed, skal GUIDE være startet."
+   set caption(guide,lance)             "Kør GUIDE?"
+   set caption(guide,verification)      "Kontrollér at GUIDE er installeret og valgt\ni 'Konfiguration --> Kort' menu."
+   set caption(guide,rate)              "Ingen adgang"
+   set caption(guide,gagne)             "Adgang: OK!"
+   set caption(guide,installNewVersion) "# Fin de l'installation de la librairie %s du plugin guide v%s."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(guide,titre)             "Guide"
+   set caption(guide,rechercher)        "Search\n(Guide)"
+   set caption(guide,parcourir)         "..."
+   set caption(guide,dossier)           "From Folder:"
+   set caption(guide,site_web)          "Reference Web Site:"
+   set caption(guide,site_web_ref)      "http://www.projectpluto.com"
+   set caption(guide,attention)         "Warning"
+   set caption(guide,option)            "Option:"
+   set caption(guide,creation)          "Field Chart Creation with GUIDE"
+   set caption(guide,non)               "To use this option, GUIDE must already be running."
+   set caption(guide,lance)             "Run GUIDE?"
+   set caption(guide,verification)      "Check GUIDE is installed and selected\nin the 'Setup --> Chart' menu."
+   set caption(guide,rate)              "Access not possible"
+   set caption(guide,gagne)             "Access OK"
+   set caption(guide,installNewVersion) "Installation of library %s of plugin guide v%s completed."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(guide,titre)             "Guide"
+   set caption(guide,rechercher)        "Search\n(Guide)"
+   set caption(guide,parcourir)         "..."
+   set caption(guide,dossier)           "From Folder:"
+   set caption(guide,site_web)          "Reference Web Site:"
+   set caption(guide,site_web_ref)      "http://www.projectpluto.com"
+   set caption(guide,attention)         "Warning"
+   set caption(guide,option)            "Option:"
+   set caption(guide,creation)          "Field Chart Creation with GUIDE"
+   set caption(guide,non)               "To use this option, GUIDE must already be running."
+   set caption(guide,lance)             "Run GUIDE?"
+   set caption(guide,verification)      "Check GUIDE is installed and selected\nin the 'Setup --> Chart' menu."
+   set caption(guide,rate)              "Access not possible"
+   set caption(guide,gagne)             "Access OK"
+   set caption(guide,installNewVersion) "Installation of library %s of plugin guide v%s completed."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

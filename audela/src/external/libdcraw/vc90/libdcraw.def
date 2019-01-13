@@ -1,0 +1,10 @@
+LIBRARY libdcraw
+EXPORTS 
+    libdcraw_fileRaw2Cfa
+    libdcraw_fileRaw2Rgb
+    libdcraw_bufferRaw2Cfa
+    libdcraw_bufferRaw2Rgb
+    libdcraw_bufferCfa2Rgb
+    libdcraw_freeBuffer
+    libdcraw_getInfoFromFile
+    

@@ -1,0 +1,2 @@
+LIBRARY libfocusfli
+EXPORTS Focusfli_Init @1

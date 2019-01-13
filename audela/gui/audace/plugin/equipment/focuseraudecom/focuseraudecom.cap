@@ -1,0 +1,151 @@
+#
+# Fichier : focuseraudecom.cap
+# Mise a jour $Id: focuseraudecom.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(focuseraudecom,label)          "AudeCom Focuser"
+set caption(focuseraudecom,link)           "Controls are sent to the AudeCom mount."
+
+set caption(focuseraudecom,attention)      "Warning"
+set caption(focuseraudecom,msg1)           "You chose the AudeCom focuser for this hand controller."
+set caption(focuseraudecom,msg2)           "It cannot be used with this mount."
+set caption(focuseraudecom,msg3)           "You chose the AudeCom focuser for this tool."
+
+set caption(focuseraudecom,x1)             "x1"
+set caption(focuseraudecom,x5)             "x5"
+set caption(focuseraudecom,interro)        "?"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(focuseraudecom,label)       "Focaliseur AudeCom"
+   set caption(focuseraudecom,link)        "Les commandes sont envoyées à la monture AudeCom."
+
+   set caption(focuseraudecom,attention)   "Attention"
+   set caption(focuseraudecom,msg1)        "Pour cette raquette, vous avez sélectionné le focaliseur AudeCom."
+   set caption(focuseraudecom,msg2)        "Il ne fonctionne pas avec cette monture."
+   set caption(focuseraudecom,msg3)        "Pour cet outil, vous avez sélectionné le focaliseur AudeCom."
+
+   set caption(focuseraudecom,x1)          "x1"
+   set caption(focuseraudecom,x5)          "x5"
+   set caption(focuseraudecom,interro)     "?"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(focuseraudecom,label)       "Focheggiatore AudeCom"
+   set caption(focuseraudecom,link)        "I comandi sono inviati alla montatura AudeCom."
+
+   set caption(focuseraudecom,attention)   "Attenzione"
+   set caption(focuseraudecom,msg1)        "Per questa pulsantiera e` stata scelto il focalizzatore AudeCom."
+   set caption(focuseraudecom,msg2)        "Non puo` essere utilizzato con questa montatura."
+   set caption(focuseraudecom,msg3)        "Per questo tool e` stata scelto il focalizzatore AudeCom."
+
+   set caption(focuseraudecom,x1)          "x1"
+   set caption(focuseraudecom,x5)          "x5"
+   set caption(focuseraudecom,interro)     "?"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(focuseraudecom,label)       "Enfocador AudeCom"
+   set caption(focuseraudecom,link)        "Las ordenes se mandan a la montura AudeCom."
+
+   set caption(focuseraudecom,attention)   "Cuidado"
+   set caption(focuseraudecom,msg1)        "Ha seleccuonado el enfocador AudeCom del controlador de mano."
+   set caption(focuseraudecom,msg2)        "No se puede usar en esta montura."
+   set caption(focuseraudecom,msg3)        "Ha seleccuonado el enfocador AudeCom del herramienta."
+
+   set caption(focuseraudecom,x1)          "x1"
+   set caption(focuseraudecom,x5)          "x5"
+   set caption(focuseraudecom,interro)     "?"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(focuseraudecom,label)       "AudeCom Scharfeinstellung"
+   set caption(focuseraudecom,link)        "Die Steuervorrichtungen sind zum AudeCom Montierung geschickt."
+
+   set caption(focuseraudecom,attention)   "Achtung"
+   set caption(focuseraudecom,msg1)        "Für diese Hand Kontroller haben Sie den AudeCom Scharfeinsteller gewählt."
+   set caption(focuseraudecom,msg2)        "Es funktioniert nicht mit dieses Montierung."
+   set caption(focuseraudecom,msg3)        "Für diese Geräte haben Sie den AudeCom Scharfeinsteller gewählt."
+
+   set caption(focuseraudecom,x1)          "x1"
+   set caption(focuseraudecom,x5)          "x5"
+   set caption(focuseraudecom,interro)     "?"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(focuseraudecom,label)       "Focador AudeCom"
+   set caption(focuseraudecom,link)        "Os comandos são enviados à montagem AudeCom."
+
+   set caption(focuseraudecom,attention)   "Aviso"
+   set caption(focuseraudecom,msg1)        "Você escolheu o focador AudeCom para este controlador de mão."
+   set caption(focuseraudecom,msg2)        "Não pode ser usado com esta montagem."
+   set caption(focuseraudecom,msg3)        "Você escolheu o focador AudeCom para esta ferramenta."
+
+   set caption(focuseraudecom,x1)          "x1"
+   set caption(focuseraudecom,x5)          "x5"
+   set caption(focuseraudecom,interro)     "?"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(focuseraudecom,label)       "AudeCom Focuser"
+   set caption(focuseraudecom,link)        "Kommando er sendt til AudeCom monteringen."
+
+   set caption(focuseraudecom,attention)   "Advarsel"
+   set caption(focuseraudecom,msg1)        "Du har valgt AudeCom fokuseringen til denne håndkontrol."
+   set caption(focuseraudecom,msg2)        "Den kan ikke benyttes med denne montering."
+   set caption(focuseraudecom,msg3)        "Du har valgt AudeCom fokuseringen til dette værktøj."
+
+   set caption(focuseraudecom,x1)          "x1"
+   set caption(focuseraudecom,x5)          "x5"
+   set caption(focuseraudecom,interro)     "?"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(focuseraudecom,label)       "AudeCom Focuser"
+   set caption(focuseraudecom,link)        "Controls are sent to the AudeCom mount."
+
+   set caption(focuseraudecom,attention)   "Warning"
+   set caption(focuseraudecom,msg1)        "You chose the AudeCom focuser for this hand controller."
+   set caption(focuseraudecom,msg2)        "It cannot be used with this mount."
+   set caption(focuseraudecom,msg3)        "You chose the AudeCom focuser for this tool."
+
+   set caption(focuseraudecom,x1)          "x1"
+   set caption(focuseraudecom,x5)          "x5"
+   set caption(focuseraudecom,interro)     "?"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(focuseraudecom,label)       "AudeCom Focuser"
+   set caption(focuseraudecom,link)        "Controls are sent to the AudeCom mount."
+
+   set caption(focuseraudecom,attention)   "Warning"
+   set caption(focuseraudecom,msg1)        "You chose the AudeCom focuser for this hand controller."
+   set caption(focuseraudecom,msg2)        "It cannot be used with this mount."
+   set caption(focuseraudecom,msg3)        "You chose the AudeCom focuser for this tool."
+
+   set caption(focuseraudecom,x1)          "x1"
+   set caption(focuseraudecom,x5)          "x5"
+   set caption(focuseraudecom,interro)     "?"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

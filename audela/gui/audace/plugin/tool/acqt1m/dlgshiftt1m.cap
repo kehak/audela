@@ -1,0 +1,223 @@
+#
+# Fichier : dlgshiftt1m.cap
+# Mise a jour $Id: dlgshiftt1m.cap 7548 2011-08-20 08:07:36Z robertdelmas  $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(dlgshiftt1m,title)               "Shift Setup"
+set caption(dlgshiftt1m,labelTimex)          "Duration of RA Shift (second)"
+set caption(dlgshiftt1m,labelDirectionx)     "Direction of RA Shift"
+set caption(dlgshiftt1m,labelTimey)          "Duration of Dec. Shift (second)"
+set caption(dlgshiftt1m,labelDirectiony)     "Direction of Dec. Shift"
+set caption(dlgshiftt1m,labelSpeed)          "Shift Speed"
+set caption(dlgshiftt1m,nord)                "N"
+set caption(dlgshiftt1m,est)                 "E"
+set caption(dlgshiftt1m,ouest)               "W"
+set caption(dlgshiftt1m,sud)                 "S"
+set caption(dlgshiftt1m,x1)                  "x1"
+set caption(dlgshiftt1m,x5)                  "x5"
+set caption(dlgshiftt1m,200)                 "200"
+set caption(dlgshiftt1m,NS)                  "NS"
+set caption(dlgshiftt1m,HS)                  "HS"
+set caption(dlgshiftt1m,buttonSave)          "Save"
+set caption(dlgshiftt1m,buttonCancel)        "Cancel"
+set caption(dlgshiftt1m,labelTelescope)      "Telescope Shift in Progress..."
+set caption(dlgshiftt1m,labelStop)           "Shift Stop."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(dlgshiftt1m,title)            "Configuration du décalage"
+   set caption(dlgshiftt1m,labelTimex)       "Durée du décalage en AD (seconde)"
+   set caption(dlgshiftt1m,labelDirectionx)  "Direction du décalage en AD"
+   set caption(dlgshiftt1m,labelTimey)       "Durée du décalage en Déc. (seconde)"
+   set caption(dlgshiftt1m,labelDirectiony)  "Direction du décalage en Déc."
+   set caption(dlgshiftt1m,labelSpeed)       "Vitesse du décalage"
+   set caption(dlgshiftt1m,nord)             "N"
+   set caption(dlgshiftt1m,est)              "E"
+   set caption(dlgshiftt1m,ouest)            "O"
+   set caption(dlgshiftt1m,sud)              "S"
+   set caption(dlgshiftt1m,x1)               "x1"
+   set caption(dlgshiftt1m,x5)               "x5"
+   set caption(dlgshiftt1m,200)              "200"
+   set caption(dlgshiftt1m,NS)               "NS"
+   set caption(dlgshiftt1m,HS)               "HS"
+   set caption(dlgshiftt1m,buttonSave)       "Enregistrer"
+   set caption(dlgshiftt1m,buttonCancel)     "Annuler"
+   set caption(dlgshiftt1m,labelTelescope)   "Décalage du télescope en cours..."
+   set caption(dlgshiftt1m,labelStop)        "Arrêt du décalage."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(dlgshiftt1m,title)            "Configurazione spostamento"
+   set caption(dlgshiftt1m,labelTimex)       "Durata spostamento in AR (secondi)"
+   set caption(dlgshiftt1m,labelDirectionx)  "Direzione spostamento in AR"
+   set caption(dlgshiftt1m,labelTimey)       "Durata spostamento in Dec. (secondi)"
+   set caption(dlgshiftt1m,labelDirectiony)  "Direzione spostamento in Dec."
+   set caption(dlgshiftt1m,labelSpeed)       "Velocita` spostamento"
+   set caption(dlgshiftt1m,nord)             "N"
+   set caption(dlgshiftt1m,est)              "E"
+   set caption(dlgshiftt1m,ouest)            "O"
+   set caption(dlgshiftt1m,sud)              "S"
+   set caption(dlgshiftt1m,x1)               "x1"
+   set caption(dlgshiftt1m,x5)               "x5"
+   set caption(dlgshiftt1m,200)              "200"
+   set caption(dlgshiftt1m,NS)               "NS"
+   set caption(dlgshiftt1m,HS)               "HS"
+   set caption(dlgshiftt1m,buttonSave)       "Salvare"
+   set caption(dlgshiftt1m,buttonCancel)     "Cancellare"
+   set caption(dlgshiftt1m,labelTelescope)   "Spostamento del telescopio in corso."
+   set caption(dlgshiftt1m,labelStop)        "Arresto spostamento."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(dlgshiftt1m,title)            "Ajuste del desplazamiento"
+   set caption(dlgshiftt1m,labelTimex)       "Duración del desplazamiento en A.R. (segundos)"
+   set caption(dlgshiftt1m,labelDirectionx)  "Direccion del desplazamiento en A.R."
+   set caption(dlgshiftt1m,labelTimey)       "Duración del desplazamiento en Dec. (segundos)"
+   set caption(dlgshiftt1m,labelDirectiony)  "Direccion del desplazamiento en Dec."
+   set caption(dlgshiftt1m,labelSpeed)       "Velocidad del desplazamiento"
+   set caption(dlgshiftt1m,nord)             "N"
+   set caption(dlgshiftt1m,est)              "E"
+   set caption(dlgshiftt1m,ouest)            "W"
+   set caption(dlgshiftt1m,sud)              "S"
+   set caption(dlgshiftt1m,x1)               "x1"
+   set caption(dlgshiftt1m,x5)               "x5"
+   set caption(dlgshiftt1m,200)              "200"
+   set caption(dlgshiftt1m,NS)               "NS"
+   set caption(dlgshiftt1m,HS)               "HS"
+   set caption(dlgshiftt1m,buttonSave)       "Guardar"
+   set caption(dlgshiftt1m,buttonCancel)     "Cancelar"
+   set caption(dlgshiftt1m,labelTelescope)   "Desplazamiento del telescopio en curso ..."
+   set caption(dlgshiftt1m,labelStop)        "Parar desplazamiento."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(dlgshiftt1m,title)            "Verschiebung Konfiguration"
+   set caption(dlgshiftt1m,labelTimex)       "Dauer der Verschiebung in RA (Sekunden)"
+   set caption(dlgshiftt1m,labelDirectionx)  "Richtung der Verschiebung in RA"
+   set caption(dlgshiftt1m,labelTimey)       "Dauer der Verschiebung in Dek. (Sekunden)"
+   set caption(dlgshiftt1m,labelDirectiony)  "Richtung der Verschiebung in Dek."
+   set caption(dlgshiftt1m,labelSpeed)       "Verschiebung Geschwindigkeit"
+   set caption(dlgshiftt1m,nord)             "N"
+   set caption(dlgshiftt1m,est)              "O"
+   set caption(dlgshiftt1m,ouest)            "W"
+   set caption(dlgshiftt1m,sud)              "S"
+   set caption(dlgshiftt1m,x1)               "x1"
+   set caption(dlgshiftt1m,x5)               "x5"
+   set caption(dlgshiftt1m,200)              "200"
+   set caption(dlgshiftt1m,NS)               "NS"
+   set caption(dlgshiftt1m,HS)               "HS"
+   set caption(dlgshiftt1m,buttonSave)       "Speichern"
+   set caption(dlgshiftt1m,buttonCancel)     "Annullieren"
+   set caption(dlgshiftt1m,labelTelescope)   "Laufendes Teleskop Verschiebung..."
+   set caption(dlgshiftt1m,labelStop)        "Verschiebung Haltung."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(dlgshiftt1m,title)            "Configuração do deslocamento"
+   set caption(dlgshiftt1m,labelTimex)       "Duração do deslocamento em AR (segundos)"
+   set caption(dlgshiftt1m,labelDirectionx)  "Direcção do deslocamento em AR"
+   set caption(dlgshiftt1m,labelTimey)       "Duração do deslocamento em Dec. (segundos)"
+   set caption(dlgshiftt1m,labelDirectiony)  "Direcção do deslocamento em Dec."
+   set caption(dlgshiftt1m,labelSpeed)       "Velocidade do deslocamento"
+   set caption(dlgshiftt1m,nord)             "N"
+   set caption(dlgshiftt1m,est)              "E"
+   set caption(dlgshiftt1m,ouest)            "O"
+   set caption(dlgshiftt1m,sud)              "S"
+   set caption(dlgshiftt1m,x1)               "x1"
+   set caption(dlgshiftt1m,x5)               "x5"
+   set caption(dlgshiftt1m,200)              "200"
+   set caption(dlgshiftt1m,NS)               "NS"
+   set caption(dlgshiftt1m,HS)               "HS"
+   set caption(dlgshiftt1m,buttonSave)       "Guardar"
+   set caption(dlgshiftt1m,buttonCancel)     "Anular"
+   set caption(dlgshiftt1m,labelTelescope)   "Deslocamento do telescópio em curso..."
+   set caption(dlgshiftt1m,labelStop)        "Parar o deslocamento."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(dlgshiftt1m,title)            "Shift Setup"
+   set caption(dlgshiftt1m,labelTimex)       "Duration of RA Shift (second)"
+   set caption(dlgshiftt1m,labelDirectionx)  "Direction of RA Shift"
+   set caption(dlgshiftt1m,labelTimey)       "Duration of Dec. Shift (second)"
+   set caption(dlgshiftt1m,labelDirectiony)  "Direction of Dec. Shift"
+   set caption(dlgshiftt1m,labelSpeed)       "Shift Speed"
+   set caption(dlgshiftt1m,nord)             "N"
+   set caption(dlgshiftt1m,est)              "E"
+   set caption(dlgshiftt1m,ouest)            "W"
+   set caption(dlgshiftt1m,sud)              "S"
+   set caption(dlgshiftt1m,x1)               "x1"
+   set caption(dlgshiftt1m,x5)               "x5"
+   set caption(dlgshiftt1m,200)              "200"
+   set caption(dlgshiftt1m,NS)               "NS"
+   set caption(dlgshiftt1m,HS)               "HS"
+   set caption(dlgshiftt1m,buttonSave)       "Save"
+   set caption(dlgshiftt1m,buttonCancel)     "Cancel"
+   set caption(dlgshiftt1m,labelTelescope)   "Telescope Shift in Progress..."
+   set caption(dlgshiftt1m,labelStop)        "Shift Stop."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(dlgshiftt1m,title)            "Shift Setup"
+   set caption(dlgshiftt1m,labelTimex)       "Duration of RA Shift (second)"
+   set caption(dlgshiftt1m,labelDirectionx)  "Direction of RA Shift"
+   set caption(dlgshiftt1m,labelTimey)       "Duration of Dec. Shift (second)"
+   set caption(dlgshiftt1m,labelDirectiony)  "Direction of Dec. Shift"
+   set caption(dlgshiftt1m,labelSpeed)       "Shift Speed"
+   set caption(dlgshiftt1m,nord)             "N"
+   set caption(dlgshiftt1m,est)              "E"
+   set caption(dlgshiftt1m,ouest)            "W"
+   set caption(dlgshiftt1m,sud)              "S"
+   set caption(dlgshiftt1m,x1)               "x1"
+   set caption(dlgshiftt1m,x5)               "x5"
+   set caption(dlgshiftt1m,200)              "200"
+   set caption(dlgshiftt1m,NS)               "NS"
+   set caption(dlgshiftt1m,HS)               "HS"
+   set caption(dlgshiftt1m,buttonSave)       "Save"
+   set caption(dlgshiftt1m,buttonCancel)     "Cancel"
+   set caption(dlgshiftt1m,labelTelescope)   "Telescope Shift in Progress..."
+   set caption(dlgshiftt1m,labelStop)        "Shift Stop."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(dlgshiftt1m,title)            "Shift Setup"
+   set caption(dlgshiftt1m,labelTimex)       "Duration of RA Shift (second)"
+   set caption(dlgshiftt1m,labelDirectionx)  "Direction of RA Shift"
+   set caption(dlgshiftt1m,labelTimey)       "Duration of Dec. Shift (second)"
+   set caption(dlgshiftt1m,labelDirectiony)  "Direction of Dec. Shift"
+   set caption(dlgshiftt1m,labelSpeed)       "Shift Speed"
+   set caption(dlgshiftt1m,nord)             "N"
+   set caption(dlgshiftt1m,est)              "E"
+   set caption(dlgshiftt1m,ouest)            "W"
+   set caption(dlgshiftt1m,sud)              "S"
+   set caption(dlgshiftt1m,x1)               "x1"
+   set caption(dlgshiftt1m,x5)               "x5"
+   set caption(dlgshiftt1m,200)              "200"
+   set caption(dlgshiftt1m,NS)               "NS"
+   set caption(dlgshiftt1m,HS)               "HS"
+   set caption(dlgshiftt1m,buttonSave)       "Save"
+   set caption(dlgshiftt1m,buttonCancel)     "Cancel"
+   set caption(dlgshiftt1m,labelTelescope)   "Telescope Shift in Progress..."
+   set caption(dlgshiftt1m,labelStop)        "Shift Stop."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

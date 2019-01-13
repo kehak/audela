@@ -1,0 +1,196 @@
+#
+# Fichier : astroid.cap
+# Mise a jour $Id: astroid.cap 9508 2013-06-01 06:12:01Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(astroid,AD)                                  "RA"
+set caption(astroid,DEC)                                 "Dec."
+set caption(astroid,radius_max)                          "Max. Radius"
+set caption(astroid,end_astroid)                         "End of ASTROID."
+set caption(astroid,nb_etoile)                           "Stars Number"
+set caption(astroid,skybot_objet)                        "SkyBoT obecjts:"
+set caption(astroid,erreur_entrer_coord)                 "Enter RA and Dec coordinates in the tool."
+set caption(astroid,erreur_nbstars)                      "Error stars number (NBSTARS)"
+set caption(astroid,erreur_calibwcs)                     "calibwcs Internal Error. Refer to libtt library error."
+set caption(astroid,erreur_failure)                      "ASTROID Failure"
+set caption(astroid,erreur_found)                        "ASTROID FOUND:"
+set caption(astroid,erreur_connect)                      "Error: Connect to SkyBoT."
+set caption(astroid,erreur_7)                            "get_skybot: ERROR 7"
+set caption(astroid,erreur_MSG)                          "get_skybot:        NUM:"
+set caption(astroid,erreur_NUM)                          "get_skybot:        MSG:"
+set caption(astroid,erreur_analyse)                      "Analysis Error of SkyBoT VOTable."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(astroid,AD)                               "AD"
+   set caption(astroid,DEC)                              "Déc."
+   set caption(astroid,radius_max)                       "Rayon Maxi"
+   set caption(astroid,end_astroid)                      "Fin d'ASTROID."
+   set caption(astroid,nb_etoile)                        "Nombre d'étoiles"
+   set caption(astroid,skybot_objet)                     "Objets SkyBoT :"
+   set caption(astroid,erreur_entrer_coord)              "Entrer les coordonnées AD et Déc. dans l'outil."
+   set caption(astroid,erreur_nbstars)                   "Erreur nombre d'étoiles (NBSTARS)"
+   set caption(astroid,erreur_calibwcs)                  "Erreur interne de calibwcs, voir l'erreur de la librairie libtt."
+   set caption(astroid,erreur_failure)                   "Echec ASTROID"
+   set caption(astroid,erreur_found)                     "ASTROID a trouvé :"
+   set caption(astroid,erreur_connect)                   "Erreur : Se connecter à SkyBoT."
+   set caption(astroid,erreur_7)                         "get_skybot: ERREUR 7"
+   set caption(astroid,erreur_MSG)                       "get_skybot:        NUM :"
+   set caption(astroid,erreur_NUM)                       "get_skybot:        MSG :"
+   set caption(astroid,erreur_analyse)                   "Erreur d'analyse de la VOTable SkyBoT."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(astroid,AD)                               "AR"
+   set caption(astroid,DEC)                              "Dec."
+   set caption(astroid,radius_max)                       "Raggio Massimo"
+   set caption(astroid,end_astroid)                      "Fine dell'ASTROID."
+   set caption(astroid,nb_etoile)                        "Numero di stelle"
+   set caption(astroid,skybot_objet)                     "Oggetti SkyBoT:"
+   set caption(astroid,erreur_entrer_coord)              "Inserisci coordinate AR e Dec nel tool."
+   set caption(astroid,erreur_nbstars)                   "Errore numero di stelle (NBSTARS)"
+   set caption(astroid,erreur_calibwcs)                  "Errore interno di calibwcs , vedi errore della libreria libtt."
+   set caption(astroid,erreur_failure)                   "ASTROID non riuscito"
+   set caption(astroid,erreur_found)                     "ASTROID trovato:"
+   set caption(astroid,erreur_connect)                   "Errore: Connetti a SkyBoT."
+   set caption(astroid,erreur_7)                         "get_skybot: ERRORE 7"
+   set caption(astroid,erreur_MSG)                       "get_skybot:        NUM:"
+   set caption(astroid,erreur_NUM)                       "get_skybot:        MSG:"
+   set caption(astroid,erreur_analyse)                   "Errore dell'analisi del VOTable SkyBoT."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(astroid,AD)                               "RA"
+   set caption(astroid,DEC)                              "Dec."
+   set caption(astroid,radius_max)                       "Radio max."
+   set caption(astroid,end_astroid)                      "Fin de ASTROID."
+   set caption(astroid,nb_etoile)                        "Numero de estrellas"
+   set caption(astroid,skybot_objet)                     "Objetos SkyBoT:"
+   set caption(astroid,erreur_entrer_coord)              "Entrar coordenadas RA y Dec. en la herramienta."
+   set caption(astroid,erreur_nbstars)                   "Error numero de estrellas (NBSTARS)"
+   set caption(astroid,erreur_calibwcs)                  "Error interno de calibwcs. Ver error en la libreria libtt."
+   set caption(astroid,erreur_failure)                   "ASTROID fallo"
+   set caption(astroid,erreur_found)                     "ASTROID encontrado:"
+   set caption(astroid,erreur_connect)                   "Error: Conectar a SkyBoT."
+   set caption(astroid,erreur_7)                         "get_skybot: ERROR 7"
+   set caption(astroid,erreur_MSG)                       "get_skybot:        NUM:"
+   set caption(astroid,erreur_NUM)                       "get_skybot:        MSG:"
+   set caption(astroid,erreur_analyse)                   "Error de analisis SkyBoT VOTable."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(astroid,AD)                               "RA"
+   set caption(astroid,DEC)                              "Dek."
+   set caption(astroid,radius_max)                       "Maximalen Umkreis"
+   set caption(astroid,end_astroid)                      "ASTROID Ende."
+   set caption(astroid,nb_etoile)                        "Sterneanzahl"
+   set caption(astroid,skybot_objet)                     "SkyBoT Objekte:"
+   set caption(astroid,erreur_entrer_coord)              "Geben Sie Koordinaten RA und Dek. im Werkzeug."
+   set caption(astroid,erreur_nbstars)                   "Irrtum Anzahl der Sterne (NBSTARS)"
+   set caption(astroid,erreur_calibwcs)                  "Calibwcs interner Irrtum, siehe Irrtum in libtt Bibliothek."
+   set caption(astroid,erreur_failure)                   "ASTROID Irrtum"
+   set caption(astroid,erreur_found)                     "ASTROID hat gefunden:"
+   set caption(astroid,erreur_connect)                   "Irrtum: Sich zu SkyBoT Zusammenhängen."
+   set caption(astroid,erreur_7)                         "get_skybot: IRRTUM 7"
+   set caption(astroid,erreur_MSG)                       "get_skybot:        NUM:"
+   set caption(astroid,erreur_NUM)                       "get_skybot:        MSG:"
+   set caption(astroid,erreur_analyse)                   "SkyBoT VOTable Irrtum Analyse."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(astroid,AD)                               "AR"
+   set caption(astroid,DEC)                              "Dec."
+   set caption(astroid,radius_max)                       "# Rayon Maxi"
+   set caption(astroid,end_astroid)                      "# Fin d'ASTROID."
+   set caption(astroid,nb_etoile)                        "# Nombre d'étoiles"
+   set caption(astroid,skybot_objet)                     "# Objets SkyBoT :"
+   set caption(astroid,erreur_entrer_coord)              "# Entrer les coordonnées AD et Déc. dans l'outil."
+   set caption(astroid,erreur_nbstars)                   "# Erreur nombre d'étoiles (NBSTARS)"
+   set caption(astroid,erreur_calibwcs)                  "# Erreur interne de calibwcs, voir l'erreur de la librairie libtt."
+   set caption(astroid,erreur_failure)                   "# Echec ASTROID"
+   set caption(astroid,erreur_found)                     "# ASTROID a trouvé :"
+   set caption(astroid,erreur_connect)                   "# Erro: Se connecter à SkyBoT."
+   set caption(astroid,erreur_7)                         "get_skybot: ERRO 7"
+   set caption(astroid,erreur_MSG)                       "get_skybot:        NUM:"
+   set caption(astroid,erreur_NUM)                       "get_skybot:        MSG:"
+   set caption(astroid,erreur_analyse)                   "# Erreur d'analyse de la VOTable SkyBoT."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(astroid,AD)                               "RA"
+   set caption(astroid,DEC)                              "Dec."
+   set caption(astroid,radius_max)                       "Max. Radius"
+   set caption(astroid,end_astroid)                      "End of ASTROID."
+   set caption(astroid,nb_etoile)                        "Stars Number"
+   set caption(astroid,skybot_objet)                     "SkyBoT obecjts:"
+   set caption(astroid,erreur_entrer_coord)              "Enter RA and Dec coordinates in the tool."
+   set caption(astroid,erreur_nbstars)                   "Error stars number (NBSTARS)"
+   set caption(astroid,erreur_calibwcs)                  "calibwcs Internal Error. Refer to libtt library error."
+   set caption(astroid,erreur_failure)                   "ASTROID Failure"
+   set caption(astroid,erreur_found)                     "ASTROID FOUND:"
+   set caption(astroid,erreur_connect)                   "Error: Connect to SkyBoT."
+   set caption(astroid,erreur_7)                         "get_skybot: ERROR 7"
+   set caption(astroid,erreur_MSG)                       "get_skybot:        NUM:"
+   set caption(astroid,erreur_NUM)                       "get_skybot:        MSG:"
+   set caption(astroid,erreur_analyse)                   "Analysis Error of SkyBoT VOTable."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(astroid,AD)                               "RA"
+   set caption(astroid,DEC)                              "Dec."
+   set caption(astroid,radius_max)                       "Max. Radius"
+   set caption(astroid,end_astroid)                      "End of ASTROID."
+   set caption(astroid,nb_etoile)                        "Stars Number"
+   set caption(astroid,skybot_objet)                     "SkyBoT obecjts:"
+   set caption(astroid,erreur_entrer_coord)              "Enter RA and Dec coordinates in the tool."
+   set caption(astroid,erreur_nbstars)                   "Error stars number (NBSTARS)"
+   set caption(astroid,erreur_calibwcs)                  "calibwcs Internal Error. Refer to libtt library error."
+   set caption(astroid,erreur_failure)                   "ASTROID Failure"
+   set caption(astroid,erreur_found)                     "ASTROID FOUND:"
+   set caption(astroid,erreur_connect)                   "Error: Connect to SkyBoT."
+   set caption(astroid,erreur_7)                         "get_skybot: ERROR 7"
+   set caption(astroid,erreur_MSG)                       "get_skybot:        NUM:"
+   set caption(astroid,erreur_NUM)                       "get_skybot:        MSG:"
+   set caption(astroid,erreur_analyse)                   "Analysis Error of SkyBoT VOTable."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(astroid,AD)                               "RA"
+   set caption(astroid,DEC)                              "Dec."
+   set caption(astroid,radius_max)                       "Max. Radius"
+   set caption(astroid,end_astroid)                      "End of ASTROID."
+   set caption(astroid,nb_etoile)                        "Stars Number"
+   set caption(astroid,skybot_objet)                     "SkyBoT obecjts:"
+   set caption(astroid,erreur_entrer_coord)              "Enter RA and Dec coordinates in the tool."
+   set caption(astroid,erreur_nbstars)                   "Error stars number (NBSTARS)"
+   set caption(astroid,erreur_calibwcs)                  "calibwcs Internal Error. Refer to libtt library error."
+   set caption(astroid,erreur_failure)                   "ASTROID Failure"
+   set caption(astroid,erreur_found)                     "ASTROID FOUND:"
+   set caption(astroid,erreur_connect)                   "Error: Connect to SkyBoT."
+   set caption(astroid,erreur_7)                         "get_skybot: ERROR 7"
+   set caption(astroid,erreur_MSG)                       "get_skybot:        NUM:"
+   set caption(astroid,erreur_NUM)                       "get_skybot:        MSG:"
+   set caption(astroid,erreur_analyse)                   "Analysis Error of SkyBoT VOTable."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

@@ -1,0 +1,55 @@
+
+# Test script for Tkhtml
+#
+# This file contains test cases for "selectors". i.e. test that
+# selector expressions correctly match document nodes. It does not
+# test syntax error handling etc.
+#
+# Interfaces used:
+#
+#     pathName reset
+#     pathName parse -final DOCUMENT
+#     pathName search SELECTOR
+#
+
+# Standard test file code.
+proc sourcefile {file} {
+  set fname [file join [file dirname [info script]] $file] 
+  uplevel #0 [list source $fname]
+}
+sourcefile common.tcl
+html .h
+
+# The tests in this file use the following proc to make things less
+# verbose.
+#
+proc selectortest {name selector document ids} {
+  set expected [lsort $ids]
+  tcltest::test $name {} -body {
+    .h reset
+    .h parse -final $document
+    set ret [list]
+    foreach N [.h search $selector] {
+      lappend ret [$N attr -default -1 testid]
+    }
+    lsort $ret
+  } -result $expected
+}
+
+selectortest st-1.1 {div > :first-child} {
+  <div>
+    <div testid=0></div>
+    <div testid=1></div>
+    <div testid=2></div>
+  </div>
+} [list 0]
+selectortest st-1.2 {div > :last-child} {
+  <div>
+    <div testid=0></div>
+    <div testid=1></div>
+    <div testid=2></div>
+  </div>
+} [list 2]
+
+finish_test
+

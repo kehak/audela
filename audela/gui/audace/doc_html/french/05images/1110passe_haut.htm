@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=UTF-8">
+  <title>Filtre passe-haut</title>
+</head>
+<body>
+<p class="date">Date de mise &agrave; jour : 02 juillet 2013</p>
+<h1>Filtre passe-haut </h1>
+Lien vers le <a href="../../../../../doc/libtt/ttus1-fr.htm#FILTER">manuel
+utilisateur</a> de la librairie libtt pour le pr&eacute;traitement
+d'images astronomiques.<br>
+<br>
+Ce filtrage passe-haut est de type <b>lin&eacute;aire</b>, et consiste
+&agrave; attribuer &agrave; chaque pixel de l'image r&eacute;sultat la
+somme pond&eacute;r&eacute;e de quelques pixels du voisinage. Les
+coefficients sont regroup&eacute;s en un <b>noyau</b> dont la taille
+d&eacute;finit celle du voisinage. Cette op&eacute;ration s'appelle une
+<b>convolution</b>.<br>
+Les coefficients de ce filtre permettent d'<b>att&eacute;nuer les
+basses fr&eacute;quences spatiales</b> de l'image (d&eacute;tails
+grossiers se traduisant par une variation lente de luminosit&eacute; de
+l'image), et d'en conserver les hautes fr&eacute;quences.
+L'att&eacute;nuation des basses fr&eacute;quences croit avec la taille
+du noyau.<br>
+Les coefficients des noyaux suivants sont fournis pour une valeur du
+coefficient d'efficacit&eacute; valant 0 ( efficacit&eacute; maximale )
+<h2>Coefficients du noyau 3x3 </h2>
+<table border="1" cellpadding="2" cellspacing="3">
+  <tbody>
+    <tr>
+      <td>-0.018</td>
+      <td>-0.135</td>
+      <td>-0.018</td>
+    </tr>
+    <tr>
+      <td>-0.135</td>
+      <td>+1.615</td>
+      <td>-0.135</td>
+    </tr>
+    <tr>
+      <td>-0.018</td>
+      <td>-0.135</td>
+      <td>-0.018</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Coefficients du noyau 5x5 </h2>
+<table border="1" cellpadding="2" cellspacing="3">
+  <tbody>
+    <tr>
+      <td>-0.000</td>
+      <td>-0.007</td>
+      <td>-0.018</td>
+      <td>-0.007</td>
+      <td>-0.000</td>
+    </tr>
+    <tr>
+      <td>-0.007</td>
+      <td>-0.135</td>
+      <td>-0.368</td>
+      <td>-0.135</td>
+      <td>-0.007</td>
+    </tr>
+    <tr>
+      <td>-0.018</td>
+      <td>-0.368</td>
+      <td>+3.141</td>
+      <td>-0.368</td>
+      <td>-0.018</td>
+    </tr>
+    <tr>
+      <td>-0.007</td>
+      <td>-0.135</td>
+      <td>-0.368</td>
+      <td>-0.135</td>
+      <td>-0.007</td>
+    </tr>
+    <tr>
+      <td>-0.000</td>
+      <td>-0.007</td>
+      <td>-0.018</td>
+      <td>-0.007</td>
+      <td>-0.000</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Coefficients du noyau 7x7 </h2>
+<table border="1" cellpadding="2" cellspacing="3">
+  <tbody>
+    <tr>
+      <td>-0.000</td>
+      <td>-0.000</td>
+      <td>-0.001</td>
+      <td>-0.002</td>
+      <td>-0.001</td>
+      <td>-0.000</td>
+      <td>-0.000</td>
+    </tr>
+    <tr>
+      <td>-0.000</td>
+      <td>-0.005</td>
+      <td>-0.036</td>
+      <td>-0.069</td>
+      <td>-0.036</td>
+      <td>-0.005</td>
+      <td>-0.000</td>
+    </tr>
+    <tr>
+      <td>-0.001</td>
+      <td>-0.036</td>
+      <td>-0.264</td>
+      <td>-0.513</td>
+      <td>-0.264</td>
+      <td>-0.036</td>
+      <td>-0.001</td>
+    </tr>
+    <tr>
+      <td>-0.002</td>
+      <td>-0.069</td>
+      <td>-0.513</td>
+      <td>+4.712</td>
+      <td>-0.513</td>
+      <td>-0.069</td>
+      <td>-0.002</td>
+    </tr>
+    <tr>
+      <td>-0.001</td>
+      <td>-0.036</td>
+      <td>-0.264</td>
+      <td>-0.513</td>
+      <td>-0.264</td>
+      <td>-0.036</td>
+      <td>-0.001</td>
+    </tr>
+    <tr>
+      <td>-0.000</td>
+      <td>-0.005</td>
+      <td>-0.036</td>
+      <td>-0.069</td>
+      <td>-0.036</td>
+      <td>-0.005</td>
+      <td>-0.000</td>
+    </tr>
+    <tr>
+      <td>-0.000</td>
+      <td>-0.000</td>
+      <td>-0.001</td>
+      <td>-0.002</td>
+      <td>-0.001</td>
+      <td>-0.000</td>
+      <td>-0.000</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Coefficients du noyau 9x9 </h2>
+<table border="1" cellpadding="2" cellspacing="3">
+  <tbody>
+    <tr>
+      <td>-0.000</td>
+      <td>-0.000</td>
+      <td>-0.000</td>
+      <td>-0.000</td>
+      <td>-0.000</td>
+      <td>-0.000</td>
+      <td>-0.000</td>
+      <td>-0.000</td>
+      <td>-0.000</td>
+    </tr>
+    <tr>
+      <td>-0.000</td>
+      <td>-0.000</td>
+      <td>-0.002</td>
+      <td>-0.007</td>
+      <td>-0.011</td>
+      <td>-0.007</td>
+      <td>-0.002</td>
+      <td>-0.000</td>
+      <td>-0.000</td>
+    </tr>
+    <tr>
+      <td>-0.000</td>
+      <td>-0.002</td>
+      <td>-0.018</td>
+      <td>-0.082</td>
+      <td>-0.135</td>
+      <td>-0.082</td>
+      <td>-0.018</td>
+      <td>-0.002</td>
+      <td>-0.000</td>
+    </tr>
+    <tr>
+      <td>-0.000</td>
+      <td>-0.007</td>
+      <td>-0.082</td>
+      <td>-0.368</td>
+      <td>-0.607</td>
+      <td>-0.368</td>
+      <td>-0.082</td>
+      <td>-0.007</td>
+      <td>-0.000</td>
+    </tr>
+    <tr>
+      <td>-0.000</td>
+      <td>-0.011</td>
+      <td>-0.135</td>
+      <td>-0.607</td>
+      <td>+6.283</td>
+      <td>-0.607</td>
+      <td>-0.135</td>
+      <td>-0.011</td>
+      <td>-0.000</td>
+    </tr>
+    <tr>
+      <td>-0.000</td>
+      <td>-0.007</td>
+      <td>-0.082</td>
+      <td>-0.368</td>
+      <td>-0.607</td>
+      <td>-0.368</td>
+      <td>-0.082</td>
+      <td>-0.007</td>
+      <td>-0.000</td>
+    </tr>
+    <tr>
+      <td>-0.000</td>
+      <td>-0.002</td>
+      <td>-0.018</td>
+      <td>-0.082</td>
+      <td>-0.135</td>
+      <td>-0.082</td>
+      <td>-0.018</td>
+      <td>-0.002</td>
+      <td>-0.000</td>
+    </tr>
+    <tr>
+      <td>-0.000</td>
+      <td>-0.000</td>
+      <td>-0.002</td>
+      <td>-0.007</td>
+      <td>-0.011</td>
+      <td>-0.007</td>
+      <td>-0.002</td>
+      <td>-0.000</td>
+      <td>-0.000</td>
+    </tr>
+    <tr>
+      <td>-0.000</td>
+      <td>-0.000</td>
+      <td>-0.000</td>
+      <td>-0.000</td>
+      <td>-0.000</td>
+      <td>-0.000</td>
+      <td>-0.000</td>
+      <td>-0.000</td>
+      <td>-0.000</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

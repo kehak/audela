@@ -1,0 +1,110 @@
+
+/*=========== Adresse des sous pages de la présentation ==================*/
+
+/*!
+  @page presentation               Présentation
+  @htmlinclude "../gui/audace/doc_html/french/01presentation/1010presentation.htm"
+
+  @page config                     Configuration
+  AudeLA est configuré avec des valeurs par défaut.
+  Cependant, si votre télescope n'est pas à l'OHP, comment définir votre position personnelle ?
+  Vous trouverez ci-dessous tous les réglages personnels que vous pouvez effectuer,
+  de manière permanente ou non :
+  - pour une première vue @subpage config1  puis @subpage config2
+  - les détails opérationnels sont ici @ref menu_configuration
+
+  @page config1                    Configuration
+  @htmlinclude "../gui/audace/doc_html/french/01presentation/1020configuration.htm"
+
+  @page config2                    Configuration (suite)
+  @htmlinclude "../gui/audace/doc_html/french/01presentation/1030configuration.htm"
+
+  @page visualiser_images          Visualiser des images
+  @htmlinclude "../gui/audace/doc_html/french/01presentation/1040visualiser_images.htm"
+
+  @page console                    Utilisation de la Console
+  @htmlinclude "../gui/audace/doc_html/french/01presentation/1070console.htm"
+
+  @page scripts                    Utilisation des scripts
+  @htmlinclude "../gui/audace/doc_html/french/01presentation/1060scripts.htm"
+
+  @page aide                       Aide
+  @htmlinclude "../gui/audace/doc_html/french/01presentation/1050aide.htm"
+*/
+
+/*=============== Adresse des sous pages du menu Fichier ===============*/
+
+/*!
+  @page fichier_ouvrir           Ouvrir
+  @htmlinclude "../gui/audace/doc_html/french/03fichier/1010ouvrir.htm"
+
+  @page fichier_enregistrer      Enregistrer
+  @htmlinclude "../gui/audace/doc_html/french/03fichier/1020enregistrer.htm"
+
+  @page fichier_enregistrer_sous Enregistrer sous
+  @htmlinclude "../gui/audace/doc_html/french/03fichier/1030enregistrer_sous.htm"
+
+  @page fichier_en-tete-fits     En-tête FITS
+  @htmlinclude "../gui/audace/doc_html/french/03fichier/1040en-tete-fits.htm"
+
+  @page plugin_tool_visio2       Visionneuse bis (plugin)
+  @htmlinclude "../gui/audace/plugin/tool/visio2/french/visio2.htm"
+
+  @page plugin_tool_bddimages    Base de données d'images (plugin)
+  @htmlinclude "../gui/audace/plugin/tool/bddimages/french/bddimages.htm"
+
+  @page plugin_tool_robobs       Observations robotiques (plugin)
+  @htmlinclude "../gui/audace/plugin/tool/robobs/french/robobs.htm"
+
+  @page fichier_nouveau_script   Nouveau script
+  Conseils pour les @ref script1b
+  @htmlinclude "../gui/audace/doc_html/french/03fichier/1050nouveau_script.htm"
+
+  @page fichier_editer_script    Editer script
+  @htmlinclude "../gui/audace/doc_html/french/03fichier/1060editer_script.htm"
+
+  @page fichier_lancer_script    Lancer script
+  @htmlinclude "../gui/audace/doc_html/french/03fichier/1070lancer_script.htm"
+*/
+
+/*=============== Adresse des sous pages du menu Affichage ====================*/
+
+/*!
+   @page affichage_masquer         Afficher/Masquer le panneau
+   @htmlinclude "../gui/audace/doc_html/french/04affichage/1020masquer.htm"
+
+   @page affichage_effacer_image   Effacer l'image
+   @htmlinclude "../gui/audace/doc_html/french/04affichage/1030effacer_image.htm"
+
+   @page affichage_effacer_console Effacer le contenu de la Console
+   @htmlinclude "../gui/audace/doc_html/french/04affichage/1035effacer_console.htm"
+
+   @page affichage_palette         Palette et Fonctions de Transfert
+   - @htmlinclude "../gui/audace/doc_html/french/04affichage/1040palette.htm"   Palette
+   - @htmlinclude "../gui/audace/doc_html/french/04affichage/1050transfert.htm" Fonctions de Transfert
+
+   @page affichage_zoom            Zoom
+   @htmlinclude "../gui/audace/doc_html/french/04affichage/1080zoom.htm"
+
+   @page affichage_plein_ecran     Plein écran
+   @htmlinclude "../gui/audace/doc_html/french/04affichage/1090plein_ecran.htm"
+
+   @page affichage_miroir_gauche_droite Inverser Gauche/Droite
+   @htmlinclude "../gui/audace/doc_html/french/04affichage/1100miroir.htm"
+
+   @page affichage_miroir_haut_bas Inverser Haut/bas
+   @htmlinclude "../gui/audace/doc_html/french/04affichage/1100miroir.htm"
+
+   @page affichage_fenetrer        Fenêtrer
+   @htmlinclude "../gui/audace/doc_html/french/04affichage/1110fenetrer.htm"
+
+  @page plugin_tool_crosshair     Réticule
+  - fonctions ::Crosshair
+  - fichier   crosshair.tcl
+  @htmlinclude "../gui/audace/plugin/tool/crosshair/french/crosshair.htm"
+
+  @page plugin_tool_magnifier     Loupe
+  - fonctions ::magnifier
+  - fichier   magnifier.tcl
+  @htmlinclude "../gui/audace/plugin/tool/magnifier/french/magnifier.htm"
+*/

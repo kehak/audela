@@ -1,0 +1,91 @@
+#------------------------------------------------------------------
+# source [ file join $audace(rep_plugin) tool atos atos_go.cap
+#------------------------------------------------------------------
+#
+# Fichier        : atos_go.cap
+# Description    : Caption pour le demarrage du plugin ATOS
+# Auteur         : Frederic Vachier
+# Mise à jour $Id: atos_go.cap 10754 2014-05-16 20:43:15Z fredvachier $
+#
+
+#=========================================================================
+#   Début de la declaration des textes localises (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(atos_go,titre)                 "A.T.O.S."
+set caption(atos_go,acqvideolinux)         "A.T.O.S."
+set caption(atos_go,help_titre)            "Help for this Tool"
+set caption(atos_go,help_titre1)           "Help for the Tool:"
+
+set caption(atos_go,precision)             "You have to change the internal precision in Configuration Menu -> Number of Decimals"
+set caption(atos_go,setup)                 "Plugin Setup"
+set caption(atos_go,acquisition)           "Acquisition of a video"
+set caption(atos_go,extraction)            "Extraction in fits images"
+set caption(atos_go,flatdark)              "Build Flat & Dark"
+set caption(atos_go,test)                  "Test debug mode"
+set caption(atos_go,ressource)             "Reload Scripts"
+set caption(atos_go,verif)                 "Checking avi"
+set caption(atos_go,time)                  "Time Extraction"
+set caption(atos_go,cdl)                   "Ligth Curve"
+set caption(atos_go,analysis)              "Analysis"
+
+set caption(atos_go,pasdimages)            "No images\nVerify the path and prefix of files and verify the image extension in Configuration -> Image filename"
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(atos_go,titre)              "A.T.O.S."
+   set caption(atos_go,acqvideolinux)      "A.T.O.S."
+   set caption(atos_go,help_titre)         "Aide de cet outil"
+   set caption(atos_go,help_titre1)        "Aide de l'outil :"
+
+   set caption(atos_go,setup)              "Configuration du plugin"
+   set caption(atos_go,acquisition)        "Acquisition d'une vidéo"
+   set caption(atos_go,extraction)         "Extraction en images fits"
+   set caption(atos_go,test)               "Test mode debug"
+   set caption(atos_go,ressource)          "Re-charge les scripts"
+   set caption(atos_go,verif)              "Vérification de l'avi"
+   set caption(atos_go,time)               "Extraction du temps"
+   set caption(atos_go,cdl)                "Courbe de lumière"
+   set caption(atos_go,analysis)           "Analyse"
+
+   set caption(atos_go,pasdimages)         "Pas d'images\nVerifier le repertoire et le prefixe des fichiers et verifier l'extension des images dans Configuration -> Fichier image"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

@@ -1,0 +1,164 @@
+# identity.test
+#
+#	This file tests the correct functioning of the standalone
+#	identity filer.
+#
+
+# For unix systems: if this test fails, delete all files of the 
+# form ~/.email*, and check the status of your ~/.forward file.
+
+# The user should define here his/her email address as the system defines it.
+# This version will work only at the CS Department of Cornell University.
+
+if {[string compare test [info procs test]] == 1} then {source ../tests/defs}
+
+
+# set VERBOSE 1
+
+
+test identity-1.1.1 {dp_connect command} {
+    list [catch {
+        dp_connect identity -bar
+    } msg] $msg 
+} {1 {unknown option "-bar", must be -channel}}
+
+
+test identity-1.1.2 {dp_connect command} {
+    list [catch {
+        dp_connect identity -bar foo
+    } msg] $msg 
+} {1 {unknown option "-bar", must be -channel}}    
+
+#
+# Test argument missing checks.
+#
+
+test identity-1.2.1 {dp_connect command} {
+    list [catch {
+        dp_connect identity -channel
+    } msg] $msg 
+} {1 {option value missing for -channel}}    
+
+test identity-1.2.2 {dp_connect command} {
+    list [catch {
+        dp_connect identity
+    } msg] $msg 
+} {1 {-channel must be defined for an identity channel}}
+
+test identity-1.2.3 {dp_connect command} {
+    list [catch {
+        dp_connect identity -channel wrong_channel
+    } msg] $msg 
+} {1 {can not find channel named "wrong_channel"}}
+
+#
+# Test functioning by copying data from a file.
+#
+
+test identity-1.2.4 {dp_connect command} {
+    list [catch {
+	set x "01234567890123456789012345678901"
+
+	for {set i 0} {[expr $i < 10]} {set i [expr $i + 1]} {
+	    set x $x$x
+	}
+
+	set f [open ___tmp {WRONLY CREAT}]
+	puts -nonewline $f $x
+	close $f
+
+	set f [open ___tmp {RDONLY}]
+
+        set idChan [dp_connect identity -channel $f]
+
+    } msg] $msg 
+} {0 idfilter0}
+
+
+if {$idChan != ""} {
+
+test identity-1.3.2 {fconfigure command} {
+    list [catch {
+	fconfigure $idChan -translation binary
+        fconfigure $idChan
+    } msg] $msg 
+} [list 0 [list -blocking 1 -buffering full -buffersize 4096 -eofchar {{} {}} -translation {lf lf} -channel $f -peek 0]]
+
+
+test identity-1.3.3 {fconfigure command} {
+    list [catch {
+        fconfigure $idChan -badoption
+    } msg] $msg 
+} {1 {bad option "-badoption": must be -blocking, -buffering, -buffersize, -eofchar, -translation, or a channel type specific option}}
+
+test identity-1.3.4 {fconfigure command} {
+    list [catch {
+        fconfigure $idChan -channel
+    } msg] $msg 
+} [list 0 [list $f]]
+
+test identity-1.3.5 {fconfigure command} {
+    list [catch {
+        fconfigure $idChan -channel something
+    } msg] $msg 
+} {1 {can't set channel after identity channel is opened}}
+
+
+test identity-1.3.6 {fconfigure command} {
+    list [catch {
+        fconfigure $idChan -peek
+    } msg] $msg 
+} {0 0}
+
+test identity-1.3.7 {fconfigure command} {
+    list [catch {
+        fconfigure $idChan -peek badvalue
+    } msg] $msg 
+} {1 {expected boolean value but got "badvalue"}}
+
+test identity-1.3.8 {fconfigure command} {
+    list [catch {
+        fconfigure $idChan -blocking yes
+    } msg] $msg 
+} {0 {}}
+
+test identity-1.3.9 {dp_copy command} {
+    list [catch {
+	set g [open ___out {WRONLY CREAT}]
+	dp_copy $idChan $g
+	close $f
+	close $g
+	set g [open ___out {RDONLY}]
+        set y [read $g 100000]
+	close $g
+	file delete ___out
+	if {[expr [string compare $x $y] == 0]} {
+	    set rez ok
+	} else {
+	    set rez failed
+	}		
+    } msg] $msg 
+} {0 ok}
+
+
+test identity-1.3.10 {close identity filter} {
+    list [catch {
+	close $idChan
+    } msg] $msg 
+} {0 {}}
+
+
+# The following brace matches the line below:
+# if {$idChan != ""} 
+
+}
+
+test identity-1.4.1 {cleanup} {
+    list [catch {
+	file delete ___tmp
+	file delete ___out
+    } msg] $msg 
+} {0 {}}
+
+
+

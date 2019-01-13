@@ -1,0 +1,61 @@
+#
+# Fichier : spcaudace.cap
+# Mise a jour $Id: spcaudace.cap 13977 2016-06-10 23:20:00Z bmauclaire $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(spcaudace,spc_audace)                         "Spectropscopy: SpcAudace"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(spcaudace,spc_audace)                      "Spectroscopie : SpcAudace"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(spcaudace,spc_audace)                      "Spettroscopia: SpcAudace"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(spcaudace,spc_audace)                      "Espectroscopia: SpcAudace"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(spcaudace,spc_audace)                      "Spektroskopie: SpcAudace"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(spcaudace,spc_audace)                      "Espectroscopia: SpcAudace"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(spcaudace,spc_audace)                      "Spectroscopy: SpcAudace"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(spcaudace,spc_audace)                      "Spectropscopy: SpcAudace"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(spcaudace,spc_audace)                      "Spectropscopy: SpcAudace"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

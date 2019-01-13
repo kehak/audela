@@ -1,0 +1,64 @@
+                       HOW TO COMPILE THE TKHTML WIDGET
+
+There are two ways to build the Tkhtml widget:
+
+  * Using the configure script. This is quick and easy if it works,
+    virtually impossible to debug if it doesn't).
+  * Modifying the Makefile template. This takes a few minutes to set up, 
+    but it's easier to understand what's going on.
+
+Both systems have been tested on Suse linux 9.2 and Mingw/Msys on Windows XP.
+
+Using the configure script
+--------------------------
+
+1. If you're reading this you have already obtained the sources and they
+   are likely in a directory called "htmlwidget".
+2. Create a new empty directory to build in.
+3. Cd into the new directory.
+4. Run the "configure" script located in the htmlwidget directory. The
+   configure script will probably need the --with-tcl and --with-tk options
+   passed to it. 
+5. Run "make".
+6. If everything worked, run "make install".
+
+The sequence of commands might look like this:
+
+  $ tar -xzf tkhtml-3.alpha1.tar.gz
+  $ ls -o htmlwidget/configure
+  -rwxr-xr-x  1 user 233035 2005-07-06 17:37 htmlwidget/configure
+  $ mkdir bld
+  $ cd bld
+  $ ../htmlwidget/configure --with-tcl=/usr/local/ActiveTcl/lib --with-tk=/usr/local/ActiveTcl/lib 
+  <much output>
+  $ make
+  $ make install
+
+Modifying a Makefile template
+-----------------------------
+
+There are two similar makefiles in the root directory of the source tree.
+"main.mk" is for linux, and "mingw.mk" is for Mingw/Msys on windows. Both
+require a handful of variables to be modified before they can be used.
+Instructions are in comments in either file.
+
+1. If you're reading this you have already obtained the sources and they
+   are likely in a directory called "htmlwidget".
+2. Edit the appropriate makefile ("main.mk" or "mingw.mk").
+2. Create a new empty directory to build in.
+3. Cd into the new directory.
+5. Run "make".
+6. If everything worked, run "make install" (linux only).
+
+The sequence of commands might look like this:
+
+  $ tar -xzf tkhtml-3.alpha1.tar.gz
+  $ ls -o htmlwidget/main.mk
+  -rw-r--r--  1 dan 4143 2005-07-10 19:45 htmlwidget/main.mk
+  $ vi htmlwidget/main.mk
+  $ mkdir bld
+  $ cd bld
+  $ make -f ../htmlwidget/main.mk
+  <much output>
+  $ make install
+

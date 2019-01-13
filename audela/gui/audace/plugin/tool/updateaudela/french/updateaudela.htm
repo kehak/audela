@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Mise &agrave; jour d'AudeLA</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 06 février 2016</p>
+<h1>Mise &agrave; jour d'AudeLA </h1>
+<p>Cet outil de t&eacute;l&eacute;charger des mises &agrave; jour de AudeLA qui
+  sont disponibles sur Internet.</p>
+<p><a href="#update">1) Procedure de mise &agrave; jour</a></p>
+<p><a href="#consult">2) Voir le contenu d'un fichier kit</a></p>
+<p><a href="#make_update">3) Fabrication des mises &agrave; jour (pour les d&eacute;veloppeurs)</a></p>
+<blockquote>
+  <p><a href="#make_update_plugin">3.1) Fabrication de mise &agrave; jour d'un
+    plugin</a></p>
+  <p><a href="#make_update_audela">3.2) Fabrication de mise &agrave; jour du coeur
+    d'AudeLA</a></p>
+  <p><a href="#make_update_tcllib">3.3) Fabrication de mise &agrave; jour d'une
+    librairie TCL</a></p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+</blockquote>
+<h2><a name="update"></a>1) Proc&eacute;dure de mise &agrave; jour de AudeLA</h2>
+<p>1) D'abord s'assurer que l'ordinateur est connect&eacute; &agrave; Internet
+  .</p>
+<p>2) Lancer AudeLA et selectionner l'outil de <b>Mise &agrave; jour d'AudeLA</b>
+  (menu Outils-&gt;Mise &agrave; jour d'AudeLA)</p>
+<blockquote>
+  <p>S&eacute;lectionner l'onglet &quot;<b>T&eacute;l&eacute;charger</b>&quot;
+    et cliquer sur le bouton &quot;<b>GO Audela</b>&quot; pour voir les mises
+    &agrave; jours disponibles sur le site Internet de AudeLA.</p>
+  <p><img src="images/download.png" width="348" height="374"></p>
+</blockquote>
+<p>3) cliquer sur le nom d'un fichier (exemple: acqapn-1.0.kit) pour d&eacute;marrer
+  le t&eacute;l&eacute;chargement et l'installation automatique.</p>
+<p>Un compte-rendu est affich&eacute; &agrave; la fin de l'installation : </p>
+<blockquote>
+  <p><img src="images/install_end.png" width="412" height="144"></p>
+</blockquote>
+<p>4) red&eacute;marrer AudeLA pour prendre en compte l'installation.</p>
+<h1><a name="consult"></a>2) Voir le contenu d'un fichier kit</h1>
+<p>Il est possible de consulter le contenu d'un fichier kit depuis l'onglet &quot;Mises
+  &agrave; jour t&eacute;l&eacute;charg&eacute;es&quot;: s&eacute;lectionner un
+  kit puis cliquer sur le bouton &quot;<b>Voir</b>&quot;. Le contenu du fichier
+  kit est affich&eacute; dans la console.<br>
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1><a name="make_update"></a>3) Fabrication des mises &agrave; jour (pour les
+  d&eacute;veloppeurs)</h1>
+<p>Il y a 3 sortes de mise &agrave; jour de AudeLA : </p>
+<ul>
+  <li>la mise &agrave; jour de module compl&eacute;mentaire (plugin)
+    <blockquote>
+      <p>Cette mise &agrave; jour concerne les plugins qui sont dans le r&eacute;pertoire
+        <b>audela/gui/audace/plugin</b>.</p>
+    </blockquote>
+  </li>
+  <li>la mise &agrave; jour du coeur de AudeLA
+    <blockquote>
+      <p>Cette mise &agrave; jour concerne tous les fichiers de AudeLa qui sont
+        dans les r&eacute;pertoires <b>audela/bin</b> et <b>audela/gui</b> (except&eacute;
+        le r&eacute;pertoire des plugins).</p>
+      <p>c'est une mise &agrave; jour incr&eacute;mentale.</p>
+    </blockquote>
+  </li>
+  <li>la mise &agrave; jour des librairies TCL
+    <blockquote>
+      <p>Cette mise &agrave; jour concerne les librairies TCL qui sont dans le
+        r&eacute;pertoire <b>audela/lib</b></p>
+    </blockquote>
+  </li>
+</ul>
+<blockquote>
+  <blockquote>&nbsp;</blockquote>
+</blockquote>
+<h2></h2>
+<h2><a name="make_update_plugin"></a>3.1) Fabrication de mise &agrave; jour d'un
+  plugin</h2>
+<p>1) Lors des modifications du plugin, veiller &agrave; incr&eacute;menter le
+  num&eacute;ro de version du plugin pour que cette nouvelle version soit diff&eacute;renti&eacute;e
+  des pr&eacute;c&eacute;dentes.</p>
+<ul>
+  <li>modifier le num&eacute;ro de version dans le fichier <b>pkgindex.tcl </b>
+  </li>
+</ul>
+<blockquote>
+  <p>Exemple : </p>
+  <blockquote>
+    <pre>package ifneeded acqapn 1.1 ...</pre>
+  </blockquote>
+</blockquote>
+<ul>
+  <li>et modifier le num&eacute;ro de version dans le fichier principal du plugin
+    . Eventuellement, on peut ajouter le numero de version de AudeLA requis pour
+    ce plugin. </li>
+</ul>
+<blockquote>
+  <p>Exemple : </p>
+  <blockquote>
+    <pre>namespace eval ::acqapn {<br>   package provide acqapn 1.1
+   package require audela 1.4.0
+</pre>
+  </blockquote>
+</blockquote>
+<p>2) Lancer AudeLA et selectionner l'outil de <b>Mise &agrave; jour d'AudeLA</b>
+  (menu Outils-&gt;Mise &agrave; jour d'AudeLA)</p>
+<blockquote>
+  <p>S&eacute;lectionner l'onglet &quot;<b>Mise &agrave; jour install&eacute;es</b>&quot;
+    et s&eacute;lectionner le plugin</p>
+  <p><img src="images/make_plugin.png" width="349" height="375"></p>
+</blockquote>
+<p>3) Cliquer sur le bouton &quot;<b>Faire un kit</b>&quot; . Un compte-rendu
+  est affich&eacute; &agrave; la fin de la fabrication : </p>
+<blockquote>
+  <p><img src="images/make_plugin_end.png" width="234" height="123"></p>
+</blockquote>
+<p>4) S&eacute;lectionner l'onglet &quot;<b>Mise &agrave; jour t&eacute;l&eacute;charg&eacute;e</b>&quot;
+  pour constater que le nouveau fichier est pr&eacute;sent.</p>
+<blockquote>
+  <blockquote>
+    <p>&nbsp;</p>
+  </blockquote>
+  <p><img src="images/update_list.png" width="351" height="371"></p>
+</blockquote>
+<p>5) Transf&eacute;rer le fichier sur le site Internet d'AudeLA (ou un site personnel)
+  par FTP.</p>
+<p>Exemple :</p>
+<blockquote>
+  <pre>ftp ftp.audela.org
+login :    michel
+password : xxxxxx
+
+cd /plugins
+binary
+
+send acqapn-1.1.kit</pre>
+</blockquote>
+<p>6) S&eacute;lectionner l'onglet &quot;<b>T&eacute;l&eacute;charger</b>&quot;
+  et cliquer sur le bouton &quot;<b>GO Audela</b>&quot; pour constater que le
+  nouveau fichier acqapn-1.1.kit est publi&eacute;e sur le site Internet de AudeLA
+</p>
+<blockquote>
+  <blockquote>
+    <p><img src="images/download2.png" width="347" height="374"></p>
+    <p>&nbsp;</p>
+  </blockquote>
+</blockquote>
+<h2><a name="make_update_audela"></a>3.2) Fabrication de mise &agrave; jour du
+  coeur d'AudeLA</h2>
+<blockquote>
+  <p>&agrave; faire</p>
+</blockquote>
+<p>&nbsp;</p>
+<h2><a name="make_update_tcllib"></a>3.3) Fabrication de mise &agrave; jour d'une
+  librairie TCL</h2>
+<blockquote>
+  <p>&agrave; faire </p>
+</blockquote>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+
+</html>

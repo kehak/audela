@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Fonctions de la librairie libgs</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 16 novembre 2008</p>
+<h1>Fonctions de la librairie libgs </h1>
+<p><strong>Liste des fonctions utilisables :</strong></p>
+
+<h3> <a name="gs_version" id="gs_version"></a>gs_version </h3>
+<p>Retourne le num&eacute;ro de la version de la librairie libgs utilis&eacute;e.</p>
+
+<h3> <a name="gs_guide_version" id="gs_guide_version"></a>gs_guide version </h3>
+<p>Renvoie GUIDE6, GUIDE7 ou GUIDE8 en fonction de la version de GUIDE qui est utilis&eacute;e.</p>
+
+<h3> <a name="gs_guide_refresh" id="gs_guide_refresh"></a>gs_guide refresh </h3>
+<p>Rafra&icirc;chit l'heure courante de GUIDE.</p>
+
+<h3> <a name="gs_guide_show" id="gs_guide_show"></a>gs_guide show </h3>
+<p>Permet d'afficher la fen&ecirc;tre de GUIDE.</p>
+
+<h3> <a name="gs_guide_hide" id="gs_guide_hide"></a>gs_guide hide </h3>
+<p>Permet de masquer la fen&ecirc;tre de GUIDE.</p>
+
+<h3> <a name="gs_guide_restore" id="gs_guide_restore"></a>gs_guide restore </h3>
+<p>Restaure le dernier &eacute;tat de la fen&ecirc;tre de GUIDE.</p>
+
+<h3> <a name="gs_guide_objet" id="gs_guide_objet"></a>gs_guide objet <em>objet ?date?</em></h3>
+<p>Permet de pointer GUIDE sur un objet en utilisant l'heure syst&egrave;me comme heure de r&eacute;f&eacute;rence. Cet objet peut &ecirc;tre d&eacute;clar&eacute; de plusieurs façons diff&eacute;rentes :</p>
+  <ul>
+    <li>Objet du catalogue Messier : M104</li>
+    <li>Objet du catalogue NGC : NGC891</li>
+    <li>Objet du catalogue IC : IC434</li>
+    <li>Cas des ast&eacute;ro&iuml;des : A2 d&eacute;signe l'ast&eacute;ro&iuml;de num&eacute;ro 2.</li>
+  </ul>
+<p>Si l'on souhaite r&eacute;aliser l'affichage de GUIDE pour une heure diff&eacute;rente de celle du syst&egrave;me, il suffit de le lui faire savoir, dans ce cas la commande est :</p>
+<p>gs_guide objet M104 JD=2452447.30275</p>
+
+<h3> <a name="gs_guide_coord" id="gs_guide_coord"></a>gs_guide coord <em>ascension_droite d&eacute;clinaison &eacute;poque ?date?</em></h3>
+<p>Permet de pointer GUIDE sur une position. Il est imp&eacute;ratif de fournir l'ascension droite, la d&eacute;clinaison et l'&eacute;poque.</p>
+<p>Si l'on souhaite r&eacute;aliser l'affichage de GUIDE pour une heure diff&eacute;rente de celle du syst&egrave;me, il suffit de le lui faire savoir, dans ce cas la commande est :</p>
+<p>gs_guide coord {22h17m45.2s} {-3d16m23s} {J2000} JD=2452447.30275</p>
+
+<h3> <a name="gs_guide_zoom" id="gs_guide_zoom"></a>gs_guide zoom <em>zoom</em></h3>
+<p>Permet de fixer le niveau du zoom de la fen&ecirc;tre de GUIDE. Ce param&egrave;tre varie de 1 &agrave; 20.</p>
+</body>
+
+</html>

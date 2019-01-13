@@ -1,0 +1,68 @@
+#
+# Fichier : ros_go.cap
+# Mise a jour $Id: robobs_acquisition.cap 12353 2015-12-12 11:24:29Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la declaration des textes localises (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(robobs_acquisition,main_title)        "RobObs - Acquisition"
+set caption(robobs_acquisition,titre)             "Orders of acquisitions"
+set caption(robobs_acquisition,titre2)            "Manage the acquisition loop"
+set caption(robobs_acquisition,but1)              "Start"
+set caption(robobs_acquisition,but2)              "Stop"
+set caption(robobs_acquisition,but3)              "Continue"
+set caption(robobs_acquisition,but4)              "Step"
+set caption(robobs_acquisition,but5)              "Exit"
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(robobs_acquisition,main_title)        "RobObs - Acquisition"
+   set caption(robobs_acquisition,titre)             "Sequencement des acquisitions"
+   set caption(robobs_acquisition,titre2)            "Gestion de la boucle des acquisitions"
+   set caption(robobs_acquisition,but1)              "D�marre"
+   set caption(robobs_acquisition,but2)              "Pause"
+   set caption(robobs_acquisition,but3)              "Continu"
+   set caption(robobs_acquisition,but4)              "Pas a pas"
+   set caption(robobs_acquisition,but5)              "Sortie"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

@@ -1,0 +1,20 @@
+Catena Abulfeda           16.9S   17.2E   219.0   56  57                                          Nommée en fonction du cratère voisin
+Catena Artamonov          26.0N   105.9E  134.0                                                   Nommée en fonction du cratère voisin
+Catena Brigitte           18.5N   27.5E   5.0                                                     Prénom féminin français
+Catena Davy               11.0S   7.0W    50.0    43                                              Nommée en fonction du cratère voisin
+Catena Dziewulski         19.0N   100.0E  80.0                                            III     Nommée en fonction du cratère voisin
+Catena Gregory            0.6S    129.9E  152.0                                                   Nommée en fonction du cratère voisin
+Catena Humboldt           21.5S   84.6E   165.0   60                                      IV      Nommée en fonction du cratère voisin
+Catena Krafft             15.0N   72.0W   60.0    17  28                                          Nommée en fonction du cratère voisin
+Catena Kurchatov          37.2N   136.3E  226.0                                                   Nommée en fonction du cratère voisin
+Catena Leuschner          4.7N    110.1W  364.0                                                   Nommée en fonction du cratère voisin
+Catena Littrow            22.2N   29.5E   10.0    24                                              Nommée en fonction du cratère voisin
+Catena Lucretius          3.4S    126.1W  271.0                                                   Nommée en fonction du cratère voisin
+Catena Mendeleev          6.3N    139.4E  188.0                                                   Nommée en fonction du cratère voisin
+Catena Michelson          1.4N    113.4W  456.0                                                   Nommée en fonction du cratère voisin
+Catena Pierre             19.8N   31.8W   9.0                                                     Prénom masculin français
+Catena Sumner             37.3N   112.3E  247.0                                                   Nommée en fonction du cratère voisin
+Catena Sylvester          81.4N   86.2W   173.0                                           I       Nommée en fonction du cratère voisin
+Catena Taruntius          3.0N    48.0E   100.0                                                   Nommée en fonction du cratère voisin
+Catena Timocharis         29.0N   13.0W   50.0    21                                              Nommée en fonction du cratère voisin
+Catena Yuri               24.4N   30.4W   5.0                                                     Prénom masculin russe

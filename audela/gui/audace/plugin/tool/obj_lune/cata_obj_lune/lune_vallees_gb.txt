@@ -1,0 +1,12 @@
+Vallis Alpes              48.5N   3.2E    166.0   4   12                                          Alpine Valley
+Vallis Baade              45.9S   76.2W   203.0   61                                      VI      Named from nearby crater
+Vallis Bohr               12.4N   86.6W   80.0                                            VIII    Named from nearby crater
+Vallis Bouvard            38.3S   83.1W   284.0   61                                      VII     Alexis; French astronomer, mathematician (1767-1843)
+Vallis Capella            7.6S    34.9E   49.0    47                                              Named from nearby crater
+Vallis Inghirami          43.8S   72.2W   148.0   61                                              Named from nearby crater
+Vallis Palitzsch          26.4S   64.3E   132.0   59                                              Named from nearby crater
+Vallis Planck             58.4S   126.1E  451.0                                                   Named from nearby crater
+Vallis Rheita             42.5S   51.5E   445.0   68                                              Named from nearby crater
+Vallis Schrödinger        67.0S   105.0E  310.0                                           V       Named from nearby crater
+Vallis Schröteri          26.2N   50.8W   168.0   18                                              Schröter's Valley
+Vallis Snellius           31.1S   56.0E   592.0   59  69                                          Named from nearby crater

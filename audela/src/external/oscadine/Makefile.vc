@@ -1,0 +1,21 @@
+
+CP= copy
+RM= -@del /f /q
+
+SOURCE=.
+EXTERNAL_INCLUDE=..\include
+EXTERNAL_LIB=..\lib
+
+build:
+
+install: build
+	if not exist $(EXTERNAL_INCLUDE)  mkdir $(EXTERNAL_INCLUDE)
+	if not exist $(EXTERNAL_LIB)      mkdir $(EXTERNAL_LIB)
+	$(CP) $(SOURCE)\include\oscadine_driver.h $(EXTERNAL_INCLUDE)
+	$(CP) $(SOURCE)\lib_32\Oscadine.lib   $(EXTERNAL_LIB)
+
+clean:
+	$(RM) $(EXTERNAL_INCLUDE)\oscadine_driver.h
+	$(RM) $(EXTERNAL_LIB)\Oscadine.lib
+
+

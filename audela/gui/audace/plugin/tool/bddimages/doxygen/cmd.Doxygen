@@ -1,0 +1,33 @@
+#!/bin/bash 
+
+# Generation de la doc tools
+echo "Creation de la documentation Bddimages - Tools (doxy_tools.log)"
+doxygen Doxyfile.tools 1>doxy_tools.log 2>&1
+# Compilation de la doc latex
+cd tools/latex && make 1> make.log 2>&1 && cp refman.pdf ../../refman_tools.pdf && make clean >/dev/null && cd ../..
+
+# Generation de la doc gui
+echo "Creation de la documentation Bddimages - GUI (doxy_gui.log)"
+doxygen Doxyfile.gui 1>doxy_gui.log 2>&1
+# Compilation de la doc latex
+cd gui/latex && make 1> make.log 2>&1 && cp refman.pdf ../../refman_gui.pdf && make clean >/dev/null && cd ../..
+
+# Generation de la doc tools
+echo "Creation de la documentation Bddimages - All (doxy_all.log)"
+doxygen Doxyfile.all 1>doxy_all.log 2>&1
+# Compilation de la doc latex
+cd all/latex && make 1> make.log 2>&1 && cp refman.pdf ../../refman_all.pdf && make clean >/dev/null && cd ../..
+
+echo ""
+echo "#*** HTML ***********************************************"
+echo " Documentation Bddimages         -> file://`pwd`/all/html/index.html"
+echo " Documentation Bddimages - Tools -> file://`pwd`/tools/html/index.html"
+echo " Documentation Bddimages - GUI   -> file://`pwd`/gui/html/index.html"
+echo "#********************************************************"
+echo ""
+echo "#*** PDF ************************************************"
+echo " Documentation Bddimages         -> refman_all.pdf"
+echo " Documentation Bddimages - Tools -> refman_tools.pdf"
+echo " Documentation Bddimages - GUI   -> refman_gui.pdf"
+echo "#********************************************************"
+echo ""

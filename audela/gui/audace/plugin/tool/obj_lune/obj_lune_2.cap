@@ -1,0 +1,133 @@
+#
+# Fichier : obj_lune_2.cap
+# Mise a jour $Id: obj_lune_2.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(obj_lune2,cartographie)          "Cartography"
+
+set caption(obj_lune2,visible_ombre)         "Site Visible, but in the Shadow."
+set caption(obj_lune2,face_cachee)           "Site Not Visible."
+
+set caption(obj_lune2,manque_cartes_1)       "Please download the Moon maps from:"
+set caption(obj_lune2,manque_cartes_2)       "http://www.audela.org/download/atlas_obj_lune.zip"
+set caption(obj_lune2,manque_cartes_3)       "There is a single file for the Windows and Linux systems."
+set caption(obj_lune2,manque_cartes_4)       "This file must be unzipped in the %s folder."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(obj_lune2,cartographie)       "Cartographie"
+
+   set caption(obj_lune2,visible_ombre)      "Site observable, mais non éclairé."
+   set caption(obj_lune2,face_cachee)        "Site inobservable."
+
+   set caption(obj_lune2,manque_cartes_1)    "Vous devez télécharger les cartes de la Lune à l'adresse :"
+   set caption(obj_lune2,manque_cartes_2)    "http://www.audela.org/download/atlas_obj_lune.zip"
+   set caption(obj_lune2,manque_cartes_3)    "Il existe un fichier unique pour la version Windows et la version Linux."
+   set caption(obj_lune2,manque_cartes_4)    "Ce fichier doit être dézippé dans le répertoire %s."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(obj_lune2,cartographie)       "Cartografia"
+
+   set caption(obj_lune2,visible_ombre)      "Sito osservabile, ma non illuminato."
+   set caption(obj_lune2,face_cachee)        "Sito non osservabile."
+
+   set caption(obj_lune2,manque_cartes_1)    "Dovete scaricare le mappe lunari da:"
+   set caption(obj_lune2,manque_cartes_2)    "http://www.audela.org/download/atlas_obj_lune.zip"
+   set caption(obj_lune2,manque_cartes_3)    "Esiste un file unico per la versione Windows e quella Linux."
+   set caption(obj_lune2,manque_cartes_4)    "Questo file andra` decompresso nel direttorio %s."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(obj_lune2,cartographie)       "Cartografía"
+
+   set caption(obj_lune2,visible_ombre)      "Lugar visible, pero en la sombra."
+   set caption(obj_lune2,face_cachee)        "Lugar no visible."
+
+   set caption(obj_lune2,manque_cartes_1)    "Por favor, descargue los mapas de la Luna de:"
+   set caption(obj_lune2,manque_cartes_2)    "http://www.audela.org/download/atlas_obj_lune.zip"
+   set caption(obj_lune2,manque_cartes_3)    "Hay un único fihero tanto para la versión Windows como para la versión Linux."
+   set caption(obj_lune2,manque_cartes_4)    "Este fichero debe descomprimirse en la carpeta %s."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(obj_lune2,cartographie)       "Kartographie"
+
+   set caption(obj_lune2,visible_ombre)      "Beobachtbar Ort, aber nicht geleuchtet."
+   set caption(obj_lune2,face_cachee)        "Unbeobachtbar Ort."
+
+   set caption(obj_lune2,manque_cartes_1)    "Sie müssen die Monkarten von die Adresse fernladen:"
+   set caption(obj_lune2,manque_cartes_2)    "http://www.audela.org/download/atlas_obj_lune.zip"
+   set caption(obj_lune2,manque_cartes_3)    "Für Linux und Windows Systeme ist eine gemeinsame Datei vorhanden."
+   set caption(obj_lune2,manque_cartes_4)    "Diese Datei muß im Ordner %s entpackt werden."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(obj_lune2,cartographie)       "Cartografia"
+
+   set caption(obj_lune2,visible_ombre)      "Local observável, mas não iluminado."
+   set caption(obj_lune2,face_cachee)        "Local não observável."
+
+   set caption(obj_lune2,manque_cartes_1)    "Deve descarregar da internet as cartas da lua no endereço:"
+   set caption(obj_lune2,manque_cartes_2)    "http://www.audela.org/download/atlas_obj_lune.zip"
+   set caption(obj_lune2,manque_cartes_3)    "Existe um ficheiro único para a versão Windows e para a versão Linux."
+   set caption(obj_lune2,manque_cartes_4)    "Este ficheiro deve ser descomprimido no directório %s."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(obj_lune2,cartographie)       "Kartografi"
+
+   set caption(obj_lune2,visible_ombre)      "Stedet synligt, men ligger i skygge."
+   set caption(obj_lune2,face_cachee)        "Stedet ikke synligt."
+
+   set caption(obj_lune2,manque_cartes_1)    "Vær venlig at downloade Månekort fra:"
+   set caption(obj_lune2,manque_cartes_2)    "http://www.audela.org/download/atlas_obj_lune.zip"
+   set caption(obj_lune2,manque_cartes_3)    "Der findes en enkelt fil til Windows og Linux systemerne/operativsystemerne."
+   set caption(obj_lune2,manque_cartes_4)    "Denne fil skal unzippes i %s mappen."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(obj_lune2,cartographie)       "Cartography"
+
+   set caption(obj_lune2,visible_ombre)      "Site Visible, but in the Shadow."
+   set caption(obj_lune2,face_cachee)        "Site Not Visible."
+
+   set caption(obj_lune2,manque_cartes_1)    "Please download the Moon maps from:"
+   set caption(obj_lune2,manque_cartes_2)    "http://www.audela.org/download/atlas_obj_lune.zip"
+   set caption(obj_lune2,manque_cartes_3)    "There is a single file for the Windows and Linux systems."
+   set caption(obj_lune2,manque_cartes_4)    "This file must be unzipped in the %s folder."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(obj_lune2,cartographie)       "Cartography"
+
+   set caption(obj_lune2,visible_ombre)      "Site Visible, but in the Shadow."
+   set caption(obj_lune2,face_cachee)        "Site Not Visible."
+
+   set caption(obj_lune2,manque_cartes_1)    "Please download the Moon maps from:"
+   set caption(obj_lune2,manque_cartes_2)    "http://www.audela.org/download/atlas_obj_lune.zip"
+   set caption(obj_lune2,manque_cartes_3)    "There is a single file for the Windows and Linux systems."
+   set caption(obj_lune2,manque_cartes_4)    "This file must be unzipped in the %s folder."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

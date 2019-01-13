@@ -1,0 +1,2 @@
+LIBRARY libepixowl
+EXPORTS Epixowl_Init @1

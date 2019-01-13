@@ -1,0 +1,612 @@
+<?xml version="1.0"?>
+<!DOCTYPE optacquire SYSTEM "optacquire.dtd">
+<optacquire>
+  <supported_camera type="iXonDU897">
+    <mode_name name="Sensitivity and Speed (EM Amplifier)">
+      <mode_description>Optimized for capturing weak signal at fast frame rates, with single photon sensitivity. Suited to the majority of EMCCD applciations</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>0.5</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>4.9</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Dynamic Range and Speed (EM Amplifier)">
+      <mode_description>Configured to deliver optimal dynamic range at fast frame rates. Moderate EM gain applied</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>50</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>1.7</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>2.4</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Fastest Frame Rate (EM Amplifier)">
+      <mode_description>For when its all about speed! Optimized for absolute fastest frame rates of the camera. Especially effective when combined with sub-array/binning selections</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>0.3</shift_speed>
+      <vertical_clock_amplitude>4</vertical_clock_amplitude>
+      <preamplifier_gain>4.9</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Time Lapse (EM Amplifier)">
+      <mode_description>Configured to capture low light images with time intervals between exposures. Overlap ('frame transfer') readout is deactivated</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>0.9</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>4.9</preamplifier_gain>
+      <frame_transfer>OFF</frame_transfer>
+    </mode_name>
+    <mode_name name="Time Lapse and Short Exposures (EM Amplifier)">
+      <mode_description>Configured to minimize vertical smear when using exposure times less than 3ms</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>0.5</shift_speed>
+      <vertical_clock_amplitude>2</vertical_clock_amplitude>
+      <preamplifier_gain>5.0</preamplifier_gain>
+      <frame_transfer>OFF</frame_transfer>
+    </mode_name>
+    <mode_name name="EMCCD Highest Dynamic Range (EM Amplifier)">
+      <mode_description>Combines EMCCD low light detection with the absolute highest dynamic range that the camera can deliver. Since this requires slower readout, frame rate is sacrificed</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>25</electron_multiplying_gain>
+      <readout_rate>1</readout_rate>
+      <shift_speed>3.3</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>2.4</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="CCD Highest Dynamic Range (Conventional Amplifier)">
+      <mode_description>Optimized for slow scan CCD detection with highest available dynamic range. Recommended for brighter signals OR when it is possible to apply long exposures to overcome noise floor</mode_description>
+      <output_amplifier>Conventional</output_amplifier>
+      <electron_multiplying_gain></electron_multiplying_gain>
+      <readout_rate>1</readout_rate>
+      <shift_speed>3.3</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>1</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Photon Counting">
+      <mode_description>Configuration recommended for photon counting with individual exposures less than 10sec</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>1000</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>0.5</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>4.9</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Photon Counting with Long Exposures (> 1sec)">
+      <mode_description>Configuration recommended for photon counting with individual exposures greater than 1sec</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>1000</electron_multiplying_gain>
+      <readout_rate>1</readout_rate>
+      <shift_speed>0.5</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>4.9</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+  </supported_camera>
+  <supported_camera type="iXonDU8201">
+    <mode_name name="Sensitivity and Speed (EM Amplifier)">
+      <mode_description>Optimized for capturing weak signal at fast frame rates, with single photon sensitivity. Suited to the majority of EMCCD applciations</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>1.7</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>4.9</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Dynamic Range and Speed (EM Amplifier)">
+      <mode_description>Configured to deliver optimal dynamic range at fast frame rates. Moderate EM gain applied</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>50</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>3.3</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>2.4</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>  
+    <mode_name name="Fastest Frame Rate (EM Amplifier)">
+      <mode_description>For when its all about speed! Optimized for absolute fastest frame rates of the camera. Especially effective when combined with sub-array/binning selections</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>1.7</shift_speed>
+      <vertical_clock_amplitude>4</vertical_clock_amplitude>
+      <preamplifier_gain>4.9</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Time Lapse (EM Amplifier)">
+      <mode_description>Configured to capture low light images with time intervals between exposures. Overlap ('frame transfer') readout is deactivated</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>3.3</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>4.9</preamplifier_gain>
+      <frame_transfer>OFF</frame_transfer>
+    </mode_name>
+    <mode_name name="Time Lapse and Short Exposures (EM Amplifier)">
+      <mode_description>Configured to minimize vertical smear when using exposure times less than 3ms</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>1.7</shift_speed>
+      <vertical_clock_amplitude>2</vertical_clock_amplitude>
+      <preamplifier_gain>4.9</preamplifier_gain>
+      <frame_transfer>OFF</frame_transfer>
+    </mode_name>
+    <mode_name name="EMCCD Highest Dynamic Range (EM Amplifier)">
+      <mode_description>Combines EMCCD low light detection with the absolute highest dynamic range that the camera can deliver. Since this requires slower readout, frame rate is sacrificed</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>20</electron_multiplying_gain>
+      <readout_rate>1</readout_rate>
+      <shift_speed>6.5</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>2.4</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>    
+    <mode_name name="CCD Highest Dynamic Range (Conventional Amplifier)">
+      <mode_description>Optimized for slow scan CCD detection with highest available dynamic range. Recommended for brighter signals OR when it is possible to apply long exposures to overcome noise floor</mode_description>
+      <output_amplifier>Conventional</output_amplifier>
+      <electron_multiplying_gain></electron_multiplying_gain>
+      <readout_rate>1</readout_rate>
+      <shift_speed>12.9</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>1</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>    
+    <mode_name name="Photon Counting">
+      <mode_description>Configuration recommended for photon counting with individual exposures less than 10sec</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>1000</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>1.7</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>4.9</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Photon Counting with Long Exposures (> 1sec)">
+      <mode_description>Configuration recommended for photon counting with individual exposures greater than 1sec</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>1000</electron_multiplying_gain>
+      <readout_rate>1</readout_rate>
+      <shift_speed>1.7</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>4.9</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>    
+  </supported_camera>
+<supported_camera type="iXonDU8285">
+    <mode_name name="Sensitivity and Speed (EM Amplifier)">
+      <mode_description>Optimized for capturing weak signal at fast frame rates, with single photon sensitivity. Suited to the majority of EMCCD applciations</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>35</readout_rate>
+      <shift_speed>1.01</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>3.8</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Dynamic Range and Speed (EM Amplifier)">
+      <mode_description>Configured to deliver optimal dynamic range at fast frame rates. Moderate EM gain applied</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>25</electron_multiplying_gain>
+      <readout_rate>35</readout_rate>
+      <shift_speed>1.92</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>1.0</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>  
+    <mode_name name="Fastest Frame Rate (EM Amplifier)">
+      <mode_description>For when its all about speed! Optimized for absolute fastest frame rates of the camera. Especially effective when combined with sub-array/binning selections</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>35</readout_rate>
+      <shift_speed>0.56</shift_speed>
+      <vertical_clock_amplitude>4</vertical_clock_amplitude>
+      <preamplifier_gain>3.8</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Time Lapse (EM Amplifier)">
+      <mode_description>Configured to capture low light images with time intervals between exposures. Overlap ('frame transfer') readout is deactivated</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>35</readout_rate>
+      <shift_speed>1.01</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>3.8</preamplifier_gain>
+      <frame_transfer>OFF</frame_transfer>
+    </mode_name>
+    <mode_name name="Time Lapse and Short Exposures (EM Amplifier)">
+      <mode_description>Configured to minimize vertical smear when using exposure times less than 3ms</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>1.01</shift_speed>
+      <vertical_clock_amplitude>2</vertical_clock_amplitude>
+      <preamplifier_gain>3.8</preamplifier_gain>
+      <frame_transfer>OFF</frame_transfer>
+    </mode_name>
+    <mode_name name="EMCCD Highest Dynamic Range (EM Amplifier)">
+      <mode_description>Combines EMCCD low light detection with the absolute highest dynamic range that the camera can deliver. Since this requires slower readout, frame rate is sacrificed</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>15</electron_multiplying_gain>
+      <readout_rate>13</readout_rate>
+      <shift_speed>1.92</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>1.0</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+  </supported_camera>
+<supported_camera type="iXonDV8285">
+    <mode_name name="Sensitivity and Speed (EM Amplifier)">
+      <mode_description>Optimized for capturing weak signal at fast frame rates, with single photon sensitivity. Suited to the majority of EMCCD applciations</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>35</readout_rate>
+      <shift_speed>1.01</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>3.8</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Dynamic Range and Speed (EM Amplifier)">
+      <mode_description>Configured to deliver optimal dynamic range at fast frame rates. Moderate EM gain applied</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>25</electron_multiplying_gain>
+      <readout_rate>35</readout_rate>
+      <shift_speed>1.92</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>1.0</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>  
+    <mode_name name="Fastest Frame Rate (EM Amplifier)">
+      <mode_description>For when its all about speed! Optimized for absolute fastest frame rates of the camera. Especially effective when combined with sub-array/binning selections</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>35</readout_rate>
+      <shift_speed>0.56</shift_speed>
+      <vertical_clock_amplitude>4</vertical_clock_amplitude>
+      <preamplifier_gain>3.8</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Time Lapse (EM Amplifier)">
+      <mode_description>Configured to capture low light images with time intervals between exposures. Overlap ('frame transfer') readout is deactivated</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>35</readout_rate>
+      <shift_speed>1.01</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>3.8</preamplifier_gain>
+      <frame_transfer>OFF</frame_transfer>
+    </mode_name>
+    <mode_name name="Time Lapse and Short Exposures (EM Amplifier)">
+      <mode_description>Configured to minimize vertical smear when using exposure times less than 3ms</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>1.01</shift_speed>
+      <vertical_clock_amplitude>2</vertical_clock_amplitude>
+      <preamplifier_gain>3.8</preamplifier_gain>
+      <frame_transfer>OFF</frame_transfer>
+    </mode_name>
+    <mode_name name="EMCCD Highest Dynamic Range (EM Amplifier)">
+      <mode_description>Combines EMCCD low light detection with the absolute highest dynamic range that the camera can deliver. Since this requires slower readout, frame rate is sacrificed</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>15</electron_multiplying_gain>
+      <readout_rate>13</readout_rate>
+      <shift_speed>1.92</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>1.0</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+</supported_camera>
+<supported_camera type="iXonDU885">
+    <mode_name name="Sensitivity and Speed (EM Amplifier)">
+      <mode_description>Optimized for capturing weak signal at fast frame rates, with single photon sensitivity. Suited to the majority of EMCCD applciations</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>35</readout_rate>
+      <shift_speed>1.01</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>3.8</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Dynamic Range and Speed (EM Amplifier)">
+      <mode_description>Configured to deliver optimal dynamic range at fast frame rates. Moderate EM gain applied</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>25</electron_multiplying_gain>
+      <readout_rate>35</readout_rate>
+      <shift_speed>1.92</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>1.0</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>  
+    <mode_name name="Fastest Frame Rate (EM Amplifier)">
+      <mode_description>For when its all about speed! Optimized for absolute fastest frame rates of the camera. Especially effective when combined with sub-array/binning selections</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>35</readout_rate>
+      <shift_speed>0.56</shift_speed>
+      <vertical_clock_amplitude>4</vertical_clock_amplitude>
+      <preamplifier_gain>3.8</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Time Lapse (EM Amplifier)">
+      <mode_description>Configured to capture low light images with time intervals between exposures. Overlap ('frame transfer') readout is deactivated</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>35</readout_rate>
+      <shift_speed>1.01</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>3.8</preamplifier_gain>
+      <frame_transfer>OFF</frame_transfer>
+    </mode_name>
+    <mode_name name="Time Lapse and Short Exposures (EM Amplifier)">
+      <mode_description>Configured to minimize vertical smear when using exposure times less than 3ms</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>1.01</shift_speed>
+      <vertical_clock_amplitude>2</vertical_clock_amplitude>
+      <preamplifier_gain>3.8</preamplifier_gain>
+      <frame_transfer>OFF</frame_transfer>
+    </mode_name>
+    <mode_name name="EMCCD Highest Dynamic Range (EM Amplifier)">
+      <mode_description>Combines EMCCD low light detection with the absolute highest dynamic range that the camera can deliver. Since this requires slower readout, frame rate is sacrificed</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>15</electron_multiplying_gain>
+      <readout_rate>13</readout_rate>
+      <shift_speed>1.92</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>1.0</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+  </supported_camera>
+<supported_camera type="iXonDV885">
+    <mode_name name="Sensitivity and Speed (EM Amplifier)">
+      <mode_description>Optimized for capturing weak signal at fast frame rates, with single photon sensitivity. Suited to the majority of EMCCD applciations</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>35</readout_rate>
+      <shift_speed>1.01</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>3.8</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Dynamic Range and Speed (EM Amplifier)">
+      <mode_description>Configured to deliver optimal dynamic range at fast frame rates. Moderate EM gain applied</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>25</electron_multiplying_gain>
+      <readout_rate>35</readout_rate>
+      <shift_speed>1.92</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>1.0</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>  
+    <mode_name name="Fastest Frame Rate (EM Amplifier)">
+      <mode_description>For when its all about speed! Optimized for absolute fastest frame rates of the camera. Especially effective when combined with sub-array/binning selections</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>35</readout_rate>
+      <shift_speed>0.56</shift_speed>
+      <vertical_clock_amplitude>4</vertical_clock_amplitude>
+      <preamplifier_gain>3.8</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Time Lapse (EM Amplifier)">
+      <mode_description>Configured to capture low light images with time intervals between exposures. Overlap ('frame transfer') readout is deactivated</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>35</readout_rate>
+      <shift_speed>1.01</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>3.8</preamplifier_gain>
+      <frame_transfer>OFF</frame_transfer>
+    </mode_name>
+    <mode_name name="Time Lapse and Short Exposures (EM Amplifier)">
+      <mode_description>Configured to minimize vertical smear when using exposure times less than 3ms</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>1.01</shift_speed>
+      <vertical_clock_amplitude>2</vertical_clock_amplitude>
+      <preamplifier_gain>3.8</preamplifier_gain>
+      <frame_transfer>OFF</frame_transfer>
+    </mode_name>
+    <mode_name name="EMCCD Highest Dynamic Range (EM Amplifier)">
+      <mode_description>Combines EMCCD low light detection with the absolute highest dynamic range that the camera can deliver. Since this requires slower readout, frame rate is sacrificed</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>15</electron_multiplying_gain>
+      <readout_rate>13</readout_rate>
+      <shift_speed>1.92</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>1.0</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+</supported_camera>
+<supported_camera type="iXonDU860">
+    <mode_name name="Sensitivity and Speed (EM Amplifier)">
+      <mode_description>Optimized for capturing weak signal at fast frame rates, with single photon sensitivity. Suited to the majority of EMCCD applciations</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>0.15</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>4.7</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Dynamic Range and Speed (EM Amplifier)">
+      <mode_description>Configured to deliver optimal dynamic range at fast frame rates. Moderate EM gain applied</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>50</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>0.45</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>2.2</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>  
+    <mode_name name="Fastest Frame Rate (EM Amplifier)">
+      <mode_description>For when its all about speed! Optimized for absolute fastest frame rates of the camera. Especially effective when combined with sub-array/binning selections</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>0.1</shift_speed>
+      <vertical_clock_amplitude>4</vertical_clock_amplitude>
+      <preamplifier_gain>4.7</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Time Lapse (EM Amplifier)">
+      <mode_description>Configured to capture low light images with time intervals between exposures. Overlap ('frame transfer') readout is deactivated</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>0.15</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>4.7</preamplifier_gain>
+      <frame_transfer>OFF</frame_transfer>
+    </mode_name>
+    <mode_name name="Time Lapse and Short Exposures (EM Amplifier)">
+      <mode_description>Configured to minimize vertical smear when using exposure times less than 3ms</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>0.15</shift_speed>
+      <vertical_clock_amplitude>2</vertical_clock_amplitude>
+      <preamplifier_gain>4.7</preamplifier_gain>
+      <frame_transfer>OFF</frame_transfer>
+    </mode_name>
+    <mode_name name="EMCCD Highest Dynamic Range (EM Amplifier)">
+      <mode_description>Combines EMCCD low light detection with the absolute highest dynamic range that the camera can deliver. Since this requires slower readout, frame rate is sacrificed</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>20</electron_multiplying_gain>
+      <readout_rate>1</readout_rate>
+      <shift_speed>0.45</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>2.2</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+  </supported_camera>
+  <supported_camera type="iXonUltraDU897">
+    <mode_name name="Sensitivity and Speed (EM Amplifier)">
+      <mode_description>Optimized for capturing weak signal at fast frame rates, with single photon sensitivity. Suited to the majority of EMCCD applciations</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>500</electron_multiplying_gain>
+      <readout_rate>17</readout_rate>
+      <shift_speed>0.5</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>3</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Dynamic Range and Speed (EM Amplifier)">
+      <mode_description>Configured to deliver optimal dynamic range at moderately fast frame rates. Moderate EM gain applied.</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>50</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>1.7</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>2</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Fastest Frame Rate (EM Amplifier)">
+      <mode_description>For when its all about speed! Optimized for absolute fastest frame rates of the camera. Especially effective when combined with sub-array/binning selections</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>500</electron_multiplying_gain>
+      <readout_rate>17</readout_rate>
+      <shift_speed>0.3</shift_speed>
+      <vertical_clock_amplitude>4</vertical_clock_amplitude>
+      <preamplifier_gain>3</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Time Lapse (EM Amplifier)">
+      <mode_description>Configured to capture low light images with time intervals between exposures. Overlap ('frame transfer') readout is deactivated</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>0.9</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>3</preamplifier_gain>
+      <frame_transfer>OFF</frame_transfer>
+    </mode_name>
+    <mode_name name="Time Lapse and Short Exposures (EM Amplifier)">
+      <mode_description>Configured to minimize vertical smear when using exposure times less than 3ms</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>300</electron_multiplying_gain>
+      <readout_rate>10</readout_rate>
+      <shift_speed>0.5</shift_speed>
+      <vertical_clock_amplitude>2</vertical_clock_amplitude>
+      <preamplifier_gain>3</preamplifier_gain>
+      <frame_transfer>OFF</frame_transfer>
+    </mode_name>
+    <mode_name name="EMCCD Highest Dynamic Range (EM Amplifier)">
+      <mode_description>Combines EMCCD low light detection with the absolute highest dynamic range that the camera can deliver. Since this requires slower readout, frame rate is sacrificed</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>25</electron_multiplying_gain>
+      <readout_rate>1</readout_rate>
+      <shift_speed>3.3</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>2</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="CCD Lowest Noise / Slow readout (Conventional Amplifier)">
+      <mode_description>Optimized for slow scan CCD detection with lowest noise floor. Recommended for long exposure applications where slow readout can be tolerated.</mode_description>
+      <output_amplifier>Conventional</output_amplifier>
+      <electron_multiplying_gain></electron_multiplying_gain>
+      <readout_rate>0.08</readout_rate>
+      <shift_speed>3.3</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>3</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>   
+    <mode_name name="CCD Highest Dynamic Range (Conventional Amplifier)">
+      <mode_description>Optimized for slow scan CCD detection with highest available dynamic range. Recommended for high dynamic conditions coupled with long exposures.</mode_description>
+      <output_amplifier>Conventional</output_amplifier>
+      <electron_multiplying_gain></electron_multiplying_gain>
+      <readout_rate>0.08</readout_rate>
+      <shift_speed>3.3</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>1</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="CCD noise / readout balance (Conventional Amplifier)">
+      <mode_description>Optimized for slow scan CCD detection, achieving a blance between noise floor and readout time.</mode_description>
+      <output_amplifier>Conventional</output_amplifier>
+      <electron_multiplying_gain></electron_multiplying_gain>
+      <readout_rate>1</readout_rate>
+      <shift_speed>3.3</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>3</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Photon Counting">
+      <mode_description>Configuration recommended for photon counting with individual exposures less than 10sec</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>1000</electron_multiplying_gain>
+      <readout_rate>17</readout_rate>
+      <shift_speed>0.5</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>3</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+    <mode_name name="Photon Counting with Long Exposures (> 10sec)">
+      <mode_description>Configuration recommended for photon counting with individual exposures greater than 10sec</mode_description>
+      <output_amplifier>Electron Multiplying</output_amplifier>
+      <electron_multiplying_gain>1000</electron_multiplying_gain>
+      <readout_rate>1</readout_rate>
+      <shift_speed>0.5</shift_speed>
+      <vertical_clock_amplitude>Normal</vertical_clock_amplitude>
+      <preamplifier_gain>3</preamplifier_gain>
+      <frame_transfer>ON</frame_transfer>
+    </mode_name>
+  </supported_camera>
+</optacquire>
+
+

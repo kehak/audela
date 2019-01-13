@@ -1,0 +1,304 @@
+#
+# Fichier : eventaude_gps.cap
+# Mise a jour $Id: eventaude_gps.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(eventaude_gps,titre)                      "GPS Coordinates of the Observer"
+
+set caption(eventaude_gps,attention)                  "Warning"
+set caption(eventaude_gps,message_1)                  "This feature can only be accessed through EventAude."
+set caption(eventaude_gps,message_2)                  "If you have this equipment, check it is on."
+set caption(eventaude_gps,message_3)                  "Check the GPS is connected and in sync."
+
+set caption(eventaude_gps,rafraichir)                 "Update GPS Coordinates"
+set caption(eventaude_gps,position_gps)               "GPS Format (WGS84):"
+set caption(eventaude_gps,longitude)                  "Longitude:"
+set caption(eventaude_gps,est)                        "E"
+set caption(eventaude_gps,ouest)                      "W"
+set caption(eventaude_gps,latitude)                   "Latitude:"
+set caption(eventaude_gps,nord)                       "N"
+set caption(eventaude_gps,sud)                        "S"
+set caption(eventaude_gps,altitude)                   "Altitude:"
+set caption(eventaude_gps,maj_long+lat)               "Updating the Observer's Position (longitude and latitude)"
+set caption(eventaude_gps,maj_long+lat-)              "Longitude and latitude update"
+set caption(eventaude_gps,maj_alt)                    "Updating the Observer's Position (altitude)"
+set caption(eventaude_gps,maj_alt-)                   "Altitude update"
+set caption(eventaude_gps,confirm)                    "Continue?"
+set caption(eventaude_gps,ok)                         "OK"
+set caption(eventaude_gps,appliquer)                  "Apply"
+set caption(eventaude_gps,fermer)                     "Close"
+set caption(eventaude_gps,aide)                       "Help"
+
+set caption(eventaude_gps,site_web_ref)               "Reference Web Site:"
+set caption(eventaude_gps,site_eventaude)             "http://users.skynet.be/astrophotoccd/"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(eventaude_gps,titre)                   "Coordonnées GPS de l'observateur"
+
+   set caption(eventaude_gps,attention)               "Attention"
+   set caption(eventaude_gps,message_1)               "Cette fonctionnalité est uniquement accessible par l'EventAude."
+   set caption(eventaude_gps,message_2)               "Si vous avez cet équipement, vérifier qu'il est sous tension."
+   set caption(eventaude_gps,message_3)               "Vérifier que le GPS est connecté et synchronisé."
+
+   set caption(eventaude_gps,rafraichir)              "Rafraîchir les coordonnées GPS"
+   set caption(eventaude_gps,position_gps)            "Format GPS (WGS84) :"
+   set caption(eventaude_gps,longitude)               "Longitude :"
+   set caption(eventaude_gps,est)                     "E"
+   set caption(eventaude_gps,ouest)                   "O"
+   set caption(eventaude_gps,latitude)                "Latitude :"
+   set caption(eventaude_gps,nord)                    "N"
+   set caption(eventaude_gps,sud)                     "S"
+   set caption(eventaude_gps,altitude)                "Altitude :"
+   set caption(eventaude_gps,maj_long+lat)            "Mise à jour de la position de l'observateur (longitude et latitude)"
+   set caption(eventaude_gps,maj_long+lat-)           "Mise à jour de la longitude et de la latitude"
+   set caption(eventaude_gps,maj_alt)                 "Mise à jour de la position de l'observateur (altitude)"
+   set caption(eventaude_gps,maj_alt-)                "Mise à jour de l'altitude"
+   set caption(eventaude_gps,confirm)                 "Voulez-vous poursuivre ?"
+   set caption(eventaude_gps,ok)                      "OK"
+   set caption(eventaude_gps,appliquer)               "Appliquer"
+   set caption(eventaude_gps,fermer)                  "Fermer"
+   set caption(eventaude_gps,aide)                    "Aide"
+
+   set caption(eventaude_gps,site_web_ref)            "Site Web de référence :"
+   set caption(eventaude_gps,site_eventaude)          "http://users.skynet.be/astrophotoccd/"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(eventaude_gps,titre)                   "Coordinate GPS dell'osservatore"
+
+   set caption(eventaude_gps,attention)               "Attenzione"
+   set caption(eventaude_gps,message_1)               "?Questa funzionalità è accessibile solamente tramite EventAude."
+   set caption(eventaude_gps,message_2)               "Verificate la tensione dell'equipaggiamento."
+   set caption(eventaude_gps,message_3)               "Verificare che il GPS sia connesso e sincronizzato."
+
+   set caption(eventaude_gps,rafraichir)              "Aggiornamento Coordinate GPS"
+   set caption(eventaude_gps,position_gps)            "Formato GPS (WGS84):"
+   set caption(eventaude_gps,longitude)               "Longitudine:"
+   set caption(eventaude_gps,est)                     "E"
+   set caption(eventaude_gps,ouest)                   "O"
+   set caption(eventaude_gps,latitude)                "Latitudine:"
+   set caption(eventaude_gps,nord)                    "N"
+   set caption(eventaude_gps,sud)                     "S"
+   set caption(eventaude_gps,altitude)                "Altitudine:"
+   set caption(eventaude_gps,maj_long+lat)            "Aggiornamento della posizione dell'osservatore (latitudine e longitudine)"
+   set caption(eventaude_gps,maj_long+lat-)           "Aggiornamento della latitudine e longitudine"
+   set caption(eventaude_gps,maj_alt)                 "Aggiornamento della posizione dell'osservatore (altitudine)"
+   set caption(eventaude_gps,maj_alt-)                "Aggiornamento dell'altitudine"
+   set caption(eventaude_gps,confirm)                 "Volete continuare?"
+   set caption(eventaude_gps,ok)                      "OK"
+   set caption(eventaude_gps,appliquer)               "Applicare"
+   set caption(eventaude_gps,fermer)                  "Chiudere"
+   set caption(eventaude_gps,aide)                    "Aiuto"
+
+   set caption(eventaude_gps,site_web_ref)            "Sito Web di riferimento:"
+   set caption(eventaude_gps,site_eventaude)          "http://users.skynet.be/astrophotoccd/"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(eventaude_gps,titre)                   "Coordenadas GPS del observador"
+
+   set caption(eventaude_gps,attention)               "Aviso"
+   set caption(eventaude_gps,message_1)               "Esta función unicamente es accesible via EvenAude."
+   set caption(eventaude_gps,message_2)               "Si tiene este equipamento, verifique que esté encendido."
+   set caption(eventaude_gps,message_3)               "Verifique que el GPS esté conectado y sincronizado."
+
+   set caption(eventaude_gps,rafraichir)              "Actualizar las coordenadas GPS"
+   set caption(eventaude_gps,position_gps)            "Formato GPS (WGS84):"
+   set caption(eventaude_gps,longitude)               "Longitud:"
+   set caption(eventaude_gps,est)                     "E"
+   set caption(eventaude_gps,ouest)                   "W"
+   set caption(eventaude_gps,latitude)                "Latitud:"
+   set caption(eventaude_gps,nord)                    "N"
+   set caption(eventaude_gps,sud)                     "S"
+   set caption(eventaude_gps,altitude)                "Altitud:"
+   set caption(eventaude_gps,maj_long+lat)            "Actualizando la posición del observador (longitud y latitud)"
+   set caption(eventaude_gps,maj_long+lat-)           "Actualización de la longitud y latitud"
+   set caption(eventaude_gps,maj_alt)                 "Actualizando la posición del observador (altitud)"
+   set caption(eventaude_gps,maj_alt-)                "Actualización de latitud"
+   set caption(eventaude_gps,confirm)                 "Continuar?"
+   set caption(eventaude_gps,ok)                      "OK"
+   set caption(eventaude_gps,appliquer)               "Aplicar"
+   set caption(eventaude_gps,fermer)                  "Cerrar"
+   set caption(eventaude_gps,aide)                    "Ayuda"
+
+   set caption(eventaude_gps,site_web_ref)            "Sitio Web de referencia:"
+   set caption(eventaude_gps,site_eventaude)          "http://users.skynet.be/astrophotoccd/"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(eventaude_gps,titre)                   "Beobachter GPS Koordinaten"
+
+   set caption(eventaude_gps,attention)               "Achtung"
+   set caption(eventaude_gps,message_1)               "Dieser Zug kann nur durch EventAude Zugegriffen sein."
+   set caption(eventaude_gps,message_2)               "Falls sie diese Einrichtung haben, kontrollieren sie ob er an ist."
+   set caption(eventaude_gps,message_3)               "Bitte kontrollieren ob der GPS verbunden und synchronisiert ist."
+
+   set caption(eventaude_gps,rafraichir)              "GPS Koordinaten Aktualisierung"
+   set caption(eventaude_gps,position_gps)            "GPS Format (WGS84):"
+   set caption(eventaude_gps,longitude)               "Länge:"
+   set caption(eventaude_gps,est)                     "O"
+   set caption(eventaude_gps,ouest)                   "W"
+   set caption(eventaude_gps,latitude)                "Breite:"
+   set caption(eventaude_gps,nord)                    "N"
+   set caption(eventaude_gps,sud)                     "S"
+   set caption(eventaude_gps,altitude)                "Höhe:"
+   set caption(eventaude_gps,maj_long+lat)            "Beobachter Position (Länge und Breite) Aktualisierung"
+   set caption(eventaude_gps,maj_long+lat-)           "Länge und Breite aktualisieren"
+   set caption(eventaude_gps,maj_alt)                 "Beobachter Position (Höhe) Aktualisierung"
+   set caption(eventaude_gps,maj_alt-)                "Höhe aktualisieren"
+   set caption(eventaude_gps,confirm)                 "Vollen sie weiterführen ?"
+   set caption(eventaude_gps,ok)                      "OK"
+   set caption(eventaude_gps,appliquer)               "Anwenden"
+   set caption(eventaude_gps,fermer)                  "Schließen"
+   set caption(eventaude_gps,aide)                    "Hilfe"
+
+   set caption(eventaude_gps,site_web_ref)            "Referenz Webseite:"
+   set caption(eventaude_gps,site_eventaude)          "http://users.skynet.be/astrophotoccd/"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(eventaude_gps,titre)                   "Coordenadas GPS do observador"
+
+   set caption(eventaude_gps,attention)               "Aviso"
+   set caption(eventaude_gps,message_1)               "Esta função pode apenas ser acedida através de EventAude."
+   set caption(eventaude_gps,message_2)               "Se você tem este equipamento, verifique se ele se encontra ligado."
+   set caption(eventaude_gps,message_3)               "Verificar que o GPS está conectado e sincronizado."
+
+   set caption(eventaude_gps,rafraichir)              "Actualizar as coordenadas GPS"
+   set caption(eventaude_gps,position_gps)            "Formato GPS (WGS84):"
+   set caption(eventaude_gps,longitude)               "Longitude:"
+   set caption(eventaude_gps,est)                     "E"
+   set caption(eventaude_gps,ouest)                   "O"
+   set caption(eventaude_gps,latitude)                "Latitude:"
+   set caption(eventaude_gps,nord)                    "N"
+   set caption(eventaude_gps,sud)                     "S"
+   set caption(eventaude_gps,altitude)                "Altitude:"
+   set caption(eventaude_gps,maj_long+lat)            "Actualização da posição do observador (longitude e latitude)"
+   set caption(eventaude_gps,maj_long+lat-)           "Actualização da longitude e da latitude"
+   set caption(eventaude_gps,maj_alt)                 "Actualização da posição do observador (altitude)"
+   set caption(eventaude_gps,maj_alt-)                "Actualização da altitude"
+   set caption(eventaude_gps,confirm)                 "Deseja continuar ?"
+   set caption(eventaude_gps,ok)                      "OK"
+   set caption(eventaude_gps,appliquer)               "Aplicar"
+   set caption(eventaude_gps,fermer)                  "Fechar"
+   set caption(eventaude_gps,aide)                    "Ajuda"
+
+   set caption(eventaude_gps,site_web_ref)            "Site Web de referência:"
+   set caption(eventaude_gps,site_eventaude)          "http://users.skynet.be/astrophotoccd/"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(eventaude_gps,titre)                   "GPS Coordinates of the Observer"
+
+   set caption(eventaude_gps,attention)               "Warning"
+   set caption(eventaude_gps,message_1)               "This feature can only be accessed through EventAude."
+   set caption(eventaude_gps,message_2)               "If you have this equipment, check it is on."
+   set caption(eventaude_gps,message_3)               "Check the GPS is connected and in sync."
+
+   set caption(eventaude_gps,rafraichir)              "Update GPS Coordinates"
+   set caption(eventaude_gps,position_gps)            "GPS Format (WGS84):"
+   set caption(eventaude_gps,longitude)               "Longitude:"
+   set caption(eventaude_gps,est)                     "Ø"
+   set caption(eventaude_gps,ouest)                   "V"
+   set caption(eventaude_gps,latitude)                "Latitude:"
+   set caption(eventaude_gps,nord)                    "N"
+   set caption(eventaude_gps,sud)                     "S"
+   set caption(eventaude_gps,altitude)                "Altitude:"
+   set caption(eventaude_gps,maj_long+lat)            "Updating the Observer's Position (longitude and latitude)"
+   set caption(eventaude_gps,maj_long+lat-)           "Longitude and latitude update"
+   set caption(eventaude_gps,maj_alt)                 "Updating the Observer's Position (altitude)"
+   set caption(eventaude_gps,maj_alt-)                "Altitude update"
+   set caption(eventaude_gps,confirm)                 "Continue?"
+   set caption(eventaude_gps,ok)                      "OK"
+   set caption(eventaude_gps,appliquer)               "Apply"
+   set caption(eventaude_gps,fermer)                  "Close"
+   set caption(eventaude_gps,aide)                    "Help"
+
+   set caption(eventaude_gps,site_web_ref)            "Reference Web Site:"
+   set caption(eventaude_gps,site_eventaude)          "http://users.skynet.be/astrophotoccd/"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(eventaude_gps,titre)                   "GPS Coordinates of the Observer"
+
+   set caption(eventaude_gps,attention)               "Warning"
+   set caption(eventaude_gps,message_1)               "This feature can only be accessed through EventAude."
+   set caption(eventaude_gps,message_2)               "If you have this equipment, check it is on."
+   set caption(eventaude_gps,message_3)               "Check the GPS is connected and in sync."
+
+   set caption(eventaude_gps,rafraichir)              "Update GPS Coordinates"
+   set caption(eventaude_gps,position_gps)            "GPS Format (WGS84):"
+   set caption(eventaude_gps,longitude)               "Longitude:"
+   set caption(eventaude_gps,est)                     "E"
+   set caption(eventaude_gps,ouest)                   "W"
+   set caption(eventaude_gps,latitude)                "Latitude:"
+   set caption(eventaude_gps,nord)                    "N"
+   set caption(eventaude_gps,sud)                     "S"
+   set caption(eventaude_gps,altitude)                "Altitude:"
+   set caption(eventaude_gps,maj_long+lat)            "Updating the Observer's Position (longitude and latitude)"
+   set caption(eventaude_gps,maj_long+lat-)           "Longitude and latitude update"
+   set caption(eventaude_gps,maj_alt)                 "Updating the Observer's Position (altitude)"
+   set caption(eventaude_gps,maj_alt-)                "Altitude update"
+   set caption(eventaude_gps,confirm)                 "Continue?"
+   set caption(eventaude_gps,ok)                      "OK"
+   set caption(eventaude_gps,appliquer)               "Apply"
+   set caption(eventaude_gps,fermer)                  "Close"
+   set caption(eventaude_gps,aide)                    "Help"
+
+   set caption(eventaude_gps,site_web_ref)            "Reference Web Site:"
+   set caption(eventaude_gps,site_eventaude)          "http://users.skynet.be/astrophotoccd/"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(eventaude_gps,titre)                   "GPS Coordinates of the Observer"
+
+   set caption(eventaude_gps,attention)               "Warning"
+   set caption(eventaude_gps,message_1)               "This feature can only be accessed through EventAude."
+   set caption(eventaude_gps,message_2)               "If you have this equipment, check it is on."
+   set caption(eventaude_gps,message_3)               "Check the GPS is connected and in sync."
+
+   set caption(eventaude_gps,rafraichir)              "Update GPS Coordinates"
+   set caption(eventaude_gps,position_gps)            "GPS Format (WGS84):"
+   set caption(eventaude_gps,longitude)               "Longitude:"
+   set caption(eventaude_gps,est)                     "E"
+   set caption(eventaude_gps,ouest)                   "W"
+   set caption(eventaude_gps,latitude)                "Latitude:"
+   set caption(eventaude_gps,nord)                    "N"
+   set caption(eventaude_gps,sud)                     "S"
+   set caption(eventaude_gps,altitude)                "Altitude:"
+   set caption(eventaude_gps,maj_long+lat)            "Updating the Observer's Position (longitude and latitude)"
+   set caption(eventaude_gps,maj_long+lat-)           "Longitude and latitude update"
+   set caption(eventaude_gps,maj_alt)                 "Updating the Observer's Position (altitude)"
+   set caption(eventaude_gps,maj_alt-)                "Altitude update"
+   set caption(eventaude_gps,confirm)                 "Continue?"
+   set caption(eventaude_gps,ok)                      "OK"
+   set caption(eventaude_gps,appliquer)               "Apply"
+   set caption(eventaude_gps,fermer)                  "Close"
+   set caption(eventaude_gps,aide)                    "Help"
+
+   set caption(eventaude_gps,site_web_ref)            "Reference Web Site:"
+   set caption(eventaude_gps,site_eventaude)          "http://users.skynet.be/astrophotoccd/"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

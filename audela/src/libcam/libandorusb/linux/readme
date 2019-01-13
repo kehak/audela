@@ -1,0 +1,15 @@
+verifer la connexion de la camera sur le port USB :
+
+ udevadm info -q path -n /dev/bus/usb/001/012
+udevadm info -a -p $(udevadm info -q path -n /dev/bus/usb/001/012)
+
+
+modifier dans  /etc/udev/rules.d/andor.rules 
+
+ATTR{manufacturer}=="ANDOR", MODE="0777", GROUP="users"
+#SYSFS{idVendor}=="136e", MODE="0777"
+
+
+verifier que ca marche : 
+ls -al /dev/bus/usb/001/016 
+crwxrwxrwx 1 root users 189, 15 19 avril 17:48 /dev/bus/usb/001/016

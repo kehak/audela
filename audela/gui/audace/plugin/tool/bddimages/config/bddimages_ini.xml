@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <document>
+    <version>0.1</version>
+    <date>2015-01-01T00:00:00</date>
+    <ticket>1</ticket>
+    <author>F.Vachier, J. Berthier</author>
+  </document>
+
+  <bddimages id="1" default="yes">
+     <name>?</name>
+     <sql>
+        <dbname>bddimages</dbname>
+        <login>bddimagesAdmin</login>
+        <pass></pass>
+        <server>localhost</server>
+        <port>3306</port>
+     </sql>
+     <files>
+       <root></root>
+       <incoming></incoming>
+       <fits></fits>
+       <cata></cata>
+       <error></error>
+       <log></log>
+       <reports></reports>
+       <tmp></tmp>
+     </files>
+     <screenlimit>10</screenlimit>
+  </bddimages>
+
+</config>

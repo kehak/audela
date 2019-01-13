@@ -1,0 +1,22 @@
+
+set camNo 0
+
+#-------------------------------------------------------------------------------
+test cam_audine_create {creation de la camera Audine} {AUDINE} {
+   set camNo [cam::create audine]
+   set bufNo [cam$camNo buf]
+   return $camNo
+} "1"
+
+#-------------------------------------------------------------------------------
+test cam_audine_hasWindow {mode fenetree} {AUDINE} {
+    ::audine::getPluginProperty "A" hasWindow
+} "1"
+
+#-------------------------------------------------------------------------------
+test cam_audine_delete {suppression camera AUDINE} {AUDINE} {
+     cam::delete $camNo
+     #--- je verifie qu'il n'y a plus de camera
+     return [cam::list]
+} ""
+

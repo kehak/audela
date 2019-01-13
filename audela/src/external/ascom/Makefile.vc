@@ -1,0 +1,38 @@
+# -----------------------------------------------------------
+# --- Note pour le developpement de l'interface ASCOM
+# Les fichiers AscomMasterInterfaces.h et AscomMasterInterfaces.lib
+# ne sont plus fournis ASCOM. Ils sont generes automatiquement par
+# VisualC++ v9 a partir du fichier AscomMasterInterfaces.tlb
+# en fonction du systeme d'exploitation.
+#
+# --- Note pour l'utilisation de l'interface de camera ASCOM
+# Avant de lancer Audela , l'utilisateur doit installer le driver de
+# ASCOM disponible sur http://ascom-standards.org
+# -----------------------------------------------------------
+
+CP= copy
+RM= -@del /f /q
+
+EXTERNAL_LIB=..\lib
+
+$(EXTERNAL_LIB) :
+	if not exist $(EXTERNAL_LIB)      mkdir $(EXTERNAL_LIB)	
+
+$(EXTERNAL_LIB)\AscomMasterInterfaces.tlb : ascom\lib\AscomMasterInterfaces.tlb
+	$(CP) ascom\lib\AscomMasterInterfaces.tlb   $(EXTERNAL_LIB)
+
+$(EXTERNAL_LIB)\ASCOM.DeviceInterfaces.tlb : ascom6\lib\ASCOM.DeviceInterfaces.tlb
+	$(CP) ascom6\lib\ASCOM.DeviceInterfaces.tlb   $(EXTERNAL_LIB)
+	
+$(EXTERNAL_LIB)\ASCOM.AstrooptikServer5116.tlb : astrooptik\lib\AstrooptikServer5116.tlb
+	$(CP) astrooptik\lib\AstrooptikServer5116.tlb   $(EXTERNAL_LIB)
+
+install : $(EXTERNAL_LIB) $(EXTERNAL_LIB)\AscomMasterInterfaces.tlb  $(EXTERNAL_LIB)\ASCOM.DeviceInterfaces.tlb  $(EXTERNAL_LIB)\ASCOM.AstrooptikServer5116.tlb
+
+clean:
+    $(RM) $(EXTERNAL_LIB)\AscomMasterInterfaces.tlb
+    $(RM) $(EXTERNAL_LIB)\ASCOM.DeviceInterfaces.tlb
+    $(RM) $(EXTERNAL_LIB)\AstrooptikServer5116.tlb
+	
+
+

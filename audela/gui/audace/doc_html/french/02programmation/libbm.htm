@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Fonctions de la librairie libbm</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 03 avril 2005</p>
+<h1>Fonctions de la librairie libbm </h1>
+<p><strong>Liste des fonctions utilisables :</strong></p>
+
+<h3> <a name="bm_versionlib" id="bm_versionlib"></a>bm_versionlib </h3>
+<p>Retourne le num&eacute;ro de la version de la librairie libbm utilis&eacute;e.</p>
+
+<h3> <a name="bm_max" id="bm_max"></a>bm_max <em>buffer</em></h3>
+<p>Retourne la valeur et les coordonn&eacute;es du maximum de l'image du tampon <em>buffer</em>.</p>
+
+<h3> <a name="bm_hard2visu" id="bm_hard2visu"></a>bm_hard2visu <em>buffer seuil_haut seuil_bas fonction_transfert</em></h3>
+<p>Transforme l'image monochrome conform&eacute;ment &agrave; la fonction de transfert d'affichage (l'image transform&eacute;e a la m&ecirc;me apparence avec une fonction de transfert lin&eacute;aire que l'image initiale avec une fonction de transfert quelconque). "fonction_transfert" est une liste tcl de 256 nombres compris entre 0 et 255.</p>
+
+<h3> <a name="bm_soustrait" id="bm_soustrait"></a>bm_soustrait <em>buffer1 buffer2</em></h3>
+<p>Effectue l'op&eacute;ration "buffer1 - buffer2 -> buffer1".</p>
+
+<h3> <a name="bm_ajoute" id="bm_ajoute"></a>bm_ajoute <em>buffer1 buffer2</em></h3>
+<p>Effectue l'op&eacute;ration "buffer1 + buffer2 -> buffer1".</p>
+
+<h3> <a name="bm_multiplie" id="bm_multiplie"></a>bm_multiplie <em>buffer1 buffer2</em></h3>
+<p>Effectue l'op&eacute;ration "buffer1 * buffer2 -> buffer1".</p>
+
+<h3> <a name="bm_multiplie_ajoute" id="bm_multiplie_ajoute"></a>bm_multiplie_ajoute <em>buffer1 buffer2 buffer3</em></h3>
+<p>Effectue l'op&eacute;ration "buffer1 * buffer2 -> buffer3".</p>
+
+<h3> <a name="bm_divise" id="bm_divise"></a>bm_divise <em>buffer1 buffer2</em></h3>
+<p>Effectue l'op&eacute;ration "buffer1 / buffer2 -> buffer1".</p>
+
+<h3> <a name="bm_carre" id="bm_carre"></a>bm_carre <em>buffer</em></h3>
+<p>Effectue l'op&eacute;ration "buffer1 * buffer1 -> buffer1".</p>
+
+<h3> <a name="bm_carre_ajoute" id="bm_carre_ajoute"></a>bm_carre_ajoute <em>buffer1 buffer2</em></h3>
+<p>Effectue l'op&eacute;ration "buffer1 * buffer1 -> buffer2".</p>
+
+<h3> <a name="bm_racine_carree" id="bm_racine_carree"></a>bm_racine_carree <em>buffer</em></h3>
+<p>Effectue l'op&eacute;ration "buffer1^0.5  -> buffer1".</p>
+
+<h3> <a name="bm_marche" id="bm_marche"></a>bm_marche <em>buffer</em></h3>
+<p>Transforme l'image de sorte que les pixels de valeur positive sont mis &agrave; +1 et ceux de valeur n&eacute;gative sont mis &agrave; -1.</p>
+
+<h3> <a name="bm_Dxx" id="bm_Dxx"></a>bm_Dxx <em>buffer1 buffer2</em></h3>
+<p>Renvoie dans le tampon image <em>buffer2</em> la composante selon l'axe des abcisses de la d&eacute;riv&eacute;e seconde de l'image du tampon <em>buffer1</em>.</p>
+
+<h3> <a name="bm_Dyy" id="bm_Dyy"></a>bm_Dyy <em>buffer1 buffer2</em></h3>
+<p>Renvoie dans le tampon image <em>buffer2</em> la composante selon l'axe des ordonn&eacute;es de la d&eacute;riv&eacute;e seconde de l'image du tampon <em>buffer1</em>.</p>
+
+<h3> <a name="bm_mediane" id="bm_mediane"></a>bm_mediane <em>liste_tampons tampon_destination</em></h3>
+<p>Place dans le tampon <em>tampon_destination</em> l'image m&eacute;diane des tampons images <i>liste_tampons</i>.</p>
+</body>
+
+</html>

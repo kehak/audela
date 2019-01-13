@@ -1,0 +1,33 @@
+** APPLI AUDELA
+
+- ecrire une ligne d information au dessus du frame du plugin
+  et en dessous des menu "Fichier Affichage etc."
+  dans lequel je rajouterai les infos suivantes :
+        temps sideral
+        angle horaire
+        temperature ccd
+        AIRMASS
+  y a t il la possibilite de voir ces infos mise a jour de maniere temps reel
+
+- supprimer les mots cles RA et DEC du script lorsque les codeurs du T1m seront lus
+  par Aud'ACE, ils seront renseignes en auto par l'interface des mots cles
+
+
+
+** SYSTEME :
+
+- mettre /dev/ttyS0 sur le bit w pour tout le monde des le demarrage de la machine
+
+- serveur nfs entre les pc pour l echange des images
+
+
+
+** UTILISATION :
+
+
+- protocole de gestion des images :
+  images brutes
+  stockage brut
+  insertion BDI
+  sauvegarde BDI
+

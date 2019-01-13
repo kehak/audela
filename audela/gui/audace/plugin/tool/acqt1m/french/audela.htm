@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Acquisition (T1M)</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 01 mai 2013</p>
+
+<h1>Audela version de developpement</h1>
+
+   <h2>Subversion & Sourceforge</h2>
+
+      <pre>
+
+      == Sourceforge et Clés SSH ==
+
+         Pour eviter d avoir a retaper systematiquement 
+         le mdp a chaque commit, il faut "echanger" les 
+         cles ssh entre le server sourceforge et la machine locale.
+
+         sur la machine locale en tant qu'utilisateur t1m
+         se mettre dans le repertoire ~/.ssh
+
+         taper la commande : 
+         > ssh-keygen -t dsa -C "fredvachier@shell.sf.net"
+
+         ceci cree 2 fichiers : 
+         id_dsa : la clé privée
+         id_dsa.pub : la clé publique
+
+         aller sur le site :  https://sourceforge.net/account/services
+         puis Edit SSH Keys for Shell/CVS
+         copier le contenu du fichier id_dsa.pub 
+         (en faisant bien attention qu il n y ait pas 
+         de retour chariot dans la ligne)
+         puis cliquer sur update.
+
+         retour a la page : https://sourceforge.net/account/services
+         verifier qu il y a bien au moins 1 clé prise en compte
+
+      == Telecharger une copie de travail en tant que developpeur du projet ==
+         
+         se mettre dans /srv/develop
+
+         svn checkout --username=fredvachiersvn+ssh://fredvachier@svn.code.sf.net/p/audela/code/trunk/audela audela
+
+      == Telecharger une copie de travail en tant que utilisateur anonyme ==
+
+         a faire
+         
+    </pre>
+
+
+  <h2>Compilation</h2>
+
+      <h3>64 bits</h2>
+
+      <pre>
+     
+      cd /srv/develop/audela/src
+      ./configure --with-tcl=/usr/lib64 --with-tk=/usr/lib64 --with-ffmpeg --with-tls --enable-threads
+      make external
+      make contrib
+      make
+
+      </pre>
+
+
+     <h3>32 bits</h3>
+
+      <pre>
+         a faire
+      </pre>
+         
+     <h3>mysqltcl</h3>
+
+      <pre>
+
+         il arrive souvent que mysqltcl se compile pas bien
+         pour y remedier : 
+         
+         cd /srv/develop/audela/src/external/mysqltcl/mysqltcl-3.05
+         ./configure  --with-tcl=/usr/lib64 --enable-64bit --with-mysql-lib=/usr/lib64
+         make
+         sudo make install
+         cp libmysqltcl3.05.so /srv/develop/audela/bin/libmysqltcl.so
+
+      </pre>
+
+
+  <h2>FAQ</h2>
+
+
+    <h4>Erreur de connexion a MySql</h4>
+
+      <pre>
+      == ERREUR == 
+      # Erreur de connexion a MySql <1> <invalid command name "::mysql::connect">
+      # Connexion echouee : Erreur de connexion a MySql <1> <invalid command name "::mysql::connect">
+
+      == REPONSE == 
+      revoir l installation dee mysqltcl
+      </pre>
+
+
+</body>
+
+</html>

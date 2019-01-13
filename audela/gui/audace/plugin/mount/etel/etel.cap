@@ -1,0 +1,169 @@
+#
+# Fichier : etel.cap
+# Mise a jour $Id: etel.cap 14412 2018-04-13 18:03:34Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(etel,monture)                        "Etel"
+set caption(etel,telname)                        "Telescope Name"
+set caption(etel,telcom)                         "Communication Mode"
+set caption(etel,raquette_tel)                   "Hand controller on screen"
+
+set caption(etel,install_1)                      "End of Etel plugin installation"
+set caption(etel,install_2)                      "libetel.dll library updated."
+
+set caption(etel,port_etel)                      "Etel Port"
+set caption(etel,2points)                        ":"
+
+set caption(etel,titre_site_web)                 "Reference Web Site:"
+set caption(etel,site_etel)                      "http://www.etel.ch/"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(etel,monture)                     "Etel"
+   set caption(etel,telname)                     "Nom du télescope"
+   set caption(etel,telcom)                      "Mode de communication"
+   set caption(etel,raquette_tel)                "Raquette à l'écran"
+
+   set caption(etel,install_1)                   "Fin de l'installation du plugin Etel"
+   set caption(etel,install_2)                   "La librairie libetel.dll a été mise à jour."
+
+   set caption(etel,port_etel)                   "Port Etel"
+   set caption(etel,2points)                     ":"
+
+   set caption(etel,titre_site_web)              "Site Web de référence :"
+   set caption(etel,site_etel)                   "http://www.etel.ch/"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(etel,monture)                     "Etel"
+   set caption(etel,telname)                     "Nome telescopio"
+   set caption(etel,telcom)                      "Communication mode"
+   set caption(etel,raquette_tel)                "Pulsantiera a schermo"
+
+   set caption(etel,install_1)                   "Fine installazione del plugin Etel"
+   set caption(etel,install_2)                   "La libreria libetel.dll è stata aggiornata."
+
+   set caption(etel,port_etel)                   "Porta Etel"
+   set caption(etel,2points)                     ":"
+
+   set caption(etel,titre_site_web)              "Sito Web di riferimento:"
+   set caption(etel,site_etel)                   "http://www.etel.ch/"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(etel,monture)                     "Etel"
+   set caption(etel,telname)                     "Telescopio nombre"
+   set caption(etel,telcom)                      "Communication mode"
+   set caption(etel,raquette_tel)                "Controlador virtual"
+
+   set caption(etel,install_1)                   "Fin de la instalación del plugin Etel"
+   set caption(etel,install_2)                   "Libreria libetel.dll actualizada."
+
+   set caption(etel,port_etel)                   "Puerto Etel"
+   set caption(etel,2points)                     ":"
+
+   set caption(etel,titre_site_web)              "Sitio Web de referencia:"
+   set caption(etel,site_etel)                   "http://www.etel.ch/"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(etel,monture)                     "Etel"
+   set caption(etel,telname)                     "Teleskop Name"
+   set caption(etel,telcom)                      "Communication mode"
+   set caption(etel,raquette_tel)                "Hand Kontroller am Bildschirm"
+
+   set caption(etel,install_1)                   "Ende der Etel-Plugin-Installation"
+   set caption(etel,install_2)                   "Die libetel.dll Bibliothek ist aktualisiert."
+
+   set caption(etel,port_etel)                   "Etel Port"
+   set caption(etel,2points)                     ":"
+
+   set caption(etel,titre_site_web)              "Referenz Webseite:"
+   set caption(etel,site_etel)                   "http://www.etel.ch/"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(etel,monture)                     "Etel"
+   set caption(etel,telname)                     "Telescópio nome"
+   set caption(etel,telcom)                      "Communication mode"
+   set caption(etel,raquette_tel)                "Controlador de mão no ecrã"
+
+   set caption(etel,install_1)                   "Fin da instalação do plugin Etel"
+   set caption(etel,install_2)                   "A livraria libetel.dll foi actualizada."
+
+   set caption(etel,port_etel)                   "Porta Etel"
+   set caption(etel,2points)                     ":"
+
+   set caption(etel,titre_site_web)              "Site Web de referência:"
+   set caption(etel,site_etel)                   "http://www.etel.ch/"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(etel,monture)                     "Etel"
+   set caption(etel,telname)                     "Telescope Name"
+   set caption(etel,telcom)                      "Communication Mode"
+   set caption(etel,raquette_tel)                "Hand controller on screen"
+
+   set caption(etel,install_1)                   "End of Etel plugin installation"
+   set caption(etel,install_2)                   "libetel.dll library updated."
+
+   set caption(etel,port_etel)                   "Etel Port"
+   set caption(etel,2points)                     ":"
+
+   set caption(etel,titre_site_web)              "Reference Web Site:"
+   set caption(etel,site_etel)                   "http://www.etel.ch/"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(etel,monture)                     "Etel"
+   set caption(etel,telname)                     "Telescope Name"
+   set caption(etel,telcom)                      "Communication Mode"
+   set caption(etel,raquette_tel)                "Hand controller on screen"
+
+   set caption(etel,install_1)                   "End of Etel plugin installation"
+   set caption(etel,install_2)                   "libetel.dll library updated."
+
+   set caption(etel,port_etel)                   "Etel Port"
+   set caption(etel,2points)                     ":"
+
+   set caption(etel,titre_site_web)              "Reference Web Site:"
+   set caption(etel,site_etel)                   "http://www.etel.ch/"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(etel,monture)                     "Etel"
+   set caption(etel,telname)                     "Telescope Name"
+   set caption(etel,telcom)                      "Communication Mode"
+   set caption(etel,raquette_tel)                "Hand controller on screen"
+
+   set caption(etel,install_1)                   "End of Etel plugin installation"
+   set caption(etel,install_2)                   "libetel.dll library updated."
+
+   set caption(etel,port_etel)                   "Etel Port"
+   set caption(etel,2points)                     ":"
+
+   set caption(etel,titre_site_web)              "Reference Web Site:"
+   set caption(etel,site_etel)                   "http://www.etel.ch/"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

@@ -1,0 +1,18 @@
+CP= copy
+RM= -@del /f /q
+
+SOURCE=.
+EXTERNAL_INCLUDE=..\include
+EXTERNAL_LIB=..\lib
+
+build:
+
+install: build
+	if not exist $(EXTERNAL_INCLUDE)  mkdir $(EXTERNAL_INCLUDE)
+	if not exist $(EXTERNAL_LIB)      mkdir $(EXTERNAL_LIB)
+	$(CP) $(SOURCE)\include\windows\ftd2xx.h $(EXTERNAL_INCLUDE)
+	$(CP) $(SOURCE)\lib_32\ftd2xx.lib   $(EXTERNAL_LIB)
+
+clean:
+	$(RM) $(EXTERNAL_INCLUDE)\ftd2xx.h
+	$(RM) $(EXTERNAL_LIB)\ftd2xx.lib

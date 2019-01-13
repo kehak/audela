@@ -1,0 +1,124 @@
+#
+# Fichier : cyclefast.cap
+# Mise a jour $Id: cyclefast.cap 9903 2013-08-06 00:36:12Z mschiav $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(cyclefast,browse)                    "..."
+set caption(cyclefast,folder)                    "From Folder:"
+set caption(cyclefast,errgps_console)            "ERROR: the cycle cannot work if the GPS is not opened\n"
+set caption(cyclefast,errgps_title)              "GPS ERROR"
+set caption(cyclefast,errgps_message)            "The cycle cannot work if the GPS is not opened"
+set caption(cyclefast,warngps_console)           "WARNING: the time is not synchronized with GPS.\nTiming will not work properly\n"
+set caption(cyclefast,pb)                        "Problem"
+set caption(cyclefast,selcam)                    "You must select a camera first\n(Setup/Camera)."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(cyclefast,browse)                 "..."
+   set caption(cyclefast,folder)                 "From Folder:"
+   set caption(cyclefast,errgps_console)         "ERROR: the cycle cannot work if the GPS is not opened"
+   set caption(cyclefast,errgps_title)           "GPS ERROR"
+   set caption(cyclefast,errgps_message)         "The cycle cannot work if the GPS is not opened"
+   set caption(cyclefast,warngps_console)        "WARNING: the time is not synchronized with GPS.\nTiming will not work properly"
+   set caption(cyclefast,pb)                     "Problem"
+   set caption(cyclefast,selcam)                 "You must select a camera first\n(Setup/Camera)."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(cyclefast,browse)                 "..."
+   set caption(cyclefast,folder)                 "From Folder:"
+   set caption(cyclefast,errgps_console)         "ERROR: the cycle cannot work if the GPS is not opened"
+   set caption(cyclefast,errgps_title)           "GPS ERROR"
+   set caption(cyclefast,errgps_message)         "The cycle cannot work if the GPS is not opened"
+   set caption(cyclefast,warngps_console)        "WARNING: the time is not synchronized with GPS.\nTiming will not work properly"
+   set caption(cyclefast,pb)                     "Problem"
+   set caption(cyclefast,selcam)                 "You must select a camera first\n(Setup/Camera)."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(cyclefast,browse)                 "..."
+   set caption(cyclefast,folder)                 "From Folder:"
+   set caption(cyclefast,errgps_console)         "ERROR: the cycle cannot work if the GPS is not opened"
+   set caption(cyclefast,errgps_title)           "GPS ERROR"
+   set caption(cyclefast,errgps_message)         "The cycle cannot work if the GPS is not opened"
+   set caption(cyclefast,warngps_console)        "WARNING: the time is not synchronized with GPS.\nTiming will not work properly"
+   set caption(cyclefast,pb)                     "Problem"
+   set caption(cyclefast,selcam)                 "You must select a camera first\n(Setup/Camera)."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(cyclefast,browse)                 "..."
+   set caption(cyclefast,folder)                 "From Folder:"
+   set caption(cyclefast,errgps_console)         "ERROR: the cycle cannot work if the GPS is not opened"
+   set caption(cyclefast,errgps_title)           "GPS ERROR"
+   set caption(cyclefast,errgps_message)         "The cycle cannot work if the GPS is not opened"
+   set caption(cyclefast,warngps_console)        "WARNING: the time is not synchronized with GPS.\nTiming will not work properly"
+   set caption(cyclefast,pb)                     "Problem"
+   set caption(cyclefast,selcam)                 "You must select a camera first\n(Setup/Camera)."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(cyclefast,browse)                 "..."
+   set caption(cyclefast,folder)                 "From Folder:"
+   set caption(cyclefast,errgps_console)         "ERROR: the cycle cannot work if the GPS is not opened"
+   set caption(cyclefast,errgps_title)           "GPS ERROR"
+   set caption(cyclefast,errgps_message)         "The cycle cannot work if the GPS is not opened"
+   set caption(cyclefast,warngps_console)        "WARNING: the time is not synchronized with GPS.\nTiming will not work properly"
+   set caption(cyclefast,pb)                     "Problem"
+   set caption(cyclefast,selcam)                 "You must select a camera first\n(Setup/Camera)."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(cyclefast,browse)                 "..."
+   set caption(cyclefast,folder)                 "From Folder:"
+   set caption(cyclefast,errgps_console)         "ERROR: the cycle cannot work if the GPS is not opened"
+   set caption(cyclefast,errgps_title)           "GPS ERROR"
+   set caption(cyclefast,errgps_message)         "The cycle cannot work if the GPS is not opened"
+   set caption(cyclefast,warngps_console)        "WARNING: the time is not synchronized with GPS.\nTiming will not work properly"
+   set caption(cyclefast,pb)                     "Problem"
+   set caption(cyclefast,selcam)                 "You must select a camera first\n(Setup/Camera)."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(cyclefast,browse)                 "..."
+   set caption(cyclefast,folder)                 "From Folder:"
+   set caption(cyclefast,errgps_console)         "ERROR: the cycle cannot work if the GPS is not opened"
+   set caption(cyclefast,errgps_title)           "GPS ERROR"
+   set caption(cyclefast,errgps_message)         "The cycle cannot work if the GPS is not opened"
+   set caption(cyclefast,warngps_console)        "WARNING: the time is not synchronized with GPS.\nTiming will not work properly"
+   set caption(cyclefast,pb)                     "Problem"
+   set caption(cyclefast,selcam)                 "You must select a camera first\n(Setup/Camera)."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(cyclefast,browse)                 "..."
+   set caption(cyclefast,folder)                 "From Folder:"
+   set caption(cyclefast,errgps_console)         "ERROR: the cycle cannot work if the GPS is not opened"
+   set caption(cyclefast,errgps_title)           "GPS ERROR"
+   set caption(cyclefast,errgps_message)         "The cycle cannot work if the GPS is not opened"
+   set caption(cyclefast,warngps_console)        "WARNING: the time is not synchronized with GPS.\nTiming will not work properly"
+   set caption(cyclefast,pb)                     "Problem"
+   set caption(cyclefast,selcam)                 "You must select a camera first\n(Setup/Camera)."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

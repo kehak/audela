@@ -1,0 +1,557 @@
+http://www.namnmeteors.org/appendixA.html
+
+Quadrantids (QUA)     Active: Jan 01-Jan 05     Max: Jan 03
+Radiant: 230 +49      Diameter: 5               Drift: +0.8 -0.2
+Velocity: 41 km/s     Population Index: 2.1     ZHR = 120
+
+
+NOTES: The Quadrantids have the shortest duration of all the major showers. The short but
+intense maximum can produce rates in excess of 100 meteors per hour. The shower's radiant lies in
+Bootes, so is circumpolar for many northern locations, but it only attains a useful elevation after
+local midnight and is highest near morning. Therefore, the shower must peak near 5 am local time in
+order to see it at its best. Observing only 6 hours on either side of maximum will produce rates no
+better than 20-30 meteors per hour. It appears that mass-sorting of particles across the stream of
+this shower makes fainter members reach maximum up to 14 hours earlier, so observers should be
+alert throughout the shower. The Quadrantids are easy to photograph at maximum, with bright yellow
+fireballs being visible. Fainter shower members tend to be blue or white. The population index
+varies with solar longitude.
+
+
+
+
+Delta Cancrids (DCA)     Active: Jan 01-Jan 24     Max: Jan 17
+Radiant: 130 +20         Diameter: 20/10           Drift: +0.9 -0.2
+Velocity: 28 km/s        Population Index: 3.0     ZHR = 4
+
+
+NOTES: Very little is known about this stream which can be seen from either hemisphere. It is
+likely that this shower is an early part of the Virginid activity. The radiant is above the horizon
+for almost the entire night, and meteors from this shower are best seen during the early to middle
+part of the night. This ecliptical shower has a complex radiant structure so plotting of all
+meteors is recommended.
+
+
+
+
+Alpha Centaurids (ACE)     Active: Jan 28-Feb 21     Max: Feb 07
+Radiant: 210 -59           Diameter: 4               Drift: +1.2 -0.3
+Velocity: 56 km/s          Population Index: 2.0     ZHR = 6
+
+
+NOTES: For most of the active period for this Southern Hemisphere shower, ZHRs range between 1 and
+3 meteors per hour, but at maximum rates generally rise to between 5 and 10. Every 5 to 6 years,
+the maximum activity seems to be enhanced and on two notable occasions in 1974 and 1980, rates
+exceeded 25 meteors per hour. This enhancement has always been short-lived, lasting no more than 2
+to 3 hours. This shower produces fast meteors, many with trains, and are noted for their brightly
+colored fireballs.
+
+
+
+
+Delta Leonids (DLE)     Active: Feb 15-Mar 10     Max: Feb 24
+Radiant: 168 +16        Diameter: 5               Drift: +0.9 -0.3
+Velocity: 23 km/s       Population Index: 3.0     ZHR: 2
+
+
+NOTES: The Delta Leonids are thought to possibly be related to the minor planet 1987 SY and are of
+average brightness, slow in speed, with very few leaving a train.
+
+
+
+
+Gamma Normids (GNO)     Active: Feb 25-Mar 22     Max: Mar 13
+Radiant: 249 -51        Diameter: 5               Drift: +1.1 +0.1
+Velocity: 56 km/s       Population Index: 2.4     ZHR: 8
+
+
+NOTES: This shower is very similar to the sporadics in appearance, and for most of their activity
+period, their ZHR is almost undetectable above the background rate. The peak itself is normally
+quite sharp, with ZHRs of 3+ noted for only a day or two to either side of the maximum. There are
+suggestions that the activity may vary somewhat at times, with occasional broader, or less obvious,
+maxima having been reported in the past. This shower is visible mainly from the Southern Hemisphere
+with the radiant best placed after local midnight. Shower members are swift with the brightest
+meteors often having a yellow color. The Gamma Normids are difficult to photograph due to their low
+numbers and relative faintness.
+
+
+
+
+Virginids (VIR)     Active: Jan 25-Apr 15     Max: several
+Radiant: 195 -04    Diameter: 15/10           Drift: +0.5 -0.3
+Velocity: 30 km/s   Population Index: 3.0     ZHR: 5
+
+
+NOTES: As there are a large number of low activity radiants close together, it is very difficult to
+distinguish what branches of the Virginids are active at any one time. With this is mind, the IMO
+has for the time being incorporated all Virginids seen into one shower. They are known for their
+fireball production, though their population index of 3.0 indicates there are many fainter members
+as well. Radiant position listed above is for March 24.
+
+
+
+
+Lyrids (LYR)             Active: Apr 16-Apr 25     Max: Apr 22
+Radiant: 271 +34         Diameter: 5               Drift: +1.1 0.0
+Velocity: 49 km/s        Population Index: 2.9     ZHR: 15
+
+
+NOTES: This shower peaks on April 22, and produces 10 meteors per hour on average. Maximum rates
+are attained for only about an hour or two at best, and can be rather erratic at times. The Lyrids
+are associated with Comet Thatcher 1861 I and have produced several bursts of activity in the past.
+The most recent such event occurred in 1982 when rates nearly reached 100 meteors per hour. It is
+difficult to photograph the Lyrids due to their low numbers and only occasional fireballs. The
+Lyrids are visible from the Southern Hemisphere, but at a much reduced rate. Useful watches can be
+carried out after 2230 hours local time.
+
+
+
+
+Pi Puppids (PPU)     Active: Apr 15-Apr 28     Max: Apr 23
+Radiant: 110 -45     Diameter: 5               Drift: +0.6 -0.2
+Velocity: 18 km/s    Population Index: 2.0     ZHR = variable
+
+
+NOTES: The Pi Puppids are a meteor shower that has only recently become visible. In these cases,
+the meteoroids are clustered close to their parent comet so we see activity only when their parent
+comet is near the Earth. The parent comet of the Pi Puppids, 26P/Grigg-Skjellerup, returns to
+perihelion every five years. Their radiant can only be effectively observed from the Southern
+Hemisphere in the evening hours and sets shortly after midnight.
+
+
+
+
+Eta Aquarids (ETA)     Active: Apr 19-May 28     Max: May 05
+Radiant: 338 -01       Diameter: 4               Drift: +0.9 +0.4
+Velocity: 66 km/s      Population Index: 2.7     ZHR: 60
+
+
+NOTES: The Eta Aquarids are the outbound (post-perihelion) particles of Halley's comet. This shower
+is active from mid-April through the end of May with a broad maximum which can occur anytime from
+May 2 through May 10. This shower is not well observed from the Northern Hemisphere due to the low
+radiant altitude when dark skies occur. An observer may see nearly 40 meteors per hour at shower
+maximum from tropical latitudes, decreasing to invisibility as you approach 50 degrees north
+latitude. From the Southern Hemisphere the Eta Aquarids are by far the strongest annual shower,
+producing an average of 60 meteors per hour at maximum. This shower also produces the highest
+percentage of trained meteors among the major showers. Nearly one-half of all Eta Aquarids produce
+visible trains. There is a broad maximum with ZHRs above 30 for almost a week centered on the main
+maximum.
+
+
+
+
+Sagittarids (SAG)     Active: Apr 15-Jul 15     Max: several
+Radiant: 247 -22      Diameter: 15/10           Drift: ?
+Velocity: 30 km/s     Population Index: 2.5     ZHR: 5
+
+
+NOTES: This is the radiation area of the Scorpid-Sagittarid complex. Due to the many radiants in
+this area, the IMO has combined several minor showers into the Sagittarids. Observers should
+monitor this shower instead of the minor radiants. The radiant position listed above is for May 19.
+
+
+
+
+Pegasids (JPE)          Active: Jul 07-Jul 13     Max: Jul 10
+Radiant: 340 +15        Diameter: 5               Drift: +0.8 +0.2
+Velocity: 70 km/s       Population Index: 3.0     ZHR: 3
+
+
+NOTES: This shower is easily missed by observers since this time of the year most northern
+observers are preparing for the Perseids. The short Pegasid activity period is characterized by the
+radiant being well above the horizon only in the morning hours. ZHRs are usually low. Meteors from
+this stream tend to be swift and faint.
+
+
+
+
+July Phoenicids (PHE)     Active: Jul 10-Jul 16     Max: Jul 14
+Radiant: 32 -48           Diameter: 7               Drift: ?
+Velocity: 47 km/s         Population Index: 3.0     ZHR: variable 3-10, usually ~2
+
+
+NOTES: Occasionally, this shower produces enhanced activity with a ZHR of around 10, but on
+average, expect ZHRs to be 4 or less. Activity is quite variable, observations show it as a richer
+radio meteor source. This shower is best observed from the Southern Hemisphere after midnight.
+
+
+
+
+Pisces Austrinids (PAU)     Active: Jul 15-Aug 10     Max: Jul 28
+Radiant: 341 -30            Diameter: 5               Drift: +1.0 +0.2
+Velocity: 35 km/s           Population Index: 3.2     ZHR: 5
+
+
+NOTES: Only observers at a latitude lower than 45 degrees north should attempt observations of this
+shower. Observers north of this latitude will encounter a radiant that is too low to allow reliable
+observations. Expect to see only 1 or 2 meteors per hour, perhaps rising to 6 to 8 per hour at
+maximum.
+
+
+
+
+S. Delta Aquarids (SDA)     Active: Jul 12-Aug 19     Max: Jul 28 
+Radiant: 339 -16            Diameter: 5               Drift: +0.75 +0.21
+Velocity: 41 km/s           Population Index: 3.2     ZHR: 20
+
+
+NOTES: This is another shower best seen from the Southern Hemisphere, where the radiant is high in
+the sky during their long winter nights. This is the strongest radiant of about 6 that are active
+in this region during July and August. In late July the combined count of these radiants approaches
+30 meteors per hour under dark skies. Like many streams that lie close to the ecliptic, this one
+possesses a double radiant. The southern branch provides a majority of the activity and reaches
+maximum activity two weeks earlier than the northern branch. The average meteor from this shower is
+faint and therefore difficult to photograph.
+
+
+
+
+Alpha Capricornids (CAP)     Active: Jul 03-Aug 15     Max: Jul 30
+Radiant: 307 -10             Diameter: 8               Drift: +0.9 +0.3
+Velocity: 23 km/s            Population Index: 2.5     ZHR: 4
+
+
+NOTES: This is a long-lasting shower active throughout July and August. A broad maximum occurs
+during the last week of July and the first week of August centered on July 30. This shower produces
+the slowest meteors of all major annual showers. Due to its southerly declination this shower is
+better placed for observers in the Southern Hemisphere. This shower is noted for its bright, highly
+colored fireballs that often fragment during flight. The combination of slow, bright meteors is
+ideal for photography but unfortunately rates are low.
+
+
+
+
+S. Iota Aquarids (SIA)     Active: Jul 25-Aug 15     Max: Aug 04
+Radiant: 334 -15           Diameter: 5               Drift: +1.07 +0.18
+Velocity: 34 km/s          Population Index: 2.9     ZHR: 2
+
+
+NOTES: This shower is noted for its many faint meteors, making it ideal for telescopic work. It is
+very difficult to distinguish members of this shower from the Delta Aquarids which are also active.
+This requires careful plotting, angular velocity estimates and a center of the field of view close
+to the radiant. If you do not plot meteors, it is best not to try to distinguish the different
+Aquarid radiants, simply count all meteors as "Aquarids." Depending on the phase of the
+moon, either the Northern or Southern branch can be observed.
+
+
+
+
+N. Delta Aquarids (NDA)     Active: Jul 15-Aug 25     Max: Aug 08
+Radiant: 335 -05            Diameter: 5               Drift: +0.75 +0.21
+Velocity: 42 km/s           Population Index: 3.4     ZHR: 4
+
+
+NOTES: See Southern Delta Aquarids.
+
+
+
+
+Perseids (PER)       Active: Jul 17-Aug 24     Max: Aug 12
+Radiant: 46 +57      Diameter: 5               Drift: +1.4 +0.18
+Velocity: 59 km/s    Population Index: 2.6     ZHR: see Notes 
+
+
+NOTES: This is the most popular meteor shower of the year due to the combination of high rates and
+fair weather this time of year in much of the Northern Hemisphere. A majority of activity is
+produced on August 11, 12, and 13. The shower's primary maximum has produced rates of 400+ in 1991
+and 1992, around 300 in 1993, 220 in 1994 and about 160 in 1995. The return of the parent comet,
+109P/Swift-Tuttle in late 1992 is almost certainly responsible for these recent outbursts, although
+the material was probably laid down during the comet's previous perihelion passage in 1862. A
+secondary maximum occurs with ZHRs often approaching 100 or more. The brighter members of this
+shower are often colorful and produce long-lasting trains. The Perseids are easy to photograph near
+the date of maximum activity. Unfortunately this shower is nearly invisible from the Southern
+Hemisphere due to the northerly declination of its radiant.
+
+
+
+
+Kappa Cygnids (KCG)     Active: Aug 03-Aug 25     Max: Aug 17
+Radiant: 286 +59        Diameter: 6               Drift: +0.2 +0.1
+Velocity: 25 km/s       Population Index: 3.0     ZHR: 3
+
+
+NOTES: There is very little information concerning this shower due to its low activity. The meteors
+tend to be very slow and medium bright to faint. It has been suggested that this is a fireball
+shower with a periodicity of 6.6 years. But this is unproven at the present time, so many more
+observations will be needed to determine if this is true. This shower is best observed from the
+Northern Hemisphere.
+
+
+
+
+N. Iota Aquarids (NIA)     Active: Aug 11-Aug 31     Max: Aug 19
+Radiant: 327 -06           Diameter: 5               Drift: +1.03 +0.13
+Velocity: 31 km/s          Population Index: 3.2     ZHR: 3
+
+
+NOTES: See Southern Iota Aquarids.
+
+
+
+
+Alpha Aurigids (AUR)     Active: Aug 25-Sep 05     Max: Aug 31
+Radiant: 84 +42          Diameter: 5               Drift: +1.1 0.0
+Velocity: 66 km/s        Population Index: 2.5     ZHR: 10
+
+
+NOTES: Just as the last of the Perseid meteors are seen, the Alpha Aurigids become active. Rates
+are usually low for this shower except for a period of about one hour on the morning of August 31.
+If you are situated in dark morning skies when this sharp maximum occurs, you may see up to 50
+shower members radiating from the "Pentagon" of Auriga. Shower members seen during this
+peak of activity are often bright and leave long-lasting trains. Notable displays were seen in
+1935, 1986, and 1994. The Alpha Aurigids may be particles from Comet Kiess, last seen in 1911.
+Photographing the Alpha Aurigids is difficult except during the time of maximum activity.
+
+
+
+
+Delta Aurigids (DAU)     Active: Sep 05-Oct 10     Max: Sep 08
+Radiant: 60 +47          Diameter: 5               Drift: +1.0 +0.1
+Velocity: 64 km/s        Population Index: 3.0     ZHR: 6
+
+
+NOTES: The meteors from this shower are fast moving and better situated for mid-northern latitudes
+where the radiant reaches a suitable elevation earlier in the night. Plotting is recommended for
+this shower as much more information needs to be obtained. Observers are urged to face the
+direction of the radiant in order to obtain a well-distributed sample of paths.
+
+
+
+
+Piscids (SPI)        Active: Sep 01-Sep 30     Max: Sep 19
+Radiant: 05 -01      Diameter: 5               Drift: +0.8 +0.2
+Velocity: 26 km/s    Population Index: 3.0     ZHR: 3
+
+
+NOTES: The radiant of the Piscids is well situated for Northern and Southern Hemisphere observers.
+Activity is very low so care must be taken in identification to avoid sporadics being incorrectly
+counted as Piscids. Meteors tend to be slow with a velocity of about 26 km/s.
+
+
+
+
+Draconids (GIA)        Active: Oct 06-Oct 10     Max: Oct 9
+Radiant: 262 +54       Diameter: 2               Drift: ?
+Velocity: 20 km/s      Population Index: 2.6     ZHR: variable
+
+
+NOTES: This is a PERIODIC shower which is visible during a short period before or after the
+perihelion passage of its parent comet, 21P/Giacobini-Zinner. The radiant is circumpolar for
+northern latitudes, but best placed in the early parts of the night. The theory of the evolution of
+meteoroid streams support the idea that this will become an annual shower at some point, probably
+several centuries in the future. But planetary perturbations may cause the stream to miss the Earth
+entirely. Periodic showers such as this one prove how much regular observing is necessary to catch
+unexpected returns. Negative observations are equally valuable since this helps to modify our
+understanding of how meteoroid streams evolve. Outbursts of the Draconids occurred in 1933, 1946
+and 1985.
+
+
+
+
+Epsilon Geminids (EGE)     Active: Oct 14-Oct 27     Max: Oct 18
+Radiant: 102 +27           Diameter: 5               Drift: +1.0 +0.1
+Velocity: 70 km/s          Population Index: 3.0     ZHR: 2
+
+
+NOTES: The maximum of this shower is not distinct and occurs around October 20. Meteors from this
+shower will be very fast. Care must be used in distinguishing meteors from this radiant and that of
+the Orionids.
+
+
+
+
+Orionids (ORI)        Active: Oct 02-Nov 07     Max: Oct 21
+Radiant: 95 +16       Diam: 10                  Drift: +0.65 +0.11
+Velocity: 66 km/s     Population Index: 2.9     ZHR: 20
+
+
+NOTES: The Orionids are the incoming (pre-perihelion) particles from Halley's comet. This shower is
+active throughout October and reaches its maximum activity between October 17 and 25. The highest
+hourly rates average near 15 but occasionally reaches 40. Most Orionid meteors are faint and
+therefore difficult to photograph. This shower's radiant is located near the Celestial Equator
+allowing it to be seen equally well from both hemispheres.
+
+
+
+
+S. Taurids (STA)     Active: Oct 01-Nov 25     Max: Nov 05
+Radiant: 50 +13      Diameter: 20/10           Drift: +0.79 +0.15
+Velocity: 27 km/s    Population Index: 2.3     ZHR: 5
+
+
+NOTES: These are slow, bright meteors visible during the months of October and November. This
+shower has two radiants of nearly equal activity 10 degrees apart. The southern radiant reaches its
+maximum activity during the first week of November, while the northern radiant peaks one week
+later. The activity of this and the related Southern branch (see below) produce an apparent
+plateau-like maximum for about 10 days in early November. With the radiant position reaching
+culmination just after midnight, Taurid meteors can be observed for most of the night. The stream
+is noted for its many brightly colored meteors although this seems to not be the case in every
+year.. Although the dominant color is yellow, many orange, green, red and blue fireballs have been
+recorded. The Taurids are produced by debris from Comet 2P/Encke.
+
+
+
+
+N. Taurids (NTA)     Active: Oct 01-Nov 25     Max: Nov 12
+Radiant: 58 +22      Diameter: 20/10           Drift: +0.76 +0.10
+Velocity: 29 km/s    Population Index: 2.3     ZHR: 5
+
+
+NOTES: See notes for Southern Taurids.
+
+
+
+
+Leonids (LEO)         Active: Nov 14-Nov 21     Max: Nov 17
+Radiant: 153 +22      Diameter: 5               Drift: +0.7 -0.4
+Velocity: 71 km/s     Population Index: 2.5     ZHR: 40+
+
+
+NOTES: The Leonids are a shower of short duration, lasting only one week centered on November 18.
+The Leonids are particles from Comet Temple-Tuttle, which will reach perihelion in 1998. A great
+concentration of particles exists near the parent comet. In years when the comet is far from the
+inner solar system the activity remains below 10 meteors per hour. However, for approximately 10
+years centered on the perihelion passage of Temple-Tuttle, the Leonids can produce marvelous
+displays of celestial fireworks. We are now within this period of enhanced activity and one should
+not miss the opportunity to watch the Leonids. During periods of high activity, the Leonids are
+easy to photograph. Many shower members are bright and leave long lasting trains. The Leonid stream
+collides with the earth from a head-on position that produces the highest velocity of all major
+showers: 71 km/s, often producing blue, green or white meteors that frequently leave a train.
+Fortunately the Leonid radiant is located close enough to the Celestial Equator that these displays
+may be enjoyed by both hemispheres.
+
+
+
+
+Alpha Monocerotids (AMO)     Active: Nov 15-Nov 25     Max: Nov 21
+Radiant: 110 +03             Diameter: 5               Drift: +0.8 -0.2
+Velocity: 65 km/s            Population Index: 2.4     ZHR: variable
+
+
+NOTES: The Alpha Monocerotids are noted for their variable activity which in some years is
+virtually non-existent while in others the maximum ZHR has exceeded 100 meteors per hour. Outbursts
+have occurred in 1925, 1935, 1985 and 1995, suggesting a 10 year periodicity.
+
+
+
+
+Chi Orionids (XOR)     Active: Nov 26-Dec 15     Max: Dec 02
+Radiant: 82 +23        Diameter: 8               Drift: +1.2 0.0
+Velocity: 28 km/s      Population Index: 3.0     ZHR: 3
+
+
+NOTES: These meteors are well placed in the sky for both Northern and Southern Hemisphere observers
+and allow many hours of observing each night. The shower has a double radiant but its southern
+branch has rarely been detected. Members of this stream may be a continuation of the ecliptic
+complex after the Taurids end. The radiant above is a combined one, suitable for visual work. Rates
+are usually low but occasionally fireballs will occur.
+
+
+
+
+Phoenicids (PHO)          Active: Nov 28-Dec 09     Max: Dec 06
+Radiant: 18 -53           Diameter: 5               Drift: ?
+Velocity: 18 km/s         Population Index: 2.8     ZHR: variable
+
+
+NOTES: This is possibly a PERIODIC shower only visible from the Southern Hemisphere. There is a
+gradual rise to a maximum on December 5, and although the maximum ZHR is usually below 3, on some
+occasions much greater rates have been recorded. Only one impressive return has been reported, that
+of its discovery in 1956 when rates were about 100. Three other potential bursts of lower activity
+have been reported, but never by more than one observer. IMO observers have noted rates barely at
+the detection limit between the years of 1988-1995, making the normal current activity almost
+nonexistent.
+
+
+
+
+Puppid/Velids (PUP)     Active: Dec 01-Dec 15     Max: Dec 07
+Radiant: 123 -45        Diameter: 20              Drift: +0.5 0.0
+Velocity: 40 km/s       Population Index: 2.9     ZHR: 10
+
+
+NOTES: There are indications of a number of radiants active in the Puppis-Vela region from late
+October to the end of January. Generally, this shower produces about 2 meteors per hour but rates
+can exceed 5 per hour. Since several sub-centers exist, a radiant diameter of 20 degrees should be
+used. Plotting is recommended. This shower is noted for its spectacular fireballs. The
+Puppid/Velids are in desperate need of many more observations.
+
+
+
+
+Dec. Monocerotids (MON)   Active: Nov 27-Dec 17     Max: Dec 8
+Radiant: 100 +08          Diameter: 5               Drift: +0.77 +0.24
+Velocity: 42 km/s         Population Index: 3.0     ZHR: 3
+
+
+NOTES: The Monocerotids are observable from both the Northern and Southern Hemispheres. They tend
+to produce low rates, on the order of 1 or 2 per hour. Care must be used when distinguishing these
+meteors from the Geminids which are also active at the same time.
+
+
+
+
+Sigma Hydrids (HYD)     Active: Dec 03-Dec 15     Max: Dec 11
+Radiant: 127 +02        Diameter: 5               Drift: +0.7 -0.2
+Velocity: 58 km/s       Population Index: 3.0     ZHR: 2
+
+
+NOTES: Although first detected in the 1960s by photography, these meteors are typically swift and
+faint, with rates generally low, often close to the visual detection limit. This shower is
+observable from both hemispheres since the radiant is located just to the southwest of the
+"head" asterism of Hydra. It is noted for production of meteors with trains, and the
+shower can be best observed after local midnight right up through dawn.
+
+
+
+
+Geminids (GEM)          Active: Dec 07-Dec 17     Max: Dec 13
+Radiant: 112 +33        Diameter: 5               Drift: +0.97 -0.08
+Velocity: 35 km/s       Population Index: 2.6     ZHR: 110
+
+
+NOTES: The Geminids, with their high rates and reliability from year to year, are the shower of
+choice of veteran meteor observers. This is usually the strongest shower of the year and produces
+nearly 100 meteors per hour on the morning of December 14. The Geminids are visible for one week
+prior to maximum, but the great majority of activity is limited to December 13 and 14. The peak has
+shown slight signs of variability in time and maximum rates, and the true maximum may fall a few
+hours before or after the published time. Some mass-sorting across the stream means that fainter
+telescopic meteor rates are at their highest almost one degree of solar longitude ahead of the
+visual peak. Telescopic observations show these meteors radiate from an elongated region, with up
+to three possible sub-centers. This shower produces many bright meteors, but persistent trains are
+rare. Near maximum there are many fireballs with vivid colors, especially their many bright
+yellow-orange meteors, making this shower easy to photograph. The Geminids are visible from the
+Southern Hemisphere, but at a greatly reduced rate. The parent object of the Geminids was unknown
+until recently. However, the asteroid 3200 Phaethon, discovered by IRAS (Infrared Astronomical
+Satellite) in 1983, is now known to be the source of the Geminid meteors and it is also the only
+non-cometary object associated with the evolution of a major annual stream.
+
+
+
+
+Coma Berenicids (COM)     Active: Dec 12-Jan 23     Max: Dec 19
+Radiant: 175 +25          Diameter: 5               Drift: +0.8 -0.3
+Velocity: 65 km/s         Population Index: 3.0     ZHR: 5
+
+
+NOTES: The Coma Berenicids are best seen the last few hours before sunrise from the Northern
+Hemisphere. Northern observers should endeavor to monitor this shower after the period of maximum
+Geminid activity. Although maximum occurs in December, rates are still moderate during January.
+
+
+
+
+Ursids (URS)           Active: Dec 17-Dec 26     Max: Dec 22
+Radiant: 217 +76       Diameter: 5               Drift: 0.0 -0.4
+Velocity: 33           Population Index: 3.0     ZHR: 10
+
+
+NOTES: This shower has been poorly observed although at least two major outburst have occurred in 
+1945 and 1986, and several other enhanced rates, most recently in 1988 and 1994. The parent comet
+of this shower is Comet Tuttle, which last reached perihelion in 1994. An odd feature of this
+shower is the apparent existence of a small condensation of material opposite the comet. A short
+but strong display has been seen three times while Comet Tuttle was near aphelion, with the last
+burst of activity occurring in 1986. Thus the year 2000 may provide the next possible strong
+display of Ursid meteors. A great majority of the Ursid activity occurs on the morning of December
+22. The Ursids display variable activity with ZHRs of around 50 being recorded on occasion. This
+shower is difficult to photograph due to the low numbers and the faintness of its meteors. This
+shower is invisible in the Southern Hemisphere.

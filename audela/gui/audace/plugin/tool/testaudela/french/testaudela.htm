@@ -1,0 +1,392 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Test AudeLA</title>
+</head>
+
+<body>
+<p class="date">Date de mise à jour : 15 janvier 2011</p>
+<h1>Test AudeLA</h1>
+<ul>
+  <li><a href="#presentation">Présentation</a><br />
+  </li>
+  <li><a href="#campagne">Lancer une campagne de test</a></li>
+  <li><a href="#creation_fichier_test">Création d'un nouveau
+fichier de tests</a></li>
+  <li><a href="#modification">Modification d'un fichier de tests</a><br />
+  </li>
+  <li><a href="#convention">Convention de nommage des fichiers de test</a></li>
+  <li><a href="#utilisatires">Procédures utilitaires pour les
+widgets</a></li>
+</ul>
+<p>&nbsp; <br />
+</p>
+<h1><a name="images" />Télécharger les images de test</h1>
+Télécharger les images en cliquant sur le lien ci-dessous,<br />
+puis les dézipper dans un répertoire quelconque, <br />
+puis indiquer le répertoire dans la fenêtre de l'outil de
+test.<br />
+<br />
+Images de test&nbsp; :&nbsp; <a href="http://www.audela.org/download/test-audela-image.zip">http://www.audela.org/download/test-audela-image.zip
+</a><br />
+<br />
+<br />
+Remarque: Les images de test ne sont pas founies avec AudeLA à
+cause de leur volume important.<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<p />
+<h1><a name="presentation" />Présentation</h1>
+Cet outil sert à lancer des tests automatiques de Audela.<br />
+Pour lancer l'exécution de Test Audela, utiliser le menu<b>
+Configuration-&gt;Test Audela</b><br />
+<br />
+<blockquote>
+  <p><img style="width: 436px; height: 420px;" alt="testaudela" src="images/testaudela1.png" /></p>
+</blockquote>
+<p><br />
+</p>
+<p>Le liste des fichiers de test est affichée dans la zone
+intitulée "Fichiers de test"<br />
+</p>
+<div style="margin-left: 40px;"><span style="font-weight: bold;">Un
+clic avec le bouton gauche de la souris</span> sur le nom d'un. fichier
+de test permet d'afficher la liste des tests contenus dans le fichier
+dans la zone intitulée "Contenu du fichier
+sélectionné"<br />
+<br />
+<span style="font-weight: bold;">Un double clic avec le bouton gauche
+de la souris</span> sur le nom d'un fichier de test permet d'inclure ou
+d'exclure un test de la campagne de test<br />
+</div>
+<ul style="margin-left: 40px;">
+  <li>Les fichiers avec <span style="font-weight: bold;">une
+icône
+VERTE</span> sont inclus dans la campagne de tests. </li>
+  <li>Les fichiers avec <span style="font-weight: bold;">une
+icône
+GRISE</span> ne sont pas inclus dans la campagne de tests.</li>
+</ul>
+<p style="margin-left: 40px;"><span style="font-weight: bold;">Un clic
+avec le bouton droit de la souris</span> sur le nom d'un fichier de
+test permet d'afficher le code source du test dans l'éditeur de
+fichier d'Audela (Configurer auparavant l'éditeur avec le menu
+Configuration &gt; Logiciels externes).<br />
+</p>
+<p style="margin-left: 40px;"><span style="font-weight: bold;">Le
+bouton Actualiser</span> permet d'actualiser la liste des fichiers de
+tests après que l'on ait ajouté ou supprimé un
+fichier de test, sans avoir à relancer Audela.&nbsp;</p>
+<p style="margin-left: 40px;"><span style="font-weight: bold;">Le
+bouton Tous </span>permet d'inclure tous les tests dans la campagne de
+test.</p>
+<p style="margin-left: 40px;"><span style="font-weight: bold;">Le
+bouton Aucun </span>permet d'exclure tous les tests de la campagne de
+test.<br />
+</p>
+<h1><a name="campagne" />Lancer une campagne de test</h1>
+Ouvrir la fenetre "Test Audela" avec le menu&nbsp;<b>
+Configuration-&gt;Test Audela<br />
+<br />
+</b>1) sélectionner les fichiers de test de la campagne <br />
+<blockquote>Seuls les tests avec une icône VERTE seront
+exécutés <br />
+</blockquote>
+<p>3) sélectionner les contraintes</p>
+<blockquote>
+  <p>Les contraintes permettent de ne lancer que les tests pour
+lesquels les périphériques ou des logiciels requis sont
+présents. Les contraintes de chaque test sont
+précisées dans le code source de chaque test..<br />
+  </p>
+  <p>Seuls les tests associés aux contraintes cochées
+sont exécutés <br />
+  <i>Exemples : </i></p>
+  <blockquote>
+    <p><i>Cocher la contrainte AUDACE pour exécuter les tests
+qui utilisent l'IHM Audace</i></p>
+    <p><i>Cocher la contrainte AUDINE pour exécuter les tests
+qui utilisent la camera AUDINE.</i></p>
+  </blockquote>
+</blockquote>
+<p>4) lancer la campagne de test</p>
+<blockquote>
+  <p>Cliquer sur le bouton <b>"Exécuter les tests"</b> pour
+lancer la
+campagne de tests. Le résultat est stocké dans le fichier
+  <i>testresult.log </i>dans le répertoire audace(rep_log)/<i>testresult.log</i></p>
+  <p><i>Remarque : certains tests qui ne sont pas complètement
+automatisés peuvent demander une action utilisateur. Par
+exemple, les tests du menu prétraitement nécessitent de
+cliquer sur le bouton "OK" pour continuer.</i></p>
+  <p>A la fin de la campagne de test, les résultats
+est affichés dans une nouvelle fenêtre :</p>
+  <blockquote>
+    <p><img style="width: 594px; height: 469px;" alt="testaudela log" src="images/testaudela2.png" /></p>
+  </blockquote>
+  <p>Elle contient le résultat de chaque test avec le message
+d'erreur retourné par le script de test en cas d'échec,
+ainsi qu'un récapitulatif avec : </p>
+  <ul>
+    <li>le nombre total de tests trouvés dans les fichiers
+sélectionnés pour la campagne (<span style="font-weight: bold;">Total</span>)<br />
+    </li>
+    <li>le nombre de tests réussis (<span style="font-weight: bold;">Passed</span>)</li>
+    <li>le nombre de tests sautés à cause des contraintes
+non sélectionnées (<span style="font-weight: bold;">Skipped</span>)</li>
+    <li>le nombre de tests ayant échoué (<span style="font-weight: bold;">Failed</span>)</li>
+  </ul>
+  <p>&nbsp;<br />
+  </p>
+</blockquote>
+<h1><a name="lancer_depuis_console" />Lancer une campagne depuis la
+console</h1>
+Pour lancer la campagne de test <span style="font-weight: bold;">depuis
+la
+console d'Audela</span> , il faut saisir la commande <span style="font-weight: bold;">::testaudela::runTests&nbsp;</span> <br />
+<br />
+Cette commande retourne une des valeurs suivantes : <br />
+<ul>
+  <li>&nbsp;&nbsp;&nbsp; 0&nbsp; si tous les tests sont passés
+avec sucés </li>
+  <li>&nbsp;&nbsp;&nbsp; 1, 2, 3, ...&nbsp;&nbsp; le nombre de test
+FAILED</li>
+  <li>&nbsp; &nbsp; -1 si une erreur imprévue a interrompu la
+campagne de test&nbsp; </li>
+</ul>
+<br />
+Pour lancer la campagne de test <span style="font-weight: bold;">depuis
+un
+fenêtre terminal Windows ou linux</span>, il faut se placer
+dans le répertoire de binaires d'Audela et saisir la commande <span style="font-weight: bold;">:<br />
+audela "&lt;répertoire
+audela&gt;/gui/audace/plugin/tool/testaudela/testaudela.tcl"
+"::testaudela::runTests" <br />
+<br />
+</span>Le résultatest dans le fichier <span style="font-weight: bold;">testresult.log</span> placé dans le
+répertoire de travail d'Audela.<span style="font-weight: bold;"><br />
+<br />
+<br />
+</span>
+<blockquote />
+<h1><a name="creation_fichier_test" />Création d'un nouveau
+fichier de test</h1>
+<p>Un fichier de test est un script TCL enregistré dans le
+répertoire audela\gui\audace\plugin\tool\testaudela\tests .</p>
+<p>Exemple de script de test :<br />
+audela\gui\audace\plugin\tool\testaudela\tests\chart_carteducielv3.tcl</p>
+Chaque test est codé dans un bloc TCL commençant par
+"test" et qui la structure suivante :
+<blockquote>
+  <pre><b> <font style="color: rgb(51, 51, 255);" color="#ff0000">test</font></b><span style="color: rgb(51, 51, 255);"> </span><font color="#0000ff"><b>test_nom</b></font> {<b><font color="#0000ff">test_description</font></b>} {<font color="#0000ff"><b>test_contraintes</b></font>} {<br />   <font color="#0000ff">test_script</font> <br />   ...<br />   return $resultat<br /> } <b><font color="#0000ff">test_resultat</font></b>
+
+  </pre>
+</blockquote>
+<p>Définitions : </p>
+<ul>
+  <li><b style="color: rgb(51, 51, 255);">test</b><span style="color: rgb(51, 51, 255);"> </span>: un test commence toujours
+par la commande <b style="color: rgb(51, 51, 255);">"test"</b> </li>
+  <li><b><font color="#0000ff">test_nom</font></b> : nom du test
+(exemple: webcam_RGB_create)</li>
+  <li><b><font color="#0000ff">test_description</font></b> : courte
+phrase de description du test</li>
+  <li><b><font color="#0000ff">test_contraintes</font></b> : liste des
+contraintes nécessaires pour exécuter le test (voir les
+cases à cocher)</li>
+  <li><b><font color="#0000ff">test_script</font></b>: script TCL
+exécutant les commandes à tester. Le script doit retouner
+une valeur avec la commande return.</li>
+  <li><b><font color="#0000ff">test_resultat</font></b> :
+résultat attendu. Si la valeur retounée par test_script
+est égale à cette valeur, le test est
+considéré comme réussi (état PASSED dans le
+rapport de test) sinon le test est considéré comme
+échoué (état FAILED dans le rapport de test).</li>
+</ul>
+<br />
+<p>Exemple : </p>
+<pre>test webcam_RGB_create {creation de la camera RGB } { WEBCAM_RGB } {<br />      set camNo [cam::create webcam USB -channel 0) \<br />          -lpport "" -name WEBCAM -ccd "ICX098BQ-A" ]<br />      set bufNo [cam$camNo buf]<br />      return $camNo<br />   } "1"</pre>
+<p>Ce test "webcam_RGB_create" ne sera exécuté dans un
+campagne de test que si la contrainte WEBCAM_RGB est cochée. </p>
+<p>Le résultat de ce test est "Passed" s'il retourne "1",
+"Failed" s'il
+retourne autre chose que "1", "Skipped" si la contrainte WEBCAM_RGB
+n'est
+pas cochée.</p>
+<p><b><i>Remarques : </i></b></p>
+<p><i>Pour rafraichir l'affichage de la liste des fichiers de test </i><i>après
+modification
+de
+ces paramètres, cliquer sur le bouton
+"Actualiser".</i></p>
+<p>Un fichier peut contenir plusieurs blocs . Les blocs doivent avoir
+des noms différents. Pour plus de détail sur la commande
+"test"
+du TCL voir : <a href="http://www.tcl.tk/man/tcl8.4/TclCmd/tcltest.htm">http://www.tcl.tk/man/tcl8.4/TclCmd/tcltest.htm</a></p>
+<p />
+<p style="font-style: italic;">Les images de référence
+utilisées par les tests sont dans le
+répertoire audela\gui\audace\plugin\tool\testaudela\images
+. <br />
+Il e<br />
+</p>
+<h1><a name="modification" />Modification d'un fichier de test</h1>
+<span style="font-weight: bold;">Cliquer avec le bouton droit de la
+souris</span> sur le nom d'un fichier de
+test pour afficher le code source du test dans l'éditeur de
+fichier d'Audela.<br />
+<br />
+<span style="font-weight: bold;">Modifier le code source du test </span>et
+enregistrer
+les modifications avec la commande Enregistrer de
+l'éditeur de texte.<br />
+<br />
+<span style="font-weight: bold;">Relancer la campagne de test </span>pour
+vérifier
+le fonctionnement du Test . Il n 'est pas
+nécessaire de relancer Audela pour prendre en
+compte la modification du test car le fichier est
+ré-interprété à la volée quand lance
+la campagne de test. <br />
+<br />
+<br />
+<h1><a name="convention" />Convention de nommage des fichiers de tests</h1>
+<ul>
+  <li>Test des fenêtres de "Audace"
+    <ul>
+      <li>audace_fichier.tcl : test du menu "Fichier" de Audace</li>
+      <li>audace_affichage.tcl : test du menu "Affichage" de Audace</li>
+      <li>audace_prétraitement.tcl : test du menu "Pretraitment"
+de
+Audace</li>
+      <li>....</li>
+    </ul>
+  </li>
+  <li>Test individuel des librairies *.dll du c&#339;ur d'Audela
+    <ul>
+      <li>libaudela_xxxx.tcl : tests de libaudela</li>
+      <li>libtt_xxxx.tcl : tests de libtt</li>
+      <li>...</li>
+    </ul>
+  </li>
+  <li>Test des outils
+    <ul>
+      <li>tool_acqfc.tcl</li>
+      <li>tool_xxxx.tcl</li>
+      <li>...</li>
+    </ul>
+  </li>
+  <li>Test des cameras
+    <ul>
+      <li>cam_audine.tcl : tests de la camera audine</li>
+      <li>cam_xxx.tcl : tests de la camera xxx</li>
+      <li>...</li>
+    </ul>
+  </li>
+  <li>Test des télescopes
+    <ul>
+      <li>tel_lx200.tcl : tests du télescope Lx200</li>
+      <li>tel_xxx.tcl : tests du télescope xxx</li>
+      <li>...</li>
+    </ul>
+  </li>
+  <li>Test des équipements
+    <ul>
+      <li>eqt_focuserjmi.tcl : tests du focuser JMI</li>
+      <li>eqt_xxx.tcl : tests de l'équipement xxx</li>
+      <li>...</li>
+    </ul>
+  </li>
+</ul>
+<h1><a name="utilisatires" />Procédure utilitaires pour les
+widgets</h1>
+<p>Le fichier testaudela.tcl contient des procédures qui
+facilitent les tests des fenêtres en particulier pour simuler les
+actions d'un utilisateur sur les widgets TK .<br />
+</p>
+<ul>
+  <li><a href="#clicButton">::testaudela::clicButton<br />
+    </a></li>
+  <li><a href="#clicCheckButton">::testaudela::clicCheckButton</a></li>
+  <li><a href="#clicCombobox">::testaudela::clicCombobox</a> </li>
+  <li><a href="#clicMenu">::testaudela::clicMenu</a></li>
+  <li><a href="#clicMenuButton">::testaudela::clicMenuButton</a></li>
+  <li><a href="#clicRadioButton">::testaudela::clicRadioButton</a></li>
+  <li><a href="#mouveMouse">::testaudela::mouveMouse</a></li>
+  <li><a href="#putEntry">::testaudela::putEntry</a></li>
+    <li><a href="#setBox">::testaudela::setBox</a>
+    </li>
+
+</ul>
+<h3>Exemple :</h3>
+<pre>global caption<br />set visuNo 1<br />test affichage_reticule_actif { affiche le reticule } {AUDACE} {<br />     #--- je clique sur le menu reticule<br />     ::testaudela::clicMenu $visuNo "$caption(audace,menu,affichage)" "[::Crosshair::getLabel]..."<br /><br />     #--- je clique sur le checkbutton pour afficher le réticule<br />     ::testaudela::clicCheckButton [confVisu::getBase $visuNo].confCrossHair.frame1.frameState.currentstate<br /><br />     #--- je ferme la fenetre la fenetre de parametrage du reticule<br />     ::testaudela::clicButton [confVisu::getBase $visuNo].confCrossHair.but_ok<br /><br />     #--- je verifie que le reticule est affiché<br />     set result "[::confVisu::getCrosshair $visuNo]"<br />     append result " [[::confVisu::getCanvas 1] gettags lineh]"<br />     append result " [[::confVisu::getCanvas 1] gettags linev]"<br />     return $result<br />} "1 lineh linev"<br /></pre>
+<p>&nbsp;</p>
+<h2>Liste des procédures utilitaires pour les widgets</h2>
+<h3><a name="clicButton" />::testaudela::clicButton { buttonPath }</h3>
+<blockquote>
+  <p>simule un clic sur un bouton</p>
+  <pre># parametres :<br /># buttonPath : chemin complet du bouton<br /><br /><br /># exemple: <br /># ::testaudela::clicButton .audace.traiteImage.cmd.ok <br />   </pre>
+</blockquote>
+<h3><a name="clicCheckButton" />::testaudela::clicCheckButton {
+buttonPath { state "" } }</h3>
+<blockquote>
+  <p>simule un clic sur un checkbutton ou force le check a une valeur<br />
+  </p>
+  <pre># parametres :<br /># buttonPath : chemin complet du bouton<br /># state :  etat de la case a coche "1" , "0" , ou basculement si ce parametre est absent<br />exemples: <br />::testaudela::clicCheckButton .audace.acqFC.mode.une.index.case <br />&gt;&gt;&gt; bascule le checkbutton <br /><br />::testaudela::clicCheckButton .audace.acqFC.mode.une.index.case "1" <br />&gt;&gt;&gt; coche le checkbutton<br /><br />::testaudela::clicCheckButton .audace.acqFC.mode.une.index.case "0"<br />&gt;&gt;&gt; decoche le checkbutton</pre>
+</blockquote>
+<h3><a name="clicCombobox" />::testaudela::clicCombobox {comboPath
+index} </h3>
+<blockquote>
+  <p>simule un clic sur une combobox<br />
+  </p>
+  <pre># parametres :<br /># comboPath : chemin complet du bouton de la combobox<br /># index : index de l'item selectionne <br />#         Le premier item est a l'index 0<br />#         Valeurs prédefinies : first last next previous<br /><br /># exemples :<br /># ::testaudela::clicCheckButton .audace.acqFC.mode 0 <br /># ::testaudela::clicCheckButton .audace.acqFC.mode first <br /># ::testaudela::clicCheckButton .audace.acqFC.mode last </pre>
+</blockquote>
+<h3><br />
+<a name="clicMenu" />::testaudela::clicMenu { visuNo menuName
+menuLabel }</h3>
+<blockquote>
+  <p>simule un clic sur un menu</p>
+</blockquote>
+<pre>   # parametres : <br />   # visuNo : numero de la visu<br />   # menuName : nom du menu principal<br />   # menuLabel : libelle de l'item du menu principal<br /><br /><br />   # exemple : <br />   # ::testaudela::clicMenu 1 "Affichage" "palette grise"<br />   </pre>
+<h3><a name="clicMenuButton" />::testaudela::clicMenuButton {
+buttonPath value}</h3>
+<p>simule un clic sur un checkbutton</p>
+<blockquote>
+  <pre># parametres : <br /># buttonPath : chemin complet du bouton de la combobox<br /># value : valeur de l'item a selectionner <br /><br /><br /># Exemple :<br /># ::testaudela::clicMenuButton .audace.acqFC.mode.une.nom.extension ".jpg"</pre>
+</blockquote>
+<h3><br />
+<a name="clicRadioButton" />::testaudela::clicRadioButton {
+buttonPath } <br />
+</h3>
+<blockquote>
+  <p>simule un clic sur un radiobutton</p>
+  <p># parametres : <br />
+# buttonPath : chemin complet du bouton </p>
+</blockquote>
+<h3><a name="mouveMouse" />::testaudela::mouveMouse { visuNo x_canvas
+y_canvas } </h3>
+<blockquote>
+  <p> simule le deplacement du curseur de la souris vers un point x,y
+du canvas (x,y sont en coordonnees canvas) </p>
+  <pre># parametres : <br /># visuNo : numero de la visu<br /># x_canvas y_canvas : coordonnees du curseur de la souris<br />
+# exemple :
+# ::testaudela::mouveMouse 1 20 20</pre>
+</blockquote>
+<h3><a name="putEntry" />::testaudela::putEntry { entryPath value }</h3>
+<blockquote>
+  <p>simule la saisie dans un ENTRY </p>
+  <pre># parametres : <br /># entryPath : chemin complet du widget entry <br /># value : valeur saisie<br /><br /><br /># Exemple :<br /># ::testaudela::putEntry .audace.acqFC.mode.une.nom.entr "m57" <br /></pre></blockquote>
+  <h3><a name="setBox" />::testaudela::setBox { visuNo coords }<br />
+  </h3>
+  <blockquote>
+    <pre>simule le tracé d'une boite avec la souris dans la visu<br /><br />Exemple: ::testaudela::setBox  1 { 10 10 40 40 }<br /><br />@param visuNo numero de la visu<br />@param coords liste des coordonnees de la boite { x1 y1 x2 y2 }  avec<br />   - x1,y1 coordonnees du coin en bas à gauche<br />   - x2,y2 coordonnees du coin en haut à droite<br />@return 0 si OK , -1 si les coordonnees ne contiennent pas dans l'image<br /><br /><br /><br />   </pre>
+
+  </blockquote>
+
+
+</body></html>

@@ -1,0 +1,64 @@
+# Welcome to the directory of scripts you want to
+# execute urgently during a SNAcq run.
+#
+# Scripts, placed in the audace/panneau/supernovae/alert
+# directory, will be treated after each classical image 
+# of SNAcq script. It allows to check SN candidates 
+# when SNAcq is working. But many other applications
+# can be done (star occultation by asteroids, etc.).
+#
+# For example, you want verify a SN candidate
+# in NGC2775. The following script acquire
+# images of that galaxy.
+
+#--- date of the begining of observation
+set galalert_date [mc_date2jd {2003 01 13 23} ]
+
+if {[mc_date2jd [::audace::date_sys2ut now]]>$galalert_date} {
+   catch {
+	# --- set parameters
+      set galalert_catname NGC2275
+      set galalert_nb 2
+      set galalert_galname $galalert_catname
+      set galalert_dossier "c:/audela-1.2.2/images"
+      # --- run
+      sninfo "Process an alert ([file tail [info script]])"
+      #--- slew telescope to the target
+      # snconf(repsnaude)/sn.txt is the master file
+      set galalert_filename "$snconf(repsnaude)/sn.txt"
+      set galalert_f [open "$galalert_filename" r]
+      set galalert_res [split [read $galalert_f] \n]
+      close $galalert_f
+      set galalert_k [lsearch -regexp $galalert_res $galalert_catname]
+      if {$galalert_k>=0} {
+         set galalert_ligne [lindex $galalert_res $galalert_k]
+         set galalert_ra [lindex $galalert_ligne 1]h[lindex $galalert_ligne 2]m[lindex $galalert_ligne 3]s
+         set galalert_dec [lindex $galalert_ligne 4]d[lindex $galalert_ligne 5]m[lindex $galalert_ligne 6]s
+         tel1 goto [list $galalert_ra $galalert_dec ]
+         set galalert_result "The telescope is at [tel1 coord]"
+         sninfo "$galalert_result"
+         #--- acquire images
+         for {set galalert_k 1} {$galalert_k<=$galalert_nb} {incr galalert_k} {
+            sninfo "Acquisition of number $galalert_k"
+            acq 60 2
+            visu
+            saveima ${galalert_galname}-${galalert_k}.fit
+         }
+         sninfo "Acquisition ended"
+         #--- preprocess the images
+         sninfo "begin preprocessing"
+         ttscript2 "IMA/SERIES $galalert_dossier ${galalert_galname}- 1 $galalert_nb .fit $galalert_dossier ${galalert_galname}- 1 .fit OPT dark=d60b2.fit bias=d0b2.fit unsmearing=0.00015"
+         ttscript2 "IMA/SERIES $galalert_dossier ${galalert_galname}- 1 $galalert_nb .fit $galalert_dossier ${galalert_galname}- 1 .fit FILTER kernel_type=med kernel_width=3 kernel_coef=1.2"
+         ttscript2 "IMA/SERIES $galalert_dossier ${galalert_galname}- 1 $galalert_nb .fit $galalert_dossier ${galalert_galname}- 1 .fit STAT"
+         sninfo "End preprocesing"
+      } else {
+         sninfo "$galalert_galname not found"
+      }
+      catch {unset galalert_res}
+      #--- end of execution
+      sninfo "Alert done"
+      set galalert_name [file rootname "[info script]"]
+      file rename "${galalert_name}.tcl" "${galalert_name}.done"
+   }
+}
+#=== end of script

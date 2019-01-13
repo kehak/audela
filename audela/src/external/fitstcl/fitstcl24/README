@@ -1,0 +1,83 @@
+				   
+                      fitsTcl Installation Guide
+
+
+   fitsTcl is a TCL interface to the CFITSIO astronomical library
+   which provides access to FITS data files.  It can be used either by
+   itself within the standard Tcl/Tk applications tclsh and wish, or
+   within the fv software package also distributed by the HEASARC at
+   NASA Goddard.
+
+   The fitsTcl User's Guide is located in the fitsTcl.html file
+   distributed with fitsTcl and located on the web at:
+
+       http://heasarc.gsfc.nasa.gov/ftools/fv/fitsTcl.html
+
+   fitsTcl can be built under PC Linux or Mac OS X, and requires the
+   CFITSIO and Tcl packages.  Instructions for building the software
+   are below.
+
+   Please send any questions or problem reports to the FTOOLS help desk:
+   
+       ftoolshelp@bigbang.gsfc.nasa.gov.
+
+   Before building fitsTcl, make sure you have Tcl installed on your
+   machine and can locate the tcl.h header file.  To build the fitsTcl
+   library:
+
+   1.  Download the latest version of the cfitsio source code from:
+
+         http://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
+
+       and unpack the tar file.
+
+   2.  Unpack the compressed fitsTcl tar file and enter the fitsTcl-2.4
+       directory.
+
+   3.  Configure fitsTcl for your system with the command
+
+          ./configure [optional arguments]
+
+       where the optional arguments are:
+
+          --prefix=DIR1 --with-cfitsio=DIR2 --with-tcl-includes=DIR3
+
+          DIR1 is the installation path (default is /usr/local)
+
+          DIR2 is the path to the cfitsio source directory
+               (default is ./cfitsio)
+
+          DIR3 is the path to the location of the tcl.h header file
+               (default is $prefix/include or /usr/include).
+
+       These may be considered optional only if the defaults are valid
+       for your system/setup.
+
+       Under the Cygwin environment, an additional argument is required:
+
+          --with-tcl=DIR4
+
+          DIR4 is the path to the location of the Tcl library (libtcl8.x.dll).
+
+       The final library will be installed in the directory DIR1/lib
+       which must exist.  Note that the library itself does not depend
+       on the value of DIR1, only the installation step in the Makefile.
+
+   4.  Build fitsTcl with the command
+
+          make
+
+   5.  Install fitsTcl either with the command
+
+          make install
+
+       which will place it in the DIR1/lib directory, or move the
+       library (libfitstcl.so, or libfitstcl.dylib under Mac OS X)
+       manually to where you want it.
+
+   To use fitsTcl, startup tclsh or wish and type the command
+
+       load libfitstcl.so (libfitstcl.dylib on Mac OS X)
+
+   You may need to specify an explicit path to the library or set the
+   LD_LIBRARY_PATH (DYLD_LIBRARY_PATH on Mac OS X) to its location.

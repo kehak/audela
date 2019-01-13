@@ -1,0 +1,112 @@
+#------------------------------------------------------------------
+# source [ file join $audace(rep_plugin) tool atos atos_cdl.cap
+#------------------------------------------------------------------
+#
+# Fichier        : atos_cdl.cap
+# Description    : Caption pour l'outil mesure photometrique
+# Auteur         : Frederic Vachier
+# Mise à jour $Id: atos_cdl.cap 10649 2014-04-05 21:25:57Z jberthier $
+#
+
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(atos_cdl,bar_title)           "ATOS - LC"
+set caption(atos_cdl,titre)               "Extraction of lightcurve"
+set caption(atos_cdl,aide)                "Help"
+set caption(atos_cdl,fermer)              "Close"
+set caption(atos_cdl,traite_img)          "Processing of a batch of images"
+set caption(atos_cdl,traite_video)        "Direct processing of the video"
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(atos_cdl,bar_title)        "ATOS - CdL"
+   set caption(atos_cdl,titre)            "Extraction de courbes de lumière"
+   set caption(atos_cdl,aide)             "Aide"
+   set caption(atos_cdl,fermer)           "Fermer"
+   set caption(atos_cdl,traite_img)       "Traitement par lot d'images"
+   set caption(atos_cdl,traite_video)     "Traitement direct de la vidéo"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(atos_cdl,bar_title)        "ATOS - LC"
+   set caption(atos_cdl,titre)            "Extraction of lightcurve"
+   set caption(atos_cdl,aide)             "Help"
+   set caption(atos_cdl,fermer)           "Close"
+   set caption(atos_cdl,traite_img)       "Processing of a batch of images"
+   set caption(atos_cdl,traite_video)     "Direct processing of the video"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(atos_cdl,bar_title)        "ATOS - LC"
+   set caption(atos_cdl,titre)            "Extraction of lightcurve"
+   set caption(atos_cdl,aide)             "Help"
+   set caption(atos_cdl,fermer)           "Close"
+   set caption(atos_cdl,traite_img)       "Processing of a batch of images"
+   set caption(atos_cdl,traite_video)     "Direct processing of the video"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(atos_cdl,bar_title)        "ATOS - LC"
+   set caption(atos_cdl,titre)            "Extraction of lightcurve"
+   set caption(atos_cdl,aide)             "Help"
+   set caption(atos_cdl,fermer)           "Close"
+   set caption(atos_cdl,traite_img)       "Processing of a batch of images"
+   set caption(atos_cdl,traite_video)     "Direct processing of the video"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(atos_cdl,bar_title)        "ATOS - LC"
+   set caption(atos_cdl,titre)            "Extraction of lightcurve"
+   set caption(atos_cdl,aide)             "Help"
+   set caption(atos_cdl,fermer)           "Close"
+   set caption(atos_cdl,traite_img)       "Processing of a batch of images"
+   set caption(atos_cdl,traite_video)     "Direct processing of the video"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(atos_cdl,bar_title)        "ATOS - LC"
+   set caption(atos_cdl,titre)            "Extraction of lightcurve"
+   set caption(atos_cdl,aide)             "Help"
+   set caption(atos_cdl,fermer)           "Close"
+   set caption(atos_cdl,traite_img)       "Processing of a batch of images"
+   set caption(atos_cdl,traite_video)     "Direct processing of the video"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(atos_cdl,bar_title)        "ATOS - LC"
+   set caption(atos_cdl,titre)            "Extraction of lightcurve"
+   set caption(atos_cdl,aide)             "Help"
+   set caption(atos_cdl,fermer)           "Close"
+   set caption(atos_cdl,traite_img)       "Processing of a batch of images"
+   set caption(atos_cdl,traite_video)     "Direct processing of the video"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(atos_cdl,bar_title)        "ATOS - LC"
+   set caption(atos_cdl,titre)            "Extraction of lightcurve"
+   set caption(atos_cdl,aide)             "Help"
+   set caption(atos_cdl,fermer)           "Close"
+   set caption(atos_cdl,traite_img)       "Processing of a batch of images"
+   set caption(atos_cdl,traite_video)     "Direct processing of the video"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

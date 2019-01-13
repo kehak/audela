@@ -1,0 +1,79 @@
+#
+# Fichier : audela.cap
+# Mise a jour $Id: audela.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption
+
+# *************** Version anglaise ****************************
+
+set caption(audela,main_title)        "AudeLA"
+set caption(audela,language)          "Language Selection:"
+set caption(audela,launch)            "Run AudeLA"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(audela,main_title)     "AudeLA"
+   set caption(audela,language)       "Sélection de la langue :"
+   set caption(audela,launch)         "Lancer AudeLA"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(audela,main_title)     "AudeLA"
+   set caption(audela,language)       "Scelta delle lingue:"
+   set caption(audela,launch)         "Esegui AudeLA"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(audela,main_title)     "AudeLA"
+   set caption(audela,language)       "Selecció de idioma:"
+   set caption(audela,launch)         "Arrancar AudeLA"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(audela,main_title)     "AudeLA"
+   set caption(audela,language)       "Sprache Wahl:"
+   set caption(audela,launch)         "Ausführen AudeLA"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(audela,main_title)     "AudeLA"
+   set caption(audela,language)       "Selecção de idioma:"
+   set caption(audela,launch)         "Executar AudeLA"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(audela,main_title)     "AudeLA"
+   set caption(audela,language)       "Valg af sprog:"
+   set caption(audela,launch)         "Kør AudeLA"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(audela,main_title)     "AudeLA"
+   set caption(audela,language)       "Вибір мови:"
+   set caption(audela,launch)         "Запустити AudeLA"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(audela,main_title)     "AudeLA"
+   set caption(audela,language)       "Выбор языка:"
+   set caption(audela,launch)         "Запустить AudeLA"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

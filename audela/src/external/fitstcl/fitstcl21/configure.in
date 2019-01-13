@@ -1,0 +1,385 @@
+dnl Process this file with autoconf to produce a configure script.
+
+dnl disable caching to avoid sticky mistakes
+dnl ----------------------------------------------------------------------------
+dnl define([AC_CACHE_LOAD], )
+dnl define([AC_CACHE_SAVE], )
+dnl ----------------------------------------------------------------------------
+
+AC_INIT
+AC_CONFIG_SRCDIR([Makefile.in])
+AC_REVISION($Revision: 1.1 $)
+AC_PREREQ(2.59)
+
+if test $cache_file = ./config.cache; then
+  cache_file=`pwd`/config.cache
+fi
+
+AC_ARG_WITH(
+  tcl,
+  [ --with-tcl Path to tcl library ],
+  TCL_PATH=$withval
+)
+AC_ARG_WITH(
+  tcl-includes,
+  [ --with-tcl-includes Path to tcl include files ],
+  TCL_INCLUDES=$withval
+)
+# Make sure we have tcl.h before proceeding:
+#-------------------------------------------
+AC_MSG_CHECKING([for tcl header file])
+TCL_INC_PATH=
+for dir in $TCL_INCLUDES $prefix/include /usr/include ; do
+    if test -r $dir/tcl.h; then
+        TCL_INC_PATH=$dir
+        AC_MSG_RESULT($dir)
+        break
+    fi
+done
+if test -z "$TCL_INC_PATH"; then
+    AC_MSG_RESULT([no])
+    AC_MSG_ERROR(Can't find Tcl header.  Use --with-tcl-includes to specify the location of tcl.h on your system.)
+fi
+#-------------------------------------------
+AC_ARG_WITH(
+  tk,
+  [ --with-tk Path to tk library ],
+  TK_PATH=$withval
+)
+AC_ARG_WITH(
+  tk-includes,
+  [ --with-tk-includes Path to tk include files ],
+  TK_INC_PATH=$withval
+)
+AC_ARG_WITH(
+  itcl,
+  [ --with-itcl Path to itcl source ],
+  ITCL_PATH=$withval
+)
+AC_ARG_WITH(
+  cfitsio,
+  [ --with-cfitsio Path to cfitsio source ],
+  CFITSIO=$withval
+)
+# Make sure we have cfitsio before proceeding:
+#-------------------------------------------
+AC_MSG_CHECKING([for cfitsio source directory])
+CFITSIODIR=
+for dir in $CFITSIO ./cfitsio ; do
+    if test -r $dir/eval_defs.h; then
+        CFITSIODIR=$dir
+        AC_MSG_RESULT($dir)
+        break
+    fi
+done
+if test -z "$CFITSIODIR"; then
+    AC_MSG_RESULT([no])
+    AC_MSG_ERROR(Can't find cfitsio.  Use --with-cfitsio to specify the location of the cfitsio source code.)
+fi
+#-------------------------------------------
+AC_ARG_ENABLE(
+  shared,
+  [ --disable-shared Produce static binaries ],
+  lhea_shared=$enableval,
+  lhea_shared=yes,
+  lhea_shared=no
+)
+AC_ARG_ENABLE(
+  static,
+  [ --enable-static Produce static binaries ],
+  [ if test $enableval = yes; then lhea_shared=no; fi ]
+)
+changequote(,)
+TCL_LIB=`echo $TCL_PATH | sed 's:.*tcl8:tcl8:' | sed 's:.[0-9]/unix$::'`
+TK_LIB=`echo $TK_PATH | sed 's:.*tk8:tk8:' | sed 's:.[0-9]/unix$::'`
+changequote([,])
+AC_SUBST(TCL_LIB)
+AC_SUBST(TK_LIB)
+AC_SUBST(CFITSIODIR)
+
+if test $lhea_shared = yes; then
+  C_LIB_OPTION=shared
+else
+  C_LIB_OPTION=static
+fi
+AC_SUBST(C_LIB_OPTION)
+
+#-------------------------------------------------------------------------------
+
+# Determine system type
+#-------------------------------------------------------------------------------
+BIN_EXT=
+if test "x$EXT" = x; then EXT=lnx; fi
+if test "x$BINDIR" = x; then
+  AC_CHECK_PROG(UNAME, uname, uname, nouname)
+  if test $UNAME = nouname; then
+    AC_MSG_ERROR(HEAsoft: Unable to guess system type. Please set it using --with-bindir option)
+  fi
+  changequote(,)
+  BINDIR=`$UNAME -s 2> /dev/null`_`$UNAME -r 2> /dev/null | sed 's:[^0-9]*\([0-9][0-9]*\.[0-9]*\).*:\1:'`
+  changequote([,])
+  lhea_machine=`$UNAME -m 2> /dev/null`
+  BIN_EXT=
+  case $BINDIR in
+    CYGWIN*)
+      BINDIR=CYGWIN32_`$UNAME -a 2> /dev/null | awk '{ print $4 }'`
+      lhea_machine=
+      BIN_EXT=".exe"
+      EXT=lnx
+      ;;
+    IRIX*)
+      AC_MSG_WARN(IRIX support is marginal)
+      EXT=sgi
+      ;;
+    HP-UX*)
+      AC_MSG_WARN(HP-UX support is marginal)
+      EXT=hpu
+      lhea_machine=`$UNAME -m 2> /dev/null | tr '/' ' ' | awk '{ print $2 }'`
+      ;;
+    Linux*)
+      EXT=lnx
+      ;;
+    OSF1*)
+      EXT=osf
+      ;;
+    SunOS_4*)
+      AC_MSG_WARN(SunOS 4.x is not supported!)
+      AC_MSG_WARN(PROCEED AT YOUR OWN RISK!)
+      EXT=sun
+      lhea_machine=sparc
+      ;;
+    SunOS_5*)
+      EXT=sol
+      lhea_machine=`$UNAME -p`
+      ;;
+    Darwin_*)
+      EXT=darwin
+      lhea_machine=`$UNAME -p`
+      ;;
+    *)
+      AC_MSG_ERROR(Unable to recognize your system. Please make sure this platform is supported.)
+      ;;
+  esac
+  if test x$lhea_machine != x; then
+    BINDIR=$BINDIR"_"$lhea_machine
+  fi
+fi
+AC_SUBST(BINDIR)
+AC_SUBST(BIN_EXT)
+AC_SUBST(EXT)
+#-------------------------------------------------------------------------------
+
+# Checks for programs.
+#-------------------------------------------------------------------------------
+# Try first to find a proprietary C compiler, then gcc
+if test "x$CC" = x; then
+  AC_CHECK_PROGS(CC, cc)
+fi
+# Set up flags to use the selected compiler
+#
+AC_PROG_CC
+if test "$cross_compiling" = yes; then
+  AC_MSG_WARN(Cannot run a simple C executable on your system:)
+  AC_MSG_WARN(There may be something wrong with your compiler,)
+  AC_MSG_WARN(or perhaps you're trying to cross-compile?)
+  AC_MSG_WARN(Cross-compiling is not supported within HEAsoft.)
+  AC_MSG_WARN(Please make sure your compiler is working.)
+  AC_MSG_WARN(Contact the FTOOLS help desk for further assistance.)
+  AC_MSG_ERROR(Cross-compiling is not allowed.)
+fi
+if test "x$GCC" = x; then
+  GCC=no
+fi
+
+AC_PROG_RANLIB
+if test $EXT = darwin; then
+  RANLIB="$RANLIB -cs"
+fi
+# RANLIB on IRIX is flaky
+if test $EXT = sgi; then
+  RANLIB=:
+fi
+
+#-------------------------------------------------------------------------------
+
+# Checks for libraries.
+#-------------------------------------------------------------------------------
+
+# X
+XLIBS=
+XLIBPTH=
+XINCLUDES=
+
+# socket and nsl libraries -- only if needed
+AC_CHECK_FUNC(gethostbyname, , AC_CHECK_LIB(nsl, gethostbyname))
+AC_CHECK_FUNCS(
+  connect accept,
+  ,
+  AC_CHECK_LIB(socket, main, , , [ $XLIBS ])
+)
+
+AC_PATH_X
+if test "x$no_x" != xyes; then
+  USE_X=yes
+  no_x=no
+  if test `echo $x_includes | grep -c /` -ne 0; then
+    XINCLUDES="-I$x_includes"
+  fi
+  if test `echo $x_libraries | grep -c /` -ne 0; then
+    XLIBPTH="-L$x_libraries "
+  fi
+  XLIBS="$XLIBPTH-lX11"
+dnl xpa sometimes needs Xt
+dnl this doesn't work at the moment:
+dnl AC_CHECK_LIB(Xt, main, XLIBS="$XLIBS -lXt")
+  if test -f $x_libraries/libXt.a; then
+    XLIBS="$XLIBS -lXt"
+  fi
+  # dnet_stub
+  AC_CHECK_LIB(dnet_stub, getnodebyname, XLIBS="$XLIBS -ldnet_stub")
+else
+  USE_X=no
+fi
+AC_SUBST(USE_X)
+AC_SUBST(XINCLUDES)
+AC_SUBST(XLIBPTH)
+AC_SUBST(XLIBS)
+
+# dl
+AC_CHECK_LIB(dl, dlopen)
+if test `echo $LIBS | grep -c '\-ldl'` -eq 0; then
+  AC_CHECK_LIB(dld, dlopen)
+fi
+
+#-------------------------------------------------------------------------------
+# Checks for header files.
+#-------------------------------------------------------------------------------
+AC_HEADER_STDC
+AC_CHECK_HEADERS(
+  dirent.h fcntl.h limits.h malloc.h string.h sys/time.h unistd.h
+)
+AC_HEADER_TIME
+AC_FUNC_ALLOCA
+#-------------------------------------------------------------------------------
+
+# Checks for typedefs, structures, and compiler characteristics.
+#-------------------------------------------------------------------------------
+AC_C_CONST
+AC_TYPE_MODE_T
+AC_TYPE_SIZE_T
+AC_STRUCT_TM
+#-------------------------------------------------------------------------------
+
+# Tweak compiler flags as needed
+#-------------------------------------------------------------------------------
+case $EXT in
+  darwin)
+    CFLAGS="$CFLAGS -Dunix"
+    ;;
+  lnx)
+    ;;
+  osf)
+    changequote(,)
+    if test $GCC = yes; then
+      # Remove optimization on DEC systems
+      CFLAGS=`echo $CFLAGS | sed 's:-O[0-9]* *::g'`
+    else
+      # Standard DEC cc behavior is *STILL* K&R -- force ANSI compliance
+      CFLAGS="$CFLAGS -std1 -Dunix"
+    fi
+    changequote([,])
+    ;;
+  sgi)
+    AC_DEFINE(HAVE_POSIX_SIGNALS)
+    ;;
+  sol)
+    AC_DEFINE(HAVE_POSIX_SIGNALS)
+    ;;
+  *)
+    ;;
+esac
+# Remove optimization on all systems for all older gcc
+if test $GCC = yes; then
+  if test `$CC -v 2> /dev/null | grep -c 'version 2\.[45678]'` -ne 0; then
+    CFLAGS=`echo $CFLAGS | sed 's:-O[0-9]* *::g'`
+  fi
+fi
+#-------------------------------------------------------------------------------
+
+# Shared library section
+#-------------------------------------------------------------------------------
+LD_FLAGS=
+SHLIB_SUFFIX=".so"
+SHLIB_LD_LIBS=""
+lhea_shlib_cflags=
+lhea_shlib_fflags=
+if test $lhea_shared = yes; then
+  case $EXT in
+    darwin)
+      SHLIB_LD="$CC -dynamiclib -flat_namespace -undefined suppress"
+      SHLIB_SUFFIX=".dylib"
+      lhea_shlib_cflags='-fPIC -fno-common'
+      lhea_shlib_fflags='-fPIC -fno-common'
+      ;;
+    hpu)
+      SHLIB_LD="ld -b"
+      SHLIB_LD_LIBS='${LIBS}'
+      SHLIB_SUFFIX=".sl"
+      ;;
+    lnx)
+      SHLIB_LD=":"
+      ;;
+    osf)
+      SHLIB_LD="ld -shared -expect_unresolved '*'"
+      ;;
+    sol)
+      SHLIB_LD="/usr/ccs/bin/ld -G"
+      SHLIB_LD_LIBS='${LIBS}'
+      lhea_shlib_cflags="-KPIC"
+      lhea_shlib_fflags="-KPIC"
+      ;;
+    sgi)
+      SHLIB_LD="ld -shared -rdata_shared"
+      ;;
+    win)
+      SHLIB_LD="$CC -shared"
+      SHLIB_SUFFIX=".dll"
+      ;;
+    *)
+      AC_MSG_WARN(Unable to determine how to make a shared library)
+      ;;
+  esac
+  # Darwin uses gcc, but uses -dynamiclib flag
+  if test $GCC = yes -a $EXT != darwin; then
+    SHLIB_LD="$CC -shared"
+    lhea_shlib_cflags='-fPIC'
+  fi
+  if test "x$lhea_shlib_cflags" != x; then
+    CFLAGS="$CFLAGS $lhea_shlib_cflags"
+  fi
+else
+  SHLIB_LD=:
+fi
+
+AC_SUBST(LD_FLAGS)
+AC_SUBST(SHLIB_LD)
+AC_SUBST(SHLIB_LD_LIBS)
+AC_SUBST(SHLIB_SUFFIX)
+#-------------------------------------------------------------------------------
+
+# Checks for library functions.
+#-------------------------------------------------------------------------------
+AC_FUNC_MEMCMP
+AC_TYPE_SIGNAL
+AC_FUNC_STRFTIME
+AC_CHECK_FUNCS(getcwd socket strcspn strspn strstr strtod strtol)
+#-------------------------------------------------------------------------------
+
+AC_SUBST(TCL_PATH)
+AC_SUBST(TCL_INC_PATH)
+AC_SUBST(ITCL_PATH)
+AC_SUBST(TK_PATH)
+AC_SUBST(TK_INC_PATH)
+
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT

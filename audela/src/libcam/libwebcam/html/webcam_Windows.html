@@ -1,0 +1,56 @@
+<HTML><HEAD>
+<title>
+Webcam under Windows
+</title>
+</HEAD>
+<BODY bgcolor=white>
+<p>
+<hr color=blue>
+<center>
+<font size=5 color=red><B>Windows</B></font>
+<font size=5> - controlling parallel port.</font>
+</center>
+<hr color=blue>
+
+<P></P>
+<UL>
+  <LI>
+<DIV><FONT size=4><B>Win95/98 
+  </B>or <B>AllowIo </B>on <B>WinNT</B> 
+  systems
+</FONT></DIV></LI></UL>
+<BLOCKQUOTE dir=ltr style="MARGIN-RIGHT: 0px">
+<P dir=ltr style="MARGIN-RIGHT: 0px"><FONT size=4>  
+  Use <B>libcam_out </B>function (from ...<B>common\libcam\util.c 
+  - </B>standard implementation of controlling parallel port in 
+  <B>AudeLa</B>). Before compiling <B>libwebcam</B> 
+  define&nbsp;<B><FONT 
+  color=#d2b48c>OS_WIN_USE_LPT_OLD_STYLE</FONT></B> (in 
+<b>camera.h</b>).</FONT></P>
+<P dir=ltr style="MARGIN-RIGHT: 0px"><FONT 
+  color=#0000cd><FONT size=4>#define OS_WIN_USE_LPT_OLD_STYLE</FONT> </FONT></P>
+<P dir=ltr style="MARGIN-RIGHT: 0px"><FONT 
+  color=#0000cd></FONT>&nbsp;</P></BLOCKQUOTE>
+<UL dir=ltr>
+  <LI>
+<DIV style="MARGIN-RIGHT: 0px"><FONT size=4><B>WinXP 
+  </B>and others&nbsp;<B>WinNT </B>systems (without 
+  <B>AllowIo</B>)</FONT></DIV></LI></UL>
+<BLOCKQUOTE dir=ltr style="MARGIN-RIGHT: 0px">
+<P style="MARGIN-RIGHT: 0px"><FONT size=4>Don't define 
+  <FONT color=#d2b48c><B>OS_WIN_USE_LPT_OLD_STYLE </B></FONT><FONT 
+  color=#000000>(in <B>camera.h</B>) 
+  -</FONT>     &nbsp;parallel port will be used like 
+<b>printer port </b>("<b><FONT color=tan>lpt1</FONT></b> 
+   "). In this case&nbsp;"<b><FONT color=tan>null printer</FONT></b>" modified plug is 
+needed - for details please see
+<a href="http://www.hut.fi/Misc/Electronics/circuits/nullprint.html">
+Null Printer Adapter.</a></FONT></P>
+<P style="MARGIN-RIGHT: 0px"><FONT color=mediumblue><FONT size=4><FONT 
+  color=limegreen>//#define OS_WIN_USE_LPT_OLD_STYLE</FONT> </FONT> 
+</FONT></P>
+<P style="MARGIN-RIGHT: 0px"><FONT 
+  size=4></FONT>&nbsp;</P></BLOCKQUOTE>
+<P dir=ltr style="MARGIN-RIGHT: 0px"><FONT size=4>*find 
+more about <B>AllowIo </B>with <A 
+href="http://www.google.com">www.google.com</A>.</FONT></P></BODY></HTML>

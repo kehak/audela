@@ -1,0 +1,45 @@
+CP= copy
+RM= -@del /f /q
+
+SOURCE=.
+SRC_DLL=$(SOURCE)\dll
+SRC_INC=$(SOURCE)\include
+SRC_LIB=$(SOURCE)\lib\msc
+BINARY=..\..\..\bin
+INCLUDE=..\include
+LIBRARY=..\lib
+
+install:
+    if not exist $(INCLUDE) mkdir $(INCLUDE)
+    $(CP) $(SRC_INC)\*.h $(INCLUDE)
+    if not exist $(LIBRARY) mkdir $(LIBRARY)
+    $(CP) $(SRC_LIB)\*.lib $(LIBRARY)
+	if not exist $(BINARY) mkdir $(BINARY)
+	$(CP) $(SRC_DLL)\*.dll $(BINARY)
+
+clean:
+	$(RM) $(INCLUDE)\gpsdefs.h
+	$(RM) $(INCLUDE)\gpsutils.h
+	$(RM) $(INCLUDE)\mbg_arch.h
+	$(RM) $(INCLUDE)\mbg_tgt.h
+	$(RM) $(INCLUDE)\mbgdevio.h
+	$(RM) $(INCLUDE)\mbgerror.h
+	$(RM) $(INCLUDE)\mbggeo.h
+	$(RM) $(INCLUDE)\mbgsvcio.h
+	$(RM) $(INCLUDE)\mbgtime.h
+	$(RM) $(INCLUDE)\mbgutil.h
+	$(RM) $(INCLUDE)\pci_asic.h
+	$(RM) $(INCLUDE)\pcpsdefs.h
+	$(RM) $(INCLUDE)\pcpsdev.h
+	$(RM) $(INCLUDE)\usbdefs.h
+	$(RM) $(INCLUDE)\use_pack.h
+	$(RM) $(INCLUDE)\words.h
+	$(RM) $(LIBRARY)\mbgdevio.lib
+	$(RM) $(LIBRARY)\mbgsvcio.lib
+	$(RM) $(LIBRARY)\mbgutil.lib
+	$(RM) $(BINARY)\mbgdevio.dll
+	$(RM) $(BINARY)\mbgsvcio.dll
+	$(RM) $(BINARY)\mbgsvctl.dll
+	$(RM) $(BINARY)\mbgutil.dll
+	
+

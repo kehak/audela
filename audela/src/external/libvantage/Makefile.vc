@@ -1,0 +1,28 @@
+CP= copy
+RM= -@del /f /q
+
+SOURCE=.
+EXTERNAL_INCLUDE=..\include
+EXTERNAL_LIB=..\lib
+AUDELA_BIN=..\..\..\bin
+
+build:
+
+install: build
+	if not exist $(EXTERNAL_INCLUDE)  mkdir $(EXTERNAL_INCLUDE)
+	if not exist $(EXTERNAL_LIB)      mkdir $(EXTERNAL_LIB)
+	if not exist $(AUDELA_BIN)        mkdir $(AUDELA_BIN)
+	$(CP) $(SOURCE)\include\VantagePro.h $(EXTERNAL_INCLUDE)
+	$(CP) $(SOURCE)\lib\*.lib   $(EXTERNAL_LIB)
+	$(CP) $(SOURCE)\lib\*.dll   $(AUDELA_BIN)
+
+
+clean:
+	$(RM) $(EXTERNAL_INCLUDE)\VantagePro.h
+	$(RM) $(EXTERNAL_LIB)\VantagePro.lib
+	$(RM) $(EXTERNAL_LIB)\CP210xManufacturing.lib
+	$(RM) $(EXTERNAL_LIB)\SiUSBXp.lib
+	$(RM) $(AUDELA_BIN)\VantagePro.dll
+	$(RM) $(AUDELA_BIN)\CP210xManufacturing.dll
+	$(RM) $(AUDELA_BIN)\SiUSBXp.dll
+

@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Utiliser Audela en r&eacute;seau</title>
+</head>
+
+<body>
+<p>L'utilisation du logiciel Audace en r&eacute;seau constitue une illustration de l'int&eacute;r&ecirc;t &agrave; utiliser des scripts pour piloter son installation astronomique &agrave; distance.</p>
+<h3> 1. Qu'est qu'un r&eacute;seau ?</h3>
+<p>Un r&eacute;seau est un ensemble de plusieurs applications qui peuvent communiquer ensemble. Dans le cas du logiciel Audela, un r&eacute;seau peut &ecirc;tre utile si l'on souhaite commander un observatoire (cam&eacute;ra, t&eacute;lescope, coupole, etc.) depuis un site distant. Par exemple, faire des images CCD avec une cam&eacute;ra et un ordinateur plac&eacute;s dehors et piloter depuis un second ordinateur plac&eacute; dans la maison.</p>
+<p>Techniquement, un r&eacute;seau se construit en connectant deux ordinateurs avec un c&acirc;ble sp&eacute;cial. Ensuite il faut configurer les ordinateurs avec le protocole TCP/IP. <a href="script4a.htm">L'installation d&eacute;taill&eacute;e du r&eacute;seau, sous Windows, est disponible en cliquant ici</a>.</p>
+<p>Enfin, il faut affecter un logiciel Audela &agrave; la t&acirc;che de serveur (g&eacute;n&eacute;ralement celui qui est plac&eacute; dans l'ordinateur pr&egrave;s de l'observatoire) et l'autre logiciel Audela sera client. Cela est effectu&eacute; dans Audela gr&acirc;ce &agrave; la biblioth&egrave;que d'extension <a href="http://www.cs.cornell.edu/zeno/projects/tcldp/">Tcl-dp</a>. Rappelons qu'un logiciel serveur est un logiciel qui attend de recevoir un ordre pour l'ex&eacute;cuter. Un serveur est donc tout le temps &agrave; l'&eacute;coute et attend les ordres. Un logiciel client est un logiciel qui va se connecter &agrave; un serveur pour lui demander d'ex&eacute;cuter un ordre.</p>
+<h3> 2. Tester Tcl-DP avec Audela sur une seule machine</h3>
+<p>Pour commencer, le premier test propos&eacute; consiste &agrave; utiliser Tcl-DP sur un seul ordinateur en lan&ccedil;ant deux applications Audace sous Audela et en les faisant communiquer. V&eacute;rifier que <a href="script4a.htm#23">le protocole TCP/IP est bien install&eacute;</a> sinon rien ne fonctionnera ! Notons que le protocole NetBEUI Microsoft permet d'&eacute;changer facilement des fichiers entre deux ordinateurs en r&eacute;seau mais il est insuffisant pour le fonctionnement avec Tcl-DP. Les deux protocoles NetBEUI et TCP/IP peuvent &ecirc;tre utilis&eacute;s ensemble, sans probl&egrave;me, sur un m&ecirc;me r&eacute;seau local.</p>
+<p>D&eacute;marrer le logiciel Audela et choisir l'interface Audace.</p>
+<p>Ecrire le script suivant testser.tcl dans le dossier parent de binwin (ou de binlinux) :</p>
+<pre># --- fichier testser.tcl : installe un serveur RPC</pre>
+<pre># --- loading the dp module for Audela</pre>
+<pre>package require dp</pre>
+<pre># --- Create a Server for the port 5000</pre>
+<pre>set rpcid [dp_MakeRPCServer 5000]</pre>
+<pre># --- Indique que la console est un serveur :</pre>
+<pre>wm title .console "Console serveur"</pre>
+<pre># --- Initialize the a variable</pre>
+<pre>set a 5</pre>
+<p align="center">Dans la console de Audace, envoyer la commande source testser.tcl :</p>
+<p align="center"><img src="images/dp/dp1.jpg" height="227" width="328" /></p>
+<p>Normalement, le chiffre 5 devrait s'afficher en bleu apr&egrave;s le chargement. Le script testser.tcl a pour r&ocirc;le de cr&eacute;er un serveur et d'initialiser la variable a &agrave; 5 :</p>
+<p>D&eacute;marrer un autre logiciel Audela et choisir l'interface Audace.</p>
+<p>Ecrire le script suivant testcli.tcl dans le dossier parent de binwin (ou de binlinux) :</p>
+<pre># --- fichier testcli.tcl : connecte un client RPC</pre>
+<pre># --- loading the dp module for Audela</pre>
+<pre>package require dp</pre>
+<pre># --- Create a client to connect at the port 5000 of the machine 127.0.0.1</pre>
+<pre>set rpcid [dp_MakeRPCClient 127.0.0.1 5000]</pre>
+<pre># --- Indique que la console est un serveur :</pre>
+<pre>wm title .console "Console client"</pre>
+<pre># --- Send commands to the server</pre>
+<pre>dp_RPC $rpcid console::affiche_erreur "client bien connecte\n"</pre>
+<pre>dp_RPC $rpcid expr \$a+4</pre>
+<p> Dans la console de Audace, envoyer la commande source testcli.tcl :</p>
+<p align="center"><img src="images/dp/dp2.jpg" height="227" width="328" /></p>
+<p>Normalement, le chiffre 9 devrait s'afficher en bleu apr&egrave;s le chargement. Le script testcli.tcl a pour r&ocirc;le de cr&eacute;er un client et d'envoyer quelques instructions au serveur :</p>
+<p>Les deux derni&egrave;res lignes sont int&eacute;ressantes. Ce sont elles qui envoient les instructions au serveur. La premi&egrave;re des deux lignes fait afficher la phrase "client bien connecte" sur la console du serveur. V&eacute;rifier cela en constatant que la console du serveur ressemble &agrave; cela :</p>
+<p align="center"><img src="images/dp/dp3.jpg" height="227" width="328" /></p>
+<p>La derni&egrave;re ligne envoie un calcul &agrave; effectuer par le logiciel serveur. Il s'agit d'additionner 4 &agrave; la variable a qui se trouve dans le serveur. Comme la substitution de la variable doit &ecirc;tre faite dans le serveur et non au d&eacute;part du client, on ajoute \ devant $a pour retarder la substitution de la variable $a. Comme la variable a avait &eacute;t&eacute; initialis&eacute;e &agrave; 5 dans le logiciel serveur, la valeur en retour, pour le client est donc 9.
+<p>R&eacute;sumons donc les 4 proc&eacute;dures de base &agrave; conna&icirc;tre pour &eacute;tablir la connexion entre deux applications Audela :</p>
+<ul>
+  <li> Le chargement de la librairie Tcl-DP. Que l'on soit client ou serveur, il faut proc&eacute;der de la m&ecirc;me fa&ccedil;on :</li>
+</ul>
+<pre>package require dp</pre>
+<ul>
+    <li> La cr&eacute;ation d'un serveur. Il faut simplement d&eacute;finir le num&eacute;ro de port (compris entre 5000 et 9999 en g&eacute;n&eacute;ral) :</li>
+</ul>
+<pre>set rpcid [dp_MakeRPCServer 5000]</pre>
+<p>la variable rpcid contient l'identificateur d&eacute;livr&eacute; par la fonction dp_MakeRPCServer de Tcl-DP. </p>
+<ul>
+    <li> La cr&eacute;ation d'un client. Il faut simplement d&eacute;finir le num&eacute;ro IP de l'ordinateur sur lequel se trouve Audela serveur et le num&eacute;ro de port :</li>
+</ul>
+<pre>set rpcid [dp_MakeRPCClient 127.0.0.1 5000]</pre>
+<p>le num&eacute;ro IP 127.0.0.1 d&eacute;signe la machine locale. Si l'on proc&egrave;de avec deux ordinateurs distants, remplacer le num&eacute;ro IP par celui de la machine sur laquelle a &eacute;t&eacute; lanc&eacute; Audela serveur. La variable rpcid contient l'identificateur d&eacute;livr&eacute; par la fonction dp_MakeRPCClient de Tcl-DP. Il peut para&icirc;tre paradoxal d'&ecirc;tre oblig&eacute; de d&eacute;signer le num&eacute;ro IP alors que le client et le serveur sont sur le m&ecirc;me ordinateur mais cette logique d'&eacute;criture s'inscrit dans un cadre g&eacute;n&eacute;ral o&ugrave; les clients et les serveurs sont d&eacute;localis&eacute;s (cf. le chapitre suivant "Audela en r&eacute;seau sur deux machines"). </p>
+<ul>
+    <li> L'envoi d'une commande au serveur. On indique simplement le num&eacute;ro d'identificateur du client et le reste de la ligne contient le message de la commande &agrave; envoyer :</li>
+</ul>
+<pre>dp_RPC $rpcid $commande</pre>
+<h3> 3. Audela en r&eacute;seau sur deux machines</h3>
+<p> Installer Audela et Tcl-DP pourAudela sur les deux ordinateurs. V&eacute;rifier que <a href="script4a.htm#3">le protocole TCP/IP est bien install&eacute;</a>. Les deux ordinateurs doivent avoir des num&eacute;ros IP diff&eacute;rents. Dans le cas d'une utilisation locale, on pr&eacute;f&eacute;rera les num&eacute;ro IP de style 192.168.0.1, 192.168.0.2, etc.</p>
+<h3> 3.1. R&eacute;seau local de type Maison-Jardin</h3>
+<p>Nous consid&eacute;rons deux ordinateurs reli&eacute;s par un r&eacute;seau local (=pas de liaison au r&eacute;seau Internet). Le but est de piloter l'installation de l'observatoire depuis une salle chauff&eacute;e dans la maison.</p>
+<p>L'ordinateur qui pilote la cam&eacute;ra (et &eacute;ventuellement le t&eacute;lescope) est appel&eacute; ordinateur Jardin. Nous lui assignons le num&eacute;ro IP 192.168.0.2 et il sera serveur.</p>
+<p>L'ordinateur qui va servir &agrave; envoyer les ordres depuis la salle chauff&eacute;e est appel&eacute; ordinateur Maison. L'ordinateur Maison sera le client et nous lui assignons le num&eacute;ro IP 192.168.0.1.</p>
+<p>Nous allons maintenant d&eacute;crire deux scripts plus puissants que testser.tcl et testcli.tcl car il faut envoyer des ordres de fa&ccedil;on simple pour all&eacute;ger l'&eacute;criture.</p>
+<p>Le script ci-dessous (serveur.tcl) permet &agrave; Audace, install&eacute;e sur l'ordinateur Jardin de devenir un serveur.</p>
+<pre>#</pre>
+<pre># Fichier : serveur.tcl</pre>
+<pre>#</pre>
+<pre># --- Charge le module dp</pre>
+<pre>global rpcid</pre>
+<pre>package require dp</pre>
+<pre># --- Cree un port serveur numero 5000</pre>
+<pre>set rpcid(serveur) [dp_MakeRPCServer 5000]</pre>
+<pre># --- Fonction d'analyse du message du client</pre>
+<pre>proc eval_client { arg } {</pre>
+<pre> uplevel $arg</pre>
+<pre>}</pre>
+<pre># --- Fonction pour renvoyer des messages a executer vers le client</pre>
+<pre>proc send { arg } {</pre>
+<pre> global rpcid</pre>
+<pre> dp_RPC $rpcid(client) console::affiche_resultat "Execute : $arg \n"</pre>
+<pre> set message "dp_RPC $rpcid(client) eval_serveur \{ $arg \}"</pre>
+<pre> eval $message</pre>
+<pre>}</pre>
+<p>Dans la console de Audace, envoyer la commande source serveur.tcl</p>
+<p>Le script ci-dessous (serveur.tcl) permet &agrave; Audace, install&eacute;e sur l'ordinateur Maison de devenir un client.</p>
+<pre>#</pre>
+<pre># Fichier : client.tcl</pre>
+<pre>#</pre>
+<pre># --- Charge le module dp</pre>
+<pre>package require dp</pre>
+<pre># --- Cree un client connecte au port 5000 de la machine 192.168.0.2</pre>
+<pre>global rpcid</pre>
+<pre>set rpcid(client) [dp_MakeRPCClient 192.168.0.2 5000]</pre>
+<pre># --- Envoi un message de connexion a afficher sur la console du serveur</pre>
+<pre>dp_RPC $rpcid(client) console::affiche_resultat "client bien  connecte\n"</pre>
+<pre># --- Fonction pour envoyer des messages a executer par le serveur</pre>
+<pre>proc send { arg } {</pre>
+<pre> global rpcid</pre>
+<pre> dp_RPC $rpcid(client) console::affiche_resultat "Execute : $arg \n"</pre>
+<pre> set message "dp_RPC $rpcid(client) eval_client \{ $arg \}"</pre>
+<pre> eval $message</pre>
+<pre>}</pre>
+<pre># --- Fonction d'analyse du message de retour eventuel du serveur</pre>
+<pre>proc eval_serveur { arg } {</pre>
+<pre> uplevel $arg</pre>
+<pre>}</pre>
+<pre># --- Cree un port serveur numero 5001 pour permettre au serveur</pre>
+<pre># --- de renvoyer des ordres au client</pre>
+<pre>set rpcid(serveur) [dp_MakeRPCServer 5001]</pre>
+<pre># --- Demande au serveur de se connecter au "serveur" du client</pre>
+<pre>send {set rpcid(client) [dp_MakeRPCClient 192.168.0.1 5001]}</pre>
+<p>Dans la console de Audace, envoyer la commande source client.tcl</p>
+<p>Vous pouvez d&eacute;sormais envoyer n'importe quelle commande &agrave; partir du client, en la faisant pr&eacute;c&eacute;der du mot send. La fonction send envoie la cha&icirc;ne d'arguments vers le serveur et le serveur l'ex&eacute;cute automatiquement.
+<pre>send</pre>
+remplace avantageusement l'&eacute;criture de
+<pre>dp_RPC $rpcid</pre>
+. Par exemple, sur la console du client (&agrave; la Maison) :
+<pre>send {set a 5}</pre>
+<pre># 5 </pre>
+<pre>send {expr $a+4}</pre>
+<pre># 9</pre>
+<p>Ces deux commandes sont similaires &agrave; ce que l'on avait test&eacute; au chapitre pr&eacute;c&eacute;dent. Cependant, le fait d'envoyer les expressions entre accolades {} permet de retarder la substitution et donc il n'est plus n&eacute;cessaire de placer un \ devant de $a. Cela simplifie l'&eacute;criture des commandes &agrave; envoyer,
+<pre>send</pre>
+est donc une fonction tr&egrave;s op&eacute;rationnelle.
+<p>D'un point de vue tr&egrave;s pratique, si l'on veut faire bouger un t&eacute;lescope depuis la maison, on proc&egrave;dera ainsi :</p>
+<pre>send {::tel::create lx200 com2}</pre>
+<pre># 1</pre>
+<pre>send {tel1 goto {12h35m26s -12d45m51s} }</pre>
+<pre># </pre>
+<pre>set coord [send {tel1 coord }]</pre>
+<pre># 12h35m26s -12d45m51s</pre>
+<p>L'ordinateur de la Maison demande &agrave; l'ordinateur du Jardin de pointer le t&eacute;lescope aux coordonn&eacute;es indiqu&eacute;es puis de lire les coordonn&eacute;es du t&eacute;lescope. La position lue est alors stock&eacute;e dans la variable coord de l'ordinateur de la Maison. Il est int&eacute;ressant d'envoyer des scripts complets pour piloter ais&eacute;ment les instruments distants. Par exemple, pour faire l'acquisition d'une image et afficher le resultat sur l'&eacute;cran de la Maison, on enverra le script suivant :</p>
+<pre>send {acq 60 2}</pre>
+<pre>send {saveima //maison/c/audela/image.fit}</pre>
+<pre>send {send {loadima c:/audela/image.fit} }</pre>
+<p>Dans ce script, on consid&egrave;re que l'ordinateur Maison porte le nom "maison" sur le r&eacute;seau et que le disque c: est identifi&eacute; par "c" dans le partage des fichiers.</p>
+<p>On pourra cr&eacute;er une fonction, pour le client, afin que l'ordre d'acquisition se r&eacute;sume &agrave; une seule fonction. Ainsi, le script suivant cr&eacute;e la fonction sendacq qui effectue cela :</p>
+<pre>#</pre>
+<pre># Fichier : sendutil.tcl</pre>
+<pre>#</pre>
+<pre>proc sendacq {exptime binning} {</pre>
+<pre> eval "send \{acq $exptime $binning\}"</pre>
+<pre> send {saveima //maison/c/audela/temp}</pre>
+<pre> send {send {loadima c:/audela/temp}}</pre>
+<pre>}</pre>
+<p>Pour avoir acc&egrave;s &agrave; la fonction sendacq, il faut d'abord enregistrer cette fonction dans l'interpr&eacute;teur Tcl :</p>
+<pre>source sendutil.tcl</pre>
+<p>Ensuite, on lance une pose de 10 secondes en binning 2x2 par la fonction :</p>
+<pre>sendacq 10 2</pre>
+<p>L'image s'affiche sur l'&eacute;cran Audace de l'ordinateur de la Maison.</p>
+<p>Dans le cadre de l'interface Audace, l'ensemble des fonctions pr&eacute;c&eacute;dentes sont d&eacute;j&agrave; d&eacute;finies dans le fichier audnet.tcl. Ces fonctionnalit&eacute;s sont utilis&eacute;es dans le panneau remotecontrol.tcl.</p>
+<h3> 3.2. R&eacute;seau reli&eacute; &agrave; l'Internet</h3>
+<p>Dans le cadre d'une utilisation du r&eacute;seau Internet on peut piloter un observatoire tr&egrave;s &eacute;loign&eacute; (distance sup&eacute;rieure &agrave; 150 m&egrave;tres). Il faudra alors utiliser deux ordinateurs ayant des adresses fixes sur Internet. Le reste de l'utilisation est similaire &agrave; celle d'un r&eacute;seau local.</p>
+<p>La grande difficult&eacute; d'un observatoire pilot&eacute; sur Internet r&eacute;side dans la synchronisation entre les requ&ecirc;tes d'observation et la r&eacute;ception des images. On contourne g&eacute;n&eacute;ralement ce probl&egrave;me en utilisant plut&ocirc;t un fonctionnement Internet par script CGI plut&ocirc;t qu'une prise en main directe. Cela permet, en plus, au client d'avoir une adresse variable d&eacute;livr&eacute;e par un fournisseur d'acc&egrave;s et de se connecter &agrave; l'ordinateur de l'observatoire depuis n'importe quel navigateur Web. <a href="script5.htm">Le fonctionnement de Audela en tant que script CGI est d&eacute;taill&eacute; dans la page suivante</a>.</p>
+</body>
+</html>

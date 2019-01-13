@@ -1,0 +1,2 @@
+LIBRARY libmc
+EXPORTS Mc_Init @1

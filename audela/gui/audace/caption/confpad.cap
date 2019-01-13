@@ -1,0 +1,133 @@
+#
+# Fichier : confpad.cap
+# Mise a jour $Id: confpad.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(confpad,raquette)        "Hand Controller:"
+set caption(confpad,config)          "Hand Controller Setup"
+set caption(confpad,ok)              "OK"
+set caption(confpad,appliquer)       "Apply"
+set caption(confpad,fermer)          "Close"
+set caption(confpad,aide)            "Help"
+set caption(confpad,configurer)      "Set up"
+
+set caption(confpad,pas_raquette)    "No Hand Controller."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(confpad,raquette)     "Raquette :"
+   set caption(confpad,config)       "Configuration de la raquette"
+   set caption(confpad,ok)           "OK"
+   set caption(confpad,appliquer)    "Appliquer"
+   set caption(confpad,fermer)       "Fermer"
+   set caption(confpad,aide)         "Aide"
+   set caption(confpad,configurer)   "Configurer"
+
+   set caption(confpad,pas_raquette) "Il n'y a pas de raquette présente."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(confpad,raquette)     "Pulsantiera:"
+   set caption(confpad,config)       "Configurazione pulsantiera"
+   set caption(confpad,ok)           "OK"
+   set caption(confpad,appliquer)    "Applicare"
+   set caption(confpad,fermer)       "Chiudere"
+   set caption(confpad,aide)         "Aiuto"
+   set caption(confpad,configurer)   "Configurare"
+
+   set caption(confpad,pas_raquette) "Non e' presente la pulsantiera."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(confpad,raquette)     "Controlador de mano:"
+   set caption(confpad,config)       "Configuración del controlador de mano"
+   set caption(confpad,ok)           "OK"
+   set caption(confpad,appliquer)    "Aplicar"
+   set caption(confpad,fermer)       "Cerrar"
+   set caption(confpad,aide)         "Ayuda"
+   set caption(confpad,configurer)   "Configurar"
+
+   set caption(confpad,pas_raquette) "No hay controlador de mano."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(confpad,raquette)     "Hand Kontroller:"
+   set caption(confpad,config)       "Hand Kontroller Konfiguration"
+   set caption(confpad,ok)           "OK"
+   set caption(confpad,appliquer)    "Anwenden"
+   set caption(confpad,fermer)       "Schließen"
+   set caption(confpad,aide)         "Hilfe"
+   set caption(confpad,configurer)   "Konfigurieren"
+
+   set caption(confpad,pas_raquette) "Keine Hand Kontroller."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(confpad,raquette)     "Controlador de mão:"
+   set caption(confpad,config)       "Configuração do controlador de mão"
+   set caption(confpad,ok)           "OK"
+   set caption(confpad,appliquer)    "Aplicar"
+   set caption(confpad,fermer)       "Fechar"
+   set caption(confpad,aide)         "Ajuda"
+   set caption(confpad,configurer)   "Configurar"
+
+   set caption(confpad,pas_raquette) "Sem controlador de mão."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(confpad,raquette)     "Håndkontrol:"
+   set caption(confpad,config)       "Opsætning af håndkontrol"
+   set caption(confpad,ok)           "OK"
+   set caption(confpad,appliquer)    "Anvend"
+   set caption(confpad,fermer)       "Luk"
+   set caption(confpad,aide)         "Hjælp"
+   set caption(confpad,configurer)   "Opsætning"
+
+   set caption(confpad,pas_raquette) "Ingen håndkontrol."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(confpad,raquette)     "Hand Controller:"
+   set caption(confpad,config)       "Hand Controller Setup"
+   set caption(confpad,ok)           "OK"
+   set caption(confpad,appliquer)    "Apply"
+   set caption(confpad,fermer)       "Close"
+   set caption(confpad,aide)         "Help"
+   set caption(confpad,configurer)   "Set up"
+
+   set caption(confpad,pas_raquette) "No Hand Controller."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(confpad,raquette)     "Hand Controller:"
+   set caption(confpad,config)       "Hand Controller Setup"
+   set caption(confpad,ok)           "OK"
+   set caption(confpad,appliquer)    "Apply"
+   set caption(confpad,fermer)       "Close"
+   set caption(confpad,aide)         "Help"
+   set caption(confpad,configurer)   "Set up"
+
+   set caption(confpad,pas_raquette) "No Hand Controller."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

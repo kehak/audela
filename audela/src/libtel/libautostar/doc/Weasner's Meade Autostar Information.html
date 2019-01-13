@@ -1,0 +1,492 @@
+
+<!-- saved from url=(0049)http://www.weasner.com/etx/autostar/as_lx200.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		
+		<meta name="generator" content="BBEdit 8.0.2">
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+		<meta http-equiv="Last-Modified" content="Sun, 23 May 2004 0:00:00 GMT">
+		<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+		<meta http-equiv="Cache-Control" content="post-check=0, pre-check=0, false">
+		<meta http-equiv="Pragma" content="no-cache">
+		<title>Weasner's Meade Autostar Information</title>
+	</head>
+
+	<body bgcolor="white">
+		<a name="top"></a>
+		<table border="1" width="100%">
+			<tbody><tr>
+				<td>
+					<center>
+						<b>AUTOSTAR INFORMATION</b><br>
+<a href="http://www.weasner.com/etx/index.html" target="_top"><img width="29" height="22" align="right" src="./Weasner&#39;s Meade Autostar Information_files/mighty_etx.jpg" alt="[Home!]"></a><br clear="all">
+						Last updated: 22 March 2002</center>
+				</td>
+			</tr>
+		</tbody></table>
+
+		<h4>LX200 Commands and Autostar</h4>
+<pre>Subject:	<b>LX-200 Command set</b>
+Sent:	Friday, June 8, 2001 22:08:13
+From:	marv.sumner@juno.com (Marvin C. Sumner)
+A note for your readers who might have admired the LX-200 Command Set
+found at www.mailbag.com/users/ragreiner/LX200Commands.html.  I
+have an ETX-125/EC and had asked Meade about the language - they sent me
+a copy of the LX-200 manual for the command set in the back.  Well, on
+reading it, I found three errors (ones obvious  to any programmer) and
+reported them to Meade.  I see now that the listing at the URL above has
+two of the same old errors - apparently copied and not tested when put
+on the internet.
+
+A simple typo (by Meade) has us switching tracking frequency between
+manual and quartz badly.  :TM# will select Manual Ok, but it takes a
+:TQ# to select Quartz.
+
+The other glitch would be harder for the less initiated to catch:  In
+the sample program, when opening the COM port, that last comma before
+the closing double-quote is fatal to the program.  It is telling the
+compiler that another argument is coming.  The compiler will then sit
+and wait for the next argument until the cows come home, and never get
+to the closing double-quote.  Delete the last comma and you can open the
+COM port AOK.
+
+Marv Sumner
+</pre>
+<hr width="25%">
+<p>
+
+</p><pre>Subject:	<b>New Meade Web PAGE!!!!</b>
+Sent:	Saturday, May 26, 2001 18:47:19
+From:	rseymour@wolfenet.com (richard seymour)
+I just noticed a new item on Meade's support page!
+
+<a href="http://www.meade.com/support/CommandSet.html" target="_top">http://www.meade.com/support/CommandSet.html</a>
+
+It's titled:
+
+The Autostar/LX200 Command Set and Differences
+
+Basically, it's the LX200 Command Manual, but with a short note
+at each major letter (example: "V  (Autostar ignores)" )
+and with some subsections more fully describing the Autostar's 
+ interpretation of the commands.
+
+They left out one command (control-D, which sets you into Download
+ mode).  The trailing matter, describing using a "#:" as the
+preamble before a command instead of a simple colon (:) is
+well taken.
+
+--dick
+</pre>
+<hr width="25%">
+<p>
+From:	rseymour@wolfenet.com (Dick Seymour)
+</p><p>
+If you don't have it, at Doc G's site is the full &lt;&gt;LX200 command
+set (www.mailbag.com/users/ragreiner/lx200CmdSet.html) (as of mid-1998).
+The Autostar actually knows one more: control-B to get into the on-board
+Debugger.
+</p><p>
+You can test your Autostar/ETX by connecting the download rs232 cable
+(just like DeepSky needs),
+and then firing up a terminal-emulator program (like HyperTerm, which
+comes with Windows) to
+talk to it.
+</p><p>
+Read  <a href="http://www.weasner.com/etx/autostar/as_beep.html" target="_top">http://www.weasner.com/etx/autostar/as_beep.html</a>
+for a step-by-step on hooking it up and sending commands (to the
+debugger).
+</p><p>
+But, as you saw with the two computers tied together, you can send
+commands directly to the Autostar.
+The one command i recommend great caution with is "#:MA#"
+If you haven't pre-loaded a destination, that can slew the telescope
+hard into the stops.
+</p><p>
+":Q#"  (Quit) stops the scope dead.
+</p><p>
+Somewhere in the clutter i've got notes from the two hours i spent
+testing all commands.
+Some are ignored, some generate "dummy" results, lots work.
+</p><p>
+I'll either find my notes, or re-do the testing and send a synopsis to
+Mike's site.
+</p><p>
+have fun (i did)
+<br>
+--dick
+</p><p>
+		</p><hr width="25%">
+		<p></p>
+<pre>Subject:	 LX-200 commands the Autostar (mis)understands
+From:	rseymour@wolfenet.com (richard seymour)
+Here is a quickly entered list of -all- of the LX-200 commands the
+Autostar has code for.
+
+Some are implemented, some are ignored, some are buggy, some are fake.
+
+I'm going out of town from May 7th through the 16th, and will not have
+access to Email between the 11th and the 16th.  Questions and
+commentaries are welcome, but will suffer slow response during that
+period.
+
+As i learn more, I'll
+update. Please report -your- experiences, too.
+
+During my absence, i'll try to improve the formatting, and make a web
+page of this list.
+have fun
+--dick
+=========================
+
+LX-200 Commands as understood by ETX Autostar v2.0i
+--dick seymour   "pre-release version 0.1 5-May-2000"
+
+See http://www.mailbag.com/users/ragreiner/lx200CmdSet.html
+for the full LX-200 list.
+This list assumes you have that as a reference, and
+merely explores the differences.
+
+If a command is shown in this list, the Autostar has firmware
+code to handle it.  Sometimes the command is fully implemented,
+sometimes it merely acknowledges receipt (but ignores it).
+Some of the "Sets" are flat-out buggy... the Meade programmer
+tries to write to a read-only location, so the "set" is lost.
+
+For angles, Meade appears to offer "high precision".
+As currently implemented, don't bother.
+When combined with GET, angles are actually misreported.
+For example, an RA of 14:39.9 (in low precision) becomes 14:39:00
+More digits, yes... but ":00"?
+Object coordinates are stored internally as integer arc-minutes.
+
+In the following list, "quoted" strings are returned
+ by the Autostar -- exactly as shown.  They're fixed, not variable.
+ Unquoted zeros (0) or ones (1) are shown if they mean something.
+ If not shown, you'll often get a zero if you mis-entered the command
+  (such as a short-format angle when it was in "long" mode (see U))
+ Otherwise you'll get a 1.  Many commands get no response.
+  See the "boolean" description in the LX200 list.
+
+Command   Description
+
+control-F    return mounting: A  or  P
+
+control-D    go to Download mode.  Leave LX200 mode.
+
+:CM#    "M31 EX GAL MAG 3.5 SZ 178.0'#"   Match Sync
+              (the current Target Obejct coordinates are
+                transferred to a reference location)
+          (i have no idea why they return a description of M31)
+
+:D# [x7F]#  Distance from target (only one x7F or none)
+
+During slewing:
+
+The :D#  returns a hexadecimal 7F character followed by a "#" (hex 2E)
+
+The :D# command switches to only returning a "#" at the same time
+that the handset would have switched from displaying "Slewing..."
+to redisplaying the target's information (but long before the beep),
+
+The motion between that :D# change to Beep can take 10 seconds or so.
+
+:FQ#   Focus Control:  Quit focus motion.
+:FS# :FS#  Focus Slow or Fast
+:F+# :F-#  Focus IN or OUT
+
+:G      "GET" commands (see next table)(see Set, too)
+
+:hP#   Park scope
+
+:Lf#  "Objects:   0#"  Library setting
+:LI#  "M31 EX GAL..." (same as CM response)
+:Lo#    Set library type
+:Ls#    Set Star library
+
+:MS#  0 Move to Object (use Sr  and Sd to preload)
+      1 Object below horizon.. no motion
+
+When slewing under :MS# control, the handset display is frozen during
+the :D# command's "7F" period, and becomes alive again when the "7F' is
+dropped.
+
+Issuing new :MS# commands before the "7F" is dropped can result in Proc
+2 traps. Manually keying things to convince the Autostar to cycle
+through some update code can avoid the Proc 2 Trap. Perhaps waiting a
+few (4?) seconds delay after the switch from 7F to (no 7F) could also
+avoid the Traps.  I have not tested that theory.
+
+:MA#  0 Move to Landmark (use Sa and Sz to preload)
+:Me#  :Mw#  Slew east,west, south, north until :Q#
+:Ms#  :Mn#
+
+:P# "HIGH PRECISION#" (no effect, actually ignored)
+
+:Q#        Quit all slewing (:MS# will resume)
+:Qe# :Qw#  Quit rotating base (Az, RA) slew
+:Qn# :Qs#  Quit elevation (Alt, Dec) slew.
+
+:S    "SET" commands (see table below) (see Get, too)
+
+:U#   Toggle between "long" and "short"
+   argument format. (was "U"seless...see notes)
+
+:W choose site from list of four. (see Set M,N,O,P)
+
+
+Ignored commands:  ? @ $ A B E H I J K N O R V X Y Z f r
+
+Motion:  see SET section.  Sidereal drive is disabled if you
+  use the :MA#  command.  You -must- use the handset to restart it.
+  The Sa and Sd put their data into the same location.
+  The Sr and Sz put their data into the same location.
+   (that means :Sr14:00.0#  and  :Sz210*00#  are -equal-)
+
+Note: Long Format (:U#) changes input from hh:mm.t to hh:mm:ss
+   However, IN OLDER VERSIONS the output ":ss" was always ":00"
+   This was corrected in the mid-22 versions.
+   Object coordinates are stored internally as integer arc-minutes.
+
+GET/SET list:
+
+GET commands are in the form   :GA#    (except GV)
+They return results.  If the table shows "#" (or any quoted string)
+that is the -only- result you'll get, irrespective of the truth.
+(see :P# in the main list)
+
+GET
+0 "#"
+1 "#"
+2 "#"
+A      Tele Alt
+a       local time (12h format)
+b       bright limit (for searches)
+c "(24)#"
+C     calendar date
+D    Tele Declination
+d    Object Dec
+f    faint limit
+F    Field Size
+g    Site Longitude
+G    Hours from GMT
+h    high limit
+l    larger limit
+L    Local time (24h)
+M    Site Name 1
+N    Site Name 2
+o    lower limit
+O    Site Name 3
+P    Site Name 4
+q minimum quality for search
+r    object RA
+R    Telescope RA
+s    smaller limit
+S    Sidereal time (24h)
+t    site latitude
+T    current tracking freq
+VD   Firmware Build Date
+VF   Firmware Full ID string
+VN Firmware Version
+VP "Autostar#" (processor?)
+VT Firmware Build Time
+y types parameters
+Z Tele Azimuth
+
+SET  (the SETs frequently correspond to the GETs)
+Note: there are many bugs in Meade's SET programming.
+I have identified the commands they -tried- to implement,
+but screwed up with (buggy). Values are not fully saved.
+Items marked (ignored) don't set anything.
+
+a   Object Altitude
+b   brighter limit
+C   Calendar (buggy) (responds: "Updating planetary database#")
+d   Object declination
+f   fainter limit
+F   Field size
+g    site longitude
+G   hours from GMT
+h   higher limit (buggy)
+l   larger limit
+L   Local time
+M Site name 1
+N Site name 2
+o lower limit (ignored)
+O Site name 3
+P Site name 4
+q quality
+r Object RA
+s smaller limit
+S Sidereal Time
+t Site Latitude
+T Tracking Freq (ignored)
+w2   slew speed (slowest= key 1)
+w3   slew speed (middle)
+w4   slew speed (highest= key 9)
+ note: slew speeds don't affect :MS#
+y active find types
+z Object Azimuth
+</pre>
+<p>
+</p><hr width="25%">
+<p>
+</p><pre>Subject:	 patch for improving Autostar's LX200-like performance
+From:	rseymour@wolfenet.com (richard seymour)
+Folks can write programs to control an ETX Autostar via its rs232 port
+using its set of LX-200-like commands.
+
+Unfortunately, some of those programs have been having erratic
+operation, frequently resulting in "hung" or "Proc Trap"ed Autostars.
+
+Two examples of this are Jean-Claude Marion's Eurosat
+(http://members.aol.com/marionjc/eurosat/)
+and Brent Boshart's Satellite Tracker
+(sattracker.hypermart.net)
+
+The reason those programs are having problems is that the ETX/Autostar
+overflows its processor stack if given sequential GoTo (motion) (:MS#)
+commands before the previous one is complete.  This happens if you are
+trying to track a satellite.
+
+Why it does it is "simple": during the GoTo section of the Autostar
+firmware, they periodically check for new-LX200-commands (which they
+immediately perform, then resume the GoTo operation), and
+keypad-pressing.
+
+If a key is pressed (other than GoTo), the current GoTo is -aborted-...
+the destination is cleared, the motors are stopped (Sidereal drive, if
+active, will resume) and the MOVE subroutine is exited.
+
+*then* they perform the key-commanded operation.
+
+Notice the difference?  The keypad exits the GoTo routine (thereby
+clearing the stack) -before- actually performing the operation.
+
+The LX200 commands are performed -immediately-, then the (merely
+delayed) GoTo is resumed.
+
+That's OK if the LX200 command was a "where are we?" (:GD# or :GR# or
+:D#) command.
+
+It's NOT OK if it was an :MS# command... they end up recursively
+nesting!
+(only the last one determines the final destination).  
+Each :MS# command causes (at least) 62hex (98 decimal) bytes to be
+allocated on the stack... and eventually the stack pushes into space
+used for other purposes (Meade doesn't check stack depth).
+
+Waiting for :D# to return zero 7F characters works, because that's the
+signal that it's leaving the GoTo subroutine.
+
+Other than watching the :D# result, there's currently no way for any
+LX200 command to guarantee safe-stacks if sequential :MS# commands are
+given.   
+The :Q# command merely stops the motors, then they resume (and the GoTo
+continues) as soon as the GoTo subroutine is resumed.
+
+That's the situation.
+
+The good news: I have developed a small patch to the Autostar firmware
+to fix it.
+Jean-Claude has tested it with his program, and reports success.
+
+The patch requires the PC program to issue a :Q# command between each
+:MS# command.
+The sequence probably wants to be:     
+  :Q# :SdXXXX# :SrXXXX# :MS#     (repeat : Q S S MS#   as desired, as
+frequently as needed.)
+
+You can -probably- issue the :Sr and :Sd -before- the :Q#, but i
+wouldn't trust the target destination values to survive in the Autostar.
+
+Note that you do -not- need to monitor :D# (except out of curiosity).
+Likewise you can issue :G(whatever)# to your heart's content.
+
+The patch works by looking at the :D# flag.
+The :Q# command already sets it to zero.
+
+The patch adds code to the MOVE command to look at the :D# flag (memory
+location 69F8) after an LX200 command. 
+If the :D# is zero after the LX200 command, the MOVE command takes the
+same "abort!"
+action that it does if you push the MODE key during a move.
+
+So all i am doing is improving the :Q# (and this may also make the :Q#
+-really- stop the ETX).
+(but only if a move command is still in SLEWING... mode).
+
+The patch is:
+in v2.0i  autostar.rom file:
+at every place (in the MOVE section) where the LX200 is tested,
+replace   JSR 1F0A 09 A1 97    [ bd 1f0a 09a197   (test lx200 and
+perform)
+
+with  JSR F7E1     [ bd f7e1    (jump to patch)
+      NOP          [ 01         (space-fill do-nothings
+      NOP          [ 01
+      NOP          [ 01
+
+at (8)F7E1 add
+
+     JSR 1F0A 09 A1 97     [ bd 1f0a 09a197   (patch: test and perform
+lx200)
+     TST 69F8              [ 7d 69f8          (test :D# flag)
+     BEQ next              [ 27 01            (if zero, special action)
+     RTS                   [ 39               (if not zero, return to
+normal MOVE)
+ next: PULX                [ 38               (remove this jsr's return
+address)
+     JMP F35C              [ 7e f3 5c         (jump to clear/stop-move
+code)
+
+In numbers, that's:
+
+ Location    Old Values        +   New Values
+ 08EC5F:   BD 1F 0A 09 A1 97   + BD F7 E1 01 01 01
+ 08EE19:      (same)           +   (same)
+ 08F33B:      (same)           +   (same)
+
+ 08F7E1:   FF FF FF... FF      + BD 1F 0A 09 A1 97 7D 69 F8 27 01 39 38
+7E F3 5C
+
+That is a sixteen (16) byte addition.
+(for v2.0h, each "1f0a" is "1f0c" )
+
+As usual: copy the existing unchanged autostar.rom file to someplace
+safe.
+   patch the copy in Ephemerides
+   download [New Software] to the Autostar
+
+Play!
+
+If you do not have a binary patch program, my favorite is FRHED from
+
+http://www.tu-darmstadt.de/~rkibria
+
+Simply Open the autostar.rom file with that program, 
+Go to the address, 
+type in the new values, 
+save.
+
+As always, a mis-type can confuse your Autostar, so this patch is -not-
+recommended for folks not needing the functionality. (although i've sent
+it to Meade as a suggested "improvement")
+
+have fun...
+--dick
+</pre>
+<hr width="25%">
+<p>
+
+		</p><p>Return to the <a href="http://www.weasner.com/etx/autostar/as_lx200.html#top" target="_self">top</a> of this page.</p>
+		<p>Go back to the <a href="http://www.weasner.com/etx/autostar_info.html" target="_top">Autostar Information page</a>.</p>
+		<p>Go back to the <a href="http://www.weasner.com/etx/index.html" target="_top">ETX Home Page</a>.</p>
+		<p>
+		</p><hr width="100%">
+		<tt>Copyright ©1999-2002 Michael L. Weasner / <a href="mailto:etx@me.com">etx@me.com</a><br>
+		Submittals Copyright © 2000-2 by the Submitter<br>
+		URL = http://www.weasner.com/etx/autostar/as_lx200.html</tt>
+	
+
+
+</body></html>

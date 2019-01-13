@@ -1,0 +1,17 @@
+#   1 NUMBER          Running object number
+#   2 FLUX_BEST       Best of FLUX_AUTO and FLUX_ISOCOR               [count]
+#   3 FLUXERR_BEST    RMS error for BEST flux                         [count]
+#   4 MAG_BEST        Best of MAG_AUTO and MAG_ISOCOR                 [mag]
+#   5 MAGERR_BEST     RMS error for MAG_BEST                          [mag]
+#   6 BACKGROUND      Background at centroid position                 [count]
+#   7 X_IMAGE         Object position along x                         [pixel]
+#   8 Y_IMAGE         Object position along y                         [pixel]
+#   9 X2_IMAGE        Variance along x                                [pixel**2]
+#  10 Y2_IMAGE        Variance along y                                [pixel**2]
+#  11 XY_IMAGE        Covariance between x and y                      [pixel**2]
+#  12 A_IMAGE         Profile RMS along major axis                    [pixel]
+#  13 B_IMAGE         Profile RMS along minor axis                    [pixel]
+#  14 THETA_IMAGE     Position angle (CCW/x)                          [deg]
+#  15 FWHM_IMAGE      FWHM assuming a gaussian core                   [pixel]
+#  16 FLAGS           Extraction flags
+#  17 CLASS_STAR      S/G classifier output

@@ -1,0 +1,266 @@
+# tcp.test --
+#
+#	Test the TCP protocol
+#
+
+if {[string compare test [info procs test]] == 1} then {source ../tests/defs}
+
+test tcp-1.1 {dp_connect command} {
+    list [catch {
+	dp_connect tcp -bar
+    } msg] $msg
+} {1 {unknown option "-bar", must be -async, -host, -myaddr, -myport -port or -server}}
+
+test tcp-1.2 {dp_connect command} {
+    list [catch {
+	dp_connect tcp -bar foo
+    } msg] $msg
+} {1 {unknown option "-bar", must be -async, -host, -myaddr, -myport -port or -server}}
+
+test tcp-1.3 {dp_connect command} {
+    list [catch {
+	dp_connect tcp -port
+    } msg] $msg
+} {1 {value for "-port" missing}}
+
+test tcp-1.4 {dp_connect command} {
+    list [catch {
+	dp_connect tcp
+    } msg] $msg
+} {1 {option -port must be specified for clients}}
+
+test tcp-1.5 {dp_connect command} {
+    list [catch {
+	dp_connect tcp -port badport
+    } msg] $msg
+} {1 {expected integer but got "badport"}}
+
+test tcp-1.6 {dp_connect command} {
+    list [catch {
+	dp_connect tcp -server 1
+    } msg] $msg
+} {1 {option -myport must be specified for servers}}
+
+test tcp-1.7 {dp_connect command} {
+    list [catch {
+	dp_connect tcp -server 1 -myport 1234 -async 1
+    } msg] $msg
+} {1 {option -async is not valid for servers}}
+
+test tcp-1.8 {dp_connect command} {
+    list [catch {
+	dp_connect tcp -server 1 -myport 1234 -host localhost
+    } msg] $msg
+} {1 {option -host is not valid for servers}}
+
+test tcp-1.9 {dp_connect command} {
+    list [catch {
+	dp_connect tcp -server 1 -myport 1234 -port 1234
+    } msg] $msg
+} {1 {option -port is not valid for servers}}
+
+test tcp-2.0.1 {Opening port with no service.} {
+    list [catch {
+        set csock [dp_connect tcp -host localhost -port 14466]
+    } msg] $msg
+} {1 {couldn't open socket: connection refused}}
+
+test tcp-2.1 {dp_accept command} {
+    list [catch {dp_accept} message] $message
+} {1 {wrong # args: should be "dp_accept channelId"}}
+
+test tcp-2.2 {dp_accept command} {
+    list [catch {
+	set ssock [dp_connect tcp -server 1 -myport 14467]
+	set csock [dp_connect tcp -host localhost -port 14467]
+	after 500
+	set asock [lindex [dp_accept $ssock] 0]
+	puts $csock hello1
+	set line [gets $asock]
+    } msg] $msg
+} {0 hello1}
+
+catch {close $ssock}
+catch {close $csock}
+catch {close $asock}
+
+test tcp-2.3 {Closing of server sockets} {
+    list [catch {
+        set csock [dp_connect tcp -host localhost -port 14470]
+    } msg] $msg
+} {1 {couldn't open socket: connection refused}}
+
+catch {close $csock}
+
+test tcp-2.4 {Closing of client sockets} {
+    set ssock [dp_connect tcp -server 1 -myport 14468]
+    set csock [dp_connect tcp -host localhost -port 14468 -async 1]
+    after 500
+    set asock [lindex [dp_accept $ssock] 0]
+    close $asock
+    after 1000
+    catch {
+	puts $csock hello1
+    } msg
+    regexp {^error writing} $msg
+} [regexp {^error writing} {error writing "tcp2": broken pipe}]
+
+catch {close $csock}
+catch {close $ssock}
+
+test tcp-2.5 {asynchronous client Tcp socket} {
+    list [catch {
+	set ssock [dp_connect tcp -server 1 -myport 14469]
+	set csock [dp_connect tcp -host localhost -port 14469 -myport 14470 -async 1]
+	after 500
+	set asock [lindex [dp_accept $ssock] 0]
+	puts $csock hello1
+	set line [gets $asock]
+    } msg] $msg
+} {0 hello1}
+
+#
+# fconfigure tests
+#
+
+catch {set myIpAddr [dp_netinfo -address [info hostname]]}
+if {$myIpAddr == 0} {
+    puts stdout "Error determining IP address"
+}
+
+test tcp-2.6.1.1 "fconfigure tcp (ssock)" {
+    list [catch {
+	fconfigure $ssock
+    } msg] $msg
+} [list 0 [list -blocking 1 -buffering none -buffersize 4096 -eofchar {{} {}} -translation {lf lf} -keepAlive 0 -linger 0 -recvBuffer 8192 -reuseAddr 1 -sendBuffer 8192 -myIpAddr $myIpAddr -myport 14469 -destIpAddr 0.0.0.0 -destport 0]]
+
+test tcp-2.6.1.2 "fconfigure tcp (csock)" {
+    list [catch {
+	fconfigure $csock
+    } msg] $msg
+} [list 0 [list -blocking 1 -buffering none -buffersize 4096 -eofchar {{} {}} -translation {lf lf} -keepAlive 0 -linger 0 -recvBuffer 8192 -reuseAddr 1 -sendBuffer 8192 -myIpAddr $myIpAddr -myport 14470 -destIpAddr 127.0.0.1 -destport 14469]]
+
+test tcp-2.6.1.2 "fconfigure tcp (asock)" {
+    list [catch {
+	fconfigure $asock
+    } msg] $msg
+} [list 0 [list -blocking 1 -buffering none -buffersize 4096 -eofchar {{} {}} -translation {lf lf} -keepAlive 0 -linger 0 -recvBuffer 8192 -reuseAddr 1 -sendBuffer 8192 -myIpAddr $myIpAddr -myport 14469 -destIpAddr 127.0.0.1 -destport 14470]]
+
+test tcp-2.6 {fconfigure tcp} {
+
+    foreach type "ssock csock asock" {
+	set sock [set $type]
+
+	test tcp-2.6.2 "fconfigure tcp ($type)" {
+	    list [catch {
+		fconfigure $sock -blocking 0
+	    } msg] $msg
+	} {0 {}} 
+
+	test tcp-2.6.3 "fconfigure tcp ($type)" {
+	    list [catch {
+		fconfigure $sock -blocking
+	    } msg] $msg
+	} {0 0}
+
+	test tcp-2.6.4 "fconfigure tcp ($type)" {
+	    list [catch {
+		fconfigure $sock -sendBuffer 4096
+	    } msg] $msg
+	} {0 {}}
+
+	test tcp-2.6.5 "fconfigure tcp ($type)" {
+	    list [catch {
+		fconfigure $sock -sendBuffer
+	    } msg] $msg
+	} {0 4096}
+
+	test tcp-2.6.6 "fconfigure tcp ($type)" {
+	    list [catch {
+		fconfigure $sock -sendBuffer -1
+	    } msg] $msg
+	} {1 {Buffer size must be > 0}}
+
+	test tcp-2.6.7 "fconfigure tcp ($type)" {
+	    list [catch {
+		fconfigure $sock -sendBuffer foo
+	    } msg] $msg
+	} {1 {expected integer but got "foo"}}
+
+	test tcp-2.6.8 "fconfigure tcp ($type)" {
+	    list [catch {
+		fconfigure $sock -recvBuffer 4096
+	    } msg] $msg
+	} {0 {}}
+
+	test tcp-2.6.9 "fconfigure tcp ($type)" {
+	    list [catch {
+		fconfigure $sock -recvBuffer
+	    } msg] $msg
+	} {0 4096}
+
+	test tcp-2.6.10 "fconfigure tcp ($type)" {
+	    list [catch {
+		fconfigure $sock -recvBuffer -1
+	    } msg] $msg
+	} {1 {Buffer size must be > 0}}
+
+	test tcp-2.6.11 "fconfigure tcp ($type)" {
+	    list [catch {
+		fconfigure $sock -recvBuffer foo
+	    } msg] $msg
+	} {1 {expected integer but got "foo"}}
+
+
+	foreach opt {-keepAlive -reuseAddr} {
+	    test tcp-2.6.12.0 "fconfigure tcp ($type)" {
+		list [catch {
+		    fconfigure $sock $opt foo
+		} msg] $msg
+	    } {1 {expected boolean value but got "foo"}}
+
+	    test tcp-2.6.12.1 "fconfigure tcp ($type)" {
+		list [catch {
+		    fconfigure $sock $opt 0
+		} msg] $msg
+	    } {0 {}}
+
+	    test tcp-2.6.12.2 "fconfigure tcp ($type)" {
+		list [catch {
+		    fconfigure $sock $opt
+		} msg] $msg
+	    } {0 0}
+
+	    test tcp-2.6.12.3 "fconfigure tcp ($type)" {
+		list [catch {
+		    fconfigure $sock $opt 1
+		} msg] $msg
+	    } {0 {}}
+
+	    test tcp-2.6.12.4 "fconfigure tcp ($type)" {
+		list [catch {
+		    fconfigure $sock $opt
+		} msg] $msg
+	    } {0 1}
+	}
+    }
+
+    set result_is ok
+} ok
+
+catch {close $ssock}
+catch {close $csock}
+catch {close $asock}
+
+# CORNELL ONLY TESTS
+
+# (ToDo) Connect to a "test server" instead.
+#
+test cornell-tcp-3.1 {dp_connect command} {
+    set chan [dp_connect tcp -host www -port 80]
+
+    puts $chan "GET /"
+    flush $chan
+    string range [gets $chan] 0 5
+} {<!DOCT}
+

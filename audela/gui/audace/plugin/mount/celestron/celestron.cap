@@ -1,0 +1,205 @@
+#
+# Fichier : celestron.cap
+# Mise a jour $Id: celestron.cap 9940 2013-08-10 07:56:40Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(celestron,monture)                   "Celestron"
+set caption(celestron,format_court_long)         "Short Long"
+set caption(celestron,port)                      "Port"
+set caption(celestron,configurer)                "Set up"
+set caption(celestron,controle)                  "Control"
+set caption(celestron,format)                    "Format"
+set caption(celestron,maj_celestron)             "Update time, longitude, latitude and altitude of Celestron"
+set caption(celestron,raquette_tel)              "Hand controller on screen"
+
+set caption(celestron,install_1)                 "End of Celestron plugin installation"
+set caption(celestron,install_2)                 "libcelestron.dll library updated."
+
+set caption(celestron,port_celestron)            "Celestron Port"
+set caption(celestron,2points)                   ":"
+
+set caption(celestron,titre_site_web)            "Reference Web Site:"
+set caption(celestron,site_celestron)            "http://www.celestron.com/"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(celestron,monture)                "Celestron"
+   set caption(celestron,format_court_long)      "court long"
+   set caption(celestron,port)                   "Port"
+   set caption(celestron,configurer)             "Configurer"
+   set caption(celestron,controle)               "Contrôle"
+   set caption(celestron,format)                 "Format"
+   set caption(celestron,maj_celestron)          "Mise à jour heure, longitude, latitude et altitude du Celestron"
+   set caption(celestron,raquette_tel)           "Raquette à l'écran"
+
+   set caption(celestron,install_1)              "Fin de l'installation du plugin Celestron"
+   set caption(celestron,install_2)              "La librairie libcelestron.dll a été mise à jour."
+
+   set caption(celestron,port_celestron)         "Port Celestron"
+   set caption(celestron,2points)                ":"
+
+   set caption(celestron,titre_site_web)         "Site Web de référence :"
+   set caption(celestron,site_celestron)         "http://www.celestron.com/"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(celestron,monture)                "Celestron"
+   set caption(celestron,format_court_long)      "corto lungo"
+   set caption(celestron,port)                   "Porta"
+   set caption(celestron,configurer)             "Configurare"
+   set caption(celestron,controle)               "Controllo"
+   set caption(celestron,format)                 "Formato"
+   set caption(celestron,maj_celestron)          "Aggiornamento di ora, longitudine, latitudine ed altitudine dell' Celestron"
+   set caption(celestron,raquette_tel)           "Pulsantiera a schermo"
+
+   set caption(celestron,install_1)              "Fine installazione del plugin Celestron"
+   set caption(celestron,install_2)              "La libreria libcelestron.dll è stata aggiornata."
+
+   set caption(celestron,port_celestron)         "Porta Celestron"
+   set caption(celestron,2points)                ":"
+
+   set caption(celestron,titre_site_web)         "Sito Web di riferimento:"
+   set caption(celestron,site_celestron)         "http://www.celestron.com/"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(celestron,monture)                "Celestron"
+   set caption(celestron,format_court_long)      "corto largo"
+   set caption(celestron,port)                   "Puerto"
+   set caption(celestron,configurer)             "Configurar"
+   set caption(celestron,controle)               "Control"
+   set caption(celestron,format)                 "Formato"
+   set caption(celestron,maj_celestron)          "Actualizar hora, longitud, latitud y altitud del Celestron"
+   set caption(celestron,raquette_tel)           "Controlador virtual"
+
+   set caption(celestron,install_1)              "Fin de la instalación del plugin Celestron"
+   set caption(celestron,install_2)              "Libreria libcelestron.dll actualizada."
+
+   set caption(celestron,port_celestron)         "Puerto Celestron"
+   set caption(celestron,2points)                ":"
+
+   set caption(celestron,titre_site_web)         "Sitio Web de referencia:"
+   set caption(celestron,site_celestron)         "http://www.celestron.com/"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(celestron,monture)                "Celestron"
+   set caption(celestron,format_court_long)      "kurz lang"
+   set caption(celestron,port)                   "Port"
+   set caption(celestron,configurer)             "Konfigurieren"
+   set caption(celestron,controle)               "Kontroll"
+   set caption(celestron,format)                 "Format"
+   set caption(celestron,maj_celestron)          "Zeit, Länge, Breite, Höhe des Celestron Aktualisierung"
+   set caption(celestron,raquette_tel)           "Hand Kontroller am Bildschirm"
+
+   set caption(celestron,install_1)              "Ende der Celestron-Plugin-Installation"
+   set caption(celestron,install_2)              "Die libcelestron.dll Bibliothek ist aktualisiert."
+
+   set caption(celestron,port_celestron)         "Celestron Port"
+   set caption(celestron,2points)                ":"
+
+   set caption(celestron,titre_site_web)         "Referenz Webseite:"
+   set caption(celestron,site_celestron)         "http://www.celestron.com/"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(celestron,monture)                "Celestron"
+   set caption(celestron,format_court_long)      "Curto Longo"
+   set caption(celestron,port)                   "Porta"
+   set caption(celestron,configurer)             "Configuração"
+   set caption(celestron,controle)               "Controlo"
+   set caption(celestron,format)                 "Formato"
+   set caption(celestron,maj_celestron)          "Actualizar tempo, longitude, latitude e altitude do Celestron"
+   set caption(celestron,raquette_tel)           "Controlador de mão no ecrã"
+
+   set caption(celestron,install_1)              "Fin da instalação do plugin Celestron"
+   set caption(celestron,install_2)              "A livraria libcelestron.dll foi actualizada."
+
+   set caption(celestron,port_celestron)         "Porta Celestron"
+   set caption(celestron,2points)                ":"
+
+   set caption(celestron,titre_site_web)         "Site Web de referência:"
+   set caption(celestron,site_celestron)         "http://www.celestron.com/"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(celestron,monture)                "Celestron"
+   set caption(celestron,format_court_long)      "Short Long"
+   set caption(celestron,port)                   "Port"
+   set caption(celestron,configurer)             "Set up"
+   set caption(celestron,controle)               "Control"
+   set caption(celestron,format)                 "Format"
+   set caption(celestron,maj_celestron)          "Update time, longitude, latitude and altitude of Celestron"
+   set caption(celestron,raquette_tel)           "Hand controller on screen"
+
+   set caption(celestron,install_1)              "End of Celestron plugin installation"
+   set caption(celestron,install_2)              "libcelestron.dll library updated."
+
+   set caption(celestron,port_celestron)         "Celestron Port"
+   set caption(celestron,2points)                ":"
+
+   set caption(celestron,titre_site_web)         "Reference Web Site:"
+   set caption(celestron,site_celestron)         "http://www.celestron.com/"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(celestron,monture)                "Celestron"
+   set caption(celestron,format_court_long)      "Short Long"
+   set caption(celestron,port)                   "Port"
+   set caption(celestron,configurer)             "Set up"
+   set caption(celestron,controle)               "Control"
+   set caption(celestron,format)                 "Format"
+   set caption(celestron,maj_celestron)          "Update time, longitude, latitude and altitude of Celestron"
+   set caption(celestron,raquette_tel)           "Hand controller on screen"
+
+   set caption(celestron,install_1)              "End of Celestron plugin installation"
+   set caption(celestron,install_2)              "libcelestron.dll library updated."
+
+   set caption(celestron,port_celestron)         "Celestron Port"
+   set caption(celestron,2points)                ":"
+
+   set caption(celestron,titre_site_web)         "Reference Web Site:"
+   set caption(celestron,site_celestron)         "http://www.celestron.com/"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(celestron,monture)                "Celestron"
+   set caption(celestron,format_court_long)      "Short Long"
+   set caption(celestron,port)                   "Port"
+   set caption(celestron,configurer)             "Set up"
+   set caption(celestron,controle)               "Control"
+   set caption(celestron,format)                 "Format"
+   set caption(celestron,maj_celestron)          "Update time, longitude, latitude and altitude of Celestron"
+   set caption(celestron,raquette_tel)           "Hand controller on screen"
+
+   set caption(celestron,install_1)              "End of Celestron plugin installation"
+   set caption(celestron,install_2)              "libcelestron.dll library updated."
+
+   set caption(celestron,port_celestron)         "Celestron Port"
+   set caption(celestron,2points)                ":"
+
+   set caption(celestron,titre_site_web)         "Reference Web Site:"
+   set caption(celestron,site_celestron)         "http://www.celestron.com/"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

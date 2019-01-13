@@ -1,0 +1,728 @@
+
+#--- creation de fonctions utiles pour socreq
+source ../common/macros.tcl
+
+#--- cree les variables globales de socreq
+source variables_globales.tcl
+
+lappend auto_path $ros(root,audela) lib
+
+#--- cree l'interface de socreq
+source interface_ihm.tcl
+
+#--- mise en place des liaisons (bindings)
+source liaisons.tcl
+
+package require xml
+package require dom
+
+package require http
+package require tls
+http::register https 443 ::tls::socket
+
+# Ouverture du modele de document xml a envoyer a podet/majordome
+set file [open {template_podet_ssp.xml}]
+set xmlmajordometemplate [read $file]
+close $file
+unset file
+
+proc vo_row_get { header data fieldname } {
+ set i [lsearch -exact $header $fieldname]
+ return [lindex $data $i]
+}
+
+# ==========================================================================================
+
+gren_info "$ros(caption,title,1)"
+gren_info "$ros(caption,title,2)"
+gren_info "$ros(caption,title,3)"
+
+# ==========================================================================================
+
+gren_info "Mode de gestion des disques : $ros(common,mode)\n"
+
+# --- Open MySQL connections and update ros variable with ROS table contents
+ros_sql_open_init
+
+# --- initialisations (creation du buffer image, etc...)
+gren_create
+set logdate0 0.
+
+# --- grande boucle de scandisk. c'est le coeur de socreq.
+set ros(common,status_prev) ""
+set sortie "no"
+set lastfiledate0 0
+set lastfiledate $lastfiledate0
+set nficreq0 0
+set date0 [clock seconds]
+
+
+# --- redirection des variables
+gren_info " dirbase = $ros(common,bddimages,dirbase)"
+gren_info " dirfits = $ros(common,bddimages,dirfits)"
+gren_info " dircata = $ros(common,bddimages,dircata)"
+gren_info " dirinco = $ros(common,bddimages,dirinco)"
+gren_info " direrr  = $ros(common,bddimages,direrr)"
+gren_info " dirlog  = $ros(common,bddimages,dirlog)"
+gren_info " limit   = $ros(common,bddimages,limit)"
+gren_info " login   = $ros(common,bddimages,login)"
+gren_info " pass    = $ros(common,bddimages,pass)"
+gren_info " serv    = $ros(common,bddimages,serv)"
+gren_info " repplug = $ros(common,bddimages,rep_plug)"
+gren_info "--------------------------------------------------------"
+global bddconf
+
+set bddconf(dirbase)  $ros(common,bddimages,dirbase)
+set bddconf(dirfits)  $ros(common,bddimages,dirfits)
+set bddconf(dircata)  $ros(common,bddimages,dircata)
+set bddconf(dirinco)  $ros(common,bddimages,dirinco)
+set bddconf(direrr)   $ros(common,bddimages,direrr) 
+set bddconf(dirlog)   $ros(common,bddimages,dirlog) 
+set bddconf(limit)    $ros(common,bddimages,limit)  
+set bddconf(login)    $ros(common,bddimages,login)  
+set bddconf(pass)     $ros(common,bddimages,pass)   
+set bddconf(serv)     $ros(common,bddimages,serv)   
+set bddconf(rep_plug) $ros(common,bddimages,rep_plug)   
+set bddconf(bufno)    1
+# --
+source [ file join $ros(common,bddimages,rep_plug) bddimages_sql.tcl ]
+
+
+# -- Procedure d'insertion des corps identifies dans la table ros.ssp_astrometric
+proc sql_ssp_identification_insert { fields } {
+ global bddconf
+
+ set params {}
+ foreach field $fields {
+  set x [string map {{'} {\'}} $field]
+  lappend params "'$x'"
+ }
+ set sqlcmd "INSERT INTO ros.ssp_astrometric VALUES ([join $params ,])"
+
+ set err [catch {set sqlresult [::bddimages_sql::sql query $sqlcmd]} msg]
+ if {$err} {
+  switch $msg {
+    "::mysql::query/db server: Table 'ros.ssp_astrometric' doesn't exist" {
+      set sqlcmdcrea ""
+      append sqlcmdcrea "CREATE TABLE IF NOT EXISTS ros.ssp_astrometric ("
+      append sqlcmdcrea " idbddimg bigint(20) NOT NULL,"
+      append sqlcmdcrea " idbddcata bigint(20) NOT NULL,"
+      append sqlcmdcrea " datemodif DATETIME NOT NULL,"
+      append sqlcmdcrea " dateobsjd double,"
+      append sqlcmdcrea " num bigint(20),"
+      append sqlcmdcrea " name varchar(128),"
+      append sqlcmdcrea " ira double NOT NULL,"
+      append sqlcmdcrea " idec double NOT NULL,"
+      append sqlcmdcrea " sra double NOT NULL,"
+      append sqlcmdcrea " sdec double NOT NULL,"
+      append sqlcmdcrea " iradialerrpos double NOT NULL,"
+      append sqlcmdcrea " sradialerrpos double NOT NULL,"
+      append sqlcmdcrea " deltapos double NOT NULL,"
+      append sqlcmdcrea " scorepos double NOT NULL,"
+      append sqlcmdcrea " irmag double NOT NULL,"
+      append sqlcmdcrea " srmag double NOT NULL,"
+      append sqlcmdcrea " irmagerr double NOT NULL,"
+      append sqlcmdcrea " srmagerr double NOT NULL,"
+      append sqlcmdcrea " deltamag double NOT NULL,"
+      append sqlcmdcrea " scoremv double NOT NULL,"
+      append sqlcmdcrea " score double NOT NULL,"
+      append sqlcmdcrea " scoreposlimit double NOT NULL,"
+      append sqlcmdcrea " scoremvlimit double NOT NULL,"
+      append sqlcmdcrea " scorelimit double NOT NULL,"
+      append sqlcmdcrea " idcatasrc bigint(20) NOT NULL,"
+      append sqlcmdcrea " flagsex integer NOT NULL"
+      append sqlcmdcrea ") ENGINE=MyISAM;"
+
+      set err [catch {::bddimages_sql::sql query $sqlcmdcrea} msg]
+      if {$err} {
+        gren_info "sql_ssp_identification_insert: ERREUR 101 :Creation table images <err=$err> <msg=$msg> <sql=$sqlcmdcrea>"
+        return 101
+      } else {
+        set resultsql ""
+        set err [catch {set resultsql [::bddimages_sql::sql query $sqlcmd]} msg]
+        if {$err} {
+          gren_info  "sql_ssp_identification_insert: ERREUR 102 : Impossible d inserer un element dans la table ssp_astrometric <err=$err> <msg=$msg> <sql=$sqlcmd>"
+          return 102
+        } else {
+        }
+      }
+    }
+
+    default {
+      gren_info "sql_ssp_identification_insert: ERREUR 103 : Impossible d acceder aux informations de ssp_astrometric <err=$err> <msg=$msg>"
+      return 103
+    }
+  }
+  # Fin switch
+ }
+
+
+set err [catch {source [ file join $ros(root,audela) gui audace vo_tools.tcl ]} msg]
+gren_info "solarsystemprocess:        NUM : <$err>" 
+gren_info "solarsystemprocess:        MSG : <$msg>"
+
+
+
+#package require SOAP     
+
+# --
+
+set ros(common,private,wait) 0
+
+while {$sortie=="no"} {
+
+# -- Debut Boucle de travail --------------------------------------------------------------------
+
+ #gren_info "\n"
+ #gren_info "- Current date [clock format [clock seconds] -format %Y-%m-%dT%H:%M:%S -timezone :UTC]"
+ if {[ file exists "$bddconf(dirlog)/ssp.quit" ]} {
+  gren_info "- Ending main loop by user request $bddconf(dirlog)/ssp.quit"
+  break
+ }
+
+ if {[info exists env(SSP_ID)]} {
+ # pour ne traiter qu'une seule image
+ # par exemple : SSP_ID=176 ./solarsystemprocess --console --file ros.tcl
+  set id $env(SSP_ID)
+   gren_info "::::::::::DEBUG::::::: Looping with SSP_ID=$id"
+   set sqlcmd    "SELECT catas.idbddcata,catas.filename,catas.dirfilename,"
+   append sqlcmd " cataimage.idbddimg,images.idheader, "
+   append sqlcmd " images.filename "
+   append sqlcmd " FROM catas,cataimage,images "
+   append sqlcmd " WHERE cataimage.idbddcata=catas.idbddcata "
+   append sqlcmd " AND cataimage.idbddimg=images.idbddimg "
+   append sqlcmd " AND cataimage.idbddimg='$id' "
+   append sqlcmd " LIMIT 1 "
+ } else {
+   # -- recuperation de la date de traitement la plus petite
+#   gren_info "- Recuperation de la date de traitement la plus petite"
+   set sqlcmd    "select min(ssp_date) from catas"
+   set err [catch {set resultsql [::bddimages_sql::sql query $sqlcmd]} msg]
+   if {$err} {
+      gren_info "solarsystemprocess: ERREUR 1"
+      gren_info "solarsystemprocess:        NUM : <$err>" 
+      gren_info "solarsystemprocess:        MSG : <$msg>"
+      }
+   set mindate  [lindex  [lindex $resultsql 0] 0]
+#   gren_info "    mindate=$mindate"
+
+   # -- recuperation d un fichier cata
+#   gren_info "- Recuperation d un fichier cata"
+   set sqlcmd    "SELECT catas.idbddcata,catas.filename,catas.dirfilename,"
+   append sqlcmd " cataimage.idbddimg,images.idheader, "
+   append sqlcmd " images.filename "
+   append sqlcmd " FROM catas,cataimage,images "
+   append sqlcmd " WHERE cataimage.idbddcata=catas.idbddcata "
+   append sqlcmd " AND cataimage.idbddimg=images.idbddimg "
+   append sqlcmd " AND catas.ssp_date='$mindate' ORDER BY images.datemodif DESC"
+   append sqlcmd " LIMIT 1 "
+ }
+
+   set err [catch {set resultsql [::bddimages_sql::sql query $sqlcmd]} msg]
+   if {$err} {
+      gren_info "solarsystemprocess: ERREUR 2"
+      gren_info "solarsystemprocess:        NUM : <$err>" 
+      gren_info "solarsystemprocess:        MSG : <$msg>"
+      }
+
+   if {[llength $resultsql] <= 0} then { break }
+
+   set idbddcata -1
+   foreach line $resultsql {
+      set idbddcata   [lindex $line 0]
+      set filename    [lindex $line 1]
+      set dirfilename [lindex $line 2]
+      set idbddimg    [lindex $line 3]
+      set idheader    [lindex $line 4]
+      set imgfilename [lindex $line 5]
+      set headertabname  "images_$idheader"
+      }
+   #gren_info "idbddcata=$idbddcata idbddimage=$idbddimg file=$dirfilename/$filename"
+
+   # -- extraction des donnees du champ de l'image depuis la table image
+#   gren_info "- Extraction des donnees du champ de l'image depuis la table image"
+   set sqlcmd    "select `date-obs`,`ra`,`dec`,`telescop`,`exposure`,`filter` from $headertabname where idbddimg='$idbddimg'"
+   set err [catch {set resultsql [::bddimages_sql::sql query $sqlcmd]} msg]
+   if {$err} {
+      gren_info "solarsystemprocess: ERREUR 3"
+      gren_info "solarsystemprocess:        NUM : <$err>" 
+      gren_info "solarsystemprocess:        MSG : <$msg>"
+      }
+
+   set line [lindex $resultsql 0] 
+   set dateobs [lindex $line 0]
+   set ra      [lindex $line 1]
+   set dec     [lindex $line 2]
+   set telescop [lindex $line 3]
+   set exposure [lindex $line 4]
+   set filter [lindex $line 5]
+#   gren_info "    date-obs=$dateobs ra=$ra dec=$dec telescop=$telescop"
+
+   # -- liste des sources tag = 1
+#   gren_info "- Extraction de la liste des sources tag = 1"
+   set filenametmpzip $bddconf(dirlog)/ssp_tmp_cata.txt.gz
+   set filenametmp $bddconf(dirlog)/ssp_tmp_cata.txt
+   set err [catch {file delete -force $filenametmpzip} msg]
+   if {$err} {
+      gren_info "solarsystemprocess: ERREUR 4"
+      gren_info "solarsystemprocess:        NUM : <$err>" 
+      gren_info "solarsystemprocess:        MSG : <$msg>"
+      }
+   set err [catch {file delete -force $filenametmp} msg]
+   if {$err} {
+      gren_info "solarsystemprocess: ERREUR 4"
+      gren_info "solarsystemprocess:        NUM : <$err>" 
+      gren_info "solarsystemprocess:        MSG : <$msg>"
+      }
+   set err [catch {file copy -force $bddconf(dirbase)/$dirfilename/$filename $filenametmpzip} msg]
+   if {$err} {
+      gren_info "solarsystemprocess: ERREUR 4"
+      gren_info "solarsystemprocess:        NUM : <$err>" 
+      gren_info "solarsystemprocess:        MSG : <$msg>"
+      }
+   set err [catch {exec chmod g-s $filenametmpzip} msg ]
+   if {$err} {
+      gren_info "solarsystemprocess: ERREUR 5a"
+      gren_info "solarsystemprocess:        NUM : <$err>" 
+      gren_info "solarsystemprocess:        MSG : <$msg>"
+      }   
+   lassign [::bdi_tools::gunzip $filenametmpzip] err msg
+   #set err [catch {exec gunzip $filenametmpzip} msg ]
+   if {$err} {
+      gren_info "solarsystemprocess: ERREUR 5b"
+      gren_info "solarsystemprocess:        NUM : <$err>" 
+      gren_info "solarsystemprocess:        MSG : <$msg>"
+      }   
+   set linerech "123456789 123456789 123456789 123456789" 
+   set chan [open $filenametmp r]
+   set lineCount 0
+   set littab "no"
+   set extract_image_list {}
+   while {[gets $chan line] >= 0} {
+       if {$littab=="ok"} { 
+#         gren_info "$lineCount = $line"
+         incr lineCount
+         set zlist [split $line " "]
+#         gren_info "$zlist"
+         set xlist {}
+         foreach value $zlist {
+            if {$value!={}} {
+               set xlist [linsert $xlist end $value]
+               }
+            }
+#         gren_info $xlist
+#         gren_info  "tag = [lindex $xlist 1]"
+         if {[lindex $xlist 1]==1} {
+            set extract_image_list [linsert $extract_image_list end $xlist]
+            }
+         } else {
+         set a [string first $linerech $line 0]
+         if {$a>=0} { set littab "ok" }
+         }
+      }
+
+#   gren_info "    num_img_sources =  [llength $extract_image_list]"
+
+   if {[catch {close $chan} err]} {
+       gren_info "solarsystemprocess: ERREUR 6  <$err>"
+   }
+
+   # -- requete skybot
+   #gren_info "- Requete Skybot"
+   set voconf(date_image) $dateobs
+   set voconf(centre_ad_image) $ra
+   set voconf(centre_dec_image) $dec
+   set voconf(taille_champ_calcul) 10800
+   set voconf(observer) 500
+# 910 calern
+# 809 la silla
+   if {$telescop eq "TAROT CHILI"} then { set voconf(observer) 809 }
+   if {$telescop eq "TAROT CALERN"} then { set voconf(observer) 910 }
+#   gren_info "    observer UAI code: $voconf(observer)"
+   set voconf(filter) 0
+   set voconf(objfilter) 110
+   set uaicode $voconf(observer)
+
+   # -- check availability of skybot slice
+   set uptodate 0
+   # dateobs format : 2008-01-01T03:48:04.64
+   # skybot epoch format : 2008-01-01 03:48:04
+   set epoch [regsub {T} $dateobs " "]
+   set epoch [regsub {\..*} $epoch ""]
+#   gren_info "    SKYBOT-STATUS for epoch $epoch"
+   set status [vo_skybotstatus "text" "$epoch"]
+#   gren_info "    MSG-SKYBOT-STATUS : <$status>"
+   if {[lindex $status 1] >= 1} then {
+    set stats [lindex $status 5]
+    set lines [split $stats ";"]
+    if { [llength $lines] == 2 } {
+     if {[string match -nocase "*uptodate*" "[lindex $lines 1]"]} { set uptodate 1 }
+    }
+   }
+   if { ! $uptodate } {
+    gren_info "SKYBOT-STATUS not up to date"
+# TODO if not up to date skip image
+   }
+
+   set skybot_answered 0
+   while { ! $skybot_answered } {
+#   puts "$voconf(date_image) $voconf(centre_ad_image) $voconf(centre_dec_image) $voconf(taille_champ_calcul) $voconf(observer)"
+   set err [ catch { vo_skybotconesearch $voconf(date_image) $voconf(centre_ad_image)   \
+                         $voconf(centre_dec_image) $voconf(taille_champ_calcul)            \
+                         "votable" "object" $voconf(observer) $voconf(filter) $voconf(objfilter) } msg ]
+
+   if {$err} {
+      gren_info "solarsystemprocess: ERREUR 7"
+      gren_info "solarsystemprocess:        NUM : <$err>" 
+      gren_info "solarsystemprocess:        MSG : <$msg>"
+      }   
+
+#   gren_info "MSG-SKYBOT : <$msg>"
+#   puts "MSG-SKYBOT : <$msg>"
+
+    if { $msg eq "failed" } {
+      gren_info "solarsystemprocess: skybot failed"
+    } else {
+     set err [ catch { ::dom::parse $msg } votable ]
+     if { $err } {
+      gren_info "    erreur d analyse de la votable"
+      after 10000
+     } else {
+      set skybot_answered 1
+     }
+    }
+   }
+
+   # -- Parse the votable and extract solar system objects from the parsed votable
+   set fields {}
+   foreach n [::dom::selectNode $votable {descendant::FIELD/attribute::ID}] {
+    lappend fields "[::dom::node stringValue $n]"
+   }
+#   puts "FIELDS: $fields"
+
+   set sbotsources { }
+
+   foreach tr [::dom::selectNode $votable {descendant::TR}] {
+    set row {}
+    foreach td [::dom::selectNode $tr {descendant::TD/text()}] {
+     lappend row [::dom::node stringValue $td]
+    }
+    lappend sbotsources $row
+#    puts "ROW(len=[llength $row]): $row"
+#    puts [vo_row_get $fields $row RA]
+   }
+
+   ::dom::destroy $votable
+
+# Num, Name, RA(h), DE(deg), Class, Mv, Err(arcsec), d(arcsec), dRA(arcsec/h), dDEC(arcsec/h), Dg(ua), Dh(ua)
+# set sbotsources { }
+# foreach ll [split $msg ";" ] {
+##  puts "$ll"
+#  set l [ split $ll "|" ]
+#  if {[llength $l] != 12} then {
+##   puts "err: len != 12"
+#  } else {
+#   lappend sbotsources $l
+#  }
+# }
+
+#   gren_info "    skybot extracted sources: [llength $sbotsources] elements"
+
+   set err [catch {
+   # -- identification
+#   gren_info "- Identification"
+   set scoreposlimit 50.0
+   set scoremvlimit 50.0
+   set scorelimit 50.0
+   set allidentifications {}
+   set accepted 0
+   set rejected 0
+#   gren_info  "extract_image_list = $extract_image_list"
+#   gren_info "num_img_sources =  [llength $extract_image_list]"
+#   gren_info "num_sbot_sources =  [llength $sbotsources]"
+   for {set i 0} {$i<[llength $extract_image_list]} {incr i} {
+    for {set j 0} {$j<[llength $sbotsources]} {incr j} {
+     set a [lindex $extract_image_list $i]
+     if { [llength $a] != 26 } {
+       gren_info "    length of extract_image_list is different of 26"
+       gren_info  "extract_image_list = $extract_image_list"
+       return -code error "length of extract_image_list is different of 26"
+     }
+     set b [lindex $sbotsources $j]
+
+     package require math::constants
+
+     # cra : RA for catalog source
+     set ira [lindex $a 8]
+     set idec [lindex $a 9]
+     set iradialerrpos 5.0
+     set irmag [lindex $a 11]
+     set irmagerr [lindex $a 12]
+     # sra : RA for skybot source
+     set sra_h [mc_angle2deg [vo_row_get $fields $b ra]]
+     set sra [expr $sra_h * 15.0]
+     set sdec [mc_angle2deg [vo_row_get $fields $b de]]
+     set sradialerrpos [expr abs([vo_row_get $fields $b errpos])]
+     set srmag [vo_row_get $fields $b magV]
+     set srmagerr 0.5
+
+     set score NULL
+     set dtr $::math::constants::degtorad
+     # puts "$cra $cdec $cerr $cmag $cmagerr --- $sra $sdec $serr $smag $smagerr"
+     set deltapos [expr sqrt(pow(($sra-$ira)*cos($sdec*$dtr),2) + pow($sdec-$idec,2))]
+     set deltaposdiv [expr ($sradialerrpos + $iradialerrpos) / 3600.0]
+     set scorepos [expr (1.0 - $deltapos / $deltaposdiv) * 100.0]
+#     puts "$i $j POS $deltapos $deltaposdiv"
+     if {$deltapos > $deltaposdiv } { set scorepos 0.0 }
+     set deltamag [expr abs($irmag - $srmag)]
+     set deltamagdiv [expr $srmagerr+$irmagerr]
+     set scoremv [expr (1.0 - $deltamag / $deltamagdiv) * 100.0]
+     if { $deltamag > $deltamagdiv } { set scoremv 0.0 }
+     set score $scorepos
+     if { $scoremv < $score } { set score $scoremv }
+#     if {$deltaposdiv >= $deltapos && $deltamagdiv >= $deltamag} then {
+#       set score [expr (1.0 - $scoremag * $scorepos) * 100.0]
+#     }
+     set idsrc [lindex $a 0]
+     set sbotnum [vo_row_get $fields $b num]
+     set sbotname [vo_row_get $fields $b name]
+     set deltapos [expr $deltapos * 3600]
+
+#     puts "$scorepos $scoremv $score"
+     if { $scorepos >= $scoreposlimit && $scoremv >= $scoremvlimit && $score >= $scorelimit } {
+      # insertion
+      set sqluaicode $voconf(observer)
+      if { $voconf(observer) eq 500} {
+       set sqluaicode NULL
+      } else {
+       set sqluaicode "'$voconf(observer)'"
+      }
+
+      # danger: p is not an array
+      unset p
+      foreach n { sbotnum sbotname ira idec sra_h sdec iradialerrpos sradialerrpos deltapos scorepos irmag srmag irmagerr srmagerr deltamag scoremv score scoreposlimit scoremvlimit scorelimit } { set p($n) [set $n] }
+      set p(sextractor) $a
+      lappend allidentifications [array get p]
+# [list $sbotnum $sbotname $sra_h $sdec $iradialerrpos $sradialerrpos $srmag $srmagerr $deltamag $deltapos $scorepos $scoremv $score $scoreposlimit $scoremvlimit $scorelimit ] $a
+#idcatasrc xpos ypos instrumag errinstrumag sexflux errsexflux ira idec rmagsimplecst rmagsupstar1 errrmagsupstar1 rmagsupstar2 errrmagsupstar2 nbneighbours radiussupstar backgrndsex x2momentum y2momentum xymomentum ellmajaxis ellminaxis ellangle fwhmsex flagsex]
+
+      incr accepted
+     } else {
+      incr rejected
+     }
+    }
+   }
+
+   gren_info "[clock format [clock seconds] -format %Y-%m-%dT%H:%M:%S -timezone :UTC] accepted=$accepted rejected=$rejected idc=$idbddcata idi=$idbddimg"
+
+
+   # La date courante UTC en format ISO qui apparaitra dans la table ssp_astrometric et dans le fichier XML
+   set isodate_now [clock format [clock seconds] -format %Y-%m-%dT%H:%M:%S -timezone :UTC]
+
+   # -- enregistrement des identifications dans la base locale
+
+   if { [info exists ros(common,ssp,sql_insert)] && $ros(common,ssp,sql_insert) } {
+
+     #gren_info "- Insertion des identifications dans la base locale"
+
+    # On efface les eventuelles precedentes identifications pour la
+    # combinaison de cette image avec ce cata
+    set sqlcmd "DELETE FROM ros.ssp_astrometric WHERE idbddimg=$idbddimg AND idbddcata=$idbddcata"
+
+    set err [catch {set sqlresult [::bddimages_sql::sql query $sqlcmd]} msg]
+    if {$err} {
+      gren_info "solarsystemprocess: ERREUR x"
+      gren_info "solarsystemprocess:        NUM : <$err>" 
+      gren_info "solarsystemprocess:        MSG : <$msg>"
+      gren_info "solarsystemprocess:        SQL : $sqlcmd"
+    }
+
+    foreach params $allidentifications {
+      array set p $params
+      set values { }
+      lappend values $idbddimg $idbddcata $isodate_now
+      lappend values [mc_date2jd $dateobs]
+      foreach n { sbotnum sbotname ira idec sra_h sdec iradialerrpos sradialerrpos deltapos scorepos irmag srmag irmagerr srmagerr deltamag scoremv score scoreposlimit scoremvlimit scorelimit } { lappend values $p($n) }
+      # append idcatasrc
+      lappend values [lindex $p(sextractor) 0]
+      # append flagsex
+      lappend values [lindex $p(sextractor) end]
+      sql_ssp_identification_insert $values
+    }
+   }
+
+   # -- construction d un fichier XML de resultat et soumission a l IMCCE
+   if { $accepted <= 0 } {
+   } else {
+   # -- construction d un fichier XML de resultat
+   gren_info "- Construction d un fichier XML de resultat"
+   set xmlparams {}
+   lappend xmlparams %DOCUMENT_DATE% $isodate_now
+   lappend xmlparams %DOCUMENT_TICKET% 0
+   lappend xmlparams %DOCUMENT_AUTHOR% "ROS::SolarSystemProcess"
+   lappend xmlparams %IMAGE_NAME% $imgfilename
+   lappend xmlparams %IMAGE_IDBDDIMG% $idbddimg
+   lappend xmlparams %IMAGE_TELESCOPE% $telescop
+   lappend xmlparams %IMAGE_LOCATION% $uaicode
+   lappend xmlparams %IMAGE_EXPOSURE% $exposure
+   lappend xmlparams %IMAGE_FILTRE% [string trim $filter { }]
+   lappend xmlparams %PARAM_EPOCH% $dateobs
+
+#   setxmlparam document/date [clock format [clock seconds] -format %Y-%m-%dT%H:%M:%S -timezone :UTC]
+#   setxmlparam document/ticket 0
+#   setxmlparam document/author "SolarSystemProcess"
+#   setxmlparam image/name $imgfilename
+#   setxmlparam image/idbddimg $idbddimg
+#   setxmlparam image/telescope $telescop
+#   setxmlparam image/location $uaicode
+#   setxmlparam image/exposure $exposure
+#   setxmlparam image/filtre [string trim $filter { }]
+
+#   set node [::dom::selectNode $xmlmajordometemplate {//*[local-name()='PARAM'][attribute::name="Epoch"]} ]
+#   ::dom::element setAttribute $node value $dateobs
+
+#   set xmltable [::dom::selectNode $xmlmajordometemplate {//*[local-name()='TABLEDATA']}]
+#   foreach node [::dom::node children $xmltable] {
+#    set x [::dom::node removeChild $xmltable $node]
+##    puts "destroying $node -- $x"
+#    ::dom::destroy $x
+#   }
+#   foreach row $allidentifications {
+#     set tr [::dom::document createElement $xmltable TR]
+#     foreach value $row {
+#       set td [::dom::document createElement $tr TD]
+#       ::dom::document createTextNode $td $value
+#     }
+#   }
+
+#   set xmlmessage [::dom::serialize $xmlmajordometemplate]
+
+    set tabledata {}
+    foreach params $allidentifications {
+     array set p $params
+     append tabledata "<vot:TR>"
+     foreach n { sbotnum sbotname sra_h sdec iradialerrpos sradialerrpos srmag srmagerr deltamag deltapos scorepos scoremv score scoreposlimit scoremvlimit scorelimit } { 
+       append tabledata "<vot:TD>$p($n)</vot:TD>"
+     }
+     foreach value $p(sextractor) {
+       append tabledata "<vot:TD>$value</vot:TD>"
+     }
+     append tabledata "</vot:TR>\n"
+    }
+    lappend xmlparams %TABLEDATA% $tabledata
+    set xmlmessage [string map $xmlparams $xmlmajordometemplate]
+    unset tabledata
+    unset xmlparams
+
+#   puts $xmlmessage
+
+   # -- soumission du fichier XML a l'imcce
+   # TODO ne pas envoyer le fichier si aucune identification
+   gren_info "- Soumission du fichier XML a l'imcce"
+
+   set boundary "-----NEXT_PART_[clock seconds].[pid]"
+   set formdata {}
+   append formdata "--$boundary\nContent-Disposition: form-data; name=\"file\"; filename=\"ssp.xml\"\n"
+   append formdata "Content-Type: text/xml\n\n"
+   append formdata $xmlmessage
+   append formdata "\n"
+   append formdata "--$boundary\n"
+
+   set exit_loop 0
+   # Si aucune identification alors on n'effectue pas la boucle
+   # c'est a dire : pas d'envoi du message xml
+   set exit_loop [expr [llength $allidentifications] == 0]
+   if { ! $ros(common,ssp,xml_submit) } {
+     gren_info "xml submission disabled by configuration"
+     set exit_loop 1
+   }
+   while { ! $exit_loop } {
+   set err [catch { http::geturl $ros(common,ssp,xml_submit_url) -type "multipart/form-data, boundary=$boundary" -query $formdata } token]
+   if { $err } {
+     gren_info "- Submission : socket error"
+   } else {
+    set status [::http::status $token]
+    if { $status eq "ok" } {
+     # TODO verification de la valeur de retour
+     if { [string match "*PENDING*" [::http::data $token]] } {
+      gren_info "    Result of submission : request pending"
+      set err 0
+      set exit_loop 1
+     } else {
+      gren_info "    Submission : error"
+#      gren_info [::http::data $token]
+      set err 1
+     }
+    } else {
+      gren_info "    Submission : http error $status"
+      set err 1
+    }
+    ::http::cleanup $token
+   }
+   if {$err} {
+    gren_info "    Error during submission of the results"
+   }
+   if { ! $exit_loop } { after 1000 }
+   }
+
+   unset xmlmessage
+
+   }
+
+   } msg ]
+
+   if { $err >= 1 } {
+    gren_info "- Erreur : $msg"
+   # -- on met a jour le champ catas.ssp_date
+   gren_info "- Mise a jour du champ catas.ssp_date : 3000-01-01"
+   set sqlcmd "UPDATE catas SET ssp_date='3000-01-01' WHERE idbddcata=$idbddcata"
+   set err [catch {set resultsql [::bddimages_sql::sql query $sqlcmd]} msg]
+   if {$err} {
+      gren_info "solarsystemprocess: ERREUR 8"
+      gren_info "solarsystemprocess:        NUM : <$err>" 
+      gren_info "solarsystemprocess:        MSG : <$msg>"
+      }
+
+   } else {
+   # -- on met a jour le champ catas.ssp_date
+   #gren_info "- Mise a jour du champ catas.ssp_date"
+   set sqlcmd "UPDATE catas SET ssp_date=NOW() WHERE idbddcata=$idbddcata"
+   set err [catch {set resultsql [::bddimages_sql::sql query $sqlcmd]} msg]
+   if {$err} {
+      gren_info "solarsystemprocess: ERREUR 8"
+      gren_info "solarsystemprocess:        NUM : <$err>" 
+      gren_info "solarsystemprocess:        MSG : <$msg>"
+      }
+
+   }
+
+# -- Fin Boucle de travail --------------------------------------------------------------------
+
+   after 1000 { global ros ; if {$ros(common,private,wait)==0} { set ros(common,private,wait) 1 } else { set ros(common,private,wait) 0 } }
+   vwait ros(common,private,wait)
+   set ros(common,status) $ros(caption,pas_d_image)
+
+   # --- gestion du fichier log
+   archive_log
+
+   # --- affichage eventuel du status s'il n'y pas rien a traiter
+   if { ($ros(common,status)==$ros(caption,pas_d_image))&&($ros(common,status)!=$ros(common,status_prev))} {
+      # --- aucune image trouvée
+      #gren_info "\n$ros(caption,rien_a_traiter) ([gren_date])"
+   }
+   update
+
+   # --- traite le cas d'une suspension ou de la sortie du programme
+   if {$ros(withtk)==1} {
+       if {[lindex [.gren.fra2.but1 configure -text] 4]==$caption(cont)} {
+         gren_info "$ros(caption,stop) ([gren_date])"
+         vwait avance
+         gren_info "$ros(caption,cont) ([gren_date])"
+       }
+   }
+   set ros(common,status_prev) $ros(common,status)
+
+}
+
+bell
+

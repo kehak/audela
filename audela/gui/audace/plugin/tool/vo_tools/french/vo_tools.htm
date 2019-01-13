@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Observatoire virtuel</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 23 mai 2016</p>
+<h1>Observatoire Virtuel </h1>
+
+<a name='top'></a>
+<table>
+  <tr><td><a href='#field_1'>1. G&eacute;n&eacute;ralit&eacute;s</a></td></tr>
+  <tr><td><a href='#field_2'>2. Recherche et identification des corps du syst&egrave;me solaire dans un champ de vue</a></td></tr>
+  <tr><td><a href='#field_3'>3. Recherche des corps du syst&egrave;me solaire autour d'un corps c&eacute;leste</a></td></tr>
+  <tr><td><a href='#field_4'>4. Quelles sont les donn&eacute;es fournies par SkyBoT ?</a></td></tr>
+  <tr><td><a href='#field_5'>5. Comment remplir les champs de saisie dans les outils ?</a></td></tr>
+  <tr><td><a href='#field_51'>&nbsp;&nbsp;&nbsp;5.1 Champ <em>Nom de l'objet cible</em></a></td></tr>
+  <tr><td><a href='#field_52'>&nbsp;&nbsp;&nbsp;5.2 Champs <em>Ascension droite</em> et <em>D&eacute;clinaison</em></a></td></tr>
+  <tr><td><a href='#field_53'>&nbsp;&nbsp;&nbsp;5.3 Champs <em>Date d'acquisition</em> et <em>Date de calcul</em></a></td></tr>
+  <tr><td><a href='#field_54'>&nbsp;&nbsp;&nbsp;5.4 Champ <em>Dimension du FOV</em></a></td></tr>
+  <tr><td><a href='#field_55'>&nbsp;&nbsp;&nbsp;5.5 Champ <em>Filtre</em></a></td></tr>
+  <tr><td><a href='#field_56'>&nbsp;&nbsp;&nbsp;5.6 Champ <em>Observateur</em></a></td></tr>
+  <tr><td><a href='#field_6'>6. Mises &agrave; jour de SkyBoT</a></td></tr>
+  <tr><td><a href='#field_7'>7. Protocole SAMP / Menu Interop</a></td></tr>
+</table>
+<hr/>
+
+<h2><a name='field_1'></a>1.G&eacute;n&eacute;ralit&eacute;s</h2>
+<table>
+<tr>
+  <td>
+    L'outil Observatoire Virtuel est un portail d'entr&eacute;e vers des services et des ressources
+    (images, catalogues, spectres, bases de donn&eacute;es, etc) d&eacute;velopp&eacute;s et mis &agrave;
+    disposition dans le cadre du projet international Observatoire Virtuel pilot&eacute; par
+    l'<a href="http://www.ivoa.net/">International Virtual Observatory Alliance</a> (IVOA).
+    <p/>
+    L'utilisation de cet outil n&eacute;cessite une connexion internet active.
+    <p/>
+    Les services propos&eacute;s par cet outil sont:
+    <ul>
+     <li>l'interconnexion entre Aud'ACE et <a href="http://aladin.u-strasbg.fr/aladin.gml">Aladin</a>,
+         l'atlas interactif du ciel d&eacute;velopp&eacute; par le <a href="http://cdsweb.u-strasbg.fr/">Centre
+         de Donn&eacute;es de Strasbourg</a> (CDS).</li>
+     <li>l'interconnexion entre Aud'ACE et <a href="http://vo.imcce.fr/webservices/skybot/">SkyBoT</a>, la base de donn&eacute;es
+         de positions astrom&eacute;triques des corps du syst&egrave;me solaire d&eacute;velopp&eacute;e
+         par l'<a href="http://www.imcce.fr/">Institut de m&eacute;canique c&eacute;leste</a> (IMCCE).</li>
+    </ul>
+    <p/>
+    <a href="http://aladin.u-strasbg.fr/aladin.gml">Aladin</a> est un atlas interactif du ciel permettant
+    de visualiser des images digitalis&eacute;es de n'importe quelle r&eacute;gion du ciel, de superposer des
+    donn&eacute;es des catalogues astronomiques et d'acc&eacute;der interactivement aux donn&eacute;es de
+    SIMBAD, NED, VizieR ainsi que de tr&egrave;s nombreuses archives pour tous les objets c&eacute;lestes connus
+    (<a href="http://aladin.u-strasbg.fr/java/FAQ.htx#data">voir les donn&eacute;es disponibles</a>).
+    Aladin est particuli&egrave;rement utile pour les identifications crois&eacute;es
+    multispectrales des sources, la pr&eacute;paration d'observation et le contr&ocirc;le de qualit&eacute;
+    des jeux de donn&eacute;es astronomiques. Aladin est disponible dans trois modes: un pre-visualisateur simple,
+    une interface Java (applet) pour les navigateurs internet et une application autonome Java.
+    <p/>
+    <a href="http://skybot.imcce.fr/">SkyBoT</a> (Sky Body Tracker) est un service du projet Observatoire Virtuel
+    de l'IMCCE permettant la recherche et l'identification des objets du syst&egrave;me solaire, &agrave; une &eacute;poque
+    donn&eacute;e, dans n'importe quel champ de vue de la sph&egrave;re c&eacute;leste. Ce service peut &ecirc;tre
+    utilis&eacute; comme un service web directement exploitable en mode script ou via les deux outils propos&eacute;s
+    dans Aud'ACE:
+    <ul>
+     <li>Recherche et identification des corps du syst&egrave;me solaire dans un champ de vue</li>
+     <li>Recherche des corps du syst&egrave;me solaire autour d'un corps c&eacute;leste</li>
+    </ul>
+    Pour plus d'informations sur le projet SkyBoT, on consultera <a href="http://vo.imcce.fr/webservices/skybot/">les
+    pages d&eacute;crivant son fonctionnement</a>. A noter que SkyBoT est aussi accessible dans Aladin.
+</td>
+</tr>
+</table>
+
+<h2><a name='field_2'></a>2. Recherche et identification des corps du syst&egrave;me solaire dans un champ de vue</h2>
+<table>
+<tr>
+  <td>
+  Cet outil permet de rechercher et d'identifier les objets du syst&egrave;me solaire pr&eacute;sents
+  dans toute image astronomique calibr&eacute;e astrom&eacute;triquement (i.e dont on connait l'orientation
+  et le facteur d'&eacute;chelle). L'utilisation de cet outil se fait de la mani&egrave;re suivante:
+  <p/>
+  <table>
+   <tr><td><img src="images/outil_1.jpg" alt="Outil recherche et identification" /></td></tr>
+   <tr><td align="center">Outil <em>Recherche et identification des corps<br/>du syst&egrave;me solaire dans un champ de vue</em></td></tr>
+  </table>
+  <p/>
+  <p><b>[ Addenum (2009-07-31)</b> : Si une image calibr&eacute;e astrom&eacute;triquement
+ est affich&eacute;e, on peut cliquer sur "Utiliser l'image courante" pour remplir
+les champs automatiquement. V&eacute;rifiez tout de m&ecirc;me la valeur du temps de pose ;
+l'origine de la date n'est pas d&eacute;duite des informations de l'image.
+Cliquez ensuite sur "Lancer la recherche". <b>]</b>
+  </p>
+  <ol type="a">
+    <li>Charger une image astronomique calibr&eacute;e astrom&eacute;triquement</li>
+    <li>V&eacute;rifier les caract&eacute;ristiques de l'image, &agrave; savoir, la valeur et l'unit&eacute; (secondes
+        ou minutes) du temps de pose et l'origine de la date (d&eacute;but ou milieu de pose)</li>
+    <li>Selon le cas ou le besoin, adapter ou modifier les caract&eacute;ristiques du champ de vue (FOV):
+        <ul>
+          <li>les coordonn&eacute;es &eacute;quatoriales astrom&eacute;triques J2000 du centre du FOV (<a href="#field_52">c.f. paragraphe 5.2</a>)</li>
+          <li>la dimension du FOV (<a href="#field_54">c.f. paragraphe 5.4</a>)</li>
+          <li>la date d'acquisition de l'image (<a href="#field_53">c.f. paragraphe 5.3</a>)</li>
+          <li>la valeur du filtre d'erreur &agrave; appliquer sur les positions des corps : tout corps dont l'erreur de
+              position est sup&eacute;rieure &agrave; la valeur indiqu&eacute;e (en secondes de degr&eacute;) ne
+              sera pas retenu (<a href="#field_55">c.f. paragraphe 5.5</a>)</li>
+          <li>le code UAI de l'observatoire o&ugrave; l'image a &eacute;t&eacute; acquise (<a href="">c.f. paragraphe 5.6</a>)</li>
+        </ul>
+    </li>
+    <li>Lancer la recherche des corps dans le FOV &agrave; l'aide du bouton "Lancer la recherche"</li>
+  </ol>
+  <p/>
+  La requ&ecirc;te de recherche des corps peut durer plusieurs dizaines de seconde &agrave; plusieurs
+  minutes selon la taille du champ de vue.
+  <p/>
+  Une fois la requ&ecirc;te termin&eacute;e, les corps du syst&egrave;me solaire pr&eacute;sents dans
+  le FOV sont affich&eacute;s dans le tableau et <a href="images/outil_1_resultat.jpg">trac&eacute;s dans l'image</a>.
+  Dans la table, un clic sur le bouton gauche de la souris permet de s&eacute;lectionner le corps et de le
+  rep&eacute;rer dans l'image. Un clic sur le bouton droit de la souris permet d'ouvrir un menu permettant de:
+  <ul>
+    <li>Voir, masquer ou rafra&icirc;chir les objets dans l'image</li>
+    <li>Afficher le nom  des corps c&eacute;lestes</li>
+    <li>Appliquer et param&eacute;trer les filtres sur les objets de l'image (magnitude, mouvement propre, erreur de position, etc.)</li>
+    <li>Invoquer l'outil <em>T&eacute;lescope</em> afin de pointer le corps s&eacute;lectionn&eacute; (GoTo)</li>
+  </ul>
+  Les donn&eacute;es pr&eacute;sent&eacute;es dans la table sont d&eacute;taill&eacute;es dans le
+  <a href="#field_4">paragraphe 4</a>. On pourra aussi se r&eacute;f&eacute;rer &agrave; la
+  <a href="http://vo.imcce.fr/webservices/skybot/">documentation de SkyBoT</a>.
+  <p/>
+  <dl>
+    <dt><strong>Autres actions</strong></dt>
+    <dd><dl>
+          <dt><strong>Visualiser le champ avec Aladin</strong></dt>
+            <dd>Ce bouton ouvre le navigateur internet et charge l'image DSS2 et les &eacute;toiles du catalogue USNO2
+                du champ de vue dans l'applet Java d'Aladin<p/></dd>
+          <dt><strong>Caract&eacute;ristiques de l'objet s&eacute;lectionn&eacute;</strong></dt>
+            <dd>Apr&egrave;s s&eacute;lection d'un corps dans la table,
+                ce bouton charge dans le navigateur internet les donn&eacute;es orbitales du corps s&eacute;lectionn&eacute;
+                dans la base <a href="ftp://ftp.lowell.edu/pub/elgb/astorb.html">ASTORB (Lowell Observatory)</a> via le
+                service <a href="http://vizier.u-strasbg.fr/viz-bin/VizieR">VizieR</a> du CDS (mise &agrave; jour hebdomadaire
+                le lundi)<p/></dd>
+          <dt><strong>Eph&eacute;m&eacute;rides de l'objet s&eacute;lectionn&eacute;</strong></dt>
+            <dd>Ce bouton charge les &eacute;ph&eacute;m&eacute;rides du corps s&eacute;lectionn&eacute; sur le
+                <a href="http://vo.imcce.fr/webservices/miriade/">serveur de
+                calcul d'&eacute;ph&eacute;m&eacute;rides de position</a> des corps du syst&egrave;me solaire
+                de l'IMCCE</dd>
+        </dl>
+    </dd>
+  </dl>
+  <strong>Autre utilisation</strong>
+  <dl>
+    <dt></dt>
+    <dd>Il n'est pas indispensable de charger une image pour rechercher les corps du syst&egrave;me solaire
+        pr&eacute;sents dans un champ de vue. Il suffit de saisir les caract&eacute;ristiques du champ de vue:
+        coordonn&eacute;es du centre, taille du champ et &eacute;poque puis d'invoquer le service (bouton <em>Lancer
+        la recherche</em>). La liste des corps trouv&eacute;s est alors pr&eacute;sent&eacute;e dans la table.</dd>
+  </dl>
+  </td>
+</tr>
+</table>
+
+<h2><a name='field_3'></a>3. Recherche des corps du syst&egrave;me solaire autour d'un corps c&eacute;leste</h2>
+<table>
+<tr>
+  <td>
+  Cet outil permet de rechercher les objets du syst&egrave;me solaire pr&eacute;sents autour de n'importe quel
+  corps c&eacute;leste. L'utilisation de cet outil se fait de la mani&egrave;re suivante:
+  <p/>
+  <table>
+   <tr><td><img src="images/outil_2.jpg" alt="Outil recherche autour d'un corps c&eacute;leste" /></td></tr>
+   <tr><td align="center">Outil <em>Recherche des corps du syst&egrave;me<br/>solaire autour d'un corps c&eacute;leste</em></td></tr>
+  </table>
+  <p/>
+  <ol type="a">
+    <li>Saisir le nom d'un corps c&eacute;leste (<a href="#field_51">c.f. paragraphe 5.1</a>)</li>
+    <li>Saisir l'&eacute;poque de calcul de la position du corps c&eacute;leste (<a href="#field_53">c.f. paragraphe 5.3</a>)</li>
+    <li>Saisir le code UAI du lieu g&eacute;ographique  (<a href="#field_56">c.f. paragraphe 5.6</a>)</li>
+    <li>R&eacute;soudre le nom du corps en cliquant sur le bouton <em>Calcul de l'&eacute;ph&eacute;m&eacute;ride de la cible</em></li>
+    <li>Saisir la dimension du FOV (<a href="#field_54">c.f. paragraphe 5.4</a>) et la valeur du filtre d'erreur &agrave; appliquer
+        sur les positions des corps (<a href="#field_55">c.f. paragraphe 5.5</a></li>
+    <li>Lancer la recherche des corps pr&eacute;sents autour de la cible &agrave; l'aide du bouton "Lancer la recherche"</li>
+  </ol>
+  <p/>
+  La requ&ecirc;te pour r&eacute;soudre le nom du corps c&eacute;leste en ses coordonn&eacute;es c&eacute;lestes
+  (de l'&eacute;poque saisie pour un corps du syst&egrave;me solaire et de l'&eacute;poque du catalogue pour les autres
+  corps c&eacute;lestes) est relativement rapide. Elle pourra &ecirc;tre l&eacute;g&egrave;rement plus rapide en
+  d&eacute;cochant l'une des sources de recherche (SkyBoT ou S&eacute;same) selon que le corps &agrave; r&eacute;soudre est
+  un corps du syst&egrave;me solaire (on d&eacute;coche alors S&eacute;same) ou un autre corps (on d&eacute;coche alors
+  SkyBoT). La requ&ecirc;te de recherche des corps du syst&egrave;me solaire autour de la cible peut, quant-&agrave; elle,
+  durer plusieurs dizaines de seconde &agrave; plusieurs minutes selon la taille du champ de vue.
+  <p/>
+  Une fois la requ&ecirc;te termin&eacute;e, les corps du syst&egrave;me solaire pr&eacute;sents dans
+  le FOV sont affich&eacute;s dans le tableau. Dans la table, un clic sur le bouton gauche de la souris permet
+  de s&eacute;lectionner le corps. Un clic sur le bouton droit de la souris permet d'ouvrir un menu permettant
+  d'invoquer l'outil <em>T&eacute;lescope</em> afin de pointer le corps s&eacute;lectionn&eacute; (GoTo).
+  <p/>
+  Les donn&eacute;es pr&eacute;sent&eacute;es dans la table sont d&eacute;taill&eacute;es dans le
+  <a href="#field_4">paragraphe 4</a>. On pourra aussi se r&eacute;f&eacute;rer &agrave; la
+  <a href="http://vo.imcce.fr/webservices/skybot/">documentation de SkyBoT</a>.
+  <p/>
+  <dl>
+    <dt><strong>Autres actions</strong></dt>
+    <dd><dl>
+          <dt><strong>Visualiser le champ avec Aladin</strong></dt>
+            <dd>Ce bouton ouvre le navigateur internet et charge l'image DSS2 et les &eacute;toiles du catalogue USNO2
+                du champ de vue dans l'applet Java d'Aladin<p/></dd>
+          <dt><strong>Caract&eacute;ristiques de l'objet s&eacute;lectionn&eacute;</strong></dt>
+            <dd>Apr&egrave;s s&eacute;lection d'un corps dans la table,
+                ce bouton charge dans le navigateur internet les donn&eacute;es orbitales du corps s&eacute;lectionn&eacute;
+                dans la base <a href="ftp://ftp.lowell.edu/pub/elgb/astorb.html">ASTORB (Lowell Observatory)</a> via le
+                service <a href="http://vizier.u-strasbg.fr/viz-bin/VizieR">VizieR</a> du CDS (mise &agrave; jour hebdomadaire
+                le lundi)<p/></dd>
+        </dl>
+    </dd>
+  </dl>
+  </td>
+</tr>
+</table>
+
+<h2><a name='field_4'></a>4. Quelles sont les donn&eacute;es fournies par SkyBoT ?</h2>
+<table>
+<tr>
+  <td>
+    Les &eacute;ph&eacute;m&eacute;rides fournies par <a href="http://skybot.imcce.fr/">SkyBoT</a>
+    sont des coordonn&eacute;es &eacute;quatoriales (ascension droite et d&eacute;clinaison)
+    astrom&eacute;triques J2000 dans un rep&egrave;re g&eacute;ocentrique ou topocentrique &agrave;
+    l'&eacute;poque consid&eacute;r&eacute;e.
+    <p/>
+    Les &eacute;ph&eacute;m&eacute;rides des plan&egrave;tes sont calcul&eacute;es &agrave; partir de la
+    th&eacute;orie DE405 (<a href="http://ssd.jpl.nasa.gov/eph_info.html">JPL</a>). Les
+    &eacute;ph&eacute;m&eacute;rides des satellites naturels sont calcul&eacute;es &agrave; partir de
+    th&eacute;ories propres &agrave; chaque satellite ou syst&egrave;me plan&eacute;taire.
+    <p/>
+    Les &eacute;ph&eacute;m&eacute;rides des ast&eacute;ro&iuml;des sont calcul&eacute;es par int&eacute;gration
+    num&eacute;rique du probl&egrave;me perturb&eacute; des 9 corps. Les propri&eacute;t&eacute;s dynamiques
+    des corps sont issues de la base de donn&eacute;es d'&eacute;l&eacute;ments osculateurs
+    <a href="ftp://ftp.lowell.edu/pub/elgb/astorb.html">ASTORB</a> (Lowell observatory).
+  </td>
+</tr>
+</table>
+
+<h2><a name='field_5'></a>5. Comment remplir les champs de saisie dans les outils ?</h2>
+<table>
+<tr>
+  <td><a name='field_51'></a><strong>5.1 Champ <em>Nom de l'objet cible</em></strong></td>
+</tr>
+<tr>
+  <td>
+    La r&eacute;solution du nom des corps consiste &agrave; transformer le nom du corps en ses coordonn&eacute;es
+    sur la sph&egrave;re c&eacute;leste. Cette r&eacute;solution se fait &agrave; partir du ou d'un des nom officiel ou
+    num&eacute;ro ou d&eacute;signation provisoire du corps c&eacute;leste. Aud'ACE resoud les noms des corps
+    c&eacute;lestes via SkyBoT (IMCCE) pour les corps du syst&egrave;me solaire et via Sesame (CDS) pour tous les
+    autres corps c&eacute;lestes (Sesame est le resolver de Simbad et VizieR, cf. le site internet du
+    <a href="http://cdsweb.u-strasbg.fr/">CDS</a>).
+    <p/>
+    <strong>5.1.1 D&eacute;signation des corps du syst&egrave;me solaire:</strong>
+    <p/>
+    Les d&eacute;signations reconnues sont le nom officiel ou le num&eacute;ro ou la d&eacute;signation provisoire
+    de l'objet :
+    <ul>
+     <li>Pallas</li>
+     <li>1999 TC36</li>
+     <li>mars</li>
+     <li>J-III</li>
+     <li>15905</li>
+    </ul>
+    <p/>
+    La r&eacute;solution des noms avec SkyBoT privil&eacute;gie les plan&egrave;tes et les satellites
+    naturels tandis que la r&eacute;solution des num&eacute;ros privil&eacute;gie les ast&eacute;ro&iuml;des car
+    il est commun de les d&eacute;signer ainsi. Pour fournir sans ambigu&iuml;t&eacute; le nom (ou num&eacute;ro ou
+    d&eacute;signation) d'un corps du syst&egrave;me solaire, on le fera pr&eacute;c&eacute;der par un des codes suivant:
+    <ul>
+     <li>'&nbsp;<font color="#4d9b01"><strong>a:</strong></font>&nbsp;' pour d&eacute;signer un ast&eacute;ro&iuml;de</li>
+     <li>'&nbsp;<font color="#4d9b01"><strong>p:</strong></font>&nbsp;' pour d&eacute;signer une plan&egrave;te</li>
+     <li>'&nbsp;<font color="#4d9b01"><strong>s:</strong></font>&nbsp;' pour d&eacute;signer un satellite naturel</li>
+     <li>'&nbsp;<font color="#4d9b01"><strong>c:</strong></font>&nbsp;' pour d&eacute;signer une com&egrave;te</li>
+    </ul>
+    Actuellement, tous les ast&eacute;ro&iuml;des connus (de la base Astorb) peuvent &ecirc;tre r&eacute;solus,
+    de m&ecirc;me que les plan&egrave;tes et 33 satellites naturels (sur un total d'environ 150). Les satellites
+    manquant ainsi que les com&egrave;tes seront progressivement introduit dans <a href="http://skybot.imcce.fr/">SkyBoT</a>.
+    <p/>
+    Exemples de saisies:
+    <ul>
+     <li><strong>a:Pallas</strong></li>
+     <li><strong>a:1999 TC36</strong></li>
+     <li><strong>p:mars</strong></li>
+     <li><strong>s:J-III</strong></li>
+     <li><strong>a:15905</strong></li>
+    </ul>
+    <p/>
+    <strong>5.1.2 D&eacute;signation des autres corps c&eacute;lestes:</strong>
+    <p/>
+    Les d&eacute;signations reconnues sont celles du <em>Dictionnaire de nomenclature des objets c&eacute;lestes en
+    dehors du syst&egrave;me solaire</em> publi&eacute; par Lortet <em>et al.</em>
+    (<a href="http://simbad.u-strasbg.fr/cgi-bin/cdsbib?1994A%26AS..107..193L">1994A&amp;AS..107..193L</a>).
+    Pour plus d'informations sur la mani&egrave;re de d&eacute;signer les corps c&eacute;lestes autres que ceux
+    du syst&egrave;me solaire, on se r&eacute;f&egrave;rera au serveur <a href="http://simbad.u-strasbg.fr/sim-fid.pl">Simbad</a>
+    du CDS et au <a href="http://vizier.u-strasbg.fr/cgi-bin/Dic-Simbad">dictionnaire des nomenclatures</a>.
+    <p/>
+    Exemples de saisies:
+    <ul>
+     <li><strong>IC 434</strong></li>
+     <li><strong>M1</strong></li>
+     <li><strong>HIP 1234</strong></li>
+    </ul>
+  </td>
+</tr>
+<tr>
+  <td><a name='field_52'></a><strong>5.2 Champs <em>Ascension droite</em> et <em>D&eacute;clinaison</em></strong></td>
+</tr>
+<tr>
+  <td>
+    Les champs de saisie de l'<em>ascension droite</em> et de la <em>d&eacute;clinaison</em> servent &agrave; sp&eacute;cifier
+    les coordonn&eacute;es du centre du champ de vue. Les coordonn&eacute;es attendues sont des coordonn&eacute;es
+    &eacute;quatoriales astrom&eacute;triques J2000, g&eacute;ocentriques ou topocentriques, exprim&eacute;es en heure
+    pour l'ascension droite et en degr&eacute;s pour la  d&eacute;clinaison.
+    <p/>
+    Les formats de coordonn&eacute;es reconnus sont les formats de <a href="http://alain.klotz.free.fr/audela/libmc/mcusr_fr.htm#angle">type
+    'Angles' de la libMC</a> d'AudeLA.
+    <p/>
+    Exemples de saisies:
+    <ul>
+      <li><strong>1h30m40s  45&#176;34'28"</strong> : en heure et degr&eacute;</li>
+      <li><strong>22d40 -45d34m28s</strong> : en degr&eacute;</li>
+      <li><strong>22.67 +45.34</strong> : en degr&eacute;</li>
+      <li><strong>1.57r 0.7954r</strong> : en radian</li>
+    </ul>
+  </td>
+</tr>
+<tr>
+  <td><a name='field_53'></a><strong>5.3 Champs <em>Date d'acquisition</em> et <em>Date de calcul</em></strong></td>
+</tr>
+<tr>
+  <td>
+    Les champs <em>Date d'acquisition</em> et <em>Date de calcul</em> servent &agrave; indiquer la date d'observation
+    du champ de vue ou, plus g&eacute;n&eacute;ralement, la date &agrave; laquelle on souhaite conna&icirc;tre la liste
+    des corps c&eacute;lestes pr&eacute;sents dans une r&eacute;gion de la sph&egrave;re c&eacute;leste.
+    Dans le mode <em>Resolver</em>, ce champ fourni la date de calcul de la position du corps c&eacute;leste.
+    <p/>
+    Les formats de date reconnus sont les formats propos&eacute;s par le <a href="http://alain.klotz.free.fr/audela/libmc/mcusr_fr.htm#date">type
+    'Date' de la LibMC</a>. Ces formats sont illustr&eacute;s dans les exemples suivants :
+    <ul>
+      <li><strong>jd</strong> : un nombre sup&eacute;rieur ou &eacute;gal &agrave; 1000000 signifie une date julienne</li>
+      <li><strong>yyyy-mm-ddThh:mm:ss.ss</strong> : date au format ISO 8601 (date compl&egrave;te plus heures, minutes et secondes)</li>
+      <li><strong>mjd</strong> : un nombre inf&eacute;rieur &agrave; 1000000 signifie une date julienne modifi&eacute;e (jd - 2400000.5)</li>
+      <li><strong>now</strong> : le mot now signifie &agrave; prendre la date et l'heure actuelle du syst&egrave;me d'exploitation</li>
+      <li><strong>now0</strong> : le mot now0 signifie &agrave; prendre la date et l'heure actuelle du syst&egrave;me d'exploitation du matin &agrave; 0h</li>
+      <li><strong>now1</strong> : le mot now1 signifie &agrave; prendre la date et l'heure actuelle du syst&egrave;me d'exploitation du soir 24h</li>
+      <li><strong>J2000</strong> : date de d&eacute;finition d'&eacute;quinoxe (B1950, J2010.56, etc.)</li>
+    </ul>
+    <p/>
+    La date doit &ecirc;tre exprim&eacute;e dans l'&eacute;chelle de temps <b>UTC</b> (Temps Universel Coordonn&eacute;).
+    La p&eacute;riode de validit&eacute; des dates est: 1948-10-25 12h &agrave; 2009-11-14 12h, soit la
+    p&eacute;riode julienne: 2433295.0 &agrave; 2455150.0
+  </td>
+</tr>
+<tr>
+  <td><a name='field_54'></a><strong>5.4 Champ <em>Dimension du FOV</em></strong></td>
+</tr>
+<tr>
+  <td>
+    Le champ <em>Dimension du FOV</em> sert &agrave; sp&eacute;cifier les dimensions RAxDEC du champ de vue.
+    L'unit&eacute; est la seconde de degr&eacute;s. Une valeur unique implique une boite de m&ecirc;me
+    dimension en RA et DEC.
+    <p/>
+    Exemples de saisies :
+    <ul>
+      <li><strong>1200x900</strong> : champ de 1200" par 900"</li>
+      <li><strong>600</strong> : champ de 600" par 600"</li>
+    </ul>
+    Les dimensions du champ de vue ne doivent pas exc&eacute;der 10 degr&eacute;s.
+  </td>
+</tr>
+<tr>
+  <td><a name='field_55'></a><strong>5.5 Champ <em>Filtre</em></strong></td>
+</tr>
+<tr>
+  <td>
+    Le champ <em>Filtre</em> permet de filtrer les corps du syst&egrave;me solaire retourn&eacute;s par SkyBoT en
+    fonction de l'incertitude sur leurs coordonn&eacute;es. Ne sera retourn&eacute; que les corps dont l'incertitude
+    en position est inf&eacute;rieure &agrave; la valeur saisie (en secondes de degr&eacute;). Pour ne pas appliquer
+    de filtre, choisir la valeur 0.
+    <p/>
+    L'incertitude sur la position des ast&eacute;ro&iuml;des est calcul&eacute;e &agrave; partir des param&egrave;tres
+    CEU (valeur absolue de l'incertitude &agrave; 1sigma) et CEU_rate (taux de variation du CEU) de la base
+    de donn&eacute;es orbitales <a href="ftp://ftp.lowell.edu/pub/elgb/astorb.html" target="_blank">ASTORB</a> (Lowell
+    observatory). Les valeurs des incertitudes sur la position des ast&eacute;ro&iuml;des peuvent varier de 0" (ce qui
+    signifie, en g&eacute;n&eacute;ral, que l'orbite est incertaine car le nombre d'observation servant &agrave;
+    l'ajustement de l'orbite n'est pas assez cons&eacute;quent) &agrave; plusieurs milliers de secondes de degr&eacute;.
+    <p/>
+    L'incertitude sur la position des plan&egrave;tes et des satellites naturels est fix&eacute;e arbitrairement
+    &agrave; 0".01 et n'est pas repr&eacute;sentative de l'incertitude r&eacute;elle sur leurs coordonn&eacute;es.
+  </td>
+</tr>
+<tr>
+  <td><a name='field_56'></a><strong>5.6 Champ <em>Observateur</em></strong></td>
+</tr>
+<tr>
+  <td>
+    Le champ <em>Observateur</em> sert &agrave; sp&eacute;cifier la localisation de l'observateur. Pour cela,
+    saisir le <a href="http://minorplanetcenter.org/iau/lists/ObsCodesF" target="_blank">code UAI</a>
+    d'un observatoire ou un des codes reconnus (Mars, Spirit, Opportunity).
+    <p/>
+    Si votre lieu d'observation n'est pas r&eacute;f&eacute;renc&eacute; dans la
+    base des observatoires UAI alors veuillez choisir le code 500 (g&eacute;ocentre) ou le code d'un observatoire situ&eacute;
+    &agrave; proximit&eacute; de votre lieu d'observation. Ce param&egrave;tre n'est indispensable que pour le calcul des
+    &eacute;ph&eacute;m&eacute;rides des corps proches de la Terre tels que la Lune ou les ast&eacute;ro&iuml;des
+    g&eacute;ocroiseurs dans la mesure o&ugrave; cela permet de prendre en compte la parallaxe.
+  </td>
+</tr>
+</table>
+
+<h2><a name='field_6'></a>6. Mises &agrave; jour de <a href="http://vo.imcce.fr/webservices/skybot">SkyBoT</a></h2>
+<table>
+<tr>
+  <td>
+    La base de donn&eacute;es de <a href="http://skybot.imcce.fr/">SkyBoT</a> est mise &agrave; jour chaque semaine
+    en ce qui concerne les ast&eacute;ro&iuml;des.
+    Cela comprend l'insertion des nouveaux corps et la mise &agrave; jour des donn&eacute;es des corps existant.
+    Le rythme de mise &agrave; jour est de 10000 ast&eacute;ro&iuml;des par semaine. Sachant qu'il faut environ 6
+    jours pour calculer les nouvelles &eacute;ph&eacute;m&eacute;rides et les ins&eacute;rer dans la base,
+    les nouvelles donn&eacute;es (et en particulier celles concernant les nouveaux corps) ne sont disponibles
+    que la semaine suivante. Les mises &agrave; jour commencent le lundi avec le t&eacute;l&eacute;chargement de
+    la base de donn&eacute;es orbitales ASTORB sur
+    <a href="http://vizier.u-strasbg.fr/cgi-bin/VizieR-3?-to=3&amp;-meta=1u&amp;-source=B%2Fastorb%2Fastorb" target="_blank">VizieR</a>.
+    <p/>
+    Les &eacute;ph&eacute;m&eacute;rides des plan&egrave;tes et des satellites naturels ne sont mises &agrave; jour
+    que lors d'une &eacute;volution significative des th&eacute;ories des syst&egrave;mes plan&eacute;taires.
+    <p/>
+    Pour plus d'informations sur SkyBoT : <a href="http://vo.imcce.fr/webservices/skybot">http://vo.imcce.fr/webservices/skybot</a>.
+  </td>
+</tr>
+</table>
+
+<h2><a name='field_7'></a>7. Protocole SAMP / Menu Interop</a></h2>
+<table>
+<tr>
+<td>
+<p>( 2009-07-31 ) L'outil Observatoire Virtuel impl&eacute;mente deux fonctionnalit&eacute;s
+ du protocole SAMP : La diffusion et la r&eacute;ception d'images.
+<p>Exemple de fonctionnement :
+<ol>
+<li>Lancer Audela et afficher l'outil Observatoire Virtuel.
+<li>Cliquer sur "Interop Menu" : Le bouton dispara&icirc;t et un menu intitul&eacute; Interop appara&icirc;t dans la barre de menu principale.
+<li>Lancer Aladin (par ex. v6.005) et s'assurer que cette version impl&eacute;mente le protocole SAMP en v&eacute;rifiant la pr&eacute;sence d'une ic&ocirc;ne repr&eacute;sentant une antenne radar en bas &agrave; droite de la fen&ecirc;tre. Cliquer sur l'ic&ocirc;ne et v&eacute;rifier que (1) le hub interne est lanc&eacute; et (2) Aladin est connect&eacute; au hub.
+<li>Charger une image du syst&egrave;me de fichiers dans Audela (ne charger pas une
+ image obtenue par le r&eacute;seau comme par exemple par protocole http).
+Ensuite s&eacute;lectionner dans le  menu "Interop", "Diffuser l'image" ; Aladin doit alors
+ avoir charg&eacute; la m&ecirc;me image
+ (durant cette op&eacute;ration c'est le nom du fichier qui est transmis et non son contenu).
+<li>Pour transmettre une image d'Aladin vers Audela : Dans Aladin effectuer un clic droit sur le plan de l'image &agrave; transmettre, choisir "Broadcast selected images to ..." puis "audela-vo" ; l'image doit &ecirc;tre transmise imm&eacute;diatement.
+</ol>
+
+  </td>
+</tr>
+</table>
+
+</body>
+</html>

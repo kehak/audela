@@ -1,0 +1,4 @@
+LIBRARY libaudelatk
+EXPORTS Audelatk_Init
+
+

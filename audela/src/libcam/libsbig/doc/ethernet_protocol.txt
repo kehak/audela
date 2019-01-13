@@ -1,0 +1,7 @@
+
+To explore Ethernet IPs for SBiG:
+
+1) Establish UDP connection to 192.168.0.255 port 5001
+2) Send the data "Query SBIG Cameras"
+3) Get the response "ACK". In this frame the IP adress can be decoded.
+

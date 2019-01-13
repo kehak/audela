@@ -1,0 +1,92 @@
+obtenir les coordonnees de l observateur
+
+tel1 home
+
+Definir les coordonnees de l observateur
+
+tel1 home {GPS 2.0 E 48.5 150.0}
+
+obtenir les coordonnees de pointage du telescope
+tel1 coord
+
+Initialisation des corrdonnees :
+
+tel1 radec init {7h40m00s +05d13m00s} -equinox J2000.0 -mountside E
+
+tel1 radec coord 
+
+
+On dirige sur une etoile proche : 
+
+tel1 radec coord {14h46m00s +01d53m00s}
+tel1 radec coord {14h6m00s +10d00m00s} -equinox J2000.0 -rate 1 -blocking 1 -backslash 0
+
+tel1 radec coord { 01h29m49s +10d49m38s } -equinox J2000.0 -rate 1 -blocking 1 -backslash 0
+
+
+tel1 radec init {16h41m00s +36d28m00s} -equinox J2000.0 -mountside W
+
+POLARIS : coord :  2h31m52.199s +89d15m50.62s
+on initialise sur l etoile polaire : 
+tel1 radec init {2h31m52s +89d15m51s} -equinox J2000.0 -mountside E
+
+go sur alpha UMA
+tel1 radec goto {11h03m43s +61d45m03s}
+
+go sur Acturus
+tel1 radec goto {14h15m39s +19d10m30s}
+
+
+Retour sur Polaris
+tel1 radec goto {2h31m52s +89d15m51s}
+
+
+
+-----------------------
+Definir les coordonnees de l observateur
+tel1 home {GPS 2.0 E 48.5 150.0}
+# GPS 2.000000 e 48.500000 150.000000
+
+ou se trouve le telescope ?
+tel1 radec coord 
+# 15h16m07s +90d00m00s
+
+on initialise sur l etoile polaire : 
+tel1 radec init {2h31m52s +89d15m51s} -equinox J2000.0 -mountside E
+
+ou se trouve le telescope ?
+tel1 radec coord 
+# 15h17m50s +89d19m55s
+
+go sur alpha UMA
+tel1 radec goto {11h03m43s +61d45m03s}
+
+ou se trouve le telescope ?
+tel1 radec coord 
+# 03h18m04s +61d40m42s
+
+Retour sur Polaris
+tel1 radec goto {2h31m52s +89d15m51s}
+Rien ne bouge
+
+# ou se trouve le telescope ?
+tel1 radec coord 
+# 03h20m01s +61d40m42s
+
+go sur Acturus
+tel1 radec goto {14h15m39s +19d10m30s}
+seul l axe de declinaison fonctionne.
+# 03h21m01s +19d07m28s
+
+Retour sur Polaris
+tel1 radec goto {2h31m52s +89d15m51s}
+Rien ne bouge ! 
+-----------------------
+
+audela\src\libtel\libeqmod\doc
+
+-------------------------
+
+tel1 put
+tel1 putread
+

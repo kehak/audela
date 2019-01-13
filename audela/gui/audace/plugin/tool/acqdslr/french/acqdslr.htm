@@ -1,0 +1,288 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Contr&#244;le &#224; distance</title>
+  <style type="text/css">
+/*<![CDATA[*/
+ p.c1 {font-weight: bold}
+ ul { line-height: 150%; }
+ td { padding-bottom: 20px;padding-left: 20px;}
+/*]]>*/
+  </style>
+</head>
+
+<body>
+<p class="date">Date de mise &#224; jour : 7 janvier 2015</p>
+<h1>Acquisition DSLR</h1>
+<h2>Pr&#233;paration de l'APN</h2>
+<p>Pour tout ce qui concerne les modalit&#233;s de raccordement
+de l'appareil photo num&#233;rique, consulter l'aide disponible
+sous le menu 'Aud'ACE/Configuration/Cam&#233;ra/APN'.</p>
+<p>Les seuls r&#233;glages de l'APN accessibles dans cette
+interface &#233;tant les temps d'exposition, le format de
+l'image et le mode (Normal ou Rafale), il convient de
+r&#233;gler et de v&#233;rifier les autres param&#232;tres
+:</p>
+<ul>
+  <li>R&#233;glage sur mode manuel, de la sensibilit&#233;, du
+diaphragme, du relevage du miroir, du d&#233;lai avant
+extinction et arr&#234;t de la dur&#233;e de revue, etc.</li>
+  <li>Synchronisation de l'heure de l'APN sur celle du PC &#224;
+l'aide d'EOS Utility (Bouton Outils/Rubrique Date/Heure). L'heure
+du PC peut &#234;tre ajust&#233;e dans
+Aud'ACE/Configuration/Heure et Position avec un GPS ou encore
+&#224; l'aide de logiciels tels que Timemo ou NetTime (clients
+de serveurs NTP). Attention au d&#233;calage entre le temps du
+PC et le temps TU d'Aud'ACE.</li>
+  <li>Mode de communication sur 'Connexion PC'.</li>
+  <li>Alimentation et limitation de tout ce qui consomme de
+l'&#233;nergie (signal sonore, luminosit&#233; de
+l'&#233;cran).</li>
+  <li>Connexion du ou des c&#226;bles.</li>
+</ul>
+<h2>Panneau acquisition</h2>
+<table>
+  <tbody>
+    <tr>
+      <td><img src="images/acqdslr.gif" alt="description du panneau DSLR"></td>
+      <td>
+      <p>Le panneau permettant de piloter les prises de vues &#224;
+partir d'un APN comporte (du haut en bas) :</p>
+      <p>Un bouton d'aide de l'outil.</p>
+      <p>Un bouton de s&#233;lection du <b>format</b> des images.
+Lorsque l'APN est connect&#233; les choix offerts en
+mati&#232;re de formats sont r&#233;pertori&#233;s sous
+forme de menu. Le r&#233;glage actuel est coch&#233;.<br>
+Les formats autres que RAW sont en JPEG. Les images RAW sont
+automatiquement transform&#233;s en images portant l'extension
+FITS par d&#233;faut d&#233;finie dans
+Aud'ACE/Configuration/Fichiers image... Le format est
+rappel&#233; &#224; gauche du bouton de s&#233;lection.</p>
+      <p>Le menu du bouton de s&#233;lection de la <b>prise de
+vue</b> comporte au moins trois options <b>{ Une image | Une
+s&#233;rie | En continu }</b>. L'option <b>Une rafale</b> vient
+en plus si la longue pose existe. <b>Une image</b> et <b>Une
+s&#233;rie</b> permettent de choisir la visualisation et
+le mode de d&#233;clenchement. <b>En continu</b> et <b>Une rafale</b>
+imposent l'absence de visualisation imm&#233;diate.</p>
+      <ul>
+        <li><b>Une image</b> inhibe seulement le <b>nombre de poses</b>
+et l'entr&#233;e <b>Intervalle</b> ; tous les autres
+r&#233;glages sont accessibles.</li>
+        <li><b>Une s&#233;rie</b> autorise l'entr&#233;e d'un
+intervalle apr&#232;s r&#233;alisation d'un <b>Test</b>
+permettant de mesurer l'intervalle minimum (Cf. le bouton
+Test).<br>
+Si le mode de d&#233;clenchement est en mode USB (pose de moins
+de 30 secondes), <b>Une s&#233;rie</b> supporte le bracketing
+(pour les photographes), c'est &#224; dire le changement de
+temps d'exposition entre deux prises de vue. Il permet de saisir
+des &#233;v&#232;nements &#233;volutifs &#224; exposition
+constante ou encore de saisir les hautes et les basses
+lumi&#232;res en modifiant les temps d'exposition, soit dans le
+sens croissant, soit dans le sens d&#233;croissant.<br>
+Le bouton <b>Pas</b>, lib&#233;r&#233; lors de la
+s&#233;lection du mode, propose des variations de pas
+d'exposition de -6 &#224; +6 en passant par 0 (s&#233;rie
+&#224; temps constant). Le programme calcule l'exposition
+&#224; appliquer aux images suivantes &#224; partir de
+l'exposition initiale. Une variation de 3 pas modifie le temps
+d'exposition d'un coefficient 2 ou 1/2 selon le sens (+ ou -).
+M&#234;me si un message informe du d&#233;passement de la
+plage des temps propos&#233;s, la coh&#233;rence des
+donn&#233;es <b>Nombre de poses &#224; prendre/Exposition
+initiale/Variation d'exposition</b> doit &#234;tre
+v&#233;rifi&#233;e pour que l'exposition finale ne soit pas
+sup&#233;rieure ou inf&#233;rieure aux capacit&#233;s de
+l'APN.</li>
+        <li><b>En continu</b> consiste &#224; prendre une
+s&#233;quence d'images aussi rapidement que possible. Pour
+fixer rapidement les images il est n&#233;cessaire de passer
+par le mode USB et par le stockage sur la carte m&#233;moire de
+l'APN. En cons&#233;quence les entr&#233;es g&#233;rant le
+nom de l'image, l'intervalle et la visualisation sont
+inhib&#233;es. Le format, le nombre de pose, le temps
+d'exposition et le d&#233;lai restent accessibles. Ce mode
+supporte &#233;galement le bracketing c'est &#224; dire le
+changement d'exposition &#224; chaque prise de vue.<br>
+Note : Ce mode diff&#232;re du mode Rafale de l'APN, plus lent
+il permet de saisir un nombre d'images plus important avec un
+temps d'exposition constant ou variable. Il ne n&#233;cessite
+pas la connexion 'Longue pose'.</li>
+        <li>Le mode <b>Une rafale</b>, pr&#233;sent seulement si la
+longue pose existe, active le mode Rafale de l'APN. Les temps de
+pose doivent &#234;tre courts et les images sont stock&#233;es
+sur la carte m&#233;moire de l'APN (pas de visualisation). Les
+entr&#233;es g&#233;rant le nom de l'image, le nombre de
+poses et la visualisation sont inhib&#233;es. Le format, le
+temps d'exposition et le d&#233;lai restent accessibles alors
+que l'entr&#233;e 'Intervalle' est modifi&#233;e en
+'Dur&#233;e' de la rafale. La s&#233;quence d'instructions
+transmises &#224; l'APN, par le biais d'une prise de vue,
+introduit un retard au d&#233;marrage de la rafale d'environ 1
+seconde pour des images au format Small:Normal.</li>
+      </ul>
+      <p>Un bouton <b>Test</b> est fonctionnel avec <b>Une image</b>
+et
+      <b>Une s&#233;rie</b>. Il permet de mesurer la dur&#233;e
+d'une s&#233;quence compl&#232;te entre l'acquisition et
+l'affichage et d&#233;finit l'intervalle de temps minimum entre
+deux prises de vues. Il a pour effet de prendre une photo test
+dans les conditions r&#233;elles telles que programm&#233;es
+(format, temps d'exposition, stockage, visualisation).<br>
+A la fin du test le temps mesur&#233; est
+transf&#233;r&#233; dans la fen&#234;tre de l'intervalle en
+tant qu'intervalle minimum et l'image test est effac&#233;e
+(sauf si l'image est stock&#233;e sur la carte
+m&#233;moire).<br>
+A l'&#233;vidence le plus rapide est de ne stocker que sur la
+carte m&#233;moire de l'APN mais il faut alors se passer de
+visualisation. Pour r&#233;sumer :</p>
+      <ul>
+        <li>Pour des cadences rapides, pr&#233;f&#233;rer le stockage
+sur la carte m&#233;moire.</li>
+        <li>Pour des mises au point, pr&#233;f&#233;rer le format
+Small (environ 6 fois plus rapide que le RAW et en
+couleurs).</li>
+        <li>Pour des photos &#224; traiter ult&#233;rieurement,
+s&#233;lectionner RAW.</li>
+        <li>De toute fa&#231;on : Mesurer !</li>
+      </ul>
+      <p>Une fen&#234;tre d'affichage : Vide au repos, elle affiche
+les principales &#233;tapes au cours d'une session <b>{ Attente
+| Acquisition | Chargement | Affichage }</b>.</p>
+      <p>Une fen&#234;tre pour saisir le <b>nom
+g&#233;n&#233;rique</b> sous lequel l'image ou les images
+seront sauvegard&#233;es dans le r&#233;pertoire
+images.<br>
+En l'absence de saisie le nom de l'image sera
+      <b>tmp{N&#176;}$extension</b>.<br>
+Seuls les caract&#232;res alphanum&#233;riques et le
+underscore _ sont autoris&#233;s. Les autres caract&#232;res
+sont automatiquement &#233;limin&#233;s sans
+avertissement.</p>
+      <p>Un bouton de s&#233;lection de la plage de temps
+d'exposition. Il comporte une ou deux options selon le mode de
+connexion de l'APN au PC :</p>
+      <ul>
+        <li>Si l'APN a &#233;t&#233; connect&#233; avec le seul
+c&#226;ble USB, le bouton affiche <b>&lt;30</b> (moins de 30
+secondes) mais il est d&#233;sactiv&#233;.
+Simultan&#233;ment la gamme de temps d'exposition (entre 1/8000
+et 30 secondes) est propos&#233;e sous forme de liste
+d&#233;roulante &#224; la droite du bouton.</li>
+        <li>S'il a &#233;t&#233; configur&#233; en mode longue
+pose, les options sont <b>{ &lt;30 | &gt;30 }</b>, ce qui permet
+de basculer d'un mode vers l'autre depuis le PC Maison sans avoir
+&#224; intervenir manuellement sur la configuration de la
+cam&#233;ra. En mode <b>&gt;30</b> le temps d'exposition
+minimal est de 31 secondes.<br>
+Limitation : A la r&#233;ouverture d'une session,
+imm&#233;diatement apr&#232;s une fermeture, le
+red&#233;marrage se fait sur le dernier mode actif (USB ou
+Longue Pose). Il est donc pr&#233;f&#233;rable de quitter sur
+le mode <b>&gt;30</b> (Longue Pose) pour retrouver toutes les
+possibilit&#233;s.</li>
+      </ul>
+      <p>Une fen&#234;tre pour s&#233;lectionner ou saisir le
+      <b>temps d'exposition</b> :</p>
+      <ul>
+        <li>En mode <b>&lt;30</b>, il faut s&#233;lectionner l'une des
+valeurs propos&#233;es par la liste d&#233;roulante. Ces
+valeurs sont les expositions standards exprim&#233;es soit en
+fraction (exemple 1/4000), soit en d&#233;cimal (exemple 0.5)
+soit encore en nombre entier (exemple 2). Note : Demander un
+temps d'exposition non pr&#233;vu pour l'APN conduit l'APN
+&#224; adopter un r&#233;ponse par d&#233;faut, exemple
+demander 1/8000 &#224; un Canon 350 D conduit &#224; un temps
+de 1/4000. Demander 0 seconde et il donnera 1 seconde !</li>
+        <li>En mode <b>&gt;30</b>, une fen&#234;tre de saisie remplace
+la liste d&#233;roulante. Indiquer le temps d'exposition
+exprim&#233; en nombre de secondes enti&#232;res ou
+d&#233;cimales. L'entr&#233;e est filtr&#233;e : En cas
+d'erreur de saisie (caract&#232;re non num&#233;rique ou une
+virgule &#224; la place du point) le temps est fix&#233; au
+temps minimum de 31 secondes.</li>
+      </ul>
+      <p>Une fen&#234;tre pour saisir le <b>nombre de photos</b>
+&#224; prendre. Le nombre entr&#233; doit &#234;tre un
+entier &gt; 0.<br>
+Le nombre est d&#233;cr&#233;ment&#233; en cours de
+session. A la fin de la session le nombre est remis &#224; 1.
+Le d&#233;clenchement n'a aucun effet lorsque le nombre est
+&#233;gal &#224; 0.<br>
+Les images sont auto-index&#233;es par ordre de prise de vue :
+Le nom de l'image sera
+      <b>nom_g&#233;n&#233;rique{N&#176;}$extension</b>. L'extension
+est soit .jpg soit l'extension FITS par d&#233;faut.<br>
+Compte tenu de l'auto-indexation il est conseill&#233; de
+modifier le nom g&#233;n&#233;rique pour chaque nouvelle
+s&#233;rie, sous peine d'&#233;craser les images
+pr&#233;c&#233;dentes.</p>
+      <p>Une fen&#234;tre pour saisir le <b>d&#233;lai</b> avant la
+premi&#232;re prise de vue, exprim&#233; en nombre entier de
+secondes.</p>
+      <p>Une fen&#234;tre pour saisir l'<b>intervalle</b> de temps
+entre deux photos pour l'option <b>Une s&#233;rie</b>.<br>
+Cette entr&#233;e n'est active que si le nombre de poses est
+sup&#233;rieur &#224; 1.<br>
+Le d&#233;lai doit &#234;tre un nombre entier de
+secondes.<br>
+L'intervalle minimum d&#233;pend des choix effectu&#233;s en
+mati&#232;re de temps d'exposition, de stockage des images, de
+la taille des images, de la visualisation, de la vitesse de
+communication support&#233;e par le r&#233;seau. Le plus
+simple est donc de le mesurer avec le bouton 'Test'.<br>
+A la fin du test la vitesse mesur&#233;e est
+transf&#233;r&#233;e dans la fen&#234;tre de l'intervalle en
+tant qu'intervalle minimum. Il est conseill&#233; de faire
+plusieurs mesures car les temps peuvent varier.<br>
+Dans le mode <b>Rafale</b> cette entr&#233;e devient
+l'entr&#233;e de la dur&#233;e de la rafale.</p>
+      <p>Une fen&#234;tre pour saisir le nombre
+d'<b>it&#233;rations</b> du programme
+s&#233;lectionn&#233;. Il permet de r&#233;p&#233;ter des
+s&#233;ries ou des expositions en continu avec bracketing, par
+exemple pour prendre des offsets et des darks de temps
+d'exposition diff&#233;rents.</p>
+      <p>Le bouton de <b>d&#233;clenchement</b> lance
+l'ex&#233;cution des prises de vues, de
+t&#233;l&#233;chargement et d'affichage tels que
+programm&#233;s.<br>
+Toutes les commandes sont gel&#233;es durant une session :
+Aucun changement n'est possible. Si l'APN n'a pas encore
+&#233;t&#233; configur&#233; par Configuration
+Cam&#233;ra/APN, l'appui sur le bouton <b>GO DSLR</b> ouvre ce
+panneau de configuration.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2>Bon &#224; savoir</h2>
+<ul>
+  <li>Pour faciliter la s&#233;lection du temps d'exposition sans
+saturation, la console indique la valeur maximale, moyenne et
+minimale d'une image au format FITS.</li>
+  <li>Un message d'avertissement est &#233;mis si l'appareil
+photo ne r&#233;pond pas, ce qui peut &#234;tre le cas si le
+temps de mise en veille est trop court, s'il s'est mis en erreur,
+si l'alimentation est insuffisante ou si une liaison
+mat&#233;rielle est d&#233;fectueuse.</li>
+  <li>Une bulle d'aide accompagne les principales
+entr&#233;es.</li>
+  <li>Un fichier log, se trouvant dans le r&#233;pertoire images,
+rend compte des prises de vues autres que les tests. Il mentionne
+le lieu de stockage, le nature de la prise de vue, le nom court
+de l'image avec son extension, le format et le temps de pose en
+secondes. En cas de stockage sur la carte m&#233;moire le nom
+se r&#233;sume &#224; l'index et &#224; l'extension (jpg ou
+raw).</li>
+  <li>L'avantage de l'USB2 sur l'USB1.1 n'est r&#233;ellement
+sensible que pour les images RAW. Il est cependant loin
+d'&#234;tre proportionnel au rapport des d&#233;bits
+th&#233;oriques 480/54.</li>
+</ul>
+</body>
+</html>

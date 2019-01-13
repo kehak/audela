@@ -1,0 +1,115 @@
+#
+# Fichier : magnifier.cap
+# Mise à jour $Id: magnifier.cap 9349 2013-04-05 22:34:00Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(magnifier,titre)                    "Magnifier"
+set caption(magnifier,intens)                   "I= %s"
+set caption(magnifier,coord)                    "X= %s Y= %s"
+set caption(magnifier,default_state_label)      "Display on Start-up"
+set caption(magnifier,current_state_label)      "Display"
+set caption(magnifier,color_crosshair)          "Crosshair Color"
+set caption(magnifier,nbPixels)                 "Pixels Number"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(magnifier,titre)                 "Loupe"
+   set caption(magnifier,intens)                "I = %s"
+   set caption(magnifier,coord)                 "X = %s Y = %s"
+   set caption(magnifier,default_state_label)   "Afficher au démarrage"
+   set caption(magnifier,current_state_label)   "Afficher"
+   set caption(magnifier,color_crosshair)       "Couleur du réticule"
+   set caption(magnifier,nbPixels)              "Nombre de pixels"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(magnifier,titre)                 "Ingrandimento"
+   set caption(magnifier,intens)                "I= %s"
+   set caption(magnifier,coord)                 "X= %s Y= %s"
+   set caption(magnifier,default_state_label)   "Visualizza all'avvio"
+   set caption(magnifier,current_state_label)   "Visualizza"
+   set caption(magnifier,color_crosshair)       "Colore del reticolo"
+   set caption(magnifier,nbPixels)              "Numero dei pixels"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(magnifier,titre)                 "Lupa"
+   set caption(magnifier,intens)                "I= %s"
+   set caption(magnifier,coord)                 "X= %s Y= %s"
+   set caption(magnifier,default_state_label)   "Mostrar al arrancar"
+   set caption(magnifier,current_state_label)   "Pantalla"
+   set caption(magnifier,color_crosshair)       "Color del retículo"
+   set caption(magnifier,nbPixels)              "Número de píxeles"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(magnifier,titre)                 "Lupe"
+   set caption(magnifier,intens)                "I= %s"
+   set caption(magnifier,coord)                 "X= %s Y= %s"
+   set caption(magnifier,default_state_label)   "Am starten anzeigen"
+   set caption(magnifier,current_state_label)   "Anzeigen"
+   set caption(magnifier,color_crosshair)       "Farbe des Fadenkreuzes"
+   set caption(magnifier,nbPixels)              "Rasterpunkten Zahl"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(magnifier,titre)                 "Ampliar"
+   set caption(magnifier,intens)                "I= %s"
+   set caption(magnifier,coord)                 "X= %s Y= %s"
+   set caption(magnifier,default_state_label)   "Mostrar ao iniciar"
+   set caption(magnifier,current_state_label)   "Mostrar"
+   set caption(magnifier,color_crosshair)       "Cor do retículo"
+   set caption(magnifier,nbPixels)              "Número de pixeis"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(magnifier,titre)                 "Forstørrelse"
+   set caption(magnifier,intens)                "I= %s"
+   set caption(magnifier,coord)                 "X= %s Y= %s"
+   set caption(magnifier,default_state_label)   "Vis ved Opstart"
+   set caption(magnifier,current_state_label)   "Vis"
+   set caption(magnifier,color_crosshair)       "Trådkors-farve"
+   set caption(magnifier,nbPixels)              "Pixeltal"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(magnifier,titre)                 "Magnifier"
+   set caption(magnifier,intens)                "I= %s"
+   set caption(magnifier,coord)                 "X= %s Y= %s"
+   set caption(magnifier,default_state_label)   "Display on Start-up"
+   set caption(magnifier,current_state_label)   "Display"
+   set caption(magnifier,color_crosshair)       "Crosshair Color"
+   set caption(magnifier,nbPixels)              "Pixels Number"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(magnifier,titre)                 "Magnifier"
+   set caption(magnifier,intens)                "I= %s"
+   set caption(magnifier,coord)                 "X= %s Y= %s"
+   set caption(magnifier,default_state_label)   "Display on Start-up"
+   set caption(magnifier,current_state_label)   "Display"
+   set caption(magnifier,color_crosshair)       "Crosshair Color"
+   set caption(magnifier,nbPixels)              "Pixels Number"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

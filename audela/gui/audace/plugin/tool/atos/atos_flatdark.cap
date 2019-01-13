@@ -1,0 +1,79 @@
+#------------------------------------------------------------------
+# source [ file join $audace(rep_plugin) tool atos atos_ocr.cap
+#------------------------------------------------------------------
+#
+# Fichier        : atos_ocr.cap
+# Description    : Caption pour la reconnaissance de caractere
+# Auteur         : Frederic Vachier
+# Mise à jour $Id: atos_ocr.cap 10643 2014-04-05 12:08:21Z jberthier $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(atos_flatdark,bar_title)        "ATOS - Flat & Dark Correction"
+set caption(atos_flatdark,main_title)       "ATOS - Flat & Dark Correction"
+set caption(atos_flatdark,titre)            "Flat & Dark Correction"
+set caption(atos_flatdark,bar_title_fits)   "Using FITS File"
+set caption(atos_flatdark,bar_title_avi)    "Using AVI File"
+set caption(atos_flatdark,fermer)           "Close"
+set caption(atos_flatdark,aide)             "Help"
+set caption(atos_flatdark,title_flat)       "Create a master Flat"
+set caption(atos_flatdark,title_dark)       "Create a master Dark"
+set caption(atos_flatdark,use_flat)         "Use a master Flat"
+set caption(atos_flatdark,use_dark)         "Use a master Dark"
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(atos_flatdark,bar_title)        "ATOS - Flat & Dark Correction"
+   set caption(atos_flatdark,main_title)       "ATOS - Flat & Dark Correction"
+   set caption(atos_flatdark,titre)            "Correction de Flat & Dark"
+   set caption(atos_flatdark,bar_title_fits)   "Utilise un fichier FITS"
+   set caption(atos_flatdark,bar_title_avi)    "Utilise un fichier AVI"
+   set caption(atos_flatdark,fermer)           "Fermer"
+   set caption(atos_flatdark,aide)             "Aide"
+   set caption(atos_flatdark,title_flat)       "Creation d'un master Flat"
+   set caption(atos_flatdark,title_dark)       "Creation d'un master Dark"
+   set caption(atos_flatdark,use_flat)         "Utiliser un master Flat"
+   set caption(atos_flatdark,use_dark)         "Utiliser un master Dark"
+  
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

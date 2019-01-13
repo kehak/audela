@@ -1,0 +1,187 @@
+
+/*=============== Adresse des sous pages du menu Analyse =========================*/
+
+/*!
+  @page images_img                      Présentation de l'interface des fonctions
+  La plupart, pas toutes, des fonctions de ce menu utilise la même interface.
+  Son fonctionnement ext expliqué ci-après :
+  @htmlinclude "../gui/audace/doc_html/french/05images/1010images.htm"
+*/
+
+/*============================= Elaborer maître ==================================*/
+
+/*!
+  @page images_elaborer_maitre           Elaborer maître
+  Cette page concerne les fonctions <B>Précharge</B>, <B>Noir</B> et <B>PLU</B>
+  @htmlinclude "../gui/audace/doc_html/french/05images/1020elaborer_maitre.htm"
+*/
+
+/*======================= Prétraitement automatique ==============================*/
+
+/*!
+  @page plugin_tool_pretrfc              Prétraitement automatique
+  @htmlinclude "../gui/audace/plugin/tool/pretrfc/french/pretrfcSetup.htm"
+*/
+
+/*=============================== Convertir ======================================*/
+
+/*!
+  @page images_convertir                 Convertir
+  Ce menu regroupe trois fonctions :<BR>
+  - @subpage images_conversion_couleurs explique les conversions <B>RAW-->FITS</B>,
+    <B>CFA-->RVB</B>, <B>RVB-->R+V+B</B>, <B>R+V+B-->RVB</B>, <B>Assigner plan Rouge</B>,
+    <B>Assigner plan Vert</B> et <B>Assigner plan Bleu</B>,
+  - @subpage images_trichromie détaille la <B>trichromie</B> ou <B>mapped colors</B>,
+  - @subpage images_ser2fits explique la conversion de vidéo .SER en images FITS.<BR>
+
+  @page images_conversion_couleurs      Conversion couleurs
+  @htmlinclude "../gui/audace/doc_html/french/05images/1030conversion_couleurs.htm"
+
+  @page images_trichromie               Trichromie
+  @htmlinclude "../gui/audace/doc_html/french/05images/1190trichro.htm"
+
+  @page images_ser2fits                 Conversion SER vers FITS
+  @htmlinclude "../gui/audace/doc_html/french/05images/1180ser2fits.htm"
+*/
+
+/*=============================== Combiner ======================================*/
+
+/*!
+  @page images_combiner                 Combiner
+  Les fonctions <B>Somme</B>, <B>Moyene</B>, <B>Médiane</B>, <B>Produit</B>,
+  <B>Racine carrée</B>, <B>Ecart-type</B>, <B>Moyenne kappa-sigma</B>,
+  <B>Tri centile</B>, <B>Cartographier le retard de l'obsturateur</B> et <B>Drizzle WCS</B>
+  concernent une pile d'images et utilisent l'interface commune.
+
+  L'aide technique de ces fonctions est ici @ref ttus1.
+*/
+
+/*=============================== Aligner =======================================*/
+
+/*!
+  @page images_aligner                  Aligner une s&eacute;rie d'images
+  Cette page présente les différentes méthodes d'alignement utilisables,
+  leurs avantages et leurs inconvénients.
+  @htmlinclude "../gui/audace/doc_html/french/05images/1040aligner.htm"
+*/
+
+/*======================= Adapter la géométrie =================================*/
+
+/*!
+  @page images_adapter                  Adapter la géométrie
+    La rotation de + ou -90° ou de 180° d'une image est décrite ici @subpage images_tourner
+
+    Les fonctions <B>Inverser Gauche/Droite</B>, <B>Inverser Haut/Bas</B>,
+      <B>Symétrie diagonale</B>, <B>Recadrer</B>, <B>Redimensionner</B>,
+      <B>Re-échantillonner</B>, <B>Translater</B> et <B>Rotation libre</B> utilisent l'interface commune.
+    L'aide technique de ces fonctions est ici @ref ttus1.
+
+  @page images_tourner                  Tourner
+  @htmlinclude "../gui/audace/doc_html/french/05images/1050tourner.htm"
+*/
+
+/*=============================== Retoucher ====================================*/
+
+/*!
+  @page images_retoucher                Retoucher
+  Les fonctions <B>Supprimer une traînée</B>, <B>Supprimer un cosmique</B>,
+  <B>Supprimer des pixels chauds</B>, <B>Optimiser le noir</B> et <B>Soustraire le fond du ciel</B>
+  utilisent l'interface commune. L'aide technique de ces fonctions est ici @ref ttus1.
+
+  Les autres fonctions sont ici :
+  - @subpage images_cicatriser
+  - @subpage images_ajust_soust_gauss
+
+  @page images_cicatriser               Cicatriser
+  @htmlinclude "../gui/audace/doc_html/french/05images/1060cicatriser.htm"
+
+  @page images_ajust_soust_gauss        Ajuster et soustraire une gaussienne
+  @htmlinclude "../gui/audace/doc_html/french/05images/1070ajust_soust_gauss.htm"
+*/
+
+/*=============================== Modifier =======================================*/
+
+/*!
+  @page images_modifier                Modifier
+  - Les fonctions <B>Ajouter une image</B>, <B>Soustraire une image</B>,
+    <B>Diviser par une image</B>, <B>Multiplier par une image</B>,
+    <B>Ajouter une constante</B>, <B>Multiplier par une constante</B>,
+    <B>Logaritme</B>, <B>Normaliser le fond du ciel</B> et
+    <B>Normaliser l'éclairement</B> utilisent l'interface commune.
+
+    L'aide technique de ces fonctions est ici @ref ttus1.
+
+  - @subpage images_ecreter
+
+  @page images_ecreter                  Ecrêter
+  @htmlinclude "../gui/audace/doc_html/french/05images/1080ecreter.htm"
+*/
+
+/*=============================== Filtrer =======================================*/
+
+/*!
+  @page images_masquer                  Filtrer
+  - Les fonctions spécifiques sont :
+    - @subpage images_masque_flou
+    - @subpage images_passe_bas
+    - @subpage images_passe_haut
+
+  - Les fonctions <B>Filtre médian</B>, <B>Filtre moyen</B>,
+    <B>Filtre minimum</B>, <B>Filtre maximum</B>,
+    <B>Filtre éclairement Haut->Bas</B>, <B>Filtre éclairement Gauche->Droite</B>,
+    <B>Filtre éclairement Bas->Haut</B>, <B>Filtre éclairement Droite->Gauche</B>,
+    <B>Filtre gaussien</B>, <B>Ondelette de type Morlet</B>,
+    <B>Ondelette de type chapeau mexicain</B>, <B>Gradient rotationnel</B>,
+    et <B>Filtre radial</B> utilisent l'interface commune.
+
+    L'aide technique de ces fonctions est ici @ref ttus1.
+
+  @page images_masque_flou              Masque flou
+  @htmlinclude "../gui/audace/doc_html/french/05images/1090masque_flou.htm"
+
+  @page images_passe_bas                Filtre passe-bas
+  @htmlinclude "../gui/audace/doc_html/french/05images/1100passe_bas.htm"
+
+  @page images_passe_haut               Filtre passe-haut
+  @htmlinclude "../gui/audace/doc_html/french/05images/1110passe_haut.htm"
+*/
+
+/*=============================== Transformer =======================================*/
+
+/*!
+  @page images_transformer             Transformer
+  - @subpage images_TFD
+  - @subpage images_TFDInverse
+  - @subpage images_autocorrelation
+  - @subpage images_intercorrelation
+  - Les fonctions <B>Rectangulaire --> Polaire</B>,
+    <B>Polaire --> Rectangulaire</B> et <B>Fonction de Hough</B>
+    utilisent l'interface commune. L'aide technique de ces fonctions est ici @ref ttus1.
+
+  @page images_TFD                     TFD
+  @htmlinclude "../gui/audace/doc_html/french/05images/1120TFD.htm"
+
+  @page images_TFDInverse              TFD inverse
+  @htmlinclude "../gui/audace/doc_html/french/05images/1130TFDInverse.htm"
+
+  @page images_autocorrelation         Autocorrélation@htmlinclude "../gui/audace/doc_html/french/05images/1140autocorrelation.htm"
+
+  @page images_intercorrelation        Intercorrélation
+  @htmlinclude "../gui/audace/doc_html/french/05images/1150intercorrelation.htm"
+*/
+
+/*=============================== Convoluer =======================================*/
+
+/*!
+  @page images_convoluer               Convoluer
+  - @subpage images_convolution
+  - @subpage images_kernel
+
+  @page images_convolution             Convolution
+  @htmlinclude "../gui/audace/doc_html/french/05images/1160convolution.htm"
+
+  @page images_kernel                  Kernel
+  Exemples de convolution spatiale et éditeur de noyau.
+  @htmlinclude "../gui/audace/doc_html/french/05images/1170kernel.htm"
+*/
+

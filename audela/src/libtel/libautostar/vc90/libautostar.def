@@ -1,0 +1,2 @@
+LIBRARY libautostar
+EXPORTS Autostar_Init @1

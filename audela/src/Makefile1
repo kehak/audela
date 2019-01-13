@@ -1,0 +1,6 @@
+ROOT   = /root/audela-code/audela/src
+
+include $(ROOT)/Makefile.defs
+
+include $(ROOT)/Makefile.rules
+

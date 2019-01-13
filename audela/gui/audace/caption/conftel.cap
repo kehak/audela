@@ -1,0 +1,214 @@
+#
+# Fichier : conftel.cap
+# Mise a jour $Id: conftel.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(conftel,config)                           "Mount Setup"
+set caption(conftel,creer_au_demarrage)               "Next time software is run connect this mount automatically"
+set caption(conftel,ok)                               "OK"
+set caption(conftel,appliquer)                        "Apply"
+set caption(conftel,fermer)                           "Close"
+set caption(conftel,aide)                             "Help"
+set caption(conftel,arreter)                          "Stop"
+
+set caption(conftel,attention)                        "Warning"
+set caption(conftel,connexion_texte1)                 "Mount Connection in Progress..."
+set caption(conftel,connexion_texte2)                 "Please wait a few seconds."
+set caption(conftel,cannotcreatecam)                  "The link with the mount can not be created."
+set caption(conftel,seeconsole)                       "See details in the Terminal screen."
+
+set caption(conftel,mount)                            "Mount:"
+set caption(conftel,model,title)                      "Pointing model"
+set caption(conftel,model,enabled)                    "Model On"
+set caption(conftel,configurer)                       "Set up"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(conftel,config)                        "Configuration de la monture"
+   set caption(conftel,creer_au_demarrage)            "Connexion automatique de cette monture au prochain démarrage"
+   set caption(conftel,ok)                            "OK"
+   set caption(conftel,appliquer)                     "Appliquer"
+   set caption(conftel,fermer)                        "Fermer"
+   set caption(conftel,aide)                          "Aide"
+   set caption(conftel,arreter)                       "Arrêter"
+
+   set caption(conftel,attention)                     "Attention"
+   set caption(conftel,connexion_texte1)              "Veuillez patienter quelques secondes"
+   set caption(conftel,connexion_texte2)              "pendant la connexion de votre monture."
+   set caption(conftel,cannotcreatecam)               "La monture ne peut pas être créée."
+   set caption(conftel,seeconsole)                    "Détails dans la Console."
+
+   set caption(conftel,mount)                         "Monture :"
+   set caption(conftel,model,title)                   "Modèle de pointage"
+   set caption(conftel,model,enabled)                 "Modèle actif"
+   set caption(conftel,configurer)                    "Configurer"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(conftel,config)                        "Configurazione montatura"
+   set caption(conftel,creer_au_demarrage)            "Connessione automatica di questa montatura alla prossima esecuzione del software"
+   set caption(conftel,ok)                            "OK"
+   set caption(conftel,appliquer)                     "Applicare"
+   set caption(conftel,fermer)                        "Chiudere"
+   set caption(conftel,aide)                          "Aiuto"
+   set caption(conftel,arreter)                       "Fermare"
+
+   set caption(conftel,attention)                     "Attenzione"
+   set caption(conftel,connexion_texte1)              "Attendere qualche secondo per"
+   set caption(conftel,connexion_texte2)              "la connessione de la montatura."
+   set caption(conftel,cannotcreatecam)               "La montatura non e' stata creata."
+   set caption(conftel,seeconsole)                    "Vedere i dettagli sul Console."
+
+   set caption(conftel,mount)                         "Montatura:"
+   set caption(conftel,model,title)                   "Modello di puntamento"
+   set caption(conftel,model,enabled)                 "Modello On"
+   set caption(conftel,configurer)                    "Configurare"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(conftel,config)                        "Configuración de la montura"
+   set caption(conftel,creer_au_demarrage)            "La próxima vez que se ejecute el programa, la montura se conecta automáticamente"
+   set caption(conftel,ok)                            "OK"
+   set caption(conftel,appliquer)                     "Aplicar"
+   set caption(conftel,fermer)                        "Cerrar"
+   set caption(conftel,aide)                          "Ayuda"
+   set caption(conftel,arreter)                       "Parar"
+
+   set caption(conftel,attention)                     "!Cuidado¡"
+   set caption(conftel,connexion_texte1)              "Conectando con la montura..."
+   set caption(conftel,connexion_texte2)              "Por favor, espere unos segundos."
+   set caption(conftel,cannotcreatecam)               "La montura no puede ser creada."
+   set caption(conftel,seeconsole)                    "Ver detalles en la Consola."
+
+   set caption(conftel,mount)                         "Montura:"
+   set caption(conftel,model,title)                   "Modelo de apuntado"
+   set caption(conftel,model,enabled)                 "Modelo On"
+   set caption(conftel,configurer)                    "Configurar"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(conftel,config)                        "Montierung Konfiguration"
+   set caption(conftel,creer_au_demarrage)            "Nächste Mal dieses Montierung automatisch anschließen"
+   set caption(conftel,ok)                            "OK"
+   set caption(conftel,appliquer)                     "Anwenden"
+   set caption(conftel,fermer)                        "Schließen"
+   set caption(conftel,aide)                          "Hilfe"
+   set caption(conftel,arreter)                       "Halten"
+
+   set caption(conftel,attention)                     "Achtung"
+   set caption(conftel,connexion_texte1)              "Bitte, einige Sekunden warten"
+   set caption(conftel,connexion_texte2)              "während das Montierung Anschluß."
+   set caption(conftel,cannotcreatecam)               "Das Montierung kann nicht hergestellt werden."
+   set caption(conftel,seeconsole)                    "Siehe Details auf der Konsole."
+
+   set caption(conftel,mount)                         "Montierung:"
+   set caption(conftel,model,title)                   "Richtung Modell"
+   set caption(conftel,model,enabled)                 "Modell On"
+   set caption(conftel,configurer)                    "Konfigurieren"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(conftel,config)                        "Configuração da montagem"
+   set caption(conftel,creer_au_demarrage)            "Ligar a montagem automaticamente da próxima vez que o software for executado"
+   set caption(conftel,ok)                            "OK"
+   set caption(conftel,appliquer)                     "Aplicar"
+   set caption(conftel,fermer)                        "Fechar"
+   set caption(conftel,aide)                          "Ajuda"
+   set caption(conftel,arreter)                       "Parar"
+
+   set caption(conftel,attention)                     "Aviso"
+   set caption(conftel,connexion_texte1)              "Ligação da Montagem em curso..."
+   set caption(conftel,connexion_texte2)              "Por favor aguarde alguns segundos."
+   set caption(conftel,cannotcreatecam)               "Da montagem não pode ser criada."
+   set caption(conftel,seeconsole)                    "Ver detalhes na Consola."
+
+   set caption(conftel,mount)                         "Montagem:"
+   set caption(conftel,model,title)                   "Modelo de apontamento"
+   set caption(conftel,model,enabled)                 "Modell activo"
+   set caption(conftel,configurer)                    "Configurar"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(conftel,config)                        "Mount Setup"
+   set caption(conftel,creer_au_demarrage)            "Next time software is run connect this mount automatically"
+   set caption(conftel,ok)                            "OK"
+   set caption(conftel,appliquer)                     "Apply"
+   set caption(conftel,fermer)                        "Close"
+   set caption(conftel,aide)                          "Help"
+   set caption(conftel,arreter)                       "Stop"
+
+   set caption(conftel,attention)                     "Warning"
+   set caption(conftel,connexion_texte1)              "Mount Connection in Progress..."
+   set caption(conftel,connexion_texte2)              "Please wait a few seconds."
+   set caption(conftel,cannotcreatecam)               "The link with the mount can not be created."
+   set caption(conftel,seeconsole)                    "See details in the Terminal screen."
+
+   set caption(conftel,mount)                         "Mount:"
+   set caption(conftel,model,title)                   "Pointing Model"
+   set caption(conftel,model,enabled)                 "Model On"
+   set caption(conftel,configurer)                    "Set up"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(conftel,config)                        "Mount Setup"
+   set caption(conftel,creer_au_demarrage)            "Next time software is run connect this mount automatically"
+   set caption(conftel,ok)                            "OK"
+   set caption(conftel,appliquer)                     "Apply"
+   set caption(conftel,fermer)                        "Close"
+   set caption(conftel,aide)                          "Help"
+   set caption(conftel,arreter)                       "Stop"
+
+   set caption(conftel,attention)                     "Warning"
+   set caption(conftel,connexion_texte1)              "Mount Connection in Progress..."
+   set caption(conftel,connexion_texte2)              "Please wait a few seconds."
+   set caption(conftel,cannotcreatecam)               "The link with the mount can not be created."
+   set caption(conftel,seeconsole)                    "See details in the Terminal screen."
+
+   set caption(conftel,mount)                         "Mount:"
+   set caption(conftel,model,title)                   "Pointing Model"
+   set caption(conftel,model,enabled)                 "Modell On"
+   set caption(conftel,configurer)                    "Set up"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(conftel,config)                        "Mount Setup"
+   set caption(conftel,creer_au_demarrage)            "Next time software is run connect this mount automatically"
+   set caption(conftel,ok)                            "OK"
+   set caption(conftel,appliquer)                     "Apply"
+   set caption(conftel,fermer)                        "Close"
+   set caption(conftel,aide)                          "Help"
+   set caption(conftel,arreter)                       "Stop"
+
+   set caption(conftel,attention)                     "Warning"
+   set caption(conftel,connexion_texte1)              "Mount Connection in Progress..."
+   set caption(conftel,connexion_texte2)              "Please wait a few seconds."
+   set caption(conftel,cannotcreatecam)               "The link with the mount can not be created."
+   set caption(conftel,seeconsole)                    "See details in the Terminal screen."
+
+   set caption(conftel,mount)                         "Mount:"
+   set caption(conftel,model,title)                   "Pointing Model"
+   set caption(conftel,model,enabled)                 "Modell On"
+   set caption(conftel,configurer)                    "Set up"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

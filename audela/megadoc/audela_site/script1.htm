@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Qu'est-ce qu'un script ?</title>
+</head>
+
+<body>
+<h3> 1. D&eacute;finition d'un script</h3>
+<p>Un script Tcl est un fichier texte contenant des lignes de commandes &agrave; ex&eacute;cuter. Par exemple, on peut effectuer un encha&icirc;nement de plusieurs fonctions sans intervenir manuellement:</p>
+<pre>for {set k 1} {$k&lt;=10} {incr k} {</pre>
+<pre> acq 20 2</pre>
+<pre> saveima "image-$k"</pre>
+<pre>}</pre>
+<p>Pour devenir un script Tcl, ce texte doit &ecirc;tre &eacute;crit dans un fichier (&eacute;dit&eacute; avec Notepad, Wordpad, kwrite, etc.). Audela, et l'interface Audace en particulier, permettent de lire ce fichier et ex&eacute;cutent les commandes. L'exemple ci-dessus, ex&eacute;cut&eacute; par l'interface Audace, permet de r&eacute;aliser l'acquisition de 10 images de 20 secondes de pose en binning 2x2. A la fin de chaque pose, l'image est sauv&eacute;e sur le disque avec un num&eacute;ro qui s'incr&eacute;mente &agrave; chaque pose. La syntaxe exacte de ce script peut vous para&icirc;tre obscure pour le moment. C'est normal. Cette page est destin&eacute;e &agrave; &eacute;claircir la situation. De toute fa&ccedil;on, la plupart des scripts utiles pour observer, avec l'interface Audace, n'utilisent qu'un petit nombre de fonctions dont nous donnons ici une liste utile pour l'acquisition et le traitement des images :</p>
+<ul>
+  <li> acq : acquisition d'une image (de la cam&eacute;ra 1) et affichage de l'image &agrave; la fin de la pose</li>
+  <li> visu : visualisation de l'image en m&eacute;moire (dans le buffer 1)</li>
+  <li> saveima : enregistre une image sur le disque en format FITS</li>
+  <li> loadima : charge une image en m&eacute;moire &agrave; partir d'un fichier au format FITS</li>
+  <li> sub : soustraction d'une image &agrave; celle qui est en m&eacute;moire (ex: correction du dark)</li>
+  <li> opt : optimisation de la correction du dark &agrave; l'image qui est en m&eacute;moire (ex: correction optimale du dark)</li>
+  <li> div : division de l'image en m&eacute;moire par une autre (ex: correction du flat)</li>
+  <li> ngain : normalisation du gain d'une image par rapport &agrave; une autre (ex: synth&egrave;se du flat)</li>
+  <li> noffset : normalisation du fond de ciel de l'image par rapport &agrave; une autre (ex: compositage m&eacute;dian)</li>
+  <li> register : recalage d'une image par rapport &agrave; une autre (ex: registration avant compositage)</li>
+  <li> add : addition d'une image &agrave; celle qui est en m&eacute;moire (ex: compositage d'images)</li>
+  <li> smedian2 : pile m&eacute;diane d'images (ex: compositage m&eacute;dian)</li>
+  <li> for : effectue une boucle en incr&eacute;mentant une variable</li>
+</ul>
+<p>Noter que la plupart des fonctions de traitement d'images (sub, opt, etc.) peuvent &ecirc;tre appliqu&eacute;es sur un lot d'images si on termine la fonction par le chiffre 2 (ex: sub2, opt2, etc.).</p>
+<p>Revenons &agrave; nos scripts. Ils servent donc &agrave; simplifier les t&acirc;ches d'observation, aussi bien pour l'acquisition des images que pour leur traitement. L'utilisation de scripts ne n&eacute;cessite aucune connaissance en programmation. On peut donc utiliser des scripts tr&egrave;s compliqu&eacute;s, &eacute;crits par d'autres, et avoir une m&eacute;thode d'observation tr&egrave;s performante sans &ecirc;tre soit m&ecirc;me programmeur. N&eacute;anmoins, si vous souhaitez personnaliser un script ou bien en &eacute;crire un nouveau, il faut savoir programmer. Si vous ne savez pas programmer, il est temps de commencer avec les scripts Audela. En effet, au cours de ces pages, nous allons vous guider pour comprendre la syntaxe des scripts utilis&eacute;s par Audela.</p>
+<p>Audela utilise des scripts &eacute;crits en langage Tcl. De cette fa&ccedil;on, les scripts de Audela b&eacute;n&eacute;ficient des multiples champs d'action du langage Tcl. A noter que la syntaxe Tcl ne d&eacute;pend pas du type de syst&egrave;me d'exploitation pr&eacute;sent sur l'ordinateur. Un script &eacute;crit par un utilisateur Linux est compatible Windows et vice versa.</p>
+<p>On trouvera la syntaxe compl&egrave;te du langage Tcl/Tk dans la page <a href="script2.htm">d&eacute;buter en langage Tcl.</a></p>
+<h3> 2. D&eacute;marrer un script</h3>
+<p>L'interface Audace permet de <a href="interfa1.htm#6.2_Executer_un_script">lancer les scripts &agrave; partir d'un menu</a> :</p>
+<p align="center"><img src="images/adc/adc18-fr.jpg" height="136" width="647" />
+<p>Cette fa&ccedil;on de proc&eacute;der est sp&eacute;cifique &agrave; l'interface Audace. Dans un cadre plus g&eacute;n&eacute;ral, n'importe qu'elle interface du logiciel Audela permet de lancer un script &agrave; condition d'&ecirc;tre &eacute;quip&eacute;e d'une ligne commande. C'est le cas aussi de l'interface Audace par l'interm&eacute;diaire de sa <a href="interfa1.htm">console</a>. Dans ce cas, si le fichier de script Tcl s'appelle test1.tcl (plac&eacute; dans le dossier audela), il suffit de valider la ligne de suivante dans <a href="interfa1.htm">la ligne de commande</a> :</p>
+<pre>source test1.tcl</pre>
+<h3> 3. Quelques scripts pour d&eacute;buter</h3>
+<p>Nous allons nous attacher &agrave; d&eacute;crire les grandes familles de scripts utiles pour observer. On distingue habituellement les familles suivantes:</p>
+<ul>
+  <li> Suite de fonctions</li>
+  <li> D&eacute;finition de nouvelles fonctions</li>
+  <li> Interaction avec l'interface utilisateur</li>
+</ul>
+<p>Ces trois familles sont pr&eacute;sent&eacute;es dans l'ordre de difficult&eacute; croissante. Nous allons passer rapidement en revue ces familles en donnant quelques exemples. Bien entendu, il est possible de m&eacute;langer ces trois familles. Pour le moment, nous allons les &eacute;tudier s&eacute;par&eacute;ment pour comprendre le r&ocirc;le de chacune d'elle.</p>
+<h3> 3.1. Encha&icirc;ner automatiquement l'ex&eacute;cution des commandes</h3>
+<p>Il s'agit des scripts les plus communs. Ils servent g&eacute;n&eacute;ralement &agrave; r&eacute;soudre un probl&egrave;me donn&eacute;. Par exemple, on a un lot d'images brutes dans les fichiers b1.fit, b2.fit, ..., b10.fit et veut soustraire l'image dark.fit &agrave; chacune de ces dix images. Faire cela manuellement pour chaque image est tr&egrave;s vite fastidieux, avec un risque d'erreur non n&eacute;gligeable. On pr&eacute;f&eacute;rera donc &eacute;crire un petit script qui va r&eacute;aliser une boucle sur les 10 images :</p>
+<pre># remarque : fichier subdark.tcl</pre>
+<pre>for {set k 1} {$k&lt;=10} {incr k} {</pre>
+<pre> loadima b$k</pre>
+<pre> sub dark.fit 0</pre>
+<pre> saveima b$k</pre>
+<pre>}</pre>
+<p>La syntaxe peut s'expliquer ainsi :</p>
+<ul>
+  <li> # annonce un simple commentaire (&eacute;quivalent au REM du langage Basic)</li>
+  <li> La boucle for est classique. Les trois premi&egrave;res accolades d&eacute;finissent l'initialisation, la condition de sortie et l'incr&eacute;ment de la variable de la boucle.</li>
+  <li> loadima sert &agrave; charger l'image en m&eacute;moire (c'est &agrave; dire dans le buffer num&eacute;ro 1, encore appel&eacute; buf1).</li>
+  <li> sub est une fonction de l'interface aud'ACE qui permet de faire une op&eacute;ration de soustraction d'image &agrave; l'image contenue dans le buf1. Le fichier de l'image soustraite s'appelle ici dark.fit. Le zero final signifie que l'on ne rajoute pas de valeur &agrave; ce qui est soustrait.</li>
+  <li> saveima sert &agrave; sauver l'image en m&eacute;moire (buf1) sur le disque. Si une image du m&ecirc;me nom est d&eacute;j&agrave; pr&eacute;sente sur le disque, elle est remplac&eacute;e sans avertissement par cette nouvelle image.</li>
+</ul>
+<h3> <a name="proc"></a>3.2. D&eacute;finition de nouvelles fonctions</h3>
+<p>Ce genre de script a pour vocation d'ajouter de nouvelles fonctions &agrave; l'interpr&eacute;teur de commandes. Celui-ci ne les ex&eacute;cutera que si on les appelle utlt&eacute;rieurement. On peut donc cr&eacute;er ainsi des "macros", c'est &agrave; dire des suites de fonctions que l'on appelle souvent. Par exemple, l'interface Audace utilise de tels scripts pour cr&eacute;er des macros qui simplifient l'&eacute;criture. La fonction loadima est ainsi faite (cf. sa d&eacute;finition dans le fichier aud1.tcl).</p>
+<p>Si l'on trouve qu'il est trop long d'&eacute;crire "sub dark.fit 0" (par exemple, on consid&egrave;re que l'extension du fichier est toujours .fit et que la constante est toujours z&eacute;ro) et qu'on voudrait remplacer cela par la syntaxe "sb dark", nous devons &eacute;crire le script suivant :</p>
+<pre># remarque : fichier newproc.tcl</pre>
+<pre>proc sb { nom_fichier } {</pre>
+<pre> sub ${nom_fichier}.fit 0</pre>
+<pre>}</pre>
+<p>Dans ce script, nous avons cr&eacute;&eacute; une nouvelle fonction dont le nom est "sb".</p>
+<ul>
+  <li> proc est la fonction Tcl qui permet de d&eacute;finir une nouvelle fonction. Le mot qui suit proc correspond au nom de la fonction (sb dans ce cas). Elle accepte 1 param&egrave;tre qui s'appelle "nom_fichier".</li>
+  <li> sub est la fonction de l'interface aud'ACE qui permet de faire une op&eacute;ration de soustraction d'image &agrave; l'image contenue dans le buf1. Le fichier &agrave; soustraire est ici cr&eacute;e en rempla&ccedil;ant la variable "nom_fichier" par sa valeur (le $ indique &agrave; Tcl qu'il faut remplacer ce qui suit). Ainsi le nom du fichier &agrave; soustraire correspond &agrave; ce que l'utilisateur de la fonction sb va indiquer comme param&egrave;tre.</li>
+</ul>
+<p>Ainsi, le script de suite de fonctions correspondant &agrave; la soustraction du dark aux 10 images peut se simplifier :</p>
+<pre># remarque : fichier subdark.tcl</pre>
+<pre>source newproc.tcl</pre>
+<pre>for {set k 1} {$k&lt;=10} {incr k} {</pre>
+<pre> loadima b$k</pre>
+<pre> sb dark</pre>
+<pre> saveima b$k</pre>
+<pre>}</pre>
+<p>Dans ce script, on commence &agrave; ex&eacute;cuter le script qui d&eacute;finit la nouvelle fonction sb (dans le fichier newproc.tcl). On voit bien ici que le script newproc.tcl ne fait rien &agrave; proprement parler. Il enrichit simplement les fonctions disponibles.</p>
+<p>Il est int&eacute;ressant de se confectionner une s&eacute;rie de petites fonctions utilitaires : r&eacute;alisation d'un dark m&eacute;dian, d'un bias m&eacute;dian, extraction d'un flat, etc.</p>
+<h3> <a name="bouton"></a>3.3. Int&eacute;raction avec l'interface utilisateur</h3>
+<p>Cette famille de scripts pr&eacute;sente de plus ou moins grandes complexit&eacute;s. En tout &eacute;tat de cause, cette interaction est un point fort du logiciel Audela et permet de constituer une v&eacute;ritable interface personnalis&eacute;e. Voici un exemple tr&egrave;s simple en trois lignes :</p>
+<pre># remarque : fichier startdark.tcl</pre>
+<pre>toplevel .mywin</pre>
+<pre>button .mywin.but1 -text "soustraire le dark" -command { source subdark.tcl
+  }</pre>
+<pre>pack .mywin.but1</pre>
+<p align="center"><img src="images/adc/but1-fr.jpg" height="55" width="112" /></p>
+<p>Les trois fonctions utilis&eacute;es (toplevel, button et pack) proviennent de la librairie Tk, le compl&eacute;ment graphique de Tcl. Voici quelques explications :</p>
+<ul>
+  <li> toplevel : Cr&eacute;ation d'une nouvelle fen&ecirc;tre que l'on nomme .mywin</li>
+  <li> button : Cr&eacute;ation d'un bouton nomm&eacute; .but1 dans la fen&ecirc;tre .mywin. Dans le bouton, le texte "soustraire le dark" est affich&eacute;. Lorsque l'on appui sur le bouton, on ex&eacute;cute le script subdark.tcl.</li>
+  <li> pack : Affiche le bouton dans la fen&ecirc;tre .mywin. En effet, la fonction button, cr&eacute;e le bouton mais ne l'affiche pas &agrave; l'&eacute;cran. Tk dissocie les propri&eacute;t&eacute;s intrins&egrave;ques aux widgets (button est un windget, diminutif de Window Gadget) des propri&eacute;t&eacute;s de positionnement d'affichage des ces widgets.</li>
+</ul>
+<p>L'interface Audace est enti&egrave;rement cr&eacute;&eacute;e sous la forme de scripts qui construisent l'interface utilisateur. Ainsi, il est possible de modifier l'interface Audace &agrave; volont&eacute;.</p>
+<h3> 4. Quelques exemples simples</h3>
+<p>Quelques exemples suivants permettent de comprendre comment fonctionnent les scripts dans des applications concr&egrave;tes. Tous les exemples suivants doivent &ecirc;tre ex&eacute;cut&eacute;s dans l'interface Audace.</p>
+<h3> 4.1. Images de noirs et r&eacute;alisation du noir m&eacute;dian</h3>
+<p>Le pr&eacute;traitement des images brutes impose la r&eacute;alisation d'une image de calibration appel&eacute;e "noir" (dark en anglais). Cette image doit &ecirc;tre r&eacute;alis&eacute;e dans des conditions tr&egrave;s voisines des images brutes : m&ecirc;me binning, m&ecirc;me temps de pose mais avec l'obturateur ferm&eacute;. Enfin, on peut montrer que l'on peut &eacute;viter de perdre de la qualit&eacute; dans l'image pr&eacute;trait&eacute;e si l'image de noir r&eacute;sulte d'une pile m&eacute;diane de plusieurs images noires.</p>
+<p>Nous allons donc supposer que vous ayez d&eacute;clar&eacute; votre cam&eacute;ra dans l'interface Audace (menu R&eacute;glages->Cam&eacute;ra) et qu'elle poss&egrave;de un obturateur. Voici un script qui permet de prendre 5 poses de noirs (temps de pose 60 secondes, binning 2x2) puis d'en extraire l'image du noir m&eacute;dian :</p>
+<pre># - d&eacute;but du script</pre>
+<pre>cam1 shutter closed</pre>
+<pre>acq 60 2</pre>
+<pre>saveima noir-1</pre>
+<pre>acq 60 2</pre>
+<pre>saveima noir-2</pre>
+<pre>acq 60 2</pre>
+<pre>saveima noir-3</pre>
+<pre>acq 60 2</pre>
+<pre>saveima noir-4</pre>
+<pre>acq 60 2</pre>
+<pre>saveima noir-5</pre>
+<pre>cam1 shutter synchro</pre>
+<pre>smedian noir- noirmedian 5</pre>
+<pre># - fin du script</pre>
+<p>Analysons le contenu du script ligne par ligne :</p>
+<ul>
+  <li> La premi&egrave;re ligne commence par le symbole #. Cela signifie que le reste de la ligne contient un commentaire qui ne sera pas analys&eacute; par l'interpr&eacute;teur de commandes. On peut ainsi commenter son script afin de faciliter les corrections ult&eacute;rieures.</li>
+  <li> La ligne cam1 shutter closed : envoie l'ordre de fermeture de l'obturateur de la cam&eacute;ra. Audela permet de piloter, &eacute;ventuellement, plusieurs cam&eacute;ras en m&ecirc;me temps. C'est la raison pour laquelle la fonction cam doit toujours &ecirc;tre suivie d'un num&eacute;ro identifiant &agrave; quelle cam&eacute;ra on veut appliquer l'ordre. Avec l'interface Audace, toute cam&eacute;ra d&eacute;clar&eacute;e par le menu de r&eacute;glage porte le num&eacute;ro 1. La fonction cam1 est suivie du mot shutter. Ce mot (shutter signifie obturateur en anglais) est un param&egrave;tre qui permet de pr&eacute;ciser l'&eacute;l&eacute;ment de la cam&eacute;ra concern&eacute; par la commande. Enfin, le troisi&egrave;me mot, closed (signifie ferm&eacute; en anglais) assigne l'ordre de fermer l'obturateur. La fonction cam1 shutter closed permet donc de garder l'obturateur de la cam&eacute;ra toujours ferm&eacute;. C'est bien utile pour r&eacute;aliser les images noires.</li>
+  <li> La ligne acq 60 2 : envoie l'ordre de r&eacute;aliser une pose de 60 secondes en binning 2x2. Avant de passer &agrave; la ligne suivante du script, l'interpr&eacute;teur de commandes attendra que la pose soit termin&eacute;e. Il faudra donc attendre environ une minute pour continuer.</li>
+  <li> La ligne saveima noir-1 : donne l'ordre sauver l'image sur le disque sous la forme d'un fichier FITS qui portera le nom noir-1.fit. Noter que ".fit", c'est &agrave; dire l'extension du fichier, est ajout&eacute;e automatiquement &agrave; la fin du nom.</li>
+  <li> La ligne acq 60 2 : envoie &agrave; nouveau l'ordre de r&eacute;aliser une pose de 60 secondes en binning 2x2.</li>
+  <li> La ligne saveima noir-2 : donne l'ordre de sauver l'image sous le nom noir-2.fit. De la m&ecirc;me fa&ccedil;on, les six lignes suivantes du script vont permettre d'acqu&eacute;rir encore trois autres images qui seront enregistr&eacute;es sur le disque. Finalement, ces cinq images portent le nom noir-1.fit, noir-2.fit, noir-3.fit, noir-4.fit, noir-5.fit.</li>
+  <li> La ligne cam1 shutter synchro : envoie l'ordre &agrave; la cam&eacute;ra de synchroniser l'ouverture et la fermeture de l'obturateur avec la r&eacute;alisation des poses. De cette fa&ccedil;on, les poses suivantes seront effectu&eacute;es normalement, c'est &agrave; dire avec l'obturateur ouvert pendant la pose.</li>
+  <li> La ligne smedian noir- noirmedian 5 : permet de r&eacute;aliser la synth&egrave;se de l'image noir m&eacute;diane &agrave; partir des 5 images acquises pr&eacute;c&eacute;demment. La fonction smedian doit &ecirc;tre suivie du mot noir- qui est le nom "g&eacute;n&eacute;rique" des images noires acquises. Le mot suivant est le nom du fichier FITS qui contiendra l'image m&eacute;diane. Le dernier mot est le nombre d'images de noir &agrave; assembler dans l'image m&eacute;diane.</li>
+</ul>
+<p>Si l'on souhaite r&eacute;aliser 10 images de noir au lieu de 5, il faut ajouter des lignes au script. Il devient vite p&eacute;nible d'ajouter des lignes, d'autant qu'elles se ressemblent toutes &agrave; cela pr&ecirc;t que l'indice varie. Le langage script Tcl permet d'&eacute;crire des boucles. Ces boucles permettent de r&eacute;p&eacute;ter un ensemble de fonctions autant de fois que l'on souhaite. Dans notre cas, il suffit de changer le nombre de boucles &agrave; effectuer pour prendre 5 ou 10 ou un tout autre nombre d'images. La boucle contient donc une variable appel&eacute;e compteur et qui va &ecirc;tre incr&eacute;ment&eacute;e &agrave; chaque tour. Lorsque le compteur d&eacute;passe la consigne du nombre de poses, le script arr&ecirc;te de boucler et continue avec l'instruction suivante du script. Le script suivant fait donc la m&ecirc;me chose que le pr&eacute;c&eacute;dent mais avec une telle boucle :</p>
+<pre># - d&eacute;but du script</pre>
+<pre>cam1 shutter closed</pre>
+<pre>for {set k 1} {$k&lt;=5} {incr k} {</pre>
+<pre> acq 60 2</pre>
+<pre> saveima noir-$k</pre>
+<pre>}</pre>
+<pre>cam1 shutter synchro</pre>
+<pre>smedian noir- noirmedian 5</pre>
+<pre># - fin du script</pre>
+<ul>
+  <li> Les deux premi&egrave;res lignes du script sont identiques.</li>
+  <li> La ligne for {set k 1} {$k&lt;=5} {incr k} { : commence par le mot for. Ce mot est une commande du langage Tcl qui permet d'effectuer des boucles. L'ensemble des fonctions &agrave; r&eacute;p&eacute;ter suit la derni&egrave;re accolade ouvrante de la ligne jusqu'&agrave; la prochaine accolade fermante (qui se situe trois lignes plus bas). La syntaxe de la boucle for est assez complexe mais on peut la r&eacute;sumer de la fa&ccedil;on suivante : le premier jeu d'accolades contient l'initialisation du compteur, le deuxi&egrave;me jeu d'accolades contient la condition de sortie de boucle et le troisi&egrave;me jeu d'accolades contient la fa&ccedil;on dont on souhaite incr&eacute;menter le compteur. La variable k est le compteur de notre boucle. La syntaxe de la ligne signifie d'initialiser k &agrave; 1, puis de boucler tant que la valeur de k est inf&eacute;rieure ou &eacute;gale &agrave; 5. La variable k sera incr&eacute;ment&eacute;e de 1 &agrave; chaque tour.</li>
+  <li> La ligne acq 60 2 : permet de prendre une pose de 60 secondes en binning 2x2. Notons qu'il n'est plus n&eacute;cessaire d'&eacute;crire 5 fois cette ligne puisqu'elle sera r&eacute;p&eacute;t&eacute;e le nombre de fois n&eacute;cessaire par la boucle for.</li>
+  <li> La ligne saveima noir-$k : permet de sauver l'image sous un nom qui va changer en fonction de la valeur du compteur de boucle. La syntaxe $k signifie &agrave; l'interpr&eacute;teur Tcl de remplacer $k par la valeur courante de la variable k. Comme k est notre compteur de boucles, les images prendront un nom diff&eacute;rent &agrave; chaque incr&eacute;ment.</li>
+  <li> La ligne } : contient l'accolade qui "ferme" la boucle. Les lignes suivantes seront effectu&eacute;es lorsque la boucle sera termin&eacute;e.</li>
+  <li> Les lignes suivantes sont identiques au script pr&eacute;c&eacute;dent.</li>
+</ul>
+<p>Nous venons ainsi de modifier le script en le r&eacute;duisant de volume et en augmentant ses capacit&eacute;s puisque l'on peut changer le nombre d'images noires en changeant simplement 5 par une autre valeur. Cependant, remarquons qu'il faut changer le chiffre 5 deux fois dans le script. Ceci est source d'erreur si l'on oublie de changer l'une des deux valeurs. Pour &eacute;viter l'erreur, on peut initialiser le nombre total de boucles &agrave; effectuer au d&eacute;but du script et assigner cette variable pour la synth&egrave;se de la m&eacute;diane. Cela donne le script suivant :</p>
+<pre># - d&eacute;but du script</pre>
+<pre>set n 5</pre>
+<pre>cam1 shutter closed</pre>
+<pre>for {set k 1} {$k&lt;=$n} {incr k} {</pre>
+<pre> acq 60 2</pre>
+<pre> saveima noir-$k</pre>
+<pre>}</pre>
+<pre>cam1 shutter synchro</pre>
+<pre>smedian noir- noirmedian $n</pre>
+<pre># - fin du script</pre>
+<p>La ligne set n 5, assigne la valeur 5 &agrave; la variable n. Ensuite, nous avons simplement remplac&eacute; les deux chiffres 5 par le mot $n. Le symbole $, plac&eacute; devant la variable, signifie que l'on remplace $n par la valeur de la variable n. Il suffit de changer 5 par 10 dans la ligne "set n 5" pour qu'on r&eacute;alise 10 images. Nous venons donc de voir qu'une m&ecirc;me op&eacute;ration peut &ecirc;tre g&eacute;n&eacute;r&eacute;e par des scripts diff&eacute;rents. Heureusement, la r&eacute;alisation de "beaux" scripts n'est pas n&eacute;cessaire pour parvenir &agrave; r&eacute;aliser le but fix&eacute;. N&eacute;anmoins, &agrave; force d'&eacute;crire des scripts, on apprend &agrave; les am&eacute;liorer.</p>
+<h3> 4.2. Tri automatique d'images avec une WebCam</h3>
+<p>La technique classique d'acquisition d'images WebCam consiste &agrave; enregistrer une sc&egrave;ne d'environ 100 images que l'on cherche ensuite &agrave; trier pour extraire les meilleures images. Nous allons &eacute;crire un petit script qui r&eacute;alise un tri automatique des images par un crit&egrave;re de contraste. L'id&eacute;e est de diviser l'acquisition en deux phases : la premi&egrave;re consiste &agrave; prendre 20 images et &agrave; en d&eacute;duire le crit&egrave;re de contraste qui permettra la s&eacute;lection. La seconde phase consiste &agrave; prendre les images et &agrave; ne garder que celles qui sont meilleures que le crit&egrave;re de contraste de la s&eacute;lection. Le crit&egrave;re de contraste est calcul&eacute; en effectuant la somme, sur tous les pixels, de l'oppos&eacute;e de la valeur absolue de la diff&eacute;rente de deux pixels adjacents. Il est tout &agrave; fait possible de changer facilement ce crit&egrave;re par autre dans le script propos&eacute; ici.</p>
+<pre># - d&eacute;but du script</pre>
+<pre># === fonction d'acquisition couleur pour WebCam</pre>
+<pre>proc acq_couleur {} {</pre>
+<pre> cam1 snap_rgb</pre>
+<pre> rgb_split 1 -rgb bgr</pre>
+<pre>}</pre>
+<pre># == cherche le critere de contraste</pre>
+<pre>set n 20</pre>
+<pre>set meilleur_contraste 0</pre>
+<pre>for {set k 1} {$k&lt;=$n} {incr k} {</pre>
+<pre> acq_couleur</pre>
+<pre> set resultat [buf1001 stat]</pre>
+<pre> set contraste [lindex $resultat 8]</pre>
+<pre> if {$constraste&lt;$meilleur_contraste} {</pre>
+<pre> set meilleur_contraste $constraste</pre>
+<pre> }</pre>
+<pre>}</pre>
+<pre># == acquisition et enregistre uniquement les meilleurs images</pre>
+<pre>set ntot 3000 ; # on fait 3000 images dans le pire des cas</pre>
+<pre>set nselec 100 ; # on enregistre les 100 premi&egrave;res meilleurs
+    images</pre>
+<pre>set km 0</pre>
+<pre>for {set k 1} {$k&lt;=$ntot} {incr k} {</pre>
+<pre> acq_couleur</pre>
+<pre> set resultat [buf1001 stat]</pre>
+<pre> set contraste [lindex $resultat 8]</pre>
+<pre> if {$constraste&lt;=$meilleur_contraste} {</pre>
+<pre> incr km</pre>
+<pre> rgb_save jupiter-$km</pre>
+<pre> }</pre>
+<pre> if {$km>=$nselec} {</pre>
+<pre> break</pre>
+<pre> }</pre>
+<pre>}</pre>
+<pre># - fin du script</pre>
+<p>Ce script est beaucoup plus complexe que les pr&eacute;c&eacute;dents. Il se divise en trois parties:</p>
+<ul>
+  <li> D&eacute;finition d'une acquisition d'image en couleur. Pour cela on a &eacute;crit la proc acq_couleur qui va acqu&eacute;rir une image compl&egrave;te dans laquelle les trois plans couleurs occupent le m&ecirc;me buffer image. Ensuite, ce buffer est divis&eacute; en trois autres qui vont contenir les plans rouge, vert et bleu.</li>
+  <li> La phase d'apprentissage. R&eacute;alis&eacute;e essentiellement par une boucle for. En sortie, la variable meilleur_contraste contient le contraste seuil en dessous du quel on consid&egrave;re que les images sont de bonne qualit&eacute;. En effet, de par sa d&eacute;ifnition, le crit&egrave;re de qualit&eacute; utilis&eacute; ici est d'autant plus n&eacute;gatif que le contraste est fort.</li>
+  <li> La phase d'acquisition s&eacute;lectionn&eacute;e. R&eacute;alis&eacute;e par une boucle for. On effectue ntot images mais on ne garde que les nselec premi&egrave;res qui satisfassent au crit&egrave;re de qualit&eacute;. Lorsque les nselec images sont acquises, on sort de la boucle, m&ecirc;me si elle n'est termin&eacute;e (fonction break).</li>
+</ul>
+Analysons en d&eacute;tail ce script :
+<ul>
+  <li> La ligne proc acq_couleur {} { : signifie que les lignes suivantes vont d&eacute;finir la nouvelle fonction acq_couleur.</li>
+  <li> La ligne cam1 snap_rgb : effectue une pose et restitue l'image num&eacute;rique dans le buffer num&eacute;ro 1 de Audace. La fonction snap_rgb n'existe que pour les WebCam. L'image dans le buffer contient exactement l'ensemble des pixels de la matrice CCD de la WebCam. Cette matrice est divis&eacute;e en colonnes dont la premi&egrave;re est "bleue", la deuxi&egrave;me est "verte", la troisi&egrave;me est "rouge", la quatri&egrave;me est "bleue" et ainsi de suite. Cette image n'est pas tr&egrave;s exploitable en tant que telle.</li>
+  <li> La ligne rgb_split 1 -rgb bgr : signifie que l'image du buffer num&eacute;ro 1 va g&eacute;n&eacute;rer trois nouveaux buffers num&eacute;rot&eacute;s 1001, 1002 et 1003, qui contiennent respectivement les images rouge, verte et bleue. On s&eacute;pare ainsi les couleurs.</li>
+  <li> La ligne } : signifie que la d&eacute;finition de la fonction est finie. A ce niveau l'interpr&eacute;teur Tcl va l'enregistrer comme une nouvelle fonction utilisable par tout le monde.</li>
+  <li> La ligne set n 20 : assigne 20 &agrave; la variable n.</li>
+  <li> La ligne set meilleur_contraste 0 : assigne z&eacute;ro &agrave; la variable meilleur_contraste.</li>
+  <li> La ligne for {set k 1} {$k&lt;=$n} {incr k} { : permet de r&eacute;aliser 20 boucles</li>
+  <li> La ligne acq_couleur : appelle la fonction d'acquistion que nous avons d&eacute;finie pr&eacute;c&eacute;demment.</li>
+  <li> La ligne set resultat [buf1001 stat] : effectue une analyse statistique de l'image contenue dans le buffer 1001. C'est l'image rouge. Les crochets signifient qu'il faut d'abord effectuer la fonction buf1001 stat avant d'assigner sa valeur de retour dans la variable resultat. Cette variable resultat va contenir une liste de valeurs dont la signification est pr&eacute;cis&eacute;e dans la <a href="buf.htm#stat">d&eacute;finition de la fonction stat</a>.</li>
+  <li> La ligne set contraste [lindex $resultat 8] : Chaque &eacute;l&eacute;ment de la liste resultat est accessible via un indice qui commence &agrave; z&eacute;ro pour le premier &eacute;l&eacute;ment. Dans le cas pr&eacute;sent, la valeur de contraste correspond &agrave; l'indice num&eacute;ro 8 (c'est donc le neuvi&egrave;me &eacute;l&eacute;ment de la liste puisque l'on commence &agrave; z&eacute;ro !). C'est la fonction lindex de Tcl qui permet d'extraire la valeur correspondante &agrave; un indice dans une liste. La valeur de retour est assign&eacute;e &agrave; la variable contraste. Rappelons que les crochets permettent d'obliger l'interpr&eacute;teur Tcl &agrave; &eacute;valuer la fonction lindex $resultat 8, avant d'assigner sa valeur de retour &agrave; la variable contraste.</li>
+  <li> La ligne if {$constraste&lt;$meilleur_contraste} { : est une condition. Le mot if (signifie si en fran&ccedil;ais) permet d'&eacute;valuer les lignes suivantes seulement si la condition entre les accolades est vraie. La condition actuelle est que si la valeur de contraste est plus petite que la valeur de meilleur_contraste, alors l'interpr&eacute;teur va &eacute;valuer les lignes pr&eacute;sentes entre les deux accolades suivantes.</li>
+  <li> La ligne set meilleur_contraste $constraste : assigne &agrave; la variable meilleur_contraste la valeur de contraste. Une telle fa&ccedil;on de proc&eacute;der permet, en sortie de boucle, que la variable meilleur_contraste soit &eacute;gale &agrave; la plus petite valeur de contraste trouv&eacute;e sur les 20 images.</li>
+  <li> Les lignes suivantes ont des significations d&eacute;j&agrave; expliqu&eacute;es.</li>
+  <li> La ligne incr km : singifie que la valeur de la variable km va augmenter de 1.</li>
+  <li> La ligne rgb_save jupiter-$km : signifie de sauver l'image acquise sous le nom de fichier jupiter- suivi de l'indice courant $km. La fonction rgb_save va, en fait, enregistrer les trois images rouge, vert, bleue des buffers 1001, 1002 et 1003 dans un seul fichier FITS. Pour relire ult&eacute;rieurement ce fichier FITS couleur, il faudra utiliser la fonction rgb_load. A l'aide de l'interface Audace, on peut acc&eacute;der &agrave; une interface conviviale pour afficher en couleur les images : menu Panneau->CCD Couleur. Choisir WebCam. Appuyer sur le bouton "ouvrir".</li>
+  <li> Les lignes if {$km>=$nselec} { break } : signifient que si l'on a enregistr&eacute; nselec images sur le disque alors il faut quitter la boucle for (fonction break pour interrompre une boucle).</li>
+</ul>
+<p>Ce script de moins de quarante lignes montre les puissantes possiblit&eacute;s qu'offrent les scripts de Audela. De nombreuses t&acirc;ches r&eacute;p&eacute;titives peuvent ainsi &ecirc;tre automatis&eacute;es et permettent d'observer plus vite et plus confortablement.</p>
+<h3> 5. Compatibilit&eacute; d'&eacute;criture des scripts</h3>
+<p>L'interface Audace utilise la fonction proc pour ajouter de nombreuses fonctions suppl&eacute;mentaires &agrave; Audela. Il est possible de cr&eacute;er une nouvelle interface qui fonctionnera en dehors du contexte Audace, mais alors de nombreuses fonctions d&eacute;crites ci dessus ne sont plus accessibles. La liste compl&egrave;te des fonctions sp&eacute;cifiques &agrave; l'interface Audace sont rep&eacute;r&eacute;es par le sigle [AC] dans la <a href="interfa5c.htm">page consacr&eacute;e &agrave; l'inventaire de toutes les fonctions disponibles</a>.</p>
+<p>Une <a href="script1a.htm">documentation compl&egrave;te sur la compatibilit&eacute; d'&eacute;criture des scripts</a> peut &ecirc;tre consult&eacute;e. Dans le cas sp&eacute;cifique de l'interface aud'ACE, il est important de consulter la page d&eacute;di&eacute;e aux <a href="script1b.htm">r&egrave;gles &agrave; respecter</a> pour que le script soit compaticle avec les variables d'environnements d&eacute;finies pdans Audace.</p>
+</body>
+</html>

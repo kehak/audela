@@ -1,0 +1,133 @@
+#
+# Fichier : acqt1mSetup.cap
+# Mise a jour $Id: acqt1mSetup.cap 7548 2011-08-20 08:07:36Z robertdelmas  $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(acqt1mSetup,titre)                     "Acquisitiont1m - Setup"
+set caption(acqt1mSetup,en-tete_fits)              "FITS Header"
+set caption(acqt1mSetup,mots_cles)                 "Keywords"
+set caption(acqt1mSetup,texte1)                    "Display messages on the Terminal"
+set caption(acqt1mSetup,texte2)                    "Record dates in the log file"
+set caption(acqt1mSetup,texte3)                    "Aural warning when the series ends"
+set caption(acqt1mSetup,texte4)                    "Ask whether the user wants existing file to be replaced"
+set caption(acqt1mSetup,texte5)                    "Prompt the user if the index starts with a value different from 1"
+set caption(acqt1mSetup,texte6)                    "Save an interrupted acquisition"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(acqt1mSetup,titre)                  "Acquisitiont1m - Configuration"
+   set caption(acqt1mSetup,en-tete_fits)           "En-tête FITS"
+   set caption(acqt1mSetup,mots_cles)              "Mots clés"
+   set caption(acqt1mSetup,texte1)                 "Afficher les messages dans la Console"
+   set caption(acqt1mSetup,texte2)                 "Enregistrer les dates dans le fichier log"
+   set caption(acqt1mSetup,texte3)                 "Alarme sonore de fin de série"
+   set caption(acqt1mSetup,texte4)                 "Demander l'autorisation de remplacer un fichier existant"
+   set caption(acqt1mSetup,texte5)                 "Signaler que l'index de départ est différent de 1"
+   set caption(acqt1mSetup,texte6)                 "Enregistrer une acquisition interrompue"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(acqt1mSetup,titre)                  "Acquisizionet1m - Configurazione"
+   set caption(acqt1mSetup,en-tete_fits)           "Intestazione FITS"
+   set caption(acqt1mSetup,mots_cles)              "Parole chiave"
+   set caption(acqt1mSetup,texte1)                 "Mostra messaggio sul terminale"
+   set caption(acqt1mSetup,texte2)                 "Salvataggio date nel file di log"
+   set caption(acqt1mSetup,texte3)                 "Segnale acustico quando finisce la serie"
+   set caption(acqt1mSetup,texte4)                 "Domandare l'autorizzazione di rimpiazzare un file esistente"
+   set caption(acqt1mSetup,texte5)                 "Segnalare che l'indice di partenza sia differente da 1"
+   set caption(acqt1mSetup,texte6)                 "Salvare una acquisizione interrotta"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(acqt1mSetup,titre)                  "Adquisiciónt1m - Configuración"
+   set caption(acqt1mSetup,en-tete_fits)           "Cabecera FITS"
+   set caption(acqt1mSetup,mots_cles)              "Palabras clave"
+   set caption(acqt1mSetup,texte1)                 "Mostrar mensajes en la Consola"
+   set caption(acqt1mSetup,texte2)                 "Grabar fechas en el fichero de log"
+   set caption(acqt1mSetup,texte3)                 "Alarma sonora cuando la serie termina"
+   set caption(acqt1mSetup,texte4)                 "Pedir autorización para reemplazar un fichero existente"
+   set caption(acqt1mSetup,texte5)                 "Avisar que el indice empieza con un valor diferente de 1"
+   set caption(acqt1mSetup,texte6)                 "Guardar una adquisición interrumpida"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(acqt1mSetup,titre)                  "Belichtungt1m - Konfiguration"
+   set caption(acqt1mSetup,en-tete_fits)           "FITS Header"
+   set caption(acqt1mSetup,mots_cles)              "Stichwörter"
+   set caption(acqt1mSetup,texte1)                 "Die Nachrichten am Bildschirm zeigen"
+   set caption(acqt1mSetup,texte2)                 "Die Zeit in die Log Datei speichern"
+   set caption(acqt1mSetup,texte3)                 "Ton Alarm wenn die Serie endet"
+   set caption(acqt1mSetup,texte4)                 "Die Zulassung eine vorhandene Datei zu ersetzen fragen"
+   set caption(acqt1mSetup,texte5)                 "Dass der Anfang Index nicht 1 ist veranlassen"
+   set caption(acqt1mSetup,texte6)                 "Eine unterbrochene Übernahme speichern"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(acqt1mSetup,titre)                  "Aquisiçãot1m - Configuração"
+   set caption(acqt1mSetup,en-tete_fits)           "Cabeçalho FITS"
+   set caption(acqt1mSetup,mots_cles)              "Palavras-chave"
+   set caption(acqt1mSetup,texte1)                 "Mostrar mensagens na Consola"
+   set caption(acqt1mSetup,texte2)                 "Guardar datas no ficheiro log"
+   set caption(acqt1mSetup,texte3)                 "Alarme sonoro quando a série terminar"
+   set caption(acqt1mSetup,texte4)                 "Pedir a autorização para substituir um ficheiro existente"
+   set caption(acqt1mSetup,texte5)                 "Indicar que o índice de partida é diferente de 1"
+   set caption(acqt1mSetup,texte6)                 "Salvar uma aquisição interrompida"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(acqt1mSetup,titre)                  "Acquisitiont1m - Setup"
+   set caption(acqt1mSetup,en-tete_fits)           "FITS Header"
+   set caption(acqt1mSetup,mots_cles)              "Keywords"
+   set caption(acqt1mSetup,texte1)                 "Display messages on the Terminal"
+   set caption(acqt1mSetup,texte2)                 "Record dates in the log file"
+   set caption(acqt1mSetup,texte3)                 "Aural warning when the series ends"
+   set caption(acqt1mSetup,texte4)                 "Ask whether the user wants existing file to be replaced"
+   set caption(acqt1mSetup,texte5)                 "Prompt the user if the index starts with a value different from 1"
+   set caption(acqt1mSetup,texte6)                 "Save an interrupted acquisition"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(acqt1mSetup,titre)                  "Acquisitiont1m - Setup"
+   set caption(acqt1mSetup,en-tete_fits)           "FITS Header"
+   set caption(acqt1mSetup,mots_cles)              "Keywords"
+   set caption(acqt1mSetup,texte1)                 "Display messages on the Terminal"
+   set caption(acqt1mSetup,texte2)                 "Record dates in the log file"
+   set caption(acqt1mSetup,texte3)                 "Aural warning when the series ends"
+   set caption(acqt1mSetup,texte4)                 "Ask whether the user wants existing file to be replaced"
+   set caption(acqt1mSetup,texte5)                 "Prompt the user if the index starts with a value different from 1"
+   set caption(acqt1mSetup,texte6)                 "Save an interrupted acquisition"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(acqt1mSetup,titre)                  "Acquisitiont1m - Setup"
+   set caption(acqt1mSetup,en-tete_fits)           "FITS Header"
+   set caption(acqt1mSetup,mots_cles)              "Keywords"
+   set caption(acqt1mSetup,texte1)                 "Display messages on the Terminal"
+   set caption(acqt1mSetup,texte2)                 "Record dates in the log file"
+   set caption(acqt1mSetup,texte3)                 "Aural warning when the series ends"
+   set caption(acqt1mSetup,texte4)                 "Ask whether the user wants existing file to be replaced"
+   set caption(acqt1mSetup,texte5)                 "Prompt the user if the index starts with a value different from 1"
+   set caption(acqt1mSetup,texte6)                 "Save an interrupted acquisition"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

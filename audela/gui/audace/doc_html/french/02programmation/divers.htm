@@ -1,0 +1,420 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Petites fonctions diverses</title></head><body>
+<p class="date">Date de mise à jour : 02 avril 2011</p>
+<h1>AudeLA : Petites fonctions d'usage universel </h1>
+<p><strong>Fonctions basiques :</strong></p>
+<h3> <a name="charge" id="charge" />charge <em>fichier ?options?</em></h3>
+<p>Chargement d'un fichier.</p>
+<p> Options :</p>
+<ul>
+  <li>-buf : spécifie le buffer monochrome dans lequel on charge l'image (par défaut, c'est le buffer Aud'ACE).</li>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-ext : extension de l'image.</li>
+  <li>-polyNo : spécifie le plan couleurs à charger (par défaut le 1er, qui est le seul disponible pour des images monochromes).</li>
+  <li>-novisu : pas de rafraîchissement d'affichage pour le buffer Aud'ACE.</li>
+</ul>
+<h3> <a name="sauve" id="sauve" />sauve <em>fichier ?options?</em></h3>
+<p>Sauvegarde d'un fichier.</p>
+<p> Options :</p>
+<ul>
+  <li>-buf : spécifie le buffer monochrome à partir duquel on enregistre (par défaut, c'est le buffer Aud'ACE).</li>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-ext : extension de l'image.</li>
+  <li>-polyNo : spécifie le plan couleurs de sauvegarde (par défaut le 1er, qui est le seul utilisé pour des images monochromes).
+</li></ul>
+<h3> <a name="sauve_jpeg" id="sauve_jpeg" />sauve_jpeg <em>fichier ?options?</em></h3>
+<p>Sauvegarde au format jpeg de l'image Aud'ACE ; les réglages
+d'affichage (palette, fonction de transfert, seuils) sont pris en
+compte.</p><p>
+</p><p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire de destination.</li>
+  <li>-ext : extension de l'image (.jpg par défaut).</li>
+</ul>
+<h3> <a name="soustrait" id="soustrait" />soustrait <em>fichier ?options?</em></h3>
+<p>Soustraction d'une image sauvegardée sur disque à une image en mémoire tampon (buffer).</p>
+<p> Options :</p>
+<ul>
+  <li>-buf : spécifie le buffer monochrome de travail (par défaut, c'est le buffer Aud'ACE).</li>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-ext : extension du fichier image auxiliaire.</li>
+  <li>-polyNo
+: spécifie le plan couleurs du fichier image auxiliaire à utiliser (par
+défaut le 1er, qui est le seul utilisé pour des images monochromes).</li>
+</ul>
+
+<h3> <a name="normalise" id="normalise" />normalise <em>fichier ?options?</em></h3>
+<p>Normalisation d'une image en mémoire tampon (buffer) par une image sauvegardée sur disque.</p>
+<p> Options :</p>
+<ul>
+  <li>-buf : spécifie le buffer monochrome de travail (par défaut, c'est le buffer Aud'ACE).</li>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-ext : extension du fichier image auxiliaire.</li>
+  <li>-polyNo
+: spécifie le plan couleurs du fichier image auxiliaire à utiliser (par
+défaut le 1er, qui est le seul utilisé pour des images monochromes).</li>
+</ul>
+<p><strong>Fonctions de séries:</strong></p>
+<h3> <a name="suppr_serie" id="suppr_serie" />suppr_serie <em>nom_generique ?options?</em></h3>
+<p>Suppression des fichiers de type "nom_generique1", "nom_generique2", etc.<br />
+  Par défaut la fonction cherche à supprimer les fichiers FITS d'extension par défaut placés dans le répertoire images Aud'ACE.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-ext : extension de la série d'images à effacer.</li>
+</ul>
+<h3> <a name="suppr_fin_serie" id="suppr_fin_serie" />suppr_fin_serie <em>nom_generique index_fin ?options?</em></h3>
+<p>Suppression de la fin d'une série (fichiers dont l'index est strictement supérieur à "index_fin").</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-ext : extension de la série.</li>
+</ul>
+<h3> <a name="suppr_debut_serie" id="suppr_debut_serie" />suppr_debut_serie <em>nom_generique index_debut ?options?</em></h3>
+<p>Suppression du début d'une série (fichiers dont l'index est strictement inférieur à "index_debut").</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-ext : extension de la série.</li>
+</ul>
+<h3> <a name="renumerote" id="renumerote" />renumerote <em>nom_generique ?options?</em></h3>
+<p>Renumérote la série "nom_generique<em>nombre</em>" en "nom_generique1", "nom_generique_2", etc.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-ext : extension de la série d'images.</li>
+</ul>
+<h3> <a name="renomme" id="renomme" />renomme <em>ancien_nom_generique nouveau_nom_generique ?options?</em></h3>
+<p>Renomme la série "ancien_nom_generique<em>nombre</em>" en "nouveau_nom_generique<em>nombre</em>".</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-in_rep : spécifie le répertoire de la série initiale.</li>
+  <li>-ex_rep : spécifie le répertoire de la série finale.</li>
+  <li>-ext : extension de la série d'images.</li>
+  <li>-in_ext : extension de la série d'images initiale.</li>
+  <li>-ex_ext : extension de la série d'images finale.</li>
+</ul>
+<h3> <a name="copie" id="copie" />copie <em>ancien_nom_generique nouveau_nom_generique ?options?</em></h3>
+<p>Copie la série "ancien_nom_generique<em>nombre</em>" en "nouveau_nom_generique<em>nombre</em>".</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-in_rep : spécifie le répertoire de la série initiale.</li>
+  <li>-ex_rep : spécifie le répertoire de la série finale.</li>
+  <li>-ext : extension de la série d'images.</li>
+  <li>-in_ext : extension de la série d'images initiale.</li>
+  <li>-ex_ext : extension de la série d'images finale.</li>
+</ul>
+<h3> <a name="copie_partielle" id="copie_partielle" />copie_partielle <em>ancien_nom_generique nouveau_nom_generique debut fin ?options?</em></h3>
+<p>Copie du "debut"ième fichier au "fin"ième fichier de la série "ancien_nom_generique<em>nombre</em>", en "nouveau_nom_generique<em>nombre</em>".</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-in_rep : spécifie le répertoire de la série initiale.</li>
+  <li>-ex_rep : spécifie le répertoire de la série finale.</li>
+  <li>-ext : extension de la série d'images.</li>
+  <li>-in_ext : extension de la série d'images initiale.</li>
+  <li>-ex_ext : extension de la série d'images finale.</li>
+</ul>
+<h3> <a name="serie_charge" id="serie_charge" />serie_charge <em>nom_generique ?options?</em></h3>
+<p>Chargement d'une série d'images. La fonction renvoie la liste des tampons images créés, qui contiennent les images chargées.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-ext : extension de la série d'images à effacer.</li>
+</ul>
+<h3> <a name="serie_fenetre" id="serie_fenetre" />serie_fenetre <em>in ex coord ?options?</em></h3>
+<p>Fenêtrage d'une série de fichiers. La série résultante est "ex".
+"coord" est une liste des coordonnées de 2 coins extrêmes de la zone de
+fenêtrage.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-in_rep : spécifie le répertoire de la série initiale.</li>
+  <li>-ex_rep : spécifie le répertoire de la série finale.</li>
+  <li>-ext : extension de la série d'images.</li>
+  <li>-in_ext : extension de la série d'images initiale.</li>
+  <li>-ex_ext : extension de la série d'images finale.</li>
+  <li>-polyNo
+: spécifie le plan couleurs sur lequel travailler (par défaut le 1er,
+qui est le seul disponible pour des images monochromes).</li>
+  <li>-in_polyNo : spécifie le plan couleurs de travail pour la série initiale.</li>
+  <li>-ex_polyNo : spécifie le plan couleurs de travail pour la série finale.</li>
+</ul>
+<h3> <a name="souris_fenetre" id="souris_fenetre" />souris_fenetre <em>in ex ?options?</em></h3>
+<p>Idem serie_fenetre sauf que les coordonnées de la fenêtre sont à faire préalablement à la souris sur l'image Aud'ACE.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-in_rep : spécifie le répertoire de la série initiale.</li>
+  <li>-ex_rep : spécifie le répertoire de la série finale.</li>
+  <li>-ext : extension de la série d'images.</li>
+  <li>-in_ext : extension de la série d'images initiale.</li>
+  <li>-ex_ext : extension de la série d'images finale.</li>
+  <li>-polyNo
+: spécifie le plan couleurs sur lequel travailler (par défaut le 1er,
+qui est le seul disponible pour des images monochromes).</li>
+  <li>-in_polyNo : spécifie le plan couleurs de travail pour la série initiale.</li>
+  <li>-ex_polyNo : spécifie le plan couleurs de travail pour la série finale.</li>
+</ul>
+<h3> <a name="serie_rot" id="serie_rot" />serie_rot <em>in ex x0 y0 angle ?options?</em></h3>
+<p>Transformation d'une série d'images par rotation d'angle "angle" et de centre ("x0", "y0").</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-in_rep : spécifie le répertoire de la série initiale.</li>
+  <li>-ex_rep : spécifie le répertoire de la série finale.</li>
+  <li>-ext : extension des fichiers..</li>
+  <li>-in_ext : extension de la série d'images initiale.</li>
+  <li>-ex_ext : extension de la série d'images finale.</li>
+  <li>-polyNo
+: spécifie le plan couleurs sur lequel travailler (par défaut le 1er,
+qui est le seul disponible pour des images monochromes).</li>
+  <li>-in_polyNo : spécifie le plan couleurs de travail pour la série initiale.</li>
+  <li>-ex_polyNo : spécifie le plan couleurs de travail pour la série finale.</li>
+</ul>
+<h3> <a name="serie_trans" id="serie_trans" />serie_trans <em>in ex dx dy ?options?</em></h3>
+<p>Transformation d'une série d'images par translation.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-in_rep : spécifie le répertoire de la série initiale.</li>
+  <li>-ex_rep : spécifie le répertoire de la série finale.</li>
+  <li>-ext : extension des fichiers..</li>
+  <li>-in_ext : extension de la série d'images initiale.</li>
+  <li>-ex_ext : extension de la série d'images finale.</li>
+  <li>-polyNo
+: spécifie le plan couleurs sur lequel travailler (par défaut le 1er,
+qui est le seul disponible pour des images monochromes).</li>
+  <li>-in_polyNo : spécifie le plan couleurs de travail pour la série initiale.</li>
+  <li>-ex_polyNo : spécifie le plan couleurs de travail pour la série finale.</li>
+</ul>
+<h3> <a name="series_traligne" id="series_traligne" />series_traligne <em>liste_des_series_initiales serie_finale ?options?</em></h3>
+<p>Registration manuelle entre plusieurs séries d'images par translation et rotation.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-in_rep : spécifie le répertoire de la série initiale.</li>
+  <li>-ex_rep : spécifie le répertoire de la série finale.</li>
+  <li>-ext : extension des fichiers.</li>
+  <li>-in_polyNo : spécifie le plan couleurs de travail pour les séries initiales.</li>
+</ul>
+<h3> <a name="serie_sauvejpeg" id="serie_sauvejpeg" />serie_sauvejpeg <em>in ?options?</em></h3>
+<p>Conversion d'une série d'images au format jpeg.</p>
+<p> Options :</p>
+<ul>
+  <li>-ex_name : spécifie le nom de la série jpeg résultante (par défaut, on prend le nom de la série FITS initiale).</li>
+  <li>-qualitejpeg : spécifie le niveau de qualité jpeg.</li>
+  <li>-seuils_type : spécifie la manière de seuiller les images, au choix "loadima", "stat" ou "iris".</li>
+  <li>-seuils_haut_bas : seuillage fixe (cette option prend donc 2 paramètres).</li>
+  <li>-histo_haut_bas : seuillage en pourcentages de l'histogramme (cette option prend donc 2 paramètres).</li>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-in_rep : spécifie le répertoire de la série initiale.</li>
+  <li>-ex_rep : spécifie le répertoire de la série finale.</li>
+  <li>-in_ext : extension des fichiers FITS initiaux.</li>
+  <li>-ex_ext : extension des fichiers jpeg finaux (par défaut, ".jpg").</li>
+  <li>-in_polyNo : spécifie le plan couleurs de travail pour la série initiale.</li>
+</ul>
+<h3> <a name="mediane" id="mediane" />mediane <em>nom_generique ?options?</em></h3>
+<p>Renvoie l'image médiane de la série d'images d'entrée.</p>
+<p> Options :</p>
+<ul>
+  <li>-buf : spécifie le tampon image de sortie.</li>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-ext : extension de la série d'images.</li>
+  <li>-polyNo : spécifie le plan couleurs de travail pour la série initiale.</li>
+</ul>
+<h3> <a name="serie_soustrait" id="serie_soustrait" />serie_soustrait <em>in ex ?options?</em></h3>
+<p>Soustraction de l'image contenue dans le tampon mémoire spécifié
+(par défaut, l'image affichée dans Aud'ACE) à une série d'images.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-in_rep : spécifie le répertoire de la série initiale.</li>
+  <li>-ex_rep : spécifie le répertoire de la série finale.</li>
+  <li>-ext : extension des fichiers..</li>
+  <li>-polyNo
+: spécifie le plan couleurs sur lequel travailler (par défaut le 1er,
+qui est le seul disponible pour des images monochromes).</li>
+  <li>-in_polyNo : spécifie le plan couleurs de travail pour la série initiale.</li>
+  <li>-ex_polyNo : spécifie le plan couleurs de travail pour la série finale.</li>
+  <li>-buf : spécifie le tampon image qui contient l'image à soustraire.</li>
+</ul>
+<h3><a name="serie_normalise" id="serie_normalise" />serie_normalise <em>in ex ?options?</em></h3>
+<p>Normalisation par l'image contenue dans le tampon mémoire spécifié
+(par défaut, l'image affichée dans Aud'ACE) d'une série d'images.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-in_rep : spécifie le répertoire de la série initiale.</li>
+  <li>-ex_rep : spécifie le répertoire de la série finale.</li>
+  <li>-ext : extension des fichiers..</li>
+  <li>-polyNo
+: spécifie le plan couleurs sur lequel travailler (par défaut le 1er,
+qui est le seul disponible pour des images monochromes).</li>
+  <li>-in_polyNo : spécifie le plan couleurs de travail pour la série initiale.</li>
+  <li>-ex_polyNo : spécifie le plan couleurs de travail pour la série finale.</li>
+  <li>-buf : spécifie le tampon image qui contient l'image à soustraire.</li>
+</ul>
+<h3> <a name="normalise_gain" id="normalise_gain" />normalise_gain <em>in ex ?options?</em></h3>
+<p>Normalisation du gain d'une série d'images.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-in_rep : spécifie le répertoire de la série initiale.</li>
+  <li>-ex_rep : spécifie le répertoire de la série finale.</li>
+  <li>-ext : extension des fichiers..</li>
+  <li>-polyNo
+: spécifie le plan couleurs sur lequel travailler (par défaut le 1er,
+qui est le seul disponible pour des images monochromes).</li>
+  <li>-in_polyNo : spécifie le plan couleurs de travail pour la série initiale.</li>
+  <li>-ex_polyNo : spécifie le plan couleurs de travail pour la série finale.</li>
+</ul>
+<h3> <a name="aligne" id="aligne" />aligne <em>in ex ?options?</em></h3>
+<p>Alignement (registration) par translation d'une série d'images.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-in_rep : spécifie le répertoire de la série initiale.</li>
+  <li>-ex_rep : spécifie le répertoire de la série finale.</li>
+  <li>-ext : extension des fichiers..</li>
+  <li>-polyNo
+: spécifie le plan couleurs sur lequel travailler (par défaut le 1er,
+qui est le seul disponible pour des images monochromes).</li>
+  <li>-in_polyNo : spécifie le plan couleurs de travail pour la série initiale.</li>
+  <li>-ex_polyNo : spécifie le plan couleurs de travail pour la série finale.</li>
+</ul>
+<p />
+<p><strong>Fonctions avancées:</strong></p>
+<h3> <a name="TestEntier" id="TestEntier" />TestEntier <em>nombre</em></h3>
+<p>La procédure retourne "1" si le nombre est entier, "0" sinon.</p>
+<h3> <a name="TestReel" id="TestReel" />TestReel <em>nombre</em></h3>
+<p>La procédure retourne "1" si le nombre est réel, "0" sinon.</p>
+<h3> <a name="dernier_est_chiffre" id="dernier_est_chiffre" />dernier_est_chiffre <em>mot</em></h3>
+<p>La procédure retourne "1" si le dernier caractère du mot est un chiffre, "0" sinon.</p>
+<h3> <a name="nom_valide" id="nom_valide" />nom_valide <em>nom_complet_fichier</em></h3>
+<p>La procédure retourne "1" si le nom de fichier ou le chemin ne
+comportent pas de caractères accentués, "0" sinon. Dans ce dernier cas,
+il sera impossible de charger le fichier FITS...</p>
+<h3> <a name="suppr_accents" id="suppr_accents" />suppr_accents <em>mot</em></h3>
+<p>La procédure retourne le mot dépouillé de tous ses accents. Par exemple, "àlârvôàyêre" est transformé en "alarvoayere".</p>
+<h3> <a name="decomp" id="decomp">decomp <em>fichier</em></a></h3>
+<p>A tout nom de fichier (avec ou sans le chemin) cette procédure
+renvoie une liste à 5 éléments : [dossier nom_generique index extension
+compression].</p>
+
+<p>NB : "compression" peut valoir "", ".gz" ou ".bz2".</p>
+<h3><a name="liste_index" id="liste_index" />liste_index <em>nom_generique ?options?</em></h3>
+<p>Renvoie une liste constituée des index de la série "nom_generique<em>nombre</em>"</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-ext : extension de la série d'images.</li>
+</ul>
+<h3> <a name="liste_series" id="liste_series" />liste_series <em>?options?</em></h3>
+<p>Renvoie une liste constituée des noms de séries du répertoire courant.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-ext : extension de la série d'images.</li>
+</ul>
+<h3> <a name="liste_sousreps" id="liste_sousreps" />liste_sousreps <em>?options?</em></h3>
+<p>Renvoie une liste constituée des noms des sous-répertoires du répertoire courant.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+</ul>
+<h3> <a name="serie_existe" id="serie_existe" />serie_existe <em>nom_generique ?options?</em></h3>
+<p>Renvoie "1" si la série existe, sinon "0" en affichant un message décrivant l'erreur dans la console.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-ext : extension de la série d'images.</li>
+</ul>
+<h3> <a name="numerotation_usuelle" id="numerotation_usuelle" />numerotation_usuelle <em>nom_generique ?options?</em></h3>
+<p>Renvoie "1" si la série est correctement numérotée
+("nom_generique1", "nom_generique2", etc.), et "0" sinon. Ce dernier
+cas peut se produire si la série est incomplète, ou bien si elle est
+numérotée avec intercalement de zéros (par exemple en 0001, 0002, ...).</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-ext : extension de la série d'images.</li>
+</ul>
+<h3> <a name="compare_index_series" id="compare_index_series" />compare_index_series <em>liste_noms_generiques ?options?</em></h3>
+<p>Renvoie "1" si toutes les séries ont les mêmes index, et "0" sinon.</p>
+<p> Cette fonction est par exemple utilisée pour s'assurer que
+plusieurs séries monochromes peuvent être combinées en une série
+polychrome.</p>
+<p> Options :</p>
+<ul>
+  <li>-rep : spécifie le répertoire dans lequel travailler.</li>
+  <li>-ext : extension des séries d'images.</li>
+</ul>
+<h3> <a name="cree_sousrep" id="cree_sousrep" />cree_sousrep <em>?options?</em></h3>
+<p>Création d'un sous-dossier temporaire dans le répertoire images (ou
+autre répertoire en utilisant l'option -rep). Le script cherche un nom
+de dossier qui ne soit pas existant et renvoie le chemin complet du
+dossier créé.<br /> Par défaut, le nom du sous-dossier créé sera de la
+forme "tmp_1", ou "tmp_2", etc. Ceci est paramétrable par l'option
+-nom_base.</p>
+<p> Cette fonction est particulièrement utile pour stocker des fichiers
+temporaires dans un répertoire initialement vierge, ce qui évite tout
+écrasement accidentel de fichiers.</p>
+<p> Options :</p>
+<ul>
+  <li>-nom_base : spécifie la forme du nom du sous-répertoire.</li>
+  <li>-rep : permet de spécifier un autre répertoire que le répertoire image pour créer le sous-dossier temporaire.</li>
+</ul>
+<h3> <a name="cree_fichier" id="cree_fichier" />cree_fichier <em>?options?</em></h3>
+<p>Création d'un fichier vide dans le répertoire images (ou autre
+répertoire en utilisant l'option -rep). Le script cherche un nom de
+fichier qui ne soit pas existant et renvoie le chemin complet du
+fichier vide créé.</p>
+<p>Par défaut, le nom du fichier créé sera de la forme "tmp_1", ou "tmp_2", etc. Ceci est paramétrable par l'option -nom_base.</p>
+<p> Options :</p>
+<ul>
+  <li>-nom_base : spécifie la forme du nom du sous-répertoire.</li>
+  <li>-rep : permet de spécifier un autre répertoire que le répertoire image pour créer le sous-dossier temporaire.</li>
+  <li>-ext : extension du fichier. Par défaut le fichier est créé sans extension.</li>
+</ul>
+<h3> <a name="syntaxe_args" id="syntaxe_args" />syntaxe_args <em>liste_opts_averifier nb_args_obligatoires nb_args_optionnels liste_options_valides</em></h3>
+<p>Cette fonction est destinée à tester la validité d'une liste
+d'arguments. "liste_options_valides" est la liste des options valides
+(mettre en 1er élément la liste des options ne requérant pas de
+paramètre, en second celle des options requérant un paramètre, etc).
+Les options sont supposées commencer par un tiret.</p>
+<p>La fonction retourne la valeur 1 si la liste d'arguments est valide,
+0 sinon. Dans le cas où ce sont les options qui posent problème, on
+affiche dans la console des détails sur l'option invalide.</p>
+<h3> <a name="range_options" id="range_options" />range_options <em>liste_options</em></h3>
+<p>Cette fonction permet de trier une liste d'options : elle renvoie
+une liste composée de plusieurs sous-listes : la première comprend les
+arguments optionnels, la seconde les options sans paramètre, la
+troisième les options avec un paramètre (les éléments sont des
+sous-listes de longueur 2 (option et paramètre associé)), etc.</p>
+<h3> <a name="calcul_trzaligne" id="calcul_trzaligne" />calcul_trzaligne <em>liste1 liste2</em></h3>
+<p>"liste1" et "liste2" sont deux listes à 4 éléments comportant
+chacune les coordonnées de 2 points, sous la forme { x1 y1 x2 y2 }. Par
+exemple les coordonnées d'une boîte faite à la souris sur une image
+sont renvoyées par la fonction [ ::confVisu::getBox $visu ] sous cette
+forme.</p>
+<p>La fonction calcul_trzaligne permet le calcul des paramètres
+permettant par translation, rotation et zoom de ramener les points de
+"liste2" au plus près des points de "liste1". La fonction renvoie une
+liste à 6 éléments qui sont dans l'ordre : la translation à effectuer
+en x, la translation à effectuer en y, l'abscisse et l'ordonnée du
+centre pour la rotation, l'angle de la rotation en degrés, le facteur
+de zoom.</p>
+<h3> <a name="date_chiffresAlettres" id="date_chiffresAlettres" />date_chiffresAlettres <em>date_chiffres</em></h3>
+<p>L'argument est une liste de 3 éléments sous la forme <em>{année mois jour}</em>. La fonction renvoie une chaîne de caractères correspondant à la date en français, par exemple <em>11 août 1999</em>.</p>
+<h3> <a name="lmin" id="lmin" />lmin <em>liste</em></h3>
+<p>Renvoie le minimum d'une liste de nombre.</p>
+<h3> <a name="lmax" id="lmax" />lmax <em>liste</em></h3>
+<p>Renvoie le maximum d'une liste de nombre.</p>
+</body></html>

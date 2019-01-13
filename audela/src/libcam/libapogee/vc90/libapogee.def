@@ -1,0 +1,2 @@
+LIBRARY libapogee
+EXPORTS Apogee_Init @1

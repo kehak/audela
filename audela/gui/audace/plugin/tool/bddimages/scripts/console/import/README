@@ -1,0 +1,40 @@
+Audela / bddimages - mode console
+
+Script d'importation d'images et de catas dans une bddimage.
+
+Le script insert tous les fichiers (img et cata) contenu dans le repertoire
+incoming d'une base de donnees images. Avant insertion, l'entete des images
+peut etre modifie par l'effacement, l'ajout ou la mise a jour de cles.
+
+Configuration:
+
+editer le fichier 
+$AUDELA_DIR/gui/audace/plugin/tool/bddimages/scripts/console/import/import.ini
+et renseigner les champs requis
+
+Usage:
+
+$AUDELA_DIR/gui/audace/plugin/tool/bddimages/scripts/console/import/import.sh
+
+Prerequis:
+
+- la bddimage dans laquelle sont inserees les fichiers doit exister
+
+Mise a jour de l'entete des images:
+
+- si la variable update_header = yes
+- ordre de modification : effacement, ajout, mise a jour
+- cas particulier: pour effacer tous les mots cles TT, utiliser la cle speciale TTx
+- un mot cle FITS est une liste de champs: {NAME} {VALUE} {TYPE} {COMMENT} {UNIT}
+- la mise a jour d'une cle met a jour chaque champ non vide
+
+Exemples:
+
+   Effacement de toutes les cles TT:
+set keys2delete(1) "TTx"
+
+   Mise a jour de la valeur du champ ASTROID a N, de son commentaire a 'Astroid action', le type et l'unite restant inchanges:
+set keys2update(1) [list {BDDIMAGES ASTROID} {N} {} {Astroid action} {}]
+
+   Mise a jour de tous les champs d'une cle:
+set keys2update(1) [list {CATA_PVALUE} {0.0} {float} {Pvalue of astrometric reduction} {Percent}]

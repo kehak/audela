@@ -1,0 +1,28 @@
+# This file contains a top-level script to run all of the Tcl
+# tests.  Execute it by invoking "source all" when running tclTest
+# in this directory.
+#
+
+set script [info script]
+if [string match *all $script] {
+    if [string comp $script "all"] {
+	catch {
+	    cd [file dirname $script]
+	}
+    }
+}
+
+foreach i [lsort [glob *.test]] {
+    puts stdout $i
+    source $i
+}
+
+if {![string comp $argv "all"]} {
+    exit 1
+}
+
+
+
+
+
+

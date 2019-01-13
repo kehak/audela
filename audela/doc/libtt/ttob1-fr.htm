@@ -1,0 +1,178 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta name="Author" content="Alain Klotz">
+   <meta name="GENERATOR" content="Mozilla/4.51 [fr] (Win95; I) [Netscape]">
+   <title>Librairie TT : Manuel du programmeur</title>
+</head>
+<body>
+
+<center><b><font size=+3>LIB TT</font></b>
+<br>une librairie de pr&eacute;traitement d'images astronomiques
+<br>version 20000812
+<p><b><font size=+3>Les objectifs de LibTT</font></b></center>
+
+<p><br>
+<br>
+<br>
+<br>
+<h1>
+1. Besoins pour une librairie de pr&eacute;traitement</h1>
+
+<h2>
+1.1 Rappels sur le pr&eacute;traitement des images astronomiques</h2>
+Le pr&eacute;traitement des images astronomiques consiste &agrave; synth&eacute;tiser
+une image et &agrave; la calibrer &agrave; partir d'une ou plusieurs images
+brutes et d'images de calibration. On distinguera les &eacute;tapes de
+correction, de synth&egrave;se et de calibration que l'on rappelle ci-apr&egrave;s
+:
+<ul>
+<li>
+corrections :</li>
+
+<ul>
+<li>
+Correction de la pr&eacute;charge : appel&eacute;e aussi correction d'offset
+ou de bias, cette op&eacute;ration consiste &agrave; soustraire l'image
+de bias &agrave; l'image brute. Pour ce faire, on utilisera une image de
+calibration qui r&eacute;sulte d'une pile (m&eacute;diane par exemple)
+de bias &eacute;l&eacute;mentaires.</li>
+
+<li>
+Correction des charges thermiques : cette op&eacute;ration consiste &agrave;
+soustraire l'image thermique &agrave; l'image corrig&eacute;e de la pr&eacute;charge.
+Pour ce faire, on utilisera, par exemple, une image de calibration qui
+r&eacute;sulte d'une pile (m&eacute;diane par exemple) de thermiques &eacute;l&eacute;mentaires.</li>
+
+<li>
+Correction du noir : cette op&eacute;ration consiste &agrave; effectuer
+simultan&eacute;ment la correction de la pr&eacute;charge et des charges
+thermiques.</li>
+
+<li>
+Correction de sensibilit&eacute; des pixels : encore appel&eacute;e correction
+de flat-field, cette op&eacute;ration consiste &agrave; diviser l'image,
+corrig&eacute;e de la pr&eacute;charge et des charges thermiques, par l'image
+de flat. Pour ce faire, on utilisera une image de calibration qui r&eacute;sulte
+d'une pile (m&eacute;diane par exemple) de flats &eacute;l&eacute;mentaires.</li>
+</ul>
+</ul>
+
+<ul>
+<li>
+synth&egrave;ses :</li>
+
+<ul>
+<li>
+Synth&egrave;se d'une image de pr&eacute;charge : consiste &agrave; effectuer
+une pile m&eacute;diane ou kappa-sigma d'images de pr&eacute;charges &eacute;l&eacute;mentaires.</li>
+
+<li>
+Synth&egrave;se d'une image de noir : consiste &agrave; effectuer une pile
+m&eacute;diane ou kapa-sigma d'images noires &eacute;l&eacute;mentaires
+de m&ecirc;me temps de pose &agrave; la m&ecirc;me temp&eacute;rature.</li>
+
+<li>
+Synth&egrave;se d'un flat : consiste &agrave; effectuer une pile m&eacute;diane,
+kappa sigma ou tri&eacute;e d'images de flat &eacute;l&eacute;mentaires
+pr&eacute;alablement corrig&eacute;es du noir et normalis&eacute;es en
+gain.</li>
+
+<li>
+Synth&egrave;se de l'image pr&eacute;trait&eacute;e : consiste &agrave;
+empiler des images indiduelles pr&eacute;trait&eacute;es, normalis&eacute;es
+en gain et en offset et recentr&eacute;es.</li>
+</ul>
+
+<li>
+calculs :</li>
+
+<ul>
+<li>
+Calcul d'un coefficient d'optimisation thermique : consiste &agrave; calculer
+la valeur du coefficient de l'optimisation d'une image thermique par rapport
+&agrave; une image brute corrig&eacute;e de la pr&eacute;charge. On effectue
+g&eacute;n&eacute;ralement ce calcul sur une s&eacute;rie d'images et l'on
+peut effectuer un traitement statistique de rejection de valeurs aberrantes.
+[compl&egrave;te l'ent&ecirc;te de l'image]</li>
+
+<li>
+Calcul d'un coefficient multiplicateur pour normalisation en gain : consiste
+&agrave; calculer le coefficient de la normalisation en gain d'une image
+par rapport &agrave; une valeur fix&eacute;e. La normalisation peut se
+faire sur le fond de ciel ou bien sur tous les pixels de l'image. [compl&egrave;te
+l'ent&ecirc;te de l'image]</li>
+
+<li>
+Calcul d'un coefficient additionneur pour normalisation en offset : consiste
+&agrave; calculer le coefficient de la normalisation en offset d'une image
+par rapport &agrave; une valeur fix&eacute;e. La normalisation peut se
+faire sur le fond de ciel ou bien sur tous les pixels de l'image. [compl&egrave;te
+l'ent&ecirc;te de l'image].</li>
+
+<li>
+Calcul de la liste des objets sur l'image : consite &agrave; dresser une
+liste (x, y, fond, ) qui distingue, les &eacute;toiles, les d&eacute;fauts
+cosm&eacute;tiques (toute sorte de pixels aberrants) et les objets &eacute;tendus
+(+ quelques caract&eacute;ristiques g&eacute;om&eacute;triques : flux total,
+intensit&eacute; maximale, dimensions grand axe et petit axe et angle de
+position au niveau du seuil &agrave; n sigma) &agrave; partir d'une analyse
+de l'image. [liste ASCII FITS qui est ajout&eacute;e au fichier image]</li>
+
+<li>
+Calcul d'une liste d'objets catalogue : consite &agrave; dresser une liste
+(alpha, delta, magnitude) qui distingue, les &eacute;toiles et les objets
+&eacute;tendus (+ quelques caract&eacute;ristiques g&eacute;om&eacute;triques
+: dimensions grand axe et petit axe et angle de position) &agrave; partir
+d'une analyse d'un catalogue CDROM. [liste ASCII FITS]</li>
+
+<li>
+Calcul de la relation d'appariement entre deux listes d'objets : consiste
+&agrave; calculer les relations g&eacute;om&eacute;triques entre deux listes
+d'&eacute;toiles. [compl&egrave;te l'ent&ecirc;te de l'image]</li>
+
+<li>
+Calcul de la relation d'appariement entre une liste d'objets sur l'image
+et une liste d'objets catalogue : consiste &agrave; calculer les relations
+g&eacute;om&eacute;triques entre les deux listes. Il faut tenir compte
+du type de projection pour passer de alpha,delta &agrave; x,y. [compl&egrave;te
+l'ent&ecirc;te de l'image]</li>
+
+<li>
+Calcul des param&egrave;tres statistiques stellaires : calcul la moyenne
+du fond de ciel et son bruit, &agrave; partir de l'analyse de la liste
+d'objets pr&eacute;c&eacute;demment calcul&eacute;s sur l'image. Calcul
+des seuils de visu [compl&egrave;te l'ent&ecirc;te de l'image]</li>
+
+<li>
+Calcul des param&egrave;tres statistiques plan&eacute;taires : effectue
+une &eacute;tude de contraste de l'image et calcul les seuils de visu [compl&egrave;te
+l'ent&ecirc;te de l'image].</li>
+
+<li>
+Calcul des param&egrave;tres statistiques g&eacute;n&eacute;raux d'une
+image : calcul les moyennes &eacute;carts types sur l'image g&eacute;n&eacute;rale.
+Calcul les seuils de visu si ce n'est encore fait. [compl&egrave;te l'ent&ecirc;te
+de l'image].</li>
+</ul>
+</ul>
+
+<ul>
+<li>
+calibrations :</li>
+
+<ul>
+<li>
+Calibration astrom&eacute;trique : consite &agrave; calculer les param&egrave;tres
+de passage entre les coordonn&eacute;es x,y d'une image et les coordonn&eacute;es
+alpha, delta. Il s'agit d'une combinaison de calculs et de leur analyse.</li>
+
+<li>
+Calibration photom&eacute;trique relative : consiste &agrave; utiliser
+la m&eacute;thode de photom&eacute;trie diff&eacute;rentielle rattach&eacute;e.</li>
+</ul>
+</ul>
+
+</body>
+</html>

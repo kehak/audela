@@ -1,0 +1,107 @@
+#------------------------------------------------------------------
+# source [ file join $audace(rep_plugin) tool atos atos_ocr.cap
+#------------------------------------------------------------------
+#
+# Fichier        : atos_ocr.cap
+# Description    : Caption pour la reconnaissance de caractere
+# Auteur         : Frederic Vachier
+# Mise à jour $Id: atos_ocr.cap 10643 2014-04-05 12:08:21Z jberthier $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(atos_ocr,bar_title)           "ATOS - Time extraction"
+set caption(atos_ocr,main_title)          "acqvideolinux - Status"
+set caption(atos_ocr,titre)               "Datation des images"
+
+set caption(atos_ocr,label_bdd)           "Information du Serveur MySQL Local"
+set caption(atos_ocr,label_connect)       "Connexion Serveur................"
+set caption(atos_ocr,label_nbimg)         "Nb requêtes......................"
+set caption(atos_ocr,label_nbheader)      "Nb scènes........................"
+
+set caption(atos_ocr,label_rep)           "Information du Télescope"
+set caption(atos_ocr,label_tconnect)      "Webservice......................"
+
+set caption(atos_ocr,raz)                 "RAZ de la base de données"
+set caption(atos_ocr,verif)               "Vérification"
+set caption(atos_ocr,aide)                "Aide"
+set caption(atos_ocr,fermer)              "Fermer"
+set caption(atos_ocr,cancelRAZ)           "RAZ BDD annulée"
+
+set caption(atos_ocr,msg_erreur)          "Erreur"
+set caption(atos_ocr,msg_internet)        "Reconnexion à la base"
+
+set caption(atos_ocr,msg_prevent)         "Attention !"
+set caption(atos_ocr,msg_prevent2)        "Cette action va réinitialiser la base de données. Toutes les données seront définitivement effacées du disque. Etes-vous sûr ?"
+set caption(atos_ocr,efface)              "Effacement de la base de données"
+set caption(atos_ocr,mdprootsql)          "Veuillez saisir le mot de passe root du serveur SQL"
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(atos_ocr,bar_title)        "ATOS - Extraction du temps"
+   set caption(atos_ocr,main_title)       "acqvideolinux - Statut"
+   set caption(atos_ocr,titre)            "Datation des images"
+
+   set caption(atos_ocr,label_bdd)        "Information du Serveur MySQL Local"
+   set caption(atos_ocr,label_connect)    "Connexion Serveur................"
+   set caption(atos_ocr,label_nbrequetes) "Nb requêtes......................"
+   set caption(atos_ocr,label_nbscenes)   "Nb scènes........................"
+
+   set caption(atos_ocr,label_rep)        "Information du Télescope"
+   set caption(atos_ocr,label_tconnect)   "Webservice......................."
+
+   set caption(atos_ocr,raz)              "RAZ de la base de données"
+   set caption(atos_ocr,verif)            "Vérification"
+   set caption(atos_ocr,aide)             "Aide"
+   set caption(atos_ocr,fermer)           "Fermer"
+   set caption(atos_ocr,cancelRAZ)        "RAZ BDD annulée"
+
+   set caption(atos_ocr,msg_erreur)       "Erreur"
+   set caption(atos_ocr,msg_internet)     "Reconnexion à la base"
+
+   set caption(atos_ocr,msg_prevent)      "Attention !"
+   set caption(atos_ocr,msg_prevent2)     "Cette action va réinitialiser la base de données. Toutes les données seront définitivement effacées du disque. Etes-vous sûr ?"
+   set caption(atos_ocr,efface)           "Effacement de la base de données"
+   set caption(atos_ocr,mdprootsql)       "Veuillez saisir le mot de passe root du serveur SQL"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

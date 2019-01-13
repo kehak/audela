@@ -1,0 +1,79 @@
+#
+# Fichier : acqvideoSetup.cap
+# Mise a jour $Id: acqvideoSetup.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(acqvideoSetup,titre)                     "Video Acquisition - Setup"
+set caption(acqvideoSetup,texte1)                    "Display messages on the Terminal:"
+set caption(acqvideoSetup,texte2)                    "Record dates in the log file:"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(acqvideoSetup,titre)                  "Acquisition vidéo - Configuration"
+   set caption(acqvideoSetup,texte1)                 "Afficher les messages sur la Console :"
+   set caption(acqvideoSetup,texte2)                 "Enregistrer les dates dans le fichier log :"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(acqvideoSetup,titre)                  "Acquisizione video - Configurazione"
+   set caption(acqvideoSetup,texte1)                 "Mostra messaggio sul terminale:"
+   set caption(acqvideoSetup,texte2)                 "Salvataggio date nel file di log:"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(acqvideoSetup,titre)                  "Adquisición vídeo - Configuración"
+   set caption(acqvideoSetup,texte1)                 "Mostrar mensajes en la Consola:"
+   set caption(acqvideoSetup,texte2)                 "Grabar fechas en el fichero de log:"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(acqvideoSetup,titre)                  "Video Belichtung - Konfiguration"
+   set caption(acqvideoSetup,texte1)                 "Die Nachrichten am Bildschirm zeigen:"
+   set caption(acqvideoSetup,texte2)                 "Die Zeit in die Log Datei speichern:"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(acqvideoSetup,titre)                  "Aquisição video - Configuração"
+   set caption(acqvideoSetup,texte1)                 "Mostrar mensagens na Consola:"
+   set caption(acqvideoSetup,texte2)                 "Guardar datas no ficheiro log:"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(acqvideoSetup,titre)                  "Video Acquisition - Setup"
+   set caption(acqvideoSetup,texte1)                 "Display messages on the Terminal:"
+   set caption(acqvideoSetup,texte2)                 "Record dates in the log file:"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(acqvideoSetup,titre)                  "Video Acquisition - Setup"
+   set caption(acqvideoSetup,texte1)                 "Display messages on the Terminal:"
+   set caption(acqvideoSetup,texte2)                 "Record dates in the log file:"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(acqvideoSetup,titre)                  "Video Acquisition - Setup"
+   set caption(acqvideoSetup,texte1)                 "Display messages on the Terminal:"
+   set caption(acqvideoSetup,texte2)                 "Record dates in the log file:"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

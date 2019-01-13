@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Tutoriel Gamma Ray Burst</title>
+</head>
+
+<body style="color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+<p class="date">Date de
+mise à jour : 22 novembre 2011<br />
+</p>
+<h1>Tutoriel d'analyse des données sur les sursauts gamma</h1>
+Les sursauts gamma sont des phénomènes habituellement
+détectés par des satellites. Le logiciel AudeLA
+possède une série de fonctions de Console qui permet
+d'analyser les données publiées par deux instituts : <br />
+<ul>
+  <li>GCN : Le Gamma-ray burst Coordinate Network est un organisme de
+la NASA qui collecte les rapports d'observations des sursauts gamma
+réalisés par divers télescopes. Le GCN publie ces
+résultats sous la forme de circulaires, notés
+habituellement GCNC.</li>
+</ul>
+<ul>
+  <li>Max Planck Institute : L'astronome J. Greiner met à jour
+une page web qui rassemble les données essentielles de chaque
+sursaut gamma depuis l'an 2000.</li>
+</ul>
+Le logiciel AudeLA permet de télécharger aisément
+les données GCNC et de J. Greiner puis fournit de quoi les
+analyser. Avant de commencer, il faut importer les fonctions dans
+AudeLA. Dans la Console, entrer :<br />
+<pre style="font-weight: bold;">source "$audace(rep_install)/gui/audace/grb_tools.tcl"</pre>
+De cette façon, on accède aux fonctions qui commencent
+par le mot "grb_".
+<h1>1. Téléchargement et exploitation des circulaires
+GCNC&nbsp;</h1>
+Le GCNC a publié plus de 10000 circulaires en 10 ans. On peut
+télécharger toutes les circulaires à l'aide de la
+fonction grb_gcnc. Attention, cela prend plusieurs heures.<br />
+<pre><span style="font-weight: bold;">grb_gcnc update</span></pre>
+A la fin les fichiers sont stockés dans le dossier
+$::audace(rep_userCatalog)/grb/gcnc. Comme il est difficile de
+gérer plusieurs milliers de fichiers dans un même dossier,
+les fichiers de GCNC sont stockés par paquet de 100 dans des
+sous dossiers grbXXXX (où XXXX sont des digits).<br />
+<br />
+La fonction "grb_gcnc id_telescope" analyse tous les GCNC et
+génère des fichiers
+$::audace(rep_userCatalog)/grb/tel_*.txt pour des télescopes
+référencés.<br />
+<br />
+La fonction "grb_gcnc list_telescopes" analyse tous les fichiers
+$::audace(rep_userCatalog)/grb/tel_*.txt et va générer le
+fichier&nbsp;$::audace(rep_userCatalog)/grb/observatories.txt qui
+rassemble le nom de tous les sursauts observés par chaque
+observatoire. L'autre fichier généré est
+$::audace(rep_userCatalog)/grb/observatories_short.txt qui montre
+uniquement le nombre de sursauts observés, les noms du premier
+et du dernier sursaut observés. Voici un exemple d'extrait de ce
+fichier :<br />
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VLT :&nbsp; 235 : GCNC321 GRB990510 : GCNC11607 GRB110128A : <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Gemini-* :&nbsp; 209 : GCNC584 GRB000301C : GCNC12132 GRB110709B : <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Shajn :&nbsp; 182 : GCNC784 GRB000830 : GCNC12005 GRB110503A : <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ROTSE :&nbsp; 176 : GCNC205 GRB990123 : GCNC12089 GRB110625A : <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MASTER :&nbsp; 161 : GCNC1474 GRB020813 : GCNC12120 GRB110709A : <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Keck :&nbsp; 153 : GCNC33 GRB980326 : GCNC11522 GRB101225A : <br />&nbsp;&nbsp;&nbsp;&nbsp; Tautenburg :&nbsp; 146 : GCNC36 GRB980329 : GCNC12010 GRB110503A : <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Suzaku :&nbsp; 144 : GCNC4297 GRB051008 : GCNC12152 GRB110709A : <br />&nbsp; Integral-IBAS :&nbsp; 140 : GCNC1838 GRB030131 : GCNC12112 GRB110708A : <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MITSuME :&nbsp; 119 : GCNC2979 GRB050124 : GCNC12139 GRB110709A : <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TAROT :&nbsp; 119 : GCNC535 GRB000201 : GCNC12022 GRB110520A : <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Magellan :&nbsp; 105 : GCNC368 GRB990705 : GCNC11685 GRB110208A : <br />     ESO/Danish :   31 : GCNC267 GRB990217 : GCNC8135 GRB080825B : <br /></pre>
+On peut ainsi se rendre compte que l'observatoire ESO/Danish n'a pas
+fourni d'observations depuis le GRB080825B ce qui signifie que
+l'activité de ce télescope semble arrêtée.
+<h1>2. Téléchargement et exploitation de la page de J.
+Greiner</h1>
+Après analyse de la page web de J. Greiner, il faut analyser les
+liens pour chaque sursaut gamma. Cela est réalisé par la
+fonction :<br />
+<pre><span style="font-weight: bold;">grb_greiner update</span></pre>
+A la fin, les données sont enregistrées dans le dossier
+$::audace(rep_userCatalog)/grb/greiner. Notamment, le fichier
+grboptic.txt rassemble de nombreuses caractéristiques des
+sursauts gamma :<br />
+<pre>  GRBName    Satellite            Date-Trigger  RA      DEC      v   z       z'<br />&nbsp; 110915B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AGILE 1800-01-01T00:00:00.000 077.5500 +01.9333 0 -01.000 -01.000<br />&nbsp; 110915A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Swift 2011-09-15T13:20:44.398 310.8500 -00.7167 0 -01.000 -01.000<br />&nbsp; 110903A&nbsp;&nbsp;&nbsp;&nbsp; INTEGRAL 2011-09-03T02:39:55.118 197.0375 +59.0000 0 -01.000 -01.000<br />&nbsp; 110827A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Swift 2011-08-27T00:01:52.500 164.0958 +53.7833 0 -01.000 -01.000<br />&nbsp; 110825A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fermi 1800-01-01T00:00:00.000 044.8958 +15.4000 0 -01.000 -01.000<br />&nbsp; 110820B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IPN 1800-01-01T00:00:00.000 157.5833 -54.6000 0 -01.000 -01.000<br />&nbsp; 110820A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Swift 2011-08-20T17:38:27.788 343.3333 +70.3000 0 -01.000 -01.000<br />&nbsp; 110818A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Swift 2011-08-18T20:37:49.200 317.3833 -63.9667 1 +03.360 +03.360<br />&nbsp; 110815A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IPN 1800-01-01T00:00:00.000 085.2958 +32.4500 0 -01.000 -01.000<br />&nbsp; 110808A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Swift 2011-08-08T06:18:54.200 057.2625 -44.1833 1 +01.348 +01.348<br />&nbsp;110802AS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IPN 1800-01-01T00:00:00.000 044.4542 +32.6000 0 -01.000 -01.000<br />&nbsp; 110801A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Swift 2011-08-01T19:49:42.990 089.8417 +80.9833 1 +01.858 +01.858<br />&nbsp; 110731A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Swift 2011-07-31T11:09:30.448 280.5208 -28.5500 1 +02.830 +02.830<br />...</pre>
+Les coordonnées (RA,DEC) sont données en équinoxe
+J2000.0.<br />
+La colonne v est un flag. v=0 s'il n'y a pas eu de détection
+optique (v=1 si l'émission optique a été
+détectée).<br />
+La colonne z donne le redshift spectroscopique mesuré (z=-01.000
+s'il n'y a pas eu de mesure)<br />
+La colonne z' donne le redshift quelque soit la méthode
+(z=-01.000 s'il n'y a pas eu de mesure)<br />
+<br />
+Le fichier grboptic.txt peut être utilisé pour dresser
+l'histogramme des redshifts.<br />
+<br />
+Le fichier grboptic.txt peut être aussi utilisé pour
+dresser et calculer le nombre de sursauts qui ont pu être
+observés au moment du trigger à la surface de la Terre. On
+désigne par "carte des éclairements", la carte de la
+Terre sur laquelle on reporte le nombre de sursauts qui ont
+été observables au moment de l'émission gamma.
+Pour calculer la carte des éclairements produits par le sursaut
+gamma GRB 110205A détecté par le satellite Swift :<br />
+<pre style="font-weight: bold;">grb_greiner prompt_map Swift 110205A<br />loadima tmp</pre>
+A la fin, on obtient une image de dimensions 361 x 181. L'image est
+enregistrée par le nom tmp.fit dans le répertoire courant
+des images. L'axe X est utilisé pour les longitudes et l'axe Y
+pour les latitudes. A chaque pixel on a le chiffre 1 lorsque le sursaut
+était visible à cet endroit au moment du trigger, sinon
+on a zéro. <br />
+<br />
+<img style="width: 359px; height: 180px;" alt="" src="images/grb110205a.png" /><br />
+<br />
+A noter que les conditions de visibilité sont basées sur
+une élévation du sursaut supérieure à
+10°, une élévation du Soleil inférieure
+à -10° et une distance à la Lune supérieure
+à 5°.&nbsp;<br />
+&nbsp;<br />
+Pour obtenir la carte de l'ensemble des sursauts du satellite Swift :<br />
+<pre><span style="font-weight: bold;">grb_greiner prompt_map Swift<br />loadima tmp</span></pre>
+<br />
+<img style="width: 359px; height: 180px;" alt="" src="images/grbs.png" /><br />
+<br />
+<span style="font-weight: bold;"><br />
+</span><font face=""><font face=""><font face=""><font face="" /></font></font></font>
+</body></html>

@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+  <title>Test to eval a script in a terminal of AudeLA</title>
+  <meta content="A. Klotz" name="author">
+</head>
+<body>
+<h1>Test to eval a script in a terminal of AudeLA</h1>
+<br>
+
+<script type="text/javascript">
+
+   var host = document.location.host;
+   var dom = document.domain;
+   dom=host;
+
+   document.write('<form method="post" action="http://'+dom+'/cgi-bin/audela/bin/audela.exe">')
+   
+</script>
+ <input type="submit" value="Script for AudeLA terminal">&nbsp;
+ <input name="mode" type="hidden" value="console_client1">  
+ &nbsp;Enter your script contents:<br>
+ <textarea name="script" cols="80" rows="3" wrap="off">set a [expr 2+5]</textarea><br>
+</FORM>
+
+
+</body>
+</html>

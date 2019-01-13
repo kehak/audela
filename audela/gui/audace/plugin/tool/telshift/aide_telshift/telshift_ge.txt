@@ -1,0 +1,23 @@
+Die Benutzer Hilfe für das Fenster "Bildsachen mit Teleskop Bewegung"
+
+Diesen Skript ist um die Anschaffung von Bilder zu erleichtern bestimmt, im Fall diese Bilder eine Teleskop Bewegung zwischen die verschiedene Beleuchtungen erfordern (zum Beispiel, wenn sie eine Bilder Mosaik machen möchten).
+
+Bestandteil "Beleuchtungen Parametern" :
+Nichts hier zu sagen, das ist Selbstverständlich !
+
+Bestandteil "Bildsachen" :
+1) "Normales Bild" : bezeichnet das Verfahren wo sie mehrere Bilder von ein einiges Gegenstand nehmen wollen mit eine kleine Bewegung des Teleskop zwischen jedes Bildleuchtung. In diesen Skript ist das Teleskop 30 Rasterpunkte verschieben zwischen jede Beleuchtung.
+
+2) "GLG auf dem Nachthimmel" : bezeichnet das Verfahren die sie nützen können um die "flat fields" zu schaffen (Gleichleuchtung Gesamtheit - GLG). Dies nicht auf Dämmerlichthimmel, aber auf den Nachthimmel mit einen Sternen beleuchtete Hinterhimmel während der Nacht. Das Teleskop ist hier 3000 Rasterpunkte rein zufällig bewegt so dass man nachher die Sternen, durch eine Behandlung, von die Bilder außchalten kann. Danach bleiben nur noch die Optische Defekte vom Gerät in den Bilder, und sie können demnach als "flat fields" genützt sein.
+
+3) "4 Bilder Mosaik" : sie recken zu einen Objekt, zentrieren ihn und anlassen die 4 Bilder Mosaik während das Teleskop auf dieses Objekt zentriert ist. Der Skript wird dann die Teleskop Verschiebung übernehmen, so dass das Objekt in der Mitte der 4 Bilder Mosaik sei. Die gesamte Bild Zahl die bei den Skript geschafft wird übereinstimmt 4 mahl die Bildleuchtung Zahl die sie gedeutet haben, weil es sich um eine 4 Bilder Mosaik dreht. 
+
+4) "9 Bilder Mosaik" : wie vorher, aber mit 9 Bilder.
+
+Bestandteil "Namen der Grundlage des Bild Datei" : 
+Geben sie hier den Grundlagen Namen der Datei die auf eure Festplatte abspeichert wird. Ein eigentümlicher Zahlzeichen wird an jedes Bild der Reihe angehängt. Zum Beispiel, wenn sie M81- als Grundlage wählen, und sie sich entschließen 9 Bildleuchtung zu machen, der Skript wird 9 Datei auf eure Festplatte abspeichern, mit die folgenden Namen : M81-1, M81-2, ..., M81-9.
+Im Mosaik Fall, 2 Indexen werden an die Datei Grundlage Namen angehängt. Zum Beispiel, immer im M81 Fall, und für eine 4 Bilder Mosaik mit 2 Beleuchtungen pro Bild man erreicht die folgenden Namen : M81-1-1, M81-1-2, M81-2-1, M81-2-2, M81-3-1, M81-3-2, ... Das erste Index übereinstimmt mit die Bild Nummer der Mosaik (demnach 1, 2, 3 und 4 in unserem Beispiel weil es sich um eine 4 Bilder Mosaik dreht), während das zweite Index mit die Bildleuchtung für jedes Bild übereinstimmt (demnach 1 und 2 in unserem Beispiel weil wir 2 Bildleuchtungen pro Mosaik geschafft haben).
+
+Ich wünsche euch schöne Bilder :-)
+
+Sie können mich an diese Adresse kontaktieren : chris.jasinski@wanadoo.fr

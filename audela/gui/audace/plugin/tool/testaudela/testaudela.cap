@@ -1,0 +1,250 @@
+#
+# Fichier : testaudela.cap
+# Mise a jour $Id: testaudela.cap 7104 2011-04-06 16:44:13Z robertdelmas  $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(testaudela,title)                             "AudeLA Test"
+set caption(testaudela,name)                              "Name"
+set caption(testaudela,description)                       "Description"
+set caption(testaudela,imageDirectory)                    "Test Images"
+set caption(testaudela,files)                             "Test File"
+set caption(testaudela,refresh)                           "Update"
+set caption(testaudela,selectAll)                         "All"
+set caption(testaudela,unselectAll)                       "None"
+set caption(testaudela,run)                               "Run the tests"
+set caption(testaudela,stop)                              "Stop the tests"
+set caption(testaudela,detail)                            "Content of selected file"
+set caption(testaudela,showResult)                        "See the result"
+set caption(testaudela,constraint)                        "Prerequisites"
+set caption(testaudela,testCampagne)                      "Test Campaign"
+set caption(testaudela,result)                            "Tests Results"
+set caption(testaudela,ImageDirectory,notFound)           "Test image directory does not exist."
+set caption(testaudela,ImageDirectory,alreadyUsed)        "Test image directory must be different from default image directory."
+set caption(testaudela,ImageDirectory,installQuestion)    "Install test images?"
+set caption(testaudela,ImageDirectory,installTitle)       "Install test images"
+set caption(testaudela,ImageDirectory,procedure1)         "Click on the link below to download test images."
+set caption(testaudela,ImageDirectory,procedure2)         "Unzip them in the selected folder below."
+set caption(testaudela,edit)                              "Edit Test Script"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(testaudela,title)                          "Test AudeLA"
+   set caption(testaudela,name)                           "Nom"
+   set caption(testaudela,description)                    "Description"
+   set caption(testaudela,imageDirectory)                 "Images de test"
+   set caption(testaudela,files)                          "Fichiers de test"
+   set caption(testaudela,refresh)                        "Actualiser"
+   set caption(testaudela,selectAll)                      "Tous"
+   set caption(testaudela,unselectAll)                    "Aucun"
+   set caption(testaudela,run)                            "Exécuter les tests"
+   set caption(testaudela,stop)                           "Arreter les tests"
+   set caption(testaudela,detail)                         "Contenu du fichier sélectionné"
+   set caption(testaudela,showResult)                     "Voir le résultat"
+   set caption(testaudela,constraint)                     "Pré-requis"
+   set caption(testaudela,testCampagne)                   "Campagne de tests"
+   set caption(testaudela,result)                         "Résultat des tests"
+   set caption(testaudela,ImageDirectory,notFound)        "Le répertoire des images de test n'existe pas."
+   set caption(testaudela,ImageDirectory,alreadyUsed)     "Le répertoire des images de test doit être différent du répertoire de travail."
+   set caption(testaudela,ImageDirectory,installQuestion) "Voulez-vous installer les images de test ?"
+   set caption(testaudela,ImageDirectory,installTitle)    "Installer les images de test"
+   set caption(testaudela,ImageDirectory,procedure1)      "Cliquer sur le lien ci-dessous pour télécharger les images de test."
+   set caption(testaudela,ImageDirectory,procedure2)      "Les dézipper dans le dossier choisi ci-dessous."
+   set caption(testaudela,edit)                           "Editer le script de test"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(testaudela,title)                          "Test AudeLA"
+   set caption(testaudela,name)                           "Nome"
+   set caption(testaudela,description)                    "Descrizione"
+   set caption(testaudela,imageDirectory)                 "Immagini di test"
+   set caption(testaudela,files)                          "File di test"
+   set caption(testaudela,refresh)                        "Aggiorna"
+   set caption(testaudela,selectAll)                      "Tutti"
+   set caption(testaudela,unselectAll)                    "Nessuno"
+   set caption(testaudela,run)                            "Esegui il test"
+   set caption(testaudela,stop)                           "Ferma i test"
+   set caption(testaudela,detail)                         "Contenuto del file selezionato"
+   set caption(testaudela,showResult)                     "Visualizza il risultato"
+   set caption(testaudela,constraint)                     "Prerequisiti"
+   set caption(testaudela,testCampagne)                   "Campagna di test"
+   set caption(testaudela,result)                         "Risultati dei test"
+   set caption(testaudela,ImageDirectory,notFound)        "La cartella delle immagini non esiste."
+   set caption(testaudela,ImageDirectory,alreadyUsed)     "La cartella delle immagini di prova deve essere diverso da quella di lavoro."
+   set caption(testaudela,ImageDirectory,installQuestion) "Installare le immagini di test?"
+   set caption(testaudela,ImageDirectory,installTitle)    "Installa le immagini di test"
+   set caption(testaudela,ImageDirectory,procedure1)      "Cliccare sul link per scaricare le immagini di test."
+   set caption(testaudela,ImageDirectory,procedure2)      "Decomprimere nella cartella sottostante."
+   set caption(testaudela,edit)                           "Editare lo script di test"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(testaudela,title)                          "Test AudeLA"
+   set caption(testaudela,name)                           "Nombre"
+   set caption(testaudela,description)                    "Descripción"
+   set caption(testaudela,imageDirectory)                 "Imágenes de test"
+   set caption(testaudela,files)                          "Ficheros de test"
+   set caption(testaudela,refresh)                        "Actualizar"
+   set caption(testaudela,selectAll)                      "Todos"
+   set caption(testaudela,unselectAll)                    "Nada"
+   set caption(testaudela,run)                            "Ejecutar los tests"
+   set caption(testaudela,stop)                           "Detener el test"
+   set caption(testaudela,detail)                         "Contenido del fichero seleccionado"
+   set caption(testaudela,showResult)                     "Ver los resultados"
+   set caption(testaudela,constraint)                     "Prerequisitos"
+   set caption(testaudela,testCampagne)                   "Campaña de tests"
+   set caption(testaudela,result)                         "Resultados del test"
+   set caption(testaudela,ImageDirectory,notFound)        "El directorio de imágenes de test no existe."
+   set caption(testaudela,ImageDirectory,alreadyUsed)     "El directorio de imágenes de test debe ser diferente del directorio de trabajo."
+   set caption(testaudela,ImageDirectory,installQuestion) "¿Desea instalar las imágenes de test?"
+   set caption(testaudela,ImageDirectory,installTitle)    "Instalar imágenes de test"
+   set caption(testaudela,ImageDirectory,procedure1)      "Cick sobre el link siguiente para descargar las imágenes de test."
+   set caption(testaudela,ImageDirectory,procedure2)      "Descomprimir en el directorio seleccionado."
+   set caption(testaudela,edit)                           "Editar el script de test"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(testaudela,title)                          "AudeLA Test"
+   set caption(testaudela,name)                           "Name"
+   set caption(testaudela,description)                    "Beschreibung"
+   set caption(testaudela,imageDirectory)                 "Testbild"
+   set caption(testaudela,files)                          "Test Datei"
+   set caption(testaudela,refresh)                        "Aktualisieren"
+   set caption(testaudela,selectAll)                      "Alle"
+   set caption(testaudela,unselectAll)                    "Keiner"
+   set caption(testaudela,run)                            "Die Testen führen"
+   set caption(testaudela,stop)                           "Die Testen halten"
+   set caption(testaudela,detail)                         "Inhalt der ausgewählten Datei"
+   set caption(testaudela,showResult)                     "Das Ergebnis sehen"
+   set caption(testaudela,constraint)                     "Voraussetzungen"
+   set caption(testaudela,testCampagne)                   "Test Feldzug"
+   set caption(testaudela,result)                         "Testen Ergebnis"
+   set caption(testaudela,ImageDirectory,notFound)        "Das Testbild Verzeichnis existiert nicht."
+   set caption(testaudela,ImageDirectory,alreadyUsed)     "Das Testbild Verzeichnis muss sich vom Standard Bild Verzeichnis unterscheiden."
+   set caption(testaudela,ImageDirectory,installQuestion) "Vollen sie Testbilder installieren?"
+   set caption(testaudela,ImageDirectory,installTitle)    "Testbilder installieren"
+   set caption(testaudela,ImageDirectory,procedure1)      "Auf den untenstehenden Link klicken um Testbilder herunterladen ."
+   set caption(testaudela,ImageDirectory,procedure2)      "Diese in den ausgewählten Ordner unter entpacken."
+   set caption(testaudela,edit)                           "Testscript editieren"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(testaudela,title)                          "Teste AudeLA"
+   set caption(testaudela,name)                           "Nome"
+   set caption(testaudela,description)                    "Descrição"
+   set caption(testaudela,imageDirectory)                 "Imagens de teste"
+   set caption(testaudela,files)                          "Ficheiros de teste"
+   set caption(testaudela,refresh)                        "Actualizar"
+   set caption(testaudela,selectAll)                      "Todos"
+   set caption(testaudela,unselectAll)                    "Nenhum"
+   set caption(testaudela,run)                            "Executar os testes"
+   set caption(testaudela,stop)                           "Parar os testes"
+   set caption(testaudela,detail)                         "Conteúdo do ficheiro seleccionado"
+   set caption(testaudela,showResult)                     "Ver o resultado"
+   set caption(testaudela,constraint)                     "Pré-requisitos"
+   set caption(testaudela,testCampagne)                   "Campanha de testes"
+   set caption(testaudela,result)                         "Resultados dos testes"
+   set caption(testaudela,ImageDirectory,notFound)        "O directório de imagens de teste não existe."
+   set caption(testaudela,ImageDirectory,alreadyUsed)     "O directório das imagens de teste tem de ser diferente do directório de trabalho."
+   set caption(testaudela,ImageDirectory,installQuestion) "Deseja instalar as imagens de teste?"
+   set caption(testaudela,ImageDirectory,installTitle)    "Instalar as imagens de teste"
+   set caption(testaudela,ImageDirectory,procedure1)      "Clique no link abaixo para download das imagens de teste."
+   set caption(testaudela,ImageDirectory,procedure2)      "Extrair para a pasta escolhida abaixo."
+   set caption(testaudela,edit)                           "Editar script de teste"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(testaudela,title)                          "AudeLA Test"
+   set caption(testaudela,name)                           "Name"
+   set caption(testaudela,description)                    "Description"
+   set caption(testaudela,imageDirectory)                 "Test Images"
+   set caption(testaudela,files)                          "Test File"
+   set caption(testaudela,refresh)                        "Update"
+   set caption(testaudela,selectAll)                      "All"
+   set caption(testaudela,unselectAll)                    "None"
+   set caption(testaudela,run)                            "Run the tests"
+   set caption(testaudela,stop)                           "Stop the tests"
+   set caption(testaudela,detail)                         "Content of selected file"
+   set caption(testaudela,showResult)                     "See the result"
+   set caption(testaudela,constraint)                     "Prerequisites"
+   set caption(testaudela,testCampagne)                   "Test Campaign"
+   set caption(testaudela,result)                         "Tests Results"
+   set caption(testaudela,ImageDirectory,notFound)        "Test image directory does not exist."
+   set caption(testaudela,ImageDirectory,alreadyUsed)     "Test image directory must be different from default image directory."
+   set caption(testaudela,ImageDirectory,installQuestion) "Install test images?"
+   set caption(testaudela,ImageDirectory,installTitle)    "Install test images"
+   set caption(testaudela,ImageDirectory,procedure1)      "Click on the link below to download test images."
+   set caption(testaudela,ImageDirectory,procedure2)      "Unzip them in the selected folder below."
+   set caption(testaudela,edit)                           "Edit Test Script"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(testaudela,title)                          "AudeLA Test"
+   set caption(testaudela,name)                           "Name"
+   set caption(testaudela,description)                    "Description"
+   set caption(testaudela,imageDirectory)                 "Test Images"
+   set caption(testaudela,files)                          "Test File"
+   set caption(testaudela,refresh)                        "Update"
+   set caption(testaudela,selectAll)                      "All"
+   set caption(testaudela,unselectAll)                    "None"
+   set caption(testaudela,run)                            "Run the tests"
+   set caption(testaudela,stop)                           "Stop the tests"
+   set caption(testaudela,detail)                         "Content of selected file"
+   set caption(testaudela,showResult)                     "See the result"
+   set caption(testaudela,constraint)                     "Prerequisites"
+   set caption(testaudela,testCampagne)                   "Test Campaign"
+   set caption(testaudela,result)                         "Tests Results"
+   set caption(testaudela,ImageDirectory,notFound)        "Test image directory does not exist."
+   set caption(testaudela,ImageDirectory,alreadyUsed)     "Test image directory must be different from default image directory."
+   set caption(testaudela,ImageDirectory,installQuestion) "Install test images?"
+   set caption(testaudela,ImageDirectory,installTitle)    "Install test images"
+   set caption(testaudela,ImageDirectory,procedure1)      "Click on the link below to download test images."
+   set caption(testaudela,ImageDirectory,procedure2)      "Unzip them in the selected folder below."
+   set caption(testaudela,edit)                           "Edit Test Script"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(testaudela,title)                          "AudeLA Test"
+   set caption(testaudela,name)                           "Name"
+   set caption(testaudela,description)                    "Description"
+   set caption(testaudela,imageDirectory)                 "Test Images"
+   set caption(testaudela,files)                          "Test File"
+   set caption(testaudela,refresh)                        "Update"
+   set caption(testaudela,selectAll)                      "All"
+   set caption(testaudela,unselectAll)                    "None"
+   set caption(testaudela,run)                            "Run the tests"
+   set caption(testaudela,stop)                           "Stop the tests"
+   set caption(testaudela,detail)                         "Content of selected file"
+   set caption(testaudela,showResult)                     "See the result"
+   set caption(testaudela,constraint)                     "Prerequisites"
+   set caption(testaudela,testCampagne)                   "Test Campaign"
+   set caption(testaudela,result)                         "Tests Results"
+   set caption(testaudela,ImageDirectory,notFound)        "Test image directory does not exist."
+   set caption(testaudela,ImageDirectory,alreadyUsed)     "Test image directory must be different from default image directory."
+   set caption(testaudela,ImageDirectory,installQuestion) "Install test images?"
+   set caption(testaudela,ImageDirectory,installTitle)    "Install test images"
+   set caption(testaudela,ImageDirectory,procedure1)      "Click on the link below to download test images."
+   set caption(testaudela,ImageDirectory,procedure2)      "Unzip them in the selected folder below."
+   set caption(testaudela,edit)                           "Edit Test Script"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

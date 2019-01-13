@@ -1,0 +1,79 @@
+#
+# Fichier : snvisuzoom.cap
+# Mise a jour $Id: snvisuzoom.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(snvisuzoom,zoom_main_title)      "Sn View - Zoom 1"
+set caption(snvisuzoom,zoom_main_title_d)    "Sn View - Zoom 2"
+set caption(snvisuzoom,wait)                 "Wait..."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(snvisuzoom,zoom_main_title)   "Sn Visu - Loupe 1"
+   set caption(snvisuzoom,zoom_main_title_d) "Sn Visu - Loupe 2"
+   set caption(snvisuzoom,wait)              "En cours..."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(snvisuzoom,zoom_main_title)   "Vista Sn - Zoom 1"
+   set caption(snvisuzoom,zoom_main_title_d) "Vista Sn - Zoom 2"
+   set caption(snvisuzoom,wait)              "Attesa..."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(snvisuzoom,zoom_main_title)   "Sn Ver - Zoom 1"
+   set caption(snvisuzoom,zoom_main_title_d) "Sn Ver - Zoom 2"
+   set caption(snvisuzoom,wait)              "Esperar..."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(snvisuzoom,zoom_main_title)   "Sn Visu - Lupe 1"
+   set caption(snvisuzoom,zoom_main_title_d) "Sn Visu - Lupe 2"
+   set caption(snvisuzoom,wait)              "Laufend..."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(snvisuzoom,zoom_main_title)   "Visualização Sn - Zoom 1"
+   set caption(snvisuzoom,zoom_main_title_d) "Visualização Sn - Zoom 2"
+   set caption(snvisuzoom,wait)              "Aguardar..."
+
+# **************** Version danoise ****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(snvisuzoom,zoom_main_title)   "Sn Se - Zoom 1"
+   set caption(snvisuzoom,zoom_main_title_d) "Sn Se - Zoom 2"
+   set caption(snvisuzoom,wait)              "Vent..."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(snvisuzoom,zoom_main_title)   "Sn View - Zoom 1"
+   set caption(snvisuzoom,zoom_main_title_d) "Sn View - Zoom 2"
+   set caption(snvisuzoom,wait)              "Wait..."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(snvisuzoom,zoom_main_title)   "Sn View - Zoom 1"
+   set caption(snvisuzoom,zoom_main_title_d) "Sn View - Zoom 2"
+   set caption(snvisuzoom,wait)              "Wait..."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

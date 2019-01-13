@@ -1,0 +1,59 @@
+#------------------------------------------------------------------
+# source [ file join $audace(rep_plugin) tool atos atos_ocr_gui.cap
+#------------------------------------------------------------------
+#
+# Fichier        : atos_ocr_gui.cap
+# Description    : Caption pour la GUI de l'outil de reconnaissance
+#                  de caractere
+# Auteur         : Frederic Vachier
+# Mise à jour $Id: atos_cdl_tools.cap 8717 2012-10-13 18:31:11Z fredvachier $
+#
+
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

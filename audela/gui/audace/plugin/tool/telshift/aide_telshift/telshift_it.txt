@@ -1,0 +1,25 @@
+Aiuto per l'utilizzatore per la finestra "Immagini con posizionamento del telescopio"
+
+Questo script serve per permettere le acquisizioni di immagini che necessitano di spostamenti del telescopio tra una posa e l'altra (per esempio nel caso di mosaici di immagini).
+
+Parte "Parametri di posa":
+Si spiegano da soli...!
+
+Parte "Immagini":
+1) "Immagine normale": se volete riprendere piu' immagini dello stesso oggetto con piccoli spostamenti tra una posa e l'altra (utile per avere una migliore qualita' delle immagini). Con questo scritp, il telescopio viene spostato di 30 pixel tra una posa e l'altra.
+
+2) "Flat-field sul cielo notturno": Realizza la procedura con la quale potete eseguire dei "flat fields" non sul cielo "chiaro" (verso il crepuscolo) ma sullo sfondo cielo. Il telescopio viene spostato di 3000 pixel in maniera casuale, in modo tale che le stelle, in seguito, possono essere eliminate attraverso un trattamento SW. Allora non rimarra' altro che i difetti ottici dello strumento su queste immagini, ed esse potranno essere utilizzate come "flat field".
+
+3) "Mosaico di 4 immagini": Centrate un oggetto e lanciate la procedura per il mosaico a 4 immagini. Essa provvedera' di spostare il telescopio in modo che l'oggetto puntato rimanga al centro del mosaico. Il numero di immagini totali che verra` realizzato con questo script corrispondera` al numero di pose indicate moltiplicato per 4, essendo un mosaico di 4 immagini.
+
+4) "Mosaico di 9 immagini": Come sopra ma con 9 immagini.
+
+Parte "Nome base del file immagine":
+Va indicato il nome di base (o di default) che verra' copiato sull' hard disk. Un numero di indice verra' aggiunto al nome da voi inserito per ciascuna immagine. Ad esempio, scegliendo M81- come nome di base, ed effettuando 9 pose, la procedura copiera' sull' hard disk 9 file con i nomi: M81-1, M81-2, ..., M81-9.
+Nel caso di mosaici, 2 indici saranno aggiunti al nome base. Ad esempio, sempre nel caso di M81, e per un mosaico di 4 immagini, avremo: M81-1-1, M81-1-2, M81-2-1, M81-2-2, M81-3-1, M81-3-2, ... Il primo indice corrisponde al numero dell'immagine del mosaico (avremo 1, 2, 3 e 4 nel nostro esempio di mosaico con 4 immagini) mentre il secondo indice corrisponde al numero della posa per ogni immagine (quindi 1 e 2 nel nostro esempio, avendo fatto 2 pose per ogni immagine del mosaico).
+
+Spero che questo script vi possa essere utile!
+
+Potete contattarmi all'indirizzo: chris.jasinski@wanadoo.fr
+
+(N.d.T: Chris non parla italiano. Se avete commenti sulle traduzioni potete farlo con un e-mail a :mane@2ainfo.it. Generose elargizioni in denaro sono sempre ben accette). 

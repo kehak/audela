@@ -1,0 +1,76 @@
+#
+# Fichier : robobs.cap
+# Mise a jour $Id: robobs.cap 12353 2015-12-12 11:24:29Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la declaration des textes localises (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(robobs,titre)                 "Robotic Observations"
+set caption(robobs,robobs)                "Robotic Observations"
+set caption(robobs,help_titre)            "Help for this Tool"
+set caption(robobs,help_titre1)           "Help for the Tool:"
+
+set caption(robobs,configuration)         "Setup"
+set caption(robobs,planification)         "Planification"
+set caption(robobs,acquisition)           "Acquisition"
+set caption(robobs,resource)              "Resource (for debug)"
+
+set caption(robobs,start_script)          "Start script"
+set caption(robobs,exit_script)           "Exit script"
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(robobs,titre)              "Observations robotiques"
+   set caption(robobs,robobs)             "Observations robotiques"
+   set caption(robobs,help_titre)         "Aide de cet outil"
+   set caption(robobs,help_titre1)        "Aide de l'outil :"
+
+   set caption(robobs,configuration)      "Configuration"
+   set caption(robobs,planification)      "Planification"
+   set caption(robobs,acquisition)        "Acquisition"
+   set caption(robobs,resource)           "Source (pour debug)"
+
+   set caption(robobs,start_script)       "Commence script"
+   set caption(robobs,exit_script)        "Termine script"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

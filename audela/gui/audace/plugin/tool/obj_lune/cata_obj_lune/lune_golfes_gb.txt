@@ -1,0 +1,11 @@
+Sinus Aestuun             10.9N   8.8W    290.0   32  33                                          Seething Bay
+Sinus Amoris              18.1N   39.1E   130.0   25                                              Bay of Love
+Sinus Asperitatis         3.8S    27.4E   206.0   46  47                                          Bay of Roughness
+Sinus Concordiae          10.8N   43.2E   142.0   37                                              Bay of Harmony
+Sinus Fidei               18.0N   2.0E    70.0    22                                              Bay of Trust
+Sinus Honoris             11.7N   18.1E   109.0   35                                              Bay of Honour
+Sinus Iridum              44.1N   31.5W   236.0   10                                              Bay of Rainbows
+Sinus Lunicus             31.8N   1.4W    126.0   12                                              Lunik Bay (Luna 2 impact site, 13th September 1959)
+Sinus Medii               2.4N    1.7E    335.0   33  44                                          Bay of the center
+Sinus Roris               54.0N   56.6W   202.0   1   8   9                               I   VIIIBay of Dew
+Sinus Successus           0.9N    59.0E   132.0   38                                              Bay of Success

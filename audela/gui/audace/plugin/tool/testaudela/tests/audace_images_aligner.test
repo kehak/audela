@@ -1,0 +1,238 @@
+set visuNo 1
+set bufNo [::confVisu::getBufNo $visuNo]
+#--   le nom de la tablelist des fichiers
+set w ".audace.prtr.usr.choix.tablelist"
+#--   le nom de la zone de cmd
+set z ".audace.prtr.usr.table"
+#--   configure l'extension et la compression
+set ::conf(extension,defaut) ".fit"
+set ::conf(fichier,compres) 0
+
+variable SETUP {
+   file copy -force [file join $::conf(testaudela,rep_images) m45_champ.fit] $::audace(rep_images)
+   ttscript2 "IMA/SERIES . m45_champ . . .fit . trans1 . .fit TRANS trans_x=20 trans_y=20"
+   ttscript2 "IMA/SERIES . m45_champ . . .fit . trans2 . .fit TRANS trans_x=20 trans_y=-20"
+   ttscript2 "IMA/SERIES . m45_champ . . .fit . trans3 . .fit TRANS trans_x=-20 trans_y=20"
+   ttscript2 "IMA/SERIES . m45_champ . . .fit . trans4 . .fit TRANS trans_x=-20 trans_y=-20"
+   set coords [list 372 297]
+   buf$bufNo load m45_champ.fit
+   set attendu [lindex [buf$bufNo getpix $coords] 1]
+   buf$bufNo clear
+}
+
+variable CLEANUP {
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   file delete m45_champ.fit trans1.fit trans2.fit trans3.fit trans4.fit
+}
+
+test aligner_translation_automatique {alignement automatique} -constraints {AUDACE} -setup $SETUP -body {
+   #--   clic sur le menu "Images/Aligner/Translation automatique..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,center)" "$::caption(audace,menu,reg_trans)..."
+   #--   selectionne aussi des images
+   foreach img {m45_champ trans1 trans2 trans3 trans4} {
+      ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #-- saisit le nom de sortie
+   set name_out "trans_auto"
+   ::testaudela::putLabelEntry $z.sortie.out "$name_out"
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #-- procédure de controle
+   set result 0
+   #--   verifie l'existence de 5 images recadrees
+   for {set i 1} {$i <= 5} {incr i} {
+      set file ${name_out}$i.fit
+      if {[file exists $file]} {
+         incr result
+         buf$bufNo load $file
+         set mesure [lindex [buf$bufNo getpix $coords] 1]
+         set diff [expr { $attendu-$mesure }]
+         if {$diff == 0} {incr result}
+         file delete $file
+      }
+   }
+   return $result
+} -cleanup $CLEANUP -result "10"
+
+test aligner_astrometrie {alignement par astrometrie wcs} -constraints {AUDACE} -setup $SETUP -body {
+   #--   clic sur le menu "Images/Aligner/Astrométrie WCS..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,center)" "$::caption(audace,menu,reg_wcs)..."
+   #--   selection des images
+   foreach img {trans1 trans2 trans3 trans4} {
+      ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #-- saisit le nom de sortie
+   set name_out "trans_wcs"
+   ::testaudela::putLabelEntry $z.sortie.out "$name_out"
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #-- procédure de controle
+   set result 0
+   #--   verifie l'existence de 4 images recalees
+   for {set i 1} {$i <= 4} {incr i} {
+      set file ${name_out}$i.fit
+      if {[file exists $file]} {
+         incr result
+         buf$bufNo load $file
+         set mesure [lindex [buf$bufNo getpix [list 392 317]] 1]
+         set diff [expr { $attendu-$mesure }]
+         if {$diff == 0} {incr result}
+         file delete $file
+      }
+   }
+   return $result
+} -cleanup $CLEANUP -result "8"
+
+test aligner_translation_affine {alignement affine} -constraints {AUDACE} -setup $SETUP -body {
+   #--   clic sur le menu "Images/Aligner/Translation affine..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,center)" "$::caption(audace,menu,reg_tri)..."
+   #--   selection des images
+   foreach img {trans1 trans2 trans3 trans4} {
+      ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #-- saisit le nom de sortie
+   set name_out "trans_affine"
+   ::testaudela::putLabelEntry $z.sortie.out "$name_out"
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #-- procédure de controle
+   set result 0
+   #--   verifie l'existence de 4 images recadrees
+   for {set i 1} {$i <= 4} {incr i} {
+      set file ${name_out}$i.fit
+      if {[file exists $file]} {
+         incr result
+         buf$bufNo load $file
+         set mesure [lindex [buf$bufNo getpix [list 392 317]] 1]
+         set diff [expr { $attendu-$mesure }]
+         if {$diff == 0} {incr result}
+         file delete $file
+      }
+   }
+   return $result
+} -cleanup $CLEANUP -result "8"
+
+test aligner_translation_moindres_carres {alignement par moindes carres} -constraints {AUDACE} -setup {
+   file copy -force [file join $::conf(testaudela,rep_images) m45_champ.fit] $::audace(rep_images)
+   ttscript2 "IMA/SERIES . m45_champ . . .fit . trans1 . .fit TRANS trans_x=2 trans_y=2"
+   ttscript2 "IMA/SERIES . m45_champ . . .fit . trans2 . .fit TRANS trans_x=2 trans_y=-2"
+   ttscript2 "IMA/SERIES . m45_champ . . .fit . trans3 . .fit TRANS trans_x=-2 trans_y=2"
+   ttscript2 "IMA/SERIES . m45_champ . . .fit . trans4 . .fit TRANS trans_x=-2 trans_y=-2"
+} -body {
+   #--   clic sur le menu "Images/Aligner/Moindres carrés..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,center)" "$::caption(audace,menu,reg_fine)..."
+   #--   selection des images
+   foreach img {trans1 trans2 trans3 trans4} {
+      ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #--   l'image de reference
+   ::testaudela::putLabelEntry $z.funoptions.file "./m45_champ.fit"
+   #-- saisit le nom de sortie
+   set name_out "trans_mc"
+   ::testaudela::putLabelEntry $z.sortie.out "$name_out"
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #-- procedure de controle
+   set attendus [list 110 59 196 107]
+   set result 0
+   #--   verifie l'existence de 4 images
+   for {set i 1} {$i <= 4} {incr i} {
+      set file ${name_out}$i.fit
+      if {[file exists $file]} {
+         incr result
+         buf$bufNo load $file
+         set attendu [lindex $attendus [expr { $i-1 }]]
+         set mesure [lindex [buf$bufNo getpix [list 371 298]] 1]
+         set diff [expr { $attendu-$mesure }]
+         if {$diff == 0} {incr result}
+         file delete $file
+      }
+   }
+   return $result
+} -cleanup $CLEANUP -result "8"
+
+test aligner_selection {alignement par selection} -constraints {AUDACE} -setup {
+   ::confVisu::clear $visuNo
+   #--- j'impose le mode seuil iris , car le mode "loadima" ne fonctionne pas bien
+   set conf(seuils,visu$visuNo,mode) "iris"
+
+   #---- je fabrique une image avec 4 etoiles
+   buf$bufNo setpixels CLASS_GRAY 320 240 FORMAT_FLOAT COMPRESS_NONE 0
+   buf$bufNo setkwd { NAXIS  2 short "" "" }
+   buf$bufNo setkwd { NAXIS1 768 short "" "" }
+   buf$bufNo setkwd { NAXIS2 512 short "" "" }
+   buf$bufNo setkwd { BIN1 1 short "" "" }
+   buf$bufNo setkwd { BIN2 1 short "" "" }
+
+   #---- j'ajoute le fond de ciel
+   buf$bufNo offset 1100
+
+   #--- j'ajoute les étoiles
+   buf$bufNo synthegauss { 160 120 6000  4 4  }
+   buf$bufNo synthegauss { 100 100 4000  3 3  }
+   buf$bufNo synthegauss { 100 200 6000  3 3  }
+   buf$bufNo synthegauss { 300 120 4000  3 3  }
+
+   #--- j'enregistre dans un fichier
+   saveima [file join $::audace(rep_images) trans1.fit] $visuNo
+
+   ttscript2 "IMA/SERIES . trans1 . . .fit . trans2 . .fit TRANS trans_x=2 trans_y=5"
+   ttscript2 "IMA/SERIES . trans1 . . .fit . trans3 . .fit TRANS trans_x=13 trans_y=-18"
+   ttscript2 "IMA/SERIES . trans1 . . .fit . trans4 . .fit TRANS trans_x=-5 trans_y=17"
+   ttscript2 "IMA/SERIES . trans1 . . .fit . trans5 . .fit TRANS trans_x=-17 trans_y=-4"
+   set x0 100
+   set y0 200
+   set attendu [lindex [buf$bufNo getpix [list 100 200 ]] 1]
+
+} -body {
+   set w  "$::audace(base).traiteWindow"
+   loadima trans1.fit
+   #--dessine la boite de selection
+   set x1 [expr {$x0-20} ]
+   set x2 [expr {$x0+20} ]
+   set y1 [expr {$y0-20} ]
+   set y2 [expr {$y0+20} ]
+   ::testaudela::setBox $visuNo [list $x1 $y1 $x2 $y2]
+
+   #--   clic sur le menu "Images/Aligner/Sélection..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,center)" "$::caption(audace,menu,recentrer_manu)..."
+   #--   saisit le nom des images a traiter
+   ::testaudela::putEntry $w.usr.2.1.ent1 "trans"
+   #--   saisit le premier indice
+   ::testaudela::putEntry $w.usr.2.2.ent2 "4"
+   #--   saisit le nb d'images
+   ::testaudela::putEntry $w.usr.2.3.ent3 "1"
+   #-- saisit le nom de sortie
+   set name_out "trans_select"
+   ::testaudela::putEntry $w.usr.2.4.ent4 $name_out
+   #--   coche l'option de suppression de la boite
+   ::testaudela::clicCheckButton $w.usr.2a.che1 1
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $w.cmd.appliquer
+
+   #-- procedure de controle
+   set result 0
+   #--   verifie l'existence de 4 images
+   for {set i 1} {$i <= 5} {incr i} {
+      set file ${name_out}$i.fit
+      if {[file exists $file]} {
+         buf$bufNo load $file
+         if {[lindex [buf$bufNo getpix [list $x0 $y0]] 1] eq "$attendu"} {incr result}
+      }
+      file delete $file
+   }
+   return $result
+} -cleanup {
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $w.cmd.fermer
+   file delete trans1.fit trans2.fit trans3.fit trans4.fit trans5.fit
+} -result "4"

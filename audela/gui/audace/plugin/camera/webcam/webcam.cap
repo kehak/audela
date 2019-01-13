@@ -1,0 +1,403 @@
+#
+# Fichier : webcam.cap
+# Mise a jour $Id: webcam.cap 9974 2013-08-17 15:21:44Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(webcam,camera)                      "WebCam - Grabber"
+
+set caption(webcam,canal_usb)                   "USB Video Channel"
+set caption(webcam,mode_video)                  "Video Mode"
+set caption(webcam,port)                        "Port"
+set caption(webcam,available)                   "Cameras Available:"
+set caption(webcam,refresh)                     "Reload"
+set caption(webcam,miroir_x)                    "Top/Bottom Reversal"
+set caption(webcam,miroir_y)                    "Left/Right Reversal"
+set caption(webcam,select)                      "Select"
+set caption(webcam,webcam)                      "WebCam"
+set caption(webcam,grabber)                     "Grabber"
+set caption(webcam,longuepose)                  "S. Chambers Long Exposure Option"
+set caption(webcam,longuepose1)                 "Long Exposure"
+set caption(webcam,longueposeport)              "Control Port for the Option"
+set caption(webcam,configurer)                  "Set up"
+set caption(webcam,longueposebit)               "Control Bit Number"
+set caption(webcam,longueposestart)             "Control when exposure begins"
+set caption(webcam,conf_source)                 "Video Source Selection"
+set caption(webcam,format_video)                "Video Format Selection"
+set caption(webcam,webcamCcd_N_B)               "B&W CCD Modified WebCam"
+set caption(webcam,ccd_N_B)                     "B&W CCD"
+set caption(webcam,dimPixelX)                   "X Pixel Size (mum)"
+set caption(webcam,dimPixelY)                   "Y Pixel Size (mum)"
+set caption(webcam,switchedConnexion)           "Toggle between WebCams"
+
+set caption(webcam,shutter)                     "Shutter"
+set caption(webcam,gain)                        "Gain"
+set caption(webcam,auto)                        "Auto"
+set caption(webcam,framerate)                   "Images/s"
+set caption(webcam,validFrame)                  "Image Number"
+
+set caption(webcam,installNewVersion)           "Installation of library %s of plugin webcam v%s completed."
+
+set caption(webcam,2points)                     ":"
+
+set caption(webcam,titre_site_web)              "Reference Web Site:"
+set caption(webcam,site_web_ref)                "http://www.astrocam.org/"
+set caption(webcam,site_web_chambers)           "http://www.pmdo.com/wintro.htm"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(webcam,camera)                   "WebCam - Grabber"
+
+   set caption(webcam,canal_usb)                "Canal vidéo USB"
+   set caption(webcam,mode_video)               "Mode vidéo"
+   set caption(webcam,port)                     "Port"
+   set caption(webcam,available)                "Caméras disponibles :"
+   set caption(webcam,refresh)                  "Rafraîchir"
+   set caption(webcam,miroir_x)                 "Inverser Haut/Bas"
+   set caption(webcam,miroir_y)                 "Inverser Gauche/Droite"
+   set caption(webcam,select)                   "Sélection"
+   set caption(webcam,webcam)                   "WebCam"
+   set caption(webcam,grabber)                  "Grabber"
+   set caption(webcam,longuepose)               "Option longue pose (S. Chambers)"
+   set caption(webcam,longuepose1)              "Longue pose"
+   set caption(webcam,longueposeport)           "Port de contrôle de l'option"
+   set caption(webcam,configurer)               "Configurer"
+   set caption(webcam,longueposebit)            "Numéro du bit de commande"
+   set caption(webcam,longueposestart)          "Commande au début de la pose"
+   set caption(webcam,conf_source)              "Sélection de la source vidéo"
+   set caption(webcam,format_video)             "Sélection du format vidéo"
+   set caption(webcam,webcamCcd_N_B)            "WebCam modifiée avec CCD N&B"
+   set caption(webcam,ccd_N_B)                  "CCD N&B"
+   set caption(webcam,dimPixelX)                "Taille des pixels X (mum)"
+   set caption(webcam,dimPixelY)                "Taille des pixels Y (mum)"
+   set caption(webcam,switchedConnexion)        "Utilisation en alternance des WebCams"
+
+   set caption(webcam,shutter)                  "Obturateur"
+   set caption(webcam,gain)                     "Gain"
+   set caption(webcam,auto)                     "Auto"
+   set caption(webcam,framerate)                "Images/s"
+   set caption(webcam,validFrame)               "Numéro de l'image"
+
+   set caption(webcam,installNewVersion)        "Fin de l'installation de la librairie %s du plugin webcam v%s."
+
+   set caption(webcam,2points)                  ":"
+
+   set caption(webcam,titre_site_web)           "Site Web de référence :"
+   set caption(webcam,site_web_ref)             "http://www.astrocam.org/"
+   set caption(webcam,site_web_chambers)        "http://www.pmdo.com/wintro.htm"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(webcam,camera)                   "WebCam - Grabber"
+
+   set caption(webcam,canal_usb)                "Canale video USB"
+   set caption(webcam,mode_video)               "Modalita` video"
+   set caption(webcam,port)                     "Porta"
+   set caption(webcam,available)                "Camera disponibile:"
+   set caption(webcam,refresh)                  "Rinfresca"
+   set caption(webcam,miroir_x)                 "Inversione Alto/Basso"
+   set caption(webcam,miroir_y)                 "Inversione Sinistra/Destra"
+   set caption(webcam,select)                   "Scelta"
+   set caption(webcam,webcam)                   "WebCam"
+   set caption(webcam,grabber)                  "Grabber"
+   set caption(webcam,longuepose)               "Opzione lunga posa (S. Chambers)"
+   set caption(webcam,longuepose1)              "Lunga posa"
+   set caption(webcam,longueposeport)           "Porta di controllo dell'opzione"
+   set caption(webcam,configurer)               "Configurare"
+   set caption(webcam,longueposebit)            "Numero bit del comando"
+   set caption(webcam,longueposestart)          "Comando all'inizio della posa"
+   set caption(webcam,conf_source)              "Selezione sorgente video"
+   set caption(webcam,format_video)             "Selezione del formato video"
+   set caption(webcam,webcamCcd_N_B)            "WebCam modificata con CCD B&N"
+   set caption(webcam,ccd_N_B)                  "CCD B&N"
+   set caption(webcam,dimPixelX)                "Dimensione dei pixel X (mum)"
+   set caption(webcam,dimPixelY)                "Dimensione dei pixel Y (mum)"
+   set caption(webcam,switchedConnexion)        "Utilizzo alternato delle WebCams"
+
+   set caption(webcam,shutter)                  "Otturatore"
+   set caption(webcam,gain)                     "Gain"
+   set caption(webcam,auto)                     "Auto"
+   set caption(webcam,framerate)                "Immagini/s"
+   set caption(webcam,validFrame)               "Numero di immagine"
+
+   set caption(webcam,installNewVersion)        "Installazione della libreria %s del plugin webcam v%s terminata."
+
+   set caption(webcam,2points)                  ":"
+
+   set caption(webcam,titre_site_web)           "Sito Web di riferimento:"
+   set caption(webcam,site_web_ref)             "http://www.astrocam.org/"
+   set caption(webcam,site_web_chambers)        "http://www.pmdo.com/wintro.htm"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(webcam,camera)                   "WebCam - Grabber"
+
+   set caption(webcam,canal_usb)                "Canal vídeo USB"
+   set caption(webcam,mode_video)               "Modo vídeo"
+   set caption(webcam,port)                     "Puerto"
+   set caption(webcam,available)                "Cámara disponibles:"
+   set caption(webcam,refresh)                  "Recargar"
+   set caption(webcam,miroir_x)                 "Invertir Arriba/Abajo"
+   set caption(webcam,miroir_y)                 "Invertir Izquierda/Derecha"
+   set caption(webcam,select)                   "Selecció"
+   set caption(webcam,webcam)                   "WebCam"
+   set caption(webcam,grabber)                  "Grabber"
+   set caption(webcam,longuepose)               "Opcion de exposición larga (S. Chambers)"
+   set caption(webcam,longuepose1)              "Exposición larga"
+   set caption(webcam,longueposeport)           "Puerto de control para la opcion"
+   set caption(webcam,configurer)               "Configurar"
+   set caption(webcam,longueposebit)            "Número del bit de control"
+   set caption(webcam,longueposestart)          "Control cuando empieza la exposición"
+   set caption(webcam,conf_source)              "Selección de la entrada de vídeo"
+   set caption(webcam,format_video)             "Selección de formato de vídeo"
+   set caption(webcam,webcamCcd_N_B)            "CCD WebCam Blanco y Negro modificada"
+   set caption(webcam,ccd_N_B)                  "CCD Blanco y Negro"
+   set caption(webcam,dimPixelX)                "Tamaño de píxeles X (mum)"
+   set caption(webcam,dimPixelY)                "Tamaño de píxeles Y (mum)"
+   set caption(webcam,switchedConnexion)        "Utilización en alternancia de las WebCams"
+
+   set caption(webcam,shutter)                  "Obturador"
+   set caption(webcam,gain)                     "Ganancia"
+   set caption(webcam,auto)                     "Auto"
+   set caption(webcam,framerate)                "Imágenes/s"
+   set caption(webcam,validFrame)               "Número de la imagen"
+
+   set caption(webcam,installNewVersion)        "Fin de la instalación de la libreria %s del plugin webcam v%s."
+
+   set caption(webcam,2points)                  ":"
+
+   set caption(webcam,titre_site_web)           "Sitio Web de referencia:"
+   set caption(webcam,site_web_ref)             "http://www.astrocam.org/"
+   set caption(webcam,site_web_chambers)        "http://www.pmdo.com/wintro.htm"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(webcam,camera)                   "WebCam - Grabber"
+
+   set caption(webcam,canal_usb)                "USB Video Kanal"
+   set caption(webcam,mode_video)               "Video Modus"
+   set caption(webcam,port)                     "Port"
+   set caption(webcam,available)                "Kamera verfügbar:"
+   set caption(webcam,refresh)                  "Aktualisieren"
+   set caption(webcam,miroir_x)                 "Oben/Unten umkehren"
+   set caption(webcam,miroir_y)                 "Links/Rechts umkehren"
+   set caption(webcam,select)                   "Wahl"
+   set caption(webcam,webcam)                   "WebCam"
+   set caption(webcam,grabber)                  "Grabber"
+   set caption(webcam,longuepose)               "Lange Belichtung Option (S. Chambers)"
+   set caption(webcam,longuepose1)              "Lange Belichtung"
+   set caption(webcam,longueposeport)           "Kontroll Port der Option"
+   set caption(webcam,configurer)               "Konfigurieren"
+   set caption(webcam,longueposebit)            "Steuer Bit Nummer"
+   set caption(webcam,longueposestart)          "Anfang der Belichtung Antrieb"
+   set caption(webcam,conf_source)              "Wahl der Videoquelle"
+   set caption(webcam,format_video)             "Wahl des Videoformats"
+   set caption(webcam,webcamCcd_N_B)            "Veränderte Schwartz/Weiss WebCam CCD"
+   set caption(webcam,ccd_N_B)                  "Schwartz/Weiss CCD"
+   set caption(webcam,dimPixelX)                "X Rasterpunkten Größe (mum)"
+   set caption(webcam,dimPixelY)                "Y Rasterpunkten Größe (mum)"
+   set caption(webcam,switchedConnexion)        "Zwischen WebCam wechseln"
+
+   set caption(webcam,shutter)                  "Verschluss"
+   set caption(webcam,gain)                     "Zunahme"
+   set caption(webcam,auto)                     "Auto"
+   set caption(webcam,framerate)                "Bilder/s"
+   set caption(webcam,validFrame)               "Nummer des Bildes"
+
+   set caption(webcam,installNewVersion)        "Die Installation der Bibliothek %s ist vervollständigt der Plugin webcam v%s."
+
+   set caption(webcam,2points)                  ":"
+
+   set caption(webcam,titre_site_web)           "Referenz Webseite:"
+   set caption(webcam,site_web_ref)             "http://www.astrocam.org/"
+   set caption(webcam,site_web_chambers)        "http://www.pmdo.com/wintro.htm"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(webcam,camera)                   "WebCam - Grabber"
+
+   set caption(webcam,canal_usb)                "Canal Video USB"
+   set caption(webcam,mode_video)               "Modo video"
+   set caption(webcam,port)                     "Porto"
+   set caption(webcam,available)                "Câmara disponiveis:"
+   set caption(webcam,refresh)                  "Actualizar"
+   set caption(webcam,miroir_x)                 "Inverter Cima/Baixo"
+   set caption(webcam,miroir_y)                 "Inverter Esquerda/Direita"
+   set caption(webcam,select)                   "Selecção"
+   set caption(webcam,webcam)                   "WebCam"
+   set caption(webcam,grabber)                  "Grabber"
+   set caption(webcam,longuepose)               "Opção de Longa Exposição S. Chambers"
+   set caption(webcam,longuepose1)              "Longa Exposição"
+   set caption(webcam,longueposeport)           "Controlo do Porto para a Opção"
+   set caption(webcam,configurer)               "Configurar"
+   set caption(webcam,longueposebit)            "Controlo do Número do Bit"
+   set caption(webcam,longueposestart)          "Controlar o Início da Exposição"
+   set caption(webcam,conf_source)              "Selecção de Fonte Video"
+   set caption(webcam,format_video)             "Selecção do Formato Video"
+   set caption(webcam,webcamCcd_N_B)            "WebCam Modificada (CCD B&W)"
+   set caption(webcam,ccd_N_B)                  "CCD B&W"
+   set caption(webcam,dimPixelX)                "Tamanho do Pixel X (mum)"
+   set caption(webcam,dimPixelY)                "Tamanho do Pixel Y (mum)"
+   set caption(webcam,switchedConnexion)        "Utilização alternada de WebCams"
+
+   set caption(webcam,shutter)                  "Obturador"
+   set caption(webcam,gain)                     "Ganho"
+   set caption(webcam,auto)                     "Auto"
+   set caption(webcam,framerate)                "Imagens/s"
+   set caption(webcam,validFrame)               "Número de imagem"
+
+   set caption(webcam,installNewVersion)        "Instalação da livraria %s do plugin webcam v%s concluída."
+
+   set caption(webcam,2points)                  ":"
+
+   set caption(webcam,titre_site_web)           "Site Web de referência:"
+   set caption(webcam,site_web_ref)             "http://www.astrocam.org/"
+   set caption(webcam,site_web_chambers)        "http://www.pmdo.com/wintro.htm"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(webcam,camera)                   "WebCam - Grabber"
+
+   set caption(webcam,canal_usb)                "USB Video Channel"
+   set caption(webcam,mode_video)               "Video måde"
+   set caption(webcam,port)                     "Port"
+   set caption(webcam,available)                "Cameras Available:"
+   set caption(webcam,refresh)                  "Genindlæs"
+   set caption(webcam,miroir_x)                 "Top/Bottom Reversal"
+   set caption(webcam,miroir_y)                 "Left/Right Reversal"
+   set caption(webcam,select)                   "Valg"
+   set caption(webcam,webcam)                   "WebCam"
+   set caption(webcam,grabber)                  "Grabber"
+   set caption(webcam,longuepose)               "S. Chambers Long Exposure Option"
+   set caption(webcam,longuepose1)              "Long Exposure"
+   set caption(webcam,longueposeport)           "Control Port for the Option"
+   set caption(webcam,configurer)               "Set up"
+   set caption(webcam,longueposebit)            "Control Bit Number"
+   set caption(webcam,longueposestart)          "Control when exposure begins"
+   set caption(webcam,conf_source)              "Video Source Selection"
+   set caption(webcam,format_video)             "Video Format Selection"
+   set caption(webcam,webcamCcd_N_B)            "B&W CCD Modified WebCam"
+   set caption(webcam,ccd_N_B)                  "B&W CCD"
+   set caption(webcam,dimPixelX)                "X Pixel Size (mum)"
+   set caption(webcam,dimPixelY)                "Y Pixel Size (mum)"
+   set caption(webcam,switchedConnexion)        "Toggle between WebCams"
+
+   set caption(webcam,shutter)                  "Shutter"
+   set caption(webcam,gain)                     "Gain"
+   set caption(webcam,auto)                     "Auto"
+   set caption(webcam,framerate)                "Images/s"
+   set caption(webcam,validFrame)               "Image Number"
+
+   set caption(webcam,installNewVersion)        "Installation of library %s of plugin webcam v%s completed."
+
+   set caption(webcam,2points)                  ":"
+
+   set caption(webcam,titre_site_web)           "Reference Web Site:"
+   set caption(webcam,site_web_ref)             "http://www.astrocam.org/"
+   set caption(webcam,site_web_chambers)        "http://www.pmdo.com/wintro.htm"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(webcam,camera)                   "WebCam - Grabber"
+
+   set caption(webcam,canal_usb)                "USB Video Channel"
+   set caption(webcam,mode_video)               "Video Mode"
+   set caption(webcam,port)                     "Port"
+   set caption(webcam,available)                "Cameras Available:"
+   set caption(webcam,refresh)                  "Reload"
+   set caption(webcam,miroir_x)                 "Top/Bottom Reversal"
+   set caption(webcam,miroir_y)                 "Left/Right Reversal"
+   set caption(webcam,select)                   "Select"
+   set caption(webcam,webcam)                   "WebCam"
+   set caption(webcam,grabber)                  "Grabber"
+   set caption(webcam,longuepose)               "S. Chambers Long Exposure Option"
+   set caption(webcam,longuepose1)              "Long Exposure"
+   set caption(webcam,longueposeport)           "Control Port for the Option"
+   set caption(webcam,configurer)               "Set up"
+   set caption(webcam,longueposebit)            "Control Bit Number"
+   set caption(webcam,longueposestart)          "Control when exposure begins"
+   set caption(webcam,conf_source)              "Video Source Selection"
+   set caption(webcam,format_video)             "Video Format Selection"
+   set caption(webcam,webcamCcd_N_B)            "B&W CCD Modified WebCam"
+   set caption(webcam,ccd_N_B)                  "B&W CCD"
+   set caption(webcam,dimPixelX)                "X Pixel Size (mum)"
+   set caption(webcam,dimPixelY)                "Y Pixel Size (mum)"
+   set caption(webcam,switchedConnexion)        "Toggle between WebCams"
+
+   set caption(webcam,shutter)                  "Shutter"
+   set caption(webcam,gain)                     "Gain"
+   set caption(webcam,auto)                     "Auto"
+   set caption(webcam,framerate)                "Images/s"
+   set caption(webcam,validFrame)               "Image Number"
+
+   set caption(webcam,installNewVersion)        "Installation of library %s of plugin webcam v%s completed."
+
+   set caption(webcam,2points)                  ":"
+
+   set caption(webcam,titre_site_web)           "Reference Web Site:"
+   set caption(webcam,site_web_ref)             "http://www.astrocam.org/"
+   set caption(webcam,site_web_chambers)        "http://www.pmdo.com/wintro.htm"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(webcam,camera)                   "WebCam - Grabber"
+
+   set caption(webcam,canal_usb)                "USB Video Channel"
+   set caption(webcam,mode_video)               "Video Mode"
+   set caption(webcam,port)                     "Port"
+   set caption(webcam,available)                "Cameras Available:"
+   set caption(webcam,refresh)                  "Reload"
+   set caption(webcam,miroir_x)                 "Top/Bottom Reversal"
+   set caption(webcam,miroir_y)                 "Left/Right Reversal"
+   set caption(webcam,select)                   "Select"
+   set caption(webcam,webcam)                   "WebCam"
+   set caption(webcam,grabber)                  "Grabber"
+   set caption(webcam,longuepose)               "S. Chambers Long Exposure Option"
+   set caption(webcam,longuepose1)              "Long Exposure"
+   set caption(webcam,longueposeport)           "Control Port for the Option"
+   set caption(webcam,configurer)               "Set up"
+   set caption(webcam,longueposebit)            "Control Bit Number"
+   set caption(webcam,longueposestart)          "Control when exposure begins"
+   set caption(webcam,conf_source)              "Video Source Selection"
+   set caption(webcam,format_video)             "Video Format Selection"
+   set caption(webcam,webcamCcd_N_B)            "B&W CCD Modified WebCam"
+   set caption(webcam,ccd_N_B)                  "B&W CCD"
+   set caption(webcam,dimPixelX)                "X Pixel Size (mum)"
+   set caption(webcam,dimPixelY)                "Y Pixel Size (mum)"
+   set caption(webcam,switchedConnexion)        "Toggle between WebCams"
+
+   set caption(webcam,shutter)                  "Shutter"
+   set caption(webcam,gain)                     "Gain"
+   set caption(webcam,auto)                     "Auto"
+   set caption(webcam,framerate)                "Images/s"
+   set caption(webcam,validFrame)               "Image Number"
+
+   set caption(webcam,installNewVersion)        "Installation of library %s of plugin webcam v%s completed."
+
+   set caption(webcam,2points)                  ":"
+
+   set caption(webcam,titre_site_web)           "Reference Web Site:"
+   set caption(webcam,site_web_ref)             "http://www.astrocam.org/"
+   set caption(webcam,site_web_chambers)        "http://www.pmdo.com/wintro.htm"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

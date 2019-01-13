@@ -1,0 +1,23 @@
+Ayida de usuario para la ventana "Adquisición de imagen con desplazamiento de telescopio"
+
+Este script se ha concebido para hacer la toma de imágenes más sencilla cuando se desea mover el telescopio entre exposiciones (por ejemplo, para hacer un mosaico)
+
+Sobre datos de exposición:
+Bastante auto-descriptivos ¿ no ? 
+
+Sobre la toma de "Captura":
+1) "Imagen normal": si se desea tomar varias imágenes el mismo objeto mientras se mueve ligeramente el telescopio entre cada exposición (recomendado para mejorar la calidad de las imágenes). En este script, el telescopio se mueve automáticamente 30 píxeles entre exposiciones.
+
+2) "Toma de flat con cielo nocturno": si se desea efectuar una serie de tomas de campo plano de cielo nocturno en lugar de vespetino. El telescopio se desplaza aleatoriamente 3000 píxeles de manera que las estrellas puedan eliminarse mediante el tratamiento posterior de las imágenes. Como resultado, solo quedan los defectos ópticos en las imágenes, que pueden utilizarse como unas tomas de campo plano vulgares. 
+
+3) "Mosaico de 4 imágenes": se apunta a un objeto, se centra y se ejecuta el procedimiento mosaico 4 de imágenes cuando el objeto está centrado en el telescopio. El script moverá el telescopio de manea que el objeto permanezca en el centro del mosaico. El número total de imágenes hechas por el script es igual al número de exposiciones multiplicado por 4, ya que esto es un mosaico de 4 partes.
+
+4) "Mosaico de 9 imágenes": lo ismo que el anterior pero con 9 imágenes.
+
+Sobre el prefijo de los ficheros:
+Introducir un prefijo para el fichero. Se añadirá un sufijo a cada imágen de la serie. Por ejemplo, si se elije como prefijo "M81-" y se desea hacer una secencia de 9 imágenes, el script producirá una serie de 9 ficheros con los nombres M81-1, M81-2, ..., M81-9
+Si se realizan mosaicos, se añadiran dos dígitos al prefijo del nombre del fichero. Por ejemplo, si tomamos "M81-" como prefijo del fichero, y para un mosaico de 4 imágenes con dos exposiciones por imagen, se obtendrá M81-1-1, M81-1-2, M81-2-1, M81-2-2, M81-3-1, M81-3-2, ... El primer dígito es el número de secuencia de la imagen en el mosaico (esto es 1, 2, 3, y 4 en el ejemplo de un mosaico de 4 imágenes) y el segundo dígito indica el número de exposición par cada imagen (esto es, 1 y 2 en el ejemplo de 2 exposiciones por cada imagen del mosaico).
+
+Espero que encuentres útil este script.
+
+Puedes contactar conmigo en: chris.jasinski@wanadoo.fr

@@ -1,0 +1,142 @@
+#
+# Fichier : bdi_gui_set_ref_science.cap
+# $Id: bdi_gui_set_ref_science.cap 6861 2011-03-07 01:03:58Z jberthier $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+set caption(bdi_gui_set_ref_science,notype)    "Unknown type of data (astrom ou photom)"
+set caption(bdi_gui_set_ref_science,noselect)  "Select at least a Science or Reference catalogue"
+set caption(bdi_gui_set_ref_science,select)    "Select at least one catalogue"
+
+set caption(bdi_gui_set_ref_science,select)    "Exclude sources located at less than"
+set caption(bdi_gui_set_ref_science,select)    "pixels from image border"
+set caption(bdi_gui_set_ref_science,select)    "Exclude sources with flux greater than"
+set caption(bdi_gui_set_ref_science,select)    "Display selected sources"
+
+set caption(bdi_gui_set_ref_science,fermer)    "Close"
+set caption(bdi_gui_set_ref_science,apply)     "Apply"
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(bdi_gui_set_ref_science,notype)    "Type de données (astrom ou photom) indéterminé"
+   set caption(bdi_gui_set_ref_science,noselect)  "Veuillez sélectionner au moins un catalogue Science ou Référence"
+   set caption(bdi_gui_set_ref_science,select)    "Veuillez sélectionner au moins un catalogue"
+   
+   set caption(bdi_gui_set_ref_science,msgmask)   "Exclure les sources à moins de"
+   set caption(bdi_gui_set_ref_science,unimask)   "pixels du bord de l'image"
+   set caption(bdi_gui_set_ref_science,msgflux)   "Exclure les sources de flux supérieur à"
+   set caption(bdi_gui_set_ref_science,voirsou)   "Voir les sources sélectionnées"
+   
+   set caption(bdi_gui_set_ref_science,fermer)    "Fermer"
+   set caption(bdi_gui_set_ref_science,apply)     "Appliquer"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+   set caption(bdi_gui_set_ref_science,notype)    "Unknown type of data (astrom ou photom)"
+   set caption(bdi_gui_set_ref_science,noselect)  "Select at least a Science or Reference catalogue"
+   set caption(bdi_gui_set_ref_science,select)    "Select at least one catalogue"
+   
+   set caption(bdi_gui_set_ref_science,select)    "Exclude sources located at less than"
+   set caption(bdi_gui_set_ref_science,select)    "pixels from image border"
+   set caption(bdi_gui_set_ref_science,select)    "Exclude sources with flux greater than"
+   set caption(bdi_gui_set_ref_science,select)    "Display selected sources"
+   
+   set caption(bdi_gui_set_ref_science,fermer)    "Close"
+   set caption(bdi_gui_set_ref_science,apply)     "Apply"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+   set caption(bdi_gui_set_ref_science,notype)    "Unknown type of data (astrom ou photom)"
+   set caption(bdi_gui_set_ref_science,noselect)  "Select at least a Science or Reference catalogue"
+   set caption(bdi_gui_set_ref_science,select)    "Select at least one catalogue"
+   
+   set caption(bdi_gui_set_ref_science,select)    "Exclude sources located at less than"
+   set caption(bdi_gui_set_ref_science,select)    "pixels from image border"
+   set caption(bdi_gui_set_ref_science,select)    "Exclude sources with flux greater than"
+   set caption(bdi_gui_set_ref_science,select)    "Display selected sources"
+   
+   set caption(bdi_gui_set_ref_science,fermer)    "Close"
+   set caption(bdi_gui_set_ref_science,apply)     "Apply"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+   set caption(bdi_gui_set_ref_science,notype)    "Unknown type of data (astrom ou photom)"
+   set caption(bdi_gui_set_ref_science,noselect)  "Select at least a Science or Reference catalogue"
+   set caption(bdi_gui_set_ref_science,select)    "Select at least one catalogue"
+   
+   set caption(bdi_gui_set_ref_science,select)    "Exclude sources located at less than"
+   set caption(bdi_gui_set_ref_science,select)    "pixels from image border"
+   set caption(bdi_gui_set_ref_science,select)    "Exclude sources with flux greater than"
+   set caption(bdi_gui_set_ref_science,select)    "Display selected sources"
+   
+   set caption(bdi_gui_set_ref_science,fermer)    "Close"
+   set caption(bdi_gui_set_ref_science,apply)     "Apply"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+   set caption(bdi_gui_set_ref_science,notype)    "Unknown type of data (astrom ou photom)"
+   set caption(bdi_gui_set_ref_science,noselect)  "Select at least a Science or Reference catalogue"
+   set caption(bdi_gui_set_ref_science,select)    "Select at least one catalogue"
+   
+   set caption(bdi_gui_set_ref_science,select)    "Exclude sources located at less than"
+   set caption(bdi_gui_set_ref_science,select)    "pixels from image border"
+   set caption(bdi_gui_set_ref_science,select)    "Exclude sources with flux greater than"
+   set caption(bdi_gui_set_ref_science,select)    "Display selected sources"
+   
+   set caption(bdi_gui_set_ref_science,fermer)    "Close"
+   set caption(bdi_gui_set_ref_science,apply)     "Apply"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+   set caption(bdi_gui_set_ref_science,notype)    "Unknown type of data (astrom ou photom)"
+   set caption(bdi_gui_set_ref_science,noselect)  "Select at least a Science or Reference catalogue"
+   set caption(bdi_gui_set_ref_science,select)    "Select at least one catalogue"
+   
+   set caption(bdi_gui_set_ref_science,select)    "Exclude sources located at less than"
+   set caption(bdi_gui_set_ref_science,select)    "pixels from image border"
+   set caption(bdi_gui_set_ref_science,select)    "Exclude sources with flux greater than"
+   set caption(bdi_gui_set_ref_science,select)    "Display selected sources"
+   
+   set caption(bdi_gui_set_ref_science,fermer)    "Close"
+   set caption(bdi_gui_set_ref_science,apply)     "Apply"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+   set caption(bdi_gui_set_ref_science,notype)    "Unknown type of data (astrom ou photom)"
+   set caption(bdi_gui_set_ref_science,noselect)  "Select at least a Science or Reference catalogue"
+   set caption(bdi_gui_set_ref_science,select)    "Select at least one catalogue"
+   
+   set caption(bdi_gui_set_ref_science,select)    "Exclude sources located at less than"
+   set caption(bdi_gui_set_ref_science,select)    "pixels from image border"
+   set caption(bdi_gui_set_ref_science,select)    "Exclude sources with flux greater than"
+   set caption(bdi_gui_set_ref_science,select)    "Display selected sources"
+   
+   set caption(bdi_gui_set_ref_science,fermer)    "Close"
+   set caption(bdi_gui_set_ref_science,apply)     "Apply"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+   set caption(bdi_gui_set_ref_science,notype)    "Unknown type of data (astrom ou photom)"
+   set caption(bdi_gui_set_ref_science,noselect)  "Select at least a Science or Reference catalogue"
+   set caption(bdi_gui_set_ref_science,select)    "Select at least one catalogue"
+   
+   set caption(bdi_gui_set_ref_science,select)    "Exclude sources located at less than"
+   set caption(bdi_gui_set_ref_science,select)    "pixels from image border"
+   set caption(bdi_gui_set_ref_science,select)    "Exclude sources with flux greater than"
+   set caption(bdi_gui_set_ref_science,select)    "Display selected sources"
+   
+   set caption(bdi_gui_set_ref_science,fermer)    "Close"
+   set caption(bdi_gui_set_ref_science,apply)     "Apply"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================

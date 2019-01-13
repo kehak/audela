@@ -1,0 +1,103 @@
+#
+# Fichier : bddimages_imgcorrection.cap
+# $Id: bddimages_imgcorrection.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+set caption(bddimages_imgcorrection,main_title) "BddImages - Images"
+set caption(bddimages_imgcorrection,creation)   "Create"
+set caption(bddimages_imgcorrection,correction) "Images processing"
+set caption(bddimages_imgcorrection,input)      "Selected images"
+set caption(bddimages_imgcorrection,output)     "Final image"
+set caption(bddimages_imgcorrection,inauto)     "Automatic correction"
+set caption(bddimages_imgcorrection,inoffset)   "OFFSET"
+set caption(bddimages_imgcorrection,insoffset)  "master OFFSET"
+set caption(bddimages_imgcorrection,nooffset)   "You must select OFFSET images to create a master OFFSET"
+set caption(bddimages_imgcorrection,oneoffset)  "You must select one master OFFSET to create a master DARK"
+set caption(bddimages_imgcorrection,indark)     "DARK"
+set caption(bddimages_imgcorrection,insdark)    "master DARK"
+set caption(bddimages_imgcorrection,nodark)     "You must select DARK images to create a master DARK"
+set caption(bddimages_imgcorrection,onedark)    "You must select one master DARK to create a master FLAT"
+set caption(bddimages_imgcorrection,inflat)     "FLAT"
+set caption(bddimages_imgcorrection,insflat)    "master FLAT"
+set caption(bddimages_imgcorrection,noflat)     "You must select FLAT images to create a master FLAT"
+set caption(bddimages_imgcorrection,inimg)      "IMAGE"
+set caption(bddimages_imgcorrection,noimg)      "You must select images to process them"
+set caption(bddimages_imgcorrection,noresult)   "No"
+set caption(bddimages_imgcorrection,consoleE)   "Error report"
+set caption(bddimages_imgcorrection,consoleF)   "List of selected files"
+set caption(bddimages_imgcorrection,nofile)     "No selected file"
+set caption(bddimages_imgcorrection,pbfiltre)   "The filter of the selected images is different"
+set caption(bddimages_imgcorrection,pbtelescope) "The telescop of the selected images is different"
+set caption(bddimages_imgcorrection,pbbinning)  "The binning of the selected images is different"
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+   set caption(bddimages_imgcorrection,main_title) "BddImages - Images"
+   set caption(bddimages_imgcorrection,creation)   "Création d'un"
+   set caption(bddimages_imgcorrection,correction) "Correction d'images"
+   set caption(bddimages_imgcorrection,input)      "Images selectionnées"
+   set caption(bddimages_imgcorrection,output)     "Image finale"
+   set caption(bddimages_imgcorrection,inauto)     "Correction automatique"
+   set caption(bddimages_imgcorrection,inoffset)   "PRECHARGE"
+   set caption(bddimages_imgcorrection,insoffset)  "PRECHARGE maitre"
+   set caption(bddimages_imgcorrection,nooffset)   "Vous devez sélectionner des images de PRECHARGE pour créer un PRECHARGE maitre"
+   set caption(bddimages_imgcorrection,oneoffset)  "Vous devez sélectionner une image maitre de PRECHARGE pour créer un NOIR maitre"
+   set caption(bddimages_imgcorrection,indark)     "NOIR"
+   set caption(bddimages_imgcorrection,insdark)    "NOIR maitre"
+   set caption(bddimages_imgcorrection,nodark)     "Vous devez sélectionner des images de NOIR pour créer un NOIR maitre"
+   set caption(bddimages_imgcorrection,onedark)    "Vous devez sélectionner une image maitre de NOIR pour créer un FLAT maitre"
+   set caption(bddimages_imgcorrection,inflat)     "PLU"
+   set caption(bddimages_imgcorrection,insflat)    "PLU maitre"
+   set caption(bddimages_imgcorrection,noflat)     "Vous devez sélectionner des images de PLU pour créer un PLU maitre"
+   set caption(bddimages_imgcorrection,oneflat)    "Vous devez sélectionner une image maitre de PLU pour corriger une image"
+   set caption(bddimages_imgcorrection,inimg)      "IMAGE"
+   set caption(bddimages_imgcorrection,noimg)      "Vous devez sélectionner des images pour les corriger"
+   set caption(bddimages_imgcorrection,noresult)   "Aucune"
+   set caption(bddimages_imgcorrection,consoleE)   "Rapport d'erreurs"
+   set caption(bddimages_imgcorrection,consoleF)   "Liste des fichiers sélectionnés"
+   set caption(bddimages_imgcorrection,nofile)     "Aucun fichier sélectionné"
+   set caption(bddimages_imgcorrection,pbfiltre)   "Le filtre des images sélectionnées est différent"
+   set caption(bddimages_imgcorrection,pbtelescope) "Le télescope des images sélectionnées est différent"
+   set caption(bddimages_imgcorrection,pbbinning)  "Le binning des images sélectionnées est différent"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

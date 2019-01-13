@@ -1,0 +1,70 @@
+#!/bin/bash
+#   termwide prompt with tty number
+#   by Giles - created 2 November 98, last tweaked 31 July 2001
+#
+#   This is a variant on "termwide" that incorporates the tty number.
+
+hostnam=$(hostname -s)
+usernam=$(whoami)
+
+function prompt_command 
+{
+    #   Find the width of the prompt:
+    TERMWIDTH=${COLUMNS}
+    
+    #   Add all the accessories below ...
+    local temp="[${usernam}@${hostnam}]---[${PWD}]--"
+
+    let fillsize=${TERMWIDTH}-${#temp}
+    if [ "$fillsize" -gt "0" ]; then
+	fill="-------------------------------------------------------------------------------------------------------------------------------------------"
+	#   It's theoretically possible someone could need more 
+	#   dashes than above, but very unlikely!  HOWTO users, 
+	#   the above should be ONE LINE, it may not cut and
+	#   paste properly
+	fill="${fill:0:${fillsize}}"
+	newPWD="${PWD}"
+    fi
+
+    if [ "$fillsize" -le "0" ];	then
+	fill=""
+	let cut=3-${fillsize}
+	newPWD="...${PWD:${cut}}"
+    fi
+
+}
+
+function twtty 
+{    
+   local WHITE="\[\033[1;32m\]"
+   local NO_COLOUR="\[\033[0m\]"
+   local GREEN="\[\033[1;32m\]"
+   local LIGHT_BLUE="\[\033[1;34m\]"
+   local YELLOW="\[\033[1;33m\]"
+   local RED="\[\033[1;31m\]"
+   local USR_COLOUR=${GREEN}
+
+   #~ if [ $EUID -eq 0 ]
+	#~ then 
+     #~ local USR_COLOUR=${RED}
+   #~ else
+     #~ local USR_COLOUR=${WHITE}
+   #~ fi
+    
+    PS1="${LIGHT_BLUE}["
+#    PS1="${GREEN}-${LIGHT_BLUE}-["
+    PS1="${PS1}${USR_COLOUR}\${usernam}${LIGHT_BLUE}"
+    PS1="${PS1}@${LIGHT_BLUE}\${hostnam}${LIGHT_BLUE}]"
+    PS1="${PS1}-${WHITE}-\${fill}${LIGHT_BLUE}-["
+    PS1="${PS1}${NO_COLOUR}\${newPWD}${LIGHT_BLUE}]"
+    PS1="${PS1}-${GREEN}-\n"
+#    PS1="${PS1}-${GREEN}-\n${GREEN}-${LIGHT_BLUE}-["
+#    PS1="${PS1}${WHITE}\$(date +%H:%M)${LIGHT_BLUE}]"
+    PS1="${PS1} ${LIGHT_BLUE}\$${NO_COLOUR} "
+#    PS1="${PS1}-${GREEN}-${LIGHT_BLUE}\$${NO_COLOUR} "
+
+   export PS1
+}
+
+twtty
+PROMPT_COMMAND='prompt_command'

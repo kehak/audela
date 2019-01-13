@@ -1,0 +1,124 @@
+#
+# Fichier : acqfastSetup.cap
+# Mise a jour $Id: acqfastSetup.cap 12976 2016-01-29 17:56:11Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(acqfastSetup,titre)                     "Fast Imaging - Setup"
+set caption(acqfastSetup,en-tete_fits)              "FITS Header"
+set caption(acqfastSetup,mots_cles)                 "Keywords"
+set caption(acqfastSetup,texte1)                    "Display messages on the Terminal"
+set caption(acqfastSetup,texte2)                    "Record dates in the log file"
+set caption(acqfastSetup,texte4)                    "Ask whether the user wants existing file to be replaced"
+set caption(acqfastSetup,texte5)                    "Prompt the user if the index starts with a value different from 1"
+set caption(acqfastSetup,texte6)                    "Save an interrupted acquisition"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(acqfastSetup,titre)                  "Fast Imaging - Configuration"
+   set caption(acqfastSetup,en-tete_fits)           "En-tête FITS"
+   set caption(acqfastSetup,mots_cles)              "Mots clés"
+   set caption(acqfastSetup,texte1)                 "Afficher les messages dans la Console"
+   set caption(acqfastSetup,texte2)                 "Enregistrer les dates dans le fichier log"
+   set caption(acqfastSetup,texte4)                 "Demander l'autorisation de remplacer un fichier existant"
+   set caption(acqfastSetup,texte5)                 "# Prompt the user if the index starts with a value different from 1"
+   set caption(acqfastSetup,texte6)                 "# Save an interrupted acquisition"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(acqfastSetup,titre)                  "Fast Imaging - Configurazione"
+   set caption(acqfastSetup,en-tete_fits)           "Intestazione FITS"
+   set caption(acqfastSetup,mots_cles)              "Parole chiave"
+   set caption(acqfastSetup,texte1)                 "Mostra messaggio sul terminale"
+   set caption(acqfastSetup,texte2)                 "Salvataggio date nel file di log"
+   set caption(acqfastSetup,texte4)                 "Domandare l'autorizzazione di rimpiazzare un file esistente"
+   set caption(acqfastSetup,texte5)                 "# Prompt the user if the index starts with a value different from 1"
+   set caption(acqfastSetup,texte6)                 "# Save an interrupted acquisition"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(acqfastSetup,titre)                  "Fast Imaging - Configuración"
+   set caption(acqfastSetup,en-tete_fits)           "Cabecera FITS"
+   set caption(acqfastSetup,mots_cles)              "Palabras clave"
+   set caption(acqfastSetup,texte1)                 "Mostrar mensajes en la Consola"
+   set caption(acqfastSetup,texte2)                 "Grabar fechas en el fichero de log"
+   set caption(acqfastSetup,texte4)                 "Pedir autorización para reemplazar un fichero existente"
+   set caption(acqfastSetup,texte5)                 "# Prompt the user if the index starts with a value different from 1"
+   set caption(acqfastSetup,texte6)                 "# Save an interrupted acquisition"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(acqfastSetup,titre)                  "Fast Imaging - Konfiguration"
+   set caption(acqfastSetup,en-tete_fits)           "FITS Header"
+   set caption(acqfastSetup,mots_cles)              "Stichwörter"
+   set caption(acqfastSetup,texte1)                 "Die Nachrichten am Bildschirm zeigen"
+   set caption(acqfastSetup,texte2)                 "Die Zeit in die Log Datei speichern"
+   set caption(acqfastSetup,texte4)                 "Die Zulassung eine vorhandene Datei zu ersetzen fragen"
+   set caption(acqfastSetup,texte5)                 "# Prompt the user if the index starts with a value different from 1"
+   set caption(acqfastSetup,texte6)                 "# Save an interrupted acquisition"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(acqfastSetup,titre)                  "Fast Imaging - Configuração"
+   set caption(acqfastSetup,en-tete_fits)           "Cabeçalho FITS"
+   set caption(acqfastSetup,mots_cles)              "Palavras-chave"
+   set caption(acqfastSetup,texte1)                 "Mostrar mensagens na Consola"
+   set caption(acqfastSetup,texte2)                 "Guardar datas no ficheiro log"
+   set caption(acqfastSetup,texte4)                 "Pedir a autorização para substituir um ficheiro existente"
+   set caption(acqfastSetup,texte5)                 "# Prompt the user if the index starts with a value different from 1"
+   set caption(acqfastSetup,texte6)                 "# Save an interrupted acquisition"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(acqfastSetup,titre)                  "Fast Imaging - Setup"
+   set caption(acqfastSetup,en-tete_fits)           "FITS Header"
+   set caption(acqfastSetup,mots_cles)              "Keywords"
+   set caption(acqfastSetup,texte1)                 "Display messages on the Terminal"
+   set caption(acqfastSetup,texte2)                 "Record dates in the log file"
+   set caption(acqfastSetup,texte4)                 "Ask whether the user wants existing file to be replaced"
+   set caption(acqfastSetup,texte5)                 "Prompt the user if the index starts with a value different from 1"
+   set caption(acqfastSetup,texte6)                 "Save an interrupted acquisition"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(acqfastSetup,titre)                  "Fast Imaging - Setup"
+   set caption(acqfastSetup,en-tete_fits)           "FITS Header"
+   set caption(acqfastSetup,mots_cles)              "Keywords"
+   set caption(acqfastSetup,texte1)                 "Display messages on the Terminal"
+   set caption(acqfastSetup,texte2)                 "Record dates in the log file"
+   set caption(acqfastSetup,texte4)                 "Ask whether the user wants existing file to be replaced"
+   set caption(acqfastSetup,texte5)                 "Prompt the user if the index starts with a value different from 1"
+   set caption(acqfastSetup,texte6)                 "Save an interrupted acquisition"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(acqfastSetup,titre)                  "Fast Imaging - Setup"
+   set caption(acqfastSetup,en-tete_fits)           "FITS Header"
+   set caption(acqfastSetup,mots_cles)              "Keywords"
+   set caption(acqfastSetup,texte1)                 "Display messages on the Terminal"
+   set caption(acqfastSetup,texte2)                 "Record dates in the log file"
+   set caption(acqfastSetup,texte4)                 "Ask whether the user wants existing file to be replaced"
+   set caption(acqfastSetup,texte5)                 "Prompt the user if the index starts with a value different from 1"
+   set caption(acqfastSetup,texte6)                 "Save an interrupted acquisition"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

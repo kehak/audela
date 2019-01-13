@@ -1,0 +1,160 @@
+#
+# Fichier : testaudine.cap
+# Mise a jour $Id: testaudine.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(testaudine,titre)       "Tests to Check Camera Operation"
+set caption(testaudine,voltm)       "Voltmeter Tests:"
+set caption(testaudine,set0)        "Set 0"
+set caption(testaudine,text1)       "Voltage measurement and setting of P1, P3 and P4 trimpots"
+set caption(testaudine,set255)      "Set 255"
+set caption(testaudine,text2)       "Voltage measurement and setting of P2 trimpot"
+set caption(testaudine,oscillo)     "Oscilloscope Tests:"
+set caption(testaudine,test1)       "Test 1"
+set caption(testaudine,text3)       "Number of transfer cycles for image area/horizontal register"
+set caption(testaudine,test2)       "Test 2"
+set caption(testaudine,text4)       "Number of quick read cycles"
+set caption(testaudine,fermer)      "Close"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(testaudine,titre)    "Tests pour la fabrication de la caméra"
+   set caption(testaudine,voltm)    "Tests avec un voltmètre :"
+   set caption(testaudine,set0)     "Set 0"
+   set caption(testaudine,text1)    "Mesure de tensions et réglage des potentiomètres P1, P3 et P4"
+   set caption(testaudine,set255)   "Set 255"
+   set caption(testaudine,text2)    "Mesure de tensions et réglage du potentiomètre P2"
+   set caption(testaudine,oscillo)  "Tests avec un oscilloscope :"
+   set caption(testaudine,test1)    "Test 1"
+   set caption(testaudine,text3)    "Nombre de cycles de transfert zone image/registre horizontal"
+   set caption(testaudine,test2)    "Test 2"
+   set caption(testaudine,text4)    "Nombre de cycles de lecture rapide"
+   set caption(testaudine,fermer)   "Fermer"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(testaudine,titre)    "Rilevamento camera in corso"
+   set caption(testaudine,voltm)    "Tests con voltmetro:"
+   set caption(testaudine,set0)     "Set 0"
+   set caption(testaudine,text1)    "Misure di tensione e regolazione dei potenziometri P1, P3 e P4"
+   set caption(testaudine,set255)   "Set 255"
+   set caption(testaudine,text2)    "Misure di tensione e regolazione potenziometro P2"
+   set caption(testaudine,oscillo)  "Tests con oscilloscopio:"
+   set caption(testaudine,test1)    "Test 1"
+   set caption(testaudine,text3)    "Numero cicli di trasferimento zona immagine/registro orizzontale"
+   set caption(testaudine,test2)    "Test 2"
+   set caption(testaudine,text4)    "Numero dei cicli di lettura rapida"
+   set caption(testaudine,fermer)   "Chiudere"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(testaudine,titre)    "Tests para la fabricación de la cámara"
+   set caption(testaudine,voltm)    "Tests con voltimetro:"
+   set caption(testaudine,set0)     "Set 0"
+   set caption(testaudine,text1)    "Medidas de tensión y ajuste de potenciometros P1, P3 y P4"
+   set caption(testaudine,set255)   "Set 255"
+   set caption(testaudine,text2)    "Medidas de tensión y ajuste de potenciometro P2"
+   set caption(testaudine,oscillo)  "Test con osciloscopio:"
+   set caption(testaudine,test1)    "Test 1"
+   set caption(testaudine,text3)    "Numero de trasferencias de zona de imagen a registro horizontal"
+   set caption(testaudine,test2)    "Test 2"
+   set caption(testaudine,text4)    "Numero de ciclos de lectura rapida"
+   set caption(testaudine,fermer)   "Cerrar"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(testaudine,titre)    "Testen für das Kamera Bau"
+   set caption(testaudine,voltm)    "Mit einen Voltmeter testen:"
+   set caption(testaudine,set0)     "Set 0"
+   set caption(testaudine,text1)    "Spannungen Messung und Potentiometer P1, P3 und P4 Einstellung"
+   set caption(testaudine,set255)   "Set 255"
+   set caption(testaudine,text2)    "Spannungen Messung und Potentiometer P2 Einstellung"
+   set caption(testaudine,oscillo)  "Mit einen Oszilloskop testen:"
+   set caption(testaudine,test1)    "Test 1"
+   set caption(testaudine,text3)    "Wie viel Transfer Zyklen Bild Zone/Horizontal Register"
+   set caption(testaudine,test2)    "Test 2"
+   set caption(testaudine,text4)    "Wie viel Transfer Zyklen schnell lesen"
+   set caption(testaudine,fermer)   "Schließen"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(testaudine,titre)    "Testes para fabrico da câmara"
+   set caption(testaudine,voltm)    "Testes com um voltímetro:"
+   set caption(testaudine,set0)     "Set 0"
+   set caption(testaudine,text1)    "Medição das tensões e ajuste dos potenciómetros P1, P3 et P4"
+   set caption(testaudine,set255)   "Set 255"
+   set caption(testaudine,text2)    "Medição das tensões e ajuste do potenciómetro P2"
+   set caption(testaudine,oscillo)  "Testes com um osciloscópio:"
+   set caption(testaudine,test1)    "Teste 1"
+   set caption(testaudine,text3)    "Número de ciclos de transferência zona imagem/registo horizontal"
+   set caption(testaudine,test2)    "Teste 2"
+   set caption(testaudine,text4)    "Número de ciclos de leitura rápida"
+   set caption(testaudine,fermer)   "Fechar"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(testaudine,titre)    "Tests to Check Camera Operation"
+   set caption(testaudine,voltm)    "Voltmeter Tests:"
+   set caption(testaudine,set0)     "Set 0"
+   set caption(testaudine,text1)    "Voltage measurement and setting of P1, P3 and P4 trimpots"
+   set caption(testaudine,set255)   "Set 255"
+   set caption(testaudine,text2)    "Voltage measurement and setting of P2 trimpot"
+   set caption(testaudine,oscillo)  "Oscilloscope Tests:"
+   set caption(testaudine,test1)    "Test 1"
+   set caption(testaudine,text3)    "Number of transfer cycles for image area/horizontal register"
+   set caption(testaudine,test2)    "Test 2"
+   set caption(testaudine,text4)    "Number of quick read cycles"
+   set caption(testaudine,fermer)   "Close"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(testaudine,titre)    "Tests to Check Camera Operation"
+   set caption(testaudine,voltm)    "Voltmeter Tests:"
+   set caption(testaudine,set0)     "Set 0"
+   set caption(testaudine,text1)    "Voltage measurement and setting of P1, P3 and P4 trimpots"
+   set caption(testaudine,set255)   "Set 255"
+   set caption(testaudine,text2)    "Voltage measurement and setting of P2 trimpot"
+   set caption(testaudine,oscillo)  "Oscilloscope Tests:"
+   set caption(testaudine,test1)    "Test 1"
+   set caption(testaudine,text3)    "Number of transfer cycles for image area/horizontal register"
+   set caption(testaudine,test2)    "Test 2"
+   set caption(testaudine,text4)    "Number of quick read cycles"
+   set caption(testaudine,fermer)   "Close"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(testaudine,titre)    "Tests to Check Camera Operation"
+   set caption(testaudine,voltm)    "Voltmeter Tests:"
+   set caption(testaudine,set0)     "Set 0"
+   set caption(testaudine,text1)    "Voltage measurement and setting of P1, P3 and P4 trimpots"
+   set caption(testaudine,set255)   "Set 255"
+   set caption(testaudine,text2)    "Voltage measurement and setting of P2 trimpot"
+   set caption(testaudine,oscillo)  "Oscilloscope Tests:"
+   set caption(testaudine,test1)    "Test 1"
+   set caption(testaudine,text3)    "Number of transfer cycles for image area/horizontal register"
+   set caption(testaudine,test2)    "Test 2"
+   set caption(testaudine,text4)    "Number of quick read cycles"
+   set caption(testaudine,fermer)   "Close"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

@@ -1,0 +1,11 @@
+binning 2
+waitbeforeexposure 0
+timeexposure 30
+numberexposure 2
+iteration 2
+waitbeforeserie 0
+headingname detect031010
+* 21 43 -14 44
+21 44 -14 44
+* 20 56 +10 42
+20 57 +10 42

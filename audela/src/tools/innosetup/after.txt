@@ -1,0 +1,19 @@
+
+Pour utiliser AudeLA,
+
+il n'est pas nécessaire de redémarrer votre ordinateur.
+Double cliquez sur l'icone placé sur le bureau
+
+To use AudeLA,
+
+It is not necessary to restart your computer.
+Double clic on the icon of the desktop.
+
+--------------------------
+
+Pour désinstaller AudeLA,
+
+1) ouvrir le Poste de travail
+2) se placer sur le dossier d'installation
+   (c:\program files\audela-1.5.0 en général)
+3) lancer uninst000.exe

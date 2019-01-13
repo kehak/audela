@@ -1,0 +1,2 @@
+LIBRARY libepix
+EXPORTS Epix_Init @1

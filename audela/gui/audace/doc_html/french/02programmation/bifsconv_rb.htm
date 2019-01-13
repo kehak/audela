@@ -1,0 +1,533 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>BifsConv: Le convertisseur d'images vers FITS / The to-FITS image converter</title></head><body>
+<p class="date">Date de mise à jour : 26 juin 2011</p>
+<center>
+  <h1>BifsConv <br />
+    Le convertisseur d'images vers FITS <br />
+    The to-FITS image converter</h1>
+  Raoul Behrend <br />
+  Observatoire de Genève <br />
+  CH-1290 Sauverny - Suisse <br />
+  <a href="mailto:Raoul.Behrend@unige.ch">Raoul.Behrend@unige.ch</a>
+</center>
+<table>
+  <tbody><tr>
+    <td style="width: 477px;"><b>BifsConv, qu'est-ce&nbsp;?</b>
+      <p>Un logiciel permettant de convertir vers le format FITS (fit)
+         divers formats d'image, tels que :</p></td>
+    <td style="width: 477px;"><b>BifsConv, what is it&nbsp;?</b>
+      <p>This software is a to-FITS (fit) image converter;
+         it accepts images in various formats like:</p>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 477px;"><font color="#cc0000">bmp</font>, <font color="#cc0000">imq</font>, <font color="#cc0000">st4</font>, <font color="#cc0000">stx</font>,
+      <font color="#cc0000">ima</font>, <font color="#cc0000">cpa</font>, <font color="#cc0000">pic</font>,
+      <font color="#cc0000">tif</font>, <font color="#cc0000">tiff</font>,
+      <font color="#cc0000">mmf</font>, <font color="#cc0000">mrw</font>, <font color="#cc0000">dng</font>,
+      <font color="#cc0000">gif</font>, <font color="#cc0000">mx5</font>,
+      <font color="#cc0000">hx5</font> (660x500), <font color="#cc0000">xl8</font> (510x500), <font color="#cc0000">sxl</font> (510x512),
+      <font color="#cc0000">dat</font>, <font color="#cc0000">pcx</font>, <font color="#cc0000">per</font>,
+      <font color="#cc0000">dib</font>, <font color="#cc0000">arn</font>, <font color="#cc0000">blu</font>,
+      <font color="#cc0000">bb1</font>, <font color="#cc0000">bb2</font>,
+      <font color="#cc0000">bb3</font>, <font color="#cc0000">bb4</font>, <font color="#cc0000">grn</font>,
+      <font color="#cc0000">irq</font>, <font color="#cc0000">ibg</font>, <font color="#cc0000">img</font>,
+      <font color="#cc0000">ir1</font>, <font color="#cc0000">ir2</font>,
+      <font color="#cc0000">ir3</font>, <font color="#cc0000">n07</font>, <font color="#cc0000">n15</font>,
+      <font color="#cc0000">pds</font>, <font color="#cc0000">red</font>, <font color="#cc0000">ihw</font>, <font color="#cc0000">sgr</font>,
+      <font color="#cc0000">sur</font>, <font color="#cc0000">sun</font>,
+      <font color="#cc0000">vio</font>, <font color="#cc0000">cpt</font>, <font color="#cc0000">gls</font>,
+      <font color="#cc0000">fts</font>, <font color="#cc0000">fits</font>, <font color="#cc0000">ftz</font>, <font color="#cc0000">at1</font>,
+      <font color="#cc0000">t1m</font>,
+      <font color="#cc0000">08b</font>,
+      <font color="#cc0000">raw</font>, <font color="#cc0000">sbi</font>, <font color="#cc0000">st5</font>,
+      <font color="#cc0000">st6</font>, <font color="#cc0000">st7</font>, <font color="#cc0000">st8</font>,
+      <font color="#cc0000">st9</font>, <font color="#cc0000">237</font>,
+      <font color="#cc0000">imi</font>, <font color="#cc0000">ccd</font>, <font color="#cc0000">tga</font>,
+      <font color="#cc0000">pnm</font>, <font color="#cc0000">ppm</font>, <font color="#cc0000">pbm</font>,
+      <font color="#cc0000">pgm</font>, <font color="#cc0000">ras</font>, <font color="#cc0000">cn1</font>..<font color="#cc0000">cn9</font>,
+      <font color="#cc0000">spe</font>, <font color="#cc0000">cr2</font>, <font color="#cc0000">nef</font>, <font color="#cc0000">ser</font> (Lucam Recorder).
+      <br />
+Construction/tests: <font color="#cc0000">arw</font>, <font color="#cc0000">pef</font>, <font color="#cc0000">dcr</font>, <font color="#cc0000">kdc</font>,
+      <font color="#cc0000">mef</font>, <font color="#cc0000">rw2</font>, <font color="#cc0000">sr2</font>, <font color="#cc0000">srw</font>,
+      <font color="#cc0000">crw</font>,
+      <font color="#cc0000">dcm</font>, <font color="#cc0000">dic</font>, <font color="#cc0000">acr</font> (dicom), <font color="#cc0000">l1g</font> (LandSat).</td>
+    <td style="width: 477px;"><font color="#cc0000">bmp</font>, <font color="#cc0000">imq</font>, <font color="#cc0000">st4</font>, <font color="#cc0000">stx</font>,
+      <font color="#cc0000">ima</font>, <font color="#cc0000">cpa</font>, <font color="#cc0000">pic</font>,
+      <font color="#cc0000">tif</font>, <font color="#cc0000">tiff</font>,
+      <font color="#cc0000">mmf</font>, <font color="#cc0000">mrw</font>, <font color="#cc0000">dng</font>,
+      <font color="#cc0000">gif</font>, <font color="#cc0000">mx5</font>,
+      <font color="#cc0000">hx5</font> (660x500), <font color="#cc0000">xl8</font> (510x500), <font color="#cc0000">sxl</font> (510x512),
+      <font color="#cc0000">dat</font>, <font color="#cc0000">pcx</font>, <font color="#cc0000">per</font>,
+      <font color="#cc0000">dib</font>, <font color="#cc0000">arn</font>, <font color="#cc0000">blu</font>,
+      <font color="#cc0000">bb1</font>, <font color="#cc0000">bb2</font>,
+      <font color="#cc0000">bb3</font>, <font color="#cc0000">bb4</font>, <font color="#cc0000">grn</font>,
+      <font color="#cc0000">irq</font>, <font color="#cc0000">ibg</font>, <font color="#cc0000">img</font>,
+      <font color="#cc0000">ir1</font>, <font color="#cc0000">ir2</font>,
+      <font color="#cc0000">ir3</font>, <font color="#cc0000">n07</font>, <font color="#cc0000">n15</font>,
+      <font color="#cc0000">pds</font>, <font color="#cc0000">red</font>, <font color="#cc0000">ihw</font>, <font color="#cc0000">sgr</font>,
+      <font color="#cc0000">sur</font>, <font color="#cc0000">sun</font>,
+      <font color="#cc0000">vio</font>, <font color="#cc0000">cpt</font>, <font color="#cc0000">gls</font>,
+      <font color="#cc0000">fts</font>, <font color="#cc0000">fits</font>, <font color="#cc0000">ftz</font>, <font color="#cc0000">at1</font>,
+      <font color="#cc0000">t1m</font>,
+      <font color="#cc0000">08b</font>,
+      <font color="#cc0000">raw</font>, <font color="#cc0000">sbi</font>, <font color="#cc0000">st5</font>,
+      <font color="#cc0000">st6</font>, <font color="#cc0000">st7</font>, <font color="#cc0000">st8</font>,
+      <font color="#cc0000">st9</font>, <font color="#cc0000">237</font>,
+      <font color="#cc0000">imi</font>, <font color="#cc0000">ccd</font>, <font color="#cc0000">tga</font>,
+      <font color="#cc0000">pnm</font>, <font color="#cc0000">ppm</font>, <font color="#cc0000">pbm</font>,
+      <font color="#cc0000">pgm</font>, <font color="#cc0000">ras</font>, <font color="#cc0000">cn1</font>..<font color="#cc0000">cn9</font>,
+      <font color="#cc0000">spe</font>, <font color="#cc0000">cr2</font>, <font color="#cc0000">nef</font>, <font color="#cc0000">ser</font> (Lucam Recorder).
+      <br />
+Construction/tests: <font color="#cc0000">arw</font>, <font color="#cc0000">pef</font>, <font color="#cc0000">dcr</font>, <font color="#cc0000">kdc</font>,
+      <font color="#cc0000">mef</font>, <font color="#cc0000">rw2</font>, <font color="#cc0000">sr2</font>, <font color="#cc0000">srw</font>,
+      <font color="#cc0000">crw</font>,
+      <font color="#cc0000">dcm</font>, <font color="#cc0000">dic</font>, <font color="#cc0000">acr</font> (dicom), <font color="#cc0000">l1g</font> (LandSat).</td>
+  
+  </tr><tr>
+    <td style="width: 477px;">
+Quelques variantes et parfums ne sont toutefois pas traduits, par manque de documentation.
+Plus de problèmes pour voir/travailler, avec son imageur astronomique favori, des images satellitales au format Titus,
+PDS (sauf les images Clémentine et quelques images de Mars Global Surveyor),
+VICAR, TIFF, celles de SBIG et LumièreStellaire, etc. Les fichiers en FITS peuvent être
+compressés par les algorithmes Rice ou IHW.</td>
+    <td style="width: 477px;">
+Some variants and flavours aren't translated, due to some undocumented things.
+No more problems viewing/working, with its favourite astronomical image processor, satellite images in Titus format,
+PDS (except the images by Clementine and a few by Mars Global Surveyor),
+VICAR, TIFF, SBIG's and StarLight's ones, etc. FITS files can be Rice or IHW compressed.</td>
+  </tr>
+  <tr>
+    <td style="width: 477px;">
+Le logiciel insère automatiquement les dates d'observation et les caractéristiques instrumentales
+disponibles dans certains formats; pour les autres, me contacter.
+      <p>Au passage, <font color="#cc33cc">BifsConv</font> corrige certaines fautes
+dans le format FITS de certains logiciels (comme Meade, AstroArt, Pisco, Avi2Bmp).
+      </p>
+</td>
+    <td style="width: 477px;">
+The software automatically inserts the observation date and the instrumental characteristics present in some format;
+for the other ones, feel free to contact me.
+      <p>
+On the fly, <font color="#cc33cc">BifsConv</font> corrects some errors made by some FITS generating software
+(like Meade, AstroArt, Pisco, Avi2Bmp).
+      </p>
+</td>
+  </tr>
+  <tr>
+    <td style="width: 477px;"><b>Utilisation</b></td>
+    <td style="width: 477px;"><b>Usage</b></td>
+  </tr>
+  <tr>
+    <td style="width: 477px;"><font color="#0088cc">BIFSCONV "image"[,num] [=] [+] [Cr,v,b,a|R|V|B|A]
+[Zh,v] [Fz,s] [Ll] [M[H][MV]] [Ih,v,o [B|W|Q|S]] [HD|HM|HF|HO|HP|HQ|HR|Hs]
+[Xobs,con] [K[asc],[dec],[focmm],[phmm],[pvmm],[e/adu]] [Nn] [TW] [Y(:|+|=|-)c=v]
+[Mcccc[=]]</font></td>
+    <td style="width: 477px;"><font color="#0088cc">BIFSCONV "image"[,num] [=] [+] [Cr,v,b,a|R|V|B|A]
+[Zh,v] [Fz,s] [Ll] [M[H][MV]] [Ih,v,o [B|W|Q|S]] [HD|HM|HF|HO|HP|HQ|HR|Hs]
+[Xobs,con] [K[asc],[dec],[focmm],[phmm],[pvmm],[e/adu]] [Nn] [TW] [Y(:|+|=|-)c=v]
+[Mcccc[=]]</font></td>
+  </tr>
+  <tr>
+    <td style="width: 477px;">
+La première option de lancement est toujours le nom du fichier à 
+convertir.
+Les guillemets permettent d'utiliser des fichiers dont les noms 
+comportent un ou plusieurs espaces (au plus un à la fois) - facultatifs 
+pour les autres fichiers.
+Le fichier de sortie porte le même nom et l'extension <font color="#cc0000">fit</font> ou,
+si déjà présent et l'option <font color="#0088cc">=</font> absente, est numéroté
+      <tt><font color="#cc0000">bifs####.fit</font></tt> . Il est possible d'extraire une image particulière d'une multi-image ou d'une image brute d'appareil numérique
+en indexant le nom de l'image avec un ou des numéros.
+      <br />
+D'autres options (analysées de gauche à droite) sont 
+possibles/nécessaires/sans utilité selon le type de fichier d'images à 
+convertir :
+      <ul>
+<li>Pour les images en couleur, <font color="#0088cc">Cr,v,b,a</font> donnent la pondération du rouge, du vert, du bleu et du canal de transparence.
+<font color="#0088cc">R|V|B|A</font> sélectionne rapidement une composante.
+</li><li><font color="#0088cc">Zh,v</font> donne les facteurs de compactage des pixels horizontalement et verticalement.
+</li><li><font color="#0088cc">M[H][V]</font>retournent horizontalement et verticalement l'image.
+</li><li><font color="#0088cc">Fz,s</font> impose l'équivalent de bzero et bscale des images <font color="#cc0000">fit</font>, pour certains formats.
+</li><li><font color="#0088cc">Ih,v,o</font> donne les dimensions horizontale et verticale des images,
+ainsi que la taille en octets de l'entête à sauter; pour certains formats, on peut mettre une des dimensions à zéro
+et laisser le logiciel la recalculer à partir de la taille du fichier.
+<font color="#0088cc">B|W|Q</font> signifie que les données sont
+codées sur 1, 2 ou de 4 octets; <font color="#0088cc">S</font> demande l'échange de l'ordre des octets.
+</li><li><font color="#0088cc">HD|HM|HF</font> demande d'interpréter les éventuels instants marqués
+dans l'image originale comme étant le début, le milieu ou la fin de l'exposition.
+<font color="#0088cc">Hs</font> donne une correction en secondes à appliquer au temps ci-dessus.
+</li><li><font color="#0088cc">Xobs,con</font> charge les caractéristiques d'une configuration instrumentale d'un observatoire particulier; me contacter pour cela.
+Actuellement définis: 143, 174, 175,1, 175,2, 178, 178,1, 178,2, 178,3, 178,4, 188, 517, 586, 596, 620,1, 620,2, 644,
+743, 809,1, 809,2, 950, 999, A12,1, A12,2, A55, H63,1, H63,2.
+Les valeurs de cette option priment sur celles de l'entête originale et celles du logiciel.
+</li><li><font color="#0088cc">K[asc],[dec],[foc],[ph],[pv],[e/adu]</font>
+permet de marquer et de corriger la position visée par le télescope (hh.mmsss et ±°°.''""), sa focale équivalente (en mm),
+ainsi que les dimensions logiques (également en mm) des pixels de la caméra (tenir compte du compactage) et du gain
+de la caméra. Si spécifiées, ces valeurs priment sur celles de l'entête originale et celles en mémoire.
+<font color="#0088cc">Nn</font> où n=1..2 permet d'écrire les coordonnées du centre du champ dans
+le dialecte <i>non-standard</i> de Astrometrica et PinPoint.
+</li><li><font color="#0088cc">+</font> permet d'accéder aux enregistrements d'ingénierie des images des sondes spatiales.
+</li><li><font color="#0088cc">TW</font> impose une sortie sur 16 binons, même si c'est possible en 8 binons.
+</li><li><font color="#0088cc">Y(:|+|=|-)c=v</font> permet de remplacer ou ajouter, ajouter, remplacer ou supprimer une clé <font color="#0088cc">c</font> et sa valeur
+<font color="#0088cc">v</font> de l'entête du fichier de sortie - maximum 16 clés.
+</li>
+      </ul>
+</td>
+    <td style="width: 477px;">
+The first parameter is always the name of the file to be converted.
+The quotations marks permit to use files with names containing one or 
+more spaces (but one at a time) - facultative for other files.
+The ouput file has the same name and <font color="#cc0000">fit</font> as the extension or, if already present and that the
+      <font color="#0088cc">=</font> option is absent, is numbered <tt><font color="#cc0000">bifs####.fit</font></tt>
+ .
+It is possible to extract a particular image from a multi-image or from a
+ raw image drom a digital camera by using indexes just after the name of
+ the file.
+      <br />
+Other options (processed from left to right) are 
+possible/needed/useless depending on the type of the image file to be 
+converted:
+      <ul>
+<li>For colour pictures, <font color="#0088cc">Cr,v,b,a</font> gives the weigthening of red, green, blue and transparency channels.
+<font color="#0088cc">R|V|B|A</font> select more easily a specific channel.
+</li><li><font color="#0088cc">Zh,v</font> represents the horizontal and vertical binning factors.
+</li><li><font color="#0088cc">M[H][V]</font>mirror horizontaly and verticaly the image.
+</li><li><font color="#0088cc">Fz,s</font> fixes bzero and bscale in the same manner as for <font color="#cc0000">fit</font> images, for some formats.
+</li><li><font color="#0088cc">Ih,v,o</font> imposes horizontal and 
+vertical dimensions of the image to be converted, as well as the
+size in bytes of the skipped header; for some formats, one can give 0 
+for one of the sizes and the software will compute the real
+value from the filesize. <font color="#0088cc">B|W|Q</font> specify that the data are coded on 1, 2 or 4 bytes;
+<font color="#0088cc">S</font> swaps low and high bytes.
+</li><li><font color="#0088cc">HD|HM|HF</font> says that the time, if present in the original file, is for the beggining, middle or end of exposure.
+<font color="#0088cc">Hs</font> specify a correction in seconds to the previous time.
+</li><li><font color="#0088cc">Xobs,con</font> specify the default instrumental parameters for the configurattion of a particular observatory; contact me for details.
+Actually defined: 143, 174, 175,1, 175,2, 178,1, 178,2, 188, 517, 586, 596, 620,1, 620,2, 644,
+743, 809,1, 809,2, 950, 999, A12,1, A12,2, A55, H63,1, H63,2.
+The values from the option overread the ones in the original header or in memory.
+</li><li><font color="#0088cc">K[asc],[dec],[foc],[ph],[pv],[e/adu]</font>
+is an easy way to specify and correct the pointing direction of the 
+telescope (as hh.mmsss and ±°°.''""), its equivalent focal length (in 
+mm),
+and the sizes (also in mm) of the logical pixels of the CCD camera (keep
+ in mind the binning factors), and the gain of the camera.
+These values, if specified, overread the ones in the original header or 
+in the software.
+<font color="#0088cc">Nn</font> with n=1..2 permits to write the coordinates of the center of the field
+in the <i>non-standard</i> dialect of Astrometrica and PinPoint.
+</li><li><font color="#0088cc">+</font> gives access to the engineering records of spacecraft images.
+</li><li><font color="#0088cc">TW</font> specify to output file to be on 16 bits, even if it is possible with 8 bits.
+</li><li><font color="#0088cc">Y(:|+|=|-)c=v</font> allows the software to change or add, add, change, erase
+a key <font color="#0088cc">c</font> and its value <font color="#0088cc">v</font> in the output file - at most 16 keys.
+</li>
+      </ul>
+</td>
+  </tr>
+  <tr>
+    <td style="width: 477px;"><i>Attention</i> : L'option <font color="#0088cc">=</font> autorise le logiciel à écraser un fichier avec l'extension <font color="#cc0000">fit</font>.
+A n'utiliser que si vous avez sauvegardé vos images originales dans un 
+autre répertoire/disque&nbsp;! Je décline toutes responsabilités.</td>
+    <td style="width: 477px;"><i>Caution</i>: The <font color="#0088cc">=</font> option authorize the software to overwrite a file with a <font color="#cc0000">fit</font> extension.
+Use it only if you have copied your original images in a different directory/disc&nbsp;! I decline all responsibilities.</td>
+  </tr>
+  <tr>
+    <td style="width: 477px;"><b>Exemple</b></td>
+    <td style="width: 477px;"><b>Example</b></td>
+  </tr>
+  <tr>
+    <td style="width: 477px;"><font color="#0088cc"><tt>bifsconv 12222001.fts = k12.42201,-4.3327,666.7,0.0148,0.0148 "y:object='2003 EM1'"</tt></font></td>
+    <td style="width: 477px;"><font color="#0088cc"><tt>bifsconv 12222001.fts = k12.42201,-4.3327,666.7,0.0148,0.0148 "y:object='2003 EM1'"</tt></font></td>
+  </tr>
+  <tr>
+    <td style="width: 477px;">
+Charge l'image <tt><font color="#cc0000">12222001.fts</font></tt> puis crée <tt><font color="#cc0000">12222001.fit</font></tt> ;
+si cette dernière existe déjà, elle est écrasée (option <font color="#0088cc">=</font>).
+La position asc=12<sup>h</sup>42<sup>m</sup>20,1<sup>s</sup> dec=-4°33'27" est insérée
+dans l'entête. La longueur focale équivalente de l'instrument est de 666,7mm; les pixels font
+0,0148x0,0148mm. Si une clé OBJECT existe, sa valeur est changée à '2003 EM1'; sinon, elle est créée.</td>
+    <td style="width: 477px;">
+Reads the image <tt><font color="#cc0000">12222001.fts</font></tt> and create a file named <tt><font color="#cc0000">12222001.fit</font></tt> ;
+if this file already exists, it is overwritten (<font color="#0088cc">=</font> option).
+The coordinates RA=12<sup>h</sup>42<sup>m</sup>20.1<sup>s</sup> and DEC=-4°33'27" are added
+in the header. The equivalent focal length is 666.7mm; the pixels are sized 0.0148x0.0148mm.
+If there exists an OBJECT key, its value is changed to '2003 EM1', else it's created.</td>
+  </tr>
+  <tr>
+    <td style="width: 477px;"><b>Astuces</b>
+      <ul>
+        <li>Pour convertir du FITS en FITS, commencer par renommer les images avec une extension <font color="#cc0000">fts</font>.</li>
+        <li>Les images Mariner 10 doivent être renommées avec l'extension <font color="#cc0000">vic</font> - ou une autre de la série PDS.</li>
+        <li>Pour convertir les images du programme International Halley Watch au PDS, il faut mettre bout à bout
+l'entête <font color="#cc0000">hdr</font> (respectivement <font color="#cc0000">lbl</font>) au corps <font color="#cc0000">imq</font> et placer le tout
+dans un fichier <font color="#cc0000">fts</font> (respectivement <font color="#cc0000">ihw</font>); effacer ensuite le fichier <font color="#cc0000">imq</font>.
+Parfois, les entêtes <font color="#cc0000">hdr</font> et <font color="#cc0000">lbl</font> n'ont pas le même contenu informatif - il faut
+essayer les deux manières pour savoir quelle est la meilleure.
+<br />Exemple dans lequel "a" est le nome de l'image (sans extension) :</li>
+</ul></td>
+    <td style="width: 477px;"><b>Tricks</b>
+      <ul>
+        <li>To convert from FITS to FITS, rename your images with a <font color="#cc0000">fts</font> extension.</li>
+        <li>Mariner 10's images must be renamed with a <font color="#cc0000">vic</font> extension - or an other PDS-like extension.</li>
+        <li>To convert images from the International Halley Watch program at PDS, first append the <font color="#cc0000">hdr</font> (respectively <font color="#cc0000">lbl</font>) header and the
+<font color="#cc0000">imq</font> content in a <font color="#cc0000">fts</font> (respectively <font color="#cc0000">ihw</font>) file; then erase the <font color="#cc0000">imq</font> file.
+Sometimes, the <font color="#cc0000">hdr</font> and <font color="#cc0000">lbl</font> headres don't have the same information contents - do a try of both manners to select the best one.
+<br />Example where "a" is the name of the image (without extension):</li>
+</ul>
+  </td>
+  </tr>
+  <tr>
+    <td style="width: 477px;">
+ms-dos : <font color="#0088cc"><tt>copy /b a.hdr+a.imq a.fts</tt></font>
+      <br />
+ou : <font color="#0088cc"><tt>copy /b a.lbl+a.imq a.ihw</tt></font>
+      <br />
+linux : <font color="#0088cc"><tt>cat a.hdr a.imq &gt; a.fts</tt></font>
+      <br />
+ou : <font color="#0088cc"><tt>cat a.lbl a.imq &gt; a.ihw</tt></font></td>
+    <td style="width: 477px;">
+ms-dos: <font color="#0088cc"><tt>copy /b a.hdr+a.imq a.fts</tt></font>
+      <br />
+or: <font color="#0088cc"><tt>copy /b a.lbl+a.imq a.ihw</tt></font>
+      <br />
+linux: <font color="#0088cc"><tt>cat a.hdr a.imq &gt; a.fts</tt></font>
+      <br />
+or: <font color="#0088cc"><tt>cat a.lbl a.imq &gt; a.ihw</tt></font></td>
+  </tr>
+  <tr>
+    <td style="width: 477px;">
+Sous DOS/Windows, il faut commencer par ouvrir une fenêtre ms-dos. Après quoi, la commande :<br />
+</td>
+    <td style="width: 477px;">
+In DOS/Windows, first open a ms-dos box. Then, the command:</td>
+  </tr>
+  <tr>
+    <td style="width: 477px;"><font color="#0088cc"><tt>for %f in (*.*) do bifsconv "%f" =</tt></font></td>
+    <td style="width: 477px;"><font color="#0088cc"><tt>for %f in (*.*) do bifsconv "%f" =</tt></font></td>
+  </tr>
+  <tr>
+    <td style="width: 477px;">
+Convertit toutes les images reconnues d'un répertoire. Cette commande
+marche en ligne de commande; en fichier de commande, il faut remplacer %
+ par %%. On peut aussi assigner un bouton de la souris pour convertir
+une image depuis l'explorateur, avec l'action suivante :</td>
+    <td style="width: 477px;">
+Converts all recognised images from a directory. This command works as a
+ command line;
+in a batch file, replace % by %%. To convert a file using the explorer, 
+one can also assign a mouse-button to the following action:</td>
+  </tr>
+  <tr>
+    <td style="width: 477px;"><font color="#0088cc"><tt>bifsconv "%1" =</tt></font></td>
+    <td style="width: 477px;"><font color="#0088cc"><tt>bifsconv "%1" =</tt></font></td>
+  </tr>
+  <tr>
+    <td style="width: 477px;">
+Sous Linux, la conversion en bloc s'obtient avec :<br />
+</td>
+    <td style="width: 477px;">
+With Linux, the in-mass conversion is obtained by:</td>
+  </tr>
+  <tr>
+    <td style="width: 477px;"><font color="#0088cc"><tt>find . -name '*.*' -exec bifsconv "{}" = \;</tt></font>
+      <br />
+ou / or
+      <br />
+      <font color="#0088cc"><tt>for i in *.* ; do bifsconv "$i" = ; done</tt></font><tt /></td>
+    <td style="width: 477px;"><font color="#0088cc"><tt>find . -name '*.*' -exec bifsconv "{}" = \;</tt></font>
+      <br />
+ou / or
+      <br />
+      <font color="#0088cc"><tt>for i in *.* ; do bifsconv "$i" = ; done</tt></font><tt /></td>
+  </tr>
+  <tr>
+    <td style="width: 477px;"><b>Images en mode brut (RAW)</b>
+      <p><font color="#cc33cc">BifsConv</font> sait convertir la plupart des formats d'images en mode brut d'appareil de photo numériques.
+Pour les formats non-pris en charge, la solution est d'utiliser le fabuleux programme
+<a href="http://www.cybercom.net/%7Edcoffin/dcraw/" target="_"><font color="#cc33cc"><i>DCRaw</i></font></a> de Dave Coffin pour faire
+une traduction au format <font color="#cc0000">tiff</font>, et ensuite de faire la conversion finale en <font color="#cc0000">fit</font> à l'aide de
+<font color="#cc33cc">BifsConv</font>.
+Pour ce cas, un mode d'extraction des couleurs à partir de la matrice du capteur est disponible dans <font color="#cc33cc">BifsConv</font>:
+selon l'exemple ci-dessous, l'option <font color="#0088cc">mrvvb</font> signifie que la matrice de base comporte un photosite rouge,
+deux photosites verts sur le diagonale et le dernier photosite est bleu.
+A adapter pour certains appareils par essais avec une photo de paysage.
+On peut rajouter un <font color="#0088cc">=</font> à
+la suite de la liste des couleurs de sorte à demander de normaliser les intensités par le nombre de photosites de même couleur.
+Dans la plupart des cas, il suffit de ne mentionner que <font color="#0088cc">m=</font>, car les couleurs sont habituellement bien reconnues par la logique interne.
+Pour avoir une image brute de brute, utiliser l'option <font color="#0088cc">c1,1,1,1</font> ou lieu de <font color="#0088cc">m</font> ou de <font color="#0088cc">m=</font>.
+Dans les exemples, une mention du canal de couleur est rajoutée au nom de l'image.
+      </p>
+      <p>Exemple : Conversion des images au format <font color="#cc0000">fep</font> en <font color="#cc0000">tiff</font>, puis extraction des trois composantes de couleur.
+      </p>
+</td>
+    <td style="width: 477px;"><b>"RAW format" images</b>
+      <p><font color="#cc33cc">BifsConv</font> knows how to convert images most "raw formats". Nevertheless some formats, the way to do the conversion is to use
+the marvelous <a href="http://www.cybercom.net/%7Edcoffin/dcraw/" target="_"><font color="#cc33cc"><i>DCRaw</i></font></a> converter by Dave Coffin to obtain first an image
+in <font color="#cc0000">tiff</font> format, and than to do the final conversion to <font color="#cc0000">fit</font> format using <font color="#cc33cc">BifsConv</font>.
+For this particular case, one can select a color chanel from the color filter array as in the example below.
+The <font color="#0088cc">mrvvb</font> option means that the matrix has 
+one red-, two green- and one blue pixels. To be adapted for some 
+cameras, using trials on a landscape image.
+With a <font color="#0088cc">=</font> added, the intensities are normalized by the number of pixels of the same colour.
+For most cases, it is enough to use the option <font color="#0088cc">m=</font>, because the colour components are usualy well identified by the internal logic.
+To obtain a really raw image, use <font color="#0088cc">c1,1,1,1</font> in place of <font color="#0088cc">m</font> or <font color="#0088cc">m=</font>.
+In the following exemples, the name of the colour chanel is added at the end of the filename.
+      </p>
+      <p>Examples: Conversion of the <font color="#cc0000">pef</font> images to <font color="#cc0000">tiff</font>, and than the extraction of the three colours.</p>
+</td>
+  </tr>
+  <tr>
+    <td style="width: 477px;">
+fichier de commande sous Windows :<br />
+
+      <font color="#0088cc"><tt>for %%f in (*.pef) do dcraw -t 0 -j -T -4 -D -v %%f<br />
+for %%f in (*.tiff) do bifsconv %%f =+_r m= "y:filter='r'" r<br />
+for %%f in (*.tiff) do bifsconv %%f =+_v m= "y:filter='v'" v<br />
+for %%f in (*.tiff) do bifsconv %%f =+_b m= "y:filter='b'" b</tt></font><tt /></td>
+    <td style="width: 477px;">
+Windows command file:<br />
+
+      <font color="#0088cc"><tt>for %%f in (*.pef) do dcraw -t 0 -j -T -4 -D -v %%f<br />
+for %%f in (*.tiff) do bifsconv %%f =+_r m= "y:filter='r'" r<br />
+for %%f in (*.tiff) do bifsconv %%f =+_v m= "y:filter='v'" v<br />
+for %%f in (*.tiff) do bifsconv %%f =+_b m= "y:filter='b'" b</tt></font><tt /></td>
+  </tr>
+  <tr>
+    <td style="width: 477px;">
+Linux :<br />
+
+      <font color="#0088cc"><tt>find . -maxdepth 1 -name \*.pef -exec dcraw -j -t 0 -T -4 -D -v "{}" \;<br />
+find . -maxdepth 1 -name \*.tiff -exec bifsconv "{}" =+_r m= "y:filter='r'" r \;<br />
+find . -maxdepth 1 -name \*.tiff -exec bifsconv "{}" =+_v m= "y:filter='v'" v \;<br />
+find . -maxdepth 1 -name \*.tiff -exec bifsconv "{}" =+_b m= "y:filter='b'" b \;</tt></font><br />
+
+ou :<br />
+      <font color="#0088cc"><tt>for i in *.pef ; do dcraw -j -t 0 -T -4 -D -v "$i" ; done<br />
+for i in *.tiff ; do bifsconv "$i" =+_r m= "y:filter='r'" r ; done<br />
+for i in *.tiff ; do bifsconv "$i" =+_v m= "y:filter='v'" v ; done<br />
+for i in *.tiff ; do bifsconv "$i" =+_b m= "y:filter='b'" b ; done</tt></font><tt /></td>
+    <td style="width: 477px;">
+Linux:<br />
+
+      <font color="#0088cc"><tt>find . -maxdepth 1 -name \*.pef -exec dcraw -j -t 0 -T -4 -D -v "{}" \;<br />
+find . -maxdepth 1 -name \*.tiff -exec bifsconv "{}" =+_r m= "y:filter='r'" r \;<br />
+find . -maxdepth 1 -name \*.tiff -exec bifsconv "{}" =+_v m= "y:filter='v'" v \;<br />
+find . -maxdepth 1 -name \*.tiff -exec bifsconv "{}" =+_b m= "y:filter='b'" b \;</tt></font><br />
+
+or:<br />
+      <font color="#0088cc"><tt>for i in *.pef ; do dcraw -j -t 0 -T -4 -D -v "$i" ; done<br />
+for i in *.tiff ; do bifsconv "$i" =+_r m= "y:filter='r'" r ; done<br />
+for i in *.tiff ; do bifsconv "$i" =+_v m= "y:filter='v'" v ; done<br />
+for i in *.tiff ; do bifsconv "$i" =+_b m= "y:filter='b'" b ; done</tt></font><tt /></td>
+  </tr>
+  <tr>
+    <td style="width: 477px;">
+Remarque : Pour les applications photométriques et astrométriques, une manière de faire légèrement meilleure
+est disponible dans le programme de prétraitement <font color="#cc33cc">Apla</font>.</td>
+    <td style="width: 477px;">
+Note: For photometric et astrometric applications, a slightly better way to extract colours exists:
+it is implemented in the <font color="#cc33cc">Apla</font> preprocessing software.</td>
+  </tr>
+  <tr>
+    <td style="width: 477px;"><b>Autres formats d'image</b>
+      <p>Il existe des centaines de formats d'images différents et de variantes... et je n'ai pas une envie folle de tous les programmer.
+Fort heureusement, plusieurs convertisseurs acceptent de nombreux formats en entrée
+(dont le <font color="#cc0000">jpeg</font> et le <font color="#cc0000">png</font>) et permettent
+une sortie en <font color="#cc0000">tiff</font> ou un des autres formats compris par <font color="#cc33cc">BifsConv</font>;
+il suffit alors de faire la conversion en deux temps,
+en utilisant par exemple le graticiel <a href="http://perso.wanadoo.fr/pierre.g/" target="_"><i>XnView</i></a> ou
+le partagiciel <a href="http://www.logipole.com/download_konv_fr.htm" target="_"><i>Konvertor</i></a> pour le premier pas.</p></td>
+    <td style="width: 477px;"><b>Other image formats</b>
+      <p>There are hundreds of different image formats and flavour... and I don't want to code all of them.
+Some converters can input many formats (including <font color="#cc0000">jpeg</font> and <font color="#cc0000">png</font>) and output them in <font color="#cc0000">tiff</font> or in an other format understand by
+      <font color="#cc33cc">BifsConv</font>; the translation can thus be done in two steps, using for example the freeware
+      <a href="http://perso.wanadoo.fr/pierre.g/" target="_"><i>XnView</i></a> or
+the shareware <a href="http://www.logipole.com/download_konv_us.htm" target="_"><i>Konvertor</i></a> for the first step.</p>
+  </td>
+  </tr>
+  <tr>
+    <td style="width: 477px;"><b>Mais encore...</b>
+      <p>Quatre versions de <font color="#cc33cc">BifsConv</font> sont disponibles et mises à jour
+fréquemment :
+      </p>
+      <table border="0" cellspacing="20" cols="2" width="100%">
+<tbody><tr><td valign="top"><li><a href="http://obswww.unige.ch/%7Ebehrend/bifsconv" rel="nofollow"><i>bifsconv</i></a>
+(386+; linux);</li>
+<li><a href="http://obswww.unige.ch/%7Ebehrend/bifsconv.exe" rel="nofollow"><i>bifsconv.exe</i></a>
+(486+; windows);</li>
+<li><a href="http://obswww.unige.ch/%7Ebehrend/bifsconl.exe" rel="nofollow"><i>bifsconl.exe</i></a>
+(386+; dos et windows);</li>
+<li><a href="http://obswww.unige.ch/%7Ebehrend/bifscond.exe" rel="nofollow"><i>bifscond.exe</i></a>
+(286+; dos; noms de fichiers à la "8.3" - plus maintenu à 100%).</li>
+<br />Note: le vieux <font color="#cc33cc">BifsConw.exe</font> est entièrement remplacé par l'actuel <font color="#cc33cc">BifsConv.exe</font>.</td></tr></tbody>
+      </table>
+</td>
+    <td style="width: 477px;"><b>Some more...</b>
+      <p>Four versions of <font color="#cc33cc">BifsConv</font> are available and frequently updated:
+      </p>
+      <table border="0" cellspacing="20" cols="2" width="100%">
+<tbody><tr><td valign="top"><li><a href="http://obswww.unige.ch/%7Ebehrend/bifsconv" rel="nofollow"><i>bifsconv</i></a>
+(386+; linux);</li>
+<li><a href="http://obswww.unige.ch/%7Ebehrend/bifsconv.exe" rel="nofollow"><i>bifsconv.exe</i></a>
+(486+; windows);</li>
+<li><a href="http://obswww.unige.ch/%7Ebehrend/bifsconl.exe" rel="nofollow"><i>bifsconl.exe</i></a>
+(386+; dos and windows);</li>
+<li><a href="http://obswww.unige.ch/%7Ebehrend/bifscond.exe" rel="nofollow"><i>bifscond.exe</i></a>
+(286+; dos; filenames à la "8.3" - no more maintained at 100%).</li>
+<br />Note: The old <font color="#cc33cc">BifsConw.exe</font> is now supersed by the actual <font color="#cc33cc">BifsConv.exe</font>.</td></tr></tbody>
+      </table>
+</td>
+  </tr>
+  <tr>
+    <td style="width: 477px;"><font color="#cc33cc">BifsConv</font> est développé en Pascal; les diverses versions sont compilées avec
+      <a href="http://www.freepascal.org/"><i>Free Pascal</i></a>, Delphi et Borland Pascal. Commentaires bienvenus.</td>
+    <td style="width: 477px;"><font color="#cc33cc">BifsConv</font> is developped in Pascal; the various versions are compiled using
+      <a href="http://www.freepascal.org/"><i>Free Pascal</i></a>, Delphi and Borland Pascal. Comments are welcome.</td>
+  </tr>
+  <tr>
+    <td style="width: 477px;"><b>Légalement</b>
+      <table border="0" cellspacing="20" cols="2" width="100%">
+<tbody><tr><td valign="top"><li><font color="#cc33cc">BifsConv</font> est une &#339;uvre d'art sans garantie aucune;
+son auteur ne peut être tenu responsable de quoi que ce soit.
+</li><li>Bien que <font color="#cc33cc">BifsConv</font> sache décoder certaines images en format Dicom,
+l'usage médical de ce logiciel n'est pas recommandé.
+</li><li>Tous usages militaires strictement interdits; itou pour la redistribution massive sans mon accord explicite.
+</li><li><font color="#cc33cc">BifsConv</font> est un "timbriciel": il est gratuit et ne peut pas être vendu.
+Il faut s'enregistrer en envoyant simplement une carte postale avec un magnifique timbre&nbsp;!
+Un lien vers la présente page est aussi le bienvenu...
+</li></td></tr></tbody>
+      </table>
+</td>
+    <td style="width: 477px;"><b>Legal statement</b>
+      <table border="0" cellspacing="20" cols="2" width="100%">
+<tbody><tr><td valign="top"><li><font color="#cc33cc">BifsConv</font> is an artwork without any waranty;
+its author can not be charged for any responsability of any kind.
+</li><li><font color="#cc33cc">BifsConv</font> is able to read some images in Dicom format;
+nevertheless its use for medical puposes is not recommended.
+</li><li>All military uses strictly prohibited; idem for the in-mass redistribution without my explicit permission.
+</li><li><font color="#cc33cc">BifsConv</font> is a "stampware": it's free and can not be sold.
+Registration is required by just sending a postcard with a wonderful stamp&nbsp;!
+A link to the present page is also appreciated...
+</li></td></tr></tbody>
+      </table>
+</td>
+  </tr><tr>
+      <td style="vertical-align: top; width: 477px;"><font color="#cc33cc">BifsConv</font> ne marche pas/pas bien/plus/pas encore avec une image&nbsp;? <a href="mailto:raoul.behrend@unige.ch?subject=Image%20pour%20bifsconv">Envoyez-la moi</a>&nbsp;!</td>
+      <td style="vertical-align: top; width: 477px;"><font color="#cc33cc">BifsConv</font> does not/not well/no more work/not work yet correctly with an image&nbsp;? <a href="mailto:raoul.behrend@unige.ch?subject=Image%20pour%20bifsconv">Send it to me</a>&nbsp;!
+      </td>
+    </tr>
+
+</tbody></table><b><br />
+</b>
+<p><b>Quelques liens/some links</b>:
+</p>
+<li><a href="http://obswww.unige.ch/%7Ebehrend/plansite.html"><i>Plan du site</i></a></li>
+<li><a href="http://obswww.unige.ch/%7Ebehrend/welcome.html"><i>Page personnelle</i></a></li>
+<li><a href="http://obswww.unige.ch/%7Ebehrend/page_omg.html"><i>Traitement numérique des images</i></a></li>
+<li><a href="http://obswww.unige.ch/%7Ebehrend/page_mgo.html"><i>Digital image processing</i></a></li>
+<li><a href="http://www.unige.ch/sciences/astro"><i>Page d'accueil de l'Observatoire</i></a></li>
+<li><a href="http://www-pdsimage.jpl.nasa.gov/PDS/public/jukebox.html"><i>PDS imaging-node - Online CD-roms</i></a></li></body></html>

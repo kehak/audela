@@ -1,0 +1,194 @@
+#
+# Fichier : csi.cap
+# Mise a jour $Id: csi.cap 9940 2013-08-10 07:56:40Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(csi,monture)                    "CSI"
+set caption(csi,mode)                       "Mode"
+set caption(csi,host)                       "Host"
+set caption(csi,port)                       "Port"
+set caption(csi,raquette_tel)               "Hand controller on screen"
+
+set caption(csi,install_1)                  "End of Clear Sky Institute plugin installation"
+set caption(csi,install_2)                  "libcsi.dll library updated."
+
+set caption(csi,port_csi)              "CSI Port"
+set caption(csi,2points)                    ":"
+
+set caption(csi,moteur_on)                 "Motor On"
+
+set caption(csi,titre_site_web)             "Reference Web Site:"
+set caption(csi,site_csi)              "http://www.clearskyinstitute.com/"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(csi,monture)                 "CSI"
+   set caption(csi,mode)                    "Mode"
+   set caption(csi,host)                    "Host"
+   set caption(csi,port)                    "Port"
+   set caption(csi,raquette_tel)            "Raquette à l'écran"
+
+   set caption(csi,install_1)               "Fin de l'installation du plugin Clear Sky Institute"
+   set caption(csi,install_2)               "La librairie libcsi.dll a été mise à jour."
+
+   set caption(csi,port_csi)           "Port CSI"
+   set caption(csi,2points)                 ":"
+
+   set caption(csi,moteur_on)              "Moteur On"
+
+   set caption(csi,titre_site_web)          "Site Web de référence :"
+   set caption(csi,site_csi)           "http://www.clearskyinstitute.com/"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(csi,monture)                 "CSI"
+   set caption(csi,mode)                    "Modalita`"
+   set caption(csi,host)                    "Host"
+   set caption(csi,port)                    "Porta"
+   set caption(csi,raquette_tel)            "Pulsantiera a schermo"
+
+   set caption(csi,install_1)               "Fine installazione del plugin CSI"
+   set caption(csi,install_2)               "La libreria libcsi.dll è stata aggiornata."
+
+   set caption(csi,port_csi)           "Porta CSI"
+   set caption(csi,2points)                 ":"
+
+   set caption(csi,moteur_on)              "Motore On"
+
+   set caption(csi,titre_site_web)          "Sito Web di riferimento:"
+   set caption(csi,site_csi)           "http://www.clearskyinstitute.com/"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(csi,monture)                 "CSI"
+   set caption(csi,mode)                    "Modo"
+   set caption(csi,host)                    "Host"
+   set caption(csi,port)                    "Puerto"
+   set caption(csi,raquette_tel)            "Controlador virtual"
+
+   set caption(csi,install_1)               "Fin de la instalación del plugin CSI"
+   set caption(csi,install_2)               "Libreria libcsi.dll actualizada."
+
+   set caption(csi,port_csi)           "Puerto CSI"
+   set caption(csi,2points)                 ":"
+
+   set caption(csi,titre_site_web)          "Sitio Web de referencia:"
+   set caption(csi,site_csi)           "http://www.clearskyinstitute.com/"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(csi,monture)                 "CSI"
+   set caption(csi,mode)                    "Modus"
+   set caption(csi,host)                    "Host"
+   set caption(csi,port)                    "Port"
+   set caption(csi,raquette_tel)            "Hand Kontroller am Bildschirm"
+
+   set caption(csi,install_1)               "Ende der CSI-Plugin-Installation"
+   set caption(csi,install_2)               "Die libcsi.dll Bibliothek ist aktualisiert."
+
+   set caption(csi,port_csi)           "CSI Port"
+   set caption(csi,2points)                 ":"
+
+   set caption(csi,moteur_on)              "Motor On"
+   
+   set caption(csi,titre_site_web)          "Referenz Webseite:"
+   set caption(csi,site_csi)           "http://www.clearskyinstitute.com/"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(csi,monture)                 "CSI"
+   set caption(csi,mode)                    "Modo"
+   set caption(csi,host)                    "Host"
+   set caption(csi,port)                    "Porta"
+   set caption(csi,raquette_tel)            "Controlador de mão no ecrã"
+
+   set caption(csi,install_1)               "Fin da instalação do plugin CSI"
+   set caption(csi,install_2)               "A livraria libcsi.dll foi actualizada."
+
+   set caption(csi,port_csi)           "Porta CSI"
+   set caption(csi,2points)                 ":"
+
+   set caption(csi,moteur_on)              "Motor On"
+   
+   set caption(csi,titre_site_web)          "Site Web de referência:"
+   set caption(csi,site_csi)           "http://www.clearskyinstitute.com/"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(csi,monture)                 "CSI"
+   set caption(csi,mode)                    "Mode"
+   set caption(csi,host)                    "Host"
+   set caption(csi,port)                    "Port"
+   set caption(csi,raquette_tel)            "Hand controller on screen"
+
+   set caption(csi,install_1)               "End of CSI plugin installation"
+   set caption(csi,install_2)               "libcsi.dll library updated."
+
+   set caption(csi,port_csi)           "CSI Port"
+   set caption(csi,2points)                 ":"
+
+   set caption(csi,moteur_on)              "Motor On"
+   
+   set caption(csi,titre_site_web)          "Reference Web Site:"
+   set caption(csi,site_csi)           "http://www.clearskyinstitute.com/"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(csi,monture)                 "CSI"
+   set caption(csi,mode)                    "Mode"
+   set caption(csi,host)                    "Host"
+   set caption(csi,port)                    "Port"
+   set caption(csi,raquette_tel)            "Hand controller on screen"
+
+   set caption(csi,install_1)               "End of CSI plugin installation"
+   set caption(csi,install_2)               "libcsi.dll library updated."
+
+   set caption(csi,port_csi)           "CSI Port"
+   set caption(csi,2points)                 ":"
+
+   set caption(csi,moteur_on)              "Motor On"
+   
+   set caption(csi,titre_site_web)          "Reference Web Site:"
+   set caption(csi,site_csi)           "http://www.clearskyinstitute.com/"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(csi,monture)                 "CSI"
+   set caption(csi,mode)                    "Mode"
+   set caption(csi,host)                    "Host"
+   set caption(csi,port)                    "Port"
+   set caption(csi,raquette_tel)            "Hand controller on screen"
+
+   set caption(csi,install_1)               "End of CSI plugin installation"
+   set caption(csi,install_2)               "libcsi.dll library updated."
+
+   set caption(csi,port_csi)           "CSI Port"
+   set caption(csi,2points)                 ":"
+
+   set caption(csi,moteur_on)              "Motor On"
+   
+   set caption(csi,titre_site_web)          "Reference Web Site:"
+   set caption(csi,site_csi)           "http://www.clearskyinstitute.com/"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

@@ -1,0 +1,67 @@
+#------------------------------------------------------------------
+# source [ file join $audace(rep_plugin) tool atos atos_verif.cap
+#------------------------------------------------------------------
+#
+# Fichier        : atos_verif.cap
+# Description    : Caption pour la verification de la video
+# Auteur         : Frederic Vachier
+# Mise à jour $Id: atos_verif.cap 8717 2012-10-13 18:31:11Z fredvachier $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(atos_verif,main_title)          "atos - Verification"
+set caption(atos_verif,titre)               "Extraction Video AVI"
+set caption(atos_verif,verif)               "Vérification"
+set caption(atos_verif,aide)                "Aide"
+set caption(atos_verif,fermer)              "Fermer"
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(atos_verif,main_title)       "atos - Verification"
+   set caption(atos_verif,titre)            "Verification Video AVI"
+   set caption(atos_verif,verif)               "Vérification"
+   set caption(atos_verif,aide)                "Aide"
+   set caption(atos_verif,fermer)              "Fermer"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

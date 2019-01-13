@@ -1,0 +1,19 @@
+LIBRARY libltdl
+EXPORTS 
+
+lt_dlinit
+lt_dlexit
+lt_dlinsertsearchdir
+lt_dladdsearchdir
+lt_dlsetsearchpath
+lt_dlforeachfile
+
+lt_dlopen
+lt_dlopenext
+lt_dlsym
+lt_dlerror
+lt_dlclose
+lt_dlmakeresident
+lt_dlisresident
+
+

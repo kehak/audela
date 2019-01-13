@@ -1,0 +1,70 @@
+#
+# Fichier : logmonito.cap
+# Mise a jour $Id: logmonitor.cap 12422 2015-12-23 22:14:23Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(logmonitor,title)              "Log Monitor"
+set caption(logmonitor,resetFile)          "Clear File"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(logmonitor,title)           "Visu des traces"
+   set caption(logmonitor,resetFile)       "Vider le fichier"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(logmonitor,title)           "# Visu des traces"
+   set caption(logmonitor,resetFile)       "# Vider le fichier"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(logmonitor,title)           "# Visu des traces"
+   set caption(logmonitor,resetFile)       "# Vider le fichier"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(logmonitor,title)           "# Visu des traces"
+   set caption(logmonitor,resetFile)       "# Vider le fichier"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(logmonitor,title)           "# Visu des traces"
+   set caption(logmonitor,resetFile)       "# Vider le fichier"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(logmonitor,title)           "Log Monitor"
+   set caption(logmonitor,resetFile)       "Clear File"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(logmonitor,title)           "Log Monitor"
+   set caption(logmonitor,resetFile)       "Clear File"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(logmonitor,title)           "Log Monitor"
+   set caption(logmonitor,resetFile)       "Clear File"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

@@ -1,0 +1,2 @@
+LIBRARY libtt
+EXPORTS _libtt_main @1

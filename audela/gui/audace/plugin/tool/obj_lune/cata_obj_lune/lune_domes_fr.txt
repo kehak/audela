@@ -1,0 +1,23 @@
+Furnerius                 36.0S   60.6E           69                                              Furner, Georges : Mathématicien français (n.c.-1643)
+Chaucy                    9.6N    38.6E                                                           
+Arago                     6.2N    21.4E           35                                              Dominique François Jean : Astronome français (1786-1853)
+Valentine                 10.0N   30.2W                                                           
+Vallis Alpes              48.5N   3.2E            4   12                                          Vallée Alpine
+Près d'Hyginus            7.8N    6.3E            34                                              Caius Julius : Astronome espagnol (n.c. 1er siècle)
+Interne à Flammarion      3.4S    3.7W            44                                              Camille : Astronome français (1842-1925)
+Beer                      27.1N   9.1W            21                                              Wilhelm Astronome allemand (1797-1850)
+Birt                      22.4S   8.5W            57                                              William R. : Sélénographe britannique (1804-1881)
+Wallace D                 20.3N   8.7W            21                                              Alfred Russel : Historien britannique (1823-1913)
+Au sud de Gambart C       1.0N    15.2W           32                                              Jean Félix : Astronome français (1800-1836)
+A l'est de Kies           26.3S   22.5W           53                                              Johann : Mathématicien, astronome allemand (1713-1781)
+Près de Hortensius        6.5N    28.0W           30                                              Hove, Martin van den : Astronome hollandais (1605-1639)
+Capuanus                  34.1S   26.7W           63                                              Francesco Capuano Di Manfredonia : Astronome italien (n.c.1400-n.c.)
+Près de Milichius         10.0N   30.2W           30                                              Milich, Jacob : Médecin, mathématicien, astronome allemand (1501-1559)
+Lansberg D                0.3S    26.6W           42                                              Philippe van : Astronome belge (1561-1632)
+Herigonius                13.3S   33.9W           41                                              Hérigone, Pierre : Mathématicien, astronome français (n.c.-1644)
+Gruithuisen               32.9N   39.7W           9                                               Franz von : Astronome allemand (1774-1852)
+Prinz                     25.5N   44.1W           19                                              Wilhelm : Astronome germano-belge (1857-1910)
+Krieger                   29.0N   45.6W           19                                              Johann Nepomuk : Sélénographe allemand (1865-1902)
+Marius                    11.9N   50.8W           29                                              Mayer, Simon : Astronome allemand (1570-1624)
+Rumker                    40.8N   58.1W                                                           
+Darwin                    20.2S   69.5W           50                                              Charles : Naturaliste britannique (1809-1882)

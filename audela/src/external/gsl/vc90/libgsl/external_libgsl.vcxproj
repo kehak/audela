@@ -1,0 +1,773 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{91EC13AF-6E6D-4138-9545-86E10A740CD5}</ProjectGuid>
+    <RootNamespace>libgsl</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.24730.2</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <GenerateManifest>true</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEvent>
+      <Command />
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.\..\gsl-1.8;.\..\..\gsl-1.8;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;GSL_DLL;DLL_EXPORT;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <ExceptionHandling />
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CompileAs>CompileAsC</CompileAs>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libgslcblas.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>..\..\..\..\..\bin\libgsl.dll</OutputFile>
+      <AdditionalLibraryDirectories>..\..\..\..\external\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>..\..\..\lib\libgsl.lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>install.bat Debug</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+      <Command />
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\..\gsl-1.8;.\..\..\gsl-1.8;.\..\..\gsl-1.8\gsl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;GSL_DLL;DLL_EXPORT;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling />
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>CompileAsC</CompileAs>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libgslcblas.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>..\..\..\..\..\bin\libgsl.dll</OutputFile>
+      <AdditionalLibraryDirectories>..\..\..\..\external\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>..\..\..\lib\libgsl.lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>install.bat Release</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\gsl-1.8\blas\blas.c" />
+    <ClCompile Include="..\..\gsl-1.8\block\block.c" />
+    <ClCompile Include="..\..\gsl-1.8\block\file.c" />
+    <ClCompile Include="..\..\gsl-1.8\block\init.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\beta.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\betainv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\binomial.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\cauchy.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\cauchyinv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\chisq.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\chisqinv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\exponential.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\exponentialinv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\exppow.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\fdist.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\fdistinv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\flat.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\flatinv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\gamma.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\gammainv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\gauss.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\gaussinv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\geometric.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\gumbel1.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\gumbel1inv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\gumbel2.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\gumbel2inv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\hypergeometric.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\laplace.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\laplaceinv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\logistic.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\logisticinv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\lognormal.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\lognormalinv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\nbinomial.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\pareto.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\paretoinv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\pascal.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\poisson.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\rayleigh.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\rayleighinv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\tdist.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\tdistinv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\weibull.c" />
+    <ClCompile Include="..\..\gsl-1.8\cdf\weibullinv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cheb\deriv.c" />
+    <ClCompile Include="..\..\gsl-1.8\cheb\eval.c" />
+    <ClCompile Include="..\..\gsl-1.8\cheb\init.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cheb\integ.c" />
+    <ClCompile Include="..\..\gsl-1.8\combination\combination.c" />
+    <ClCompile Include="..\..\gsl-1.8\combination\file.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\combination\init.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\complex\math.c" />
+    <ClCompile Include="..\..\gsl-1.8\deriv\deriv.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\dht\dht.c" />
+    <ClCompile Include="..\..\gsl-1.8\diff\diff.c" />
+    <ClCompile Include="..\..\gsl-1.8\eigen\herm.c" />
+    <ClCompile Include="..\..\gsl-1.8\eigen\hermv.c" />
+    <ClCompile Include="..\..\gsl-1.8\eigen\jacobi.c" />
+    <ClCompile Include="..\..\gsl-1.8\eigen\sort.c" />
+    <ClCompile Include="..\..\gsl-1.8\eigen\symm.c" />
+    <ClCompile Include="..\..\gsl-1.8\eigen\symmv.c" />
+    <ClCompile Include="..\..\gsl-1.8\err\error.c" />
+    <ClCompile Include="..\..\gsl-1.8\err\message.c" />
+    <ClCompile Include="..\..\gsl-1.8\err\stream.c" />
+    <ClCompile Include="..\..\gsl-1.8\err\strerror.c" />
+    <ClCompile Include="..\..\gsl-1.8\fft\dft.c" />
+    <ClCompile Include="..\..\gsl-1.8\fft\fft.c" />
+    <ClCompile Include="..\..\gsl-1.8\fit\linear.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\add.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\add2d.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\calloc_range.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\calloc_range2d.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\copy.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\copy2d.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\file.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\file2d.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\get.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\get2d.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\init.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)3.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\init2d.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\maxval.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\maxval2d.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\oper.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\oper2d.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\params.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\params2d.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\pdf.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\pdf2d.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\reset.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\reset2d.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\stat.c" />
+    <ClCompile Include="..\..\gsl-1.8\histogram\stat2d.c" />
+    <ClCompile Include="..\..\gsl-1.8\ieee-utils\env.c" />
+    <ClCompile Include="..\..\gsl-1.8\ieee-utils\fp.c" />
+    <ClCompile Include="..\..\gsl-1.8\ieee-utils\make_rep.c" />
+    <ClCompile Include="..\..\gsl-1.8\ieee-utils\print.c" />
+    <ClCompile Include="..\..\gsl-1.8\ieee-utils\read.c" />
+    <ClCompile Include="..\..\gsl-1.8\integration\qag.c" />
+    <ClCompile Include="..\..\gsl-1.8\integration\qagp.c" />
+    <ClCompile Include="..\..\gsl-1.8\integration\qags.c" />
+    <ClCompile Include="..\..\gsl-1.8\integration\qawc.c" />
+    <ClCompile Include="..\..\gsl-1.8\integration\qawf.c" />
+    <ClCompile Include="..\..\gsl-1.8\integration\qawo.c" />
+    <ClCompile Include="..\..\gsl-1.8\integration\qaws.c" />
+    <ClCompile Include="..\..\gsl-1.8\integration\qcheb.c" />
+    <ClCompile Include="..\..\gsl-1.8\integration\qk.c" />
+    <ClCompile Include="..\..\gsl-1.8\integration\qk15.c" />
+    <ClCompile Include="..\..\gsl-1.8\integration\qk21.c" />
+    <ClCompile Include="..\..\gsl-1.8\integration\qk31.c" />
+    <ClCompile Include="..\..\gsl-1.8\integration\qk41.c" />
+    <ClCompile Include="..\..\gsl-1.8\integration\qk51.c" />
+    <ClCompile Include="..\..\gsl-1.8\integration\qk61.c" />
+    <ClCompile Include="..\..\gsl-1.8\integration\qmomo.c" />
+    <ClCompile Include="..\..\gsl-1.8\integration\qmomof.c" />
+    <ClCompile Include="..\..\gsl-1.8\integration\qng.c" />
+    <ClCompile Include="..\..\gsl-1.8\integration\workspace.c" />
+    <ClCompile Include="..\..\gsl-1.8\interpolation\accel.c" />
+    <ClCompile Include="..\..\gsl-1.8\interpolation\akima.c" />
+    <ClCompile Include="..\..\gsl-1.8\interpolation\bsearch.c" />
+    <ClCompile Include="..\..\gsl-1.8\interpolation\cspline.c" />
+    <ClCompile Include="..\..\gsl-1.8\interpolation\interp.c" />
+    <ClCompile Include="..\..\gsl-1.8\interpolation\linear.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\interpolation\poly.c" />
+    <ClCompile Include="..\..\gsl-1.8\interpolation\spline.c" />
+    <ClCompile Include="..\..\gsl-1.8\linalg\balance.c" />
+    <ClCompile Include="..\..\gsl-1.8\linalg\bidiag.c" />
+    <ClCompile Include="..\..\gsl-1.8\linalg\cholesky.c" />
+    <ClCompile Include="..\..\gsl-1.8\linalg\exponential.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\linalg\hermtd.c" />
+    <ClCompile Include="..\..\gsl-1.8\linalg\hh.c" />
+    <ClCompile Include="..\..\gsl-1.8\linalg\householder.c" />
+    <ClCompile Include="..\..\gsl-1.8\linalg\householdercomplex.c" />
+    <ClCompile Include="..\..\gsl-1.8\linalg\lq.c" />
+    <ClCompile Include="..\..\gsl-1.8\linalg\lu.c" />
+    <ClCompile Include="..\..\gsl-1.8\linalg\luc.c" />
+    <ClCompile Include="..\..\gsl-1.8\linalg\multiply.c" />
+    <ClCompile Include="..\..\gsl-1.8\linalg\ptlq.c" />
+    <ClCompile Include="..\..\gsl-1.8\linalg\qr.c" />
+    <ClCompile Include="..\..\gsl-1.8\linalg\qrpt.c" />
+    <ClCompile Include="..\..\gsl-1.8\linalg\svd.c" />
+    <ClCompile Include="..\..\gsl-1.8\linalg\symmtd.c" />
+    <ClCompile Include="..\..\gsl-1.8\linalg\tridiag.c" />
+    <ClCompile Include="..\..\gsl-1.8\matrix\copy.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\matrix\file.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)3.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\matrix\getset.c" />
+    <ClCompile Include="..\..\gsl-1.8\matrix\init.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)4.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\matrix\matrix.c" />
+    <ClCompile Include="..\..\gsl-1.8\matrix\minmax.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\matrix\oper.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\matrix\prop.c" />
+    <ClCompile Include="..\..\gsl-1.8\matrix\rowcol.c">
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
+      <PreprocessSuppressLineNumbers Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessSuppressLineNumbers>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\matrix\submatrix.c">
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
+      <PreprocessSuppressLineNumbers Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessSuppressLineNumbers>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\matrix\swap.c" />
+    <ClCompile Include="..\..\gsl-1.8\matrix\view.c" />
+    <ClCompile Include="..\..\gsl-1.8\min\bracketing.c" />
+    <ClCompile Include="..\..\gsl-1.8\min\brent.c" />
+    <ClCompile Include="..\..\gsl-1.8\min\convergence.c" />
+    <ClCompile Include="..\..\gsl-1.8\min\fsolver.c" />
+    <ClCompile Include="..\..\gsl-1.8\min\golden.c" />
+    <ClCompile Include="..\..\gsl-1.8\monte\miser.c" />
+    <ClCompile Include="..\..\gsl-1.8\monte\plain.c" />
+    <ClCompile Include="..\..\gsl-1.8\monte\vegas.c" />
+    <ClCompile Include="..\..\gsl-1.8\multifit\convergence.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multifit\covar.c" />
+    <ClCompile Include="..\..\gsl-1.8\multifit\fdfsolver.c" />
+    <ClCompile Include="..\..\gsl-1.8\multifit\fsolver.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multifit\gradient.c" />
+    <ClCompile Include="..\..\gsl-1.8\multifit\lmder.c" />
+    <ClCompile Include="..\..\gsl-1.8\multifit\multilinear.c" />
+    <ClCompile Include="..\..\gsl-1.8\multifit\work.c" />
+    <ClCompile Include="..\..\gsl-1.8\multimin\conjugate_fr.c" />
+    <ClCompile Include="..\..\gsl-1.8\multimin\conjugate_pr.c" />
+    <ClCompile Include="..\..\gsl-1.8\multimin\convergence.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multimin\diff.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multimin\fdfminimizer.c" />
+    <ClCompile Include="..\..\gsl-1.8\multimin\fminimizer.c" />
+    <ClCompile Include="..\..\gsl-1.8\multimin\simplex.c" />
+    <ClCompile Include="..\..\gsl-1.8\multimin\steepest_descent.c" />
+    <ClCompile Include="..\..\gsl-1.8\multimin\vector_bfgs.c" />
+    <ClCompile Include="..\..\gsl-1.8\multiroots\broyden.c" />
+    <ClCompile Include="..\..\gsl-1.8\multiroots\convergence.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)3.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multiroots\dnewton.c" />
+    <ClCompile Include="..\..\gsl-1.8\multiroots\fdfsolver.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multiroots\fdjac.c" />
+    <ClCompile Include="..\..\gsl-1.8\multiroots\fsolver.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multiroots\gnewton.c" />
+    <ClCompile Include="..\..\gsl-1.8\multiroots\hybrid.c" />
+    <ClCompile Include="..\..\gsl-1.8\multiroots\hybridj.c" />
+    <ClCompile Include="..\..\gsl-1.8\multiroots\newton.c" />
+    <ClCompile Include="..\..\gsl-1.8\ntuple\ntuple.c" />
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\bsimp.c" />
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\control.c" />
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\cscal.c" />
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\cstd.c" />
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\evolve.c" />
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\gear1.c" />
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\gear2.c" />
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\rk2.c" />
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\rk2imp.c" />
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\rk2simp.c" />
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\rk4.c" />
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\rk4imp.c" />
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\rk8pd.c" />
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\rkck.c" />
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\rkf45.c" />
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\step.c" />
+    <ClCompile Include="..\..\gsl-1.8\permutation\canonical.c" />
+    <ClCompile Include="..\..\gsl-1.8\permutation\file.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)5.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)5.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\permutation\init.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)6.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)6.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\permutation\permutation.c" />
+    <ClCompile Include="..\..\gsl-1.8\permutation\permute.c" />
+    <ClCompile Include="..\..\gsl-1.8\poly\dd.c" />
+    <ClCompile Include="..\..\gsl-1.8\poly\eval.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\poly\solve_cubic.c" />
+    <ClCompile Include="..\..\gsl-1.8\poly\solve_quadratic.c" />
+    <ClCompile Include="..\..\gsl-1.8\poly\zsolve.c" />
+    <ClCompile Include="..\..\gsl-1.8\poly\zsolve_cubic.c" />
+    <ClCompile Include="..\..\gsl-1.8\poly\zsolve_init.c" />
+    <ClCompile Include="..\..\gsl-1.8\poly\zsolve_quadratic.c" />
+    <ClCompile Include="..\..\gsl-1.8\qrng\niederreiter-2.c" />
+    <ClCompile Include="..\..\gsl-1.8\qrng\qrng.c" />
+    <ClCompile Include="..\..\gsl-1.8\qrng\sobol.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\bernoulli.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\beta.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\bigauss.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\binomial.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\binomial_tpe.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\cauchy.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\chisq.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\dirichlet.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\discrete.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\erlang.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\exponential.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\exppow.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\fdist.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\flat.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\gamma.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\gauss.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\gausstail.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\gausszig.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\geometric.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\gumbel.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\hyperg.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\landau.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\laplace.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\levy.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\logarithmic.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\logistic.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\lognormal.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\multinomial.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\nbinomial.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\pareto.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\pascal.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\poisson.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\rayleigh.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\shuffle.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\sphere.c" />
+    <ClCompile Include="..\..\gsl-1.8\randist\tdist.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\weibull.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\borosh13.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\cmrg.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\coveyou.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\default.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\file.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)6.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)6.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\fishman18.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\fishman20.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\fishman2x.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\gfsr4.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\knuthran.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\knuthran2.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\lecuyer21.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\minstd.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\mrg.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\mt.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\r250.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\ran0.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\ran1.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\ran2.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\ran3.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\rand.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\rand48.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\random.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\randu.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\ranf.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\ranlux.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\ranlxd.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\ranlxs.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\ranmar.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\rng.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\slatec.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\taus.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\taus113.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\transputer.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\tt.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\types.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\uni.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\uni32.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\vax.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\waterman14.c" />
+    <ClCompile Include="..\..\gsl-1.8\rng\zuf.c" />
+    <ClCompile Include="..\..\gsl-1.8\roots\bisection.c" />
+    <ClCompile Include="..\..\gsl-1.8\roots\brent.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\roots\convergence.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)4.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\roots\falsepos.c" />
+    <ClCompile Include="..\..\gsl-1.8\roots\fdfsolver.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\roots\fsolver.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)3.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\roots\newton.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\roots\secant.c" />
+    <ClCompile Include="..\..\gsl-1.8\roots\steffenson.c" />
+    <ClCompile Include="..\..\gsl-1.8\siman\siman.c" />
+    <ClCompile Include="..\..\gsl-1.8\sort\sort.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sort\sortind.c" />
+    <ClCompile Include="..\..\gsl-1.8\sort\sortvec.c" />
+    <ClCompile Include="..\..\gsl-1.8\sort\sortvecind.c" />
+    <ClCompile Include="..\..\gsl-1.8\sort\subset.c" />
+    <ClCompile Include="..\..\gsl-1.8\sort\subsetind.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\airy.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\airy_der.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\airy_zero.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\atanint.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_amp_phase.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_i.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_I0.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_I1.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_In.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_Inu.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_j.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_J0.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_J1.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_Jn.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_Jnu.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_k.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_K0.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_K1.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_Kn.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_Knu.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_olver.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_sequence.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_temme.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_y.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_Y0.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_Y1.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_Yn.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_Ynu.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_zero.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\beta.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\beta_inc.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\clausen.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\coulomb.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\coulomb_bound.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\coupling.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\dawson.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\debye.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\dilog.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\elementary.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\ellint.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\elljac.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\erfc.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\exp.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\expint.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\expint3.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\fermi_dirac.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\gamma.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\gamma_inc.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\gegenbauer.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\hyperg.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\hyperg_0F1.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\hyperg_1F1.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\hyperg_2F0.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\hyperg_2F1.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\hyperg_U.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\laguerre.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\lambert.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\legendre_con.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\legendre_H3d.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\legendre_poly.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\legendre_Qn.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\log.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\poch.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\pow_int.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\psi.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\result.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\shint.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\sinint.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\synchrotron.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\transport.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\trig.c" />
+    <ClCompile Include="..\..\gsl-1.8\specfunc\zeta.c" />
+    <ClCompile Include="..\..\gsl-1.8\statistics\absdev.c" />
+    <ClCompile Include="..\..\gsl-1.8\statistics\covariance.c" />
+    <ClCompile Include="..\..\gsl-1.8\statistics\kurtosis.c" />
+    <ClCompile Include="..\..\gsl-1.8\statistics\lag1.c" />
+    <ClCompile Include="..\..\gsl-1.8\statistics\mean.c" />
+    <ClCompile Include="..\..\gsl-1.8\statistics\median.c" />
+    <ClCompile Include="..\..\gsl-1.8\statistics\minmax.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)3.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\statistics\p_variance.c" />
+    <ClCompile Include="..\..\gsl-1.8\statistics\quantiles.c" />
+    <ClCompile Include="..\..\gsl-1.8\statistics\skew.c" />
+    <ClCompile Include="..\..\gsl-1.8\statistics\ttest.c" />
+    <ClCompile Include="..\..\gsl-1.8\statistics\variance.c" />
+    <ClCompile Include="..\..\gsl-1.8\statistics\wabsdev.c" />
+    <ClCompile Include="..\..\gsl-1.8\statistics\wkurtosis.c" />
+    <ClCompile Include="..\..\gsl-1.8\statistics\wmean.c" />
+    <ClCompile Include="..\..\gsl-1.8\statistics\wskew.c" />
+    <ClCompile Include="..\..\gsl-1.8\statistics\wvariance.c" />
+    <ClCompile Include="..\..\gsl-1.8\sum\levin_u.c" />
+    <ClCompile Include="..\..\gsl-1.8\sum\levin_utrunc.c" />
+    <ClCompile Include="..\..\gsl-1.8\sum\work_u.c" />
+    <ClCompile Include="..\..\gsl-1.8\sum\work_utrunc.c" />
+    <ClCompile Include="..\..\gsl-1.8\sys\coerce.c" />
+    <ClCompile Include="..\..\gsl-1.8\sys\expm1.c" />
+    <ClCompile Include="..\..\gsl-1.8\sys\fcmp.c" />
+    <ClCompile Include="..\..\gsl-1.8\sys\fdiv.c" />
+    <ClCompile Include="..\..\gsl-1.8\sys\hypot.c" />
+    <ClCompile Include="..\..\gsl-1.8\sys\infnan.c" />
+    <ClCompile Include="..\..\gsl-1.8\sys\invhyp.c" />
+    <ClCompile Include="..\..\gsl-1.8\sys\ldfrexp.c" />
+    <ClCompile Include="..\..\gsl-1.8\sys\log1p.c" />
+    <ClCompile Include="..\..\gsl-1.8\sys\minmax.c">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GSL_BUILD_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">GSL_BUILD_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sys\pow_int.c" />
+    <ClCompile Include="..\..\gsl-1.8\sys\prec.c" />
+    <ClCompile Include="..\..\gsl-1.8\test\results.c" />
+    <ClCompile Include="..\..\gsl-1.8\utils\placeholder.c" />
+    <ClCompile Include="..\..\gsl-1.8\vector\copy.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\vector\file.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)4.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\vector\init.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)5.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)5.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\vector\minmax.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\vector\oper.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\vector\prop.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\vector\reim.c" />
+    <ClCompile Include="..\..\gsl-1.8\vector\subvector.c" />
+    <ClCompile Include="..\..\gsl-1.8\vector\swap.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\vector\vector.c" />
+    <ClCompile Include="..\..\gsl-1.8\vector\view.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\wavelet\bspline.c" />
+    <ClCompile Include="..\..\gsl-1.8\wavelet\daubechies.c" />
+    <ClCompile Include="..\..\gsl-1.8\wavelet\dwt.c" />
+    <ClCompile Include="..\..\gsl-1.8\wavelet\haar.c" />
+    <ClCompile Include="..\..\gsl-1.8\wavelet\wavelet.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\libgslcblas\external_libgslcblas.vcxproj">
+      <Project>{f12c72b9-a7c8-4fe1-8ca7-00b06819033a}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

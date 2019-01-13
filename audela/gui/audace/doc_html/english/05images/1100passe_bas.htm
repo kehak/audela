@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Low Pass Filter</title>
+</head>
+
+<body>
+<p class="date">Update: 08 January 2010</p>
+<h1>Low Pass Filter </h1>
+
+This low-pass filtering operation is a <b>linear</b> one. This operation ( named as <b>convolution</b>) sets every pixel of the final image a weighted sum of some pixels of its local neighborhood. The weights (or coefficients) are contained in a <b>kernel</b>, which size is the actual size of the neighborhood.<br>
+This filter aims in smoothing the image by <b>attenuating the higher spatial frequencies</b> of the image (finer details), and by keeping inchanged the lowest frequencies. The high frequencies attenuation increases with the kernel size.<br>
+
+The following kernel coefficients are valid when the efficiency coefficient is null (i.e. maximum efficiency).
+
+<h2>3x3 kernel coefficients </h2>
+<table border="1" cellspacing="3" cellpadding="2">
+    <tr><td>0.011</td><td>0.084</td><td>0.011</td></tr>
+    <tr><td>0.084</td><td>0.619</td><td>0.084</td></tr>
+    <tr><td>0.011</td><td>0.084</td><td>0.011</td></tr>
+</table>
+
+<h2>5x5 kernel coefficients </h2>
+<table border="1" cellspacing="3" cellpadding="2">
+    <tr><td>0.000</td><td>0.002</td><td>0.006</td><td>0.002</td><td>0.000</td></tr>
+    <tr><td>0.002</td><td>0.043</td><td>0.117</td><td>0.043</td><td>0.002</td></tr>
+    <tr><td>0.006</td><td>0.117</td><td>0.318</td><td>0.117</td><td>0.006</td></tr>
+    <tr><td>0.002</td><td>0.043</td><td>0.117</td><td>0.043</td><td>0.002</td></tr>
+    <tr><td>0.000</td><td>0.002</td><td>0.006</td><td>0.002</td><td>0.000</td></tr>
+</table>
+
+<h2>7x7 kernel coefficients </h2>
+<table border="1" cellspacing="3" cellpadding="2">
+    <tr><td>0.000</td><td>0.000</td><td>0.000</td><td>0.001</td><td>0.000</td><td>0.000</td><td>0.000</td></tr>
+    <tr><td>0.000</td><td>0.001</td><td>0.008</td><td>0.014</td><td>0.008</td><td>0.001</td><td>0.000</td></tr>
+    <tr><td>0.000</td><td>0.008</td><td>0.056</td><td>0.109</td><td>0.056</td><td>0.008</td><td>0.000</td></tr>
+    <tr><td>0.001</td><td>0.014</td><td>0.109</td><td>0.212</td><td>0.109</td><td>0.014</td><td>0.001</td></tr>
+    <tr><td>0.000</td><td>0.008</td><td>0.056</td><td>0.109</td><td>0.056</td><td>0.008</td><td>0.000</td></tr>
+    <tr><td>0.000</td><td>0.001</td><td>0.008</td><td>0.014</td><td>0.008</td><td>0.001</td><td>0.000</td></tr>
+    <tr><td>0.000</td><td>0.000</td><td>0.000</td><td>0.001</td><td>0.000</td><td>0.000</td><td>0.000</td></tr>
+</table>
+
+<h2>9x9 kernel coefficients </h2>
+<table border="1" cellspacing="3" cellpadding="2">
+    <tr><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td></tr>
+    <tr><td>0.000</td><td>0.000</td><td>0.000</td><td>0.001</td><td>0.002</td><td>0.001</td><td>0.000</td><td>0.000</td><td>0.000</td></tr>
+    <tr><td>0.000</td><td>0.000</td><td>0.003</td><td>0.013</td><td>0.022</td><td>0.013</td><td>0.003</td><td>0.000</td><td>0.000</td></tr>
+    <tr><td>0.000</td><td>0.001</td><td>0.013</td><td>0.059</td><td>0.097</td><td>0.059</td><td>0.013</td><td>0.001</td><td>0.000</td></tr>
+    <tr><td>0.000</td><td>0.002</td><td>0.022</td><td>0.097</td><td>0.159</td><td>0.097</td><td>0.022</td><td>0.002</td><td>0.000</td></tr>
+    <tr><td>0.000</td><td>0.001</td><td>0.013</td><td>0.059</td><td>0.097</td><td>0.059</td><td>0.013</td><td>0.001</td><td>0.000</td></tr>
+    <tr><td>0.000</td><td>0.000</td><td>0.003</td><td>0.013</td><td>0.022</td><td>0.013</td><td>0.003</td><td>0.000</td><td>0.000</td></tr>
+    <tr><td>0.000</td><td>0.000</td><td>0.000</td><td>0.001</td><td>0.002</td><td>0.001</td><td>0.000</td><td>0.000</td><td>0.000</td></tr>
+    <tr><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td><td>0.000</td></tr>
+</table>
+</body>
+</html>

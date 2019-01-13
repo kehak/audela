@@ -1,0 +1,70 @@
+#
+# Fichier : focusert193.cap
+# Mise a jour $Id: focusert193.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(focusert193,label)          "T193 Focuser"
+set caption(focusert193,link)           "Controls are sent to the T193 mount."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(focusert193,label)       "Focaliseur T193"
+   set caption(focusert193,link)        "Les commandes sont envoyées à la monture T193."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(focusert193,label)       "Focheggiatore T193"
+   set caption(focusert193,link)        "I comandi sono inviati alla montatura T193."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(focusert193,label)       "Enfocador T193"
+   set caption(focusert193,link)        "Las ordenes se mandan a la montura T193."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(focusert193,label)       "T193 Scharfeinstellung"
+   set caption(focusert193,link)        "Die Steuervorrichtungen sind zum T193 Montierung geschickt."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(focusert193,label)       "Focador T193"
+   set caption(focusert193,link)        "Os comandos são enviados à montagem T193."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(focusert193,label)       "T193 Focuser"
+   set caption(focusert193,link)        "Kommando er sendt til T193 monteringen."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(focusert193,label)       "T193 Focuser"
+   set caption(focusert193,link)        "Controls are sent to the T193 mount."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(focusert193,label)       "T193 Focuser"
+   set caption(focusert193,link)        "Controls are sent to the T193 mount."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

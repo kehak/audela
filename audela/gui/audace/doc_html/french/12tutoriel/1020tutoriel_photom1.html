@@ -1,0 +1,392 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tutoriel sur la photométrie</title></head><body style="color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+<p class="date">Date de mise à jour : 12 novembre 2011</p>
+<h1>Tutoriel sur la photométrie</h1>
+<h1>1. Qu'est-ce que la photométrie ?</h1>
+La photométrie consiste à déterminer
+l'éclat d'un astre dont on a enregistré une image
+numérique. L'éclat est basé sur le système
+des magnitudes et des bandes photométriques. Une bande
+photométrique est la désignation d'un domaine de couleur
+dans lequel on a observé. Habituellement les bandes
+photométriques optiques sont B, V, R, I. La magnitude est un
+nombre sans dimension qui est relié à
+l'éclairement d'une étoile (W/m<sup>2</sup>).
+L'étoile Véga a servi de point de référence
+de l'échelle des magnitudes. Cette étoile a la magnitude
+zéro dans les différentes bandes photométriques.<br />
+<br />
+Sur une image numérique, on peut facilement mesurer
+l'intensité (I) d'un pixel. Cette intensité est
+exprimée en unité du convertisseur numérique de la
+caméra, habituellement noté ADU. Il s'agit de la valeur
+affichée dans le cartouche du bas de AudeLA après le
+symbole I.<br />
+<br />
+L'opération de calibration astrométrique consiste
+à calculer les équations de passage entre les mesures (I)
+et les magnitudes (mag). La formule de Pogson est à la base de
+la photométrie. Pour deux étoiles 1 et 2 de magnitude
+mag1 et mag2 et de flux intégré I1 et I2, on aura la
+relation :<br />
+<br />
+<div style="text-align: center;">mag2 - mag1 = -2.5 * log10 ( I2/I1 )<br />
+</div>
+<br />
+D'un point de vue technique, la calibration photométrique
+consiste à calculer les valeurs des coefficients à
+introduire dans les équations mathématiques pour passer
+de (I) à (mag). Contrairement à la calibration
+astrométrique il n'existe pas de mots clés
+équivalents aux WCS pour la photométrie.<br />
+<br />
+On distingue deux types de photométrie :<br />
+<ul>
+  <li>La photométrie relative : On calcule seulement la
+différence de magnitude d'une étoile par rapport à
+une autre. C'est une opération assez simple qui n'exige pas
+l'usage de catalogues photométriques. Par cette méthode
+on peut déjà mettre en évidence les changements
+d'éclat d'une étoile variable en la comparant à
+une autre étoile réputée stable. Les fonctions du
+type photrel_* sont adaptées à la photométrie
+relative. Le script Calaphot permet aussi de pratiquer la
+photométrie relative sur une grande série d'images.</li>
+</ul>
+<ul>
+  <li>La photométrie absolue : On calcule la magnitude dans un
+système photométrique. Pour réussir une
+calibration photométrique en absolu, il faut au moins deux
+images obtenues avec des filtres différents. Dans ce cas, il
+faut utiliser un catalogue photométrique. Les fonctions du type
+photcal_* sont adaptées à la photométrie absolue.</li>
+</ul>
+Dans AudeLA on utilise le catalogue photométrique Loneos. Ce
+catalogue est livré avec la distribution de AudeLA. Il se trouve à : gui/audace/catalogues/cataphotom/loneos.phot<br />
+<h1>2. Commande de Console pour pratiquer la photométrie absolue
+d'une seule étoile sur&nbsp;une seule image </h1>
+Il n'est pas nécessaire d'avoir calibré les mots clés WCS avant les opérations suivantes mais, comme on le
+verra plus loin, ça peut aider. Cette méthode est
+très utile pour déterminer rapidement la magnitude d'un
+astre qui vient d'être découvert. Par exemple une
+supernova.<br />
+<br />
+Le principe consiste à mesurer le flux intégral d'une
+étoile (en ADU) dont on connaît la magnitude. On
+connaît alors I1 et mag1 pour cette étoile. On mesure
+ensuite le flux intégrale de l'étoile à mesurer
+(I2). A partir de la formule de Pogson, il est évident que l'on
+calcule mag2 de la façon suivante :<br />
+<br />
+<div style="text-align: center;">mag2 =&nbsp;mag1&nbsp;-2.5 * log10 (
+I2/I1 )<br />
+</div>
+<br />
+On a l'habitude d'écrire cette équation en rassemblant
+les termes de l'étoile 1, appelée
+aussi&nbsp;étoile de référence :<br />
+<br />
+<div style="text-align: center;">mag2 = [mag1 + 2.5 * log10 (&nbsp;I1
+)] - 2.5 * log10 (&nbsp;I2 ) = ZMAG - 2.5 *log10 (I2)
+</div>
+<br />
+ZMAG est appelée constante des magnitudes. Si l'on prend une
+autre étoile de référence on doit retrouver la
+même valeur de ZMAG. Le terme -2.5*log10(I2) est appelé
+habituellement "magnitude instrumentale".<br />
+<br />
+En pratique, on repère une étoile de
+référence. Il faut connaître la magnitude de
+l'étoile. Si l'image n'est pas calibrée WCS, il faut
+identifier l'étoile dans un catalogue et noter sa magnitude. Si
+l'image est calibrée WCS, il
+suffit de l'entourer avec un cadre bleu (utiliser la souris) puis de
+faire clic droit et demander Ajuster une gaussienne. Dans le Console de
+AudeLA, on pourra lire de nombreuses informations comme par exemple :<br />
+<pre style="background-color: rgb(255, 255, 204);"># === Visu1 === Ajuster une gaussienne ===<br /># Coordonnées de la fenêtre : 835 646 857 666<br /># Centre : 845.40 / 656.79<br /># Fwhm : 2.401 / 2.588<br /># Intensité : 15782.222164 / 16116.749379<br /># Fond : 484.364238 / 479.551073<br /># Flux intégré : 112476.324382 +/- 1179.548735<br /># Magnitude instrumentale -2.5*log10(flux) : -12.628 +/-&nbsp; 0.011<br /><br /># AD Déc. : 164.867805 67.509553<br /># AD Déc. : 10h59m28s27 +67d30m34s39<br /><br /># OLD Format MPC :<br />&nbsp;&nbsp;&nbsp;&nbsp; .&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; C2011 02 05.20321 10 59 28.27 +67 30 34.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -8.7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 148<br /><br /># Attention :<br /># Le site UAI 148 doit être celui où l'image a été acquise.<br /><br /># Use http://cfa-www.harvard.edu/iau/info/Astrometry.html for informations.<br /># Use ::astrometry::mpc_provisional2packed to convert designation to MPC packed form.</pre>
+Les coordonnées
+(Ra,Dec) sont affichées sous deux formes différentes
+après les mots AD Déc. Utiliser la commande de Console
+vo_neareststar pour demander les magnitudes de l'étoiles dans le
+catalogue NOMAD1 (il faut être connecté à Internet). Les
+paramètres de la commande vo_neareststar sons les
+coordonnées célestes. Dans notre exemple, on obtient :<br />
+<pre>vo_neareststar 164.867805 67.509553<br /># {NOMAD-1 1575-0155537} 164.8682919 +67.5094956 13.204 12.224 11.610 11.631 11.339 11.333</pre>
+La liste du résultat est de la forme : Id Ra Dec B V R I J H K.
+Si l'image a été réalisée avec un filtre R
+alors la magnitude R=11.61.<br />
+<br />
+Dans la liste des résultats affichés après
+l'ajustement de la gaussienne, on note que le flux
+intégré vaut I=112476 ADU. Au regard des formules ci-dessus, on en déduit que la constante des magnitudes vaut :<br />
+<br />
+<div style="text-align: center;">ZMAG = mag1 + 2.5 * log10 (&nbsp;I1 )
+= 11.61 + 2.5 * log10(112476) = 24.24<br />
+</div>
+<br />
+On peut calculer ZMAG avec d'autres étoiles connues du champ et
+garder une valeur moyenne de ZMAG pour calculer la magnitude de
+l'étoile inconnue. Néanmoins, cette méthode ne
+prend pas en compte les différences de couleurs entre les
+étoiles, facteur qui influe sur la valeur de ZMAG.<br />
+<br />
+Pour calculer la magnitude de l'étoile inconnue, on l'entoure
+avec un cadre bleu (utiliser la souris) puis faire clic droit et
+demander Ajuster une gaussienne. On note la valeur du flux
+intégré (I2). Par exemple I2 = 10456 ADU. Puis on utilise la
+formule :<br />
+<br />
+<div style="text-align: center;">mag2 = ZMAG -2.5*log10(I2) = 24.24 -
+2.5 * log10(10456) = 14.19<br />
+</div>
+<br />
+On peut donc annoncer une magnitude R=14.19 pour notre étoile
+inconnue. L'incertitude typique d'une telle mesure est de l'ordre de
++/- 0.5 magnitude en raison des problèmes de la
+différence de couleur entre l'étoile à mesurer et
+l'étoile de référence.<br />
+<h1>3. Pratiquer la photométrie relative d'une seule
+étoile sur&nbsp;une série d'images en utilisant Calaphot </h1>
+Il n'est pas nécessaire d'avoir calibré les mots clés WCS avant les
+opérations suivantes. Cette méthode est très utile
+pour mesurer rapidement la magnitude
+d'un astre supposé variable dans le temps. Par exemple un
+astéroïde ou une étoile variable.<br />
+<br />
+Ouvrir le menu Analyse et prendre l'item Courbes de lumière
+(Calaphot). Il faut remplir les renseignements demandés dans la
+fenêtre de configuration de Calaphot :<br />
+<br />
+<div style="text-align: center;"><img style="width: 594px; height: 644px;" alt="" src="../images/calaphot1.png" /><br />
+</div>
+<br />
+Appuyer sur le bouton Continuer en bas de la fenêtre. Le reste de
+l'opération est intuitif.<br />
+<h1>4. Commande de Console pour pratiquer la photométrie
+relative d'une seule étoile sur&nbsp;une série d'images
+en utilisant photrel </h1>
+Dans ce cas, il est nécessaire d'avoir calibré les mots clés WCS avant les
+opérations suivantes. Cette méthode est très utile
+pour mesurer rapidement la magnitude
+d'un astre supposé variable dans le temps. Par exemple un
+astéroïde ou une étoile variable. Par rapport
+à Calaphot, l'intérêt de cette méthode est
+qu'elle choisit elle-même les étoiles de
+référence et élimine celles qui ont un
+éclat variable. L'avantage de photrel est de pouvoir être
+incorporé dans un script qui effectue les opérations de
+façon automatique. Utile pour un télescope robotique par
+exemple.<br />
+<h2>4.1. Description des méthodes utilisées dans photrel</h2>
+Les fonctions photrel utilisent des fonctions de la librairie libyd
+développée par Yassine Damerdji dans le cadre d'un
+travail de thèse en astrophysique. Le but était de
+développer des outils informatiques très rapides pour
+extraire des courbes de lumière et pour identifier et
+caractériser de nouvelles étoiles variables.<br />
+<br />
+La méthode est centrée sur la création d'un fichier
+catalogue des étoiles mesurées dans les images prises à
+différentes dates. En pratique, un catalogue est
+représenté par trois fichiers afin d'optimiser la vitesse
+de traitement. Les trois fichiers sont appelés MES, REF et ZMG.<br />
+<ul>
+  <li>MES = Fichier des mesures. Chaque entrée correspond a une
+étoile pour une date.</li>
+  <li>REF = Fichier des références. Chaque entrée définit les
+coordonnées
+et la magnitude moyenne d'une seule étoile dans divers filtres
+éventuellement.</li>
+  <li>ZMG = Fichier des corrections de magnitude pour chaque date.<br />
+  </li>
+</ul>
+Ces fichiers sont écrits en binaire, donc non lisibles avec un
+éditeur de texte. Néanmoins, la fonction
+yd_refzmgmes2ascii permet de transformer le binaire en ASCII si l'on
+est intéressé pour lire le contenu. La signification des
+colonnes des fichiers est décrite dans la thèse de
+Yassine Damerdji.<br />
+<br />
+A noter que le filtre est identifié par le symbole du mot
+clé FILTER dans l'en-tête FITS. Par défaut, le
+filtre sera pris égal à C (pour clear) s'il n'est pas
+précisé.<br />
+<h3>4.1.1. photrel_wcs2cat</h3>
+La fonction photrel_wcs2cat permet de créer les trois fichiers
+catalogue à partir d'une série d'images FITS
+calibrées WCS. On peut résumer cela ainsi :<br />
+<br />
+<div style="text-align: center;">[images FITS]
+--(photrel_wcs2cat)--&gt; [3 fichiers MES, REF, ZMG]<br />
+</div>
+<br />
+<h3>4.1.2. photrel_cat2mes</h3>
+A partir des fichiers catalogues, on peut demander à extraire la
+courbe de lumière d'une seule étoile en utilisant la
+fonction
+photrel_cat2mes. Le résultat est un fichier ASCII (noté
+MES.txt) par
+étoile variable trouvée.&nbsp;On peut résumer cela
+ainsi :<br />
+<br />
+<div style="text-align: center;">[3 fichiers MES, REF,
+ZMG]&nbsp;--(photrel_cat2mes)--&gt; [MES.txt]<br />
+</div>
+<br />
+Voici un exemple d'un tel fichier MES.txt :<br />
+<pre>&nbsp;2455175.410301&nbsp; 16.265 0.115&nbsp;&nbsp; 0<br />&nbsp;2455175.420243&nbsp; 16.894 0.208&nbsp;&nbsp; 1<br />&nbsp;2455175.425648&nbsp; 16.006 0.107&nbsp;&nbsp; 0<br />&nbsp;2455448.591299&nbsp; 16.871 0.219&nbsp;&nbsp; 1</pre>
+La première colonne est le jour julien de la mesure, la seconde
+colonne est la magnitude, la troisième colonne est l'erreur
+estimée sur la magnitude et la quatrième colonne est un
+flag qui provient du logiciel Sextractor utilisé pour mesurer
+les magnitudes. Si le flag = 0 alors la mesure est valable.
+<h3>4.1.3. photrel_cat2var</h3>
+A partir des fichiers catalogues, on peut demander à extraire
+toutes les étoiles candidates variables en utilisant la fonction
+photrel_cat2var. Le résultat est un fichier ASCII (noté
+VAR.txt) par étoile variable trouvée.&nbsp;On peut
+résumer cela ainsi :<br />
+<br />
+<div style="text-align: center;">[3 fichiers MES, REF,
+ZMG]&nbsp;--(photrel_cat2var)--&gt;
+[VAR.txt]<br />
+</div>
+<br />
+Voici un exemple d'un tel fichier VAR.txt :<br />
+<pre>NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = STAR-N321200310-36 <br />RA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&nbsp; 22.878330 <br />DEC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&nbsp;&nbsp; 1.475810 <br />EQUINOX&nbsp;&nbsp; = J2000.0 <br />FILTER&nbsp;&nbsp;&nbsp; = C <br />CAMERANO&nbsp; = 2 <br />PROC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = photrel_cat2var<br />MEAN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 16.550468 <br />CRITVAR&nbsp;&nbsp; = 5.333820 <br />END<br />&nbsp;2455175.410301&nbsp; 16.265 0.115&nbsp;&nbsp; 0<br />&nbsp;2455175.420243&nbsp; 16.894 0.208&nbsp;&nbsp; 1<br />&nbsp;2455175.425648&nbsp; 16.006 0.107&nbsp;&nbsp; 0<br />&nbsp;2455448.591299&nbsp; 16.871 0.219&nbsp;&nbsp; 1</pre>
+On reconnait que la partie des données est formatée
+exactement de la même façon qu'un fichier MES.txt. Une en-tête a simplement été ajoutée au
+début de la série de mesures afin de donner des
+renseignements sur l'étoile, notamment ses coordonnées
+célestes (ra,dec).<br />
+<h3>4.1.4. photrel_wcs2var</h3>
+Cette fonction effectue l'enchainement de photrel_wcs2cat et
+photrel_cat2var. On peut résumer cela ainsi :<br />
+<br />
+<div style="text-align: center;">[images
+FITS]&nbsp;--(photrel_wcs2var)--&gt;
+[VAR.txt]<br />
+</div>
+<h3>4.1.5. photrel_cat2per</h3>
+Cette fonction extrait la courbe de lumière d'une seule
+étoile comme photrel_cat2mes mais cette courbe est
+analysée par différents algorithmes pour
+déterminer la meilleure période dans le cas d'un
+phénomène périodique stable. On peut
+résumer cela ainsi :<br />
+<br />
+<div style="text-align: center;">[3 fichiers MES, REF,
+ZMG]&nbsp;--(photrel_cat2per)--&gt;
+Période<br />
+</div>
+<h2>4.2. Extraction de la courbe de lumière d'une seule
+étoile</h2>
+On part d'une série de fichiers. Par exemple, ic1.fit
+jusqu'à ic50.fit. On commence par utiliser photrel_wcs2cat pour
+créer le catalogue :<br />
+<br />
+photrel_wcs2cat ic 10 new<br />
+<br />
+Il faut alors connaître les coordonnées (ra,dec) de
+l'étoile à extraire (cf. paragraphe 2). On utilise alors
+la fonction photrel_cat2mes :<br />
+<br />
+photrel_cat2mes ic mystar 164.630162 67.525332 C<br />
+<br />
+Le fichier MES.txt s'appellera mystar.txt. Les deux valeurs, 164.630162
+et 67.525332, représentent (Ra,Dec) en équinoxe J2000.0.
+Enfin le symbole C sert à spécifier le filtre qui a
+été utilisé (C s'il n'a pas été
+précisé par le mot clé FILTER dans l'en-tête
+FITS).<br />
+<br />
+Si l'étoile est variable, on peut rechercher sa période
+en utilisant photrel_cat2per avec exactement les mêmes arguments
+que photrel_cat2mes :<br />
+<br />
+photrel_cat2per ic mystar 164.630162 67.525332 C<br />
+<br />
+Le résultat est donné en jour et un graphique montre la
+courbe de lumière phasée.<br />
+<h1>5. Commande de Console pour trouver automatiquement toutes les
+étoiles variables dans une série d'images </h1>
+Dans ce cas, il est nécessaire d'avoir calibré les mots clés WCS avant
+les
+opérations suivantes et on utilise photrel (cf. paragraphe 4.1).
+Cette méthode est très utile pour trouver les candidates
+étoiles variables dans un champ qui contient beaucoup
+d'étoiles et qui a été observé plusieurs
+dizaines de fois.<br />
+<br />
+On part d'une série de fichiers. Par exemple, ic1.fit
+jusqu'à ic50.fit.
+On commence par utiliser photrel_wcs2cat pour créer le catalogue :<br />
+<br />
+photrel_wcs2cat ic 10 new<br />
+<br />
+On peut ensuite demander l'extraction des étoiles variables en
+appelant photrel_cat2var :<br />
+<br />
+photrel_cat2var ic<br />
+<br />
+Une liste de fichiers de type VAR.txt est générée.
+Dans l'en-tête de ces fichiers ASCII on trouvera les
+coordonnées célestes (ra,dec). Il suffit d'utiliser la
+fonction photrel_cat2per pour déterminer la période des
+candidates variables.<br />
+<br />
+A la fin de l'analyse, un fichier html est généré
+ainsi que les images gif des courbes de lumière des candidates
+variables. Il est facile de visualiser l'ensemble des candidates avec
+un navigateur web.<br />
+<h1>6. Commande de Console pour calibrer en absolu toutes les
+étoiles d'une série d'images</h1>
+Dans ce cas, il est nécessaire d'avoir calibré les mots clés WCS avant
+les
+opérations suivantes et on utilise photcal. On recherche les
+coefficients de transformation en analysant le flux des étoiles qui
+sont dans le catalogue Loneos. Il est donc primordial d'avoir
+réalisé des images qui contiennent des étoiles
+Loneos.<br />
+<br />
+L'usage du filtre est donc obligatoire. Le filtre doit être
+identifiée par le mot clé FILTER dans l'en-tête FITS
+des images.<br />
+<h2>6.1. Description des méthodes utilisées dans photcal</h2>
+Le principe de la calibration photométrique en absolue est le
+suivant. Sextractor (Bertin, E. &amp; Arnouts, S. 1996, Astronomy &amp;
+Astrophysics&nbsp;Supplement 317, 393) est utilisé pour extraire
+le flux des étoiles. Si l'on a utilisé un filtre R, Sextractor fourni&nbsp;flux_R (flux_V pour un filtre V, etc.). La
+conversion entre les flux et les magnitudes suit les équations
+suivantes :<br />
+<br />
+R = ZMAGR - 2.5 log(flux_R) + COEFR*(V-R) - KR*Airmass_R<br />
+V = ZMAGV - 2.5 log(flux_V) + COEFV*(V-R) - KV*Airmass_V<br />
+<br />
+ZMAGR, ZMAGV, COEFR, COEFV, KR et KV sont calculés avec des
+étoiles de magnitude V et R connues. Pour choisir ces
+étoiles, on utilise le catalogue Loneos ("UBVRI photometry of
+faint field stars"&nbsp;Skiff, B.A, 2007 yCat.2277....0S, VizieR
+On-line Data Catalog: II/277). Loneos est basé sur le système
+Johnson-Cousins UBVRI. En conséquence, les couleurs R et I sont
+calculées dans le système de&nbsp;Cousins.<br />
+<h2>6.2. Pratique de la photométrie absolue automatique</h2>
+Placer toutes les images de la nuit dans le répertoire des
+images de la configuration de AudeLA (peut importe les noms et les
+filtres). La fonction photcal_selectfiles va sélectionner les fichiers
+compatibles avec l'analyse photométrique (rejette les images
+réalisées sans filtre et ne garde que les couples
+d'images qui ont été réalisée avec deux
+filtres différents).<br />
+<br />
+On va créer le fichier commun des étoiles présentes dans
+le catalogue Loneos avec la fonction photcal_matchfiles.<br />
+<br />
+On utilise photcal_plotfit pour effectuer le calcul d'ajustement des
+paramètres photométriques.<br />
+<br />
+On utilise photcal_calibrate pour extraire les magnitudes
+calibrées de toutes les étoiles.<br />
+</body></html>

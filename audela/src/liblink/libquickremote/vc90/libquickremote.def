@@ -1,0 +1,3 @@
+LIBRARY libquickremote
+EXPORTS 
+    Quickremote_Init

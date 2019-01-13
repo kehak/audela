@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Autoguidage avec LHIRES</title>
+</head>
+
+<body>
+<p>This page explains how to adjust Audela's autoguiding tool according to  LHIRES orientation.</p>
+
+<p>We give three examples:</p>
+<ol>
+  <li><a href="#cas1">Lhires slit is parallel to the right ascension</a></li>
+  <li><a href="#cas2">Lhires slit is parallel to the declination (90&deg; rotation to the left)</a></li>
+  <li><a href="#cas3"> Lhires slit is parallel to the declination (90&deg; rotation to the right)</a></li>
+</ol>
+<h3>Procedure</h3>
+<table>
+  <tr>
+    <td>
+	   <img src="images/spectro_autoguider/camera_orientation.png" />
+	</td>
+    <td>For the purposes of the procedure the <em>telescope is assumed to be aiming at the local meridian line </em> and <em>the bottom of the guiding camera is taken to be turned towards the tube </em>of the telescope.</td>
+  </tr>
+  <tr>
+    <td>
+      <img src="images/spectro_autoguider/autoguider_config_en.png" width="370" height="350" /></td>
+    <td>
+      <p>To adjust Lhires inclination angle:</p>
+			<ul>
+         <li>Click on the <em>Setup</em> button of the autoguider tool in Audela</li>
+         <li>Type in angle value of camera tilt</li>
+         <li>Click on <em>OK</em> to validate</li>
+			</ul>
+    </td>
+  </tr>
+</table>
+<h3><a name="cas1" id="cas1"></a>Case 1 - Lhires in normal position (slit
+  parallel to the RA)</h3>
+
+<table>
+  <tr>
+    <td>
+      <p><img src="images/spectro_autoguider/spectro_00d.png" /></p>
+    </td>
+    <td>
+      <p><img src="images/spectro_autoguider/config_00_en.png" /></p>
+			<p align="center">====&gt;</p>
+    </td>
+    <td>
+      <p><img src="images/spectro_autoguider/visu_00d.png" /></p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>Cameras  are above and Lhires is below.</p>
+    </td>
+    <td>
+      <p>The angle must be 0&deg;.</p>
+
+    </td>
+    <td>
+      <p>North is in the top of the image.</p>
+    </td>
+  </tr>
+</table>
+<h3><a name="cas2" id="cas2"></a>Case 2 - Lhires turned to 90&deg; to the left (slit parallel to the DEC)</h3>
+
+<table>
+  <tr>
+    <td>
+      <p><img src="images/spectro_autoguider/spectro_90d.png" /></p>
+    </td>
+    <td>
+      <p><img src="images/spectro_autoguider/config_90_en.png" /></p>
+			<p align="center">====&gt;</p>
+    </td>
+    <td>
+      <p><img src="images/spectro_autoguider/visu_90d.png" /></p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p> Cameras are on the left and Lhires is on the right.</p>
+    </td>
+    <td>
+      <p>The angle must be 90&deg;.</p>
+    </td>
+    <td>
+      <p>North is on the right of the image.</p>
+    </td>
+  </tr>
+</table>
+<p>Note: On the image, the slit remains  horizontal whatever Lhires orientation.</p>
+<h3><a name="cas3" id="cas3"></a>Case 3 - Lhires is turned to 90&deg; to the right (slit parallel to the DEC)</h3>
+
+<table>
+  <tr>
+    <td>
+      <p><img src="images/spectro_autoguider/spectro_270d.png" /></p>
+    </td>
+    <td>
+      <p><img src="images/spectro_autoguider/config_270_en.png" /></p>
+			<p align="center">====&gt;</p>
+    </td>
+    <td>
+      <p><img src="images/spectro_autoguider/visu_270d.png" /></p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>Cameras are on the right and Lhires is on the left.</p>
+    </td>
+    <td>
+      <p>The  angle must be 270&deg; (or -90&deg;).</p>
+    </td>
+    <td>
+      <p>North is on the left of the image.</p>
+    </td>
+  </tr>
+</table>
+  <p>Note: On the image, the slit remains  horizontal whatever Lhires orientation.</p>
+  <p>(*) In AudeLA version 1.4.0, cardinal
+    points are not correctly positioned. It is only a display error and autoguiding IS correctly implemented. This error will be corrected in a future version.</p>
+</body>
+</html>

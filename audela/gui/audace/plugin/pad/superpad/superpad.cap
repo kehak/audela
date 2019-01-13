@@ -1,0 +1,169 @@
+#
+# Fichier : superpad.cap
+# Mise a jour $Id: superpad.cap 9806 2013-07-21 20:34:44Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(superpad,titre)                  "SuperPad"
+set caption(superpad,pad_size)               "Its size"
+set caption(superpad,center_speed)           "Centering Factor"
+set caption(superpad,telescope)              "Mount"
+set caption(superpad,non_connecte)           "not connected"
+set caption(superpad,ErrorMessageTitle)      "Error"
+set caption(superpad,activeFleches)          "Enable Arrow Keys"
+set caption(superpad,buttonSkyMap)           "Chart"
+set caption(superpad,buttonGoto)             "GOTO"
+set caption(superpad,buttonStopGoto)         "STOP"
+set caption(superpad,buttonAlign)            "MATCH"
+set caption(superpad,StarWindowTitle)        "Select one star"
+set caption(superpad,labResolver)            "Object Name"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(superpad,titre)               "SuperPad"
+   set caption(superpad,pad_size)            "Sa taille"
+   set caption(superpad,center_speed)        "Coefficient de centrage"
+   set caption(superpad,telescope)           "Monture"
+   set caption(superpad,non_connecte)        "non connectée"
+   set caption(superpad,ErrorMessageTitle)   "Erreur"
+   set caption(superpad,activeFleches)       "Activer les flèches du clavier"
+   set caption(superpad,buttonSkyMap)        "Carte"
+   set caption(superpad,buttonGoto)          "GOTO"
+   set caption(superpad,buttonStopGoto)      "STOP"
+   set caption(superpad,buttonAlign)         "MATCH"
+   set caption(superpad,StarWindowTitle)     "Sélectionner une étoile"
+   set caption(superpad,labResolver)         "Nom de l'objet"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(superpad,titre)               "SuperPad"
+   set caption(superpad,pad_size)            "Dimensioni"
+   set caption(superpad,center_speed)        "Coefficente per centraggio"
+   set caption(superpad,telescope)           "Montatura"
+   set caption(superpad,non_connecte)        "non connessa"
+   set caption(superpad,ErrorMessageTitle)   "Errore"
+   set caption(superpad,activeFleches)       "Abilita i tasti freccia"
+   set caption(superpad,buttonSkyMap)        "Mappa"
+   set caption(superpad,buttonGoto)          "GOTO"
+   set caption(superpad,buttonStopGoto)      "STOP"
+   set caption(superpad,buttonAlign)         "MATCH"
+   set caption(superpad,StarWindowTitle)     "Selezionare una stella"
+   set caption(superpad,labResolver)         "Nome oggetto"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(superpad,titre)               "SuperPad"
+   set caption(superpad,pad_size)            "Su tamaño"
+   set caption(superpad,center_speed)        "Factor de centrado"
+   set caption(superpad,telescope)           "Montura"
+   set caption(superpad,non_connecte)        "no conectado"
+   set caption(superpad,ErrorMessageTitle)   "Error"
+   set caption(superpad,activeFleches)       "Activar flechas del teclado"
+   set caption(superpad,buttonSkyMap)        "Mapa"
+   set caption(superpad,buttonGoto)          "GOTO"
+   set caption(superpad,buttonStopGoto)      "STOP"
+   set caption(superpad,buttonAlign)         "MATCH"
+   set caption(superpad,StarWindowTitle)     "Seleccionar una estrella"
+   set caption(superpad,labResolver)         "Nombre del objecto"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(superpad,titre)               "SuperPad"
+   set caption(superpad,pad_size)            "Ihre Größe"
+   set caption(superpad,center_speed)        "Zentrierung Faktor"
+   set caption(superpad,telescope)           "Montierung"
+   set caption(superpad,non_connecte)        "nicht verbun."
+   set caption(superpad,ErrorMessageTitle)   "Irrtum"
+   set caption(superpad,activeFleches)       "Pfeiltasten aktivieren"
+   set caption(superpad,buttonSkyMap)        "Karte"
+   set caption(superpad,buttonGoto)          "GOTO"
+   set caption(superpad,buttonStopGoto)      "STOP"
+   set caption(superpad,buttonAlign)         "MATCH"
+   set caption(superpad,StarWindowTitle)     "Ein Stern wählen"
+   set caption(superpad,labResolver)         "Objekt Namen"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(superpad,titre)               "SuperPad"
+   set caption(superpad,pad_size)            "Seu tamanho"
+   set caption(superpad,center_speed)        "Coeficiente de centragem"
+   set caption(superpad,telescope)           "Montagem"
+   set caption(superpad,non_connecte)        "não conectado"
+   set caption(superpad,ErrorMessageTitle)   "Erro"
+   set caption(superpad,activeFleches)       "# Activer les flèches du clavier"
+   set caption(superpad,buttonSkyMap)        "Carta"
+   set caption(superpad,buttonGoto)          "GOTO"
+   set caption(superpad,buttonStopGoto)      "STOP"
+   set caption(superpad,buttonAlign)         "MATCH"
+   set caption(superpad,StarWindowTitle)     "Seleccionar uma estrela"
+   set caption(superpad,labResolver)         "Nome do objecto"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(superpad,titre)               "SuperPad"
+   set caption(superpad,pad_size)            "Dens størrelse"
+   set caption(superpad,center_speed)        "Centreringsfaktor"
+   set caption(superpad,telescope)           "Montering"
+   set caption(superpad,non_connecte)        "ikke tilsluttet"
+   set caption(superpad,ErrorMessageTitle)   "Fejl"
+   set caption(superpad,activeFleches)       "Aktiver piletasterne"
+   set caption(superpad,buttonSkyMap)        "Kort"
+   set caption(superpad,buttonGoto)          "GOTO"
+   set caption(superpad,buttonStopGoto)      "STOP"
+   set caption(superpad,buttonAlign)         "MATCH"
+   set caption(superpad,StarWindowTitle)     "Vælg en stjerne"
+   set caption(superpad,labResolver)         "Object Name"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(superpad,titre)               "SuperPad"
+   set caption(superpad,pad_size)            "Its size"
+   set caption(superpad,center_speed)        "Centering Factor"
+   set caption(superpad,telescope)           "Mount"
+   set caption(superpad,non_connecte)        "not connected"
+   set caption(superpad,ErrorMessageTitle)   "Error"
+   set caption(superpad,activeFleches)       "Enable Arrow Keys"
+   set caption(superpad,buttonSkyMap)        "Chart"
+   set caption(superpad,buttonGoto)          "GOTO"
+   set caption(superpad,buttonStopGoto)      "STOP"
+   set caption(superpad,buttonAlign)         "MATCH"
+   set caption(superpad,StarWindowTitle)     "Select one star"
+   set caption(superpad,labResolver)         "Object Name"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(superpad,titre)               "SuperPad"
+   set caption(superpad,pad_size)            "Its size"
+   set caption(superpad,center_speed)        "Centering Factor"
+   set caption(superpad,telescope)           "Mount"
+   set caption(superpad,non_connecte)        "not connected"
+   set caption(superpad,ErrorMessageTitle)   "Error"
+   set caption(superpad,activeFleches)       "Enable Arrow Keys"
+   set caption(superpad,buttonSkyMap)        "Chart"
+   set caption(superpad,buttonGoto)          "GOTO"
+   set caption(superpad,buttonStopGoto)      "STOP"
+   set caption(superpad,buttonAlign)         "MATCH"
+   set caption(superpad,StarWindowTitle)     "Select one star"
+   set caption(superpad,labResolver)         "Object Name"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

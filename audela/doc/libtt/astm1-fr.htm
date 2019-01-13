@@ -1,0 +1,515 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="GENERATOR"
+ content="Mozilla/4.75 [fr] (Win98; U) [Netscape]">
+  <title>M&eacute;thode de calibration astrom&eacute;trique</title>
+</head>
+<body>
+<center>
+<h1> Proc&eacute;dure de calibration astrom&eacute;trique</h1>
+</center>
+<center>Alain KLOTZ <br>
+Mise &agrave; jour 20111121</center>
+<p>Cette m&eacute;thode est implant&eacute;e dans la librairie TT. On
+expose ici les liens entre des coordonn&eacute;es RA,DEC et les
+coordonn&eacute;es x,y sur l'image dans le concept des mots cl&eacute;
+FITS. Les sept premiers paragraphes concernent la calibration dite
+"lin&eacute;aire". Les paragraphes suivants concernent la calibration
+d'un champ ayant des distorsions (l'expos&eacute; de cette
+derni&egrave;re partie peut comporter des erreurs). </p>
+<h3> 1. Param&egrave;tres instrumentaux :</h3>
+(RA,DEC) les coordonn&eacute;es c&eacute;lestes d'une &eacute;toile du
+champ <br>
+(x,y) ses coordonn&eacute;es cart&eacute;siennes dans l'image. <br>
+(RAo,DECo) les coordonn&eacute;es c&eacute;lestes approximatives du
+centre de l'image. <br>
+(F) la longueur focale du t&eacute;lescope <br>
+(px, py) la dimension physique des pixels de la cam&eacute;ra CCD <br>
+(Nx, Ny) le nombre de pixels de la cam&eacute;ra CCD<br>
+<br>
+A noter que les coordonn&eacute;es (x,y) du pixel en bas &agrave;
+gauche ont pour valeur (0,0). Les axes sont orient&eacute;s de la
+m&ecirc;me fa&ccedil;on qu'un rep&egrave;re orthonorm&eacute;
+math&eacute;matique.<br>
+<h3> 2. La norme FITS d&eacute;finit :</h3>
+CRPIX1 : est le pixel du centre de la projection sur NAXIS1 (axe x) <br>
+CRPIX2 : est le pixel du centre de la projection sur NAXIS2 (axe y) <br>
+CRVAL1 : est la coordonn&eacute;e c&eacute;leste exacte sur RA
+correspondant &agrave; CRPIX1. (doit &ecirc;tre proche de RAo) <br>
+CRVAL2 : est la coordonn&eacute;e c&eacute;leste exacte sur DEC
+correspondant &agrave; CRPIX2. (doit &ecirc;tre proche de DECo) <br>
+CDELT1 : est l'&eacute;chantillonnage angulaire sur NAXIS1 (axe x)
+<br>
+CDELT2 : est l'&eacute;chantillonnage angulaire sur NAXIS2 (axe y)
+<br>
+CROTA2 : est l'angle de position de l'axe des d&eacute;clinaisons par
+rapport &agrave; NAXIS2 (axe y)<br>
+<h3> 3. Le passage des param&egrave;tres du t&eacute;lescope aux
+param&egrave;tres FITS est :</h3>
+(&eacute;quations 3) <br>
+CDELT1=-atan (px/F) <br>
+CDELT2=atan (py/F) <br>
+CRVAL1=RAo <br>
+CRVAL2=DECo <br>
+CRPIX1= Nx/2 <br>
+CRPIX2= Ny/2<br>
+<br>
+A noter que dans le cas d'une image pr&eacute;sent&eacute;e nord en
+haut et ouest &agrave; droite, CDELT1 doit &ecirc;tre n&eacute;gatif et
+CROTA2=0.<br>
+<h3> 4. Matrice de passage CD :</h3>
+(&eacute;quations 4) <br>
+CD001001 = CDELT1*cos(CROTA2) <br>
+CD001002 = fabs(CDELT2)*CDELT1/fabs(CDELT1)*sin(CROTA2) <br>
+CD002001 = -fabs(CDELT1)*CDELT2/fabs(CDELT2)*sin(CROTA2) <br>
+CD002002 = CDELT2*cos(CROTA2) <br>
+<h3> 5. Passage (RA,DEC) -&gt; (x,y)</h3>
+(&eacute;quations 5) <br>
+H = sin(DEC)*sin(CRVAL2) + cos(DEC)*cos(CRVAL2)*cos(RA-CRVAL1) <br>
+dRA = cos(DEC)*sin(RA-CRVAL1) / H <br>
+dDEC = [ sin(DEC)*cos(CRVAL2) - cos(DEC)*sin(CRVAL2)*cos(RA-CRVAL1) ] /
+H <br>
+det=CD002002*CD001001-CD001002*CD002001 <br>
+x = (CRPIX1-0.5) - (CD001002*dDEC - CD002002*dRA) / det <br>
+y = (CRPIX2-0.5) + (CD001001*dDEC - CD002001*dRA) / det
+<h3> 6. Passage (x,y) -&gt; (RA,DEC)</h3>
+(&eacute;quations 6) <br>
+dRA = CD001001 * (x-(CRPIX1-0.5)) + CD001002 * (y-(CRPIX2-0.5)) <br>
+dDEC = CD002001 * (x-(CRPIX1-0.5)) + CD002002 * (y-(CRPIX2-0.5)) <br>
+delta= cos(CRVAL2) - dDEC*sin(CRVAL2) <br>
+gamma= sqrt( dRA*dRA + delta*delta ) <br>
+RA = CRVAL1 + atan (dRA/delta) <br>
+DEC = atan ( [sin(CRVAL2)+dDEC*cos(CRVAL2)] / gamma )
+<h3> 7. Calibration d'un champ sans distorsion</h3>
+On dispose de RAo,DECo (coordonn&eacute;es des codeurs) , F, px, py,
+Nx, Ny et une liste d'&eacute;toiles (x,y,flux) mesur&eacute;es sur
+l'image &agrave; calibrer.
+<p>On calcule (&eacute;quations 3) et (&eacute;quations 4) <br>
+On g&eacute;n&egrave;re une liste (x',y',mag) d'&eacute;toiles du
+catalogue de r&eacute;f&eacute;rence (&eacute;quations 5) correspondant
+au champ observ&eacute; th&eacute;orique. </p>
+<p>On effectue l'appariement entre les listes (x,y) et (x',y') et on
+optimise le jeu de param&egrave;tres (a0, a1, a2, a3, a4, a5) : </p>
+<p>x' = a0*x + a1*y + a2 <br>
+y' = a3*x + a4*y + a5 </p>
+<p>On calcule les nouveaux param&egrave;tres de projection (suivi de ')
+</p>
+<p>xc'= a0*(CRPIX1-0.5) + a1*(CRPIX2-0.5) + a2 <br>
+yc'= a3*(CRPIX1-0.5) + a4*(CRPIX2-0.5) + a5</p>
+<p>Equations (6) pour passer de (xc',yc') &agrave; (CRVAL1',CRVAL2') <br>
+CRPIX1'=CRPIX1 <br>
+CRPIX2'=CRPIX2 </p>
+<p>CD001001' = CD001001*a0 + CD001002*a3 <br>
+CD001002' = CD001001*a1 + CD001002*a4 <br>
+CD002001' = CD002001*a0 + CD002002*a3 <br>
+CD002002' = CD002001*a1 + CD002002*a4</p>
+<p>Pour calculer CDROTA2', il faut tenir compte du fait qu'il peut y
+avoir des impr&eacute;cisions sur les valeurs de la matrice CD. Il est
+donc
+conseill&eacute; de proc&eacute;der comme suit. On commence &agrave;
+calculer
+l'angle crota2 de deux mani&egrave;res diff&eacute;rentes (angles aa et
+bb) et de les moyenner.<br>
+</p>
+<p>aa=fmod(2*pi+atan2(CD002001',CD001001'),2*pi)<br>
+bb=fmod(2*pi+atan2(-CD001002',CD002002'),2*pi)<br>
+</p>
+<p>Avant de moyenner les angles aa et bb, il faut s'assurer qu'ils ne
+sont pas s&eacute;par&eacute;s de 180 degr&eacute;s (cas qui arrive
+lorsque
+les angles aa et bb sont proches des axes x ou y). Il faut donc
+calculer
+l'angle de s&eacute;partion de aa et bb (angle ab) et ajouter 180
+suivant
+le cas:<br>
+</p>
+<p>cosa=cos(aa)<br>
+sina=sin(aa)<br>
+cosb=cos(bb)<br>
+sinb=sin(bb)<br>
+cosab=cosa*cosb+sina*sinb<br>
+sinab=sina*cosb-cosa*sinb<br>
+ab=fabs(atan2(sinab,cosab))<br>
+if (ab&gt;pisur2) {<br>
+&nbsp;&nbsp;&nbsp; if (cosa&gt;cosb) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bb=fmod(pi+bb,2*pi)<br>
+&nbsp;&nbsp; } else {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aa=fmod(pi+aa,2*pi)<br>
+&nbsp;&nbsp; }<br>
+}<br>
+</p>
+<p>On peut maintenant effectuer la moyenne :<br>
+ab=bb-aa;<br>
+if (ab&gt;pi) {<br>
+&nbsp;&nbsp;&nbsp; aa=aa+2*pi<br>
+}<br>
+ab=aa-bb<br>
+if (ab&gt;pi) {<br>
+&nbsp;&nbsp;&nbsp; bb=bb+2*pi<br>
+}<br>
+CROTA2'=fmod(2*pi+(aa+bb)/2.,2*pi)<br>
+</p>
+<p>On peut alors calculer les &eacute;chelles CDELT1' et CDELT2' :<br>
+</p>
+<p>cosr=fabs(cos(CROTA2'))<br>
+sinr=fabs(sin(CROTA2'))<br>
+if (cosr&gt;sinr) {<br>
+&nbsp;&nbsp;&nbsp; CDELT1'=CD001001'/cos(CROTA2')<br>
+&nbsp;&nbsp;&nbsp; CDELT2'=CD002002'/cos(CROTA2')<br>
+} else {<br>
+&nbsp;&nbsp;&nbsp; CDELT1'=fabs(-CD002001'/sin(CROTA2'))<br>
+&nbsp;&nbsp;&nbsp; CDELT2'=fabs(CD001002'/sin(CROTA2'))<br>
+&nbsp; &nbsp; signr=sinr/fabs(sinr)<br>
+&nbsp;&nbsp;&nbsp; signc=CD001002'/fabs(CD001002')<br>
+&nbsp;&nbsp;&nbsp; signd=signc/signr<br>
+&nbsp;&nbsp;&nbsp; if (signd&lt;0) { CDELT1'=-CDELT1' }<br>
+&nbsp;&nbsp;&nbsp; signc=CD002001'/fabs(CD002001')<br>
+&nbsp;&nbsp;&nbsp; signd=-signc/signr<br>
+&nbsp;&nbsp;&nbsp; if (signd&lt;0) { CDELT2'=-CDELT2' }<br>
+}<br>
+</p>
+<p>Dans l'ent&ecirc;te FITS, on pensera aussi &agrave; ajouter les
+lignes suivantes pour assurer la compatibilit&eacute; entre logiciels :
+</p>
+<p>RADESYS='FK5&nbsp;&nbsp;&nbsp;&nbsp; ' / Mean Place IAU 1984 system <br>
+EQUINOX=2000.0 / System of equatorial coordinates <br>
+CTYPE1='RA---TAN' /Gnomonic projection <br>
+CTYPE2='DEC--TAN' /Gnomonic projection <br>
+LONPOLE=180.0 / Long. of the celest.NP in native coor.syst. <br>
+CUNIT1='deg&nbsp;&nbsp;&nbsp;&nbsp; ' / Angles are degrees always <br>
+CUNIT2='deg&nbsp;&nbsp;&nbsp;&nbsp; ' / Angles are degrees always <br>
+</p>
+<h4>7.1. Note pour les cas de transformations
+g&eacute;om&eacute;triques d'images
+d&eacute;j&agrave; calibr&eacute;es</h4>
+<p>Dans le cas o&ugrave; l'on souhaite mettre &agrave; jour les mots
+cl&eacute; d'une image calibr&eacute;e qui subit une tranformation
+g&eacute;om&eacute;trique de type "lin&eacute;aire", il faut recalculer
+la valeur des mots cl&eacute;s. Si (x,y) est un point de l'image
+transform&eacute;e et (x',y') le point correspondant sur l'image de
+d&eacute;part, on utilise la relation suivante:<br>
+</p>
+<p>x' = a0*x + a1*y + a2 <br>
+y' = a3*x + a4*y + a5 </p>
+<p>L'&eacute;quation est similaire &agrave; celle concernant
+l'appariement pour la calibration astrom&eacute;trique. Dans le cas
+d'une transformation g&eacute;om&eacute;trique, on doit
+consid&eacute;rer que le point de r&eacute;f&eacute;rence
+(CRVAL1,CRVAL2) est toujours le m&ecirc;me et que ce sont les
+coordonn&eacute;es (CRPIX1,CRPIX2) qu'il faut modifier. On utilisera
+donc le jeu de relations suivantes :</p>
+<p>Calculer les coefficients (aa0,aa1,aa2,aa3,aa4,aa5) correspondant
+&agrave; la relation inverse :</p>
+<p>x = aa0*x' + aa1*y' + aa2 <br>
+y = aa3*x' + aa4*y' + aa5 </p>
+<p>delta=a1*a3-a0*e4<br>
+aa0=-a4/delta;<br>
+aa1= a1/delta;<br>
+aa2=-(a1*a5-a2*a4)/delta;<br>
+aa3= a3/delta;<br>
+aa4=-a0/delta;<br>
+aa5=-(a2*a3-a0*a5)/delta;<br>
+<br>
+CRPIX1'=aa0*CRPIX1+aa1*CRPIX2+aa2<br>
+CRPIX2'=aa3*CRPIX1+aa4*CRPIX2+aa5<br>
+</p>
+<p>(on notera qu'il n'y a pas de d&eacute;calages de 0.5 pixels)<br>
+</p>
+<p>CRVAL1'=CRVAL1<br>
+CRVAL2'=CRVAL2<br>
+</p>
+<p>La suite des relations est rigoureusement la m&ecirc;me que pour la
+calibration astrom&eacute;trique:</p>
+<p>CD001001' = CD001001*a0 + CD001002*a3 <br>
+etc.<br>
+</p>
+<h4>7.2. Note pour le cas de recentrage d'images calibr&eacute;es <br>
+</h4>
+<p>Si (x,y) est un point de l'image &agrave; transformer et (x',y') le
+point correspondant sur l'image de r&eacute;f&eacute;rence, il faut
+trouver les valeurs (a0, a1, a2, a3, a4, a5) des coefficients de
+transformation :<br>
+</p>
+<p>x' = a0*x + a1*y + a2 <br>
+y' = a3*x + a4*y + a5 </p>
+<p>Sur l'image de r&eacute;f&eacute;rence on calcule :</p>
+<p>(x',y')1=(CRPIX1,CRPIX2)<br>
+(x',y')2=(CRPIX1+100,CRPIX2)<br>
+(x',y')3=(CRPIX1,CRPIX2+100)</p>
+<p>transformer (x',y')i en (ra',dec')i avec les equations 6 (i=1, 2, 3)<br>
+</p>
+<p>transformer (ra,dec)i=(ra',dec')i en (x,y)i avec les equations 5
+(i=1, 2, 3)</p>
+<p>delta = (y1-y2)*(x3-x2) - (y3-y2)*(x1-x2)<br>
+a0 = [ (x3-x2)*(x1'-x2') - (x1-x2)*(x3'-x2') ] / delta<br>
+a1 = [ - (y3-y2)*(x1'-x2') + (y1-y2)*(x3'-x2') ] / delta<br>
+a2 = x1' - a0*x1 - a1*y1<br>
+a3 = [ (x3-x2)*(y1'-y2') - (x1-x2)*(y3'-y2') ] / delta<br>
+a4 = [ - (y3-y2)*(y1'-y2') + (y1-y2)*(y3'-y2') ] / delta<br>
+a5 = y1' - a3*x1 - a4*y1<br>
+</p>
+<p>Apr&egrave;s avoir effectu&eacute; la transformation
+geom&eacute;trique de l'image, il faut changer la valeur de tous les
+mots cl&eacute; d'astrom&eacute;trie de l'image transform&eacute;e par
+ceux de l'image de r&eacute;f&eacute;rence (=d&eacute;part).<br>
+</p>
+<h3> 8. Calibration d'un champ avec distorsions</h3>
+<h4> 8.1. Expos&eacute; th&eacute;orique</h4>
+Soit (x,y) la liste des coordonn&eacute;es des &eacute;toiles sur
+l'image <br>
+Soit (x',y',mag) la liste des &eacute;toiles du catalogue de
+r&eacute;f&eacute;rence correspondant au champ observ&eacute;
+th&eacute;orique, projet&eacute;e selon une transformation gnomonique
+sans distorsion (&eacute;quations 5).
+<p>Pour une d&eacute;formation au second ordre, on effectue
+l'appariement entre les listes (x,y) et (x',y') et on optimise le jeu
+de param&egrave;tres (b0 &agrave; b11) : </p>
+<p>(&eacute;quations 7-2) <br>
+x' = b0*x + b1*y + b2 + b3*x*y + b4*x*x + b5*y*y <br>
+y' = b6*x + b7*y + b8 + b9*x*y + b10*x*x + b11*y*y<br>
+</p>
+<p>Pour une d&eacute;formation au troisi&egrave;me ordre, on effectue
+l'appariement entre les listes (x,y) et (x',y') et on optimise le jeu
+de param&egrave;tres (b0 &agrave; b19) : </p>
+<p>(&eacute;quations 7-3)<br>
+x' = b0*x + b1*y + b2 + b3*x*y + b4*x*x + b5*y*y + b6*x*x*y + b7*x*y*y
++ b8*x*x*x + b9*y*y*y<br>
+y' = b10*x + b11*y + b12 + b13*x*y + b14*x*x + b15*y*y + b16*x*x*y
++ b17*x*y*y + b18*x*x*x + b19*y*y*y<br>
+</p>
+<p>Malheureusement, cette &eacute;criture ne permet pas de calculer des
+param&egrave;tres physiques tels que ceux d&eacute;crits par les
+(&eacute;quations 3) et
+les (&eacute;quations 4). C'est pour cette raison que les coefficients
+(b) ne sont pas int&eacute;gr&eacute;s tels quels dans la norme FITS.
+Pour
+y arriver, il faut construire un syst&egrave;me de coordonn&eacute;es
+interm&eacute;diaires (x",y") correspondant aux positions (x,y) de
+fa&ccedil;on &agrave; avoir : </p>
+<p>(&eacute;quations 8) <br>
+x' = a0*x" + a1*y" + a2 <br>
+y' = a3*x" + a4*y" + a5 </p>
+<p>ainsi on conserve la notion de coefficients "lin&eacute;aires"
+classiques (&eacute;quations 3 et 4) auxquels ont ajoute les
+coefficients d'une transformation suppl&eacute;mentaire permettant de
+passer du syst&egrave;me (x,y) &agrave; (x",y"). La transformation,
+&agrave; trouver, de (x,y) vers (x",y") sera du type : </p>
+<p>(&eacute;quations 9-2) &nbsp;pour le second ordre :<br>
+x" = c0*x + c1*y + c2 + c3*x*y + c4*x*x + c5*y*y <br>
+y" = c6*x + c7*y + c8 + c9*x*y + c10*x*x + c11*y*y </p>
+<p>(&eacute;quations 9-3) &nbsp;pour le troisi&egrave;me ordre :<br>
+x" = c0*x + c1*y + c2 + c3*x*y + c4*x*x + c5*y*y + c6*x*x*y + c7*x*y*y
++ c8*x*x*x + c9*y*y*y<br>
+y" = c10*x + c11*y + c12 + c13*x*y + c14*x*x + c15*y*y + c16*x*x*y
++ c17*x*y*y + c18*x*x*x + c19*y*y*y </p>
+<p>Les coefficients (c) sont d&eacute;finits dans la norme FITS.
+Cherchons &agrave; d&eacute;terminer leur valeur. <br>
+</p>
+<p>En rempla&ccedil;ant les (&eacute;quations 9-2) dans les
+(&eacute;quations 8) on obtient : </p>
+<p>x' = (a0*c0+ a1*c6)*x + (a0*c1+ a1*c7)*y + (a0*c2+ a1*c8+ a2) +
+(a0*c3+ a1*c9)*x*y + (a0*c4+ a1*c10)*x*x + (a0*c5+ a1*c11)*y*y <br>
+y' = (a3*c0+ a4*c6)*x + (a3*c1+ a4*c7)*y + (a3*c2+ a4*c8+ a5) + (a3*c3+
+a4*c9)*x*y + (a3*c4+ a4*c10)*x*x + (a3*c5+ a4*c11)*y*y </p>
+<p>En rempla&ccedil;ant les (&eacute;quations 9-3) dans les
+(&eacute;quations 8) on obtient : </p>
+<p>x' = (a0*c0+ a1*c10)*x + (a0*c1+ a1*c11)*y + (a0*c2+ a1*c12+ a2) +
+(a0*c3+ a1*c13)*x*y + (a0*c4+ a1*c14)*x*x + (a0*c5+ a1*c15)*y*y +
+(a0*c6+ a1*c16)*x*x*y + (a0*c7+ a1*c17)*x*y*y + (a0*c8+ a1*c18)*x*x*x +
+(a0*c9+ a1*c19)*y*y*y <br>
+y' = (a3*c0+ a4*c10)*x + (a3*c1+ a4*c11)*y + (a3*c2+ a4*c12+ a5) +
+(a3*c3+ a4*c13)*x*y + (a3*c4+ a4*c14)*x*x + (a3*c5+ a4*c15)*y*y +
+(a3*c6+
+a4*c16)*x*x*y + (a3*c7+ a4*c17)*x*y*y + (a3*c8+ a4*c18)*x*x*x + (a3*c9+
+a4*c19)*y*y*y
+<br>
+</p>
+<p>Il reste &agrave; identifier les relations entre les coefficients b
+(connus) et les coefficients a et c (inconnus) : </p>
+<p>(&eacute;quations 10-2) <br>
+b0 = a0*c0+ a1*c6 <br>
+b1 = a0*c1+ a1*c7 <br>
+b2 = a0*c2+ a1*c8+ a2 <br>
+b3 = a0*c3+ a1*c9 <br>
+b4 = a0*c4+ a1*c10 <br>
+b5 = a0*c5+ a1*c11 <br>
+b6 = a3*c0+ a4*c6 <br>
+b7 = a3*c1+ a4*c7 <br>
+b8 = a3*c2+ a4*c8+ a5 <br>
+b9 = a3*c3+ a4*c9 <br>
+b10 = a3*c4+ a4*c10 <br>
+b11 = a3*c5+ a4*c11 </p>
+<p>(&eacute;quations 10-3) <br>
+b0 = a0*c0+ a1*c10 <br>
+b1 = a0*c1+ a1*c11 <br>
+b2 = a0*c2+ a1*c12+ a2 <br>
+b3 = a0*c3+ a1*c13 <br>
+b4 = a0*c4+ a1*c14 <br>
+b5 = a0*c5+ a1*c15 <br>
+b6 = a0*c6+ a1*c16 <br>
+b7 = a0*c7+ a1*c17 <br>
+b8 = a0*c8+ a1*c18<br>
+b9 = a0*c9+ a1*c19 <br>
+b10 = a3*c0+ a4*c10 <br>
+b11 = a3*c1+ a4*c11 <br>
+b12 = a3*c2+ a4*c12 + a5 <br>
+b13 = a3*c3+ a4*c13 <br>
+b14 = a3*c4+ a4*c14 <br>
+b15 = a3*c5+ a4*c15 <br>
+b16 = a3*c6+ a4*c16 <br>
+b17 = a3*c7+ a4*c17 <br>
+b18 = a3*c8+ a4*c18 <br>
+b19 = a3*c9+ a4*c19 <br>
+</p>
+<p>Nous sommes face &agrave; un syst&egrave;me qui comporte 6 inconnues
+de trop par rapport au nombre d'&eacute;quations. La valeur des
+coefficients a et c n'est donc pas univoque. </p>
+<p>Une solution de bon sens consiste &agrave; calculer la valeur des
+coefficients de passage (a0 &agrave; a5) pour le centre du champ
+o&ugrave; les d&eacute;formations ne sont pas trop importantes. Pour
+cela, on effecute une calibration sans distorsion sur la partie
+centrale du champ uniquement. Ainsi, les coefficients (a0 &agrave; a5)
+sont connus et les valeurs des coefficients (c) prennent pour valeur : </p>
+<p>(&eacute;quations 11-2) <br>
+c0=(a1*b6-a4*b0)/(a1*a3-a0*a4) <br>
+c1=(a1*b7-a4*b1)/(a1*a3-a0*a4) <br>
+c2=(a1*b8-a4*(b2-a2))/(a1*a3-a0*a4) <br>
+c3=(a1*b9-a4*b3)/(a1*a3-a0*a4) <br>
+c4=(a1*b10-a4*b4)/(a1*a3-a0*a4) <br>
+c5=(a1*b11-a4*b5)/(a1*a3-a0*a4) <br>
+c6=(a3*b0-a0*b6)/(a1*a3-a0*a4) <br>
+c7=(a3*b1-a0*b7)/(a1*a3-a0*a4) <br>
+c8=(a3*b2-a0*(b8-a5))/(a1*a3-a0*a4) <br>
+c9=(a3*b3-a0*b9)/(a1*a3-a0*a4) <br>
+c10=(a3*b4-a0*b10)/(a1*a3-a0*a4) <br>
+c11=(a3*b5-a0*b11)/(a1*a3-a0*a4) </p>
+<p>(&eacute;quations 11-3) <br>
+c0=(a1*b10-a4*b0)/(a1*a3-a0*a4) <br>
+c1=(a1*b11-a4*b1)/(a1*a3-a0*a4) <br>
+c2=(a1*b12-a4*(b2-a2))/(a1*a3-a0*a4) <br>
+c3=(a1*b13-a4*b3)/(a1*a3-a0*a4) <br>
+c4=(a1*b14-a4*b4)/(a1*a3-a0*a4) <br>
+c5=(a1*b15-a4*b5)/(a1*a3-a0*a4) <br>
+c6=(a1*b16-a4*b6)/(a1*a3-a0*a4) <br>
+c7=(a1*b17-a4*b7)/(a1*a3-a0*a4) <br>
+c8=(a1*b18-a4*b8)/(a1*a3-a0*a4) <br>
+c9=(a1*b19-a4*b9)/(a1*a3-a0*a4) <br>
+c10=(a3*b0-a0*b10)/(a1*a3-a0*a4) <br>
+c11=(a3*b1-a0*b11)/(a1*a3-a0*a4) <br>
+c12=(a3*b2-a0*(b12-a5))/(a1*a3-a0*a4) <br>
+c13=(a3*b3-a0*b13)/(a1*a3-a0*a4) <br>
+c14=(a3*b4-a0*b14)/(a1*a3-a0*a4) <br>
+c15=(a3*b5-a0*b15)/(a1*a3-a0*a4) <br>
+c16=(a3*b6-a0*b16)/(a1*a3-a0*a4) <br>
+c17=(a3*b7-a0*b17)/(a1*a3-a0*a4) <br>
+c18=(a3*b8-a0*b18)/(a1*a3-a0*a4) <br>
+c19=(a3*b9-a0*b19)/(a1*a3-a0*a4) <br>
+</p>
+<p>N.B. : La norme FITS permet de calculer les coefficients jusqu'au
+septi&egrave;me ordre. Nous avons volontairement limit&eacute; notre
+&eacute;tude au second
+et troisi&egrave;me ordre pour garder une &eacute;criture simple. </p>
+<h4> 8.1. Expos&eacute; pratique</h4>
+Soit (x,y) la liste des coordonn&eacute;es des &eacute;toiles sur
+l'image enti&egrave;re <br>
+Soit (x',y',mag) la liste des &eacute;toiles du catalogue de
+r&eacute;f&eacute;rence correspondant au champ observ&eacute;
+th&eacute;orique de l'image enti&egrave;re, projet&eacute;e selon une
+transformation gnomonique sans distorsion (&eacute;quations 5).
+<p>Extraire deux sous listes (X,Y) et (X',Y',MAG) correspondant
+&agrave; l'image
+&agrave; calibrer. </p>
+<p>Calculer les coefficients (a0 &agrave; a5) ainsi que les mots
+cl&eacute;s FITS en effectuant une calibration sans distorsion (cf.
+paragraphe 7). </p>
+<p>On effectue l'appariement entre les listes (x,y) et (x',y') et on
+optimise le jeu de param&egrave;tres (b): </p>
+<p>(&eacute;quations 7-2 ou 7-3) <br>
+x' = fx(b,x,y)<br>
+y' = fy(b,x,y)</p>
+<p>Calculer les valeurs num&eacute;riques des coefficients (c): </p>
+<p>(&eacute;quations 11-2 ou 11-3) <br>
+</p>
+<p>Dans l'ent&ecirc;te FITS, on ajoutera les mots cl&eacute;s suivants
+: </p>
+<p>Pour le second ordre (&eacute;quations 12-2) <br>
+PV1_0=c2 <br>
+PV1_1=c0 <br>
+PV1_2=c1 <br>
+PV1_3=0.0 <br>
+PV1_4=c4 <br>
+PV1_5=c3 <br>
+PV1_6=c5 <br>
+PV2_0=c8 <br>
+PV2_1=c7 <br>
+PV2_2=c6 <br>
+PV2_3=0.0 <br>
+PV2_4=c11 <br>
+PV2_5=c9 <br>
+PV2_6=c10 </p>
+<p>Pour le troisi&egrave;me ordre (&eacute;quations 12-3) <br>
+PV1_0=c2 <br>
+PV1_1=c0 <br>
+PV1_2=c1 <br>
+PV1_3=0.0 <br>
+PV1_4=c4 <br>
+PV1_5=c3 <br>
+PV1_6=c5<br>
+PV1_7=c8<br>
+PV1_8=c6<br>
+PV1_9=c7<br>
+PV1_10=c9<br>
+PV2_0=c12 <br>
+PV2_1=c11 <br>
+PV2_2=c10 <br>
+PV2_3=0.0 <br>
+PV2_4=c15 <br>
+PV2_5=c13 <br>
+PV2_6=c14<br>
+PV2_7=c19<br>
+PV2_8=c17 <br>
+PV2_9=c16 <br>
+PV2_10=c18&nbsp;</p>
+<p>Les coefficients PV*_3 correspondent &agrave; un coefficient en
+sqrt(x*x+y*y) que nous ne calculons pas ici. </p>
+<h3> 9. Passage (x,y) -&gt; (RA,DEC) avec distorsions</h3>
+On effectue d'abord la transformation :
+<p>(&eacute;quations 9-2) <br>
+x" = PV1_1*x + PV1_2*y + PV1_0 + PV1_5*x*y + PV1_4*x*x + PV1_6*y*y
+<br>
+y" = PV2_2*x + PV2_1*y + PV2_0 + PV2_5*x*y + PV2_6*x*x + PV2_4*y*y
+</p>
+<p>(&eacute;quations 9-3) <br>
+x" = PV1_1*x + PV1_2*y + PV1_0 + PV1_5*x*y + PV1_4*x*x + PV1_6*y*y +
+PV1_8*x*x*y + PV1_9*x*y*y + PV1_7*x*x*x + PV1_10*y*y*y<br>
+y" = PV2_2*x + PV2_1*y + PV2_0 + PV2_5*x*y + PV2_6*x*x + PV2_4*y*y
++ PV2_9*x*x*y + PV2_8*x*y*y + PV2_10*x*x*x + PV2_7*y*y*y </p>
+<p>puis on utilise (&eacute;quations 6) en rempla&ccedil;ant (x,y) par
+(x",y") pour calculer (RA,DEC). </p>
+<h3> 10. Passage (RA,DEC) -&gt; (x,y) avec distorsions</h3>
+A partir de (RA,DEC), on utilise d'abord les (&eacute;quations 5) pour
+calculer (x,y)<br>
+<br>
+Soit (xo,yo) = (x,y)<br>
+<br>
+On calcule (x",y") d'apr&egrave;s les &eacute;quations 9, puis on
+&eacute;crit :<br>
+<p>(&eacute;quations 13) <br>
+x = xo - (x-x")<br>
+y = yo - (y-y")</p>
+<p>Si l'on veut une mesure fine, on pourra recalculer (x",y") avec les
+&eacute;quations 9 d'apr&egrave;s les valeurs de (x,y) trouv&eacute;es,
+puis recalculer &agrave; nouveau les (x,y) par l'&eacute;quation 13.<br>
+</p>
+<p>&nbsp; </p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

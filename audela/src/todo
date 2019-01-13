@@ -1,0 +1,12 @@
+To do:
+------
+
+* Finir le fichier external/tcl/install.bat
+
+* Procedure d'installation avec ./configure --prefix=...  et 
+make install 
+
+* Regarder le driver FTDI-SIO pour la quickaudine.
+
+* Corriger le bug de visualisation d'une image avec des seuils
+  avec des valeurs a virgule flottante (et compris entre 0 et 1).

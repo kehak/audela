@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tutoriel sur l'astrométrie</title></head><body style="color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+<p class="date">Date de mise à jour : 12 novembre 2011</p>
+<h1>Tutoriel sur l'astrométrie</h1>
+<h1>1. Qu'est-ce que l'astrométrie ?</h1>
+L'astrométrie consiste à déterminer les
+coordonnées célestes d'un astre dont on a
+enregistré une image numérique. Les coordonnées
+célestes habituellement employées dans les catalogues
+d'objets célestes sont les coordonnées
+équatoriales. Les coordonnées équatoriales sont
+basées sur deux angles, l'ascension droite (notée ra) et
+la déclinaison (notée dec). Le couple (ra,dec) est
+l'équivalent céleste des coordonnées (longitude,
+latitude) sur la surface de la Terre.<br />
+<br />
+Sur une image numérique, on peut facilement mesurer les
+coordonnées (x,y) d'un astre exprimées en pixels.
+L'opération de calibration astrométrique consiste
+à calculer les équations de passage entre les couples
+(x,y) et les couples (ra,dec).<br />
+<br />
+D'un point de vue technique, la calibration astrométrique
+consiste à ajouter des mots clés dans l'en-tête FITS
+de l'image. Ces mots clés contiennent les valeurs des
+coefficients à introduire dans les équations
+mathématiques pour passer de (x,y) à (ra,dec). La liste
+de ces mots clés s'appelle communément WCS pour World
+Coordinate System.<br />
+<br />
+Le calcul des mots clés WCS est effectué en appariant les
+étoiles mesurées sur l'image (coordonnées x,y)
+avec les coordonnées (ra,dec) d'étoiles trouvées
+dans un catalogue astrométrique. Dans AudeLA on utilise deux
+types de catalogues (au choix) : USNO ou MICROCAT.<br />
+<br />
+Le catalogue USNO est disponible sous la forme de 2 DVD (11
+GB). La magnitude limite de l'USNO est de l'ordre de 20. Si on se
+limite aux étoiles jusqu'à la magnitude 16 on pourra
+utiliser le MICROCAT.
+Téléchargeable à l'adresse suivante :
+<a href="http://www.cesr.fr/%7Eklotz/microcat.zip">http://www.cesr.fr/~klotz/microcat.zip</a>.
+Ce catalogue n'occupe qu'un seul
+CDRom de 700 MB.<br />
+<h1>2. Commande de Console pour calibrer l'astrométrie d'une
+seule image </h1>
+A partir d'une image obtenue il faut connaître les
+paramètres suivants avant de lancer la commande de calibration :<br />
+<ul>
+  <li>Longueur focale du télescope (en mètres) : foclen_m</li>
+  <li>Les dimensions (en micromètres) des cotés des
+pixels de la caméra&nbsp;après binning : pixsize1_mu et
+pixsize2_mu</li>
+  <li>Les coordonnées célestes approximatives du centre
+du champ : Angle_ra et Angle_dec</li>
+  <li>Le choix d'un type de catalogue de calibration : USNO ou MICROCAT</li>
+  <li>Le chemin du dossier dans lequel se trouve le catalogue de
+calibration : cat_folder<br />
+  </li>
+</ul>
+Pour effectuer la calibration astrométrique, on utilise la
+commande calibwcs qui a pour syntaxe :<br />
+<br />
+calibwcs Angle_ra Angle_dec pixsize1_mu pixsize2_mu foclen_m
+USNO|MICROCAT cat_folder<br />
+<br />
+D'un point de vue technique, calibwcs établit un catalogue des
+étoiles en coordonnées (x,y) en utilisant le logiciel
+Sextractor (fourni avec AudeLA). Ensuite, une image théorique du
+champ est fabriquée en mémoire à partir du
+catalogue de calibration et des paramètres instrumentaux. Enfin,
+un algorithme de reconnaissance, basé sur Focas, établit
+l'appariement entre les étoiles de l'image et celles du
+catalogue. Il faut au moins 6 étoiles appariées pour
+calculer finalement les mots clés WCS.<br />
+<br />
+A la fin de l'opération de calibration, la fonction calibwcs
+retourne le nombre d'étoiles appariées.<br />
+<h1>3. Commande de Console pour calibrer l'astrométrie d'une
+série d'images </h1>
+La calibration d'un lot d'images enregistrées sur une même
+région du ciel est une opération courante qui sert de
+point de départ à de nombreuses analyses temporelles
+(variations d'éclats, orbites, etc.). Le principe de la
+calibration astrométrique à la commande de la Console est
+le même que pour une seule image. La syntaxe de la commande
+calibwcs2 est la suivante :<br />
+<br />
+calibwcs2 in out number Angle_ra Angle_dec pixsize1_mu pixsize2_mu
+foclen_m USNO|MICROCAT cat_folder ?first_index?<br />
+<br />
+On retrouve les paramètres Angle_ra Angle_dec pixsize1_mu
+pixsize2_mu foclen_m USNO|MICROCAT cat_folder, déjà
+décrits dans la fonction calibwcs. On trouve aussi les
+paramètres suivants :<br />
+<ul>
+  <li>in est le nom générique des images à
+calibrer.</li>
+  <li>out est le nom générique des images après
+la calibration astrométrique.</li>
+  <li>number est le nombre d'images dans la série.<br />
+  </li>
+</ul>
+Au cours des&nbsp;opérations de calibration, la fonction calibwcs
+affiche le nombre d'étoiles appariées pour chaque image.<br />
+<h1>4. Commande de fenêtre pour calibrer l'astrométrie
+d'une seule image</h1>
+Pour utiliser la commande graphique de Calibration
+astrométrique, on déroule le menu Analyse et on choisit
+l'item Calibration astrométrique.<br />
+<br />
+<img style="width: 516px; height: 470px;" alt="" src="images/calib_astrom1.png" /><br />
+<br />
+Il convient de remplir les champs suivants :<br />
+<ul>
+  <li>RA : La coordonnée céleste approximative de
+l'ascension droite du centre du champ (degrés).</li>
+  <li>DEC : La coordonnée céleste approximative de
+déclinaison du centre du champ (degrés).</li>
+  <li>FOCLEN : La longueur focale du télescope (en mètres).</li>
+  <li>PIXSIZE1 : La dimension (en micromètres) du coté X
+d'un pixel de la caméra&nbsp;après binning.</li>
+  <li>PIXSIZE2 : La dimension (en micromètres) du coté Y
+d'un pixel de la caméra&nbsp;après binning.</li>
+  <li>CROTA2 : L'angle de position du nord par rapport au haut de
+l'image. Mettre zéro si on ne le connaît pas.</li>
+  <li>CRPIX1 : Pixel de référence sur l'axe X. en
+général on prend le centre du champ (valeurs
+proposées par défaut).</li>
+  <li>CRPIX2 : Pixel de référence sur l'axe Y. en
+général on prend le centre du champ (valeurs
+proposées par défaut).</li>
+  <li>Nom du catalogue : Prendre USNO ou MICROCAT.</li>
+  <li>Chemin d'accès au catalogue : Indiquer dans quel
+dossier se trouve le catalogue de calibration.</li>
+</ul>
+On appuie sur le bouton Démarrer le calcul de la calibration.
+Une fenêtre apparaît à la fin de l'opération
+pour indiquer la qualité de la calibration.<br />
+<h1>5. Comment mesurer les coordonnées d'une étoile ?</h1>
+Après avoir effectué une calibration astrométrique
+par l'une des méthodes précédentes, les
+coordonnées (X,Y) du curseur&nbsp;de l'image affichée
+apparaissent en bleu. Cela signifie que l'on peut basculer sur
+l'affichage en coordonnées (Ra,Dec) lorsqu'on clique sur la zone
+des coordonnées en bleu. <br />
+<br />
+Pour calculer les coordonnées (ra,dec) d'une étoile, il
+suffit de l'entourer avec un cadre bleu (utiliser la souris) puis de
+faire clic droit et demander Ajuster une gaussienne. Dans la Console de
+AudeLA, on pourra lire de nombreuses informations comme par exemple :<br />
+<pre style="background-color: rgb(255, 255, 204);"># === Visu1 === Ajuster une gaussienne ===<br /># Coordonnées de la fenêtre : 835 646 857 666<br /># Centre : 845.40 / 656.79<br /># Fwhm : 2.401 / 2.588<br /># Intensité : 15782.222164 / 16116.749379<br /># Fond : 484.364238 / 479.551073<br /># Flux intégré : 112476.324382 +/- 1179.548735<br /># Magnitude instrumentale -2.5*log10(flux) : -12.628 +/-&nbsp; 0.011<br /><br /># AD Déc. : 164.867805 67.509553<br /># AD Déc. : 10h59m28s27 +67d30m34s39<br /><br /># OLD Format MPC :<br />&nbsp;&nbsp;&nbsp;&nbsp; .&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; C2011 02 05.20321 10 59 28.27 +67 30 34.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -8.7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 148<br /><br /># Attention :<br /># Le site UAI 148 doit être celui où l'image a été acquise.<br /><br /># Use http://cfa-www.harvard.edu/iau/info/Astrometry.html for informations.<br /># Use ::astrometry::mpc_provisional2packed to convert designation to MPC packed form.</pre>
+Les coordonnées (x,y) précises sont calculées
+à partir d'un ajustement par une forme gaussienne. Elles sont
+affichées après le mot Centre. Les coordonnées
+(Ra,Dec) sont affichées sous deux formes différentes
+après les mots AD Déc.<br />
+<br />
+Les dernières lignes de l'affichage des résultats dans la Console concernent le format d'envoi des mesures astrométriques
+des astéroïdes et des comètes pour le Minor Planet
+Center (MPC). Dans l'exemple cité ici il s'agit de la ligne
+suivante :<br />
+<pre>123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789<br />&nbsp;&nbsp;&nbsp;&nbsp; .&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; C2011 02 05.20321 10 59 28.27 +67 30 34.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -8.7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 148</pre>
+Il faut remplacer les premiers caractères de la ligne par la
+dénomination de l'objet mesuré.<br />
+<br />
+Si l'astre est inconnu, on lui donne une désignation personnelle. Par
+exemple OBJ1. On écrira OBJ1 à partir de la position du
+point . situé dans la colonne 6 :<br />
+<pre>&nbsp;&nbsp;&nbsp;&nbsp; OBJ1&nbsp;&nbsp;&nbsp;&nbsp; C2011 02 05.20321 10 59 28.27 +67 30 34.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -8.7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 148</pre>
+Si l'astre est identifié sous la forme de son numéro
+définitif, on écrit ce numéro à partir de
+la colonne 1 et on enlève le point de la colonne 6. Par exemple,
+pour l'astéroïde numéro (10222) :<br />
+<pre>10222 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; C2011 02 05.20321 10 59 28.27 +67 30 34.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -8.7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 148</pre>
+Si l'astre est identifié sous la forme de son numéro
+provisoire, on
+écrit ce numéro à partir de la colonne 6 et on
+utilise la fonction de Console ::astrometry::mpc_provisional2packed
+pour convertir la désignation provisoire au format
+empaqueté. Par exemple, pour l'astéroïde 2010 PF
+145, on écrit :<br />
+<pre>::astrometry::mpc_provisional2packed 2010PF145<br /># K10PE5F</pre>
+Ainsi, la ligne au format MPC devient :<br />
+<pre>&nbsp;&nbsp;&nbsp;&nbsp; K10PE5F  C2011 02 05.20321 10 59 28.27 +67 30 34.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -8.7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 148<br /></pre>
+Enfin, il convient de remplacer la magnitude (ici -8.7 dans l'exemple)
+par sa valeur mesurée par une calibration photométrique
+(cf. le tutoriel dédié).<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+</body></html>

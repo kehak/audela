@@ -1,0 +1,3 @@
+LIBRARY liboscadine
+EXPORTS 
+    Oscadine_Init

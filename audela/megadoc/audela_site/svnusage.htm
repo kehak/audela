@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Piloter un t&eacute;lescope</title>
+</head>
+
+<body>
+
+<p>Aide-m&eacute;moire des <a href="http://svnbook.red-bean.com/en/1.0/ch09.html">commandes Subversion</a>.</p>
+
+<h3>Sous GNU/Linux</h3>
+
+<h4>T&eacute;l&eacute;chargement des sources d'Audela :</h4>
+<ul>
+   <li>Installer les paquets <b>esvn</b> et <b>subversion</b>,</li>
+   <li>Cr&eacute;er un répertoire  <b>audela-svn</b> et entrer dedans,</li>
+   <li>Ex&eacute;cuter la commande de <b>t&eacute;l&eacute;chargement total de la version svn d'audela</b> :
+   <pre>svn co https://audela.svn.sourceforge.net/svnroot/audela/trunk/audela audela</pre></li>
+   <li>Rentrer son <b>identifiant</b> ainsi que son <b>mot de passe</b></li>
+</ul>
+
+<h4>Mise &agrave; jour locales et commit des modifications :</h4>
+<ul>
+   <li>Ajouter la d&eacute;claration des <b>types</b> dans le fichier <b>.subversion/config</b> (qui a &eacute;t&eacute; cr&eacute;&eacute; lors de la premi&egrave;re ex&eacute;cution de la commande svn) :</li>
+   <pre style="background-color: lightgrey;">
+   enable-auto-props = yes
+   [auto-props]
+   *.c = svn:eol-style=native
+   *.cpp = svn:eol-style=native
+   *.h = svn:keywords=Author Date Id Rev URL;svn:eol-style=native
+   *.dsp = svn:eol-style=CRLF
+   *.dsw = svn:eol-style=CRLF
+   *.sh = svn:eol-style=native;svn:executable
+   *.txt = svn:eol-style=native;svn:keywords=Author Date Id Rev URL;
+   *.png = svn:mime-type=image/png
+   *.jpg = svn:mime-type=image/jpeg
+   Makefile = svn:eol-style=native
+   *.tcl = svn:eol-style=native;svn:keywords=Author Date Id Rev URL;
+   *.cap = svn:eol-style=native;svn:keywords=Author Date Id Rev URL;
+   </pre>
+   <li>Lancer <b>esvn</b></li>
+   <li>D&eacute;clarer le r&eacute;pertoire <b>audela-svn/audela</b> comme r&eacute;pertoire de travail : menu <b>Fichier/Ouvrir</b> le r&eacute;pertoire de travail,</li>
+   <li>En cliquant droit sur un fichier ou un r&eacute;pertoire, on a acc&egrave;s aux fonctions usuelles de Commit, Update, Diff, ...</li>
+   <li>Si vous avez un compte SourceForge, param&egrave;trez votre coordonn&eacute;s d'authentification dans : menu <b>Fichier/Options onglet Other</b> puis champs <b>User</b> et <b>Password</b>.</li<
+</ul>
+
+<h3>Sous Windows</h3>
+<ul>
+<li>Installer la bonne version du logiciel <a href="https://tortoisesvn.net/downloads.html"><b>TortoiseSVN</b></a>,</li>
+<li><b>Rebooter</b> l'ordinateur pour terminer l'installation de <b>TortoiseSVN</b>,</li>
+<li>Cr&eacute;eer  un r&eacute;pertoire vide , par exemple <b>D:\audela-svn</b>,</li>
+<li>Depuis l'explorateur de fichier de Windows, cliquer avec le bouton DROIT de la souris sur le nom du nouveau r&eacute;pertoire pour faire appara&icirc;tre le menu contextuel dans lequel se trouve le menu <b>SVN Chekout</b>,</li>
+<li>Avec le menu <b>SVN Checkout</b> r&eacute;cup&eacute;rer les sources de Audela &agrave; partir de l'URL <a href="https://svn.code.sf.net/p/audela/code/trunk/audela">https://svn.code.sf.net/p/audela/code/trunk/audela</a>,</li>
+</ul>
+<p align="center"><img src="images/svn/winsvn2.png" alt="" /><img src="images/svn/winsvn1.jpg" /></p>
+<p align="center"><img src="images/svn/winsvn3.png" alt="" /></p>
+<p>Ouvrir la fen&ecirc;tre de configuration de TortoiseSVN avec le menu <b>TortoiseSVN>Settings</b></p>
+<p align="center"><img src="images/svn/winsvn4.png" alt="" /></p>
+<p>Cliquer sur le bouton <b>Edit</b></p>
+<p align="center"><img src="images/svn/winsvn5.png" alt="" />
+<p>modifier la configuration en mettant les m&ecirc;mes param&egrave;tres que pour Linux (voir ci-dessus)</p>
+<p align="center"><img src="images/svn/winsvn6.png" alt="" />
+</body>
+</html>

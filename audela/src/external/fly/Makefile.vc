@@ -1,0 +1,17 @@
+
+CP= copy
+RM= -@del /f /q
+
+AUDELA_BIN=..\..\..\bin
+
+build:
+
+
+install: build
+	if not exist $(AUDELA_BIN) mkdir $(AUDELA_BIN)
+	$(CP) bin\fly.exe $(AUDELA_BIN)
+
+clean:
+	$(RM) $(AUDELA_BIN)\fly.exe
+
+

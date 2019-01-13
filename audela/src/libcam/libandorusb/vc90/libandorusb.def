@@ -1,0 +1,2 @@
+LIBRARY libandorusb
+EXPORTS Andorusb_Init @1

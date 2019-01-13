@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Visualiser des images</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 03 juillet 2005</p>
+<h1>Visualiser des images </h1>
+<p> Avant d'aller plus loin dans la description des fonctionnalit&eacute;s d'Aud'ACE, nous vous proposons une petite r&eacute;cr&eacute;ation. Vous allez visualiser votre premi&egrave;re image. </p>
+<p>Une image est incluse dans la distribution du logiciel, il s'agit de M57. Seules les images au format FITS sont reconnues, mais comme vous l'avez lu au paragraphe Fichiers image, vous avez le choix de l'extension des fichiers image, qui est par d&eacute;faut fit. </p>
+<h3> 1. Utilisation du menu d&eacute;roulant</h3>
+<p> Pour ouvrir le fichier d'une image et donc la visualiser, d&eacute;roulez le menu Fichier et choisissez l'option Ouvrir : </p>
+<img src="images/image31.gif" alt="" width="639" height="226" />
+<p>Une fen&ecirc;tre de navigation s'ouvre directement sur le r&eacute;pertoire que vous avez d&eacute;di&eacute; aux images par l'interm&eacute;diaire du menu Configuration --&gt; R&eacute;pertoires. </p>
+<img src="images/image32.gif" alt="" width="563" height="419" />
+<p>Les noms des fichiers des images apparaissent. Il vous reste &agrave; s&eacute;lectionner le nom du fichier &agrave; ouvrir, par exemple m57.fit et &agrave; cliquer sur le bouton Ouvrir, ou tout simplement &agrave; double cliquer sur l'ic&ocirc;ne de l'image. Elle appara&icirc;t alors dans la fen&ecirc;tre principale d'Aud'ACE : </p>
+<img src="images/image33.gif" alt="" width="639" height="507" />
+<p>Les barres de r&eacute;glage des seuils (en bas &agrave; gauche) permettent d'affiner la luminosit&eacute; et le contraste de l'image affich&eacute;e. Habituellement, les logiciels d'astronomie utilisent la notion de seuil bas et de seuil haut pour r&eacute;gler l'apparence visuelle de l'image. Pour comprendre comment utiliser les seuils, rappelons comment se pr&eacute;sente une image num&eacute;rique lorsqu'elle est charg&eacute;e dans la m&eacute;moire de l'ordinateur. </p>
+<p>Une image num&eacute;rique est constitu&eacute;e de pixels dont l'intensit&eacute; lumineuse est caract&eacute;ris&eacute;e par un nombre compris entre 0 et 32767, par exemple, pour les images d&eacute;livr&eacute;es par la cam&eacute;ra Audine. Les pixels ayant re&ccedil;us peu de lumi&egrave;re ont des valeurs faibles, proches de z&eacute;ro. Alors que les pixels ayant re&ccedil;us trop de lumi&egrave;re, sont satur&eacute;s, et ont pour valeur 32767. </p>
+<p>La valeur du seuil bas (262 pas codeurs dans l'exemple de l'image ci-dessus, &agrave; droite de la barre de r&eacute;glage du seuil bas) permet &agrave; l'affichage d'assigner la couleur noire &agrave; tous les pixels de l'image qui ont une valeur inf&eacute;rieure &agrave; cette valeur. La valeur du seuil haut (2621 pas codeurs dans l'exemple de l'image ci-dessus, &agrave; droite de la barre de r&eacute;glage du seuil haut) permet &agrave; l'affichage d'assigner la couleur blanche &agrave; tous les pixels de l'image qui ont une valeur sup&eacute;rieure &agrave; cette valeur. Les pixels dont la valeur est comprise entre le seuil bas et le seuil haut seront color&eacute;s d'un gris proportionnel &agrave; l'intensit&eacute; re&ccedil;ue. On retiendra donc : </p>
+<ul>
+  <li>Seuil bas : Pour fixer la valeur limite des pixels qui seront affich&eacute;s en noir.</li>
+  <li>Seuil haut : Pour fixer la valeur limite des pixels qui seront affich&eacute;s en blanc.</li>
+</ul>
+On se rappellera les deux petites r&egrave;gles suivantes :
+<ul>
+  <li>Si l'image est trop blanche : Augmenter la valeur du seuil haut et &eacute;ventuellement celle du seuil bas.</li>
+  <li>Si l'image est trop noire : Diminuer la valeur du seuil bas et &eacute;ventuellement celle du seuil haut.</li>
+</ul>
+<p>Astuce : Il est possible d'obtenir l'affichage d'une image avec des seuils calcul&eacute;s automatiquement en cliquant une fois, avec le bouton gauche de la souris, sur l'une des deux valeurs des seuils bas ou haut. Les limites des barres de seuils sont r&eacute;glables entre -32768 et +32767. En cliquant une fois, avec le bouton droit de la souris, sur l'une des deux valeurs des seuils bas ou haut, on ouvre la fen&ecirc;tre de r&eacute;glage suivante :</p>
+<img src="images/image34.gif" alt="" width="421" height="328" />
+<h3> 2. Utilisation de la Console</h3>
+<p> Une autre possibilit&eacute; pour ouvrir les images consiste &agrave; &eacute;crire un texte dans la ligne de commande de la Console. Pour cela, dans la fen&ecirc;tre de la Console &eacute;crivez loadima m57 dans la zone inf&eacute;rieure comme dans l'exemple ci-dessous : </p>
+<img src="images/image35.gif" alt="" width="378" height="320" />
+<p>L'image de M57 est alors affich&eacute;e sur l'&eacute;cran de la fen&ecirc;tre principale d'Aud'ACE. </p>
+<p>Astuce : Si vous trouvez que c'est trop long d'&eacute;crire loadima, vous pouvez personnaliser votre environnement en cr&eacute;ant une fonction de raccourci. Par exemple, pour que la lettre l soit un raccourci de la fonction loadima, il suffit d'&eacute;crire la ligne suivante dans la Console :</p>
+<p>proc l {nom} {loadima $nom}</p>
+<p>Cette ligne signifie &agrave; l'interpr&eacute;teur Tcl qu'il doit ajouter la nouvelle fonction l (la lettre L minuscule) qui a un seul argument d'entr&eacute;e, la variable nom, et dont le corps de la fonction effectue simplement un loadima sur le nom entr&eacute;. Apr&egrave;s avoir &eacute;crit cette ligne, pour ouvrir l'image, il suffit maintenant d'&eacute;crire : l m57. Pour plus de d&eacute;tails sur la fa&ccedil;on de cr&eacute;er une nouvelle fonction, consulter la page d&eacute;di&eacute;e aux scripts.</p>
+<p> Noter que la ligne de commande de la Console permet d'effectuer la m&ecirc;me op&eacute;ration que l'utilisation des menus. Ce concept est tr&egrave;s g&eacute;n&eacute;ral dans l'interface Aud'ACE o&ugrave; toutes les op&eacute;rations disponibles dans les menus ont une &eacute;quivalence en ligne de commande. En g&eacute;n&eacute;ral, l'astronome d&eacute;butant utilisera de pr&eacute;f&eacute;rence les menus car il n'y a aucun risque d'erreur sur la syntaxe. L'usage de la ligne de commande peut donc sembler "r&eacute;serv&eacute;" aux sp&eacute;cialistes mais cela d&eacute;pend des go&ucirc;ts de chacun. </p>
+<p>Contrairement &agrave; de nombreux logiciels Aud'ACE ne peut pas utiliser le mot load pour charger une image, cette fonction est r&eacute;serv&eacute;e au chargement des extensions par Tcl/Tk. </p>
+<h3> 3. Acc&egrave;s aux informations contenues dans le format FITS des images</h3>
+<p> Le format FITS utilis&eacute; par Aud'ACE permet d'associer &agrave; chaque prise de vue, traitement d'image, etc. un certain nombre d'informations normalis&eacute;es (normalisation internationale) avec d'autres &agrave; caract&egrave;re plus personnel. </p>
+<p>Pour acc&eacute;der &agrave; ces informations, il vous suffit d'ouvrir le menu d&eacute;roulant Fichier et de cliquer sur En-t&ecirc;te FITS, apr&egrave;s avoir bien s&ucirc;r visualiser une image dans la fen&ecirc;tre principale d'Aud'ACE. </p>
+<img src="images/image36.gif" alt="" width="639" height="507" />
+<p>Dans le cas de l'image de M57, nous obtenons : </p>
+<img src="images/image37.gif" alt="" width="638" height="335" />
+</body>
+
+</html>

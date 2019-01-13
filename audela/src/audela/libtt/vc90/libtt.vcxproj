@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>abtt</ProjectName>
+    <ProjectGuid>{5D54C1BF-E5F7-4D09-85A8-5B0F324CE5DC}</ProjectGuid>
+    <RootNamespace>libtt</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.24730.2</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>lib$(ProjectName)</TargetName>
+    <CustomBuildBeforeTargets>Clean</CustomBuildBeforeTargets>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>lib$(ProjectName)</TargetName>
+    <CustomBuildBeforeTargets>Clean</CustomBuildBeforeTargets>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/libtt.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\..\include;..\..\..\external\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;LIBTT_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>.\Debug/libtt.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <BrowseInformation />
+      <BrowseInformationFile>.\Debug/</BrowseInformationFile>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>..\..\..\external\lib\cfitsio.lib;..\..\..\external\lib\jpeg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/libtt.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug/libtt.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>if not exist ..\..\..\include (mkdir ..\..\..\include)
+
+copy ..\src\libtt.h ..\..\..\include
+echo on
+copy /y "$(TargetPath)"  ..\..\..\..\bin
+
+copy /y "$(TargetPath)"  ..\..\..\..\astrobrick\python
+</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>del  /f /q "$(SolutionDir)..\bin\$(TargetFileName)"
+
+del  /f /q "$(SolutionDir)..\astrobrick\python\$(TargetFileName)</Command>
+      <Outputs>$(TargetPath);%(Outputs)</Outputs>
+      <TreatOutputAsContent>true</TreatOutputAsContent>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/libtt.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\..\include;..\..\..\external\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;LIBTT_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>.\Release/libtt.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <BrowseInformation />
+      <BrowseInformationFile>.\Release/</BrowseInformationFile>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>..\..\..\external\lib\cfitsio.lib;..\..\..\external\lib\jpeg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ProgramDatabaseFile>.\Release/libtt.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release/libtt.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>if not exist ..\..\..\include (mkdir ..\..\..\include)
+
+copy ..\src\libtt.h ..\..\..\include
+echo on
+copy /y "$(TargetPath)"  ..\..\..\..\bin
+
+copy /y "$(TargetPath)"  ..\..\..\..\astrobrick\python
+</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>del  /f /q "$(SolutionDir)..\bin\$(TargetFileName)"
+
+del  /f /q "$(SolutionDir)..\astrobrick\python\$(TargetFileName)</Command>
+      <Outputs>$(TargetPath);%(Outputs)</Outputs>
+      <TreatOutputAsContent>true</TreatOutputAsContent>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\files.c" />
+    <ClCompile Include="..\src\fs_fsio1.c" />
+    <ClCompile Include="..\src\fs_fsio2.c" />
+    <ClCompile Include="..\src\fs_macr1.c" />
+    <ClCompile Include="..\src\fs_macr2.c" />
+    <ClCompile Include="..\src\fs_macr3.c" />
+    <ClCompile Include="..\src\fs_macr4.c" />
+    <ClCompile Include="..\src\tt.c" />
+    <ClCompile Include="..\src\tt_fits1.c" />
+    <ClCompile Include="..\src\tt_fits2.c" />
+    <ClCompile Include="..\src\tt_fits3.c" />
+    <ClCompile Include="..\src\tt_fits4.c" />
+    <ClCompile Include="..\src\tt_fits5.c" />
+    <ClCompile Include="..\src\tt_fsio2.c" />
+    <ClCompile Include="..\src\tt_poin1.c" />
+    <ClCompile Include="..\src\tt_poin2.c" />
+    <ClCompile Include="..\src\tt_scri1.c" />
+    <ClCompile Include="..\src\tt_seri1.c" />
+    <ClCompile Include="..\src\tt_seri2.c" />
+    <ClCompile Include="..\src\tt_seri3.c" />
+    <ClCompile Include="..\src\tt_seri4.c" />
+    <ClCompile Include="..\src\tt_seri5.c" />
+    <ClCompile Include="..\src\tt_seri6.c" />
+    <ClCompile Include="..\src\tt_stac1.c" />
+    <ClCompile Include="..\src\tt_stac2.c" />
+    <ClCompile Include="..\src\tt_time1.c" />
+    <ClCompile Include="..\src\tt_user1.c" />
+    <ClCompile Include="..\src\tt_user2.c" />
+    <ClCompile Include="..\src\tt_user3.c" />
+    <ClCompile Include="..\src\tt_user4.c" />
+    <ClCompile Include="..\src\tt_user5.c" />
+    <ClCompile Include="..\src\tt_util1.c" />
+    <ClCompile Include="..\src\tt_util2.c" />
+    <ClCompile Include="..\src\tt_util3.c" />
+    <ClCompile Include="..\src\tt_util4.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\external\include\fitsio.h" />
+    <ClInclude Include="..\..\..\external\include\longnam.h" />
+    <ClInclude Include="..\src\files.h" />
+    <ClInclude Include="..\src\focas.h" />
+    <ClInclude Include="..\src\libfiles.h" />
+    <ClInclude Include="..\src\libtt.h" />
+    <ClInclude Include="..\src\tt.h" />
+    <ClInclude Include="..\src\tt_user1.h" />
+    <ClInclude Include="..\src\tt_user2.h" />
+    <ClInclude Include="..\src\tt_user3.h" />
+    <ClInclude Include="..\src\tt_user4.h" />
+    <ClInclude Include="..\src\tt_user5.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\external\cfitsio\vc90\external_cfitsio.vcxproj">
+      <Project>{55983a0b-c057-416c-9ab2-c8b9d01d7d2c}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\external\jpeg6b\vc90\external_jpeg6b.vcxproj">
+      <Project>{dd2a2284-f3b3-411a-bb8b-1e8f1ab7d3d1}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

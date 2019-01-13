@@ -1,0 +1,2 @@
+LIBRARY libcagire
+EXPORTS Cagire_Init @1

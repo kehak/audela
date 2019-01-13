@@ -1,0 +1,31 @@
+Mons Agnes                18.6N   5.3E    1.0                                                     Prénom féminin grec
+Mons Ampère               19.0N   4.0W    30.0    22                                              André Marie ; Physicien français (1775-1836)
+Mons André                5.2N    120.6E  10.0                                                    Prénom masculin français
+Mons Ardeshir             5.0N    121.0E  8.0                                                     Nom de roi Perse (Iranien)
+Mons Argaeus              19.0N   29.0E   50.0    24  25                                          Nommé comme un pic d'Asie Mineure (aujourd'hui Erciyas Dagi)
+Mons Bradley              22.0N   1.0E    30.0    22                                              James ; Astronome anglais (1692-1762)
+Mons Delisle              29.5N   35.8W   30.0    19                                              Nommé en fonction du cratère voisin
+Mons Dieter               5.0N    120.2E  20.0                                                    Prénom masculin allemand
+Mons Dilip                5.6N    120.8E  2.0                                                     Prénom masculin indien
+Mons Esam                 14.6N   35.7E   8.0     36                                              Prénom masculin arabe
+Mons Euler                23.3N   29.2W   27.0                                                    Leonhard ; Mathématicien suisse (1707-1783) ; actuellement appelé Mons Vinogradov
+Mons Ganau                4.8N    120.6E  14.0                                                    Prénom masculin africain
+Mons Gruithuisen Delta    36.0N   39.5W   20.0    9                                               Nommé en fonction du cratère voisin
+Mons Gruithuisen Gamma    36.6N   40.5W   20.0    9                                               Nommé en fonction du cratère voisin
+Mons Hadley               26.5N   4.7E    25.0    22                                              Hadley, John ; Fabricant anglais d'instruments (1682-1743)
+Mons Hadley Delta         25.8N   3.8E    15.0    22                                              Nommé en fonction du mont voisin
+Mons Hansteen             12.1S   50.0W   30.0    40                                              Nommé en fonction du cratère voisin
+Mons Herodotus            27.5N   53.0W   5.0     18                                              Nommé en fonction du cratère voisin
+Mons Huygens              20.0N   2.9W    40.0    22                                              Christian ; Astronome, mathématicien et physicien hollandais (1629-1695)
+Mons La Hire              27.8N   25.5W   25.0    20                                              Philippe de ; Mathématicien et astronome français (1640-1718)
+Mons Maraldi              20.3N   35.3E   15.0    25                                              Nommé en fonction du cratère voisin
+Mons Moro                 12.0S   19.7W   10.0    42                                              Antonio Lazzaro ; Naturaliste italien (1687-1764)
+Mons Penck                10.0S   21.6E   30.0    46                                              Albrecht ; Géographe allemand (1858-1945)
+Mons Pico                 45.7N   8.9W    25.0    11                                              Pic en espagnol
+Mons Piton                40.6N   1.1W    25.0    12                                              Nommé comme le Mont Piton de l'île de Ténériffe
+Mons Rümker               40.8N   58.1W   70.0    8                                               Karl Ludwig Christian ; Astronome allemand (1788-1862)
+Mons Usov                 12.0N   63.0E   15.0    38                                              Mikhail A. ; Géologue soviètique (1883-1933)
+Mons Vinogradov           22.4N   32.4W   25.0    19                                              Aleksander Pavlovich ; Géochimiste et chimiste du cosmos soviétique (1895-1975) autrefois appelé Mons Euler
+Mons Vitruvius            19.4N   30.8E   15.0    25                                              Nommé en fonction du cratère voisin
+Mons Wolff                17.0N   6.8W    35.0    21                                              Christian, Baron von ; Philosophe allemand (1679-1754)
+Mont Blanc                45.0N   1.0E    25.0    12                                              Mont Blanc

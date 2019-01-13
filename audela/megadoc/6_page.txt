@@ -1,0 +1,99 @@
+/* Note : ce fichier est dedié aux pages recuperees sur le site www.audela.org */
+/* ou plusrrarement iun lien vers une page extsitante (Cartes du Ciel)
+
+
+/* ========================== Techniques =================== */
+
+/*! @page pilotage_tel Piloter un t&eacute;lescope
+    @htmlinclude audela_site/interfa4.htm
+
+    @page plugin_chart_carteducielv3 Pointer avec Cartes du Ciel
+    @htmlinclude "../gui/audace/plugin/chart/carteducielv3/french/carteducielv3.htm"
+
+    @page config_cam Utiliser une cam&eacute;ra CCD
+    @htmlinclude audela_site/interfa2.htm
+
+    @page images_ccd Traiter des images CCD
+    @htmlinclude audela_site/interfa3.htm
+
+    @page autoguider_spectro_fr Autoguidage avec LHIRES (Fr)
+    @author Olivier Thizy (thizy@free.fr)
+    @htmlinclude audela_site/autoguider_spectro_fr.htm
+
+    @page autoguider_spectro_en Autoguiding with LHIRES (En)
+    @author Olivier Thizy (thizy@free.fr)
+    @htmlinclude audela_site/autoguider_spectro_en.htm
+*/
+
+/* ========================== Scripts ======================= */
+
+/*! @page whatisascript Qu'est-ce qu'un script ?
+    @htmlinclude audela_site/script1.htm
+
+    @page starttcl D&eacute;buter en langage Tcl
+    @htmlinclude audela_site/script2.htm
+
+    @page tel_park Mettre un t&eacute;lescope en parking
+    @htmlinclude audela_site/telescope_parking.htm
+
+    @page acq_deep_sky Acqu&eacute;rir des images en Ciel Profond
+    @htmlinclude audela_site/script3a.htm
+
+    @page scanfast Faire de la photom&eacute;trie rapide en mode scan
+    @htmlinclude audela_site/script3c.htm
+
+    @page compatibilite Compatibilit&eacute; d'&eacute;criture des scripts
+    @htmlinclude audela_site/script1a.htm
+*/
+
+/* ====================== Développement ====================== */
+
+/*! @page interface_perso1 Construire sa propre interface (1)
+    @htmlinclude audela_site/script7.htm
+
+    @page interface_perso2 Construire sa propre interface (2)
+    @htmlinclude audela_site/script7a.htm
+
+    @page audela_reseau Utiliser AudeLA en r&eacute;seau
+    (consulter aussi l'aide @ref dp1)
+    @htmlinclude audela_site/script4.htm
+
+    @page protocole_tcpip Installer le protocole TCP/IP
+    @htmlinclude audela_site/script4a.htm
+
+    @page audela_serveur Intégrer Audela dans un serveur Internet
+    @htmlinclude audela_site/script5.htm
+*/
+
+/* ======================= Mise a jour ======================== */
+
+/*! @page svntortoise Utilisation de SVN
+    @htmlinclude audela_site/svnusage.htm
+
+    @page compillinux Compilation sous Linux
+    @htmlinclude audela_site/compillinux.htm
+
+    @page compilwindows Compilation sous Windows
+    @htmlinclude audela_site/compilwin.htm
+
+    @page updateaudela Mise &agrave; jour de AudeLA
+    @htmlinclude audela_site/updateaudela.htm
+*/
+
+/* ======================= Extensions ======================== */
+
+/*! @page exten1 Qu'est-ce qu'une extension ?
+    @htmlinclude audela_site/exten1.htm
+
+    @page exten2 Les extensions standard de Audela
+    @htmlinclude audela_site/exten2.htm
+
+    @page exten3 D&eacute;buter en langage C
+    @htmlinclude audela_site/exten3.htm
+
+    @page exten4 Ecrire une extension standard pour Audela
+    @htmlinclude audela_site/exten4.htm
+
+    @page exten5 Ecrire une extension de pilote de cam&eacute;ra ou de t&eacute;lescope
+    @htmlinclude audela_site/exten4.htm
+*/

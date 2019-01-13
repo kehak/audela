@@ -1,0 +1,1632 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta name="GENERATOR" content="Mozilla/4.51 [fr] (Win95; I) [Netscape]">
+   <title>M&eacute;thodes de calibration photom&eacute;trique</title>
+</head>
+<body>
+
+<center>
+<h1>
+Proc&eacute;dures de calibration photom&eacute;trique</h1></center>
+
+<center>Alain KLOTZ
+<br>Mise &agrave; jour 15/12/1999</center>
+
+<h2>
+1. G&eacute;n&eacute;ralit&eacute;s</h2>
+Calibrer les images photom&eacute;triquement consiste &agrave; d&eacute;terminer
+la relation qui permet de convertir les flux stellaires en magnitudes.
+On peut ainsi diffuser des r&eacute;sultats dans un syst&egrave;me standard
+d'&eacute;clairements, les magnitudes, compr&eacute;hensible par l'ensemble
+de la communaut&eacute; scientifique (application aux &eacute;toiles variables
+en g&eacute;n&eacute;ral). Le but de cet expos&eacute; concerne la d&eacute;termination
+de la valeur des coefficients des &eacute;quations dites de "passage" entre
+les pas codeurs (la mesure sur l'image) et les magnitudes (la grandeur
+physique associ&eacute;e aux &eacute;toiles). Mais de quels coefficients
+parlons-nous ? Nous commen&ccedil;erons par introduire les notations qui
+seront employ&eacute;es dans cet expos&eacute; avant de s'int&eacute;resser
+&agrave; la m&eacute;thode observationnelle et &agrave; la d&eacute;termination
+des coefficients.
+<p>On pourra ausii consulter une page sp&eacute;ciale donnant <a href="phtm2-fr.htm">quelques
+rep&egrave;res sur la photom&eacute;trie</a>.
+<h3>
+1.1. Les notations</h3>
+On notera en Vi, Ri et Ii, les magnitudes calcul&eacute;es dans les bandes
+passantes des filtres instrumentaux (ceux utilis&eacute;s lors de l'observation).
+Les magnitudes (VRI)i se calculent tout simplement par les formules de
+Pogson :
+<center>Vi = -2.5*log(FVi)
+<br>&nbsp;Ri = -2.5*log(FRi)
+<br>&nbsp;Ii = -2.5*log(FIi)</center>
+
+<p>Les logarithmes sont en base 10. FVi est le flux total (en pas codeurs)
+c'est &agrave; dire int&eacute;gr&eacute; sur toute l'&eacute;toile sur
+l'image filtr&eacute;e V. De m&ecirc;me FRi et FIi repr&eacute;sentent
+les flux instrumentaux mesur&eacute;s sur les images filtr&eacute;es R
+et I respectivement. Le but de l'expos&eacute; ne concernant pas la mesure
+elle m&ecirc;me du flux instrumental on se r&eacute;f&eacute;rera pour
+cela aux logiciels d'analyse d'image qui fournissent Fi pour chaque image
+filtr&eacute;e. On va chercher convertir les magnitudes instrumentales
+en magnitudes du syst&egrave;me standard.
+<p>On notera Vs, Rs et Is, les magnitudes calcul&eacute;es, ou tir&eacute;es
+des catalogues, dans les bandes passantes du syst&egrave;me standard.
+<p>Enfin, on note X, la masse d'air de l'&eacute;toile au moment de la
+prise d'image.
+<h3>
+1.2. La base th&eacute;orique</h3>
+La m&eacute;thode propos&eacute;e ici pour calculer les magnitudes standard
+&agrave; partir des flux instrumentaux est appel&eacute;e, <i>photom&eacute;trie
+ratach&eacute;e</i>. Elle ne constitue pas une m&eacute;thode rigoureuse,
+mais elle a &eacute;t&eacute; &eacute;labor&eacute;e pour rester simple
+et rapide. Le syst&egrave;me d'&eacute;quations de passage que nous proposons
+est fonction du nombre de filtres utilis&eacute;s pour l'observation. On
+distingue ainsi le cas &agrave; 2 filtres VR et le cas &agrave; 3 filtres
+VRI.
+<p>On se propose de mod&eacute;liser les relations de passage du syst&egrave;me
+instrumental (VRI)i au syst&egrave;me standard (VRI)s par les &eacute;quations
+suivantes (Buil 1990) :
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="100%" >
+<tr>
+<td>Cas &agrave; trois filtres : VRI</td>
+
+<td>cas &agrave; deux filtres : VR</td>
+</tr>
+
+<tr>
+<td>Vi = Vs + a0 + a1*(V-R)s + a2*X - 2.5 log(tv)&nbsp;
+<br>Ri = Rs + b0 + b1*(R-I)s + b2*X - 2.5 log(tr)&nbsp;
+<br>Ii = Is + c0 + c1*(R-I)s + c2*X - 2.5 log(ti)</td>
+
+<td>Vi = Vs + a0 + a1*(V-R)s + a2*X - 2.5 log(tv)&nbsp;
+<br>Ri = Rs + b0 + b1*(V-R)s + b2*X - 2.5 log(tr)</td>
+</tr>
+</table></center>
+
+<p>Prenons le cas de l'&eacute;quation de Vi pour le cas &agrave; deux
+filtres VR et analysons la justification du choix de ce mod&egrave;le.
+La magnitude instrumentale mesur&eacute;e Vi est &eacute;gale &agrave;
+la magnitude standard Vs corrig&eacute;e d'abord par une constante additive
+(a0). Cette constante inclue la r&eacute;ponse du CCD (gain, etc.) et la
+transparence du ciel. Aisni, a0, appel&eacute;e aussi contante des magnitude,
+varie d'une nuit &agrave; l'autre mais est aussi fonction de la cam&eacute;ra
+et de l'optique. Comme le filtre instrumental utilis&eacute; n'est pas
+exactement le m&ecirc;me que le filtre V standard (en terme de transmission
+et de r&eacute;ponse spectrale), on tient compte de cet effet en ajoutant
+un terme lin&eacute;aire (a1) fonction de l'indice de couleur (V-R) de
+l'&eacute;toile observ&eacute;e. Cet effet de "m&eacute;lange" est une
+constante instrumentale et ne varie pas d'une nuit &agrave; l'autre (sauf
+vieillissement du filtre, changement de CCD ou d'optique). De plus, on
+tient compte de l'extinction atmosph&eacute;rique par le terme lin&eacute;aire
+(a2) fonction de la masse d'air. Cette donn&eacute;e varie d'une nuit &agrave;
+l'autre et m&ecirc;me parfois &agrave; l'int&eacute;rieur d'une m&ecirc;me
+nuit. Enfin, il faut tenir compte du temps de pose (tv) et comme le d&eacute;tecteur
+CCD a une r&eacute;ponse lin&eacute;aire, on peut ainsi ajouter un terme
+correctif simple.
+<p>En r&eacute;sum&eacute;, on a mod&eacute;lis&eacute; les termes suivants
+:
+<ul>
+<li>
+a0 : constante des magnitudes. R&eacute;ponse du CCD, absorption atmosph&eacute;rique
+au z&eacute;nith.</li>
+
+<li>
+a1 : coefficient de m&eacute;lange. R&eacute;ponse spectrale des filtres</li>
+
+<li>
+a2 : coefficient d'extinction. Absorption diff&eacute;rentielle de la masse
+d'air.</li>
+</ul>
+De m&ecirc;me pour les autres couleurs, on retrouve les m&ecirc;mes mod&egrave;les.
+<h2>
+2. Observations &agrave; effectuer</h2>
+D'un point de vue math&eacute;matique, la d&eacute;termination des coefficients
+exige au moins d'effectuer des poses &agrave; deux hauteurs diff&eacute;rentes
+pour mesurer l'effet de l'extinction. De plus, pour d&eacute;terminer le
+coefficient de m&eacute;lange, il faut observer deux &eacute;toiles standard
+d'indice de couleur diff&eacute;rents.
+<p>Les champs d'&eacute;toiles standard seront choisis parmi ceux proposes
+par le catalogue de Loneos ou bien dans les amas d'&eacute;toiles M 67,
+M92 et Ngc 7790. Les donn&eacute;es de ces catalogues sont contenues dans
+la compilation Microcat. Le syst&egrave;me photom&eacute;trique utilis&eacute;
+est celui de Cousin.
+<h3>
+2.1. M&eacute;thode &agrave; un champ de calibration</h3>
+Pour chaque filtre, on aura &agrave; mesurer le flux de deux &eacute;toiles,
+indic&eacute;es 1 et 2, dans une image A d'un champ &agrave; proximit&eacute;
+de celui contenant l'&eacute;toile &agrave; mesurer. Dans le cas de la
+photom&eacute;trie &agrave; 2 filtres RV, sur le champ contenant les 2
+&eacute;toiles standard, on mesure ainsi 4 flux instrumentaux : FV1A, FV2A,
+FR1A, FR2A. Le choix des deux &eacute;toiles doit &ecirc;tre fait de fa&ccedil;on
+&agrave; se que l'une d'entre elle soit de couleur plut&ocirc;t rouge et
+l'autre soit de couleur plut&ocirc;t bleue.
+<center>
+<p><img SRC="photom1.jpg" BORDER=1 height=300 width=500></center>
+
+<p>Les temps de pose peuvent &ecirc;tre quelconque mais doivent &ecirc;tre
+connus. Les deux champs doivent avoir une diff&eacute;rence de hauteur
+sur l'horizon inf&eacute;rieure &agrave; 5 degr&eacute;s pour une hauteur
+sup&eacute;rieure &agrave; 45 degr&eacute;s. Cette &eacute;tendue de resserre
+pour des hauteurs plus basses (2 degr&eacute;s pour h=30 degr&eacute;s).
+De m&ecirc;me, les deux champs devront &ecirc;tre choisis &agrave; une
+diff&eacute;rence d'azimuth inf&eacute;rieure &agrave; 20 degr&eacute;s
+de fa&ccedil;on &agrave; s'affranchir des probl&egrave;mes de variation
+d'extinction spatiale.
+<p>Cette m&eacute;thode permet de s'affranchir du calcul des coefficients
+d'extinction a2 et b2. Il convient seulement, de bien choisir le champ
+de calibration pour qu'il soit &agrave; la m&ecirc;me hauteur que le champ
+contenant l'&eacute;toile &agrave; mesurer. Il faut aussi effectuer les
+images du champ de calibration juste avant ou juste apres celui contenant
+l'&eacute;toile &agrave; mesurer de fa&ccedil;on &agrave; s'affranchir
+des variations des conditions m&eacute;t&eacute;orologiques.
+<p>Il n'est pas toujours possible de trouver un champ de calibration &agrave;
+moins de quelques degr&eacute;s de celui contenant l'&eacute;toile &agrave;
+mesurer. N&eacute;anmoins, le catalogue Loneos permet quelques fois ce
+genre de conditions et d'appliquer cette m&eacute;thode &agrave; un seul
+champ de calibration. Si l'on ne trouve pas de champ de calibration &agrave;
+proximit&eacute; de celui contenant l'&eacute;toile &agrave; mesurer, il
+faut effectuer une calibration par la m&eacute;thode &agrave; deux champs.
+<h3>
+2.2. M&eacute;thode &agrave; deux champs de calibration</h3>
+Pour chaque filtre, on aura &agrave; mesurer le flux de deux &eacute;toiles,
+indic&eacute;es 1 et 2, dans deux images A et B de champs diff&eacute;rents
+pris &agrave; deux hauteurs diff&eacute;rentes (au moins 20 degr&eacute;s
+de diff&eacute;rence de hauteur si possible). Dans le cas de la photom&eacute;trie
+&agrave; 2 filtres RV, on mesure ainsi 8 flux instrumentaux : FV1A, FV2A,
+FV1B, FV2B, FR1A, FR2A, FR1B, FR2B.
+<center>
+<p><img SRC="photom2.jpg" BORDER=1 height=300 width=500></center>
+
+<p>Les temps de pose peuvent &ecirc;tre quelconque mais doivent &ecirc;tre
+connus. Les notations XA, XB et X de la figure correspondent aux masses
+d'air.
+<p>La m&eacute;thode &agrave; deux champs permet de mesurer les coefficients
+de calibration en moins d'une heure. Les mesures photom&eacute;triques
+seront alors effectu&eacute;es juste avant ou juste apr&egrave;s la s&eacute;quence
+d'images de calibration sur les deux champs. De ce fait, elle est peu sensible
+aux variations des conditions m&eacute;t&eacute;orologiques.
+<br>&nbsp;
+<h2>
+3. Application de la calibration par la m&eacute;thode &agrave; un champ</h2>
+Au regard des formules du mod&egrave;le on peut &eacute;tablir un formulaire
+pour retrouver les coefficients photom&eacute;triques &agrave; partir des
+flux instrumentaux. La pr&eacute;sentation suivante est con&ccedil;ue pour
+remplir les cases &agrave; chaque &eacute;tape. ce processus peut alors
+facilement &ecirc;tre programm&eacute;e sous un tableur ou &ecirc;tre int&eacute;gr&eacute;
+dans un logiciel de traitement d'image.
+<h3>
+3.1. Cas &agrave; 2 filtres VR :</h3>
+Le formulaire suivant permet de cheminer progressivement vers la d&eacute;termination
+des valeurs des coefficients. Il suffit de remplir les cases de droite
+par la valeur mesur&eacute;e ou calcul&eacute;e par la formule
+<br>&nbsp;
+<h4>
+3.1.1. Identification des deux &eacute;toiles de calibration</h4>
+On choisira les deux &eacute;toiles de fa&ccedil;on &agrave; ce qu'elle
+aient des indices de couleur (V-R) tr&egrave;s diff&eacute;rents.
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="499" >
+<tr>
+<td>
+<center>&eacute;toiles standard 1 et 2</center>
+</td>
+
+<td>
+<center>magnitude</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>Vs1</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>Rs1</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>(V-R)s1</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>Vs2</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>Rs2</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>(V-R)s2</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<h4>
+3.1.2. Mesure des flux</h4>
+Ces mesures sont effectu&eacute;es par une photom&eacute;trie d'ouverture
+&agrave; l'aide d'un logiciel de traitement d'image.
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="499" >
+<tr>
+<td>
+<center>flux</center>
+</td>
+
+<td>
+<center>pas codeurs</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>FV1A</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>FV2A</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>FR1A</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>FR2A</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<h4>
+3.1.3. Calcul des magnitudes instrumentales</h4>
+Attention, dans ce calcul, le logarithme est d&eacute;cimal !
+<center><table BORDER COLS=2 WIDTH="499" >
+<tr>
+<td>
+<center>flux</center>
+</td>
+
+<td>
+<center>magnitude</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>Vi1A = -2.5 log (</font>FV1A)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>Vi2A = -2.5 log (</font>FV2A)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>Ri1A = -2.5 log (</font>FR1A)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>Ri2A = -2.5 log (</font>FR2A)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<h4>
+3.1.4. Calcul des coefficients de m&eacute;lange</h4>
+
+<center><table BORDER COLS=2 WIDTH="796" >
+<tr>
+<td>
+<center>coefficient de m&eacute;lange</center>
+</td>
+
+<td>
+<center>(sans dimension)</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>a1 = [(Vi1A-Vi2A) - (Vs1-Vs2)] / [(V-R)s1 - (V-R)s2]</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>b1 = [(Ri1A-Ri2A) - (Rs1-Rs2)] / [(V-R)s1 - (V-R)s2]</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<p>On d&eacute;termine ainsi la valeur de a1 pour le filtre V et b1 pour
+le filtre R. Ces valeurs ne doivent pas changer significativement au cours
+de la nuit, ni d'une nuit sur l'autre.
+<h4>
+3.1.5. Calcul des constantes de magnitude</h4>
+Soient tVA, tVB, tRA et tRB les temps de pose exprim&eacute;s en seconde.
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="796" >
+<tr>
+<td>
+<center>constante des magnitudes</center>
+</td>
+
+<td>
+<center>magnitude par seconde</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>a01A = Vi1A + 2.5 log(tVA) - Vs1 - a1(V-R)s1</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>a02A = Vi2A + 2.5 log(tVA) - Vs2 - a1(V-R)s2</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>&nbsp;a0 = (a01A + a02A) / 2</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<p>Th&eacute;oriquement, les valeurs de a0A1, a0A2 doivent &ecirc;tre &eacute;gales.
+Dans la pratique, avec l'incertitude sur les mesures, il est normal qu'elles
+soient l&eacute;g&egrave;rement diff&eacute;rentes. Cependant la diff&eacute;rence
+ne doit pas &ecirc;tre trop grande sinon la calibration est impossible.
+La constante des mangitudes finale est prise &eacute;gale &agrave; la moyenne
+des deux valeurs.
+<p>De m&ecirc;me pour la constante des mangitudes du filtre R :
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="796" >
+<tr>
+<td>
+<center>constante des magnitudes</center>
+</td>
+
+<td>
+<center>magnitude par seconde</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>b01A = RiA1 + 2.5 log(tRA) - Rs1 - b1(V-R)s1</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>b02A = RiA2 + 2.5 log(tRA) - Rs2 - b1(V-R)s2</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>&nbsp;b0 = (b01A + b02A) / 2</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<h4>
+3.1.6. Synth&egrave;se des r&eacute;sultats</h4>
+On reportera, dans ce tableau, les six valeurs des constantes de calibration
+photom&eacute;trique (a2 et b2 sont prises &eacute;gales &agrave; z&eacute;ro
+dans cette m&eacute;thode).
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="796" >
+<tr>
+<td>
+<center>a0</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>a1</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>a2</font></center>
+</td>
+
+<td>
+<center>0&nbsp;</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>b0</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>b1</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>b2</center>
+</td>
+
+<td>
+<center>&nbsp;0</center>
+</td>
+</tr>
+</table></center>
+
+<br>&nbsp;
+<h2>
+4. Application de la calibration par la m&eacute;thode &agrave; deux champs</h2>
+Au regard des formules du mod&egrave;le on peut &eacute;tablir un formulaire
+pour retrouver les coefficients photom&eacute;triques &agrave; partir des
+flux instrumentaux. La pr&eacute;sentation suivante est con&ccedil;ue pour
+remplir les cases &agrave; chaque &eacute;tape. Ce processus peut alors
+facilement &ecirc;tre programm&eacute;e sous un tableur ou &ecirc;tre int&eacute;gr&eacute;
+dans un logiciel de traitement d'image.
+<h3>
+4.1. Cas &agrave; 2 filtres VR :</h3>
+Le formulaire suivant permet de cheminer progressivement vers la d&eacute;termination
+des valeurs des coefficients. Il suffit de remplir les cases de droite
+par la valeur mesur&eacute;e ou calcul&eacute;e par la formule
+<h4>
+4.1.1. Identification des quatre &eacute;toiles de calibration</h4>
+Dans chaque champ, on choisira deux &eacute;toiles de fa&ccedil;on &agrave;
+ce qu'elle aient des indices de couleur (V-R) tr&egrave;s diff&eacute;rents.
+<br>&nbsp;
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="499" >
+<tr>
+<td>
+<center>&eacute;toiles standard 1A et 2A
+<br>dans le champ A</center>
+</td>
+
+<td>
+<center>magnitude</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>Vs1A</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>Rs1A</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>(V-R)s1A</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>Vs2A</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>Rs2A</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>(V-R)s2A</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<center><table BORDER COLS=2 WIDTH="499" >
+<tr>
+<td>
+<center>&eacute;toiles standard 1B et 2B
+<br>dans le champ B</center>
+</td>
+
+<td>
+<center>magnitude</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>Vs1B</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>Rs1B</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>(V-R)s1B</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>Vs2B</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>Rs2B</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>(V-R)s2B</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<h4>
+4.1.2. Mesure des flux</h4>
+Ces mesures sont effectu&eacute;es par une photom&eacute;trie d'ouverture
+&agrave; l'aide d'un logiciel de traitement d'image.
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="499" >
+<tr>
+<td>
+<center>flux</center>
+</td>
+
+<td>
+<center>pas codeurs</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>FV1A</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>FV2A</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>FR1A</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>FR2A</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>FV1B</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>FV2B</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>FR1B</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>FR2B</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<h4>
+4.1.3. Calcul des masse d'air</h4>
+Ces mesures sont effectu&eacute;es connaissant l'instant de prise de vue,
+les coordonn&eacute;es du champ vis&eacute; et les coordonn&eacute;es g&eacute;ographiques
+du lieu (cf. levre de Jean Meeus).
+<center><table BORDER COLS=2 WIDTH="499" >
+<tr>
+<td>
+<center>Masse d'air</center>
+</td>
+
+<td>
+<center>(sans unit&eacute;s)</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>XA</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>XB</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<h4>
+4.1.4. Calcul des magnitudes instrumentales</h4>
+Attention, dans ce calcul, le logarithme est d&eacute;cimal !
+<center><table BORDER COLS=2 WIDTH="499" >
+<tr>
+<td>
+<center>flux</center>
+</td>
+
+<td>
+<center>magnitude</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>Vi1A = -2.5 log (</font>FV1A)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>Vi2A = -2.5 log (</font>FV2A)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>Ri1A = -2.5 log (</font>FR1A)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>Ri2A = -2.5 log (</font>FR2A)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>Vi1B = -2.5 log (</font>FV1B)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>Vi2B = -2.5 log (</font>FV2B)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>Ri1B = -2.5 log (</font>FR1B)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>Ri2B = -2.5 log (</font>FR2B)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<h4>
+4.1.5. Calcul des coefficients de m&eacute;lange</h4>
+
+<center><table BORDER WIDTH="100%" >
+<tr>
+<td>
+<center>coefficient de m&eacute;lange</center>
+</td>
+
+<td WIDTH="20%">
+<center>(sans dimension)</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>a1A = [(Vi1A-Vi2A) - (Vs1A-Vs2A)] / [(V-R)s1A - (V-R)s2A]</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>a1B = [(Vi1B-Vi2B) - (Vs1B-Vs2B)] / [(V-R)s1B - (V-R)s2B]</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>a1 = (a1A + a1B) / 2</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>b1A = [(Ri1A-Ri2A) - (Rs1A-Rs2A)] / [(V-R)s1A - (V-R)s2A]</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>b1B = [(Ri1B-Ri2B) - (Rs1B-Rs2B)] / [(V-R)s1B - (V-R)s2B]</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>b1 = (b1A + b1B) / 2&nbsp;</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<p>Th&eacute;oriquement, les valeurs de a1A et a1B doivent &ecirc;tre &eacute;gales.
+Dans la pratique, avec l'incertitude sur les mesures, il est normal qu'elles
+soient l&eacute;g&egrave;rement diff&eacute;rentes. Cependant la diff&eacute;rence
+ne doit pas &ecirc;tre trop grande sinon la calibration est impossible.
+Le coefficient final est pris &eacute;gal &agrave; la moyenne des deux
+champs.
+<br>On d&eacute;termine ainsi la valeur de a1 pour le filtre V et b1 pour
+le filtre R.
+<h4>
+4.1.6. Calcul des coefficients d'extinction</h4>
+Soient XA et XB les masses d'air (calcul&eacute;es en 4.1.1.3). Soient
+tVA, tVB, tRA et tRB les temps de pose.
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="100%" >
+<tr>
+<td>
+<center>coefficient d'extinction</center>
+</td>
+
+<td WIDTH="20%">
+<center>magnitude par unit&eacute; de masse d'air</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>a21 = [(Vi1A-Vi1B)-(Vs1A-Vs1B)-((V-R)s1A - (V-R)s1B)+2.5
+log(tVA/tVB)] / (XA-XB)</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>a22 = [(Vi2A-Vi2B)-(Vs2A-Vs2B)-((V-R)s2A - (V-R)s2B)+2.5
+log(tVA/tVB)] / (XA-XB)</font></center>
+</td>
+
+<td WIDTH="20%">&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>a2 = (a21 + a22) / 2</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>b21 = [(Ri1A-Ri1B)-(Rs1A-Rs1B)-((V-R)s1A - (V-R)s1B)+2.5
+log(tRA/tRB)] / (XA-XB)</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>b22 = [(Ri2A-Ri2B)-(Rs2A-Rs2B)-((V-R)s2A - (V-R)s2B)+2.5
+log(tRA/tRB)] / (XA-XB)</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>&nbsp;b2 = (b21 + b22) / 2</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<p>Th&eacute;oriquement, les valeurs de a21 et a22 doivent &ecirc;tre &eacute;gales.
+Dans la pratique, avec l'incertitude sur les mesures, il est normal qu'elles
+soient l&eacute;g&egrave;rement diff&eacute;rentes. Cependant la diff&eacute;rence
+ne doit pas &ecirc;tre trop grande sinon la calibration est impossible.
+Le coefficient final est pris &eacute;gal &agrave; la moyenne des deux
+&eacute;toiles.
+<br>On d&eacute;termine ainsi la valeur de a2 pour le filtre V et b2 pour
+le filtre R. Normalement, a2 > b2 > 0.
+<br>&nbsp;
+<h4>
+4.1.7. Calcul des constantes de magnitude</h4>
+Soient tVA, tVB, tRA et tRB les temps de pose exprim&eacute;s en seconde.
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="796" >
+<tr>
+<td>
+<center>constante des magnitudes</center>
+</td>
+
+<td>
+<center>magnitude par seconde</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>a01A = Vi1A + 2.5 log(tVA) - Vs1A - a1(V-R)s1A -
+a2 XA</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>a02A = Vi2A + 2.5 log(tVA) - Vs2A - a1(V-R)s2A -
+a2 XA</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>a01B = Vi1B + 2.5 log(tVB) - Vs1B - a1(V-R)s1B -
+a2 XB</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>a02B = Vi2B + 2.5 log(tVB) - Vs2B - a1(V-R)s2B -
+a2 XB</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>&nbsp;a0 = (a01A + a02A + a01B + a02B) / 4</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<p>Th&eacute;oriquement, les valeurs de a0A1, a0A2, a0B1 et a0B2 doivent
+&ecirc;tre &eacute;gales. Dans la pratique, avec l'incertitude sur les
+mesures, il est normal qu'elles soient l&eacute;g&egrave;rement diff&eacute;rentes.
+Cependant la diff&eacute;rence ne doit pas &ecirc;tre trop grande sinon
+la calibration est impossible. La constante des mangitudes finale est prise
+&eacute;gale &agrave; la moyenne des quatre valeurs.
+<p>De m&ecirc;me pour la constante des mangitudes du filtre R :
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="796" >
+<tr>
+<td>
+<center>constante des magnitudes</center>
+</td>
+
+<td>
+<center>magnitude par seconde</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>b01A = RiA1 + 2.5 log(tRA) - Rs1A - b1(V-R)s1A -
+b2 XA</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>b02A = RiA2 + 2.5 log(tRA) - Rs2A - b1(V-R)s2A -
+b2 XA</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>b01B = RiB1 + 2.5 log(tRB) - Rs1B - b1(V-R)s1B -
+b2 XB</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>b02B = RiB2 + 2.5 log(tRB) - Rs2B - b1(V-R)s2B -
+b2 XB</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>&nbsp;b0 = (b01A + b02A + b01B + b02B) / 4</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<h4>
+4.1.8. Synth&egrave;se des r&eacute;sultats</h4>
+On reportera, dans ce tableau, les six valeurs des constantes de calibration
+photom&eacute;trique.
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="796" >
+<tr>
+<td>
+<center>a0</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>a1</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>a2</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>b0</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>b1</font></center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>b2</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<br>&nbsp;
+<h2>
+5. Calculs de la magnitude standard d'&eacute;toiles</h2>
+Au regard des formules du mod&egrave;le on peut &eacute;tablir un formulaire
+pour retrouver les coefficients photom&eacute;triques &agrave; partir des
+flux instrumentaux. La pr&eacute;sentation suivante est con&ccedil;ue pour
+remplir les cases &agrave; chaque &eacute;tape. ce processus peut alors
+facilement &ecirc;tre programm&eacute;e sous Excell ou &ecirc;tre int&eacute;gr&eacute;
+dans un logiciel de traitement d'image.
+<h3>
+5.1. Cas &agrave; 2 filtres VR :</h3>
+On suppose connues les valeurs des coefficients de calibration a0, a1,
+a2, b0, b1, b2. Le formulaire suivant permet de cheminer progressivement
+vers la d&eacute;termination des valeurs des coefficients. Il suffit de
+remplir les cases de droite par la valeur mesur&eacute;e ou calcul&eacute;e
+par la formule
+<h4>
+5.1.1. Mesure des flux</h4>
+Ces mesures sont effectu&eacute;es par une photom&eacute;trie d'ouverture
+&agrave; l'aide d'un logiciel de traitement d'image sur les deux images
+filtr&eacute;es V et R.
+<br>&nbsp;
+<center><table BORDER COLS=3 WIDTH="499" >
+<tr>
+<td>
+<center>filtre</center>
+</td>
+
+<td>
+<center>Flux en pas codeurs</center>
+</td>
+
+<td>
+<center>temps de pose (s)</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>V</center>
+</td>
+
+<td>
+<center>FVi =&nbsp;</center>
+</td>
+
+<td>
+<center>tV =&nbsp;</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>R</center>
+</td>
+
+<td>
+<center>FRi =&nbsp;</center>
+</td>
+
+<td>
+<center>tR =&nbsp;</center>
+</td>
+</tr>
+</table></center>
+
+<h4>
+5.1.2. Calcul de la masse d'air</h4>
+Ce calcul n'est utile que pour la m&eacute;thode &agrave; deux champs.
+Ces calculs sont effectu&eacute;s connaissant l'instant de prise de vue,
+les coordonn&eacute;es du champ vis&eacute; et les coordonn&eacute;es g&eacute;ographiques
+du lieu (cf. livre de Jean Meeus).
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="499" >
+<tr>
+<td>
+<center>Masse d'air</center>
+</td>
+
+<td>
+<center>(sans unit&eacute;s)</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>XV</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>XR</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<h4>
+5.1.3. Calcul des magnitudes instrumentales</h4>
+Attention, dans ce calcul, le logarithme est d&eacute;cimal !
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="499" >
+<tr>
+<td>
+<center>flux</center>
+</td>
+
+<td>
+<center>magnitude / s</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>Vi = -2.5 log (</font>FVi) + 2.5 log (tV)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>Ri = -2.5 log (</font>FRi) + 2.5 log (tR)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<h4>
+5.1.4. Calcul des magnitudes rattach&eacute;es</h4>
+
+<center><table BORDER COLS=2 WIDTH="499" >
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>magnitude</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>Y1 = (Vi - a0 - a2 XV)&nbsp;</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>Y2 = (Ri - b0 - b2 XR)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<p>A noter que dans la m&eacute;thode &agrave; un champ, on peut supprimer
+les termes a2 XV et b2 XR puisque a2 et b2 vallent z&eacute;ro).
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="625" >
+<tr>
+<td>
+<center>magnitudes rattach&eacute;es</center>
+</td>
+
+<td>
+<center>magnitude</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>Rs = (Y2 + Y2*a1 - Y1*b1) / (1 + a1 - b1)&nbsp;</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>Vs = (Y1 - Y1*b1 + Y2*a1) / (1 + a1 - b1)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<p>Les valeurs de Rs et Vs sont le r&eacute;sultat final de l'analyse photom&eacute;trique.
+<br>&nbsp;
+<h3>
+5.2. Cas &agrave; 3 filtres VRI :</h3>
+Le formulaire suivant permet de cheminer progressivement vers la d&eacute;termination
+des valeurs des coefficients. Il suffit de remplir les cases de droite
+par la valeur mesur&eacute;e ou calcul&eacute;e par la formule
+<h4>
+5.2.1. Mesure des flux</h4>
+Ces mesures sont effectu&eacute;es par une photom&eacute;trie d'ouverture
+&agrave; l'aide d'un logiciel de traitement d'image sur les deux images
+filtr&eacute;es V et R.
+<br>&nbsp;
+<center><table BORDER COLS=3 WIDTH="499" >
+<tr>
+<td>
+<center>filtre</center>
+</td>
+
+<td>
+<center>Flux en pas codeurs</center>
+</td>
+
+<td>
+<center>temps de pose (s)</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>V</center>
+</td>
+
+<td>
+<center>FVi =&nbsp;</center>
+</td>
+
+<td>
+<center>tV =&nbsp;</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>R</center>
+</td>
+
+<td>
+<center>FRi =&nbsp;</center>
+</td>
+
+<td>
+<center>tR =&nbsp;</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>I</center>
+</td>
+
+<td>
+<center>FIi =</center>
+</td>
+
+<td>
+<center>tI =</center>
+</td>
+</tr>
+</table></center>
+
+<h4>
+5.2.2. Calcul de la masse d'air</h4>
+Ces mesures sont effectu&eacute;es connaissant l'instant de prise de vue,
+les coordonn&eacute;es du champ vis&eacute; et les coordonn&eacute;es g&eacute;ographiques
+du lieu (cf. livre de Jean Meeus).
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="499" >
+<tr>
+<td>
+<center>Masse d'air</center>
+</td>
+
+<td>
+<center>(sans unit&eacute;s)</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>XV</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>XR</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>XI</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<h4>
+5.2.3. Calcul des magnitudes instrumentales</h4>
+Attention, dans ce calcul, le logarithme est d&eacute;cimal !
+<br>&nbsp;
+<center><table BORDER COLS=2 WIDTH="499" >
+<tr>
+<td>
+<center>flux</center>
+</td>
+
+<td>
+<center>magnitude / seconde</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>Vi = -2.5 log (</font>FVi) + 2.5 log (tV)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>Ri = -2.5 log (</font>FRi) + 2.5 log (tR)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center><font size=+0>Ii = -2.5 log (</font>FIi) + 2.5 log (tI)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<h4>
+5.2.4. Calcul des magnitudes rattach&eacute;es</h4>
+
+<center><table BORDER COLS=2 WIDTH="499" >
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>magnitude</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>Y1 = (Vi - a0 - a2 XV)&nbsp;</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>Y2 = (Ri - b0 - b2 XR)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>Y3 = (Ii - c0 - c2 XI)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<center><table BORDER COLS=2 WIDTH="625" >
+<tr>
+<td>
+<center>magnitudes rattach&eacute;es</center>
+</td>
+
+<td>
+<center>magnitude</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>Is = (Y3 + Y3*b1 - Y2*c1) / (1 + b1 - c1)&nbsp;</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>Rs = (Y2 - Y2*c1 + Y3*b1) / (1 + b1 - c1)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>Vs = (Y1 + Rs*a1) / (1 + a1)</center>
+</td>
+
+<td>&nbsp;</td>
+</tr>
+</table></center>
+
+<p>Les valeurs de Is, Rs et Vs sont le r&eacute;sultat final de l'analyse
+photom&eacute;trique.
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

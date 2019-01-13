@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>PSF ToolBox</title></head><body>
+<p class="date">Date de mise à jour : 29 décembre 2015</p>
+
+Auteur : F. Vachier
+<h1>PSF ToolBox</h1>
+<h2>Introduction</h2>
+<p>
+L'intérêt de cet outil est de pouvoir analyser au plus juste l'étalement
+de l'étoile sur la plaque CCD en comparant les différentes méthodes
+d'analyse photométrique implémentées dans AudeLA.
+L'application <b>Ajuster une PSF</b> va vous permettre de choisir
+la méthode qui sera la plus adaptée à votre besoin.
+</p>
+
+Si vous pensez que d'autres méthodes peuvent être intégrées, écrivez moi.
+
+<h2>Démarrage</h2>
+<p>
+Pour sélectionner une étoile il faut faire un clic gauche maintenu dans l'image,
+et relâcher la souris lorsque le cadre qui se dessine entoure l'étoile qui vous
+intéresse.
+Pour démarrer l'outil il faut sélectionner une étoile dans l'image, puis
+dans les menus de la <b>visu</b> il faut choisir <i>Analyse</i> et <i>Ajuster une PSF</i>. </p>
+A l'issue, une fenêtre apparait.
+<p>
+</p>
+<p>
+<img src="images/psf_presentation.png" alt="" align="middle" height="701" width="1028" />
+</p><p><b>Image 1 :</b> Boite de dialogue et onglet Mesures
+
+</p><h2>Présentation</h2>
+La fenêtre d'analyse de la PSF comprend une boite à onglets, au-dessous la
+partie pour configurer la fonction d'étalement, puis un bloc qui fournit
+la durée de traitement et enfin un ensemble de boutons d'action.
+
+   <ul>
+      <li><b>Les onglets</b></li>
+         <ul>
+            <li><i>Mesures</i></li>
+
+               Comprend l'ensemble des paramètres ajustés sur le
+               signal de l'étoile. Chaque paramètre permet par un
+               bouton d'afficher le graphe des valeurs en fonction
+               de l'ouverture, seulement si la méthode globale a été
+               sélectionnée.<p>
+
+            </p><li><i>Image</i></li>
+
+               Présente trois images. La première étant l'image issue de
+               la <b>visu</b> centrée sur l'étoile analysée. La seconde étant
+               le modèle ajusté sur l'étoile. La troisième, présente
+               le résidu, calculé par la différence entre l'image et
+               le modèle (fonctionnalités bientôt disponibles).<p>
+
+            </p><li><i>Marques</i></li>
+
+               Permet de montrer les étapes du calcul en cours. Pour chaque mesure se forme un rond vert dans la <b>visu</b>.
+               Pour la méthode globale il y a 2 ronds bleus montrant
+               le rayon min et le rayon max de recherche. Les 2 ronds jaunes
+               montrent la zone des rayons sélectionnés comme étant
+               les meilleures mesures. Sur ces mesures une statistique
+               est calculée afin d'en déterminer les moyennes et
+               les déviations standards.<p>
+
+            </p><li><i>Comparaison</i></li>
+
+               Cette fenêtre va permettre de comparer l'efficacité
+               des méthodes d'analyse de la PSF.
+               Il suffit de sélectionner les méthodes que l'on veut comparer. A l'issue du calcul, l'appui sur chaque
+               bouton des paramètres montre les graphes d'une recherche
+               globale effectuée sur chaque méthode choisie.<p>
+
+         </p></ul>
+      <li><b>La fonction d'étalement</b></li>
+         <ul>
+            <li><i>Sélection des méthodes</i></li>
+
+               Il suffit d'un clic maintenu sur le bouton
+               de sélection pour voir apparaitre les méthodes à sélectionner. Chaque fois que l'on choisit
+               une nouvelle méthode un calcul se fait et le résultat
+               s'affiche dans l'onglet <i>Mesures</i>.<p>
+
+            </p><li><i>Recherche globale</i></li>
+
+               La sélection va effectuer une analyse de la méthode
+               sélectionnée pour un ensemble de rayons d'ouverture
+               allant de la limite min à la limite max choisies ici.
+               Si les <i>Marques</i> sont sélectionnées dans
+               l'onglet Marques, cette zone min et max est identifiable
+               par des cercles bleus. Les cercles jaunes
+               représentent les rayons min et max dont les mesures
+               sont détectées comme valides.
+               Le dernier paramètre de la recherche globale
+               concerne l'arrêt en cas d'erreurs répétées
+               de la méthode. Cela permet de gagner du temps de calcul
+               inutile pour les sources proches d'étoiles plus
+               brillantes. <p>
+
+            </p><li><i>L'écrêtage</i></li>
+
+               Permet de supprimer certaines mesures définies
+               par l'utilisateur comme étant invalides.<p>
+               Le seuil de saturation défini une mesure comme étant
+               invalide lorsque le pixel de plus haut niveau dépasse
+               le seuil. </p><p>
+               Le seuil est un paramètre qui s'exprime en pixel. La zone de recherche de la mesure de l'étoile est
+               définie par une position X et Y en pixel, et la taille
+               par un rayon. Si le résultat du centre de la PSF (Xpsf et
+               Ypsf) s'éloigne d'un nombre de pixel supérieur au <span style="font-style: italic;">Seuil</span> alors la mesure est rejetée.
+               L'intérêt est de distinguer la mesure de la source qui nous
+               intéresse des autres objets présents dans l'image.</p><p>
+
+
+         </p></ul>
+
+      <li><b>Les boutons d'action</b></li>
+         <ul>
+            <li><i>Rafraichissement automatique</i></li>
+               Lors du clic, effectue un rafraichissement
+               automatique à chaque changement d'image dans
+               la visu.<p>
+            </p><li><i>Aide</i></li>
+               Affiche cette aide.<p>
+            </p><li><i>Rafraichir maintenant</i></li>
+               Lance le calcul d'ajustement de la PSF.<p>
+            </p><li><i>Fermer</i></li>
+               Ferme la fenêtre d'ajustement de la PSF.<p>
+         </p></ul>
+   </ul>
+
+<h2>Exemple de mesure</h2>
+<img src="images/psf_globale_flux.png" alt="" align="middle" height="800" width="997" />
+<p /><p><b>Image 2 :</b> Mesure globale pour la méthode [buf1 psfimcce ...]</p><p>
+
+</p><p /><p>
+Dans cet exemple nous avons choisi volontairement une étoile proche d'une autre plus brillante.
+On applique la méthode <b>psfimcce</b> pour une recherche globale d'un rayon allant de 5 pixels à 100 pixels. En cas de 3 erreurs consécutives la recherche s'arrête.
+L'écrêtage étant actif, si la mesure se déplace de plus de 3 pixels de l'étoile mesurée
+lorsque l'on a commencé avec 5 pixels alors les mesures résultantes seront rejetées.
+Dans l'onglet <b>Marques</b> on a activé l'affichage des cercles de mesure.
+</p><p /><p>
+Le résultat peut s'interpréter de quatre façons différentes :
+
+         </p><ul>
+            <li><b>Dans la <i>visu</i> directement sur l'image</b></li>
+Les cercles sont tous centrés sur l'étoile. Le plus petit cercle bleu
+au centre est le cercle de rayon 5 pixels, le grand de rayon 100 pixels
+et ils définissent la zone de recherche. On peut voir que la zone de
+recherche est coupée par le bord de l'image. <p /><p> Entre les deux cercles jaunes se situe la
+zone des rayons qui fournissent les "bonnes" valeurs. Ces valeurs sont
+incluses dans les barres d'erreurs des paramètres notamment du flux. On
+remarque que dans cet exemple le plus grand cercle jaune rase une
+deuxième étoile. Cette étoile étant plus brillante, la mesure qui
+résulterait des rayons supérieurs à 78 pixels, aurait pour conséquence
+de centrer la PSF sur la deuxième étoile. La différence de position
+serait alors supérieure à 3 pixels (saut d'une étoile vers l'autre).
+C'est pourquoi la mesure est rejetée et la recherche globale s'arrête.
+Si cette deuxième étoile n'avait pas été présente, le plus grand cercle
+jaune serait devenu alors tangent au bord de l'image. </p><p>
+               Le cercle vert est le rayon qui se rapproche au mieux de la solution
+               affichée numériquement dans la fenêtre qui se nomme <b>Ajuster une PSF</b>
+               et dans l'onglet <b>Mesures</b>.
+               On peut parler de rayon idéal dans lequel est représenté la totalité du flux
+               de l'étoile.
+               </p><p>
+
+            </p><li><b>Dans la fenêtre : Ajuster une PSF</b></li>
+               On peut voir les résultats numériques de la mesure. Pour ceux dont les boutons
+               sont actifs, cela affiche une fenêtre montrant un graphique.
+               <ul>
+                  <li><i>xsm</i></li>
+                  Position X en pixel dans l'image.
+                  <p>
+                  </p><li><i>ysm</i></li>
+                  Position Y en pixel dans l'image.
+                  <p>
+                  </p><li><i>err_xsm</i> et <i>err_ysm</i></li>
+                  Estimation de l'erreur de mesure de position.
+                  <p>
+                  </p><li><i>fwhmx</i>, <i>fwhmy</i> et <i>fwhm</i></li>
+                  Ce sont les valeurs des largeurs à mi-hauteur des gaussiennes (si un profil
+                  gaussien a été ajusté), selon les axes x et y (si un profil de gaussienne
+                  bi-dimensionnelle a été ajusté). Dans tous ces cas la valeur <i>fwhm</i>
+                  étant la moyenne quadratique des <i>fwhmx</i> <i>fwhmy</i>. Dans tous
+                  les autres cas, <i>fwhm</i> représente la largeur à mi-hauteur résultante.
+                  <p>
+                  </p><li><i>flux</i> et <i>err_flux</i></li>
+                  Valeurs du flux intégré et de l'erreur. Le flux intégré résulte du calcul
+                  intégral de la PSF.
+                  <p>
+                  </p><li><i>intensity</i></li>
+                  Représente la hauteur maximale du profil ajusté au-dessus du fond de ciel.
+                  <p>
+                  </p><li><i>sky</i> et <i>err_sky</i></li>
+                  Valeurs du fond de ciel autour des étoiles. On remarque souvent sur le graphe
+                  de cette valeur la "pollution" de la zone par des objets voisins.
+                  <p>
+                  </p><li><i>snint</i></li>
+                  Le signal sur bruit.
+                  <p>
+                  </p><li><i>radius</i></li>
+                  Le rayon "idéal" est celui qui contient tout le flux de l'étoile.
+                  <p>
+               </p></ul>
+
+            <li><b>Dans la fenêtre des graphiques : Figure 1</b></li>
+                  Selon le paramètre choisi on peut voir l'évolution en fonction
+                  du rayon d'ouverture.
+                  <p>
+                  La ligne horizontale noire représente la valeur choisie pour être le résultat
+                  les 2 lignes horizontales grises sont les barres d'erreurs.
+         </p></ul>
+
+
+
+
+<h2>Exemple de comparaison des méthodes</h2>
+<p /><p>
+Dans l'exemple suivant, nous avons réalisé une comparaison des 3
+méthodes (photom, fitgauss2D et psfimcce).
+En cliquant sur le bouton flux on voit apparaitre un graphique à 3
+couleurs suivant les méthodes. Ici on s'aperçoit que les méthodes noire
+et rouge sont plutôt similaires, et la courbe verte diffère
+en se séparant en 2 directions. La courbe verte est le résultat de la
+commande [buf1 photom ..]
+elle n'est donc pas recommandée pour effectuer une mesure photométrique
+sur les étoiles.
+</p><p /><p>
+<img src="images/psf_compar_flux.png" alt="" align="middle" height="423" width="605" />
+</p><p /><p><b>Image 3 :</b> Flux/Radius. Comparaison par recherche globale pour les méthodes photom en vert,
+psfimcce en noir et fitgauss2D en rouge.</p><p>
+</p><p /><p>
+Sur l'image suivante (Image 4), ce sont les 2 méthodes psfimcce et fitgauss2D qui sont comparées.
+On peut remarquer que psfimcce (en noir) est beaucoup plus stable, alors que fitgauss2D (en rouge) est
+plus bruitée. Il faut donc moins de <i>rayon</i> pour obtenir un bon résultat avec psfimcce. Pour le
+dire autrement : Pour un rayon fixé on est plus proche du résultat final avec [buf1 psfimcce ..].
+</p><p /><p>
+L'avantage de fitgauss2D portera sur le temps de calcul plus court pour des résultats légèrement
+plus bruités mais satisfaisants selon utilisation.
+
+</p><p /><p>
+<img src="images/psf_compar_x.png" alt="" align="middle" height="425" width="604" />
+</p><p /><p><b>Image 4 :</b> Xsm/Radius. Comparaison par recherche globale pour les méthodes
+psfimcce en noir et fitgauss2D en rouge</p><p>
+</p><p>
+
+</p><p /><p>
+
+
+
+
+</p></body></html>

@@ -1,0 +1,187 @@
+#
+# Fichier : select.cap
+# Mise a jour $Id: select.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(select,menu)            "Image Selection"
+set caption(select,titre)           "Manual Selection of Images"
+set caption(select,entree)          "Input Images"
+set caption(select,nom)             "Name:"
+set caption(select,parcourir)       "..."
+set caption(select,index)           "Index:"
+set caption(select,sortie)          "Output Images"
+set caption(select,demarrer)        "Start"
+set caption(select,inf)             "<"
+set caption(select,sup)             ">"
+set caption(select,auto)            "Automatic"
+set caption(select,aide)            "Help"
+set caption(select,record)          "Save"
+set caption(select,tiret)           "-"
+set caption(select,pas_image)       "No image with this name."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(select,menu)         "Sélection d'images"
+   set caption(select,titre)        "Sélection manuelle des images"
+   set caption(select,entree)       "Images d'entrée"
+   set caption(select,nom)          "Nom :"
+   set caption(select,parcourir)    "..."
+   set caption(select,index)        "Index :"
+   set caption(select,sortie)       "Images de sortie"
+   set caption(select,demarrer)     "Démarrer"
+   set caption(select,inf)          "<"
+   set caption(select,sup)          ">"
+   set caption(select,auto)         "Auto"
+   set caption(select,aide)         "Aide"
+   set caption(select,record)       "Enregistrer"
+   set caption(select,tiret)        "-"
+   set caption(select,pas_image)    "Il n'y a pas d'image à ce nom."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(select,menu)         "Selezione immagini"
+   set caption(select,titre)        "Selezione manuale delle immagini"
+   set caption(select,entree)       "Immagini iniziali"
+   set caption(select,nom)          "Nome:"
+   set caption(select,parcourir)    "..."
+   set caption(select,index)        "Indice:"
+   set caption(select,sortie)       "Immagini finali"
+   set caption(select,demarrer)     "Start"
+   set caption(select,inf)          "<"
+   set caption(select,sup)          ">"
+   set caption(select,auto)         "Automatico"
+   set caption(select,aide)         "Aiuto"
+   set caption(select,record)       "Salvare"
+   set caption(select,tiret)        "-"
+   set caption(select,pas_image)    "Nessuna immagine con questo nome."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(select,menu)         "Selección de imagen"
+   set caption(select,titre)        "Selección manual de imagenes"
+   set caption(select,entree)       "Imagen de entrada"
+   set caption(select,nom)          "Nombre:"
+   set caption(select,parcourir)    "..."
+   set caption(select,index)        "Indice:"
+   set caption(select,sortie)       "Imagenes de salida"
+   set caption(select,demarrer)     "Empezar"
+   set caption(select,inf)          "<"
+   set caption(select,sup)          ">"
+   set caption(select,auto)         "Automático"
+   set caption(select,aide)         "Ayuda"
+   set caption(select,record)       "Guardar"
+   set caption(select,tiret)        "-"
+   set caption(select,pas_image)    "No hay imagen con este nombre."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(select,menu)         "Bilder Auswahl"
+   set caption(select,titre)        "Manuell Bild Wahl"
+   set caption(select,entree)       "Herein Bilder"
+   set caption(select,nom)          "Namen:"
+   set caption(select,parcourir)    "..."
+   set caption(select,index)        "Zeiger:"
+   set caption(select,sortie)       "Hinaus Bilder"
+   set caption(select,demarrer)     "Starten"
+   set caption(select,inf)          "<"
+   set caption(select,sup)          ">"
+   set caption(select,auto)         "Auto"
+   set caption(select,aide)         "Hilfe"
+   set caption(select,record)       "Speichern"
+   set caption(select,tiret)        "-"
+   set caption(select,pas_image)    "Kein Bild hat diesen Namen."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(select,menu)         "Selecção de imagem"
+   set caption(select,titre)        "Selecção manual de imagens"
+   set caption(select,entree)       "Imagem de entrada"
+   set caption(select,nom)          "Nome:"
+   set caption(select,parcourir)    "..."
+   set caption(select,index)        "Índice:"
+   set caption(select,sortie)       "Imagens de saída"
+   set caption(select,demarrer)     "Iniciar"
+   set caption(select,inf)          "<"
+   set caption(select,sup)          ">"
+   set caption(select,auto)         "Automático"
+   set caption(select,aide)         "Ajuda"
+   set caption(select,record)       "Guardar"
+   set caption(select,tiret)        "-"
+   set caption(select,pas_image)    "Não existe imagem com este nome."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(select,menu)         "Billedvalg"
+   set caption(select,titre)        "Manuel valg af billeder"
+   set caption(select,entree)       "Indsæt billeder"
+   set caption(select,nom)          "Navn:"
+   set caption(select,parcourir)    "..."
+   set caption(select,index)        "Indeks:"
+   set caption(select,sortie)       "Udlæs billeder"
+   set caption(select,demarrer)     "Start"
+   set caption(select,inf)          "<"
+   set caption(select,sup)          ">"
+   set caption(select,auto)         "Automatisk"
+   set caption(select,aide)         "Hjælp"
+   set caption(select,record)       "Gem"
+   set caption(select,tiret)        "-"
+   set caption(select,pas_image)    "Intet billede med dette navn."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(select,menu)         "Image Selection"
+   set caption(select,titre)        "Manual Selection of Images"
+   set caption(select,entree)       "Input Images"
+   set caption(select,nom)          "Name:"
+   set caption(select,parcourir)    "..."
+   set caption(select,index)        "Index:"
+   set caption(select,sortie)       "Output Images"
+   set caption(select,demarrer)     "Start"
+   set caption(select,inf)          "<"
+   set caption(select,sup)          ">"
+   set caption(select,auto)         "Automatic"
+   set caption(select,aide)         "Help"
+   set caption(select,record)       "Save"
+   set caption(select,tiret)        "-"
+   set caption(select,pas_image)    "No image with this name."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(select,menu)         "Image Selection"
+   set caption(select,titre)        "Manual Selection of Images"
+   set caption(select,entree)       "Input Images"
+   set caption(select,nom)          "Name:"
+   set caption(select,parcourir)    "..."
+   set caption(select,index)        "Index:"
+   set caption(select,sortie)       "Output Images"
+   set caption(select,demarrer)     "Start"
+   set caption(select,inf)          "<"
+   set caption(select,sup)          ">"
+   set caption(select,auto)         "Automatic"
+   set caption(select,aide)         "Help"
+   set caption(select,record)       "Save"
+   set caption(select,tiret)        "-"
+   set caption(select,pas_image)    "No image with this name."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

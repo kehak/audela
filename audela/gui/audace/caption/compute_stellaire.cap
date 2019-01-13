@@ -1,0 +1,272 @@
+#
+# Fichier : compute_stellaire.cap
+# Mise a jour $Id: compute_stellaire.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+# Captions de syntaxe
+set caption(compute,syntax,stellaire)           "Usage : compute_stellaire brutes ?noirs PLUs noirsdePLUs options?"
+
+# Autres
+set caption(compute,debut)                      "Start in the Automatic Preprocessing Procedure...\n"
+set caption(compute,pb)                         "Problem"
+set caption(compute,nobrutes)                   "No raw image for this generic name was found"
+set caption(compute,brutesok)                   "Number of raw images found:"
+set caption(compute,nonoirs)                    "No dark frame image for this generic name was found"
+set caption(compute,noirsok)                    "Number of dark frame images found:"
+set caption(compute,noPLUs)                     "No flat field frame image for this generic name was found"
+set caption(compute,PLUsok)                     "Number of flat field frame images found:"
+set caption(compute,nonoirsdePLUs)              "No dark frame of flat field image for this generic name was found"
+set caption(compute,noirsdePLUsok)              "Number of dark frames of flat field image found:"
+set caption(compute,pbpourcentage)              "The percentage of images to be retained for the compositing\nstep is not correct and must be lower than 100"
+set caption(compute,tmp_noir)                   "Creating the dark frame image (through a median calculation)...\n"
+set caption(compute,tmp_brute-noir_X)           "Subtracting the dark frame...\n"
+set caption(compute,tmp_noirdePLUs)             "Creating the dark frame of the flat field images (through a median calculation)...\n"
+set caption(compute,tmp_PLU-noir_X)             "Subtracting the dark frame of flat field images...\n"
+set caption(compute,tmp_PLUnorm_X)              "Standardizing the gain of flat field images...\n"
+set caption(compute,tmp_PLU)                    "Creating the flat field image (through a median calculation)...\n"
+set caption(compute,tmp_pret_X)                 "Standardizing through the flat field image...\n"
+set caption(compute,tmp_registr_X)              "Registering...\n"
+set caption(compute,tri_FWHM)                   "FWHM Sorting...\n"
+set caption(compute,FWHM_max)                   "We shall be retained only images with an FWHM lower than "
+set caption(compute,compositage)                "Sigma-Kappa Compositing...\n"
+set caption(compute,imafinale)                  "Preprocessed Image"
+set caption(compute,fin)                        "End of the Automatic Preprocessing Procedure.\n"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(compute,debut)                   "Début de la procédure de prétraitement automatique...\n"
+   set caption(compute,pb)                      "Problème"
+   set caption(compute,nobrutes)                "Aucune image brute correspondant au nom générique donné n'a été trouvée"
+   set caption(compute,brutesok)                "Nombre d'images brutes trouvées :"
+   set caption(compute,nonoirs)                 "Aucune image de noir correspondant au nom générique donné n'a été trouvée"
+   set caption(compute,noirsok)                 "Nombre d'images de noir trouvées :"
+   set caption(compute,noPLUs)                  "Aucune image de PLU correspondant au nom générique donné n'a été trouvée"
+   set caption(compute,PLUsok)                  "Nombre d'images de PLU trouvées :"
+   set caption(compute,nonoirsdePLUs)           "Aucune image de noir de PLU correspondant au nom générique donné n'a été trouvée"
+   set caption(compute,noirsdePLUsok)           "Nombre d'images de noir de PLU trouvées :"
+   set caption(compute,pbpourcentage)           "Le pourcentage d'images à conserver pour le compositage\nn'est pas cohérent, il faut un nombre inférieur à 100"
+   set caption(compute,tmp_noir)                "Création de l'image de noir (par médiane)...\n"
+   set caption(compute,tmp_brute-noir_X)        "Soustration du noir...\n"
+   set caption(compute,tmp_noirdePLUs)          "Création de l'image de noir de PLUs (par médiane)...\n"
+   set caption(compute,tmp_PLU-noir_X)          "Soustration du noir de PLUs...\n"
+   set caption(compute,tmp_PLUnorm_X)           "Normalisation du gain des PLUs...\n"
+   set caption(compute,tmp_PLU)                 "Création de l'image de PLU (par médiane)...\n"
+   set caption(compute,tmp_pret_X)              "Normalisation par PLU...\n"
+   set caption(compute,tmp_registr_X)           "Registration...\n"
+   set caption(compute,tri_FWHM)                "Tri par FWHM...\n"
+   set caption(compute,FWHM_max)                "On ne garde que les images ayant un FWHM inférieur à "
+   set caption(compute,compositage)             "Compositage Sigma-Kappa...\n"
+   set caption(compute,imafinale)               "Image prétraitée"
+   set caption(compute,fin)                     "Fin de la procédure de prétraitement automatique.\n"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(compute,debut)                   "Inizio della procedura di pretrattamento automatico...\n"
+   set caption(compute,pb)                      "Problema"
+   set caption(compute,nobrutes)                "Nessuna immagine raw corrispondente al nome generico è stata trovata"
+   set caption(compute,brutesok)                "Numero di immagini raw trovate:"
+   set caption(compute,nonoirs)                 "Nessuna immagine dark corrispondente al nome generico è stata trovata"
+   set caption(compute,noirsok)                 "Numero di immagini dark trovate:"
+   set caption(compute,noPLUs)                  "Nessuna immagine flat corrispondente al nome generico è stata trovata"
+   set caption(compute,PLUsok)                  "Numero di immagini flat trovate:"
+   set caption(compute,nonoirsdePLUs)           "Nessuna immagine dark dei flat field corrispondente al nome generico è stata trovata"
+   set caption(compute,noirsdePLUsok)           "Numero di immagini dark dei flat field trovate:"
+   set caption(compute,pbpourcentage)           "La percentuale del numero di immagini da conservare per la compositazione\nnon è corretto, deve essere minore di 100"
+   set caption(compute,tmp_noir)                "Creazione dell'immagine di dark (mediana)...\n"
+   set caption(compute,tmp_brute-noir_X)        "Sottrazione del dark...\n"
+   set caption(compute,tmp_noirdePLUs)          "Creazione dell'immagine di dark del flat (mediana)...\n"
+   set caption(compute,tmp_PLU-noir_X)          "Sottrazione del dark del flat...\n"
+   set caption(compute,tmp_PLUnorm_X)           "Normalizzazione del gain dei flat...\n"
+   set caption(compute,tmp_PLU)                 "Creazione dell'immagine del flat (mediana)...\n"
+   set caption(compute,tmp_pret_X)              "Normalizzazione per flat...\n"
+   set caption(compute,tmp_registr_X)           "Registrazione...\n"
+   set caption(compute,tri_FWHM)                "Ordinamento per FWHM...\n"
+   set caption(compute,FWHM_max)                "Utilizzate le immagini aventi un FWHM inferiore a "
+   set caption(compute,compositage)             "Compositazione Sigma-Kappa...\n"
+   set caption(compute,imafinale)               "Immagine pretrattata"
+   set caption(compute,fin)                     "Procedura di pretrattamento automatico terminata.\n"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(compute,debut)                   "Empezar con el Procedimiento de Preprocesado Automático...\n"
+   set caption(compute,pb)                      "Problema"
+   set caption(compute,nobrutes)                "No se encontró imagen raw con este nombre genérico"
+   set caption(compute,brutesok)                "Número de imágenes raw encontradas:"
+   set caption(compute,nonoirs)                 "No se encontró imagen de dark con este nombre genérico"
+   set caption(compute,noirsok)                 "Número de imágenes dark encontradas:"
+   set caption(compute,noPLUs)                  "No se encontró imagen de flat con este nombre genérico"
+   set caption(compute,PLUsok)                  "Número de imágenes de flat encontradas:"
+   set caption(compute,nonoirsdePLUs)           "No se encontró imagen dark de flat con este nombre genérico"
+   set caption(compute,noirsdePLUsok)           "Número de imágenes de dark para flat encontradas:"
+   set caption(compute,pbpourcentage)           "El porcentaje de imágenes a conservar para la composición\nno es correcto y debe ser un número inferior a 100"
+   set caption(compute,tmp_noir)                "Creando la imagen de dark (mediante el cálculo de la media)...\n"
+   set caption(compute,tmp_brute-noir_X)        "Restando la imagen de dark...\n"
+   set caption(compute,tmp_noirdePLUs)          "Creando la imagen dark para flat (mediante el cálculo de la media)...\n"
+   set caption(compute,tmp_PLU-noir_X)          "Restando imagen dark a imagenes de flat...\n"
+   set caption(compute,tmp_PLUnorm_X)           "Normalizando la ganancia de las imágenes de flat...\n"
+   set caption(compute,tmp_PLU)                 "Creando la imagen de flat (mediante el cálculo de la media)...\n"
+   set caption(compute,tmp_pret_X)              "Normalización por la imagen de flat...\n"
+   set caption(compute,tmp_registr_X)           "Registrando...\n"
+   set caption(compute,tri_FWHM)                "Clasificando por FWHM...\n"
+   set caption(compute,FWHM_max)                "Se retendran solo las imágenes con una FWHM inferior a "
+   set caption(compute,compositage)             "Composición Sigma-Kappa...\n"
+   set caption(compute,imafinale)               "Imagen preprocesada"
+   set caption(compute,fin)                     "Fin del Procedimiento Automático de Preprocesado.\n"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(compute,debut)                   "Anfang der automatische Vorbehandlung Verfahren...\n"
+   set caption(compute,pb)                      "Problem"
+   set caption(compute,nobrutes)                "Kein passendes Rohbild zu den gegeben Gattungsname ist gefunden worden"
+   set caption(compute,brutesok)                "Gefundene Zahl des Rohbild:"
+   set caption(compute,nonoirs)                 "Kein passendes Schwarzbild zu den gegeben Gattungsname ist gefunden worden"
+   set caption(compute,noirsok)                 "Gefundene Zahl des Schwarzbild:"
+   set caption(compute,noPLUs)                  "Kein passendes GLZ-Bild zu den gegeben Gattungsname ist gefunden worden"
+   set caption(compute,PLUsok)                  "Gefundene Zahl des GLZ-Bild:"
+   set caption(compute,nonoirsdePLUs)           "Kein passendes Schwarz von GLZ-Bild zu den gegeben Gattungsname ist gefunden worden"
+   set caption(compute,noirsdePLUsok)           "Gefundene Zahl des Schwarz von GLZ-Bild:"
+   set caption(compute,pbpourcentage)           "Prozentsatz der Bilder zu behalten für die Zusammensetzung\nist nicht kohärent, der Nummer muss niedriger als 100 sein"
+   set caption(compute,tmp_noir)                "Schwarzbild Erschaffung (mit Medianwert)...\n"
+   set caption(compute,tmp_brute-noir_X)        "Schwarzbild Abziehung...\n"
+   set caption(compute,tmp_noirdePLUs)          "Schwarz von GLZ-Bild Erschaffung (mit Medianwert)...\n"
+   set caption(compute,tmp_PLU-noir_X)          "Schwarz von GLZ-Bild Abziehung...\n"
+   set caption(compute,tmp_PLUnorm_X)           "Normierung der Verstärkung des GLZ-Bilder...\n"
+   set caption(compute,tmp_PLU)                 "GLZ-Bild Erschaffung (mit Medianwert)...\n"
+   set caption(compute,tmp_pret_X)              "Mit GLZ Normung...\n"
+   set caption(compute,tmp_registr_X)           "Speichern...\n"
+   set caption(compute,tri_FWHM)                "mit FWHM Sortierung...\n"
+   set caption(compute,FWHM_max)                "Sind nur behalten die Bilder mit einen FWHM niedriger als "
+   set caption(compute,compositage)             "Sigma-Kappa Zusammensetzung...\n"
+   set caption(compute,imafinale)               "Bild Vorbehandelt"
+   set caption(compute,fin)                     "Ende der automatische Vorbehandlung Verfahren.\n"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(compute,debut)                   "Iniciar com Procedimento de Pré-processamento Automático...\n"
+   set caption(compute,pb)                      "Problema"
+   set caption(compute,nobrutes)                "Não foi encontrada imagem em bruto com este nome genérico"
+   set caption(compute,brutesok)                "Número de imagens em bruto encontradas:"
+   set caption(compute,nonoirs)                 "Não foi encontrada nenhuma dark-frame com este nome genérico"
+   set caption(compute,noirsok)                 "Número de dark-frames encontradas:"
+   set caption(compute,noPLUs)                  "Não foram encontradas imagens de flat-field com este nome genérico"
+   set caption(compute,PLUsok)                  "Número de imagens de flat-field encontradas:"
+   set caption(compute,nonoirsdePLUs)           "Não foi encontrada nenhuma dark-frame de imagem flat-field com este nome genérico"
+   set caption(compute,noirsdePLUsok)           "Número de dark-frames de imagem flat-field encontradas:"
+   set caption(compute,pbpourcentage)           "A percentagem de imagens a conservar para a composição\nnão é correcta e deve ser um número inferior a 100"
+   set caption(compute,tmp_noir)                "A criar a dark-frame (através do cálculo da média)...\n"
+   set caption(compute,tmp_brute-noir_X)        "A subtrair a dark-frame...\n"
+   set caption(compute,tmp_noirdePLUs)          "A criar a dark-frame para imagem flat-field (através do cálculo da média)...\n"
+   set caption(compute,tmp_PLU-noir_X)          "A subtrair a dark-frame das imagens flat-field...\n"
+   set caption(compute,tmp_PLUnorm_X)           "A normalizar o ganho das imagens flat-field...\n"
+   set caption(compute,tmp_PLU)                 "A criar a imagem de flat-field (através do cálculo da média)...\n"
+   set caption(compute,tmp_pret_X)              "Normalização através da imagem flat-field...\n"
+   set caption(compute,tmp_registr_X)           "A registar...\n"
+   set caption(compute,tri_FWHM)                "Dispor por FWHM...\n"
+   set caption(compute,FWHM_max)                "Serão guardadas somente as imagens com FWHM inferior a "
+   set caption(compute,compositage)             "Composição Sigma-Kappa...\n"
+   set caption(compute,imafinale)               "Imagem pré-processada"
+   set caption(compute,fin)                     "Fim do Procedimento de Pré-processamento Automático.\n"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(compute,debut)                   "Start in the Automatic Preprocessing Procedure...\n"
+   set caption(compute,pb)                      "Problem"
+   set caption(compute,nobrutes)                "No raw image for this generic name was found"
+   set caption(compute,brutesok)                "Number of raw images found:"
+   set caption(compute,nonoirs)                 "No dark frame image for this generic name was found"
+   set caption(compute,noirsok)                 "Number of dark frame images found:"
+   set caption(compute,noPLUs)                  "No flat field frame image for this generic name was found"
+   set caption(compute,PLUsok)                  "Number of flat field frame images found:"
+   set caption(compute,nonoirsdePLUs)           "No dark frame of flat field image for this generic name was found"
+   set caption(compute,noirsdePLUsok)           "Number of dark frames of flat field image found:"
+   set caption(compute,pbpourcentage)           "The percentage of images to be retained for the compositing\nstep is not correct and must be lower than 100"
+   set caption(compute,tmp_noir)                "Creating the dark frame image (through a median calculation)...\n"
+   set caption(compute,tmp_brute-noir_X)        "Subtracting the dark frame...\n"
+   set caption(compute,tmp_noirdePLUs)          "Creating the dark frame of the flat field images (through a median calculation)...\n"
+   set caption(compute,tmp_PLU-noir_X)          "Subtracting the dark frame of flat field images...\n"
+   set caption(compute,tmp_PLUnorm_X)           "Standardizing the gain of flat field images...\n"
+   set caption(compute,tmp_PLU)                 "Creating the flat field image (through a median calculation)...\n"
+   set caption(compute,tmp_pret_X)              "Standardizing through the flat field image...\n"
+   set caption(compute,tmp_registr_X)           "Registering...\n"
+   set caption(compute,tri_FWHM)                "FWHM Sorting...\n"
+   set caption(compute,FWHM_max)                "We shall be retained only images with an FWHM lower than "
+   set caption(compute,compositage)             "Sigma-Kappa Compositing...\n"
+   set caption(compute,imafinale)               "Preprocessed Image"
+   set caption(compute,fin)                     "End of the Automatic Preprocessing Procedure.\n"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(compute,debut)                   "Start in the Automatic Preprocessing Procedure...\n"
+   set caption(compute,pb)                      "Problem"
+   set caption(compute,nobrutes)                "No raw image for this generic name was found"
+   set caption(compute,brutesok)                "Number of raw images found:"
+   set caption(compute,nonoirs)                 "No dark frame image for this generic name was found"
+   set caption(compute,noirsok)                 "Number of dark frame images found:"
+   set caption(compute,noPLUs)                  "No flat field frame image for this generic name was found"
+   set caption(compute,PLUsok)                  "Number of flat field frame images found:"
+   set caption(compute,nonoirsdePLUs)           "No dark frame of flat field image for this generic name was found"
+   set caption(compute,noirsdePLUsok)           "Number of dark frames of flat field image found:"
+   set caption(compute,pbpourcentage)           "The percentage of images to be retained for the compositing\nstep is not correct and must be lower than 100"
+   set caption(compute,tmp_noir)                "Creating the dark frame image (through a median calculation)...\n"
+   set caption(compute,tmp_brute-noir_X)        "Subtracting the dark frame...\n"
+   set caption(compute,tmp_noirdePLUs)          "Creating the dark frame of the flat field images (through a median calculation)...\n"
+   set caption(compute,tmp_PLU-noir_X)          "Subtracting the dark frame of flat field images...\n"
+   set caption(compute,tmp_PLUnorm_X)           "Standardizing the gain of flat field images...\n"
+   set caption(compute,tmp_PLU)                 "Creating the flat field image (through a median calculation)...\n"
+   set caption(compute,tmp_pret_X)              "Standardizing through the flat field image...\n"
+   set caption(compute,tmp_registr_X)           "Registering...\n"
+   set caption(compute,tri_FWHM)                "FWHM Sorting...\n"
+   set caption(compute,FWHM_max)                "We shall be retained only images with an FWHM lower than "
+   set caption(compute,compositage)             "Sigma-Kappa Compositing...\n"
+   set caption(compute,imafinale)               "Preprocessed Image"
+   set caption(compute,fin)                     "End of the Automatic Preprocessing Procedure.\n"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(compute,debut)                   "Start in the Automatic Preprocessing Procedure...\n"
+   set caption(compute,pb)                      "Problem"
+   set caption(compute,nobrutes)                "No raw image for this generic name was found"
+   set caption(compute,brutesok)                "Number of raw images found:"
+   set caption(compute,nonoirs)                 "No dark frame image for this generic name was found"
+   set caption(compute,noirsok)                 "Number of dark frame images found:"
+   set caption(compute,noPLUs)                  "No flat field frame image for this generic name was found"
+   set caption(compute,PLUsok)                  "Number of flat field frame images found:"
+   set caption(compute,nonoirsdePLUs)           "No dark frame of flat field image for this generic name was found"
+   set caption(compute,noirsdePLUsok)           "Number of dark frames of flat field image found:"
+   set caption(compute,pbpourcentage)           "The percentage of images to be retained for the compositing\nstep is not correct and must be lower than 100"
+   set caption(compute,tmp_noir)                "Creating the dark frame image (through a median calculation)...\n"
+   set caption(compute,tmp_brute-noir_X)        "Subtracting the dark frame...\n"
+   set caption(compute,tmp_noirdePLUs)          "Creating the dark frame of the flat field images (through a median calculation)...\n"
+   set caption(compute,tmp_PLU-noir_X)          "Subtracting the dark frame of flat field images...\n"
+   set caption(compute,tmp_PLUnorm_X)           "Standardizing the gain of flat field images...\n"
+   set caption(compute,tmp_PLU)                 "Creating the flat field image (through a median calculation)...\n"
+   set caption(compute,tmp_pret_X)              "Standardizing through the flat field image...\n"
+   set caption(compute,tmp_registr_X)           "Registering...\n"
+   set caption(compute,tri_FWHM)                "FWHM Sorting...\n"
+   set caption(compute,FWHM_max)                "We shall be retained only images with an FWHM lower than "
+   set caption(compute,compositage)             "Sigma-Kappa Compositing...\n"
+   set caption(compute,imafinale)               "Preprocessed Image"
+   set caption(compute,fin)                     "End of the Automatic Preprocessing Procedure.\n"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

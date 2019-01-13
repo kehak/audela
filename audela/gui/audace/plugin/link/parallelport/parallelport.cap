@@ -1,0 +1,187 @@
+#
+# Fichier : parallelport.cap
+# Mise a jour $Id: parallelport.cap 9988 2013-08-18 17:01:49Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(parallelport,titre)                  "Parallel Port"
+set caption(parallelport,available)              "Parallel ports available"
+set caption(parallelport,refresh)                "Reload"
+set caption(parallelport,texte)                  "Next time software is run, you will have access to:"
+set caption(parallelport,porttalk)               "Porttalk Error Message (if any)"
+set caption(parallelport,oui)                    "Yes"
+set caption(parallelport,non)                    "No"
+
+set caption(parallelport,installNewVersion)      "Installation of library %s of plugin parallelport v%s completed."
+
+set caption(parallelport,porttalk_titre)         "PortTalk:"
+set caption(parallelport,porttalk_erreur)        "Porttalk Error"
+set caption(parallelport,porttalk_msg_erreur)    "Run uninstallporttalk.exe from bin, delete porttalk.sys from the system32/drivers folder and run AudeLA again."
+set caption(parallelport,porttalk_message)       "Do not display this message next time."
+set caption(parallelport,ok)                     "OK"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(parallelport,titre)               "Port parallèle"
+   set caption(parallelport,available)           "Ports parallèles disponibles"
+   set caption(parallelport,refresh)             "Rafraîchir"
+   set caption(parallelport,texte)               "Au prochain démarrage, il sera proposé l'accès au :"
+   set caption(parallelport,porttalk)            "Message d'erreur de Porttalk (s'il existe)"
+   set caption(parallelport,oui)                 "Oui"
+   set caption(parallelport,non)                 "Non"
+
+   set caption(parallelport,installNewVersion)   "Fin de l'installation de la librairie %s du plugin parallelport v%s."
+
+   set caption(parallelport,porttalk_titre)      "PortTalk :"
+   set caption(parallelport,porttalk_erreur)     "Erreur Porttalk"
+   set caption(parallelport,porttalk_msg_erreur) "Lancer uninstallporttalk.exe depuis bin, supprimer porttalk.sys du répertoire system32/drivers et relancer AudeLA."
+   set caption(parallelport,porttalk_message)    "Ne plus afficher ce message la prochaine fois."
+   set caption(parallelport,ok)                  "OK"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(parallelport,titre)               "Porta parallela"
+   set caption(parallelport,available)           "Porta parallela disponibile"
+   set caption(parallelport,refresh)             "Rinfresca"
+   set caption(parallelport,texte)               "Alla prossima esecuzione sara' possibile accedere a:"
+   set caption(parallelport,porttalk)            "Messaggio di errore di Porttalk (se presente)"
+   set caption(parallelport,oui)                 "Si"
+   set caption(parallelport,non)                 "No"
+
+   set caption(parallelport,installNewVersion)   "Installazione della libreria %s del plugin parallelport v%s terminata."
+
+   set caption(parallelport,porttalk_titre)      "PortTalk:"
+   set caption(parallelport,porttalk_erreur)     "Errore Porttalk"
+   set caption(parallelport,porttalk_msg_erreur) "Eseguire uninstallporttalk.exe in bin, eliminare porttalk.sys dalla cartella system32/drivers ed eseguire nuovamente AudeLA."
+   set caption(parallelport,porttalk_message)    "Non visualizzare piu` questo messaggio."
+   set caption(parallelport,ok)                  "OK"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(parallelport,titre)               "Puerto paralelo"
+   set caption(parallelport,available)           "Puertos paralelos disponibles"
+   set caption(parallelport,refresh)             "Recargar"
+   set caption(parallelport,texte)               "La próxima vez que se ejecute el programa, tendrás acceso a:"
+   set caption(parallelport,porttalk)            "Mensaje de error de Porttalk (si existe)"
+   set caption(parallelport,oui)                 "Sí"
+   set caption(parallelport,non)                 "No"
+
+   set caption(parallelport,installNewVersion)   "Fin de la instalación de la libreria %s del plugin parallelport v%s."
+
+   set caption(parallelport,porttalk_titre)      "PortTalk:"
+   set caption(parallelport,porttalk_erreur)     "Error de ¿¿¿ Porttalk ????"
+   set caption(parallelport,porttalk_msg_erreur) "Ejecutar uninstallporttalk.exe desde bin, borrar porttalk.sys de carpeta system32/drivers y ejecutar AudeLA otra vez."
+   set caption(parallelport,porttalk_message)    "No mostrar este mensaje otra vez."
+   set caption(parallelport,ok)                  "OK"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(parallelport,titre)               "Parallel Anschlüss"
+   set caption(parallelport,available)           "Parallel Anschlüssen verfügbar"
+   set caption(parallelport,refresh)             "Aktualisieren"
+   set caption(parallelport,texte)               "Am nächsten Anlassen, werden sie Zugang zu … haben:"
+   set caption(parallelport,porttalk)            "Porttalk Fehlermeldung (falls es existiert)"
+   set caption(parallelport,oui)                 "Ja"
+   set caption(parallelport,non)                 "Nein"
+
+   set caption(parallelport,installNewVersion)   "Die Installation der Bibliothek %s ist vervollständigt der Plugin parallelport v%s."
+
+   set caption(parallelport,porttalk_titre)      "PortTalk:"
+   set caption(parallelport,porttalk_erreur)     "Porttak Irrtum"
+   set caption(parallelport,porttalk_msg_erreur) "uninstallporttalk.exe von bin anlassen, porttalk.sys vom system32/drivers Register löschen und AudeLA wieder laden."
+   set caption(parallelport,porttalk_message)    "Diese Meldung nächste mahl nicht mehr anzeigen."
+   set caption(parallelport,ok)                  "OK"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(parallelport,titre)               "Porta paralela"
+   set caption(parallelport,available)           "Portas paralelas disponíveis"
+   set caption(parallelport,refresh)             "Actualizar"
+   set caption(parallelport,texte)               "Na próxima vez que executar o programa, terá acesso a:"
+   set caption(parallelport,porttalk)            "Mensagem de erro de Porttalk (se existir)"
+   set caption(parallelport,oui)                 "Sim"
+   set caption(parallelport,non)                 "Não"
+
+   set caption(parallelport,installNewVersion)   "Instalação da livraria %s do plugin parallelport v%s concluída."
+
+   set caption(parallelport,porttalk_titre)      "PortTalk:"
+   set caption(parallelport,porttalk_erreur)     "Erro de comunicação de portas"
+   set caption(parallelport,porttalk_msg_erreur) "Executar uninstallporttalk.exe desde bin, eliminar porttalk.sys da pasta system32/drivers e correr o AudeLA novamente."
+   set caption(parallelport,porttalk_message)    "Não mostrar esta imagem outra vez."
+   set caption(parallelport,ok)                  "OK"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(parallelport,titre)               "Parallel port"
+   set caption(parallelport,available)           "Disponible parallelle porte"
+   set caption(parallelport,refresh)             "Genindlæs"
+   set caption(parallelport,texte)               "Ved næste start vil du få adgang til:"
+   set caption(parallelport,porttalk)            "Porttalk fejlmeddelelse (hvis nogen)"
+   set caption(parallelport,oui)                 "Ja"
+   set caption(parallelport,non)                 "Nej"
+
+   set caption(parallelport,installNewVersion)   "Installation of library %s of plugin parallelport v%s completed."
+
+   set caption(parallelport,porttalk_titre)      "PortTalk:"
+   set caption(parallelport,porttalk_erreur)     "Porttalk fejl"
+   set caption(parallelport,porttalk_msg_erreur) "Kør uninstallporttalk.exe fra bin, slet porttalk.sys fra system32/drivers folderen og kør AudeLA igen."
+   set caption(parallelport,porttalk_message)    "Vis ikke denne besked igen!"
+   set caption(parallelport,ok)                  "OK"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(parallelport,titre)               "Parallel Port"
+   set caption(parallelport,available)           "Parallel ports available"
+   set caption(parallelport,refresh)             "Reload"
+   set caption(parallelport,texte)               "Next time software is run, you will have access to:"
+   set caption(parallelport,porttalk)            "Porttalk Error Message (if any)"
+   set caption(parallelport,oui)                 "Yes"
+   set caption(parallelport,non)                 "No"
+
+   set caption(parallelport,installNewVersion)   "Installation of library %s of plugin parallelport v%s completed."
+
+   set caption(parallelport,porttalk_titre)      "PortTalk:"
+   set caption(parallelport,porttalk_erreur)     "Porttalk Error"
+   set caption(parallelport,porttalk_msg_erreur) "Run uninstallporttalk.exe from bin, delete porttalk.sys from the system32/drivers folder and run AudeLA again."
+   set caption(parallelport,porttalk_message)    "Do not display this message next time."
+   set caption(parallelport,ok)                  "OK"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(parallelport,titre)               "Parallel Port"
+   set caption(parallelport,available)           "Parallel ports available"
+   set caption(parallelport,refresh)             "Reload"
+   set caption(parallelport,texte)               "Next time software is run, you will have access to:"
+   set caption(parallelport,porttalk)            "Porttalk Error Message (if any)"
+   set caption(parallelport,oui)                 "Yes"
+   set caption(parallelport,non)                 "No"
+
+   set caption(parallelport,installNewVersion)   "Installation of library %s of plugin parallelport v%s completed."
+
+   set caption(parallelport,porttalk_titre)      "PortTalk:"
+   set caption(parallelport,porttalk_erreur)     "Porttalk Error"
+   set caption(parallelport,porttalk_msg_erreur) "Run uninstallporttalk.exe from bin, delete porttalk.sys from the system32/drivers folder and run AudeLA again."
+   set caption(parallelport,porttalk_message)    "Do not display this message next time."
+   set caption(parallelport,ok)                  "OK"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

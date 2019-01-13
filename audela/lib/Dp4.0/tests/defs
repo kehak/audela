@@ -1,0 +1,208 @@
+# defs --
+#
+#	This file contains support code for the Tcl test suite.  It is
+#	normally sourced by the individual files in the test suite
+#	before they run their tests.  This improved approach to
+#	testing was designed and initially implemented by Mary Ann
+#	May-Pumphrey of Sun Microsystems.
+#
+
+# The environment DP_TEST_VERBOSE can be used to control the verbosity
+# of the DP test suite. It must be a valid boolean number. With this
+# environment variable, you no longer have to edit the "defs" file
+# when you want to change the verbosity settings.
+#
+if [info exists env(DP_TEST_VERBOSE)] {
+    if [catch {
+	set VERBOSE [expr !(!($env(DP_TEST_VERBOSE)))]
+    }] {
+	set VERBOSE 0
+    }
+} else {
+    set VERBOSE 0
+}
+
+set LOG 1
+set TESTS {}
+
+if ![string comp [info commands package] ""] {
+    puts stderr "This version of DP requires the package command."
+    exit 1
+}
+
+#
+# We require either Tcl 7.6 or Tcl 8.0
+#
+if {![info exists dp_version]} {
+
+if [catch {package require Tcl 8.0} err] {
+    if [catch {package require Tcl 7.6} err] {
+	puts stderr $err
+	exit 1
+    }
+}
+
+if ![info exists dp_version] {
+    case $tcl_platform(platform) {
+	unix {
+ 	   load ../unix/libdp40[info sharedlibextension] Dp
+	}
+	windows {
+	    load ../win/dp40.dll Dp
+	}
+	default {
+	    puts stderr \
+	      "DP is not supported on the \"$tcl_platform(platform)\" platform"
+	    exit 1
+	}
+    }
+}
+}
+
+if {[string compare $tcl_platform(platform) "windows"] == 0} {
+    set win 1
+} else {
+    set win 0
+}
+
+if {! [info exists tcl_msWindows]} {
+    set tcl_msWindows 0
+}
+# If tests are being run as root, issue a warning message and set a
+# variable to prevent some tests from running at all.
+
+set user {}
+catch {set user [exec whoami]}
+if {$user == "root"} {
+    puts stdout "Warning: you're executing as root.  I'll have to"
+    puts stdout "skip some of the tests, since they'll fail as root."
+}
+
+# Some of the tests don't work on some system configurations due to
+# configuration quirks, not due to Tcl problems;  in order to prevent
+# false alarms, these tests are only run in the master source directory
+# at Cornell.  The presence of a file "Cornell" in this directory is
+# used to indicate that these tests should be run.
+
+set atCornell [file exists Cornell]
+
+# If there is no "memory" command (because memory debugging isn't
+# enabled), generate a dummy command that does nothing.
+
+if {[info commands memory] == ""} {
+    proc memory args {}
+}
+
+proc print_verbose {name description script code answer} {
+    puts stdout "\n"
+    puts stdout "==== $name $description"
+    puts stdout "==== Contents of test case:"
+    puts stdout "$script"
+    if {$code != 0} {
+	if {$code == 1} {
+	    puts stdout "==== Test generated error:"
+	    puts stdout $answer
+	} elseif {$code == 2} {
+	    puts stdout "==== Test generated return exception;  result was:"
+	    puts stdout $answer
+	} elseif {$code == 3} {
+	    puts stdout "==== Test generated break exception"
+	} elseif {$code == 4} {
+	    puts stdout "==== Test generated continue exception"
+	} else {
+	    puts stdout "==== Test generated exception $code;  message was:"
+	    puts stdout $answer
+	}
+    } else {
+	puts stdout "==== Result was:"
+	puts stdout "$answer"
+    }
+}
+
+# test --
+# This procedure runs a test and prints an error message if the
+# test fails.  If VERBOSE has been set, it also prints a message
+# even if the test succeeds.  The test will be skipped if it
+# doesn't match the TESTS variable, or if one of the elements
+# of "constraints" turns out not to be true.
+#
+# Arguments:
+# name -		Name of test, in the form foo-1.2.
+# description -		Short textual description of the test, to
+#			help humans understand what it does.
+# constraints -		A list of one or more keywords, each of
+#			which must be the name of an element in
+#			the array "testConfig".  If any of these
+#			elements is zero, the test is skipped.
+#			This argument may be omitted.
+# script -		Script to run to carry out the test.  It must
+#			return a result that can be checked for
+#			correctness.
+# answer -		Expected result from script.
+
+proc test {name description script answer args} {
+    global VERBOSE TESTS testConfig
+    if {[string compare $TESTS ""] != 0} then {
+	set ok 0
+	foreach test $TESTS {
+	    if [string match $test $name] then {
+		set ok 1
+		break
+	    }
+        }
+	if !$ok then return
+    }
+    set i [llength $args]
+    if {$i == 0} {
+	# Empty body
+    } elseif {$i == 1} {
+	# "constraints" argument exists;  shuffle arguments down, then
+	# make sure that the constraints are satisfied.
+
+	set constraints $script
+	set script $answer
+	set answer [lindex $args 0]
+	foreach constraint $constraints {
+	    if {![info exists testConfig($constraint)]
+		    || !$testConfig($constraint)} {
+		return
+	    }
+	}
+    } else {
+	error "wrong # args: must be \"test name description ?constraints? script answer\""
+    }
+    memory tag $name
+    set code [catch {uplevel $script} result]
+    if {$code != 0} {
+	print_verbose $name $description $script \
+		$code $result
+    } elseif {[string compare $result $answer] == 0} then { 
+	if {$VERBOSE > 1} {
+	    print_verbose $name $description $script \
+		    $code $result
+	} elseif {$VERBOSE == 1} {
+	    puts stdout "++++ $name PASSED"
+	}
+    } else {
+	print_verbose $name $description $script \
+		$code $result 
+	puts stdout "---- Result should have been:"
+	puts stdout "$answer"
+	puts stdout "---- $name FAILED" 
+    }
+    #
+    # this is so that the screen updates immediately in wish
+    #
+    update idletasks
+}
+
+proc dotests {file args} {
+    global TESTS
+    set savedTests $TESTS
+    set TESTS $args
+    source $file
+    set TESTS $savedTests
+}
+
+
+

@@ -1,0 +1,231 @@
+#
+# Fichier : viseur_polaire.cap
+# Mise a jour $Id: viseur_polaire.cap 13580 2016-04-02 20:36:02Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+# *************** Version anglaise ****************************
+
+set ::caption(viseur_polaire,titre)               "Polar Finder"
+set ::caption(viseur_polaire,help_titre)          "Help for this Tool"
+set ::caption(viseur_polaire,help_titre1)         "Help for the Tool:"
+set ::caption(viseur_polaire,taka)                "Takahashi\nType"
+set ::caption(viseur_polaire,eq6)                 "EQ6\nType"
+
+set ::caption(viseur_polaire,titre_taka)          "Takahashi Type Polar Finder"
+set ::caption(viseur_polaire,texte_taka)          "Polar Finder with Bubble Level"
+set ::caption(viseur_polaire,titre_eq6)           "EQ6 Type Polar Finder"
+set ::caption(viseur_polaire,texte_eq6)           "Polar Finder with Constellations"
+set ::caption(viseur_polaire,long)                "Longitude:"
+set ::caption(viseur_polaire,ah_polaire)          "Hour Angle of Polar Star:"
+set ::caption(viseur_polaire,taille)              "Its size"
+set ::caption(viseur_polaire,couleur_fond)        "Background Color"
+set ::caption(viseur_polaire,couleur_reticule)    "Reticle Color"
+set ::caption(viseur_polaire,couleur_etoile)      "Polar Star Color"
+set ::caption(viseur_polaire,ok)                  "OK"
+set ::caption(viseur_polaire,appliquer)           "Apply"
+set ::caption(viseur_polaire,aide)                "Help"
+set ::caption(viseur_polaire,fermer)              "Close"
+
+# *************** Version française ***************************
+if { [ string compare $::langage "french" ] == "0" } {
+
+   set ::caption(viseur_polaire,titre)            "Viseur polaire"
+   set ::caption(viseur_polaire,help_titre)       "Aide de cet outil"
+   set ::caption(viseur_polaire,help_titre1)      "Aide de l'outil :"
+   set ::caption(viseur_polaire,taka)             "Type\nTakahashi"
+   set ::caption(viseur_polaire,eq6)              "Type\nEQ6"
+
+   set ::caption(viseur_polaire,titre_taka)       "Viseur polaire de type Takahashi"
+   set ::caption(viseur_polaire,texte_taka)       "Viseur polaire avec niveau à bulle"
+   set ::caption(viseur_polaire,titre_eq6)        "Viseur polaire de type EQ6"
+   set ::caption(viseur_polaire,texte_eq6)        "Viseur polaire avec dessin de constellations"
+   set ::caption(viseur_polaire,long)             "Longitude :"
+   set ::caption(viseur_polaire,ah_polaire)       "Angle horaire de la Polaire :"
+   set ::caption(viseur_polaire,taille)           "Sa taille"
+   set ::caption(viseur_polaire,couleur_fond)     "Couleur du fond"
+   set ::caption(viseur_polaire,couleur_reticule) "Couleur du réticule"
+   set ::caption(viseur_polaire,couleur_etoile)   "Couleur de la Polaire"
+   set ::caption(viseur_polaire,ok)               "OK"
+   set ::caption(viseur_polaire,appliquer)        "Appliquer"
+   set ::caption(viseur_polaire,aide)             "Aide"
+   set ::caption(viseur_polaire,fermer)           "Fermer"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $::langage "italian" ] == "0" } {
+
+   set ::caption(viseur_polaire,titre)            "Cercatore polare"
+   set ::caption(viseur_polaire,help_titre)       "Aiuto per questo tool"
+   set ::caption(viseur_polaire,help_titre1)      "Aiuto per lo tool:"
+   set ::caption(viseur_polaire,taka)             "Tipo\nTakahashi"
+   set ::caption(viseur_polaire,eq6)              "Tipo\nEQ6"
+
+   set ::caption(viseur_polaire,titre_taka)       "Cercatore polare del tipo Takahashi"
+   set ::caption(viseur_polaire,texte_taka)       "Cercatore polare con livella a bolla"
+   set ::caption(viseur_polaire,titre_eq6)        "Cercatore polare del tipo EQ6"
+   set ::caption(viseur_polaire,texte_eq6)        "Cercatore polare con costellazioni"
+   set ::caption(viseur_polaire,long)             "Longitudine:"
+   set ::caption(viseur_polaire,ah_polaire)       "Angolo orario della Polare:"
+   set ::caption(viseur_polaire,taille)           "Dimensioni"
+   set ::caption(viseur_polaire,couleur_fond)     "Colore di fondo"
+   set ::caption(viseur_polaire,couleur_reticule) "Colore del reticolo"
+   set ::caption(viseur_polaire,couleur_etoile)   "Colore della Polare"
+   set ::caption(viseur_polaire,ok)               "OK"
+   set ::caption(viseur_polaire,appliquer)        "Applicare"
+   set ::caption(viseur_polaire,aide)             "Aiuto"
+   set ::caption(viseur_polaire,fermer)           "Chiudere"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $::langage "spanish" ] == "0" } {
+
+   set ::caption(viseur_polaire,titre)            "Buscador de la Polar"
+   set ::caption(viseur_polaire,help_titre)       "Ayuda para esta herramienta"
+   set ::caption(viseur_polaire,help_titre1)      "Ajuda para del herramienta:"
+   set ::caption(viseur_polaire,taka)             "Tipo\nTakahashi"
+   set ::caption(viseur_polaire,eq6)              "Tipo\nEQ6"
+
+   set ::caption(viseur_polaire,titre_taka)       "Buscador de la polar tipo Takahashi"
+   set ::caption(viseur_polaire,texte_taka)       "Buscador de la polar con burbuja de nivel"
+   set ::caption(viseur_polaire,titre_eq6)        "Buscador de la polar tipo EQ6"
+   set ::caption(viseur_polaire,texte_eq6)        "Buscador de la polar con constelaciones"
+   set ::caption(viseur_polaire,long)             "Longitud:"
+   set ::caption(viseur_polaire,ah_polaire)       "Angulo horario de la estrella Polar:"
+   set ::caption(viseur_polaire,taille)           "Su tamaño"
+   set ::caption(viseur_polaire,couleur_fond)     "Color de fondo"
+   set ::caption(viseur_polaire,couleur_reticule) "Color del retículo"
+   set ::caption(viseur_polaire,couleur_etoile)   "Color de la estrella Polar"
+   set ::caption(viseur_polaire,ok)               "OK"
+   set ::caption(viseur_polaire,appliquer)        "Aplicar"
+   set ::caption(viseur_polaire,aide)             "Ayuda"
+   set ::caption(viseur_polaire,fermer)           "Cerrar"
+
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $::langage "german" ] == "0" } {
+
+   set ::caption(viseur_polaire,titre)            "Polar Sucher"
+   set ::caption(viseur_polaire,help_titre)       "Hilfe für dieses Gerät"
+   set ::caption(viseur_polaire,help_titre1)      "Hilfe für die Gerät:"
+   set ::caption(viseur_polaire,taka)             "Takahashi\nModell"
+   set ::caption(viseur_polaire,eq6)              "EQ6\nModell"
+
+   set ::caption(viseur_polaire,titre_taka)       "Takahashi Modell Polar Sucher"
+   set ::caption(viseur_polaire,texte_taka)       "Polar Sucher mit Wasserwaage"
+   set ::caption(viseur_polaire,titre_eq6)        "EQ6 Modell Polar Sucher"
+   set ::caption(viseur_polaire,texte_eq6)        "Polar Sucher mit Konstellation Zeichnungen"
+   set ::caption(viseur_polaire,long)             "Länge:"
+   set ::caption(viseur_polaire,ah_polaire)       "Polar Zeitwinkel:"
+   set ::caption(viseur_polaire,taille)           "Ihre Größe"
+   set ::caption(viseur_polaire,couleur_fond)     "Hintergrund Farbe"
+   set ::caption(viseur_polaire,couleur_reticule) "Fadenkreuz Farbe"
+   set ::caption(viseur_polaire,couleur_etoile)   "Polarstern Farbe"
+   set ::caption(viseur_polaire,ok)               "OK"
+   set ::caption(viseur_polaire,appliquer)        "Anwenden"
+   set ::caption(viseur_polaire,aide)             "Hilfe"
+   set ::caption(viseur_polaire,fermer)           "Schließen"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $::langage "portuguese" ] == "0" } {
+
+   set ::caption(viseur_polaire,titre)            "Buscador polar"
+   set ::caption(viseur_polaire,help_titre)       "Ajuda para esta ferramenta"
+   set ::caption(viseur_polaire,help_titre1)      "Ajuda para del ferramenta:"
+   set ::caption(viseur_polaire,taka)             "Tipo\nTakahashi"
+   set ::caption(viseur_polaire,eq6)              "Tipo\nEQ6"
+
+   set ::caption(viseur_polaire,titre_taka)       "Buscador polar de tipo Takahashi"
+   set ::caption(viseur_polaire,texte_taka)       "Buscador polar com bolha de nível"
+   set ::caption(viseur_polaire,titre_eq6)        "Buscador polar do tipo EQ6"
+   set ::caption(viseur_polaire,texte_eq6)        "Buscador polar com constelações"
+   set ::caption(viseur_polaire,long)             "Longitude:"
+   set ::caption(viseur_polaire,ah_polaire)       "Ângulo horário da Polar:"
+   set ::caption(viseur_polaire,taille)           "Seu tamanho"
+   set ::caption(viseur_polaire,couleur_fond)     "Cor do fundo"
+   set ::caption(viseur_polaire,couleur_reticule) "Cor do retículo"
+   set ::caption(viseur_polaire,couleur_etoile)   "Cor da Polar"
+   set ::caption(viseur_polaire,ok)               "OK"
+   set ::caption(viseur_polaire,appliquer)        "Aplicar"
+   set ::caption(viseur_polaire,aide)             "Ajuda"
+   set ::caption(viseur_polaire,fermer)           "Fechar"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $::langage "danish" ] == "0" } {
+
+   set ::caption(viseur_polaire,titre)            "Polsøger"
+   set ::caption(viseur_polaire,help_titre)       "Hjælp til dette værktøj"
+   set ::caption(viseur_polaire,help_titre1)      "Hjælp til i værktøj:"
+   set ::caption(viseur_polaire,taka)             "Takahashi\ntype"
+   set ::caption(viseur_polaire,eq6)              "EQ6\ntype"
+
+   set ::caption(viseur_polaire,titre_taka)       "Polsøger af Takahashi typen"
+   set ::caption(viseur_polaire,texte_taka)       "Polsøger med libelle"
+   set ::caption(viseur_polaire,titre_eq6)        "Polsøger af EQ6 typen"
+   set ::caption(viseur_polaire,texte_eq6)        "Polsøger med konstellationer"
+   set ::caption(viseur_polaire,long)             "Geografisk længde:"
+   set ::caption(viseur_polaire,ah_polaire)       "Polstjernens timevinkel:"
+   set ::caption(viseur_polaire,taille)           "Dens størrelse"
+   set ::caption(viseur_polaire,couleur_fond)     "Baggrundsfarve"
+   set ::caption(viseur_polaire,couleur_reticule) "Trådkors farve"
+   set ::caption(viseur_polaire,couleur_etoile)   "Polstjernens farve"
+   set ::caption(viseur_polaire,ok)               "OK"
+   set ::caption(viseur_polaire,appliquer)        "Anvend"
+   set ::caption(viseur_polaire,aide)             "Hjælp"
+   set ::caption(viseur_polaire,fermer)           "Luk"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $::langage "ukrainian" ] == "0" } {
+
+   set ::caption(viseur_polaire,titre)            "Polar Finder"
+   set ::caption(viseur_polaire,help_titre)       "Help for this Tool"
+   set ::caption(viseur_polaire,help_titre1)      "Help for the Tool:"
+   set ::caption(viseur_polaire,taka)             "Takahashi\nType"
+   set ::caption(viseur_polaire,eq6)              "EQ6\nType"
+
+   set ::caption(viseur_polaire,titre_taka)       "Takahashi Type Polar Finder"
+   set ::caption(viseur_polaire,texte_taka)       "Polar Finder with Bubble Level"
+   set ::caption(viseur_polaire,titre_eq6)        "EQ6 Type Polar Finder"
+   set ::caption(viseur_polaire,texte_eq6)        "Polar Finder with Constellations"
+   set ::caption(viseur_polaire,long)             "Longitude:"
+   set ::caption(viseur_polaire,ah_polaire)       "Hour Angle of Polar Star:"
+   set ::caption(viseur_polaire,taille)           "Its size"
+   set ::caption(viseur_polaire,couleur_fond)     "Background Color"
+   set ::caption(viseur_polaire,couleur_reticule) "Reticle Color"
+   set ::caption(viseur_polaire,couleur_etoile)   "Polar Star Color"
+   set ::caption(viseur_polaire,ok)               "OK"
+   set ::caption(viseur_polaire,appliquer)        "Apply"
+   set ::caption(viseur_polaire,aide)             "Help"
+   set ::caption(viseur_polaire,fermer)           "Close"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $::langage "russian" ] == "0" } {
+
+   set ::caption(viseur_polaire,titre)            "Polar Finder"
+   set ::caption(viseur_polaire,help_titre)       "Help for this Tool"
+   set ::caption(viseur_polaire,help_titre1)      "Help for the Tool:"
+   set ::caption(viseur_polaire,taka)             "Takahashi\nType"
+   set ::caption(viseur_polaire,eq6)              "EQ6\nType"
+
+   set ::caption(viseur_polaire,titre_taka)       "Takahashi Type Polar Finder"
+   set ::caption(viseur_polaire,texte_taka)       "Polar Finder with Bubble Level"
+   set ::caption(viseur_polaire,titre_eq6)        "EQ6 Type Polar Finder"
+   set ::caption(viseur_polaire,texte_eq6)        "Polar Finder with Constellations"
+   set ::caption(viseur_polaire,long)             "Longitude:"
+   set ::caption(viseur_polaire,ah_polaire)       "Hour Angle of Polar Star:"
+   set ::caption(viseur_polaire,taille)           "Its size"
+   set ::caption(viseur_polaire,couleur_fond)     "Background Color"
+   set ::caption(viseur_polaire,couleur_reticule) "Reticle Color"
+   set ::caption(viseur_polaire,couleur_etoile)   "Polar Star Color"
+   set ::caption(viseur_polaire,ok)               "OK"
+   set ::caption(viseur_polaire,appliquer)        "Apply"
+   set ::caption(viseur_polaire,aide)             "Help"
+   set ::caption(viseur_polaire,fermer)           "Close"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

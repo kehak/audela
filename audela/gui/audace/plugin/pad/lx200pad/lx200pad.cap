@@ -1,0 +1,79 @@
+#
+# Fichier : lx200pad.cap
+# Mise a jour $Id: lx200pad.cap 9483 2013-05-23 16:48:47Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(lx200pad,titre)            "LX200"
+set caption(lx200pad,pad_size)         "Its size"
+set caption(lx200pad,activeFleches)    "Enable\nArrow Keys"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(lx200pad,titre)         "LX200"
+   set caption(lx200pad,pad_size)      "Sa taille"
+   set caption(lx200pad,activeFleches) "Activer les flèches\ndu clavier"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(lx200pad,titre)         "LX200"
+   set caption(lx200pad,pad_size)      "Dimensioni"
+   set caption(lx200pad,activeFleches) "Abilita i tasti\nfreccia"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(lx200pad,titre)         "LX200"
+   set caption(lx200pad,pad_size)      "Su tamaño"
+   set caption(lx200pad,activeFleches) "Activar flechas\ndel teclado"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(lx200pad,titre)         "LX200"
+   set caption(lx200pad,pad_size)      "Ihre Größe"
+   set caption(lx200pad,activeFleches) "Pfeiltasten\naktivieren"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(lx200pad,titre)         "LX200"
+   set caption(lx200pad,pad_size)      "Seu tamanho"
+   set caption(lx200pad,activeFleches) "# Activer les flèches\ndu clavier"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(lx200pad,titre)         "LX200"
+   set caption(lx200pad,pad_size)      "Dens størrelse"
+   set caption(lx200pad,activeFleches) "Aktiver\npiletasterne"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(lx200pad,titre)         "LX200"
+   set caption(lx200pad,pad_size)      "Its size"
+   set caption(lx200pad,activeFleches) "Enable\nArrow Keys"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(lx200pad,titre)         "LX200"
+   set caption(lx200pad,pad_size)      "Its size"
+   set caption(lx200pad,activeFleches) "Enable\nArrow Keys"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

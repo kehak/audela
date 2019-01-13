@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{14AAEEAF-5022-42D6-B542-BE34A77F2157}</ProjectGuid>
+    <RootNamespace>external_libgphoto2</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.24730.2</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\</OutDir>
+    <IntDir>.\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\</OutDir>
+    <IntDir>.\</IntDir>
+    <ExtensionsToDeleteOnClean>*.obj%3b*.ilk%3b*.tlb%3b*.tli%3b*.tlh%3b*.tmp%3b*.rsp%3b*.pgc%3b*.pgd%3b*.meta%3b$(TargetPath)%3b*.htm%3b$(SolutionDir)external\lib\libgphoto2.lib%3b$(SolutionDir)external\include\gphoto2\*.h</ExtensionsToDeleteOnClean>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>./external_libgphoto2.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>../..;../../win;../../gphoto2;../../libgphoto2;../../libgphoto2_port;../../libgphoto2_port/gphoto2;../../libgphoto2_port/libgphoto2_port;../../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_USRDLL;LIBGPHOTO2_EXPORTS;_GPHOTO2_INTERNAL_CODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>./external_libgphoto2.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>./</AssemblerListingLocation>
+      <ObjectFileName>./</ObjectFileName>
+      <ProgramDataBaseFileName>./</ProgramDataBaseFileName>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>../../../../../bin/libgphoto2.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ModuleDefinitionFile>.\libgphoto2.def</ModuleDefinitionFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>../../../lib/libgphoto2.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>./external_libgphoto2.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>if not exist ..\..\..\include (mkdir ..\..\..\include)
+if not exist ..\..\..\include\gphoto2  (mkdir ..\..\..\include\gphoto2)
+copy ..\..\gphoto2\*.h   ..\..\..\include\gphoto2\
+rem copy ..\..\win\stdint.h   ..\..\..\include\gphoto2\
+
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>./external_libgphoto2.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../..;../../win;../../gphoto2;../../libgphoto2;../../libgphoto2_port;../../libgphoto2_port/gphoto2;../../libgphoto2_port/libgphoto2_port;../../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBGPHOTO2_EXPORTS;_GPHOTO2_INTERNAL_CODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>./external_libgphoto2.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>./</AssemblerListingLocation>
+      <ObjectFileName>./</ObjectFileName>
+      <ProgramDataBaseFileName>./</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>../../../../../bin/libgphoto2.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ModuleDefinitionFile>.\libgphoto2.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>./libgphoto2.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>../../../lib/libgphoto2.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>./external_libgphoto2.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>if not exist ..\..\..\include (mkdir ..\..\..\include)
+if not exist ..\..\..\include\gphoto2  (mkdir ..\..\..\include\gphoto2)
+copy ..\..\gphoto2\*.h   ..\..\..\include\gphoto2\
+rem copy ..\..\win\stdint.h   ..\..\..\include\gphoto2\
+
+
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\ahd_bayer.c" />
+    <ClCompile Include="..\bayer.c" />
+    <ClCompile Include="..\exif.c" />
+    <ClCompile Include="..\gamma.c" />
+    <ClCompile Include="..\gphoto2-abilities-list.c" />
+    <ClCompile Include="..\gphoto2-camera.c" />
+    <ClCompile Include="..\gphoto2-context.c" />
+    <ClCompile Include="..\gphoto2-file.c" />
+    <ClCompile Include="..\gphoto2-filesys.c" />
+    <ClCompile Include="..\gphoto2-library.c" />
+    <ClCompile Include="..\gphoto2-list.c" />
+    <ClCompile Include="..\gphoto2-result.c" />
+    <ClCompile Include="..\gphoto2-setting.c" />
+    <ClCompile Include="..\gphoto2-version.c" />
+    <ClCompile Include="..\gphoto2-widget.c" />
+    <ClCompile Include="..\jpeg.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libgphoto2.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\gphoto2\gphoto2-abilities-list.h" />
+    <ClInclude Include="..\..\gphoto2\gphoto2-camera.h" />
+    <ClInclude Include="..\..\gphoto2\gphoto2-context.h" />
+    <ClInclude Include="..\..\gphoto2\gphoto2-file.h" />
+    <ClInclude Include="..\..\gphoto2\gphoto2-filesys.h" />
+    <ClInclude Include="..\..\gphoto2\gphoto2-library.h" />
+    <ClInclude Include="..\..\gphoto2\gphoto2-list.h" />
+    <ClInclude Include="..\..\gphoto2\gphoto2-result.h" />
+    <ClInclude Include="..\..\gphoto2\gphoto2-setting.h" />
+    <ClInclude Include="..\..\gphoto2\gphoto2-version.h" />
+    <ClInclude Include="..\..\gphoto2\gphoto2-widget.h" />
+    <ClInclude Include="..\..\win\config.h" />
+    <ClInclude Include="..\bayer.h" />
+    <ClInclude Include="..\exif.h" />
+    <ClInclude Include="..\gamma.h" />
+    <ClInclude Include="..\gphoto2.h" />
+    <ClInclude Include="..\jpeg.h" />
+    <ClInclude Include="..\pattrec.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\libltdl\vc90\external_libltdl.vcxproj">
+      <Project>{01d1c7a3-e153-4af0-9cc1-eb31c5dcec84}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libgphoto2_port\libgphoto2_port\vc90\external_libgphoto2_port.vcxproj">
+      <Project>{d5fff436-2bfe-4c64-afc6-36f947ebcb0f}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

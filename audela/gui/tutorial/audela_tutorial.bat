@@ -1,0 +1,1 @@
+..\..\bin\audela.exe --file ../gui/tutorial/tuto.tcl

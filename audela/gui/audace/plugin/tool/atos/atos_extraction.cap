@@ -1,0 +1,220 @@
+#------------------------------------------------------------------
+# source [ file join $audace(rep_plugin) tool atos atos_extraction.cap
+#------------------------------------------------------------------
+#
+# Fichier        : atos_extraction.cap
+# Description    : Caption pour l'outil d'extraction des images fits
+# Auteur         : Frederic Vachier
+# Mise à jour $Id: atos_extraction.cap 14091 2016-10-20 21:52:15Z jberthier $
+#
+
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(atos_extraction,titre)               "ATOS - Video Extraction"
+set caption(atos_extraction,aide)                "Help"
+set caption(atos_extraction,fermer)              "Close"
+set caption(atos_extraction,ouvrir)              "Open"
+set caption(atos_extraction,extract)             "Extraction"
+set caption(atos_extraction,setmin)              "Start tag"
+set caption(atos_extraction,setmax)              "End tag"
+set caption(atos_extraction,nbimg)               "Number of images to extract = "
+set caption(atos_extraction,calcul)              "Compute"
+set caption(atos_extraction,statut)              "Status"
+set caption(atos_extraction,nbtotal)             "Total nb of images"
+set caption(atos_extraction,destdir)             "Destination directory"
+set caption(atos_extraction,prefix)              "Filename prefix"
+set caption(atos_extraction,encours)             "Extraction of the sequence of images"
+set caption(atos_extraction,extractfin)          "Extraction ended"
+set caption(atos_extraction,errordir)            "Error: enter a destination directory"
+set caption(atos_extraction,warnprefix)          "Default prefix filename: "
+set caption(atos_extraction,jpegformat)          "Save in JPEG format"
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(atos_extraction,titre)            "ATOS - Extraction video"
+   set caption(atos_extraction,aide)             "Aide"
+   set caption(atos_extraction,fermer)           "Fermer"
+   set caption(atos_extraction,ouvrir)           "Ouvrir"
+   set caption(atos_extraction,extract)          "Extraction"
+   set caption(atos_extraction,setmin)           "Marq. début"
+   set caption(atos_extraction,setmax)           "Marq. fin"
+   set caption(atos_extraction,nbimg)            "Nombre d'images à extraire = "
+   set caption(atos_extraction,calcul)           "Calcul"
+   set caption(atos_extraction,statut)           "Statut"
+   set caption(atos_extraction,nbtotal)          "Nb total d'images"
+   set caption(atos_extraction,destdir)          "Répertoire destination"
+   set caption(atos_extraction,prefix)           "Préfixe des nom de fichiers"
+   set caption(atos_extraction,encours)          "Extraction de la séquence d'images"
+   set caption(atos_extraction,extractfin)       "Extraction terminée"
+   set caption(atos_extraction,errordir)         "Erreur: veuillez spécifier un répertoire de destination"
+   set caption(atos_extraction,warnprefix)       "Préfixe des fichiers par défaut : "
+   set caption(atos_extraction,jpegformat)       "Sauver au format JPEG"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(atos_extraction,titre)               "ATOS - Video Extraction"
+   set caption(atos_extraction,aide)                "Help"
+   set caption(atos_extraction,fermer)              "Close"
+   set caption(atos_extraction,ouvrir)              "Open"
+   set caption(atos_extraction,extract)             "Extraction"
+   set caption(atos_extraction,setmin)              "Start tag"
+   set caption(atos_extraction,setmax)              "End tag"
+   set caption(atos_extraction,nbimg)               "Number of images to extract = "
+   set caption(atos_extraction,calcul)              "Compute"
+   set caption(atos_extraction,statut)              "Status"
+   set caption(atos_extraction,nbtotal)             "Total nb of images"
+   set caption(atos_extraction,destdir)             "Destination directory"
+   set caption(atos_extraction,prefix)              "Filename prefix"
+   set caption(atos_extraction,encours)             "Extraction of the sequence of images"
+   set caption(atos_extraction,extractfin)          "Extraction ended"
+   set caption(atos_extraction,errordir)            "Error: enter a destination directory"
+   set caption(atos_extraction,warnprefix)          "Default prefix filename: "
+   set caption(atos_extraction,jpegformat)          "Save in JPEG format"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(atos_extraction,titre)               "ATOS - Video Extraction"
+   set caption(atos_extraction,aide)                "Help"
+   set caption(atos_extraction,fermer)              "Close"
+   set caption(atos_extraction,ouvrir)              "Open"
+   set caption(atos_extraction,extract)             "Extraction"
+   set caption(atos_extraction,setmin)              "Start tag"
+   set caption(atos_extraction,setmax)              "End tag"
+   set caption(atos_extraction,nbimg)               "Number of images to extract = "
+   set caption(atos_extraction,calcul)              "Compute"
+   set caption(atos_extraction,statut)              "Status"
+   set caption(atos_extraction,nbtotal)             "Total nb of images"
+   set caption(atos_extraction,destdir)             "Destination directory"
+   set caption(atos_extraction,prefix)              "Filename prefix"
+   set caption(atos_extraction,encours)             "Extraction of the sequence of images"
+   set caption(atos_extraction,extractfin)          "Extraction ended"
+   set caption(atos_extraction,errordir)            "Error: enter a destination directory"
+   set caption(atos_extraction,warnprefix)          "Default prefix filename: "
+   set caption(atos_extraction,jpegformat)          "Save in JPEG format"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(atos_extraction,titre)               "ATOS - Video Extraction"
+   set caption(atos_extraction,aide)                "Help"
+   set caption(atos_extraction,fermer)              "Close"
+   set caption(atos_extraction,ouvrir)              "Open"
+   set caption(atos_extraction,extract)             "Extraction"
+   set caption(atos_extraction,setmin)              "Start tag"
+   set caption(atos_extraction,setmax)              "End tag"
+   set caption(atos_extraction,nbimg)               "Number of images to extract = "
+   set caption(atos_extraction,calcul)              "Compute"
+   set caption(atos_extraction,statut)              "Status"
+   set caption(atos_extraction,nbtotal)             "Total nb of images"
+   set caption(atos_extraction,destdir)             "Destination directory"
+   set caption(atos_extraction,prefix)              "Filename prefix"
+   set caption(atos_extraction,encours)             "Extraction of the sequence of images"
+   set caption(atos_extraction,extractfin)          "Extraction ended"
+   set caption(atos_extraction,errordir)            "Error: enter a destination directory"
+   set caption(atos_extraction,warnprefix)          "Default prefix filename: "
+   set caption(atos_extraction,jpegformat)          "Save in JPEG format"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(atos_extraction,titre)               "ATOS - Video Extraction"
+   set caption(atos_extraction,aide)                "Help"
+   set caption(atos_extraction,fermer)              "Close"
+   set caption(atos_extraction,ouvrir)              "Open"
+   set caption(atos_extraction,extract)             "Extraction"
+   set caption(atos_extraction,setmin)              "Start tag"
+   set caption(atos_extraction,setmax)              "End tag"
+   set caption(atos_extraction,nbimg)               "Number of images to extract = "
+   set caption(atos_extraction,calcul)              "Compute"
+   set caption(atos_extraction,statut)              "Status"
+   set caption(atos_extraction,nbtotal)             "Total nb of images"
+   set caption(atos_extraction,destdir)             "Destination directory"
+   set caption(atos_extraction,prefix)              "Filename prefix"
+   set caption(atos_extraction,encours)             "Extraction of the sequence of images"
+   set caption(atos_extraction,extractfin)          "Extraction ended"
+   set caption(atos_extraction,errordir)            "Error: enter a destination directory"
+   set caption(atos_extraction,warnprefix)          "Default prefix filename: "
+   set caption(atos_extraction,jpegformat)          "Save in JPEG format"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(atos_extraction,titre)               "ATOS - Video Extraction"
+   set caption(atos_extraction,aide)                "Help"
+   set caption(atos_extraction,fermer)              "Close"
+   set caption(atos_extraction,ouvrir)              "Open"
+   set caption(atos_extraction,extract)             "Extraction"
+   set caption(atos_extraction,setmin)              "Start tag"
+   set caption(atos_extraction,setmax)              "End tag"
+   set caption(atos_extraction,nbimg)               "Number of images to extract = "
+   set caption(atos_extraction,calcul)              "Compute"
+   set caption(atos_extraction,statut)              "Status"
+   set caption(atos_extraction,nbtotal)             "Total nb of images"
+   set caption(atos_extraction,destdir)             "Destination directory"
+   set caption(atos_extraction,prefix)              "Filename prefix"
+   set caption(atos_extraction,encours)             "Extraction of the sequence of images"
+   set caption(atos_extraction,extractfin)          "Extraction ended"
+   set caption(atos_extraction,errordir)            "Error: enter a destination directory"
+   set caption(atos_extraction,warnprefix)          "Default prefix filename: "
+   set caption(atos_extraction,jpegformat)          "Save in JPEG format"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(atos_extraction,titre)               "ATOS - Video Extraction"
+   set caption(atos_extraction,aide)                "Help"
+   set caption(atos_extraction,fermer)              "Close"
+   set caption(atos_extraction,ouvrir)              "Open"
+   set caption(atos_extraction,extract)             "Extraction"
+   set caption(atos_extraction,setmin)              "Start tag"
+   set caption(atos_extraction,setmax)              "End tag"
+   set caption(atos_extraction,nbimg)               "Number of images to extract = "
+   set caption(atos_extraction,calcul)              "Compute"
+   set caption(atos_extraction,statut)              "Status"
+   set caption(atos_extraction,nbtotal)             "Total nb of images"
+   set caption(atos_extraction,destdir)             "Destination directory"
+   set caption(atos_extraction,prefix)              "Filename prefix"
+   set caption(atos_extraction,encours)             "Extraction of the sequence of images"
+   set caption(atos_extraction,extractfin)          "Extraction ended"
+   set caption(atos_extraction,errordir)            "Error: enter a destination directory"
+   set caption(atos_extraction,warnprefix)          "Default prefix filename: "
+   set caption(atos_extraction,jpegformat)          "Save in JPEG format"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(atos_extraction,titre)               "ATOS - Video Extraction"
+   set caption(atos_extraction,aide)                "Help"
+   set caption(atos_extraction,fermer)              "Close"
+   set caption(atos_extraction,ouvrir)              "Open"
+   set caption(atos_extraction,extract)             "Extraction"
+   set caption(atos_extraction,setmin)              "Start tag"
+   set caption(atos_extraction,setmax)              "End tag"
+   set caption(atos_extraction,nbimg)               "Number of images to extract = "
+   set caption(atos_extraction,calcul)              "Compute"
+   set caption(atos_extraction,statut)              "Status"
+   set caption(atos_extraction,nbtotal)             "Total nb of images"
+   set caption(atos_extraction,destdir)             "Destination directory"
+   set caption(atos_extraction,prefix)              "Filename prefix"
+   set caption(atos_extraction,encours)             "Extraction of the sequence of images"
+   set caption(atos_extraction,extractfin)          "Extraction ended"
+   set caption(atos_extraction,errordir)            "Error: enter a destination directory"
+   set caption(atos_extraction,warnprefix)          "Default prefix filename: "
+   set caption(atos_extraction,jpegformat)          "Save in JPEG format"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

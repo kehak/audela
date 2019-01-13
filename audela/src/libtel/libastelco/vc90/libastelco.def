@@ -1,0 +1,2 @@
+LIBRARY libastelco
+EXPORTS Astelco_Init @1

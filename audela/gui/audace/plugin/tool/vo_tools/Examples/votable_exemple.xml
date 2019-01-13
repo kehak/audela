@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet href="myXSLStyleSheet.xsl" type="text/xsl"?>
+<vot:VOTABLE version="1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:vot="http://www.ivoa.net/xml/VOTable/v1.2"
+    xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.2 http://www.ivoa.net/xml/VOTable/VOTable-1.2.xsd"
+    xmlns:stc="http://www.ivoa.net/xml/STC">
+    <vot:INFO ID="reqTarget" name="-c" value="xxx,rm=1"/>
+    <vot:INFO ID="reqEpoch" name="-ep" value="yyy"/>
+    <vot:GROUP>
+        <vot:GROUP>
+            <vot:PARAM name="TimeScale" datatype="char" arraysize="*"
+                utype="stc:AstroCoordSystem.TimeFrame.TimeScale" value="UTC"/>
+            <vot:PARAM name="RefPosition" datatype="char" arraysize="*"
+                utype="stc:AstroCoordSystem.TimeFrame.ReferencePosition" value="GEOCENTER"/>
+        </vot:GROUP>
+        <vot:GROUP>
+            <vot:PARAM name="CooFrame" datatype="char" arraysize="*"
+                utype="stc:AstroCoordSystem.SpaceFrame.CoordRefFrame" value="ICRS"/>
+            <vot:PARAM name="CooFrameOrigin" datatype="char" arraysize="*"
+                utype="stc:AstroCoordSystem.SpaceFrame.ReferencePosition" value="GEOCENTER"/>
+            <vot:PARAM ID="Ephemeris" name="Ephemeris" datatype="char" arraysize="*"
+                utype="stc:AstroCoordSystem.SpaceFrame.ReferencePosition.PlanetaryEphem"
+                value="IMCCE-INPOP">
+                <vot:DESCRIPTION>Planetary theory used to compute the ephemeris</vot:DESCRIPTION>
+            </vot:PARAM>
+            <vot:PARAM name="CooType" datatype="char" arraysize="*"
+                utype="stc:AstroCoordSystem.SpaceFrame.CoordFlavor" value="SPHERICAL">
+                <vot:DESCRIPTION>Planetary theory used to compute the ephemeris</vot:DESCRIPTION>
+            </vot:PARAM>
+            <vot:PARAM name="Naxes" datatype="char" arraysize="*"
+                utype="stc:AstroCoordSystem.SpaceFrame.coord_naxes" value="3">
+                <vot:DESCRIPTION>Planetary theory used to compute the ephemeris</vot:DESCRIPTION>
+            </vot:PARAM>
+        </vot:GROUP>
+    </vot:GROUP>
+    <vot:RESOURCE name="skybot">
+        <vot:PARAM ID="epoch" name="Epoch" datatype="double" ucd="time.epoch" unit="d"
+            value="2453384.92154"/>
+        <vot:PARAM ID="fovRA" name="RA" datatype="double" ucd="pos.eq.ra" unit="deg" value="148.67"/>
+        <vot:PARAM ID="fovDEC" name="DEC" datatype="double" ucd="pos.eq.dec" unit="deg"
+            value="16.3838"/>
+        <vot:PARAM ID="fovSR" name="fovRadius" datatype="double" ucd="instr.fov" unit="arcsec"
+            value="1200.0"/>
+        <vot:PARAM ID="observer" name="Observer" datatype="char" arraysize="*"
+            ucd="meta.code;obs.observer" value="500"/>
+        <vot:TABLE>
+            <vot:DESCRIPTION>Ephemeris of the solar system objects located in the
+                FOV</vot:DESCRIPTION>
+            <vot:GROUP>
+                <vot:PARAM name="GeoCoordinates" datatype="char" arraysize="*"
+                    utype="stc:AstroCoords.coord_sys_id" value="UTC-ICRS-GEO"/>
+            </vot:GROUP>
+            <vot:FIELD ID="num" name="Num" ucd="meta.id;meta.number" datatype="char" arraysize="6"
+                width="6">
+                <vot:DESCRIPTION>Solar system object number</vot:DESCRIPTION>
+            </vot:FIELD>
+            <vot:FIELD ID="name" name="Name" ucd="meta.id;meta.main" datatype="char" arraysize="32"
+                width="32">
+                <vot:DESCRIPTION>Solar system object name</vot:DESCRIPTION>
+                <vot:LINK
+                    href="http://vizier.u-strasbg.fr/cgi-bin/VizieR-5?-source=B/astorb/astorb&amp;Name===${Name}"
+                />
+            </vot:FIELD>
+            <vot:FIELD ID="ra" name="RA" ucd="pos.eq.ra;meta.main" datatype="char" arraysize="13"
+                width="13" unit="h:m:s" ref="Ephemeris" utype="stc:AstroCoords.Position3D.Value3.C1">
+                <vot:DESCRIPTION>Astrometric J2000 right ascension</vot:DESCRIPTION>
+            </vot:FIELD>
+            <vot:FIELD ID="dec" name="DEC" ucd="pos.eq.dec;meta.main" datatype="char" arraysize="13"
+                width="13" unit="d:m:s" ref="Ephemeris" utype="stc:AstroCoords.Position3D.Value3.C2">
+                <vot:DESCRIPTION>Astrometric J2000 right declination</vot:DESCRIPTION>
+            </vot:FIELD>
+            <vot:FIELD ID="magV" name="Mv" ucd="em.opt.V" datatype="float" width="13" precision="2">
+                <vot:DESCRIPTION>Visual magnitude</vot:DESCRIPTION>
+            </vot:FIELD>
+            <vot:FIELD ID="dgeo" name="Dg" ucd="phys.distance" datatype="double" width="15"
+                unit="AU" ref="Ephemeris" utype="stc:AstroCoords.Position3D.Value3.C3">
+                <vot:DESCRIPTION>Distance from observer</vot:DESCRIPTION>
+            </vot:FIELD>
+            <vot:DATA>
+                <vot:TABLEDATA>
+                    <vot:TR>
+                        <vot:TD>2895</vot:TD>
+                        <vot:TD>Memnon</vot:TD>
+                        <vot:TD>09 54 40.2046</vot:TD>
+                        <vot:TD>+16 23 01.633</vot:TD>
+                        <vot:TD>16.6</vot:TD>
+                        <vot:TD>4.347530676</vot:TD>
+                    </vot:TR>
+                    <vot:TR>
+                        <vot:TD>-</vot:TD>
+                        <vot:TD>2007 TP12</vot:TD>
+                        <vot:TD>09 54 42.1509</vot:TD>
+                        <vot:TD>+16 22 36.198</vot:TD>
+                        <vot:TD>20.3</vot:TD>
+                        <vot:TD>1.664499989</vot:TD>
+                    </vot:TR>
+                    <vot:TR>
+                        <vot:TD>-</vot:TD>
+                        <vot:TD>2005 CJ35</vot:TD>
+                        <vot:TD>09 54 45.8479</vot:TD>
+                        <vot:TD>+16 22 10.717</vot:TD>
+                        <vot:TD>20.6</vot:TD>
+                        <vot:TD>2.363300870</vot:TD>
+                    </vot:TR>
+                    <vot:TR>
+                        <vot:TD>70783</vot:TD>
+                        <vot:TD>1999 VK44</vot:TD>
+                        <vot:TD>09 54 34.3801</vot:TD>
+                        <vot:TD>+16 24 55.671</vot:TD>
+                        <vot:TD>19.0</vot:TD>
+                        <vot:TD>1.683169804</vot:TD>
+                    </vot:TR>
+                </vot:TABLEDATA>
+            </vot:DATA>
+        </vot:TABLE>
+    </vot:RESOURCE>
+</vot:VOTABLE>

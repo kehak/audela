@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Compatibilit&eacute; d'&eacute;criture des scripts</title>
+</head>
+
+<body>
+<p> &lt;&lt;Cette page est destin&eacute;e aux programmeurs non d&eacute;butants&gt;&gt; </p>
+<p>L'interface Audace utilise la fonction proc pour ajouter de nombreuses fonctions suppl&eacute;mentaires &agrave; Audela. Il est possible de cr&eacute;er une nouvelle interface qui fonctionnera en dehors du contexte Audace, mais alors de nombreuses fonctions d&eacute;crites ci dessus ne sont plus accessibles. La liste compl&egrave;te des fonctions sp&eacute;cifiques &agrave; l'interface Audace sont rep&eacute;r&eacute;es par le sigle [AC] dans la <a href="interfa5c.htm">page consacr&eacute;e &agrave; l'inventaire de toutes les fonctions disponibles</a>.</p>
+<p>Ce chapitre fait une mise au point importante sur la diff&eacute;rence de programmation entre Audace et Audela. Ceci ne concerne donc pas les programmeurs d&eacute;butants qui veulent d&eacute;couvrir la programmation de scripts dans l'interface Audace.</p>
+<p>Nous avons vu que les scripts permettent de cr&eacute;er de nouvelles fonctions gr&acirc;ce &agrave; la fonction proc. C'est ainsi que l'interface Audace cr&eacute;e une multitude de nouvelles fonctions destin&eacute;es &agrave; simplifier l'&eacute;criture des commandes utiles pour observer en imagerie num&eacute;rique. Par exemple, la fonction loadima est cr&eacute;e par Audace mais n'existe pas dans le jeu de fonctions de base de Audela. Audace cr&eacute;e la fonction loadima &agrave; partir des fonctions d'<a href="interfa5a.htm">objets de Audela</a>. Ces fonctions d'objet sont tr&egrave;s puissantes mais elles ont aussi une syntaxe lourde. Audace, comme toute interface, cr&eacute;e donc de nouvelles fonctions, faciles d'emploi, qui utilisent les objets Audela. Si on ne d&eacute;sire pas utiliser l'interface Audace, on ne peut alors utiliser que les objets Audela et c'est pourquoi nous donnons les exemples ci dessous sous la forme de scripts pour Audela donc avec une syntaxe lourde. Nous donnons ensuite l'&eacute;quivalent avec les fonctions rajout&eacute;es par l'interface Audace. Par exemple le script Audela suivant :</p>
+<blockquote>
+  <pre>for {set k 1} {$k&lt;=10} {incr k} {</pre>
+  <pre> cam1 exptime 20</pre>
+  <pre> cam1 bin {2 2}</pre>
+  <pre> cam1 acq</pre>
+  <pre> vwait status_cam1</pre>
+  <pre> buf1 save "image-$k"</pre>
+  <pre>}</pre>
+</blockquote>
+<p>est &eacute;quivalent au script Audace, consid&eacute;rablement plus simple :</p>
+<blockquote>
+  <pre>for {set k 1} {$k&lt;=10} {incr k} {</pre>
+  <pre> acq 20 2</pre>
+  <pre> saveima "image-$k"</pre>
+  <pre>}</pre>
+</blockquote>
+<p>Retenir que Aud'ACE est une surcouche par rapport &agrave; Audela. Les scripts d&eacute;velopp&eacute;s pour l'interface Audace ne sont donc pas forc&eacute;ment tous accessibles dans une autre interface du logiciel Audela. Enfin, l'interface Audace utilise un certain nombre de variables d'environnement (configurations utilisateurs) dont il faut tenir compte pour cr&eacute;er un script v&eacute;ritablement standard pour Audace.</p>
+<h3> 1. D&eacute;clencher une pose CCD avec un script Tcl et Audela</h3>
+<p>On souhaite r&eacute;aliser une pose de 5 secondes en binning 2x2 avec une cam&eacute;ra Audine branch&eacute;e sur le port lpt1 de l'ordinateur. A la fin de la pose, on souhaite &eacute;crire l'image sur le disque avec le nom test1.fits. Avec l'interface Audace, on &eacute;crirait :</p>
+<blockquote>
+  <pre># fichier script : test1.tcl pour Audace</pre>
+  <pre>acq 5 2</pre>
+  <pre>saveima test1.fits</pre>
+</blockquote>
+<p>Dans le cadre de l'interface Audace, il existe un buffer et une cam&eacute;ra cr&eacute;&eacute;s par d&eacute;faut. Il s'agit de buf1 et cam1. Si on souhaite partir uniquement des fonctions de Audela, sans utiliser celles apport&eacute;es en suppl&eacute;ment par Audace, alors le script devient plus compliqu&eacute;. En effet, la s&eacute;quence d''initialisation de Audace proc&egrave;de automatiquement &agrave; la cr&eacute;ation de la cam&eacute;ra d'un buffer (associ&eacute; &agrave; l'image provenant de la cam&eacute;ra) et d'une zone de visualisation. Sans l'interface Audace, il faudra donc cr&eacute;er les objets Audela, et les utiliser dans le cadre de leur syntaxe bien plus lourde que dans Audace :</p>
+<p>Voici le contenu du script test1.tcl <a href="interfa1.htm">&agrave; &eacute;crire dans un fichier texte</a> :</p>
+<blockquote>
+  <pre># fichier script : test1.tcl pour Audela</pre>
+  <pre>set num(buf1) [buf::create]</pre>
+  <pre>set num(cam1) [cam::create audine lpt1]</pre>
+  <pre>cam$num(cam1) buf $num(buf1)</pre>
+  <pre>cam$num(cam1) exptime 5</pre>
+  <pre>cam$num(cam1) bin {2 2}</pre>
+  <pre>cam$num(cam1) acq</pre>
+  <pre>vwait status_cam$num(cam1)</pre>
+  <pre>buf$num(buf1) save test1.fits</pre>
+  <pre>cam::delete $num(cam1)</pre>
+  <pre>buf::delete $num(buf1)</pre>
+</blockquote>
+<p>Nous avons pris soin d'&eacute;crire ici une syntaxe rigoureuse par souci p&eacute;dagogique. Voici r&eacute;sum&eacute; la significations des commandes dans le script, point par point :</p>
+<ul>
+  <li> La premi&egrave;re ligne permet de d&eacute;clarer une zone m&eacute;moire qui va accueillir une image. Cette zone porte un identificateur (nom+num&eacute;ro) qui est stock&eacute; dans la variable num(buf1). Le mot buf1 d&eacute;signe un &eacute;l&eacute;ment de la structure num. Cette fa&ccedil;on de proc&eacute;der, qui s'apparente &agrave; une structure en langage C (&eacute;quivalent &agrave; un Record en Pascal), s'appelle une associative array (tableau associatif traduit en fran&ccedil;ais non acad&eacute;mique). Ainsi, la structure num poss&egrave;de les &eacute;l&eacute;ments buf1, cam1, etc. pour d&eacute;signer les diff&eacute;rents dispositifs qui portent un num&eacute;ro dans le script.</li>
+  <li> La deuxi&egrave;me ligne &eacute;tablit la liaison entre le logiciel et la cam&eacute;ra Audine branch&eacute;e sur le port parall&egrave;le num&eacute;ro 1. Audela attribue un num&eacute;ro &agrave; la cam&eacute;ra. Ce num&eacute;ro est stock&eacute; dans la variable num(cam1).</li>
+  <li> La troisi&egrave;me ligne indique que les images de la cam&eacute;ra num&eacute;ro num(cam1) seront stock&eacute;es dans la zone m&eacute;moire num&eacute;ro num(buf1). A noter la pr&eacute;sence du signe $ qui signifie, pour l'interpr&eacute;teur Tcl, de remplacer le nom de la variable par sa valeur.</li>
+  <li> cam$num(cam1) exptime 5 permet de r&eacute;gler le temps de pose &agrave; 5 secondes.</li>
+  <li> cam$num(cam1) bin {2 2} permet de r&eacute;gler le binning &agrave; 2x2.</li>
+  <li> cam$num(cam1) acq permet de d&eacute;clencher la pose.</li>
+  <li> vwait status_cam$num(cam1) permet de stopper le script pendant la pose. En fait, d&egrave;s que l'acquisition commence, la fonction vwait attend que la variable status_cam$num(cam1) change de valeur. Cette valeur est chang&eacute;e automatiquement par la fonction acq lorsque la pose est finie. Il faut comprendre que vwait attend un changement d'&eacute;tat (donc la fin de pose) avant de continuer le script. Cela veut dire que l'on n'a pas la main. Il y a cependant une solution pour garder la main pendant le temps de pose si l'on veut effectuer une t&acirc;che par Audela. Il suffit de placer des instructions entre le d&eacute;clenchement de la pose et le vwait. Attention cependant de s'assurer que les instructions ne d&eacute;passeront pas le temps de pose sinon l'instruction vwait restera irr&eacute;m&eacute;diablement bloqu&eacute;e !</li>
+  <li> buf$num(buf1) save test1.fits permet d'&eacute;crire l'image sur le disque.</li>
+  <li> cam::delete $num(cam1) permet de d&eacute;connecter la cam&eacute;ra num&eacute;ro $num(cam1) de Audela.</li>
+  <li>buf::delete $num(buf1) permet de d&eacute;connecter le buffer num&eacute;ro $num(buf1) de Audela.</li>
+</ul>
+<h3> 2 Visualiser une image avec un script Tcl et Audela</h3>
+<p>test2.tcl va charger une image du disque vers Audela et va ensuite la visualiser.</p>
+<blockquote>
+  <pre># fichier script : test2.tcl pour Audela</pre>
+  <pre>set num(buf1) [buf::create]</pre>
+  <pre>set num(visu1) [visu::create $num(buf1) 1 ]</pre>
+  <pre>canvas .display</pre>
+  <pre>.display create image 1 1 -image image1 -anchor nw -tag img</pre>
+  <pre>pack .display</pre>
+  <pre>buf$num(buf1) load test1.fits</pre>
+  <pre>visu$num(visu1) disp</pre>
+  <pre>buf::delete $num(buf1)</pre>
+  <pre>visu::delete $num(visu1)</pre>
+</blockquote>
+<ul>
+  <li> La premi&egrave;re ligne permet de d&eacute;clarer une zone m&eacute;moire qui va accueillir une image.</li>
+  <li> La deuxi&egrave;me ligne permet de d&eacute;clarer une zone de visualisation (Tk_PhotoImage en langage Tk) et &eacute;tablit la liaison entre le buffer cr&eacute;&eacute; pr&eacute;c&eacute;demment et cette zone de visualisation.</li>
+  <li> La fonction canvas cr&eacute;e un canevas Tk qui se nomme .display. Dans ce canevas, nous allons placer la zone de visualisation. La notion de canvas est tr&egrave;s puissante en Tk. C'est la meilleur fa&ccedil;on d'afficher les images et des objets de toutes sortes (gif, curseurs,etc.).</li>
+  <li> .display create va placer maintenant la zone de visualisation cr&eacute;&eacute;e pr&eacute;c&eacute;demment dans le canvas Tk qui se nomme .display. Cette op&eacute;ration ne fait toujours rien appara&icirc;tre sur l'&eacute;cran mais elle pr&eacute;pare le canvas en lui affectant les bons param&egrave;tres.</li>
+  <li> pack est la fonction Tk qui fait appara&icirc;tre un objet &agrave; l'&eacute;cran. En l'occurrence, pack .display affiche le canvas qui se nomme display et qui a &eacute;t&eacute; configur&eacute; pr&eacute;c&eacute;demment. Le "packer" peut placer le canvas .display dans une zone tr&egrave;s pr&eacute;cise si on le lui sp&eacute;cifie (ce n'est pas le cas ici pour all&eacute;ger l'&eacute;criture de ce test). Pour cela, consulter la documentation de la fonction pack.</li>
+  <li> buf$num(buf1) load appelle la fonction de chargement d'image Fits dans le buffer sp&eacute;cifi&eacute;.</li>
+  <li> visu$num(visu1) disp appelle la fonction d'affichage de l'image. Comme nous l'avons vu pr&eacute;c&eacute;demment, cette fonction va faire appara&icirc;tre l'image contenue dans le buffer num(buf1).</li>
+  <li> buf::delete $num(buf1) permet de d&eacute;connecter le buffer num&eacute;ro $num(buf1) de Audela.</li>
+  <li> visu::delete $num(visu1) permet de d&eacute;connecter la visualisation num&eacute;ro $num(visu1) de Audela.</li>
+</ul>
+<p>Dans le cadre de l'interface Audace, il existe un buffer et une zone de visualisation cr&eacute;&eacute;s par d&eacute;faut. Il s'agit de buf1 et visu1. De cette fa&ccedil;on, le script ci dessus, peut-&ecirc;tre r&eacute;sum&eacute; par la simple fonction loadima de l'interface Audace :</p>
+<blockquote>
+  <pre>loadima test1.fits</pre>
+</blockquote>
+Attention, toutefois la d&eacute;finition de la fonction loadima est un peu plus compliqu&eacute;e...
+<h3> 3 Traitement d'image avec un script Tcl et Audela</h3>
+<p>Le script test3.tcl montre une proc&eacute;dure de pr&eacute;traitement classique (soustraction du dark et division par le flat) sur une seule image test1.fits</p>
+<blockquote>
+  <pre># fichier script : test3.tcl pour Audela</pre>
+  <pre>set num(buf1) [buf::create]</pre>
+  <pre>buf$num(buf1) load test1.fits</pre>
+  <pre>buf$num(buf1) sub dark.fits 0</pre>
+  <pre>buf$num(buf1) div flat.fits 4000</pre>
+  <pre>buf$num(buf1) save testp1.fits</pre>
+  <pre>buf::delete $num(buf1)</pre>
+</blockquote>
+<p>Commentaires</p>
+<ul>
+  <li> La premi&egrave;re ligne permet de d&eacute;clarer une zone m&eacute;moire qui va accueillir une image.</li>
+  <li> buf$num(buf1) load est une fonction de buffer qui charge l'image en m&eacute;moire dans le buffer sp&eacute;cifi&eacute;.</li>
+  <li> buf$num(buf1) sub est une fonction du buffer qui va soustraire l'image contenue dans le fichier dark.fits &agrave; celle en m&eacute;moire. Le r&eacute;sultat est retourn&eacute; dans le m&ecirc;me buffer.</li>
+  <li> buf$num(buf1) div est une fonction du buffer qui va diviser l'image par celle contenue dans le fichier flat.fits. Le r&eacute;sultat est retourn&eacute; dans le m&ecirc;me buffer.</li>
+  <li> buf$num(buf1) save est une fonction du buffer qui &eacute;crit le contenu de l'image pr&eacute;sente en m&eacute;moire du buffer sp&eacute;cifi&eacute;, sur le disque. L'image est enregistr&eacute;e au format FITS.</li>
+  <li> buf::delete $num(buf1) permet de d&eacute;connecter le buffer num&eacute;ro $num(buf1) de Audela.</li>
+</ul>
+<p>Le script test3.tcl &eacute;crit pour l'interface Audace devient :</p>
+<blockquote>
+  <pre># fichier script : test3.tcl pour Audace</pre>
+  <pre>loadima test1.fits</pre>
+  <pre>sub dark.fits 0</pre>
+  <pre>div flat.fits 4000</pre>
+  <pre>saveima testp1.fits</pre>
+</blockquote>
+<p>Le script test4.tcl montre une proc&eacute;dure de pr&eacute;traitement classique (soustraction du dark et division par le flat) sur un lot d'images test1.fits &agrave; test 9.fits</p>
+<blockquote>
+  <pre># fichier script : test4.tcl pour Audela</pre>
+  <pre>ttscript2 "IMA/SERIES . test 1 9 .fits . testp 1 .fits SUB file=dark.fits offset=0"</pre>
+  <pre>ttscript2 "IMA/SERIES . testp 1 9 .fits . testp 1 .fits DIV file=flat.fits constant=4000"</pre>
+</blockquote>
+<ul>
+  <li> ttscript2 est une fonction d'extension Tcl de Audela. La cha&icirc;ne de caract&egrave;re qui suit (entre les ") est &eacute;crite selon la syntaxe de la biblioth&egrave;que de pr&eacute;traitement TT.</li>
+</ul>
+<p>Le script test4.tcl &eacute;crit pour l'interface Audace devient :</p>
+<blockquote>
+  <pre># fichier script : test4.tcl pour Audace</pre>
+  <pre>sub2 test dark.fits testp 0 9</pre>
+  <pre>div2 testp flat.fits testp 4000 9</pre>
+</blockquote>
+<p>A noter ici que la fonction de chargement de sub2 et div2 ne reconna&icirc;t que les extensions .fit par d&eacute;faut (on peut changer cela avec l'instruction buf1 extension). On ne peut donc pas effectuer tout &agrave; fait la m&ecirc;me chose de cette fa&ccedil;on l&agrave;. De plus, l'utilisation de ttscript2 a aussi l'avantage de pouvoir manipuler un lot d'images dont le premier indice est diff&eacute;rent de z&eacute;ro.</p>
+<p>Le script test5.tcl, effectue la m&ecirc;me op&eacute;ration que test4.tcl mais cette fois-ci, la valeur moyenne du flat field est calcul&eacute;e dans le script</p>
+<blockquote>
+  <pre># fichier script : test5.tcl</pre>
+  <pre>set num(buf1) [buf::create]</pre>
+  <pre>buf$num(buf1) load flat.fits</pre>
+  <pre>set statistics [buf$num(buf1) stat]</pre>
+  <pre>set mean [lrange $statistics 4 4]</pre>
+  <pre>buf::delete $num(buf1)</pre>
+  <pre>ttscript2 "IMA/SERIES . test 1 9 .fits . testp 1 .fits SUB file=dark.fits offset=0"</pre>
+  <pre>ttscript2 "IMA/SERIES . testp 1 9 .fits . testp 1 .fits DIV file=flat.fits constant=$mean"</pre>
+</blockquote>
+<p>Commentaires</p>
+<ul>
+  <li> La fonction stat du buffer retourne une liste de param&egrave;tres statistiques, ici plac&eacute;e dans la variable statistics.</li>
+  <li> Le cinqui&egrave;me &eacute;l&eacute;ment de la liste statistics contient la valeur de la moyenne de l'image. On r&eacute;cup&egrave;re cette valeur gr&acirc;ce &agrave; la fonction Tcl lrange qui permet d'extraire une sous liste &agrave; partir d'une liste. Ici la sous liste n'a qu'un seul &eacute;l&eacute;ment (du cinqui&egrave;me au cinqui&egrave;me) et le r&eacute;sultat est retourn&eacute; dans la variable mean.</li>
+  <li>La variable mean sera substitu&eacute;e par sa valeur dans la ligne de ttscript2 pour sp&eacute;cifier la valeur de la constante de la division avant d'effectuer le calcul dans TT.</li>
+</ul>
+</body>
+</html>

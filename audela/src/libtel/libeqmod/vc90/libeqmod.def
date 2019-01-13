@@ -1,0 +1,2 @@
+LIBRARY libeqmod
+EXPORTS Eqmod_Init @1

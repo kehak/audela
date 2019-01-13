@@ -1,0 +1,115 @@
+Apennine Front            25.9N   3.7E    6.0     22                                              Caractéristique nommée par les astronautes, site d'Apollo 15
+Baby Ray                  9.1S    15.4E   0.0     45                                              Caractéristique nommée par les astronautes, site d'Apollo 16
+Bear Mountain             20.0N   30.7E   0.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Bench                     3.2S    23.4W   0.0     42                                              Caractéristique nommée par les astronautes, site d'Apollo 12
+Block                     3.2S    23.4W   0.0     42                                              Caractéristique nommée par les astronautes, site d'Apollo 12
+Bowen-Apollo              20.3N   30.9E   0.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Bridge                    26.0N   3.6E    1.0     22                                              Caractéristique nommée par les astronautes, site d'Apollo 15
+Brontë                    20.2N   30.7E   0.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Camelot                   20.2N   30.7E   1.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Cinco                     19.1S   15.5E   0.0     45                                              Caractéristique nommée par les astronautes, site d'Apollo 16
+Cochise                   20.2S   30.8E   1.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Cone                      3.7S    17.4W   0.0     42                                              Caractéristique nommée par les astronautes, site d'Apollo 14
+Crescent                  2.9S    23.4W   1.0     42                                              Caractéristique nommée par les astronautes, site d'Apollo 12
+Doublet                   3.7S    17.5W   0.0     42                                              Caractéristique nommée par les astronautes, site d'Apollo 14
+Dune                      26.0N   3.7E    0.0     22                                              Caractéristique nommée par les astronautes, site d'Apollo 15
+Earthlight                26.1N   3.7E    0.0     22                                              Caractéristique nommée par les astronautes, site d'Apollo 15
+Elbow                     26.0N   3.6E    0.0     22                                              Caractéristique nommée par les astronautes, site d'Apollo 15
+Emory                     20.1N   30.8E   1.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+End                       8.9S    15.6E   0.0     45                                              Caractéristique nommée par les astronautes, site d'Apollo 16
+Family Mountain           20.4N   30.3E   7.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Flag                      9.0S    15.5E   0.0     45                                              Caractéristique nommée par les astronautes, site d'Apollo 16
+Flank                     3.7S    17.4W   0.0     42                                              Caractéristique nommée par les astronautes, site d'Apollo 14
+Gator                     9.0S    15.6E   1.0     45                                              Caractéristique nommée par les astronautes, site d'Apollo 16
+Halfway                   9.0S    15.5E   0.0     45                                              Caractéristique nommée par les astronautes, site d'Apollo 16
+Halo                      3.2S    23.4W   0.0     42                                              Caractéristique nommée par les astronautes, site d'Apollo 12
+Head                      3.0S    23.4W   0.0     42                                              Caractéristique nommée par les astronautes, site d'Apollo 12
+Hess-Apollo               20.1N   30.7E   1.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Horatio                   20.2N   30.7E   0.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Index                     26.1N   3.7E    0.0     22                                              Caractéristique nommée par les astronautes, site d'Apollo 15
+Kiva                      8.6S    15.5E   1.0     45                                              Caractéristique nommée par les astronautes, site d'Apollo 16
+Lara                      20.4N   30.5E   0.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Last                      26.1N   0.0E    0.0     22                                              Caractéristique nommée par les astronautes, site d'Apollo 15
+Light Mantle              20.2N   30.8E   4.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Mackin-Apollo (Mackin)    20.1N   30.7E   0.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Middle Crescent           3.2S    23.4W   0.0     42                                              Caractéristique nommée par les astronautes, site d'Apollo 12
+Nansen-Apollo             20.1N   30.5E   1.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+North Complex             26.2N   3.6E    2.0     22                                              Caractéristique nommée par les astronautes, site d'Apollo 15
+North Massif              20.4N   30.8E   14.0    25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+North Ray                 8.8S    15.5E   1.0     45                                              Caractéristique nommée par les astronautes, site d'Apollo 16
+Old Nameless              3.7S    17.5W   0.0     42                                              Caractéristique nommée par les astronautes, site d'Apollo 14
+Palmetto                  8.9S    15.5E   0.0     45                                              Caractéristique nommée par les astronautes, site d'Apollo 16
+Plain                     26.2N   3.6E    2.0     22                                              Caractéristique nommée par les astronautes, site d'Apollo 15
+Plum                      9.0S    15.5E   0.0     45                                              Caractéristique nommée par les astronautes, site d'Apollo 16
+Powell                    20.2N   30.8E   1.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Ravine                    8.9S    15.6E   1.0     45                                              Caractéristique nommée par les astronautes, site d'Apollo 16
+Rhysling                  26.1N   3.7E    0.0     22                                              Caractéristique nommée par les astronautes, site d'Apollo 15
+Scarp                     20.3N   30.6E   8.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Sculptured Hills          20.3N   31.0E   8.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Shakespeare               20.2N   30.8E   1.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Sharp-Apollo              3.2S    23.4W   0.0     42                                              Caractéristique nommée par les astronautes, site d'Apollo 12
+Sherlock                  20.2N   30.8E   0.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Shorty                    20.2N   30.6E   0.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Smoky Mountains           8.8S    15.6E   3.0     45                                              Caractéristique nommée par les astronautes, site d'Apollo 16
+Snowman                   3.2S    23.4W   1.0     42                                              Caractéristique nommée par les astronautes, site d'Apollo 12
+South Cluster             26.0N   3.7E    2.0     22                                              Caractéristique nommée par les astronautes, site d'Apollo 15
+South Massif              20.0N   30.4E   16.0    25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+South Ray                 9.2S    15.4E   1.0     45                                              Caractéristique nommée par les astronautes, site d'Apollo 16
+Spook                     9.0S    15.5E   0.0     45                                              Caractéristique nommée par les astronautes, site d'Apollo 16
+Spot                      9.0S    15.5E   0.0     45                                              Caractéristique nommée par les astronautes, site d'Apollo 16
+Spur                      27.9N   1.2W    13.0    22                                              Caractéristique nommée par les astronautes, site d'Apollo 15
+St. George                26.0N   3.5E    2.0     22                                              Caractéristique nommée par les astronautes, site d'Apollo 15
+Statio Tranquillitatis    0.8N    23.5E   0.0     35                                              Base de la Tranquilité, site d'alunissage d'Apollo 11
+Steno-Apollo              20.1N   30.8E   1.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Stone Mountain            9.1S    15.6E   5.0     45                                              Caractéristique nommée par les astronautes, site d'Apollo 16
+Stubby                    9.1S    15.5E   1.0     45                                              Caractéristique nommée par les astronautes, site d'Apollo 16
+Surveyor                  3.2S    23.4W   0.0     42                                              Caractéristique nommée par les astronautes, site d'Apollo 12
+Taurus-Littrow Valley     20.0N   31.0E   30.0    25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Terrace                   26.1N   3.7E    0.0     22                                              Caractéristique nommée par les astronautes, site d'Apollo 15
+Tortilla Flat             20.2N   30.7E   1.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Trap                      9.1S    15.4E   1.0     45                                              Caractéristique nommée par les astronautes, site d'Apollo 16
+Trident                   20.2N   30.8E   0.0     22                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Triplet                   3.7S    17.5W   0.0     42                                              Caractéristique nommée par les astronautes, site d'Apollo 14
+Van Serg                  20.2N   30.8E   0.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Victory                   20.2N   30.7E   1.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+Weird                     3.7S    17.5W   0.0     42                                              Caractéristique nommée par les astronautes, site d'Apollo 14
+Wessex Cleft              20.3N   30.9E   4.0     25                                              Caractéristique nommée par les astronautes, site d'Apollo 17
+West                      0.8N    23.5E   0.0     35                                              Caractéristique nommée par les astronautes, site d'Apollo 11
+Wreck                     9.1S    15.5E   1.0     45                                              Caractéristique nommée par les astronautes, site d'Apollo 16
+Luna 2                    29.1N   0.0W    0.0     22                                              Lancé le 12 Septembre 1959 - Impact sur la Lune le 13 Septembre 1959 à 22:02:04 TU - Marais de la Putréfaction 
+Luna 9                    7.1N    64.4W   0.0     28                                              Lancé le 31 Janvier 1966 - Alunissage le 03 Févrir 1966 à 18:44:52 TU - Océan des Tempêtes
+Luna 13                   18.9N   62.1W   0.0     17                                              Lancé le 21 Décembre 1966 - Alunissage le 24 Décembre 1966 à 18:01:00 TU - Océan des Tempêtes
+Luna 16                   0.7S    56.3E   0.0     49                                              Lancé le 12 Septembre 1970 - Alunissage le 20 Septembre 1970 à 05:18:00 TU - Mer de la Fécondité - Retour d'échantillon lunaire
+Luna 17                   38.3N   35.0W   0.0     10                                              Lancé le 10 Novembre 1970 - Alunissage le 17 Novembre 1970 à 03:47:00 TU - Mer des Pluies - Véhicule lunaire - Lunokhod 1
+Luna 18                   57.0N   50.5E   0.0     6                                              
+Luna 20                   3.6N    56.5E   0.0     38                                              Lancé le 14 Février 1972 - Alunissage le 21 Février 1972 à 19:19:00 TU - Mer de la Fécondité - Retour d'échantillon lunaire sur Terre le 25 Février 1972
+Luna 21                   25.5N   30.4E   0.0     24  25                                          Lancé le 08 Janvier 1973 - Alunissage le 15 Janvier 1973 à 23:35:00 TU - Mer de la Sérénité - Véhicule lunaire - Lunokhod 2
+Luna 24                   12.3N   62.2E   0.0     38                                              Lancé le 14 Août 1976 - Alunissage le 18 Août 1976 à 02:00:00 TU - Mer des Crises - Retour d'échantillon lunaire
+Ranger 7                  10.4S   20.6W   0.0     42                                              Lancé le 28 Juillet 1964 - Impact sur la Lune le 31 Juillet 1964 à 13:25:49 TU - Mer de la Connaissance
+Ranger 8                  2.7N    24.7E   0.0     35                                              Lancé le 17 Février 1965 - Impact sur la Lune le 20 Février 1965 à 09:57:37 TU - Mer de la Tranquillité
+Ranger 9                  12.9S   2.4W    0.0     44                                              Lancé le 21 Mars 1965 - Impact sur la Lune le 24 Mars 1965 à 14:08:20 TU - Alphonsus
+Surveyor 1                2.5S    43.2W   0.0     40                                              Lancé le 30 Mai 1966 - Alunissage le  02 Juin 1966 à 06:17:37 TU - Flamsteed P
+Surveyor 2                                0.0                                                     Lancé le 20 Septembre 1966 - Impact sur la Lune le 22 Septembre 1966 - Le moteur a refusé de s'allumer - Sud-Est du cratère Copernic
+Surveyor 3                2.9S    23.3W   0.0     42                                              Lancé le 17 Avril 1967 - Alunissage le 20 Avril 1967 à 00:04:53 TU - Océan des Tempêtes
+Surveyor 4                                0.0                                                     Lancé le 14 Juillet 1967 - Contact radio perdu le 17 Juillet 1967 - 2,5 mn avant l'alunissage - Golfe Central
+Surveyor 5                1.4N    23.2E   0.0     35                                              Lancé le 08 Septembre 1967 - Alunissage le 11 Septembre 1967 à 00:46:44 TU - Mer de la Tranquillité
+Surveyor 6                0.5N    1.4W    0.0     33                                              Lancé le 07 Novembre 1967 - Alunissage le 10 Novembre 1967 à 01:01:06 TU - Golfe Central
+Surveyor 7                41.0S   11.4W   0.0     64                                              Lancé le 07 Janvier 1968 - Alunissage le 10 Janvier 1968 à 01:05:36 TU - Sur le bord nord de Tycho
+Apollo 11 LM Eagle        0.67N   23.47E  0.0     35                                              Lancé le 16 Juillet 1969 - Alunissage le 20 Juillet 1969 - Mer de la Tranquillité
+Apollo 11 LRRR            0.67N   23.47E  0.0     35                                              Lancé le 16 Juillet 1969 - Alunissage le 20 Juillet 1969 - Mer de la Tranquillité
+Apollo 12 LM Intrepid     3.01S   23.42W  0.0     42                                              Lancé le 14 Novembre 1969 - Alunissage le 19 Novembre 1969 - Océan des Tempêtes - Apollo 12 alunit prés de la sonde Surveyor 3
+Apollo 12 ALSEP           3.01S   23.42W  0.0     42                                              Lancé le 14 Novembre 1969 - Alunissage le 19 Novembre 1969 - Océan des Tempêtes - Apollo 12 alunit prés de la sonde Surveyor 3
+Apollo 12 LM impact       3.94S   21.21W  0.0     42                                              Lancé le 14 Novembre 1969 - Alunissage le 19 Novembre 1969 - Océan des Tempêtes - Apollo 12 alunit prés de la sonde Surveyor 3
+Apollo 14 LM Antares      3.65S   17.47W  0.0     42                                              Lancé le 31 Janvier 1971 - Alunissage le 05 Février 1971 - Fra Mauro
+Apollo 14 LRRR            3.64S   17.48W  0.0     42                                              Lancé le 31 Janvier 1971 - Alunissage le 05 Février 1971 - Fra Mauro
+Apollo 14 ALSEP           3.64S   17.48W  0.0     42                                              Lancé le 31 Janvier 1971 - Alunissage le 05 Février 1971 - Fra Mauro
+Apollo 14 LM impact       3.42S   19.67W  0.0     42                                              Lancé le 31 Janvier 1971 - Alunissage le 05 Février 1971 - Fra Mauro
+Apollo 15 LM Falcon       26.13N  3.63E   0.0     22                                              Lancé le 26 Juillet 1971 - Alunissage le 30 Juillet 1971 - Hadley Rille
+Apollo 15 LRRR            26.13N  3.63E   0.0     22                                              Lancé le 26 Juillet 1971 - Alunissage le 30 Juillet 1971 - Hadley Rille
+Apollo 15 ALSEP           26.13N  3.63E   0.0     22                                              Lancé le 26 Juillet 1971 - Alunissage le 30 Juillet 1971 - Hadley Rille
+Apollo 15 LM impact       26.36N  0.25E   0.0     22                                              Lancé le 26 Juillet 1971 - Alunissage le 30 Juillet 1971 - Hadley Rille
+Apollo 16 LM Orion        8.97S   15.50E  0.0     45                                              Lancé le 16 Avril 1972 - Alunissage le 20 Avril 1972 - Descartes
+Apollo 16 ALSEP           8.98S   15.50E  0.0     45                                              Lancé le 16 Avril 1972 - Alunissage le 20 Avril 1972 - Descartes
+Apollo 17 LM Challenger   20.19N  30.77E  0.0     25                                              Lancé le 07 Décembre 1972 - Alunissage le 11 Décembre 1972 - Taurus-Littrow
+Apollo 17 ALSEP           20.19N  30.77E  0.0     25                                              Lancé le 07 Décembre 1972 - Alunissage le 11 Décembre 1972 - Taurus-Littrow
+Apollo 17 LM impact       19.96N  30.50E  0.0     25                                              Lancé le 07 Décembre 1972 - Alunissage le 11 Décembre 1972 - Taurus-Littrow

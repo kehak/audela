@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Les fonctions de BLT</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 06 juin 2013</p>
+<h1>Les fonctions de BLT </h1>
+<p>BLT est une extension Tcl propos&eacute;e par un groupe de programmeurs de logiciel libre. L'acc&egrave;s &agrave; l'ensemble du projet BLT (sources, documentation, etc.) est :</p>
+<a href="http://blt.sourceforge.net/">http://blt.sourceforge.net/</a>.
+<p>Les commandes de BLT sont tr&egrave;s puissantes et permettent de personnaliser les graphes &agrave; souhait.</p>
+<p>Dans la distribution Linux de AudeLA, BLT n'est pas fournie. Il faut la t&eacute;l&eacute;charger et la compiler. Dans la distribution Windows de AudeLA, BLT est fournie compil&eacute;e et pr&ecirc;te &agrave; l'emploi.</p>
+<p>La librairie BLT n'est pas charg&eacute;e par d&eacute;faut dans AudeLA (mais elle l'est dans Aud'ACE). Il est n&eacute;cessaire sp&eacute;cifier l'importation de la biblioth&egrave;que par la fonction load de Tcl :</p>
+<code>load BLT24[info sharedlibextension]</code>
+<p>dans l'interpr&eacute;teur Tcl. La commande [info sharedlibextension] signifie &agrave; l'interpr&eacute;teur Tcl d'ajouter, <br />
+  automatiquement, les lettres correspondant au suffixe .dll ou .so en fonction du syst&egrave;me d'exploitation.</p>
+<p>Ci dessous, nous dressons la liste des commandes disponibles (la  documentation en anglais peut être trouvée à <a href="http://tcltk.free.fr/blt/BLT.html#toc">http://tcltk.free.fr/blt/BLT.html#toc</a>) :</p>
+<ul>
+  <li><code>table</code> : A table geometry manager for Tk. You specify window placements as table row,column positions and windows can also span multiple rows or columns. It also has many options for setting and/or bounding window sizes. </li>
+  <li> <code>graph</code> : A 2D plotting widget. Plots two variable data in a window with an optional legend and annotations. It has of several components; coordinate axes, crosshairs, a legend, and a collection of elements and tags. </li>
+  <li><code>barchart</code> : A barchart widget. Plots two-variable data as rectangular bars in a window. The x-coordinate values designate the position of the bar along the x-axis, while the y-coordinate values designate the magnitude. The barchart widget has of several components; coordinate axes, crosshairs, a legend, and a collection of elements and tags. </li>
+  <li> <code>vector</code> : Creates a vector of floating point values. The vector's components can be manipulated in three ways: through a Tcl array variable, a Tcl command, or the C API. </li>
+  <li> <code>spline</code> : Computes a spline fitting a set of data points (x and y vectors) and produces a vector of the interpolated images (y-coordinates) at a given set of x-coordinates. </li>
+  <li> <code>bgexec</code> : Like Tcl's exec command, bgexec runs a pipeline of Unix commands in the background. Unlike exec , the output of the last process is collected and a global Tcl variable is set upon its completion. bgexec can be used with tkwait to wait for Unix commands to finish while still handling expose events. Intermediate output is also available while the pipeline is active.</li>
+  <li> <code>busy</code> : Creates a "busy window" which prevents user-interaction when an application is busy. The busy window also provides an easy way to have temporary busy cursors (such as a watch or hourglass). </li>
+  <li> <code>bitmap</code> : Reads and writes bitmaps from Tcl. New X bitmaps can be defined on-the-fly from Tcl, obviating the need to copy around bitmap files. Other options query loaded X bitmap's dimensions and data. </li>
+  <li> <code>drag&amp;drop</code> : Provides a drag-and-drop facility for Tk. Information (represented by a token window) can be dragged to and from any Tk window, including those of another Tk application. drag&amp;drop acts as a coordinator, directing Tk send commands between (or within) TCL/Tk applications. </li>
+  <li> <code>htext</code> : A simple hypertext widget. Combines text and Tk widgets into a single scroll-able window. Tcl commands can be embedded into text, which are invoked as the text is parsed. In addition, Tk widgets can be appended to the window at the current point in the text. Htext can be also used to create scrolled windows of Tk widgets. </li>
+  <li> <code>winop</code> : Raise, lower, map, or, unmap any window. The raise and lower functions are useful for stacking windows above or below "busy windows". </li>
+  <li> <code>watch</code> : Arranges for Tcl procedures to be called before and/or after the execution of every Tcl command. This command may be used in the logging, profiling, or tracing of Tcl code. </li>
+  <li> <code>bltdebug</code> : A simple Tcl command tracing facility useful for debugging Tcl code. Displays each Tcl command before and after substitution along its level in the interpreter on standard error.</li>
+</ul>
+<h4><a name="::blt::graph" id="::blt::graph"></a> Exemple d'application de ::blt::graph (&agrave; essayer &agrave; partir de la console de Aud'ACE par exemple) :</h4>
+<code>toplevel .testblt</code> <br />
+<code>blt::graph .testblt.g</code> <br />
+<code>pack .testblt.g -in .testblt</code> <br />
+<code>blt::vector create vx</code> <br />
+<code>vx set {0 1 2 3 4 5 6 7 8 9}</code> <br />
+<code>blt::vector create vy</code> <br />
+<code>vy set {0 1 4 9 16 25 36 49 64 81}</code> <br />
+<code>.testblt.g element create line1 -symbol none -xdata vx -ydata vy -smooth natural</code>
+<p>En retour, on a le graphe suivant : </p>
+<img src="images/blt1.jpg" height="411" width="488" alt="" />
+<h4><a name="::blt::vector" id="::blt::vector"></a> Exemple d'application de ::blt::vector (&agrave; essayer &agrave; partir de la console de Aud'ACE par exemple) :</h4>
+<p><a href="vector.htm">Les vecteurs par la pratique</a></p>
+</body>
+
+</html>

@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{55983A0B-C057-416C-9AB2-C8B9D01D7D2C}</ProjectGuid>
+    <RootNamespace>external_cfitsio</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.24730.2</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/external_cfitsio.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <AdditionalIncludeDirectories>../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;HAVE_STRUCT_TIMESPEC;NDEBUG;_WINDOWS;_USRDLL;CFITSIO_EXPORTS;_REENTRANT;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile />
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <BrowseInformation />
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>..\..\..\..\bin\cfitsio.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ModuleDefinitionFile>.\cfitsio.def</ModuleDefinitionFile>
+      <ProgramDatabaseFile />
+      <SubSystem>Windows</SubSystem>
+      <LinkTimeCodeGeneration />
+      <RandomizedBaseAddress />
+      <DataExecutionPrevention />
+      <ImportLibrary>.\Release/cfitsio.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release/external_cfitsio.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>../install.bat Release</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/external_cfitsio.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;HAVE_STRUCT_TIMESPEC;_DEBUG;_WINDOWS;_USRDLL;CFITSIO_EXPORTS;_REENTRANT;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile />
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>pthread.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>..\..\..\..\bin\cfitsio.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>../../lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>.\cfitsio.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/external_cfitsio.pdb</ProgramDatabaseFile>
+      <LinkTimeCodeGeneration />
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>.\Debug/cfitsio.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug/external_cfitsio.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>../install.bat Debug</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\cfitsio3340\adler32.c" />
+    <ClCompile Include="..\cfitsio3340\buffers.c" />
+    <ClCompile Include="..\cfitsio3340\cfileio.c" />
+    <ClCompile Include="..\cfitsio3340\checksum.c" />
+    <ClCompile Include="..\cfitsio3340\crc32.c" />
+    <ClCompile Include="..\cfitsio3340\deflate.c" />
+    <ClCompile Include="..\cfitsio3340\drvrfile.c" />
+    <ClCompile Include="..\cfitsio3340\drvrmem.c" />
+    <ClCompile Include="..\cfitsio3340\editcol.c" />
+    <ClCompile Include="..\cfitsio3340\edithdu.c" />
+    <ClCompile Include="..\cfitsio3340\eval_f.c" />
+    <ClCompile Include="..\cfitsio3340\eval_l.c" />
+    <ClCompile Include="..\cfitsio3340\eval_y.c" />
+    <ClCompile Include="..\cfitsio3340\f77_wrap1.c" />
+    <ClCompile Include="..\cfitsio3340\f77_wrap2.c" />
+    <ClCompile Include="..\cfitsio3340\f77_wrap3.c" />
+    <ClCompile Include="..\cfitsio3340\f77_wrap4.c" />
+    <ClCompile Include="..\cfitsio3340\fitscore.c" />
+    <ClCompile Include="..\cfitsio3340\fits_hcompress.c" />
+    <ClCompile Include="..\cfitsio3340\fits_hdecompress.c" />
+    <ClCompile Include="..\cfitsio3340\getcol.c" />
+    <ClCompile Include="..\cfitsio3340\getcolb.c" />
+    <ClCompile Include="..\cfitsio3340\getcold.c" />
+    <ClCompile Include="..\cfitsio3340\getcole.c" />
+    <ClCompile Include="..\cfitsio3340\getcoli.c" />
+    <ClCompile Include="..\cfitsio3340\getcolj.c" />
+    <ClCompile Include="..\cfitsio3340\getcolk.c" />
+    <ClCompile Include="..\cfitsio3340\getcoll.c" />
+    <ClCompile Include="..\cfitsio3340\getcols.c" />
+    <ClCompile Include="..\cfitsio3340\getcolsb.c" />
+    <ClCompile Include="..\cfitsio3340\getcolui.c" />
+    <ClCompile Include="..\cfitsio3340\getcoluj.c" />
+    <ClCompile Include="..\cfitsio3340\getcoluk.c" />
+    <ClCompile Include="..\cfitsio3340\getkey.c" />
+    <ClCompile Include="..\cfitsio3340\group.c" />
+    <ClCompile Include="..\cfitsio3340\grparser.c" />
+    <ClCompile Include="..\cfitsio3340\histo.c" />
+    <ClCompile Include="..\cfitsio3340\imcompress.c" />
+    <ClCompile Include="..\cfitsio3340\infback.c" />
+    <ClCompile Include="..\cfitsio3340\inffast.c" />
+    <ClCompile Include="..\cfitsio3340\inflate.c" />
+    <ClCompile Include="..\cfitsio3340\inftrees.c" />
+    <ClCompile Include="..\cfitsio3340\iraffits.c" />
+    <ClCompile Include="..\cfitsio3340\modkey.c" />
+    <ClCompile Include="..\cfitsio3340\pliocomp.c" />
+    <ClCompile Include="..\cfitsio3340\putcol.c" />
+    <ClCompile Include="..\cfitsio3340\putcolb.c" />
+    <ClCompile Include="..\cfitsio3340\putcold.c" />
+    <ClCompile Include="..\cfitsio3340\putcole.c" />
+    <ClCompile Include="..\cfitsio3340\putcoli.c" />
+    <ClCompile Include="..\cfitsio3340\putcolj.c" />
+    <ClCompile Include="..\cfitsio3340\putcolk.c" />
+    <ClCompile Include="..\cfitsio3340\putcoll.c" />
+    <ClCompile Include="..\cfitsio3340\putcols.c" />
+    <ClCompile Include="..\cfitsio3340\putcolsb.c" />
+    <ClCompile Include="..\cfitsio3340\putcolu.c" />
+    <ClCompile Include="..\cfitsio3340\putcolui.c" />
+    <ClCompile Include="..\cfitsio3340\putcoluj.c" />
+    <ClCompile Include="..\cfitsio3340\putcoluk.c" />
+    <ClCompile Include="..\cfitsio3340\putkey.c" />
+    <ClCompile Include="..\cfitsio3340\quantize.c" />
+    <ClCompile Include="..\cfitsio3340\region.c" />
+    <ClCompile Include="..\cfitsio3340\ricecomp.c" />
+    <ClCompile Include="..\cfitsio3340\scalnull.c" />
+    <ClCompile Include="..\cfitsio3340\swapproc.c" />
+    <ClCompile Include="..\cfitsio3340\trees.c" />
+    <ClCompile Include="..\cfitsio3340\uncompr.c" />
+    <ClCompile Include="..\cfitsio3340\wcssub.c" />
+    <ClCompile Include="..\cfitsio3340\wcsutil.c" />
+    <ClCompile Include="..\cfitsio3340\zcompress.c" />
+    <ClCompile Include="..\cfitsio3340\zuncompress.c" />
+    <ClCompile Include="..\cfitsio3340\zutil.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\install.bat" />
+    <None Include="cfitsio.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\pthread\vc90\external_pthread.vcxproj">
+      <Project>{2402b30e-01ad-4f43-b42f-55c9d699880a}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

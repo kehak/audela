@@ -1,0 +1,622 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>Astrobrick</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice 4.1.1  (Win32)">
+	<META NAME="CREATED" CONTENT="20141225;20080728">
+	<META NAME="CHANGED" CONTENT="20150207;10534085">
+	<STYLE TYPE="text/css">
+	<!--
+		P { margin-bottom: 0cm; background: transparent }
+		H1 { color: #3333ff }
+		PRE.cjk { font-family: "NSimSun", monospace }
+		PRE.code-western { margin-left: 0.5cm; margin-right: 0.5cm; background: #ccffff; border: 1px solid #000000; padding: 0.05cm; page-break-before: auto }
+		PRE.code-cjk { margin-left: 0.5cm; margin-right: 0.5cm; background: #ccffff; border: 1px solid #000000; padding: 0.05cm; font-family: "NSimSun", monospace; page-break-before: auto }
+		PRE.code-ctl { margin-left: 0.5cm; margin-right: 0.5cm; background: #ccffff; border: 1px solid #000000; padding: 0.05cm; page-break-before: auto }
+		PRE.code-résultat-western { margin-left: 0.5cm; margin-right: 0.5cm; background: #eeeeee; border: 1px solid #000000; padding: 0.05cm; page-break-before: auto }
+		PRE.code-résultat-cjk { margin-left: 0.5cm; margin-right: 0.5cm; background: #eeeeee; border: 1px solid #000000; padding: 0.05cm; font-family: "NSimSun", monospace; page-break-before: auto }
+		PRE.code-résultat-ctl { margin-left: 0.5cm; margin-right: 0.5cm; background: #eeeeee; border: 1px solid #000000; padding: 0.05cm; page-break-before: auto }
+		H2 { color: #3333ff }
+		H2.western { font-family: "Albany", sans-serif; font-size: 14pt; font-style: italic }
+		H2.cjk { font-family: "HG Mincho Light J"; font-size: 14pt; font-style: italic }
+		H2.ctl { font-family: "Arial Unicode MS"; font-size: 14pt; font-style: italic }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="fr-FR" DIR="LTR">
+<P ALIGN=CENTER STYLE="margin-top: 0.42cm; margin-bottom: 0.5cm; background: transparent; page-break-after: avoid">
+<IMG SRC="astrobrick-user-guide_html_m42e9fe54.png" NAME="images1" ALIGN=LEFT WIDTH=43 HEIGHT=43 BORDER=0><BR CLEAR=LEFT><FONT COLOR="#3333ff"><FONT FACE="Segoe Print"><FONT SIZE=6><B>ASTROBRICK</B></FONT></FONT></FONT></P>
+<P ALIGN=CENTER STYLE="margin-top: 0.42cm; margin-bottom: 0.5cm; background: transparent; page-break-after: avoid">
+<FONT COLOR="#3333ff"><FONT FACE="Segoe Print"><FONT SIZE=6><B>Guide
+d'utilisation </B></FONT></FONT></FONT>
+</P>
+<P ALIGN=RIGHT STYLE="background: transparent"><FONT COLOR="#3333ff">
+</FONT><BR>
+</P>
+<P ALIGN=RIGHT STYLE="background: transparent"><FONT COLOR="#3333ff"><FONT SIZE=2>Michel
+Pujol </FONT></FONT>
+</P>
+<P ALIGN=RIGHT STYLE="background: transparent"><FONT COLOR="#3333ff"><FONT SIZE=2>29/12/2014
+</FONT></FONT>
+</P>
+<DIV ID="Table des mati&egrave;res1" DIR="LTR">
+	<DIV ID="Table des mati&egrave;res1_Head" DIR="LTR">
+		<P STYLE="margin-top: 0.42cm; margin-bottom: 0.5cm; background: transparent; page-break-after: avoid">
+		<FONT COLOR="#3333ff"><FONT FACE="Albany, sans-serif"><FONT SIZE=4 STYLE="font-size: 16pt"><B>Table
+		des mati&egrave;res</B></FONT></FONT></FONT></P>
+	</DIV>
+	<P STYLE="background: transparent">1Pr&eacute;sentation	1</P>
+	<P STYLE="background: transparent">2Exemple libsimple	1</P>
+	<P STYLE="background: transparent">3Utilisation dans un programme
+	C++	1</P>
+	<P STYLE="margin-left: 0.5cm; background: transparent">3.1 Windows
+	Visual C++	1</P>
+	<P STYLE="margin-left: 0.5cm; background: transparent">3.2 Linux 	1</P>
+	<P STYLE="margin-left: 0.5cm; background: transparent">3.3 Macosx	1</P>
+	<P STYLE="background: transparent">4Utilisation dans un programme
+	C#	1</P>
+	<P STYLE="margin-left: 0.5cm; background: transparent">4.1 Windows
+	Visual C#	1</P>
+	<P STYLE="margin-left: 0.5cm; background: transparent">4.2 Linux
+	Mono C#	1</P>
+	<P STYLE="background: transparent">5Utilisation dans un programme
+	Python	1</P>
+	<P STYLE="margin-left: 0.5cm; background: transparent">5.1 Windows
+		1</P>
+	<P STYLE="margin-left: 0.5cm; background: transparent">5.2 Linux  	1</P>
+	<P STYLE="background: transparent">6Utilisation dans un programme
+	Tcl	1</P>
+	<P STYLE="margin-left: 0.5cm; background: transparent">5.1 Windows
+		1</P>
+	<P STYLE="margin-left: 0.5cm; background: transparent">5.2 Linux	1</P>
+</DIV>
+<P STYLE="font-weight: normal"><BR>
+</P>
+<P STYLE="font-weight: normal"><BR>
+</P>
+<P STYLE="font-weight: normal"><BR>
+</P>
+<H1><FONT SIZE=6><B>1Pr&eacute;sentation</B></FONT></H1>
+<P><FONT SIZE=3><SPAN STYLE="font-weight: normal">Ce guide s'adresse
+aux d&eacute;veloppeurs de programmes qui souhaitent utiliser une
+</SPAN></FONT><FONT FACE="Segoe Print"><FONT SIZE=3><I><SPAN STYLE="font-weight: normal">Astrobrick</SPAN></I></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
+dans leur programme.</SPAN></SPAN></FONT></FONT></P>
+<P><FONT SIZE=3><SPAN STYLE="font-weight: normal">Une </SPAN></FONT><FONT FACE="Segoe Print"><FONT SIZE=3><I><SPAN STYLE="font-weight: normal">Astrobrick</SPAN></I></FONT></FONT><FONT SIZE=3><SPAN STYLE="font-weight: normal">
+est une librairie dynamique &eacute;crite en C++ pour Audela pouvant
+&ecirc;tre utilis&eacute;e par d'autres programmes &eacute;crits dans
+diff&eacute;rents langages (C++, Tcl, Python, C#) et pouvant &ecirc;tre
+ex&eacute;cut&eacute;e sous Window, Linux et Macosx.</SPAN></FONT></P>
+<P STYLE="font-weight: normal"><BR>
+</P>
+<P><FONT SIZE=3><SPAN STYLE="font-weight: normal">Chaque </SPAN></FONT><FONT SIZE=3><I><SPAN STYLE="font-weight: normal">ASTROBRICK</SPAN></I></FONT><FONT SIZE=3><SPAN STYLE="font-weight: normal">
+est fournie avec: </SPAN></FONT>
+</P>
+<UL>
+	<LI><P STYLE="font-weight: normal"><FONT SIZE=3>un fichier binaire
+	pour chaque syst&egrave;me d'exploitation Windows, Linux et Macosx 
+	( .dll , .so , .dylib) </FONT>
+	</P>
+	<LI><P STYLE="font-weight: normal"><FONT SIZE=3>un fichier header .h
+	 et un fichier .lib pour l'utilisation par un programme &eacute;crit
+	en C++</FONT></P>
+	<LI><P STYLE="font-weight: normal"><FONT SIZE=3>un exemple de
+	fichier .cs pour l'utilisation par un programme &eacute;crit en C# </FONT>
+	</P>
+	<LI><P STYLE="font-weight: normal"><FONT SIZE=3>un exemple de
+	fichier .py pour l'utilisation par un programme &eacute;crit en
+	Python 3</FONT></P>
+	<LI><P STYLE="font-weight: normal"><FONT SIZE=3>une librairie
+	compl&eacute;mentaire pour l'utilisation par un programme &eacute;crit
+	en Tcl 8.6 (cette librairie compl&eacute;mentaire sert &agrave;
+	convertir tous les param&egrave;tres des fonctions en cha&icirc;nes
+	de caract&egrave;res, seul format accept&eacute; pat l'interpr&eacute;teur
+	Tcl)</FONT></P>
+</UL>
+<P><BR>
+</P>
+<H1>2Exemple libsimple</H1>
+<P STYLE="margin-top: 0.42cm; margin-bottom: 0.5cm"><FONT SIZE=3><SPAN STYLE="font-weight: normal">L'astrobrick
+</SPAN></FONT><FONT SIZE=3><B>libsimple</B></FONT><FONT SIZE=3><SPAN STYLE="font-weight: normal">
+contient les fonctions suivantes: </SPAN></FONT>
+</P>
+<PRE CLASS="code-western"><FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">int</SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal"> Ilibsimple_processAdd(</SPAN></SPAN></FONT></FONT><FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">int</SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal"> a, </SPAN></SPAN></FONT></FONT><FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">int</SPAN></SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal"> b); </SPAN></SPAN></FONT></FONT>
+<FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">int</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> Ilibsimple_processSub(</SPAN></FONT></FONT><FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">int</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> a, </SPAN></FONT></FONT><FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">int</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> b); </SPAN></FONT></FONT></PRE><P STYLE="background: transparent">
+<BR>
+</P>
+<P STYLE="background: transparent">Cette Artrobrick est fournie avec
+les fichiers: 
+</P>
+<DL>
+	<DD>
+	<TABLE WIDTH=745 BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+		<COL WIDTH=197>
+		<COL WIDTH=531>
+		<TR VALIGN=TOP>
+			<TD WIDTH=197>
+				<P STYLE="background: transparent">libsimple.dll</P>
+				<P STYLE="background: transparent">libsimple.so</P>
+				<P STYLE="background: transparent">libsimple.dylib</P>
+			</TD>
+			<TD WIDTH=531>
+				<P STYLE="background: transparent">corps de l'astrobrick pour
+				Windows, Linux et Macosx</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=197>
+				<P STYLE="background: transparent">libsimple.h  
+				</P>
+				<P STYLE="background: transparent">libsimple.lib</P>
+			</TD>
+			<TD WIDTH=531>
+				<P STYLE="background: transparent">d&eacute;claration des
+				fonctions pour un programme C++</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=197>
+				<P STYLE="background: transparent">libsimple.cs</P>
+			</TD>
+			<TD WIDTH=531>
+				<P STYLE="background: transparent">exemple d'utilisation pour un
+				programme C#</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=197>
+				<P STYLE="background: transparent">libsimple.py</P>
+			</TD>
+			<TD WIDTH=531>
+				<P STYLE="background: transparent">exemple d'utilisation pour un
+				programme Python</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=197>
+				<P STYLE="background: transparent">libsimple_tcl.dll</P>
+				<P STYLE="background: transparent">libsimple_tcl.so</P>
+				<P STYLE="background: transparent">libsimple_tcl.dylib</P>
+				<P STYLE="background: transparent">pkgIndex.tcl</P>
+			</TD>
+			<TD WIDTH=531>
+				<P STYLE="background: transparent; font-weight: normal"><FONT SIZE=3>librairie
+				TCL compl&eacute;mentaire et script de chargement pkgIndex.tcl
+				pour utilisation dans un programme Tcl</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=197>
+				<P STYLE="background: transparent">libsimple.html</P>
+			</TD>
+			<TD WIDTH=531>
+				<P STYLE="background: transparent; font-weight: normal"><FONT SIZE=3>Documentation</FONT></P>
+			</TD>
+		</TR>
+	</TABLE>
+</DL>
+<P STYLE="background: transparent"><BR>
+</P>
+<P STYLE="background: transparent"><BR>
+</P>
+<P STYLE="background: transparent"><BR>
+</P>
+<H1>3Utilisation dans un programme C++</H1>
+<P STYLE="background: transparent">Exemple de source C++ utilisant
+libsimple</P>
+<PRE LANG="zxx" CLASS="code-western"><FONT COLOR="#008000"><FONT SIZE=2>// libsimple_test.cpp </FONT></FONT>
+
+<SPAN STYLE="background: #ffff00"><FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">#include</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> </SPAN></FONT></FONT><FONT COLOR="#a31515"><FONT SIZE=2><SPAN LANG="zxx">&quot;libsimple.h&quot;</SPAN></FONT></FONT></SPAN>
+
+<FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">int</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> main(</SPAN></FONT></FONT><FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">int</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> argc, </SPAN></FONT></FONT><FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">char</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx">* argv[])</SPAN></FONT></FONT>
+<FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx">{</SPAN></FONT></FONT>
+   <FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">int</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> a = 8;</SPAN></FONT></FONT>
+<FONT COLOR="#000000">   </FONT><FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">int</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> b = 4;</SPAN></FONT></FONT>
+
+<FONT COLOR="#000000">   </FONT><FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">int</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> result = Ilibsimple_processAdd(a, b);</SPAN></FONT></FONT>
+<FONT COLOR="#000000">   <FONT SIZE=2><SPAN LANG="zxx">cout &lt;&lt; </SPAN></FONT></FONT><FONT COLOR="#a31515"><FONT SIZE=2><SPAN LANG="zxx">&quot;Ilibsimple_processAdd: &quot;</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> &lt;&lt; a &lt;&lt; </SPAN></FONT></FONT><FONT COLOR="#a31515"><FONT SIZE=2><SPAN LANG="zxx">&quot; + &quot;</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> &lt;&lt; b &lt;&lt; </SPAN></FONT></FONT><FONT COLOR="#a31515"><FONT SIZE=2><SPAN LANG="zxx">&quot; = &quot;</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> &lt;&lt; result &lt;&lt; endl;</SPAN></FONT></FONT>
+<FONT COLOR="#000000">   </FONT><FONT COLOR="#008000"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="zxx">// printf(&ldquo;&quot;Ilibsimple_processAdd: %d + %d = %d\n&rdquo;,a, b, result);</SPAN></FONT></FONT></FONT>
+
+<FONT COLOR="#000000">   </FONT><FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">int</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> result2 = Ilibsimple_processSub(a, b);</SPAN></FONT></FONT>
+<FONT COLOR="#000000">   <FONT SIZE=2><SPAN LANG="zxx">cout &lt;&lt; </SPAN></FONT></FONT><FONT COLOR="#a31515"><FONT SIZE=2><SPAN LANG="zxx">&quot;processAdd: &quot;</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> &lt;&lt; a &lt;&lt; </SPAN></FONT></FONT><FONT COLOR="#a31515"><FONT SIZE=2><SPAN LANG="zxx">&quot; - &quot;</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> &lt;&lt; b &lt;&lt; </SPAN></FONT></FONT><FONT COLOR="#a31515"><FONT SIZE=2><SPAN LANG="zxx">&quot; = &quot;</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> &lt;&lt; result2 &lt;&lt; endl;</SPAN></FONT></FONT>
+<FONT COLOR="#008000">   <FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="zxx">// printf(&ldquo;&quot;Ilibsimple_processSub: %d + %d = %d\n&rdquo;,a, b, result2);</SPAN></FONT></FONT></FONT>
+<FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx">}</SPAN></FONT></FONT></PRE><P LANG="zxx" STYLE="background: transparent">
+<BR>
+</P>
+<P STYLE="background: transparent"><SPAN LANG="zxx">Le programme C++
+importe le fichier  </SPAN><SPAN LANG="zxx"><B>libsimple.h </B></SPAN><SPAN LANG="zxx">
+pour pourvoir utiliser les fonctions de libsimple</SPAN></P>
+<P LANG="zxx" STYLE="background: transparent"><BR>
+</P>
+<OL>
+	<OL START=2>
+		<H2 LANG="zxx" CLASS="western">3.1 Windows Visual C++</H2>
+	</OL>
+</OL>
+<P LANG="zxx" STYLE="margin-left: 2cm; background: transparent">Compilation
+du projet libsimple_test.vcproj 
+</P>
+<UL>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx">ajouter  le
+	r&eacute;pertoire de </SPAN><SPAN LANG="zxx"><B>libsimple.h</B></SPAN><SPAN LANG="zxx">
+	dans les param&egrave;tres du compilateur</SPAN></P>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx">ajouter 
+	</SPAN><SPAN LANG="zxx"><B>libsimple.lib</B></SPAN><SPAN LANG="zxx">
+	dans les param&egrave;tres du linker </SPAN>
+	</P>
+</UL>
+<P LANG="zxx" STYLE="margin-left: 2cm; background: transparent"><BR>
+</P>
+<P LANG="zxx" STYLE="margin-left: 2cm; background: transparent">R&eacute;sultat</P>
+<PRE LANG="zxx" CLASS="code-r&eacute;sultat-western" STYLE="margin-left: 2cm">&gt;libsimple_test.exe
+<SPAN LANG="zxx">Ilibsimple_processAdd: 8 + 4 = 12</SPAN>
+<SPAN LANG="zxx">Ilibsimple_processSub: 8 - 4 = 4</SPAN>
+
+<SPAN LANG="zxx">&gt;</SPAN></PRE><P LANG="zxx" STYLE="margin-left: 2cm; background: transparent">
+<BR>
+</P>
+<H2 LANG="zxx" CLASS="western">3.2 Linux 
+</H2>
+<P LANG="zxx">	Compilation : 
+</P>
+<UL>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx">ajouter  le
+	r&eacute;pertoire de </SPAN><SPAN LANG="zxx"><B>libsimple.h</B></SPAN><SPAN LANG="zxx">
+	dans les param&egrave;tres de compilation du programme  ( param&egrave;tre
+	-I )</SPAN></P>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx">ajouter 
+	</SPAN><SPAN LANG="zxx"><B>libsimple.so </B></SPAN><SPAN LANG="zxx">dans
+	les param&egrave;tres du linker (param&egrave;tres -L et -l )</SPAN></P>
+	<P LANG="zxx" STYLE="background: transparent"></P>
+</UL>
+<PRE LANG="zxx" CLASS="code-r&eacute;sultat-western" STYLE="margin-left: 2cm">$ make 
+<SPAN LANG="zxx">*** Compiling libsimple_test.cpp</SPAN>
+<SPAN LANG="zxx">g++ -O2  -fPIC  -fno-stack-protector -c -Wall  </SPAN><SPAN LANG="zxx"><SPAN STYLE="background: #ffff00">-I../../libsimple/src</SPAN></SPAN><SPAN LANG="zxx"> -o libsimple_test.o ../src/libsimple_test.cpp</SPAN>
+<SPAN LANG="zxx">*** Linking library libsimple_test</SPAN>
+<SPAN LANG="zxx">gcc libsimple_test.o -ldl -lm -lstdc++ -Wl,-rpath,. </SPAN><SPAN LANG="zxx"><SPAN STYLE="background: #ffff00">-L../bin</SPAN></SPAN><SPAN LANG="zxx">  </SPAN><SPAN LANG="zxx"><SPAN STYLE="background: #ffff00">-lsimple</SPAN></SPAN><SPAN LANG="zxx"> -o libsimple_test </SPAN>
+<SPAN LANG="zxx">$ </SPAN></PRE><P LANG="zxx" STYLE="margin-left: 2cm; background: transparent">
+<BR>
+</P>
+<P LANG="zxx" STYLE="background: transparent">	R&eacute;sultat</P>
+<PRE LANG="zxx" CLASS="code-r&eacute;sultat-western" STYLE="margin-left: 2cm">$ ../bin/libsimple_test 
+<SPAN LANG="zxx">Ilibsimple_processAdd: 8 + 4 = 12</SPAN>
+<SPAN LANG="zxx">Ilibsimple_processSub: 8 - 4 = 4</SPAN>
+
+<SPAN LANG="zxx">$</SPAN></PRE><P LANG="zxx" STYLE="margin-left: 2cm; background: transparent">
+<BR>
+</P>
+<P LANG="zxx" STYLE="margin-left: 2cm; background: transparent"><BR>
+</P>
+<OL>
+	<OL START=2>
+		<H2 CLASS="western">3.3 Macosx</H2>
+	</OL>
+</OL>
+<P LANG="zxx" STYLE="margin-left: 2cm; background: transparent">Compilation
+: 
+</P>
+<UL>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx">ajouter  le
+	r&eacute;pertoire de </SPAN><SPAN LANG="zxx"><B>libsimple.h</B></SPAN><SPAN LANG="zxx">
+	dans les param&egrave;tres du compilateur ( param&egrave;tre -I )</SPAN></P>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx">ajouter 
+	</SPAN><SPAN LANG="zxx"><B>libsimple.dylib</B></SPAN><SPAN LANG="zxx">
+	dans les param&egrave;tres du linker  (param&egrave;tres -L et -l )</SPAN></P>
+</UL>
+<P LANG="zxx" STYLE="margin-left: 2cm; background: transparent"><BR>
+</P>
+<PRE LANG="zxx" CLASS="code-r&eacute;sultat-western" STYLE="margin-left: 2cm">$ make 
+<SPAN LANG="zxx">*** Compiling libsimple_test.cpp</SPAN>
+<SPAN LANG="zxx">g++ -O2  -fPIC  -fno-stack-protector -c -Wall  </SPAN><SPAN LANG="zxx"><SPAN STYLE="background: #ffff00">-I../../libsimple/src</SPAN></SPAN><SPAN LANG="zxx"> -o libsimple_test.o ../src/libsimple_test.cpp</SPAN>
+<SPAN LANG="zxx">*** Linking library libsimple_test</SPAN>
+<SPAN LANG="zxx">gcc libsimple_test.o -ldl -lm -lstdc++ -Wl,-rpath,. -L../bin  </SPAN><SPAN LANG="zxx"><SPAN STYLE="background: #ffff00">-lsimple</SPAN></SPAN><SPAN LANG="zxx"> -o ../bin/libsimple_test </SPAN>
+<SPAN LANG="zxx">$ </SPAN></PRE><P LANG="zxx" STYLE="margin-left: 2cm; background: transparent">
+<BR>
+</P>
+<P LANG="zxx" STYLE="background: transparent">	R&eacute;sultat</P>
+<PRE LANG="zxx" CLASS="code-r&eacute;sultat-western" STYLE="margin-left: 2cm">$ ../bin/libsimple_test 
+<SPAN LANG="zxx">Ilibsimple_processAdd: 8 + 4 = 12</SPAN>
+<SPAN LANG="zxx">Ilibsimple_processSub: 8 - 4 = 4</SPAN>
+
+<SPAN LANG="zxx">$</SPAN></PRE><P>
+<BR>
+</P>
+<P STYLE="margin-left: 2cm; background: transparent"><BR>
+</P>
+<H1>4Utilisation dans un programme C#</H1>
+<P LANG="zxx" STYLE="background: transparent">Exemple de source
+utilisant libsimple  (projet audela-csharp.csproj )</P>
+<P LANG="zxx" STYLE="background: transparent"><BR>
+</P>
+<PRE CLASS="code-western"><FONT FACE="Courier New, monospace">//</FONT><FONT COLOR="#008000"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="zxx"> audela_csharp.cs</SPAN></FONT></FONT></FONT>
+
+<FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">using</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> System;</SPAN></FONT></FONT>
+<FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">using</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> System.Text;</SPAN></FONT></FONT>
+
+<FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">namespace</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> audela_csharp</SPAN></FONT></FONT>
+{
+<FONT COLOR="#000000">    </FONT><FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">class</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> </SPAN></FONT></FONT><FONT COLOR="#2b91af"><FONT SIZE=2><SPAN LANG="zxx">libsimple_test</SPAN></FONT></FONT>
+    {
+<FONT COLOR="#000000">        </FONT><FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">static</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> </SPAN></FONT></FONT><FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">void</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> Main(</SPAN></FONT></FONT><FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">string</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx">[] args)</SPAN></FONT></FONT>
+        {
+<FONT COLOR="#000000">            </FONT><FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">int</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> a = 4;</SPAN></FONT></FONT>
+<FONT COLOR="#000000">            </FONT><FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">int</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> b = 8;</SPAN></FONT></FONT>
+
+<FONT COLOR="#000000">            </FONT><FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">int</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> result = </SPAN></FONT></FONT><FONT COLOR="#2b91af"><FONT SIZE=2><SPAN LANG="zxx">Ilibsimple</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx">.Ilibsimple_processAdd(a, b);</SPAN></FONT></FONT>
+<FONT COLOR="#000000">            </FONT><FONT COLOR="#2b91af"><FONT SIZE=2><SPAN LANG="zxx">Console</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx">.WriteLine(</SPAN></FONT></FONT><FONT COLOR="#a31515"><FONT SIZE=2><SPAN LANG="zxx">&quot;Ilibsimple_processAdd: &quot;</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> + a + </SPAN></FONT></FONT><FONT COLOR="#a31515"><FONT SIZE=2><SPAN LANG="zxx">&quot; + &quot;</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> + b + </SPAN></FONT></FONT><FONT COLOR="#a31515"><FONT SIZE=2><SPAN LANG="zxx">&quot; = &quot;</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> + result);</SPAN></FONT></FONT>
+
+<FONT COLOR="#000000">            </FONT><FONT COLOR="#0000ff"><FONT SIZE=2><SPAN LANG="zxx">int</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> result2 = </SPAN></FONT></FONT><FONT COLOR="#2b91af"><FONT SIZE=2><SPAN LANG="zxx">Ilibsimple</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx">.Ilibsimple_processSub(a, b);</SPAN></FONT></FONT>
+<FONT COLOR="#000000">            </FONT><FONT COLOR="#2b91af"><FONT SIZE=2><SPAN LANG="zxx">Console</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx">.WriteLine(</SPAN></FONT></FONT><FONT COLOR="#a31515"><FONT SIZE=2><SPAN LANG="zxx">&quot;Ilibsimple_processSub: &quot;</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> + a + </SPAN></FONT></FONT><FONT COLOR="#a31515"><FONT SIZE=2><SPAN LANG="zxx">&quot; + &quot;</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> + b + </SPAN></FONT></FONT><FONT COLOR="#a31515"><FONT SIZE=2><SPAN LANG="zxx">&quot; = &quot;</SPAN></FONT></FONT><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx"> + result2);</SPAN></FONT></FONT>
+
+        }
+    }
+<FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx">}</SPAN></FONT></FONT></PRE><P LANG="zxx" STYLE="background: transparent">
+<BR>
+</P>
+<P STYLE="background: transparent"><SPAN LANG="zxx">Le programme C#
+doit &ecirc;tre compil&eacute; avec le fichier  </SPAN><SPAN LANG="zxx"><B>libsimple.cs</B></SPAN><SPAN LANG="zxx">
+pour pourvoir utiliser les fonctions de libsimple</SPAN></P>
+<H2 LANG="zxx" CLASS="western" STYLE="page-break-after: avoid"><FONT FACE="Albany, sans-serif">4.1
+Windows Visual C#</FONT></H2>
+<P LANG="zxx" STYLE="margin-left: 1.25cm; background: transparent">Compilation
+du projet audela-csharp.csproj 
+</P>
+<UL>
+	<LI><P LANG="zxx" STYLE="background: transparent">ajouter 
+	libsimple.cs dans le projet 
+	</P>
+</UL>
+<P LANG="zxx" STYLE="background: transparent"><BR>
+</P>
+<P LANG="zxx" STYLE="margin-left: 1.25cm; background: transparent">Ex&eacute;cution
+</P>
+<UL>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">copier
+	</SPAN></SPAN><SPAN LANG="zxx"><B>libsimple.dll </B></SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">dans
+	le m&ecirc;me r&eacute;pertoire que audela-csharp.exe</SPAN></SPAN></P>
+	<LI><P LANG="zxx" STYLE="background: transparent; font-weight: normal">
+	lancer audela-csharp.exe</P>
+</UL>
+<P LANG="zxx" STYLE="background: transparent"><BR>
+</P>
+<P LANG="zxx" STYLE="margin-left: 1.25cm; background: transparent">R&eacute;sultat</P>
+<PRE CLASS="code-r&eacute;sultat-western" STYLE="margin-left: 2cm"><SPAN LANG="zxx">&gt; </SPAN><FONT COLOR="#000000"><FONT SIZE=2><SPAN LANG="zxx">audela_csharp</SPAN></FONT></FONT><SPAN LANG="zxx">.exe</SPAN>
+<SPAN LANG="zxx">Ilibsimple_processAdd: 8 + 4 = 12</SPAN>
+<SPAN LANG="zxx">Ilibsimple_processSub: 8 - 4 = 4</SPAN>
+
+<SPAN LANG="zxx">&gt;</SPAN></PRE><P LANG="zxx" STYLE="margin-left: 2cm; background: transparent">
+<BR>
+</P>
+<H2 LANG="zxx" CLASS="western">4.2 Linux Mono C#</H2>
+<P LANG="zxx">	Compilation : 
+</P>
+<UL>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx">compiler le
+	programme </SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">audela-csharp.cs
+	</SPAN></SPAN><SPAN LANG="zxx">avec </SPAN><SPAN LANG="zxx"><B>libsimple.cs
+	</B></SPAN>
+	</P>
+</UL>
+<P LANG="zxx" STYLE="background: transparent; font-weight: normal"><BR>
+</P>
+<PRE CLASS="code-r&eacute;sultat-western" STYLE="margin-left: 2cm"><SPAN LANG="zxx">$ cd </SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">audela-csharp/</SPAN></SPAN><SPAN LANG="zxx">linux </SPAN>
+<SPAN LANG="zxx">$ make</SPAN></PRE><P LANG="zxx" STYLE="margin-left: 2cm; background: transparent">
+<BR>
+</P>
+<P LANG="zxx" STYLE="margin-left: 1.25cm; background: transparent">Ex&eacute;cution
+</P>
+<UL>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">copier
+	</SPAN></SPAN><SPAN LANG="zxx"><B>libsimple.so </B></SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">dans
+	le m&ecirc;me r&eacute;pertoire que audela-csharp</SPAN></SPAN></P>
+	<LI><P LANG="zxx" STYLE="background: transparent; font-weight: normal">
+	lancer audela-csharp</P>
+</UL>
+<P LANG="zxx" STYLE="margin-left: 2cm; background: transparent; font-weight: normal">
+<BR>
+</P>
+<P LANG="zxx" STYLE="background: transparent">	R&eacute;sultat</P>
+<PRE CLASS="code-r&eacute;sultat-western" STYLE="margin-left: 2cm"><SPAN LANG="zxx">$ ./</SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">audela_csharp</SPAN></SPAN><SPAN LANG="zxx"> </SPAN>
+<SPAN LANG="zxx">Ilibsimple_processAdd: 8 + 4 = 12</SPAN>
+<SPAN LANG="zxx">Ilibsimple_processSub: 8 - 4 = 4</SPAN>
+
+<SPAN LANG="zxx">$</SPAN></PRE><P LANG="zxx" STYLE="margin-left: 2cm; background: transparent">
+<BR>
+</P>
+<P LANG="zxx" STYLE="background: transparent"><BR>
+</P>
+<H1>5Utilisation dans un programme Python</H1>
+<P LANG="zxx" STYLE="background: transparent">Exemple de source
+Python utilisant libsimple</P>
+<PRE CLASS="code-western"><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="zxx"># file: audela.py<BR><BR></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="zxx"><SPAN STYLE="background: #ffff00">import libsimple</SPAN></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="zxx"> <BR><BR>a = 8<BR>b = 4<BR>result = libsimple.processAdd(a,b)<BR>print (&quot;ILibsimple.processAdd : %d + %d = %d&quot; % (a,b,result))<BR><BR>result2 = libsimple.processSub(a,b)<BR>print (&quot;ILibsimple.processAdd : %d - %d = %d&quot; % (a,b,result2))<BR></SPAN></FONT></FONT></FONT></PRE><P LANG="zxx" STYLE="background: transparent">
+<BR>
+</P>
+<P STYLE="background: transparent"><SPAN LANG="zxx">Le programme
+python </SPAN><SPAN LANG="zxx"><B>audela.py </B></SPAN><SPAN LANG="zxx">importe
+le fichier </SPAN><SPAN LANG="zxx"><B>libsimple.py </B></SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">qui
+montre comment charger la librairie</SPAN></SPAN></P>
+<P LANG="zxx" STYLE="background: transparent"><BR>
+</P>
+<H2 LANG="zxx" CLASS="western" STYLE="page-break-after: avoid"><FONT FACE="Albany, sans-serif">5.1
+Windows </FONT>
+</H2>
+<P LANG="zxx" STYLE="margin-left: 1.25cm; background: transparent">Ex&eacute;cution
+</P>
+<UL>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">copier
+	</SPAN></SPAN><SPAN LANG="zxx"><B>libsimple.py </B></SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">dans
+	le r&eacute;pertoire audela-python</SPAN></SPAN></P>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">copier
+	</SPAN></SPAN><SPAN LANG="zxx"><B>libsimple.dll </B></SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">dans
+	le r&eacute;pertoire audela-python\libs</SPAN></SPAN></P>
+	<LI><P LANG="zxx" STYLE="background: transparent; font-weight: normal">
+	lancer l'ex&eacute;cution de audela.py</P>
+</UL>
+<P LANG="zxx" STYLE="background: transparent"><BR>
+</P>
+<P LANG="zxx" STYLE="margin-left: 1.25cm; background: transparent">R&eacute;sultat</P>
+<PRE LANG="zxx" CLASS="code-r&eacute;sultat-western" STYLE="margin-left: 2cm">&gt; python.exe audela.py
+<SPAN LANG="zxx">Ilibsimple_processAdd: 8 + 4 = 12</SPAN>
+<SPAN LANG="zxx">Ilibsimple_processSub: 8 - 4 = 4</SPAN>
+
+<SPAN LANG="zxx">&gt;&gt;&gt;</SPAN>
+<SPAN LANG="zxx">&gt;</SPAN></PRE><P LANG="zxx" STYLE="margin-left: 2cm; background: transparent">
+<BR>
+</P>
+<H2 LANG="zxx" CLASS="western">5.2 Linux  
+</H2>
+<P LANG="zxx" STYLE="margin-left: 1.25cm; background: transparent">Ex&eacute;cution
+</P>
+<UL>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">copier
+	</SPAN></SPAN><SPAN LANG="zxx"><B>libsimple.py </B></SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">dans
+	le r&eacute;pertoire audela-python</SPAN></SPAN></P>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">copier
+	</SPAN></SPAN><SPAN LANG="zxx"><B>libsimple.so </B></SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">dans
+	le r&eacute;pertoire audela-python\libs</SPAN></SPAN></P>
+	<LI><P LANG="zxx" STYLE="background: transparent; font-weight: normal">
+	lancer l'ex&eacute;cution de audela.py</P>
+</UL>
+<P LANG="zxx" STYLE="margin-left: 2cm; background: transparent; font-weight: normal">
+<BR>
+</P>
+<P LANG="zxx" STYLE="background: transparent">	R&eacute;sultat</P>
+<PRE LANG="zxx" CLASS="code-r&eacute;sultat-western" STYLE="margin-left: 2cm">$ python3 audela.py 
+<SPAN LANG="zxx">Ilibsimple_processAdd: 8 + 4 = 12</SPAN>
+<SPAN LANG="zxx">Ilibsimple_processSub: 8 - 4 = 4</SPAN>
+
+<SPAN LANG="zxx">&gt;&gt;&gt;</SPAN>
+<SPAN LANG="zxx">$</SPAN></PRE><P LANG="zxx" STYLE="margin-left: 2cm; background: transparent">
+<BR>
+</P>
+<P LANG="zxx" STYLE="background: transparent"><BR>
+</P>
+<H1>6Utilisation dans un programme Tcl</H1>
+<P STYLE="background: transparent"><BR>
+</P>
+<P LANG="zxx" STYLE="background: transparent">Exemple de source TCL
+utilisant libsimple :</P>
+<P LANG="zxx" STYLE="background: transparent"><BR>
+</P>
+<PRE CLASS="code-western"><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="zxx">#--- file: libsimple_test.tcl<BR><BR></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="zxx"><SPAN STYLE="background: #ffff00">package require libsimple_tcl</SPAN></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="zxx"><BR><BR>set a 8<BR>set b 4<BR>set result [ Ilibsimple_processAdd $a $b ]<BR>console::disp &quot;Ilibsimple_processAdd  : $a + $b = $result \n&quot;<BR><BR>set result2 [ Ilibsimple_processSub $a $b ]<BR>console::disp &quot;Ilibsimple_processAdd : $a + $b = $result2 \n&quot; <BR></SPAN></FONT></FONT></FONT></PRE><P LANG="zxx" STYLE="background: transparent">
+<BR>
+</P>
+<P STYLE="background: transparent"><SPAN LANG="zxx">Le programme
+</SPAN><SPAN LANG="zxx"><B>libsimple_test.tcl  </B></SPAN><SPAN LANG="zxx">importe
+le package </SPAN><SPAN LANG="zxx"><B>libsimple_tcl </B></SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">qui
+charge la librairie.</SPAN></SPAN></P>
+<H2 LANG="zxx" CLASS="western" STYLE="page-break-after: avoid"><FONT FACE="Albany, sans-serif">5.1
+Windows </FONT>
+</H2>
+<P LANG="zxx" STYLE="margin-left: 1.25cm; background: transparent">Ex&eacute;cution
+avec Audela</P>
+<P LANG="zxx" STYLE="margin-left: 2cm; background: transparent; font-weight: normal">
+<BR>
+</P>
+<UL>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">cr&eacute;er
+	le r&eacute;pertoire</SPAN></SPAN><SPAN LANG="zxx"><B>
+	audela\lib\libsimple </B></SPAN>
+	</P>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">copier
+	dans ce r&eacute;pertoire  </SPAN></SPAN><SPAN LANG="zxx"><B>libsimple_tcl.dll
+	, libsimple.dll </B></SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">et</SPAN></SPAN><SPAN LANG="zxx"><B>
+	pkgIndex.tcl </B></SPAN>
+	</P>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">copier</SPAN></SPAN><SPAN LANG="zxx"><B>
+	libsimple.tcl</B></SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">
+	 dans le r&eacute;pertoire de travail de Audela</SPAN></SPAN></P>
+	<LI><P LANG="zxx" STYLE="background: transparent; font-weight: normal">
+	lancer l'ex&eacute;cution de Audela 
+	</P>
+	<LI><P LANG="zxx" STYLE="background: transparent; font-weight: normal">
+	lancer &ldquo;source libsimple.tcl&rdquo; dans la console de Audela</P>
+</UL>
+<P LANG="zxx" STYLE="background: transparent; font-weight: normal"><BR>
+</P>
+<P LANG="zxx" STYLE="margin-left: 1.25cm; background: transparent">R&eacute;sultat</P>
+<PRE CLASS="code-r&eacute;sultat-western" STYLE="margin-left: 2cm"><SPAN LANG="zxx">&gt; </SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">source libsimple.tcl</SPAN></SPAN>
+<SPAN LANG="zxx">Ilibsimple_processAdd: 8 + 4 = 12</SPAN>
+<SPAN LANG="zxx">Ilibsimple_processSub: 8 - 4 = 4</SPAN>
+
+<SPAN LANG="zxx">&gt;</SPAN></PRE><P LANG="zxx" STYLE="margin-left: 2cm; background: transparent">
+<BR>
+</P>
+<H2 LANG="zxx" CLASS="western" STYLE="page-break-after: avoid"><FONT FACE="Albany, sans-serif">5.2
+Linux</FONT></H2>
+<P LANG="zxx" STYLE="margin-left: 1.25cm; background: transparent">Ex&eacute;cution
+avec Audela</P>
+<P LANG="zxx" STYLE="margin-left: 2cm; background: transparent; font-weight: normal">
+<BR>
+</P>
+<UL>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">cr&eacute;er
+	le r&eacute;pertoire</SPAN></SPAN><SPAN LANG="zxx"><B>
+	audela/lib/libsimple </B></SPAN>
+	</P>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">copier
+	dans ce r&eacute;pertoire  </SPAN></SPAN><SPAN LANG="zxx"><B>libsimple_tcl.so
+	libsimple.so </B></SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">et</SPAN></SPAN><SPAN LANG="zxx"><B>
+	pkgIndex.tcl </B></SPAN>
+	</P>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">copier</SPAN></SPAN><SPAN LANG="zxx"><B>
+	libsimple.tcl</B></SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">
+	 dans le r&eacute;pertoire de travail de Audela</SPAN></SPAN></P>
+	<LI><P LANG="zxx" STYLE="background: transparent; font-weight: normal">
+	lancer l'ex&eacute;cution de Audela 
+	</P>
+	<LI><P LANG="zxx" STYLE="background: transparent; font-weight: normal">
+	lancer &ldquo;source libsimple.tcl&rdquo; dans la console de Audela</P>
+</UL>
+<P LANG="zxx" STYLE="background: transparent; font-weight: normal"><BR>
+</P>
+<P LANG="zxx" STYLE="margin-left: 1.25cm; background: transparent">R&eacute;sultat</P>
+<PRE CLASS="code-r&eacute;sultat-western" STYLE="margin-left: 2cm"><SPAN LANG="zxx">&gt; </SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">source libsimple.tcl</SPAN></SPAN>
+<SPAN LANG="zxx">Ilibsimple_processAdd: 8 + 4 = 12</SPAN>
+<SPAN LANG="zxx">Ilibsimple_processSub: 8 - 4 = 4</SPAN>
+
+<SPAN LANG="zxx">&gt;</SPAN></PRE><P LANG="zxx" STYLE="margin-left: 2cm; background: transparent">
+<BR>
+</P>
+<P LANG="zxx" STYLE="margin-left: 2cm; background: transparent"><BR>
+</P>
+<P LANG="zxx" STYLE="margin-left: 1.25cm; background: transparent">Ex&eacute;cution
+avec l'interpr&eacute;teur Tcl standard de Linux  
+</P>
+<UL>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">cr&eacute;er
+	le r&eacute;pertoire</SPAN></SPAN><SPAN LANG="zxx"><B>
+	tcl86/lib/libsimple </B></SPAN>
+	</P>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">copier
+	dans ce r&eacute;pertoire  </SPAN></SPAN><SPAN LANG="zxx"><B>libsimple_tcl.so
+	, libsimple.so </B></SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">et</SPAN></SPAN><SPAN LANG="zxx"><B>
+	pkgIndex.tcl </B></SPAN>
+	</P>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">copier</SPAN></SPAN><SPAN LANG="zxx"><B>
+	libsimple.tcl</B></SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">
+	 dans un r&eacute;pertoire de travail </SPAN></SPAN>
+	</P>
+	<LI><P STYLE="background: transparent"><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">remplacer
+	&ldquo;console::disp&rdquo;  par &ldquo;puts&rdquo; dans </SPAN></SPAN><SPAN LANG="zxx"><B>
+	libsimple.tcl</B></SPAN></P>
+	<LI><P LANG="zxx" STYLE="background: transparent; font-weight: normal">
+	lancer l'ex&eacute;cution de tclsh depuis ce r&eacute;pertoire de
+	travail</P>
+	<LI><P LANG="zxx" STYLE="background: transparent; font-weight: normal">
+	lancer &ldquo;source libsimple.tcl&rdquo; dans la console de Tcl</P>
+</UL>
+<P LANG="zxx" STYLE="background: transparent"><BR>
+</P>
+<P LANG="zxx" STYLE="margin-left: 2cm; background: transparent">R&eacute;sultat</P>
+<PRE CLASS="code-r&eacute;sultat-western" STYLE="margin-left: 2cm"><SPAN LANG="zxx">$ </SPAN><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">tclsh</SPAN></SPAN>
+<SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">% source </SPAN></SPAN><FONT COLOR="#000000"><FONT FACE="Courier New, monospace"><FONT SIZE=2><SPAN LANG="zxx"><SPAN STYLE="font-weight: normal">libsimple.tcl</SPAN></SPAN></FONT></FONT></FONT>
+<SPAN LANG="zxx">Ilibsimple_processAdd: 8 + 4 = 12</SPAN>
+<SPAN LANG="zxx">Ilibsimple_processSub: 8 - 4 = 4</SPAN>
+
+<SPAN LANG="zxx">% exit</SPAN>
+<SPAN LANG="zxx">$</SPAN></PRE><P LANG="zxx" STYLE="margin-left: 2cm; background: transparent">
+<BR>
+</P>
+</BODY>
+</HTML>

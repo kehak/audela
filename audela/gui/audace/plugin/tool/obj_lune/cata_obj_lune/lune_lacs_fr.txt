@@ -1,0 +1,20 @@
+Lacus Aestatis            15.0S   69.0W   90.0    39  50                                          Lac de l'Eté
+Lacus Autumni             9.9S    83.9W   183.0   39  50                                  VII     Lac de l'Automne
+Lacus Bonitatis           23.2N   43.7E   92.0    25  26                                          Lac de la Bonté
+Lacus Doloris             17.1N   9.0E    110.0   23                                              Lac des Tourments
+Lacus Excellentiae        35.4S   44.0W   184.0   62                                              Lac de la Perfection
+Lacus Felicitatis         19.0N   5.0E    90.0    22                                              Lac de la Félicité
+Lacus Gaudii              16.2N   12.6E   113.0   23                                              Lac de l'Allégresse
+Lacus Hiemalis            15.0N   14.0E   50.0    23                                              Lac de l'Hiver
+Lacus Lenitatis           14.0N   12.0E   80.0    23  34                                          Lac de la Tendresse
+Lacus Luxuriae            19.0N   176.0E  50.0                                                    Lake of Luxury
+Lacus Mortis              45.0N   27.2E   151.0   14                                              Lac de la Mort
+Lacus Oblivionis          21.0S   168.0W  50.0                                                    Lake of Forgetfulness
+Lacus Odii                19.0N   7.0E    70.0    23                                              Lac de la Haine
+Lacus Perseverantiae      8.0N    62.0E   70.0    38                                              Lac de la Persévérance
+Lacus Solitudinis         27.8S   104.3E  139.0                                                   Lac de la Solitude
+Lacus Somniorum           38.0N   29.2E   384.0   14                                              Lac des Songes
+Lacus Spei                43.0N   65.0E   80.0    16                                              Lac de l'Espérance
+Lacus Temporis            45.9N   58.4E   117.0   15                                              Lac du Temps
+Lacus Timoris             38.8S   27.3W   117.0   63                                              Lac de l'Effroi
+Lacus Veris               16.5S   86.1W   396.0   39  50                                  VII     Lac du Printemps

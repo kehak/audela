@@ -1,0 +1,28 @@
+test img 32 sources a 22:38:09 le 15 sep 13
+
+
+else if (fabs(ochisq-chisq) < 0.001)
+if (itst < 4 && k < 30) continue;
+
+methode globale   n=3   :  96s
+methode globale   n=2   :  91s
+methode globale   n=1   :  59s
+
+
+else if (fabs(ochisq-chisq) < 0.01)
+if (itst < 4 && k < 30) continue;
+
+methode globale   n=3   :  96s
+methode globale   n=1   :  59s
+
+else if (fabs(ochisq-chisq) < 0.001)
+if (itst < 3 && k < 30) continue;
+		   
+methode globale   n=3   :  84s
+methode globale   n=1   :  54s
+methode globale   n=1   :  1716.599 s pour 884 sources
+
+else if (fabs(ochisq-chisq) < 0.001)
+if (itst < 2 && k < 30) continue;
+
+methode globale   n=1   :  50s

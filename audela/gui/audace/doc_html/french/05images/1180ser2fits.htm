@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Conversion SER -&gt; FITS</title></head><body>
+<p class="date">Date de mise à jour : 10 mai 2013</p>
+<h1>Extraction et conversion du format SER vers FITS</h1>
+<h2>1. Analyse</h2>
+<p>AudeLA ne sait pas visualiser les vid&#233;os au format SER
+produites par certaines cam&#233;ras (par exemple Basler, iNova,
+Lumenera) et logiciels associ&#233;s (GENICAP-RECORD et
+GenikaAstro, Plxcapture, LUCAM-RECORDER) utilis&#233;es en
+astronomie plan&#233;taire.<br />
+Bien que limit&#233;es &#224; 8 ou 12 bits, ces cam&#233;ras sont
+int&#233;ressantes dans la mesure o&#249; elles disposent de
+r&#233;glages plus souples que les webcams, plus
+particuli&#232;rement en mati&#232;re de temps d'exposition, de
+binning, d'AOI, d'horodatage, etc.</p>
+<p>Merci &#224; <b>Raoul Behrend</b> de l'Observatoire de
+Gen&#232;ve pour son aide pr&#233;cieuse.</p>
+<h2>2. Ce que fait cette fonction</h2>
+<p>Elle permet d'extraire une image, quelques images ou toutes
+les images en les convertissant au format FITS. Le format FITS
+des images monochromes d&#233;pend de l'enregistrement : Les
+enregistrements effectu&#233;s en 8 bits sont convertis en images
+8 bits et les autres en images 16 bits.<br />
+De plus elle collecte les informations disponibles et les met en
+forme pour compl&#233;ter l'en-t&#234;te de l'image FITS comme
+dans l'exemple ci-dessous :</p>
+<p><img style="width: 636px; height: 385px;" alt="" src=
+"images/ser2fits_header.gif" /></p>
+<p>Les logiciels de capture des vid&#233;os SER ne collectent ni
+les m&#234;mes informations ni sous le m&#234;me encodage, par
+exemple l'horodatage :</p>
+<ul>
+<li>de Plxcapture est un entier &#233;crit en 64 bits,</li>
+<li>celui de LUCAM-RECORDER est cod&#233; en 62 bits,</li>
+<li>celui de GENICAP-RECORD ne figure pas dans le trailer de
+l'image mais dans un fichier .txt produit simultan&#233;ment et
+contenant d'autres informations int&#233;ressantes (par exemple,
+nom du t&#233;lescope, diam&#232;tre, taille des pixels, binning,
+temps d'exposition, heure de prise de vue, etc.). Si ce fichier
+n'existe pas les mots cl&#233;s sont r&#233;duits au
+minimum.</li>
+<li>La version GenikaAstro v2.1 est tr&#232;s compl&#232;te. le
+fichier .txt produit contient d'autres informations (par exemple
+: diam&#232;tre, binning, temps d'exposition, etc.). Si ce
+fichier n'existe pas les mots cl&#233;s sont r&#233;duits.</li>
+</ul>
+<p>Il faut retenir que le contenu de l'en-t&#234;te varie en
+fonction de la ou des sources ainsi que du soin pris par
+l'utilisateur &#224; compl&#233;ter les informations :</p>
+<ul>
+<li>Le nom de l'observateur, du t&#233;lescope, son
+diam&#232;tre, la taille des pixels, le binning ne figurent dans
+les mots cl&#233;s que si l'information est disponible.</li>
+<li>Un horodatage tel que <b>0001:01:03T00:00:00.000</b> ne
+signifie pas que le propri&#233;taire de la cam&#233;ra a
+voyag&#233; dans le temps mais que l'incr&#233;ment par rapport
+au temps 0 (3 janvier de l'an 1 &#224; 00h00h00s) de l'horodatage
+est nul, en fait non sp&#233;cifi&#233;.</li>
+<li>Le trailer permet de calculer TELAPSE = m&#233;diane de
+l'intervalle de temps entre les images.</li>
+</ul>
+<h2>3. L'interface</h2>
+<table summary="">
+<tbody>
+<tr>
+<td><img style="width: 417px; height: 221px;" alt="" src=
+"images/ser2fits.gif" /></td>
+<td style="padding-left: 1em;">Cette interface ne s'ouvre que si
+le r&#233;pertoire images contient des fichiers .SER, .Ser ou
+.ser :
+<ul>
+<li>Un s&#233;lecteur de fichier SER contenu dans le
+r&#233;pertoire images. L'&#233;ventuel fichier .ser.txt
+accompagnant le fichier .ser doit &#234;tre dans le m&#234;me
+r&#233;pertoire.</li>
+<li>Un s&#233;lecteur de la premi&#232;re et de la derni&#232;re
+image &#224; convertir. Lors de la s&#233;lection d'un fichier,
+la fen&#234;tre de la derni&#232;re image indique le nombre
+d'images contenues dans le fichier SER.</li>
+<li>Un s&#233;lecteur de r&#233;pertoire de destination : Un
+bouton annexe permet de le modifier (il doit exister).<br /></li>
+<li>La quatri&#232;me ligne permet de modifier le nom
+g&#233;n&#233;rique des images de sorties (par d&#233;faut celui
+du fichier SER). Les images produites ont un index identique au
+rang de l'image dans le fichier initial.</li>
+<li>3 ou 4 boutons pour les commandes habituelles.</li>
+<li>Un changement de r&#233;pertoire images provoque le
+rafra&#238;chissement de l'interface.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>4. Temps d'extraction</h2>
+<p>Pour une image en 8 bits, le temps d'extraction des
+donn&#233;es d&#233;pend de la taille de l'image : Environ 3 ms
+pour une image de 640 x 480 pixels et 7 ms pour une image de 1280
+x 960 pixels. En mode 12 bits, ce temps sera plus long du fait de
+la conversion du format littleEndian, sp&#233;cifique au format
+SER, en format bigEndian, sp&#233;cifique au format FITS : 95 ms
+pour pour une image de 640 x 480 pixels et 390 ms pour une image
+de 1280 x 960 pixels. A ce temps d'extraction, il convient de
+rajouter le d&#233;lai n&#233;cessaire aux op&#233;rations telles
+que l'&#233;criture des mots cl&#233;s.</p>
+</body>
+</html>

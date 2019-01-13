@@ -1,0 +1,627 @@
+#
+# Fichier : satellites.cap
+# Mise a jour $Id: satellites.cap 13233 2016-02-20 14:43:03Z rzachantke $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(satellites,title)                                 "Artificial Satellites"
+
+set caption(satellites,onglet_coord)                          "Coordinates"
+set caption(satellites,gps)                                   "GPS coordinates of the observer:"
+set caption(satellites,tu)                                    "Observation Date (UT):"
+set caption(satellites,satname)                               "Search Coordinates from:"
+
+set caption(satellites,onglet_near)                           "Proximity"
+set caption(satellites,satelra)                               "RA:"
+set caption(satellites,sateldec)                              "Dec.:"
+
+set caption(satellites,onglet_orbit)                          "Orbit"
+set caption(satellites,edition)                               "Edition of the results in:"
+set caption(satellites,console)                               "Console"
+set caption(satellites,htm)                                   "HTML"
+set caption(satellites,zoom)                                  "Zoom on the image:"
+set caption(satellites,grid)                                  "Display the grid of coordinates"
+set caption(satellites,sunmoon)                               "Display Sun and Moon"
+set caption(satellites,speed)                                 "Speed of simulation X:"
+set caption(satellites,satellite)                             "Satellite"
+set caption(satellites,direct)                                "East -> West"
+set caption(satellites,retrograde)                            "West -> East"
+set caption(satellites,geostat)                               "geostationary"
+set caption(satellites,inclin)                                "Tilt/North"
+set caption(satellites,tsyn)                                  "Synodic period"
+set caption(satellites,zenpos)                                "At its zenith in"
+set caption(satellites,revperday)                             "Revolutions/day"
+set caption(satellites,periapo)                               "Perigee Apogee"
+set caption(satellites,elong)                                 "Elongation/Sun"
+set caption(satellites,date)                                  "UT Date"
+set caption(satellites,ra)                                    "RA"
+set caption(satellites,dec)                                   "Dec."
+set caption(satellites,ill)                                   "Illumination"
+set caption(satellites,mag)                                   "Magnitude"
+set caption(satellites,ha)                                    "HA"
+set caption(satellites,az)                                    "Azimuth"
+set caption(satellites,elev)                                  "Elevation"
+set caption(satellites,speed)                                 "Angular velocity"
+set caption(satellites,est)                                   "E"
+set caption(satellites,ouest)                                 "W"
+
+set caption(satellites,onglet_radar)                          "Radar"
+set caption(satellites,elevMin)                               "Minimum elevation (deg):"
+set caption(satellites,ra)                                    "RA"
+set caption(satellites,dec)                                   "Dec."
+set caption(satellites,ill)                                   "Illumination"
+set caption(satellites,ha)                                    "HA"
+set caption(satellites,az)                                    "Azimuth"
+set caption(satellites,elev)                                  "Elevation"
+
+set caption(satellites,onglet_names)                          "Names"
+set caption(satellites,search)                                "List of satellites in TLE files name with: ..."
+
+set caption(satellites,onglet_tle)                            "Update TLE Files"
+
+set caption(satellites,update)                                "Please update %s TLE file."
+set caption(satellites,pas_trouve)                            "Satellite %s not found in current TLEs."
+
+set caption(satellites,erreur)                                "Error"
+set caption(satellites,format)                                "Non-compliant %s format."
+
+set caption(satellites,apply)                                 "Apply"
+set caption(satellites,close)                                 "Close"
+set caption(satellites,hlp)                                   "Help"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(satellites,title)                              "Satellites artificiels"
+
+   set caption(satellites,onglet_coord)                       "Coordonnées"
+   set caption(satellites,gps)                                "Coordonnées GPS de l'observateur :"
+   set caption(satellites,tu)                                 "Date de l'observation (TU) :"
+   set caption(satellites,satname)                            "Recherche les coordonnées de :"
+
+   set caption(satellites,onglet_near)                        "Proximité"
+   set caption(satellites,satelra)                            "AD :"
+   set caption(satellites,sateldec)                           "Déc. :"
+
+   set caption(satellites,onglet_orbit)                       "Orbite"
+   set caption(satellites,edition)                            "Edition des résultats dans :"
+   set caption(satellites,console)                            "Console"
+   set caption(satellites,htm)                                "HTML"
+   set caption(satellites,zoom)                               "Zoom sur l'image :"
+   set caption(satellites,sunmoon)                            "Affichage du Soleil et de la Lune"
+   set caption(satellites,grid)                               "Affichage des grilles de coordonnées"
+   set caption(satellites,speed)                              "Vitesse de simulation X :"
+   set caption(satellites,satellite)                          "Satellite"
+   set caption(satellites,direct)                             "Est -> Ouest"
+   set caption(satellites,retrograde)                         "Ouest -> Est"
+   set caption(satellites,geostat)                            "géostationnaire"
+   set caption(satellites,inclin)                             "Inclinaison/Nord"
+   set caption(satellites,tsyn)                               "Durée synodique"
+   set caption(satellites,zenpos)                             "Au zénith à"
+   set caption(satellites,revperday)                          "Révolutions/jour"
+   set caption(satellites,periapo)                            "Périgée Apogée"
+   set caption(satellites,elong)                              "Elongation/Soleil"
+   set caption(satellites,date)                               "Date TU"
+   set caption(satellites,ra)                                 "AD"
+   set caption(satellites,dec)                                "Déc."
+   set caption(satellites,ill)                                "Illumination"
+   set caption(satellites,mag)                                "Magnitude"
+   set caption(satellites,ha)                                 "AH"
+   set caption(satellites,az)                                 "Azimuth"
+   set caption(satellites,speed)                              "Vitesse angulaire"
+   set caption(satellites,elev)                               "Hauteur"
+   set caption(satellites,est)                                "E"
+   set caption(satellites,ouest)                              "O"
+
+   set caption(satellites,onglet_radar)                       "Radar"
+   set caption(satellites,elevMin)                            "Hauteur minimale (deg) :"
+   set caption(satellites,ra)                                 "AD"
+   set caption(satellites,dec)                                "Déc."
+   set caption(satellites,ill)                                "Illumination"
+   set caption(satellites,ha)                                 "AH"
+   set caption(satellites,az)                                 "Azimuth"
+   set caption(satellites,elev)                               "Hauteur"
+
+   set caption(satellites,onglet_names)                       "Noms"
+   set caption(satellites,search)                             "Liste des satellites ayant dans le nom : ..."
+
+   set caption(satellites,onglet_tle)                         "Mise à jour des fichiers TLE"
+
+   set caption(satellites,update)                             "Veuillez mettre à jour le fichier TLE %s."
+   set caption(satellites,pas_trouve)                         "Satellite %s non trouvé dans les fichiers TLE."
+
+   set caption(satellites,erreur)                             "Erreur"
+   set caption(satellites,format)                             "Format de %s non conforme."
+
+   set caption(satellites,apply)                              "Appliquer"
+   set caption(satellites,close)                              "Fermer"
+   set caption(satellites,hlp)                                "Aide"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(satellites,title)                              "Satelliti artificiali"
+
+   set caption(satellites,onglet_coord)                       "Coordinate"
+   set caption(satellites,gps)                                "Coordinate GPS dell'osservatore :"
+   set caption(satellites,tu)                                 "Data dell'osservazione (TU) :"
+   set caption(satellites,satname)                            "Ricerca delle coordinate"
+
+   set caption(satellites,onglet_near)                        "Vicinanza"
+   set caption(satellites,satelra)                            "AD:"
+   set caption(satellites,sateldec)                           "Déc.:"
+
+   set caption(satellites,onglet_orbit)                       "Orbita"
+   set caption(satellites,edition)                            "Edizione dei risultati in :"
+   set caption(satellites,console)                            "Console"
+   set caption(satellites,htm)                                "HTML"
+   set caption(satellites,zoom)                               "Ingrandire l'immagine:"
+   set caption(satellites,sunmoon)                            "Visualizza il Sole e la Luna"
+   set caption(satellites,grid)                               "La griglia di coordinate display"
+   set caption(satellites,speed)                              "Velocità di simulazione X :"
+   set caption(satellites,satellite)                          "Satellite"
+   set caption(satellites,direct)                             "Est -> Ovest"
+   set caption(satellites,retrograde)                         "Ovest -> Est"
+   set caption(satellites,geostat)                            "geostazionaria"
+   set caption(satellites,inclin)                             "Inclinazione/Nord"
+   set caption(satellites,tsyn)                               "Periodo sinodico"
+   set caption(satellites,zenpos)                             "Al suo apice alla"
+   set caption(satellites,revperday)                          "Giri/giorno"
+   set caption(satellites,periapo)                            "Perigeo Apogeo"
+   set caption(satellites,elong)                              "Elongazione/Sole"
+   set caption(satellites,date)                               "Data OU"
+   set caption(satellites,ra)                                 "AD"
+   set caption(satellites,dec)                                "Déc."
+   set caption(satellites,ill)                                "Illuminazione"
+   set caption(satellites,mag)                                "Magnitudine"
+   set caption(satellites,ha)                                 "AO"
+   set caption(satellites,az)                                 "Azimuth"
+   set caption(satellites,elev)                               "Elevazione"
+   set caption(satellites,speed)                              "Velocità angolare"
+   set caption(satellites,est)                                "E"
+   set caption(satellites,ouest)                              "O"
+
+   set caption(satellites,onglet_radar)                       "Radar"
+   set caption(satellites,elevMin)                            "Elevazione minima (deg) :"
+   set caption(satellites,ra)                                 "AD"
+   set caption(satellites,dec)                                "Déc."
+   set caption(satellites,ill)                                "Illuminazione"
+   set caption(satellites,ha)                                 "AO"
+   set caption(satellites,az)                                 "Azimut"
+   set caption(satellites,elev)                               "Elevazione"
+
+   set caption(satellites,onglet_names)                       "Nomi"
+   set caption(satellites,search)                             "Elenco dei satelliti con nome : ..."
+
+   set caption(satellites,onglet_tle)                         "File TLE"
+
+   set caption(satellites,update)                             "Si prega di aggiornare il file TLE %s."
+   set caption(satellites,pas_trouve)                         "Satellitare %s non trovato nei file TLE."
+
+   set caption(satellites,erreur)                             "Errore"
+   set caption(satellites,format)                             "Formato non corretto %s."
+
+   set caption(satellites,appliquer)                          "Applicare"
+   set caption(satellites,close)                              "Chiudere"
+   set caption(satellites,hlp)                                "Aiuto"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(satellites,title)                              "Satélites artificiales"
+
+   set caption(satellites,onglet_coord)                       "Coordenadas
+   set caption(satellites,gps)                                "Coordenadas GPS del observador :"
+   set caption(satellites,tu)                                 "Fecha de la observación (TU) :"
+   set caption(satellites,satname)                            "Buscar Coordenadas"
+
+   set caption(satellites,onglet_near)                        "Proximidad"
+   set caption(satellites,satelra)                            "AD :"
+   set caption(satellites,sateldec)                           "Déc. :"
+
+   set caption(satellites,onglet_orbit)                       "Orbitas
+   set caption(satellites,edition)                            "Edición de los resultados en :"
+   set caption(satellites,console)                            "Consola"
+   set caption(satellites,htm)                                "HTML"
+   set caption(satellites,zoom)                               "Zoom en la imagen :"
+   set caption(satellites,sunmoon)                            "Ver el Sol y la Luna"
+   set caption(satellites,grid)                               "La cuadrícula de coordenadas de pantalla"
+   set caption(satellites,speed)                              "Simulación velocidad X :"
+   set caption(satellites,satellite)                          "Satellite"
+   set caption(satellites,direct)                             "Este -> Oeste"
+   set caption(satellites,retrograde)                         "Oeste -> Est"
+   set caption(satellites,geostat)                            "geoestacionaria"
+   set caption(satellites,inclin)                             "Inclinación/norte"
+   set caption(satellites,tsyn)                               "Período sinodal"
+   set caption(satellites,zenpos)                             "En su cenit en"
+   set caption(satellites,revperday)                          "Revoluciones/día"
+   set caption(satellites,periapo)                            "Perigeo Apogeo"
+   set caption(satellites,elong)                              "Elongación/Sol"
+   set caption(satellites,date)                               "Fecha HU"
+   set caption(satellites,ra)                                 "RA"
+   set caption(satellites,dec)                                "Dec."
+   set caption(satellites,ill)                                "Iluminación"
+   set caption(satellites,mag)                                "Magnitud"
+   set caption(satellites,ha)                                 "AH"
+   set caption(satellites,az)                                 "Azimut"
+   set caption(satellites,elev)                               "Elevación"
+   set caption(satellites,speed)                              "Velocidad angular"
+   set caption(satellites,est)                                "E"
+   set caption(satellites,ouest)                              "W"
+
+   set caption(satellites,onglet_radar)                       "Radar"
+   set caption(satellites,elevMin)                            "Elevación mínima (deg) :"
+   set caption(satellites,ra)                                 "RA"
+   set caption(satellites,dec)                                "Dec."
+   set caption(satellites,ill)                                "Iluminación"
+   set caption(satellites,ha)                                 "AH"
+   set caption(satellites,az)                                 "Azimut"
+   set caption(satellites,elev)                               "Elevación"
+
+   set caption(satellites,onglet_names)                       "Nombres"
+   set caption(satellites,search)                             "Lista de los satélites con el nombre : ..."
+
+   set caption(satellites,onglet_tle)                         "Archivos TLE"
+
+   set caption(satellites,update)                             "Por favor, actualice el archivo TLE %s."
+   set caption(satellites,pas_trouve)                         "%s no encontrada en los archivos TLE de satélite."
+
+   set caption(satellites,erreur)                             "Error"
+   set caption(satellites,format)                             "Formato incorrecto de %s."
+
+   set caption(satellites,appliquer)                          "Aplicar"
+   set caption(satellites,close)                              "Cerrar"
+   set caption(satellites,hlp)                                "Ayuda"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(satellites,title)                              "Künstlichen Satelliten"
+
+   set caption(satellites,onglet_coord)                       "Koordinaten"
+   set caption(satellites,gps)                                "GPS-Koordinaten des Beobachters :"
+   set caption(satellites,tu)                                 "Beobachtungstag (WZ) :"
+   set caption(satellites,satname)                            "Koordinaten Suchung"
+
+   set caption(satellites,onglet_near)                        "Nähe"
+   set caption(satellites,satelra)                            "AD :"
+   set caption(satellites,sateldec)                           "Déc. :"
+
+   set caption(satellites,onglet_orbit)                       "Umlaufbahn"
+   set caption(satellites,edition)                            "Ausgabe der Ergebnisse in :"
+   set caption(satellites,console)                            "Konsole"
+   set caption(satellites,htm)                                "HTML"
+   set caption(satellites,zoom)                               "Vergrößern auf das Bild :"
+   set caption(satellites,sunmoon)                            "Sonne und Mond Zeigen"
+   set caption(satellites,grid)                               "Das Raster der Koordinaten-Anzeige"
+   set caption(satellites,speed)                              "Geschwindigkeit der simulation X :"
+   set caption(satellites,satellite)                          "Satellite"
+   set caption(satellites,direct)                             "Ost -> West"
+   set caption(satellites,retrograde)                         "West -> Ost"
+   set caption(satellites,geostat)                            "geostationäre"
+   set caption(satellites,inclin)                             "Kippen/Norden"
+   set caption(satellites,tsyn)                               "Synodischen Periode"
+   set caption(satellites,zenpos)                             "Bei seinen Zenit in"
+   set caption(satellites,revperday)                          "Umdrehungen/Tag"
+   set caption(satellites,periapo)                            "Perigäum Apogäum"
+   set caption(satellites,elong)                              "Dehnung/Sonne"
+   set caption(satellites,date)                               "Datum W"
+   set caption(satellites,ra)                                 "RA"
+   set caption(satellites,dec)                                "Dek."
+   set caption(satellites,ill)                                "Beleuchtung"
+   set caption(satellites,mag)                                "Größeklasse"
+   set caption(satellites,ha)                                 "ZW"
+   set caption(satellites,az)                                 "Azimut"
+   set caption(satellites,elev)                               "Höhe"
+   set caption(satellites,speed)                              "Winkelgeschwindigkeit"
+   set caption(satellites,est)                                "O"
+   set caption(satellites,ouest)                              "W"
+
+   set caption(satellites,onglet_radar)                       "Radar"
+   set caption(satellites,elevMin)                            "Minimale Höhe (deg) :"
+   set caption(satellites,ra)                                 "RA"
+   set caption(satellites,dec)                                "Dek."
+   set caption(satellites,ill)                                "Beleuchtung"
+   set caption(satellites,ha)                                 "ZW"
+   set caption(satellites,az)                                 "Azimut"
+   set caption(satellites,elev)                               "Höhe"
+
+   set caption(satellites,onglet_names)                       "Namen"
+   set caption(satellites,search)                             "Liste der Satelliten in TLE-Dateien mit Namen : ..."
+
+   set caption(satellites,onglet_tle)                         "Update Dateien TLE"
+
+   set caption(satellites,update)                             "Bitte aktualisieren Sie die Datei TLE %s."
+   set caption(satellites,pas_trouve)                         "Satellite %s nicht gefunden in den TLE-Dateien."
+
+   set caption(satellites,erreur)                             "Irrtum"
+   set caption(satellites,format)                             "Falscher %s -format."
+
+   set caption(satellites,appliquer)                          "Anwenden"
+   set caption(satellites,close)                              "Schließen"
+   set caption(satellites,hlp)                                "Hilfe"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(satellites,title)                              "Satélites artificiais"
+
+   set caption(satellites,onglet_coord)                       "Coordenadas"
+   set caption(satellites,gps)                                "Coordenadas GPS do observador :"
+   set caption(satellites,tu)                                 "Data da observação (TU) :"
+   set caption(satellites,satname)                            "Procurar as coordenadas"
+
+   set caption(satellites,onglet_near)                        "Proximidade"
+   set caption(satellites,satelra)                            "AD :"
+   set caption(satellites,sateldec)                           "Déc. :"
+
+   set caption(satellites,onglet_orbit)                       "Orbita"
+   set caption(satellites,edition)                            "Edição dos resultados em :"
+   set caption(satellites,console)                            "Console"
+   set caption(satellites,htm)                                "HTML"
+   set caption(satellites,zoom)                               "Zoom na imagem :"
+   set caption(satellites,sunmoon)                            "Mostrar o Sol e a Lua"
+   set caption(satellites,grid)                               "A grade de exibição de coordenadas"
+   set caption(satellites,speed)                              "Velocidade de simulação X :"
+   set caption(satellites,satellite)                          "Satellite"
+   set caption(satellites,direct)                             "Este -> Oeste"
+   set caption(satellites,retrograde)                         "Oeste -> Este"
+   set caption(satellites,geostat)                            "geoestacionária"
+   set caption(satellites,inclin)                             "Inclinação/Norte"
+   set caption(satellites,tsyn)                               "Período sinódico"
+   set caption(satellites,zenpos)                             "No seu zênite em"
+   set caption(satellites,revperday)                          "Revoluções/dia"
+   set caption(satellites,periapo)                            "Perigeu Apogeu"
+   set caption(satellites,elong)                              "Elongação/Sol"
+   set caption(satellites,date)                               "Data HU"
+   set caption(satellites,ra)                                 "AR"
+   set caption(satellites,dec)                                "Dec."
+   set caption(satellites,ill)                                "Iluminação"
+   set caption(satellites,mag)                                "Magnitude"
+   set caption(satellites,ha)                                 "AH"
+   set caption(satellites,az)                                 "Azimute"
+   set caption(satellites,elev)                               "Elevação"
+   set caption(satellites,speed)                              "Velocidade angular"
+   set caption(satellites,est)                                "E"
+   set caption(satellites,ouest)                              "W"
+
+   set caption(satellites,onglet_radar)                       "Radar"
+   set caption(satellites,elevMin)                            "Elevação mínima (deg) :"
+   set caption(satellites,ra)                                 "AR"
+   set caption(satellites,dec)                                "Dec."
+   set caption(satellites,ill)                                "Iluminação"
+   set caption(satellites,ha)                                 "AH"
+   set caption(satellites,az)                                 "Azimute"
+   set caption(satellites,elev)                               "Elevação"
+
+   set caption(satellites,onglet_names)                       "Nome"
+   set caption(satellites,search)                             "Lista de satélites contendo no nome : ..."
+
+   set caption(satellites,onglet_tle)                         "Atualização dos arquivos TLE"
+
+   set caption(satellites,update)                             "Por favor, atualize o arquivo TLE %s."
+   set caption(satellites,pas_trouve)                         "Satélite de %s não foi encontrado nos arquivos de TLE."
+
+   set caption(satellites,erreur)                             "Erro"
+   set caption(satellites,format)                             "Formato incorreto de %s."
+
+   set caption(satellites,appliquer)                          "Aplicar"
+   set caption(satellites,close)                              "Fechar"
+   set caption(satellites,hlp)                                "Ajuda"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(satellites,title)                              "Artificial Satellites"
+
+   set caption(satellites,onglet_coord)                       "Coordinates"
+   set caption(satellites,gps)                                "GPS coordinates of the observer:"
+   set caption(satellites,tu)                                 "Observation Date (UT):"
+   set caption(satellites,satname)                            "Search Coordinates from:"
+
+   set caption(satellites,onglet_near)                        "Proximity"
+   set caption(satellites,satelra)                            "AD:"
+   set caption(satellites,sateldec)                           "Déc.:"
+
+   set caption(satellites,onglet_orbit)                       "Orbit"
+   set caption(satellites,edition)                            "Edition of the results in:"
+   set caption(satellites,console)                            "Console"
+   set caption(satellites,htm)                                "HTML"
+   set caption(satellites,zoom)                               "Zoom on the image:"
+   set caption(satellites,grid)                               "Display the grid of coordinates"
+   set caption(satellites,sunmoon)                            "Display Sun and Moon"
+   set caption(satellites,speed)                              "Speed of simulation X:"
+   set caption(satellites,satellite)                          "Satellite"
+   set caption(satellites,direct)                             "East -> West"
+   set caption(satellites,retrograde)                         "West -> East"
+   set caption(satellites,geostat)                            "geostationary"
+   set caption(satellites,inclin)                             "Tilt/North"
+   set caption(satellites,tsyn)                               "Synodic period"
+   set caption(satellites,zenpos)                             "At its zenith in"
+   set caption(satellites,revperday)                          "Revolutions/day"
+   set caption(satellites,periapo)                            "Perigee Apogee"
+   set caption(satellites,elong)                              "Elongation/Sun"
+   set caption(satellites,date)                               "UT Date"
+   set caption(satellites,ra)                                 "RA"
+   set caption(satellites,dec)                                "Dec."
+   set caption(satellites,ill)                                "Illumination"
+   set caption(satellites,mag)                                "Magnitude"
+   set caption(satellites,ha)                                 "HA"
+   set caption(satellites,az)                                 "Azimuth"
+   set caption(satellites,elev)                               "Elevation"
+   set caption(satellites,speed)                              "Angular velocity"
+   set caption(satellites,est)                                "E"
+   set caption(satellites,ouest)                              "W"
+
+   set caption(satellites,onglet_radar)                       "Radar"
+   set caption(satellites,elevMin)                            "Minimum elevation (deg):"
+   set caption(satellites,ra)                                 "RA"
+   set caption(satellites,dec)                                "Dec."
+   set caption(satellites,ill)                                "Illumination"
+   set caption(satellites,ha)                                 "HA"
+   set caption(satellites,az)                                 "Azimuth"
+   set caption(satellites,elev)                               "Elevation"
+
+   set caption(satellites,onglet_names)                       "Names"
+   set caption(satellites,search)                             "List of satellites in TLE files name with: ..."
+
+   set caption(satellites,onglet_tle)                         "Update TLE Files"
+
+   set caption(satellites,update)                             "Please update %s TLE file."
+   set caption(satellites,pas_trouve)                         "Satellite %s not found in current TLEs."
+
+   set caption(satellites,erreur)                             "Error"
+   set caption(satellites,format)                             "Non-compliant %s format."
+
+   set caption(satellites,apply)                              "Apply"
+   set caption(satellites,close)                              "Close"
+   set caption(satellites,hlp)                                "Help"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(satellites,title)                              "Artificial Satellites"
+
+   set caption(satellites,onglet_coord)                       "Coordinates"
+   set caption(satellites,gps)                                "GPS coordinates of the observer:"
+   set caption(satellites,tu)                                 "Observation Date (UT):"
+   set caption(satellites,satname)                            "Search Coordinates from:"
+
+   set caption(satellites,onglet_near)                        "Proximity"
+   set caption(satellites,satelra)                            "AD:"
+   set caption(satellites,sateldec)                           "Déc.:"
+
+   set caption(satellites,onglet_orbit)                       "Orbit"
+   set caption(satellites,edition)                            "Edition of the results in:"
+   set caption(satellites,console)                            "Console"
+   set caption(satellites,htm)                                "HTML"
+   set caption(satellites,zoom)                               "Zoom on the image:"
+   set caption(satellites,grid)                               "Display the grid of coordinates"
+   set caption(satellites,sunmoon)                            "Display Sun and Moon"
+   set caption(satellites,speed)                              "Speed of simulation X:"
+   set caption(satellites,satellite)                          "Satellite"
+   set caption(satellites,direct)                             "East -> West"
+   set caption(satellites,retrograde)                         "West -> East"
+   set caption(satellites,geostat)                            "geostationary"
+   set caption(satellites,inclin)                             "Tilt/North"
+   set caption(satellites,tsyn)                               "Synodic period"
+   set caption(satellites,zenpos)                             "At its zenith in"
+   set caption(satellites,revperday)                          "Revolutions/day"
+   set caption(satellites,periapo)                            "Perigee Apogee"
+   set caption(satellites,elong)                              "Elongation/Sun"
+   set caption(satellites,date)                               "UT Date"
+   set caption(satellites,ra)                                 "RA"
+   set caption(satellites,dec)                                "Dec."
+   set caption(satellites,ill)                                "Illumination"
+   set caption(satellites,mag)                                "Magnitude"
+   set caption(satellites,ha)                                 "HA"
+   set caption(satellites,az)                                 "Azimuth"
+   set caption(satellites,elev)                               "Elevation"
+   set caption(satellites,speed)                              "Angular velocity"
+   set caption(satellites,est)                                "E"
+   set caption(satellites,ouest)                              "W"
+
+   set caption(satellites,onglet_radar)                       "Radar"
+   set caption(satellites,elevMin)                            "Minimum elevation (deg):"
+   set caption(satellites,ra)                                 "RA"
+   set caption(satellites,dec)                                "Dec."
+   set caption(satellites,ill)                                "Illumination"
+   set caption(satellites,ha)                                 "HA"
+   set caption(satellites,az)                                 "Azimuth"
+   set caption(satellites,elev)                               "Elevation"
+
+   set caption(satellites,onglet_names)                       "Names"
+   set caption(satellites,search)                             "List of satellites in TLE files name with: ..."
+
+   set caption(satellites,onglet_tle)                         "Update TLE Files"
+
+   set caption(satellites,update)                             "Please update %s TLE file."
+   set caption(satellites,pas_trouve)                         "Satellite %s not found in current TLEs."
+
+   set caption(satellites,erreur)                             "Error"
+   set caption(satellites,format)                             "Non-compliant %s format."
+
+   set caption(satellites,apply)                              "Apply"
+   set caption(satellites,close)                              "Close"
+   set caption(satellites,hlp)                                "Help"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(satellites,title)                              "Artificial Satellites"
+
+   set caption(satellites,onglet_coord)                       "Coordinates"
+   set caption(satellites,gps)                                "GPS coordinates of the observer:"
+   set caption(satellites,tu)                                 "Observation Date (UT):"
+   set caption(satellites,satname)                            "Search Coordinates from:"
+
+   set caption(satellites,onglet_near)                        "Proximity"
+   set caption(satellites,satelra)                            "AD:"
+   set caption(satellites,sateldec)                           "Déc.:"
+
+   set caption(satellites,onglet_orbit)                       "Orbit"
+   set caption(satellites,edition)                            "Edition of the results in:"
+   set caption(satellites,console)                            "Console"
+   set caption(satellites,htm)                                "HTML"
+   set caption(satellites,zoom)                               "Zoom on the image:"
+   set caption(satellites,grid)                               "Display the grid of coordinates"
+   set caption(satellites,sunmoon)                            "Display Sun and Moon"
+   set caption(satellites,speed)                              "Speed of simulation X:"
+   set caption(satellites,satellite)                          "Satellite"
+   set caption(satellites,direct)                             "East -> West"
+   set caption(satellites,retrograde)                         "West -> East"
+   set caption(satellites,geostat)                            "geostationary"
+   set caption(satellites,inclin)                             "Tilt/North"
+   set caption(satellites,tsyn)                               "Synodic period"
+   set caption(satellites,zenpos)                             "At its zenith in"
+   set caption(satellites,revperday)                          "Revolutions/day"
+   set caption(satellites,periapo)                            "Perigee Apogee"
+   set caption(satellites,elong)                              "Elongation/Sun"
+   set caption(satellites,date)                               "UT Date"
+   set caption(satellites,ra)                                 "RA"
+   set caption(satellites,dec)                                "Dec."
+   set caption(satellites,ill)                                "Illumination"
+   set caption(satellites,mag)                                "Magnitude"
+   set caption(satellites,ha)                                 "HA"
+   set caption(satellites,az)                                 "Azimuth"
+   set caption(satellites,elev)                               "Elevation"
+   set caption(satellites,speed)                              "Angular velocity"
+   set caption(satellites,est)                                "E"
+   set caption(satellites,ouest)                              "W"
+
+   set caption(satellites,onglet_radar)                       "Radar"
+   set caption(satellites,elevMin)                            "Minimum elevation (deg):"
+   set caption(satellites,ra)                                 "RA"
+   set caption(satellites,dec)                                "Dec."
+   set caption(satellites,ill)                                "Illumination"
+   set caption(satellites,ha)                                 "HA"
+   set caption(satellites,az)                                 "Azimuth"
+   set caption(satellites,elev)                               "Elevation"
+
+   set caption(satellites,onglet_names)                       "Names"
+   set caption(satellites,search)                             "List of satellites in TLE files name with: ..."
+
+   set caption(satellites,onglet_tle)                         "Update TLE Files"
+
+   set caption(satellites,update)                             "Please update %s TLE file."
+   set caption(satellites,pas_trouve)                         "Satellite %s not found in current TLEs."
+
+   set caption(satellites,erreur)                             "Error"
+   set caption(satellites,format)                             "Non-compliant %s format."
+
+   set caption(satellites,apply)                              "Apply"
+   set caption(satellites,close)                              "Close"
+   set caption(satellites,hlp)                                "Help"
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

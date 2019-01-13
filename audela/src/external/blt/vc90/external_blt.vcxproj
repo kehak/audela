@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{DA52EB2C-7258-47F6-87B5-DC137052C482}</ProjectGuid>
+    <RootNamespace>external_blt</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.24730.2</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/external_blt.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/GD /GD  %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>../blt2.4z/src;../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;TCL_THREADS;__STDC__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>.\Release/external_blt.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>tcl86t.lib;tk86t.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>Release/blt24.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>../../lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\Release/blt24.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>.\Release/blt24.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release/external_blt.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>install.bat Release</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/external_blt.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../blt2.4z/src;../../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;CONSOLE;TCL_THREADS;__STDC__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>.\Debug/external_blt.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>tk86t.lib;tcl86t.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>Debug/blt24.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>../../lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/blt24.pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>.\Debug/blt24.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug/external_blt.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>install.bat Debug</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\blt2.4z\src\bltAlloc.c" />
+    <ClCompile Include="..\blt2.4z\src\bltArrayObj.c" />
+    <ClCompile Include="..\blt2.4z\src\bltBeep.c" />
+    <ClCompile Include="..\blt2.4z\src\bltBgexec.c" />
+    <ClCompile Include="..\blt2.4z\src\bltBind.c" />
+    <ClCompile Include="..\blt2.4z\src\bltBitmap.c" />
+    <ClCompile Include="..\blt2.4z\src\bltBusy.c" />
+    <ClCompile Include="..\blt2.4z\src\bltCanvEps.c" />
+    <ClCompile Include="..\blt2.4z\src\bltChain.c" />
+    <ClCompile Include="..\blt2.4z\src\bltConfig.c" />
+    <ClCompile Include="..\blt2.4z\src\bltContainer.c" />
+    <ClCompile Include="..\blt2.4z\src\bltDebug.c" />
+    <ClCompile Include="..\blt2.4z\src\bltDragdrop.c" />
+    <ClCompile Include="..\blt2.4z\src\bltGraph.c" />
+    <ClCompile Include="..\blt2.4z\src\bltGrAxis.c" />
+    <ClCompile Include="..\blt2.4z\src\bltGrBar.c" />
+    <ClCompile Include="..\blt2.4z\src\bltGrElem.c" />
+    <ClCompile Include="..\blt2.4z\src\bltGrGrid.c" />
+    <ClCompile Include="..\blt2.4z\src\bltGrHairs.c" />
+    <ClCompile Include="..\blt2.4z\src\bltGrLegd.c" />
+    <ClCompile Include="..\blt2.4z\src\bltGrLine.c" />
+    <ClCompile Include="..\blt2.4z\src\bltGrMarker.c" />
+    <ClCompile Include="..\blt2.4z\src\bltGrMisc.c" />
+    <ClCompile Include="..\blt2.4z\src\bltGrPen.c" />
+    <ClCompile Include="..\blt2.4z\src\bltGrPs.c" />
+    <ClCompile Include="..\blt2.4z\src\bltHash.c" />
+    <ClCompile Include="..\blt2.4z\src\bltHierbox.c" />
+    <ClCompile Include="..\blt2.4z\src\bltHtext.c" />
+    <ClCompile Include="..\blt2.4z\src\bltImage.c" />
+    <ClCompile Include="..\blt2.4z\src\bltInit.c" />
+    <ClCompile Include="..\blt2.4z\src\bltList.c" />
+    <ClCompile Include="..\blt2.4z\src\bltNsUtil.c" />
+    <ClCompile Include="..\blt2.4z\src\bltObjConfig.c" />
+    <ClCompile Include="..\blt2.4z\src\bltParse.c" />
+    <ClCompile Include="..\blt2.4z\src\bltPool.c" />
+    <ClCompile Include="..\blt2.4z\src\bltPs.c" />
+    <ClCompile Include="..\blt2.4z\src\bltSpline.c" />
+    <ClCompile Include="..\blt2.4z\src\bltSwitch.c" />
+    <ClCompile Include="..\blt2.4z\src\bltTable.c" />
+    <ClCompile Include="..\blt2.4z\src\bltTabnotebook.c" />
+    <ClCompile Include="..\blt2.4z\src\bltTabset.c" />
+    <ClCompile Include="..\blt2.4z\src\bltTed.c" />
+    <ClCompile Include="..\blt2.4z\src\bltText.c" />
+    <ClCompile Include="..\blt2.4z\src\bltTile.c" />
+    <ClCompile Include="..\blt2.4z\src\bltTree.c" />
+    <ClCompile Include="..\blt2.4z\src\bltTreeCmd.c" />
+    <ClCompile Include="..\blt2.4z\src\bltTreeView.c" />
+    <ClCompile Include="..\blt2.4z\src\bltTreeViewCmd.c" />
+    <ClCompile Include="..\blt2.4z\src\bltTreeViewColumn.c" />
+    <ClCompile Include="..\blt2.4z\src\bltTreeViewEdit.c" />
+    <ClCompile Include="..\blt2.4z\src\bltTreeViewStyle.c" />
+    <ClCompile Include="..\blt2.4z\src\bltUtil.c" />
+    <ClCompile Include="..\blt2.4z\src\bltVecCmd.c" />
+    <ClCompile Include="..\blt2.4z\src\bltVecMath.c" />
+    <ClCompile Include="..\blt2.4z\src\bltVecObjCmd.c" />
+    <ClCompile Include="..\blt2.4z\src\bltVector.c" />
+    <ClCompile Include="..\blt2.4z\src\bltWatch.c" />
+    <ClCompile Include="..\blt2.4z\src\bltWinDde.c" />
+    <ClCompile Include="..\blt2.4z\src\bltWindow.c" />
+    <ClCompile Include="..\blt2.4z\src\bltWinDraw.c" />
+    <ClCompile Include="..\blt2.4z\src\bltWinImage.c" />
+    <ClCompile Include="..\blt2.4z\src\bltWinop.c" />
+    <ClCompile Include="..\blt2.4z\src\bltWinPipe.c" />
+    <ClCompile Include="..\blt2.4z\src\bltWinPrnt.c" />
+    <ClCompile Include="..\blt2.4z\src\bltWinUtil.c" />
+    <ClCompile Include="..\blt2.4z\src\pure_api.c" />
+    <ClCompile Include="..\blt2.4z\src\tkButton.c" />
+    <ClCompile Include="..\blt2.4z\src\tkFrame.c" />
+    <ClCompile Include="..\blt2.4z\src\tkScrollbar.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

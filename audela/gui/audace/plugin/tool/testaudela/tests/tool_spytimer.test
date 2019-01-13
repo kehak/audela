@@ -1,0 +1,172 @@
+
+set visuNo 1
+set this $::audace(base).tool.spytimer
+
+#-------------------------------------------------------------------------------
+#  déclenchement manuel
+#-------------------------------------------------------------------------------
+test tool_spytimer_manuel {declenchement manuel} -constraints {
+   AUDACE
+} -setup {
+   #--- je charge le package spytimer
+   package require spytimer
+   #--- je demarre l'outil
+   ::confVisu::selectTool $visuNo ::spytimer
+   #--   sauve les reglages utilisateur
+   set settings [list $::spytimer::private($visuNo,port) \
+      $::spytimer::private($visuNo,bit) \
+      $::spytimer::private($visuNo,cde)]
+   #--   regle sur external1
+   set ::spytimer::private($visuNo,port) "external1"
+   update
+} -body {
+   #--   selectionne GO
+   ::testaudela::clicButton "$this.fra4.but1"
+
+   #--   controle
+   set result 0
+   if {$::spytimer::private($visuNo,msg) ne ""} {incr result}
+   return $result
+} -cleanup {
+   #--   retablit les reglages utilisateur
+   lassign $settings ::spytimer::private($visuNo,port) \
+      ::spytimer::private($visuNo,bit) \
+      ::spytimer::private($visuNo,cde)
+
+} -result "1"
+
+#-------------------------------------------------------------------------------
+#  surveille un repertoire
+#-------------------------------------------------------------------------------
+test tool_spytimer_survey {charge une image} -constraints {
+   AUDACE
+} -setup {
+   file copy -force [file join $::conf(testaudela,rep_images) m57.fit] $::audace(rep_temp)
+   file rename -force [file join $::audace(rep_temp) m57.fit] [file join $::audace(rep_temp) m57.cr2]
+} -body {
+   #--   selectionne "Surveiller le répertoire"
+   ::testaudela::clicCheckButton "$this.fra3.opt" 1
+   after 1200
+   file copy -force [file join $::audace(rep_temp) m57.cr2] $::audace(rep_images)
+   set fileName [file join $::audace(rep_images) m57.cr2]
+
+   #--   controle
+   set result 0
+   #--   il faut laisser le temps au temps
+   while {[::confVisu::getFileName $visuNo] eq "$fileName"} {
+   }
+   incr result
+   return $result
+} -cleanup {
+   ::confVisu::clear $visuNo
+   file delete $fileName
+   file delete -force [file join $::audace(rep_temp) m57.cr2]
+   #--   deselectionne "Surveiller le répertoire"
+   ::testaudela::clicCheckButton "$this.fra3.opt" 0
+} -result "1"
+
+#-------------------------------------------------------------------------------
+#  independance des multi-threads
+#-------------------------------------------------------------------------------
+test tool_spytimer_multivisu {independance multivisu} -constraints {
+   AUDACE
+} -setup {
+   #--- cree une seconde visu
+   set visu2 [confVisu::create]
+   #--- demarre l'outil
+   ::confVisu::selectTool $visu2 ::spytimer
+   #--   fait l'inventaire des variables et de leur valeur (par defaut) du panneau de la visu1
+   set variablesList1 ""
+   foreach variable_name [list intervalle survey convert mode nb_poses \
+      activtime delai periode lp auto hr min] {
+      set variablesList1 [concat $variablesList1 [list $variable_name "$::spytimer::private($visuNo,$variable_name)"] ]
+   }
+   #--   fait la liste de toutes les variables actives et des valeurs de la visu2
+   set variableList2 ""
+   set variablesList2 [list intervalle 2 survey 1 convert 1 \
+      mode "$::caption(spytimer,mode,serie)" nb_poses 2 activtime 40 \
+      delai 10 periode 2 lp 1 auto 1 ]
+   #--   programme l'heure et les minutes
+   lassign [clock format [clock seconds] -format "%H %M" -timezone :localtime] hr minutes
+   set hr [string trimleft $hr 0]
+   set minutes [expr {[string trimleft $minutes 0]+1}]
+   if {$minutes == "60"} {
+      set minutes 0
+      incr hr
+      if {$hr == 24} { set hr 0}
+   }
+   set hr [format %02.f $hr]
+   set minutes [format %02.f $minutes]
+   lappend variablesList2 hr $hr min $minutes
+   #--   configure spytimer de la visu2
+   foreach {variable_name variable_value} $variablesList2 {
+      set ::spytimer::private($visu2,$variable_name) $variable_value
+   }
+   update
+} -body {
+   set result 0
+   #--
+   foreach {variable_name variable_value} $variablesList1 {
+      if {$::spytimer::private($visuNo,$variable_name) ne "$::spytimer::private($visu2,$variable_name)"} {
+         incr result
+      } else {
+         ::console::affiche_resultat "variable private($visuNo,$variable_name) is not equal $variable_value\n"
+      }
+   }
+   return $result
+} -cleanup {
+   #--ferme la visu2
+   ::confVisu::close $visu2
+} -result "12"
+
+
+#-------------------------------------------------------------------------------
+#  declenchement programme
+#--  attention ce test prend du temps
+#-------------------------------------------------------------------------------
+test tool_spytimer_auto {declenchement programme} -constraints {
+   AUDACE
+} -setup {
+   #--   programme l'heure et les minutes
+   lassign [clock format [clock seconds] -format "%H %M" -timezone :localtime] hr minutes
+   set hr [string trimleft $hr 0]
+   set minutes [expr {[string trimleft $minutes 0]+1}]
+   if {$minutes == "60"} {
+      set minutes 0
+      incr hr
+      if {$hr == 24} { set hr 0}
+   }
+   set ::spytimer::private($visuNo,hr) [format %02.f $hr]
+   set ::spytimer::private($visuNo,min) [format %02.f $minutes]
+   #--   sauve les reglages utilisateur
+   set settings [list $::spytimer::private($visuNo,port) \
+      $::spytimer::private($visuNo,bit) \
+      $::spytimer::private($visuNo,cde)]
+   #--   regle sur external1
+   set ::spytimer::private($visuNo,port) "external1"
+} -body {
+   ::console::affiche_resultat "Test in progress... wait for completion...\n"
+   #--   selectionne Auto
+   ::testaudela::clicCheckButton "$this.fra4.auto" 1
+
+   #--   controle
+   set result 0
+   vwait ::spytimer::private($visuNo,msg)
+   if {$::spytimer::private($visuNo,msg) ne ""} {incr result}
+   return $result
+} -cleanup {
+   #--   retablit les reglages utilisateur
+   lassign $settings ::spytimer::private($visuNo,port) \
+      ::spytimer::private($visuNo,bit) ::spytimer::private($visuNo,cde)
+   #--   deselectionne "Auto"
+   ::testaudela::clicCheckButton "$this.fra4.auto" 0
+   #--- j'efface l'image dans la visu
+   ::confVisu::clear $visuNo
+   #--- je supprime l'instance (cette commande arrete l'outil si ce n'est pas deja fait)
+   ::confVisu::stopTool $visuNo ::spytimer
+   #--- je supprime le package de la memoire
+   package forget spytimer
+   #--- je supprime l'instance de Collector)
+   ::confVisu::stopTool $visuNo ::collector
+} -result "1"
+

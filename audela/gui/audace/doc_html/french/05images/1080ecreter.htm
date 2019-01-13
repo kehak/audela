@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Ecr&#234;ter les extr&#234;mes d'une image, d'une
+s&#233;rie d'images</title>
+</head>
+<body>
+<p class="date">Date de mise &#224; jour : 23 janvier
+2011<br>
+</p>
+<h1>Ecr&#234;ter les extr&#234;mes d'une image, d'une s&#233;rie
+d'images</h1>
+Cette fonction s'applique &#224; des images N&amp;B et des plans
+couleurs (naxis = 2) ainsi qu'&#224; des images couleurs ou RVB
+(naxis = 3).<br>
+Dans le cas d'images couleurs, le temps de traitement est plus
+important.<br>
+<br>
+On acc&#232;de &#224; cette fonction par le menu d&#233;roulant
+<span style="font-weight: bold;">Images</span> --&gt;
+<span style="font-weight: bold;">Modifier</span> --&gt;
+<span style="font-weight: bold;">Ecr&#234;ter les
+extr&#234;mes</span>.<br>
+<br>
+La fonction <span style="font-weight: bold;">Ecr&#234;ter les
+extr&#234;mes</span> permet :<br>
+<ul>
+  <li>d'&#233;cr&#234;ter &#224; un seuil fix&#233; par <span style="font-weight: bold;">mini</span>
+toutes les
+intensit&#233;s des pixels inf&#233;rieures &#224; cette valeur <span
+ style="font-weight: bold;">mini</span>,</li>
+  <li>et d'&#233;cr&#234;ter &#224; un seuil fix&#233; par <span style="font-weight: bold;">maxi</span>
+toutes les
+intensit&#233;s des pixels sup&#233;rieures &#224; cette valeur <span
+ style="font-weight: bold;">maxi</span>.<br>
+  </li>
+</ul>
+Dans l'image ci-dessous, on s'aper&#231;oit que la dynamique de
+l'image s'&#233;tend de 27 (Mini) &#224; 26718 (Maxi).<br>
+<br>
+<img style="width: 1007px; height: 533px;" alt=""
+ src="images/ecreter_1.gif"><br>
+<br>
+Apr&#232;s avoir &#233;cr&#234;t&#233; les extr&#234;mes &#224;
+300 pour la valeur minimale et 5000 pour la valeur maximale, on
+s'aper&#231;oit cette fois que la dynamique de l'image
+s'&#233;tend de 300 (Mini) &#224; 5000 (Maxi).<br>
+<br>
+<img style="width: 637px; height: 506px;" alt=""
+ src="images/ecreter_2.gif"><br>
+<br>
+<br>
+<h2>Ex&#233;cution en ligne de commande</h2>
+<p>Cette fonction est ex&#233;cutable en ligne de commande dans
+la Console. Le r&#233;pertoire images doit &#234;tre celui
+contenant la ou les images &#224; traiter. Le nom de la fonction
+<b>::prtr::clipMinMax</b> doit &#234;tre suivi de deux listes de
+param&#232;tres.</p>
+<p>La premi&#232;re liste contient :</p>
+<ul>
+  <li>Le nom g&#233;n&#233;rique (ou la liste des noms) des images
+d'entr&#233;e.</li>
+  <li>Le chemin d'acc&#232;s aux fichiers des images de sortie (mettre
+un point si c'est le r&#233;pertoire images).</li>
+  <li>Le nom g&#233;n&#233;rique des images de sortie.</li>
+  <li>L'extension du ou des fichiers.</li>
+</ul>
+La seconde liste contient le nom des seuils suivi de la valeur.
+<pre>::prtr::clipMinMax {rz_rgbr_8 . ecreter .fit} {mini=350 maxi=3000}<br></pre>
+Elle renvoie 0 s'il n'y a pas d'erreur, sinon 1 en cas d'erreur.<br>
+</body>
+</html>

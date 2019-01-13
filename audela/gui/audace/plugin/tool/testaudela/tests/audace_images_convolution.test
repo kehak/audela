@@ -1,0 +1,123 @@
+set visuNo 1
+
+#--   Convoluer/Editeur de noyaux :
+test editeur_noyau {editeur} -constraints {AUDACE} -setup {
+    set w ".audace.k.kernel"
+} -body {
+   #--   clic sur le menu "Images/Convoluer/Editeur de noyaux"
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,convoluer)" "$::caption(audace,menu,kernel)"
+
+   #--   selectionne une taille de 5X5
+   ::testaudela::clicCombobox $w.taille.row 5
+
+   #--   remplit la matrice
+   foreach z [list 1.1 1.3 1.5 3.1 3.3 3.5 5.1 5.3 5.5] v [list 2 5 2 4 10 4 2 5 2] {
+      ::testaudela::putEntry $w.grid.$z $v
+   }
+
+   #--   donne un nom au noyau
+   set ::kernel::kernel test
+   #--   coche la normalisation
+   ::testaudela::clicCheckButton $w.data.norm 1
+   update
+
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $w.cmd.appliquer
+
+   set result 0
+   if {$::kernel::sigma eq "0.4/1.7"} {incr result}
+   set file [file join $::conf(rep_userFiltre) test_36_5x5$::conf(extension,defaut)]
+   if {[file exists $file]} {incr result}
+
+   after 1000
+   return $result
+} -cleanup {
+
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $w.cmd.no
+   #--   efface le filtre test
+   file delete $file
+
+} -result "2"
+
+#-----------------------------------------------------------------------------
+#--   le test convolution_spatiale a pour entree une image jpeg a traiter (operation la plus complexe)
+#-----------------------------------------------------------------------------
+#--   Convoluer/Convolution spatiale :
+test convolution_spatiale {convolution spatiale de 47toucan.jpg} -constraints {AUDACE} -setup {
+
+   #--   sauve l'extension, la compression et le zoom
+   set previous_extension $::conf(extension,defaut)
+   set previous_compression $::conf(fichier,compres)
+   set previous_zoom $::conf(audace,visu$visuNo,zoom)
+
+   #--   configure l'extension, la compression et le zoom
+   set ::conf(extension,defaut) ".fts"
+   set ::conf(fichier,compres) 0
+   ::confVisu::setZoom $visuNo 1
+
+   update
+   file copy -force [file join $::conf(testaudela,rep_images) 47toucan.jpg] $::audace(rep_images)
+   loadima 47toucan.jpg
+
+    set w ".audace.cfltr"
+
+} -body {
+
+   #--   clic sur le menu "Images/Convoluer/Convolution spatiale"
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,convoluer)" "$::caption(audace,menu,convfltr)"
+
+   #--   pm l'option 'Preserver la dynamique' est cochee par defaut
+
+   set result 0
+   #--   existence du repertoire
+   if {[file exists $::conf(rep_userFiltre)]} {incr result}
+   if {[llength $::::convfltr::private(convfltr,filtres)] >= 25} {incr result}
+
+   #--   selectionne inversion
+   ::testaudela::clicCombobox $w.f.fltr "inversion_-1_1x1"
+
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $w.cmd.appliquer
+
+   #--   teste l'existence de l'image filtree
+   set product "inversion_-1_1x1_47toucan.jpg"
+   if {[file exists $product]} {incr result}
+
+   #--   teste les valeurs d'un point
+   set attendu [list [expr {252.0}] [expr {247.0}]  [expr {251.0}]]
+   set mesure [lrange [buf[visu$visuNo buf] getpix [list 400 500]] 1 end]
+   if {$mesure eq "$attendu"} {
+      incr result
+   }
+
+   #--   teste la suppression des images temporaires
+   set tempImg [glob -nocomplain -type f -tails -dir $::audace(rep_temp) *$::conf(extension,defaut)]
+   if {[llength $tempImg] == 0} {incr result}
+
+   return $result
+
+} -cleanup {
+
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $w.cmd.no
+
+   #--   detruit les images tests
+   file delete [file join $::audace(rep_images) 47toucan.jpg] $product
+
+   #--   retablit l'extension et la compression
+   set ::conf(extension,defaut) $previous_extension
+   set ::conf(fichier,compres) $previous_compression
+
+   #--   pour reconvertir l'extension des filtres
+   #--   clic sur le menu "Images/Convoluer/Convolution spatiale"
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,convoluer)" "$::caption(audace,menu,convfltr)"
+
+   #-- retablit le zoom
+   ::confVisu::setZoom $visuNo $previous_zoom
+
+} -result "5"
+

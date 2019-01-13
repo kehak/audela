@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Acquisition (T1M)</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 01 mai 2013</p>
+
+<h1>Carte de datation GPS Meinberg</h1>
+
+
+     <pre>
+
+ === Compilation et installation du pilote Meinberg ===
+
+ cd /srv/develop/audela/src/external/meinberg/Driver/Linux
+
+ tar zxf mbgtools-lx-dev-2014-12-02.tar.gz
+ tar zxf mbgtools-lx-dev-2014-12-02-mbgclock_main.c.tar.gz
+
+ rm ./mbgtools-lx-dev-2014-12-02/mbgclock/mbgclock_main.c
+ cp mbgclock_main.c ./mbgtools-lx-dev-2014-12-02/mbgclock/
+ cd mbgtools-lx-dev-2014-12-02
+
+ make
+ sudo /sbin/modprobe mbgclock
+
+ cd /srv/develop/audela/src/external/meinberg/linux
+
+ ./cmd
+
+
+  == GPS Meinberg
+
+  ( Dans l'outil Acquisition(T1M) )
+
+  Cliquer sur le bouton [GPS] :
+   Vérifier que le bouton devient vert.
+   Vérifier qu'il n'y a pas d'erreur dans la Console.
+
+  Cliquer sur le Bouton [Binning], pour afficher [Binning 2x2].
+
+  Pose : 1 sec.
+
+  Obt. : Synchro
+
+  Choisir : "Une Image"
+
+  Cocher : "Avancement de l'acquisition"
+
+  Cliquer sur le bouton [GO CCD]
+
+   Le bouton [GPS] doit rester vert.
+   Il ne doit pas y avoir de message d'erreur dans la Console.
+
+  Afficher les en-têtes FITS (menu Fichier).
+
+   Vérifier la présence des champs suivants :
+    GPS-ANTE = Antenna is connected  Status of GPS Antenna   
+    GPS-FANT = 1  flag = 1 if GPS Antenna is connected, 0 otherwise   
+    GPS-FLAG = 1  flag = 1 if GPS datation is valid, 0 otherwise   none
+    GPS-FSYN = 1  flag = 1 if GPS Time is synchronized, 0 otherwise   
+    GPS-PC = 0.2969999999999999862  difference between GPS Clock and Computer Clock   second
+    GPS-SYNC = Time is synchronized  Status of GPS Synchronization
+
+   Repérer le bloc suivant :  
+    DATE-END = 2012-10-07T00:39:59.074  End date of the observation   Date ISO8601
+    DATE-GPS = 2012-10-07T00:39:59.074   Begining date of the observation from GPS Clock   Date ISO8601
+    DATE-OBS = 2012-10-07T00:39:58.074  Begining date of the observation   Date ISO8601
+    DATE-PC = 2012-10-07T00:39:57.777  Begining date of the observation from Computer Clock   Date ISO8601
+   et vérifier :
+    DATE-OBS est égal à DATE-GPS moins la valeur du champ "Pose" de l'interface
+    DATE-END est égal à DATE-GPS
+
+ === Point à vérifier en cas de problèmes ===
+
+ Vérifier le statut du gps :
+
+  t1m@brontosaure:~&gt; mbgstatus 
+
+  mbgstatus v3.4.99 Copyright Meinberg 2001-2011
+
+  GPS180PEX 029511005710 (FW 1.05, ASIC 8.05) at port 0xCC00, irq 16
+  Normal Operation, 9 sats in view, 3 sats used
+  Date/time:  Su, 2012-10-07  01:04:42.56 UTC
+  Status info: Antenna is connected
+  Status info: Time is synchronized
+  Status info: Receiver position has been verified
+  Last sync:  Su, 2012-10-07  01:04:00.00 UTC
+  Receiver Position:
+    lat: +42.9360 lon: +0.1424 alt: 2902m
+    latitude:  N  42 deg 56 min 09.72 sec
+    longitude: E   0 deg 08 min 32.81 sec
+  UTC offset parameter: 16s, no leap second announced.
+
+ Verifier la présence du fichier : /etc/udev/rules.d/55-mbgclock.rules
+
+ Vérifier la présence du module :
+  ls /lib/modules/`uname -r`/extra/mbgclock.ko
+
+ Vérifier que le module est chargé :
+  lsmod | grep mbgclock
+
+ Si ce n'est pas le cas :
+  modprobe mbgclock
+
+     </pre>
+
+<h1>Faq </h1>
+
+   <b>EURREUR: Lorsqu'on clique sur le bouton GPS et que l'erreur survient : version = 775 No GPS meinberg card found Meinberg 
+   </b>
+   en tant que root taper la commande : modprobe mbgclock
+
+
+</body>
+
+</html>

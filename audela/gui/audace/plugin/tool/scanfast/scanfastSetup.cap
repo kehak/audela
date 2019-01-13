@@ -1,0 +1,169 @@
+#
+# Fichier : scanfastSetup.cap
+# Mise a jour $Id: scanfastSetup.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(scanfastSetup,configuration)             "Setup"
+set caption(scanfastSetup,en-tete_fits)              "FITS Header"
+set caption(scanfastSetup,mots_cles)                 "Keywords"
+set caption(scanfastSetup,titre)                     "Duration between motor cut-off and start of exposure:"
+set caption(scanfastSetup,sans_scan)                 "Delay Off"
+set caption(scanfastSetup,avec_scan)                 "Delay On"
+set caption(scanfastSetup,delai)                     "Delay Time"
+set caption(scanfastSetup,seconde)                   "sec."
+
+set caption(scanfastSetup,ok)                        "OK"
+set caption(scanfastSetup,appliquer)                 "Apply"
+set caption(scanfastSetup,fermer)                    "Close"
+set caption(scanfastSetup,aide)                      "Help"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(scanfastSetup,configuration)          "Configuration"
+   set caption(scanfastSetup,en-tete_fits)           "En-tête FITS"
+   set caption(scanfastSetup,mots_cles)              "Mots clés"
+   set caption(scanfastSetup,titre)                  "Temporisation entre l'arrêt du moteur d'A.D. et le début de la pose :"
+   set caption(scanfastSetup,sans_scan)              "Aucune temporisation"
+   set caption(scanfastSetup,avec_scan)              "Active la temporisation"
+   set caption(scanfastSetup,delai)                  "Délai de temporisation"
+   set caption(scanfastSetup,seconde)                "sec."
+
+   set caption(scanfastSetup,ok)                     "OK"
+   set caption(scanfastSetup,appliquer)              "Appliquer"
+   set caption(scanfastSetup,fermer)                 "Fermer"
+   set caption(scanfastSetup,aide)                   "Aide"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(scanfastSetup,configuration)          "Configurazione"
+   set caption(scanfastSetup,en-tete_fits)           "Intestazione FITS"
+   set caption(scanfastSetup,mots_cles)              "Parole chiave"
+   set caption(scanfastSetup,titre)                  "Ritardo tra l'arresto del motore di A.R. e l'inizio della posa:"
+   set caption(scanfastSetup,sans_scan)              "Ritardo nullo"
+   set caption(scanfastSetup,avec_scan)              "Attivazione ritardo"
+   set caption(scanfastSetup,delai)                  "Ritardo della temporizzazione"
+   set caption(scanfastSetup,seconde)                "sec."
+
+   set caption(scanfastSetup,ok)                     "OK"
+   set caption(scanfastSetup,appliquer)              "Applicare"
+   set caption(scanfastSetup,fermer)                 "Chiudere"
+   set caption(scanfastSetup,aide)                   "Aiuto"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(scanfastSetup,configuration)          "Configuración"
+   set caption(scanfastSetup,en-tete_fits)           "Cabecera FITS"
+   set caption(scanfastSetup,mots_cles)              "Palabras clave"
+   set caption(scanfastSetup,titre)                  "Retardo entre la parada del motor de AR y el principio de la exposición:"
+   set caption(scanfastSetup,sans_scan)              "Retardo desactivado"
+   set caption(scanfastSetup,avec_scan)              "Retardo activado"
+   set caption(scanfastSetup,delai)                  "Tiempo de retardo"
+   set caption(scanfastSetup,seconde)                "seg."
+
+   set caption(scanfastSetup,ok)                     "OK"
+   set caption(scanfastSetup,appliquer)              "Aplicar"
+   set caption(scanfastSetup,fermer)                 "Cerrar"
+   set caption(scanfastSetup,aide)                   "Ayuda"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(scanfastSetup,configuration)          "Konfiguration"
+   set caption(scanfastSetup,en-tete_fits)           "FITS Header"
+   set caption(scanfastSetup,mots_cles)              "Stichwörter"
+   set caption(scanfastSetup,titre)                  "Zwischen den RA Motor halten und den Anfang des Belichtung abwarten:"
+   set caption(scanfastSetup,sans_scan)              "Kein Abwarten"
+   set caption(scanfastSetup,avec_scan)              "Mit Abwarten"
+   set caption(scanfastSetup,delai)                  "Abwarten Zeit"
+   set caption(scanfastSetup,seconde)                "sek."
+
+   set caption(scanfastSetup,ok)                     "OK"
+   set caption(scanfastSetup,appliquer)              "Anwenden"
+   set caption(scanfastSetup,fermer)                 "Schließen"
+   set caption(scanfastSetup,aide)                   "Hilfe"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(scanfastSetup,configuration)          "Configuração"
+   set caption(scanfastSetup,en-tete_fits)           "Cabeçalho FITS"
+   set caption(scanfastSetup,mots_cles)              "Palavras-chave"
+   set caption(scanfastSetup,titre)                  "Intervalo entre a paragem do motor de AR e o início da exposição:"
+   set caption(scanfastSetup,sans_scan)              "Atraso desactivado"
+   set caption(scanfastSetup,avec_scan)              "Atraso activado"
+   set caption(scanfastSetup,delai)                  "Tempo de atraso"
+   set caption(scanfastSetup,seconde)                "seg."
+
+   set caption(scanfastSetup,ok)                     "OK"
+   set caption(scanfastSetup,appliquer)              "Aplicar"
+   set caption(scanfastSetup,fermer)                 "Fechar"
+   set caption(scanfastSetup,aide)                   "Ajuda"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(scanfastSetup,configuration)          "Setup"
+   set caption(scanfastSetup,en-tete_fits)           "FITS Header"
+   set caption(scanfastSetup,mots_cles)              "Nøgleord"
+   set caption(scanfastSetup,titre)                  "Varighed mellem RA-motor standsning og start på eksponering:"
+   set caption(scanfastSetup,sans_scan)              "Ingen forsinkelse"
+   set caption(scanfastSetup,avec_scan)              "Med forsinkelse"
+   set caption(scanfastSetup,delai)                  "Forsinkelsestid"
+   set caption(scanfastSetup,seconde)                "sek."
+
+   set caption(scanfastSetup,ok)                     "OK"
+   set caption(scanfastSetup,appliquer)              "Anvend"
+   set caption(scanfastSetup,fermer)                 "Luk"
+   set caption(scanfastSetup,aide)                   "Hjælp"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(scanfastSetup,configuration)          "Setup"
+   set caption(scanfastSetup,en-tete_fits)           "FITS Header"
+   set caption(scanfastSetup,mots_cles)              "Keywords"
+   set caption(scanfastSetup,titre)                  "Duration between motor cut-off and start of exposure:"
+   set caption(scanfastSetup,sans_scan)              "Delay Off"
+   set caption(scanfastSetup,avec_scan)              "Delay On"
+   set caption(scanfastSetup,delai)                  "Delay Time"
+   set caption(scanfastSetup,seconde)                "sec."
+
+   set caption(scanfastSetup,ok)                     "OK"
+   set caption(scanfastSetup,appliquer)              "Apply"
+   set caption(scanfastSetup,fermer)                 "Close"
+   set caption(scanfastSetup,aide)                   "Help"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(scanfastSetup,configuration)          "Setup"
+   set caption(scanfastSetup,en-tete_fits)           "FITS Header"
+   set caption(scanfastSetup,mots_cles)              "Keywords"
+   set caption(scanfastSetup,titre)                  "Duration between motor cut-off and start of exposure:"
+   set caption(scanfastSetup,sans_scan)              "Delay Off"
+   set caption(scanfastSetup,avec_scan)              "Delay On"
+   set caption(scanfastSetup,delai)                  "Delay Time"
+   set caption(scanfastSetup,seconde)                "sec."
+
+   set caption(scanfastSetup,ok)                     "OK"
+   set caption(scanfastSetup,appliquer)              "Apply"
+   set caption(scanfastSetup,fermer)                 "Close"
+   set caption(scanfastSetup,aide)                   "Help"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

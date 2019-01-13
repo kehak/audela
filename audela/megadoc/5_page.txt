@@ -1,0 +1,255 @@
+/*======= Descriptif des sous pages du menu Configuration ========*/
+
+/*!
+   @page aide_sommaire              Sommaire
+   @htmlinclude "../gui/audace/doc_html/french/11aide/1010sommaire.htm"
+*/
+
+/*rappelle les aides déjà définies dans les menus */
+/*!
+  @page aide_menus                 Menus
+  - @ref menu_fichier
+  - @ref menu_affichage
+  - @ref menu_images
+  - @ref menu_analyse
+  - @ref menu_camera
+  - @ref menu_telescope
+  - @ref menu_configuration
+  - @ref menu_aide
+
+  @page aide_index_fonctions       Index des fonctions
+  @htmlinclude "../gui/audace/doc_html/french/11aide/1030index_fonctions.htm"
+
+  @page aide_programmation         Programmation
+  - <B>Ecriture de scripts</B>
+    - @subpage script1b
+    - @subpage script3b
+  - <B>Usage de fonctions</B>
+    - @subpage interfa5a
+    - @subpage audus1
+    - @subpage aud
+    - @subpage aud1
+    - @subpage aud2
+    - @subpage aud3
+    - @subpage buf
+    - @subpage confvisu
+    - @subpage visu
+    - @subpage divers
+    - @subpage cam
+    - @subpage tel
+    - @subpage divers
+  - <B>Librairies de traitement d'images</B>
+    - @subpage bifsconv_rb
+    - @subpage bifs
+    - @subpage libbm
+    - @subpage stellaire
+    - @subpage rgbus
+    - @subpage poly
+  - <B>Librairies de fonctions astronomiques</B>
+    - @subpage mcusr
+    - @subpage mcpoi
+    - @subpage mcskd
+    - @subpage ttob1
+    - @subpage ttus1
+    - @subpage astm1
+    - @subpage phtm1
+    - @subpage phtm2
+  - <B>Librairies de fonctions de corrélation entre images</B>
+    - @subpage libjm
+  - <B>Librairies de fonctions de calcul</B>
+    - @subpage gsltclus
+    - @subpage vector
+  - <B>Librairies pour créer des graphiques</B>
+    - @subpage audplotxy
+    - @subpage blt1
+  - <B>Librairies pour compresser des fichiers</B>
+      - @subpage gzipus
+  - <B>Librairies de mise en réseau</B>
+    - @subpage dp1
+  - <B>Librairies de communication avec Iris</B>
+    - @subpage audela_iris
+  - <B>Librairies de communication avec GUIDE</B>
+    - @subpage libgs
+
+  @page aide_tutoriel              Tutoriels
+   Vous trouverez ici quelques tutoriels techniques
+   - @subpage tuto_ccd
+   - @subpage tuto_astrometrie
+   - @subpage tuto_photometrie
+   - @subpage tuto_sursaut_gamma
+   - @subpage tuto_simulimage
+   - @subpage tuto_electronic
+
+  @page aide_site_web            Site Web
+  @htmlinclude "../gui/audace/doc_html/french/11aide/1050site_web.htm"
+
+  @page aide_notice_pdf         Notice Pdf
+  @htmlinclude "../gui/audace/doc_html/french/11aide/1060notice_pdf.htm"
+
+  @page aide_a_propos_de        A propos de
+  @htmlinclude "../gui/audace/doc_html/french/11aide/1070a_propos_de.htm"
+*/
+
+/*================ Programmation ========================*/
+
+/*!
+  @page aud                     Fonctions du namespace audace
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/aud.htm"
+
+  @page aud1                   Fonctions utilitaires
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/aud1.htm"
+
+  @page aud2                   Fonctions du namespace offsetWindow
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/aud2.htm"
+
+  @page aud3                   Fonctions spécifiques à l'interface Aud'ACE
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/aud3.htm"
+
+  @page audplotxy              Fonctions du namespace plotxy
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/audplotxy.htm"
+
+  @page bifs                   Conversion de fichiers images au format FITS
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/bifsconv.htm"
+
+  @page bifsconv_rb            BifsConv - Le convertisseur d'images vers FITS
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/bifsconv_rb.htm"
+
+  @page blt1                   Les fonctions de BLT
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/blt1.htm"
+
+  @page buf                    Buffer
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/buf.htm"
+
+  @page cam                    Caméra
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/cam.htm"
+
+  @page stellaire              Fonctions de traitement d'images stellaires
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/compute_stellaire.htm"
+
+  @page confvisu              Fonctions du namespace confVisu
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/confvisu.htm"
+
+  @page divers                AudeLA : Petites fonctions d'usage universel
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/divers.htm"
+
+  @page dp1                   Les fonctions de DP
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/dp1.htm"
+
+  @page interfa5a             Les fonctions d'AudeLA
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/interfa5a.htm"
+
+  @page audela_iris           Utilisation conjointe d'AudeLA/Aud'ACE et d'Iris
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/iris.htm"
+
+  @page libbm                 Fonctions de la librairie libbm
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/libbm.htm"
+
+  @page libgs                 GUIDE - Fonctions de la librairie libgs
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/libgs.htm"
+
+  @page libjm                Fonctions de la librairie libjm
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/libjm.htm"
+
+  @page poly                 Gestion d'images FITS polychromes
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/poly.htm"
+
+  @page script1b             Règles à respecter lors de la création d'un script ou d'un plugin pour son intégration dans Aud'ACE
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/script1b.htm"
+
+  @page script3b             Piloter un instrument sur le port série du PC
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/script3b.htm"
+
+  @page tel                  Fonctions de pilotage de télescopes
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/tel.htm"
+
+  @page vector              Blt::vector Usage des vecteurs
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/vector.htm"
+
+  @page visu                Fonctions de visualisation
+  @htmlinclude "../gui/audace/doc_html/french/02programmation/visu.htm"
+
+  @page audus1              LibAudeLA - Librairie d'extension Tcl pour l'astronomie
+  @htmlinclude "../doc/libaudela/audus1_fr.htm"
+
+  @page gsltclus            LibGSLTcl - Librairie d'extension Tcl pour le calcul scientifique
+  @htmlinclude "../doc/libgsltcl/gsltclus-fr.htm"
+
+  @page gzipus              Libgzip - Librairie d'extension Tcl pour la compression de fichiers
+  @htmlinclude "../doc/libgzip/gzipus-fr.htm"
+
+  @page mcusr               LIB MC - Une librairie de calculs de mécaniques céleste
+  @htmlinclude "../doc/libmc/mcusr_fr.htm"
+
+  @page mcpoi               Création et utilisation d'un modèle de pointage avec LIB MC
+  @htmlinclude "../doc/libmc/mcpoi_fr.htm"
+
+  @page mcskd               Planification des observations avec LIB MC
+  @htmlinclude "../doc/libmc/mcskd_fr.htm"
+
+  @page rgbus               Librairie d'extension Tcl pour la manipulation de fichiers d'images en couleur
+  @htmlinclude "../doc/librgb/rgbus-fr.htm"
+
+  @page ttob1               Les objectifs de LIB TT
+  @htmlinclude "../doc/libtt/ttob1-fr.htm"
+
+  @page ttus1               LIB TT - Librairie de prétraitement d'images astronomiques
+  @htmlinclude "../doc/libtt/ttus1-fr.htm"
+
+  @page astm1               Procédure de calibration astrométrique avec LIB TT
+  @htmlinclude "../doc/libtt/astm1-fr.htm"
+
+  @page phtm1               Procédure de calibration photométrique avec LIB TT
+  @htmlinclude "../doc/libtt/phtm1-fr.htm"
+
+  @page phtm2               Quelques repères sur la photométrie
+  @htmlinclude "../doc/libtt/phtm2-fr.htm"
+*/
+
+/*================== Tutoriels ==========================*/
+
+/*!
+  @page tuto_ccd            Initiation à l'imagerie CCD avec une caméra Audine à port parallèle
+
+  Si vous débutez en imagerie CCD, le tutoriel situé dans le répertoire <B>audela/gui/tutorial</B><BR>
+  vous aidera à prendre vos premières images avec une caméra CCD :<BR>
+  il suffit de double-cliquer sur <B>audela_tutorial.bat</B>.<BR>
+  Il a été créé avec AudeLA software.<BR>
+  Les étapes proposées sont les suivantes :
+
+  <B>Brancher et tester la caméra Audine :</B>
+  -# connecter la caméra.
+  -# tester l'électronique de la caméra.
+  -# prendre un "dark" avec la caméra sans refroidir.
+  -# prendre une image avec la caméra sans refroidir.
+  -# refroidir la caméra.
+  -# faire des "dark" et des "bias" de référence.
+
+  <B>Monter la caméra sur un télescope :</B>
+  -# Monter une bague d'adaptation sur la caméra Audine Camera pour l'attacher au porte-ocullaire.
+  -# Monter la caméra sur le porte-oculaire.
+  -# Mettre le télescope en station.
+  -# Rechercher une étoile brillante.
+
+  <B>Prendre les premières images du ciel :</B>
+  -# Focaliser sur une étoile brillante.
+  -# Focaliser sur un amas globulaire.
+  -# Acquérir de l'expérience.
+
+  @page tuto_astrometrie    Astrométrie
+  @htmlinclude "../gui/audace/doc_html/french/12tutoriel/1010tutoriel_astrom1.htm"
+
+  @page tuto_photometrie    Photométrie
+  @htmlinclude "../gui/audace/doc_html/french/12tutoriel/1020tutoriel_photom1.html"
+
+  @page tuto_sursaut_gamma  Analyse des Sursauts Gamma
+  @htmlinclude "../gui/audace/doc_html/french/12tutoriel/1040tutoriel_gamma_ray_bursts.htm"
+
+  @page tuto_simulimage     Simulimage
+  Les procédures pratiques sont @ref simulimage et @ref simulimage2 dans le fichier surchaud.tcl.
+  @ref photrel_demo permet de voir @ref simulimage2 à l'oeuvre.
+  @htmlinclude "../gui/audace/doc_html/french/12tutoriel/1030tutoriel_simulimage1.htm"
+
+  @page tuto_electronic     Paramètres électroniques d'une caméra CCD
+  La procédure electronic_chip du fichier surchaud.tcl est mise en oeuvre dans l'interface ::echip
+  @htmlinclude "../gui/audace/doc_html/french/12tutoriel/1050tutoriel_electronic1.htm"
+*/

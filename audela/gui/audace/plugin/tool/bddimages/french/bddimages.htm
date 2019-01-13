@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Base de donn&eacute;es d'images</title>
+</head>
+
+<body>
+
+<p class="date">Date de mise &agrave; jour : 22 mai 2016</p>
+
+<h1>Base de donn&eacute;es d'images</h1>
+
+  <p>Auteurs: F. Vachier (fv@imcce.fr), J. Berthier (berthier@imcce.fr)</p>
+  <p>version: 1.0</p>
+  <p>
+   Comme son nom l'indique, cet outil permet de manipuler une archive d'images astronomiques. 
+   Les champs des ent&ecirc;tes des images (format FITS) sont enregistr&eacute;s dans une 
+   de base de donnees relationnelle (MySQL), et les images sont sauvegard&eacute;es dans une 
+   structure de repertoires. Pour utiliser cet outil, il faut param&eacute;trer le programme, 
+   inserer les images dans la base de donn&eacute;es qui permet alors de manipuler l'archive et
+   de traiter et analyser les images.
+  </p>
+  <p>
+   Cet outil est en constante &eacute;volution, et cette version 1.0 aurait bien besoin d'&ecirc;tre 
+   &eacute;purer. N&eacute;anmoins, certaines de ses fonctionnalit&eacute;s ont &eacute;t&eacute;
+   &eacute;prouv&eacute;es puisque elles sont utilis&eacute;es depuis 2008 dans le cadre du projet 
+   des telescopes robotiques TAROT.
+  </p>
+
+<h3>Pr&eacute;requis</h3>
+
+  <p>
+   L'utilisation de cet outil n&eacute;cessite d'avoir au prealable install&eacute; MariaDB et
+   son moteur MySQL. Reportez vous au site Internet de <a href="https://mariadb.com/">MariaDB</a> 
+   pour plus d'information sur son installation et son utilisation.
+  </p>
+  <p> 
+   Apr&egrave;s installation et configuration de  MySQL, il est recommand&eacute; de cr&eacute;er 
+   un utilisateur d&eacute;di&eacute; avec mot de passe qui aura tous les privil&ecirc;ges sur les
+   bases de donn&eacute;es de BDDImages.
+  </p>
+  <p>
+   Pour &ecirc;tre manipuler par BDDImages, les images astronomiques devront imp&eacute;rativement 
+   &ecirc;tre lisible par Audela, et devront poss&eacute;der dans leur ent&ecirc;te (format FITS)
+   les cl&eacute;s suivantes :
+   <ul>
+     <li>DATE-OBS : date UTC du d&eacute;but de pose au format ISO</li>
+     <li>EXPOSURE : temps total d'exposition en secondes</li>
+     <li>TELESCOP : nom du t&eacute;lescope</li>
+     <li>BIN1, BIN2 : valeur de binning en x et y de l'image (1,2,...)</li>
+     <li>FOCLEN : longueur focale du t&eacute;lescope en m&egrave;tres</li>
+     <li>PIXSIZ1, PIXSIZ2 : dimension physique des pixels du CCS en microns</li>
+   </ul>
+  </p>
+  <p>
+   La structure des r&eacute;pertoires des images FITS a la forme suivante : (..)/bddimages/fits/(TELESCOP)/(Annee)/(mois)/(jour).
+   Cette structure ne doit en aucun cas &ecirc;tre modifi&eacute;e. Les images devront avoir 
+   pour extension la forme : fit, fits, fit.gz, ou fits.gz
+  </p>
+
+<h3>Configuration</h3>
+
+  <p>
+   Le bouton de configuration permet de d&eacute;finir les variables g&eacute;n&eacute;rales de
+   Bddimages et de cr&eacute;er les bases de donn&eacute;es. Toutes les informations sont sauv&eacute;es
+   dans un fichier de configuration XML (~/.audela/bddimages_ini.xml sous Linux).
+   Apr&egrave;s un clic sur le bouton <em>Configuration</em>, un nouvelle fen&circ;tre apparait,
+   compos&eacute;e de 5 onglets.
+  </p>
+  <img src="images/BddImages_Configuration.gif" alt="Bddimages - configuration" width="485" height="432" />
+
+  <p>
+   <dl>
+    <dt>Config XML</dt>
+    <dd>
+      
+    </dd>
+    <dt>Catalogues</dt>
+    <dd>
+      Onglet <em>Conesearch</em>: Permet de d&eacute;finir les catalogues de r&eacute;f&eacute;rence astrom&eacute;trique
+      &agrave; utiliser pour l'identification des sources.<br/>
+      Onglet <em>Display</em>: Permet de choisir les couleurs et la taille d'affichage des sources des
+      catalogues de r&eacute;f&eacute;rence.
+    </dd>
+    <dt>Astrom&eacute;trie</dt>
+    <dd>
+      Permet de d&eacute;finir les pr&eacute;f&eacute;rences pour les programmes
+      tiers.
+    </dd>
+    <dt>Rapports</dt>
+    <dd>
+      Permet de d&eacute;finir l'adresse mail de l'envoyeur pour la soumission
+      des rapports astrom&eacute;triques et photom&eacute;triques.
+    </dd>
+    <dt>Autres</dt>
+    <dd>
+      <it>Inutilis&eacute;</it>
+    </dd>
+   </dl>    
+  </p>
+
+  <p>
+   Les trois premiers champs concerne le serveur SQL. le login et mdp de l'utilisateur
+   mysql, et l'IP de la machine qui accueille le serveur. En g&eacute;n&eacute;ral : localhost.
+  </p>
+  <p>
+   Ensuite vient le bloc qui definit l'architecture des repertoires par lesquels vont 
+   transiter les images :
+   <ul>
+     <li> Repertoire de la base. C'est le repertoire racine par ex : /../bddimages</li>
+     <li> Repertoire incoming. C est le dossier dans lequel on va deposer 
+     les images avant leur insertion. toutes les images depos&eacute;es 
+     dans ce dossier seront deplac&eacute;es dans un autre dossier lors 
+     de l'insertion. par exemple : /../bddimages/incoming</li>
+     <li> Repertoire des fichiers FITS. Ce dossier contiendra toute 
+     l archive des images qui auront &eacute;t&eacute; insere avec succes. toutes 
+     les images presentent dans ce dossier auront comme extention 
+     .fits.gz. en exemple: on pourra mettre /../bddimages/fits</li>
+     <li> Repertoire des catalogues. Si un fichier catalogue, est 
+     associ&eacute; a une image, le fichier sera aussi inser&eacute; en base 
+     de donnees, et sera li&eacute; a l'image fits par consequence. 
+     Un fichier <i>CATA</i> dont le seul format reconnu est extrait des
+     programmes du <b>Robotic Observatory Software</b> presente la liste
+     des sources extraites de l'image. Par exemple : /../bddimages/cata</li>
+     <li> Repertoire des Erreurs. Pour chaque image qui presente une erreur 
+     lors de l'insertion en base, est copi&eacute;e (et non inser&eacute;e) dans le repertoire
+     des erreurs. Dans ce repertoire "erreur", va se creer une structure 
+     de repertoire rassamblant les images qui produisent la meme erreur.
+     Par exemple : /../bddimages/errors</li>
+     <li> les Logs, representeront le fonctionnement du programme. 
+     Par exemple : /../bddimages/logs</li>
+   </ul>
+  </p>
+
+<h3>Status</h3>
+
+   La page de status presente quelques informations de l'&eacute;tat de l'archive.
+   Voici ce qu'elle devrait afficher si vous venez de cr&eacute;er la base et avez rempli
+   les champs de configuration.<p>
+   <br><center><img src="./images/BddImages_Statut.gif" alt="" width="472" height="314" /></center><br>
+   <p>
+   En g&eacute;n&eacute;ral la couleur verte retournera une requete valid&eacute;e. 
+   Alors qu'un champ sera en rouge si une erreur est retourn&eacute;e.
+   La couleur bleue presentera des informations g&eacute;n&eacute;rale.
+   le Statut est deivis&eacute; en deux blocs. le premier concerne 
+   le serveur MySql et sa base de donnees bddimages. Le deuxieme bloc
+   concerne l'ecriture physique des images sur le disque.
+   <ul>
+     <li>Connexion au serveur. le status doit etre vert pour que le service 
+     fonctionne. Dans le cas contraire verifiez les connexions au serveur SQL
+     </li>
+     <li>Nb images, retourne le nombre d'enregistrements de la table images 
+     de la base de donnees bddimages. La table est cree automatiquement 
+     durant l'insertion de la premiere image</li>
+     <li>Nb header, retourne le nombre de cl&eacute;s du header fits reconnus
+     dans la base. cette table se remplie lorsque les images
+     ont un header fits different.</li>
+     <li>Nb images sur disque, est le nombre de fichier fits.gz qui se trouve 
+     dans le repertoire bddimages/fits</li>
+     <li>Nb d'images dans incoming, represente le nombre de fichier qu'il reste
+     a inserer</li>
+     <li>Nb d'images en erreur, dans le repertoire bddimages/error</li>
+   </ul>
+   <p>
+   2 boutons supplementaires apparaissent en bas a gauche de la fenetre. 
+   <ul>
+     <li><i><b>RAZ Base de donnees</b></i>. Efface toute l'archive. Avant de faire ca, il faut 
+     s'assurer que les donnees (sql et disque) ont &eacute;t&eacute; sauvegard&eacute;es.</li>
+     <li><i><b>Verification</b></i> permet de verifier l'integrit&eacute; de la base vis a vis du disque.
+     regardez la console et le fichier log pour plus d'info.
+     Le resultat est d'autant plus long que l'archive est consequente.
+     </li>
+   </ul>
+   <br>
+   Si l'erreur de Connexion au serveur informe que la base bddimages n'est pas accessible 
+   c est peut etre parce que vous n'avez pas cree la base sur le serveur SQL.
+   pour ce faire cliquez sur RAZ, entrez le mdp root du serveur SQL, fermez la fenetre 
+   Statut. La base bddimage sera a nouveau accessible au prochain appel au statut.
+<p>
+  
+  
+<h3>Insertion</h3>
+
+   Si vous avez mis quelques images dans le dossier incoming, une partie devrait 
+   apparaitre dans la fenetre d'insertion.
+<p>
+   La phase d'insertion peut etre lanc&eacute;e manuellement, ou de maniere automatique.
+<p>
+   Dans la configuration se trouvait un champ <b>Limite pour la liste d'insertion</b>
+   Ce champ correspond au nombre de ligne maximum represent&eacute;e dans cette table.
+<p>
+   Dans le cas du mode continu, l'insertion se fera par bloc de ligne.
+<p>
+   En bas à gauche se trouve trois champs qui donne le nombre d'images trait&eacute;es, 
+   inser&eacute;es, et erron&eacute;es, dans la session courante.
+<p>
+   La table montre 6 colonnes.
+   <ul>
+     <li><i><b>Etat</b></i> ? pour inconnu, X erreur, O inseree, ! encours de traitement</li>
+     <li><i><b>Nom</b></i> Nom long du fichier</li>
+     <li><i><b>Date</b></i> au format ISO</li>
+     <li><i><b>Site</b></i> equivalent au champ <b>TELESCOP</b>, mais dont
+     les caracteres speciaux ont ete remplaces.</li>
+     <li><i><b>Taille</b></i> du fichier en octet</li>
+     <li><i><b>Erreur</b></i> Log du traitement</li>
+   </ul>
+<p>
+   Effectuez un clic gauche. un menu deroulant montre des actions supplementaires.
+<p>
+   Pour activer le mode d'insertion continue : clic gauche, activez 
+   insertion continue. puis lorsque le menu deroulant a disparu, il suffit
+   de cliquer sur le bouton <b>Insertion</b>.
+   L'insertion se termine a l action du bouton <b>Fermer</b>.
+<p>
+   Une astuce pour bloquer l'insertion sans toucher a audela.
+   allez dans le repertoire incoming/. puis creez un fichier vide nomm&eacute; 
+   <b>lock</b>. L'insertion s'arretera tant que le fichier <b>lock</b> 
+   sera present. 
+ 
+
+   <p><br>
+   <i><b>Methode Pas à Pas pour inserer manuellement quelques images</b></i>
+   <p>
+   <br>
+   <p>
+   Appuyez sur le bouton <b>Insertion</b> de l'outil <b>bddimages</b>. Il
+   apparait une nouvelle fenetre.
+   <p>
+   <br><center><img src="./images/BddImages_Insertion_Premiere.gif" alt="" width="704" height="300" /></center><br>
+   <p>
+   Appuyez sur le bouton <b>Lecture des Entetes</b>. Les champs de la table se remplissent.
+   Les cl&eacute;s <b>TELESCOP</b> et <b>DATE-OBS</b> doivent apparaitre, ainsi que la taille du 
+   fichier en octet. l'etat se met sur <b>!</b> car une premiere phase d'identification
+   a ete realis&eacute;e.
+   <p>
+   <br><center><img src="./images/BddImages_Insertion_LectEntetes.gif" alt="" width="704" height="300" /></center><br>
+   <p>
+   Choisissez quelques images pour finaliser leur insertion, 
+   en utilisant le clic gauche. CTRL+Clic-gauche permet de d&eacute;selectioner une image.
+   <p>
+   <br><center><img src="./images/BddImages_Insertion_Selection.gif" alt="" width="704" height="300" /></center><br>
+   <p>
+   Appuyez sur le bouton <b>Insertion</b>. L'<b>Etat</b> des images selectionn&eacute;e se
+   transforme en <b>O</b> si tout c est bien pass&eacute;. L'image a disparue du repertoire 
+   incoming et se trouve dans la structure du repetoire <b>fits</b> ou <b>errors</b>. 
+   Un clic droit sur les colonnes de la table permet de les retailler  
+   pour les rendre mieux lisible.
+   <p>
+   <br><center><img src="./images/BddImages_Insertion_InsertionManuelle.gif" alt="" width="704" height="300" /></center><br>
+   <p>
+   Il se peut qu a l'ouverture de la fenetre d'insertion il n'y ait aucune image. 
+   Soit il n'y a plus d'images dans le repertoire incoming, soit les images n'ont pas la bonne
+   extension. seules extensions reconnues : fit, fits, fit.gz, fits.gz, cata.txt, cata.txt.gz
+   <p>
+   <br><center><img src="./images/BddImages_Insertion.gif" alt="" width="704" height="300" /></center><br>
+   <p>
+
+
+<h3>Recherche</h3>
+   <p><i><b><font color="red">Cet outil est en cours de developpement</font></b></i><p>
+   <ul>
+     <li>Barre de Menu<p>
+     <ul>
+       <li>Liste<p>
+       <ul>
+         <li>Nouvelle Liste<p>
+         </li>
+         <li>Effacer Liste<p>
+         </li>
+         <li>Supprimer Liste<p>
+         </li>
+         <li>Copier Liste Liste<p>
+         </li>
+         <li><p>
+         </li>
+       </ul>
+       </li>
+       <li>Image<p>
+       <ul>
+         <li>Voir l image<p>
+         </li>
+         <li>header de l image<p>
+         </li>
+         <li>Version<p>
+         </li>
+       </ul>
+       </li>
+       <li>Tools<p>
+       <ul>
+         <li>Code UAI<p>
+         </li>
+         <li><p>
+         </li>
+       </ul>
+       </li>
+       <li>Aide<p>
+       <ul>
+         <li>Sommaire<p>
+         </li>
+         <li>Liens<p>
+         </li>
+         <li><p>
+         </li>
+       </ul>
+       </li>
+     </ul>
+     </li>
+     <li>Barre d'&eacute;tat<p>
+     <ul>
+       <li>Info : Total donne le nombre d'images de la liste courante<p>
+       </li>
+       <li>Bouton Aide<p>
+       </li>
+       <li>Bouton Fermer<p>
+       </li>
+     </ul>
+     </li>
+     <li>Tableau de gauche<p>
+     <ul>
+       <li>Nouvelle Liste<p>
+       </li>
+       <li>Editer<p>
+       </li>
+       <li>Copier<p>
+       </li>
+       <li>Supprimer<p>
+       </li>
+     </ul>
+     </li>
+     <li>Tableau de droite<p>
+     <ul>
+       <li>Selectionner tout<p>
+       </li>
+       <li>Image<p>
+       </li>
+       <li>Header<p>
+       </li>
+       <li>Choix des colonnes<p>
+       </li>
+     </ul>
+     </li>
+   </ul>
+
+
+</body>
+</html>

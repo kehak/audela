@@ -1,0 +1,934 @@
+LIBRARY    cfitsio.dll
+
+EXPORTS
+   CFITS2Unit
+   CUnit2FITS
+   fits_get_token
+   fits_split_names
+   ffiurl
+   ffifile
+   ffrtnm
+   ffexist
+   ffexts
+   ffextn
+   ffurlt
+   ffbins
+   ffbinr
+   fffree
+   fits_copy_cell2image
+   fits_copy_image2cell
+   fits_copy_pixlist2image
+   ffimport_file
+   ffrwrg
+   ffrwrgll
+   fits_init_cfitsio
+   ffomem
+   ffopen
+   ffopentest
+   ffdopn
+   fftopn
+   ffiopn
+   ffdkopn
+   ffreopen
+   ffinit
+   ffdkinit
+   ffimem
+   fftplt
+   ffflus
+   ffflsh
+   ffclos
+   ffdelt
+   ffflnm
+   ffflmd
+   fits_delete_iraf_file
+   ffvers
+   ffupch
+   ffgerr
+   ffpmsg
+   ffpmrk
+   ffgmsg
+   ffcmsg
+   ffcmrk
+   ffrprt
+   ffcmps
+   fftkey
+   fftrec
+   ffnchk
+   ffkeyn
+   ffnkey
+   ffgkcl
+   ffdtyp
+   ffpsvc
+   ffgknm
+   ffgthd
+   fits_translate_keyword
+   fits_translate_keywords
+   ffasfm
+   ffbnfm
+   ffbnfmll
+   ffgabc
+   fits_get_section_range
+   ffmbyt
+   ffpky
+   ffprec
+   ffpcom
+   ffpunt
+   ffphis
+   ffpdat
+   ffverifydate
+   ffgstm
+   ffgsdt
+   ffdt2s
+   fftm2s
+   ffs2dt
+   ffs2tm
+   ffpkyu
+   ffpkys
+   ffpkls
+   ffplsw
+   ffpkyl
+   ffpkyj
+   ffpkyf
+   ffpkye
+   ffpkyg
+   ffpkyd
+   ffpkyc
+   ffpkym
+   ffpkfc
+   ffpkfm
+   ffpkyt
+   ffptdm
+   ffptdmll
+   ffpkns
+   ffpknl
+   ffpknj
+   ffpknjj
+   ffpknf
+   ffpkne
+   ffpkng
+   ffpknd
+   ffcpky
+   ffphps
+   ffphpsll
+   ffphpr
+   ffphprll
+   ffphtb
+   ffphbn
+   ffphext
+   ffpktp
+   ffghsp
+   ffghps
+   ffmaky
+   ffmrky
+   ffgnxk
+   ffgrec
+   ffgcrd
+   ffgunt
+   ffgkyn
+   ffgkey
+   ffgky
+   ffgkys
+   ffgkls
+   ffgkyl
+   ffgkyj
+   ffgkyjj
+   ffgkye
+   ffgkyd
+   ffgkyc
+   ffgkym
+   ffgkyt
+   ffgtdm
+   ffgtdmll
+   ffdtdm
+   ffdtdmll
+   ffgkns
+   ffgknl
+   ffgknj
+   ffgknjj
+   ffgkne
+   ffgknd
+   ffh2st
+   ffhdr2str
+   ffghpr
+   ffghprll
+   ffghtb
+   ffghtbll
+   ffghbn
+   ffghbnll
+   ffuky
+   ffucrd
+   ffukyu
+   ffukys
+   ffukls
+   ffukyl
+   ffukyj
+   ffukyf
+   ffukye
+   ffukyg
+   ffukyd
+   ffukyc
+   ffukym
+   ffukfc
+   ffukfm
+   ffmrec
+   ffmcrd
+   ffmnam
+   ffmcom
+   ffmkyu
+   ffmkys
+   ffmkls
+   ffmkyl
+   ffmkyj
+   ffmkyf
+   ffmkye
+   ffmkyg
+   ffmkyd
+   ffmkyc
+   ffmkym
+   ffmkfc
+   ffmkfm
+   ffirec
+   ffikey
+   ffikyu
+   ffikys
+   ffikls
+   ffikyl
+   ffikyj
+   ffikyf
+   ffikye
+   ffikyg
+   ffikyd
+   ffikyc
+   ffikym
+   ffikfc
+   ffikfm
+   ffdkey
+   ffdrec
+   ffghdn
+   ffghdt
+   ffghad
+   ffghadll
+   ffghof
+   ffgipr
+   ffgiprll
+   ffgidt
+   ffgiet
+   ffgidm
+   ffgisz
+   ffgiszll
+   ffmahd
+   ffmrhd
+   ffmnhd
+   ffthdu
+   ffcrhd
+   ffcrim
+   ffcrimll
+   ffcrtb
+   ffiimg
+   ffiimgll
+   ffitab
+   ffibin
+   ffrsim
+   ffrsimll
+   ffdhdu
+   ffcopy
+   ffcpfl
+   ffcphd
+   ffcpdt
+   ffchfl
+   ffcdfl
+   ffwrhdu
+   ffrdef
+   ffhdef
+   ffpthp
+   ffcsum
+   ffdsum
+   ffpcks
+   ffupck
+   ffvcks
+   ffgcks
+   ffpscl
+   ffpnul
+   fftscl
+   fftnul
+   ffsnul
+   ffgcno
+   ffgcnn
+   ffgtcl
+   ffgtclll
+   ffeqty
+   ffeqtyll
+   ffgncl
+   ffgnrw
+   ffgnrwll
+   ffgacl
+   ffgbcl
+   ffgbclll
+   ffgrsz
+   ffgcdw
+   ffgpxv
+   ffgpxvll
+   ffgpxf
+   ffgpxfll
+   ffgsv
+   ffgpv
+   ffgpf
+   ffgpvb
+   ffgpvsb
+   ffgpvui
+   ffgpvi
+   ffgpvuj
+   ffgpvj
+   ffgpvjj
+   ffgpvuk
+   ffgpvk
+   ffgpve
+   ffgpvd
+   ffgpfb
+   ffgpfsb
+   ffgpfui
+   ffgpfi
+   ffgpfuj
+   ffgpfj
+   ffgpfjj
+   ffgpfuk
+   ffgpfk
+   ffgpfe
+   ffgpfd
+   ffg2db
+   ffg2dsb
+   ffg2dui
+   ffg2di
+   ffg2duj
+   ffg2dj
+   ffg2djj
+   ffg2duk
+   ffg2dk
+   ffg2de
+   ffg2dd
+   ffg3db
+   ffg3dsb
+   ffg3dui
+   ffg3di
+   ffg3duj
+   ffg3dj
+   ffg3djj
+   ffg3duk
+   ffg3dk
+   ffg3de
+   ffg3dd
+   ffgsvb
+   ffgsvsb
+   ffgsvui
+   ffgsvi
+   ffgsvuj
+   ffgsvj
+   ffgsvjj
+   ffgsvuk
+   ffgsvk
+   ffgsve
+   ffgsvd
+   ffgsfb
+   ffgsfsb
+   ffgsfui
+   ffgsfi
+   ffgsfuj
+   ffgsfj
+   ffgsfjj
+   ffgsfuk
+   ffgsfk
+   ffgsfe
+   ffgsfd
+   ffggpb
+   ffggpsb
+   ffggpui
+   ffggpi
+   ffggpuj
+   ffggpj
+   ffggpjj
+   ffggpuk
+   ffggpk
+   ffggpe
+   ffggpd
+   ffgcv
+   ffgcf
+   ffgcvs
+   ffgcl 
+   ffgcvl 
+   ffgcvb
+   ffgcvsb
+   ffgcvui
+   ffgcvi
+   ffgcvuj
+   ffgcvj
+   ffgcvjj
+   ffgcvuk
+   ffgcvk
+   ffgcve
+   ffgcvd
+   ffgcvc
+   ffgcvm
+   ffgcx
+   ffgcxui
+   ffgcxuk
+   ffgcfs
+   ffgcfl
+   ffgcfb
+   ffgcfsb
+   ffgcfui
+   ffgcfi
+   ffgcfuj
+   ffgcfj
+   ffgcfjj
+   ffgcfuk
+   ffgcfk
+   ffgcfe
+   ffgcfd
+   ffgcfc
+   ffgcfm
+   ffgdes
+   ffgdesll
+   ffgdess
+   ffgdessll
+   ffpdes
+   fftheap
+   ffcmph
+   ffgtbb
+   ffgextn
+   ffpextn
+   ffppx
+   ffppxll
+   ffppxn
+   ffppxnll
+   ffppr
+   ffpprb
+   ffpprsb
+   ffpprui
+   ffppri
+   ffppruj
+   ffpprj
+   ffppruk
+   ffpprk
+   ffppre
+   ffpprd
+   ffpprjj
+   ffppru
+   ffpprn
+   ffppn
+   ffppnb
+   ffppnsb
+   ffppnui
+   ffppni
+   ffppnj
+   ffppnuj
+   ffppnuk
+   ffppnk
+   ffppne
+   ffppnd
+   ffppnjj
+   ffp2db
+   ffp2dsb
+   ffp2dui
+   ffp2di
+   ffp2duj
+   ffp2dj
+   ffp2duk
+   ffp2dk
+   ffp2de
+   ffp2dd
+   ffp2djj
+   ffp3db
+   ffp3dsb
+   ffp3dui
+   ffp3di
+   ffp3duj
+   ffp3dj
+   ffp3duk
+   ffp3dk
+   ffp3de
+   ffp3dd
+   ffp3djj
+   ffpss
+   ffpssb
+   ffpsssb
+   ffpssui
+   ffpssi
+   ffpssuj
+   ffpssj
+   ffpssuk
+   ffpssk
+   ffpsse
+   ffpssd
+   ffpssjj
+   ffpgpb
+   ffpgpsb
+   ffpgpui
+   ffpgpi
+   ffpgpuj
+   ffpgpj
+   ffpgpuk
+   ffpgpk
+   ffpgpe
+   ffpgpd
+   ffpgpjj
+   fits_iter_set_by_name
+   fits_iter_set_by_num
+   fits_iter_set_file
+   fits_iter_set_colname
+   fits_iter_set_colnum
+   fits_iter_set_datatype
+   fits_iter_set_iotype
+   fits_iter_get_file
+   fits_iter_get_colname
+   fits_iter_get_colnum
+   fits_iter_get_datatype
+   fits_iter_get_iotype
+   fits_iter_get_array
+   fits_iter_get_tlmin
+   fits_iter_get_tlmax
+   fits_iter_get_repeat
+   fits_iter_get_tunit
+   fits_iter_get_tdisp
+   ffiter
+   ffpcl
+   ffpcls
+   ffpcll
+   ffpclb
+   ffpclsb
+   ffpclui
+   ffpcli
+   ffpcluj
+   ffpclj
+   ffpcluk
+   ffpclk
+   ffpcle
+   ffpcld
+   ffpclc
+   ffpclm
+   ffpclu
+   ffprwu
+   ffpcljj
+   ffpclx
+   ffpcn
+   ffpcns
+   ffpcnl
+   ffpcnb
+   ffpcnsb
+   ffpcnui
+   ffpcni
+   ffpcnuj
+   ffpcnj
+   ffpcnuk
+   ffpcnk
+   ffpcne
+   ffpcnd
+   ffpcnjj
+   ffptbb
+   ffirow
+   ffdrow
+   ffdrrg
+   ffdrws
+   ffdrwsll
+   fficol
+   fficls
+   ffmvec
+   ffdcol
+   ffcpcl
+   ffgics
+   ffgtcs
+   ffwldp
+   ffxypx
+   ffgiwcs
+   ffgtwcs
+   fftexp
+   fffrow
+   ffffrw
+   fffrwc
+   ffsrow
+   ffcrow
+   ffcalc_rng
+   ffcalc
+   ffhist
+   ffhist2
+   fits_select_image_section
+   fits_copy_image_section
+   fits_calc_binning
+   fits_write_keys_histo
+   fits_rebin_wcs
+   fits_make_hist
+   fits_pixel_filter 
+   ffgtcr
+   ffgtis
+   ffgtch
+   ffgtrm
+   ffgtcp
+   ffgtmg
+   ffgtcm
+   ffgtvf
+   ffgtop
+   ffgtam
+   ffgtnm
+   ffgmng
+   ffgmop
+   ffgmcp
+   ffgmtf
+   ffgmrm
+   fits_execute_template
+   fits_img_stats_short
+   fits_img_stats_int
+   fits_img_stats_float
+   fits_set_compression_type
+   fits_set_tile_dim
+   fits_set_noise_bits
+   fits_set_quantize_level
+   fits_set_hcomp_scale
+   fits_set_hcomp_smooth
+   fits_set_quantize_dither
+   fits_get_compression_type
+   fits_get_tile_dim
+   fits_get_quantize_level
+   fits_get_noise_bits
+   fits_get_hcomp_scale
+   fits_get_hcomp_smooth
+   fits_img_compress
+   fits_is_compressed_image
+   fits_img_decompress
+   fits_hcompress
+   fits_hcompress64
+   fits_hdecompress
+   fits_hdecompress64
+Evaluate_Parser
+compress2mem_from_mem
+ffGetVariable
+ff_create_buffer
+ff_delete_buffer
+ff_flush_buffer
+ff_init_buffer
+ff_load_buffer_state
+ff_scan_buffer
+ff_scan_bytes
+ff_scan_string
+ff_switch_to_buffer
+ffainit
+ffbfeof
+ffbfwt
+ffbinit
+ffc2d
+ffc2dd
+ffc2i
+ffc2ii
+ffc2l
+ffc2ll
+ffc2r
+ffc2rr
+ffc2s
+ffc2x
+ffcalchist
+ffcdel
+ffcdsp
+ffcfmt
+ffchdu
+ffcins
+ffcprs
+ffcvtn
+ffd2e
+ffd2f
+ffdblk
+ffedit_columns
+ffesum
+ffffrw_work
+fffi1i1
+fffi1i2
+fffi1i4
+fffi1int
+fffi1r4
+fffi1r8
+fffi1u2
+fffi1u4
+fffi1uint
+fffi2i1
+fffi2i2
+fffi2i4
+fffi2int
+fffi2r4
+fffi2r8
+fffi2u2
+fffi2u4
+fffi2uint
+fffi4i1
+fffi4i2
+fffi4i4
+fffi4int
+fffi4r4
+fffi4r8
+fffi4u2
+fffi4u4
+fffi4uint
+ffflushx
+fffr4i1
+fffr4i2
+fffr4i4
+fffr4int
+fffr4r4
+fffr4r8
+fffr4u2
+fffr4u4
+fffr4uint
+fffr8i1
+fffr8i2
+fffr8i4
+fffr8int
+fffr8r4
+fffr8r8
+fffr8u2
+fffr8u4
+fffr8uint
+fffstri1
+fffstri2
+fffstri4
+fffstrint
+fffstrr4
+fffstrr8
+fffstru2
+fffstru4
+fffstruint
+ffgbyt
+ffgbytoff
+ffgclb
+ffgcld
+ffgcle
+ffgcli
+ffgclj
+ffgclk
+ffgcll
+ffgcls
+ffgcls2
+ffgclui
+ffgcluj
+ffgcluk
+ffgcnt
+ffgcprll
+ffgext
+ffgi1b
+ffgi2b
+ffgi4b
+ffgmf
+ffgmul
+ffgnky
+ffgphd
+ffgr4b
+ffgr8b
+ffgtbc
+ffgtbp
+ffgtcpr
+ffgtdc
+ffgtgc
+ffgtkn
+ffgtrmr
+ffgttb
+ffi1fi1
+ffi1fi2
+ffi1fi4
+ffi1fr4
+ffi1fr8
+ffi1fstr
+ffi2c
+ffi2fi1
+ffi2fi2
+ffi2fi4
+ffi2fr4
+ffi2fr8
+ffi2fstr
+ffi4fi1
+ffi4fi2
+ffi4fi4
+ffi4fr4
+ffi4fr8
+ffi4fstr
+ffiblk
+ffintfi1
+ffintfi2
+ffintfi4
+ffintfr4
+ffintfr8
+ffintfstr
+ffiprs
+ffkshf
+ffl2c
+ffldrc
+fflex
+ffmkey
+ffmkky
+ffoptplt
+ffourl
+ffparse
+ffpbyt
+ffpbytoff
+ffpdfl
+ffpi1b
+ffpi2b
+ffpi4b
+ffpinit
+ffpr4b
+ffpr8b
+ffpxsz
+ffr2e
+ffr2f
+ffr4fi1
+ffr4fi2
+ffr4fi4
+ffr4fr4
+ffr4fr8
+ffr4fstr
+ffr8fi1
+ffr8fi2
+ffr8fi4
+ffr8fr4
+ffr8fr8
+ffr8fstr
+ffread
+ffrestart
+ffrhdu
+ffs2c
+ffseek
+ffselect_table
+ffshft
+ffswap2
+ffswap4
+ffswap8
+fftkyn
+fftrun
+fftsad
+fftsud
+ffu2fi1
+ffu2fi2
+ffu2fi4
+ffu2fr4
+ffu2fr8
+ffu2fstr
+ffu4fi1
+ffu4fi2
+ffu4fi4
+ffu4fr4
+ffu4fr8
+ffu4fstr
+ffuintfi1
+ffuintfi2
+ffuintfi4
+ffuintfr4
+ffuintfr8
+ffuintfstr
+ffuptf
+ffwend
+ffwhbf
+ffwrap
+ffwrite
+ffwritehisto
+ffxmsg
+file_checkfile
+file_close
+file_compress_open
+file_create
+file_flush
+file_getoptions
+file_getversion
+file_init
+file_is_compressed
+file_open
+file_openfile
+file_read
+file_remove
+file_seek
+file_setoptions
+file_shutdown
+file_size
+file_truncate
+file_write
+fits_already_open
+fits_clean_url
+fits_decomp_img
+fits_encode_url
+fits_get_col_minmax
+fits_get_cwd
+fits_get_url
+fits_is_this_a_copy
+fits_is_url_absolute
+fits_path2url
+fits_quantize_double
+fits_quantize_float
+fits_rcomp
+fits_rdecomp
+fits_read_compressed_img
+fits_read_compressed_img_plane
+fits_read_compressed_pixels
+fits_register_driver
+fits_relurl2url
+fits_unencode_url
+fits_url2path
+fits_url2relurl
+imcomp_calc_max_elem
+imcomp_compress_image
+imcomp_compress_tile
+imcomp_copy_imheader
+imcomp_copy_overlap
+imcomp_decompress_tile
+imcomp_get_compressed_image_par
+imcomp_init_table
+iraf2mem
+mem_close_free
+mem_close_keep
+mem_compress_open
+mem_create
+mem_createmem
+mem_getoptions
+mem_getversion
+mem_init
+mem_iraf_open
+mem_openmem
+mem_rawfile_open
+mem_read
+mem_seek
+mem_setoptions
+mem_shutdown
+mem_size
+mem_truncate
+mem_uncompress2mem
+mem_write
+ngp_append_columns
+ngp_delete_extver_tab
+ngp_extract_tokens
+ngp_free_line
+ngp_free_prevline
+ngp_get_extver
+ngp_hdu_clear
+ngp_hdu_init
+ngp_hdu_insert_token
+ngp_include_file
+ngp_keyword_all_write
+ngp_keyword_is_write
+ngp_line_from_file
+ngp_read_group
+ngp_read_line
+ngp_read_line_buffered
+ngp_read_xtension
+ngp_set_extver
+ngp_strcasecmp
+ngp_unread_line
+parse_data
+pl_l2pi
+pl_p2li
+prepare_keyvalue
+stdin2file
+stdin2mem
+stdin_checkfile
+stdin_open
+stdout_close
+strcasecmp
+strncasecmp
+uncompress2file
+uncompress2mem
+uncompress2mem_from_mem
+uncompress_hkdata
+urltype2driver
+ffgcljj
+gParse

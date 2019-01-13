@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9,00"
+	Name="external_jpeg6b"
+	ProjectGUID="{DD2A2284-F3B3-411A-BB8B-1E8F1AB7D3D1}"
+	RootNamespace="external_jpeg6b"
+	Keyword="MakeFileProj"
+	TargetFrameworkVersion="0"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory=".\Debug"
+			IntermediateDirectory=".\Debug"
+			ConfigurationType="0"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="cd .. &amp; nmake -nologo -f makefile.vc install"
+				ReBuildCommandLine="cd .. &amp; nmake -nologo -f makefile.vc clean install"
+				CleanCommandLine="cd .. &amp; nmake -nologo -f makefile.vc clean"
+				Output="Debug\external_jpeg6b26d.dll"
+				PreprocessorDefinitions=""
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory=".\Release"
+			IntermediateDirectory=".\Release"
+			ConfigurationType="0"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
+			UseOfMFC="0"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="cd .. &amp; nmake /f Makefile.vc install"
+				ReBuildCommandLine="cd .. &amp; nmake -nologo -f makefile.vc clean install"
+				CleanCommandLine="cd .. &amp; nmake /f Makefile.vc clean"
+				Output="..\..\lib\jpeg.lib"
+				PreprocessorDefinitions=""
+				IncludeSearchPath=""
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<File
+			RelativePath="..\Makefile.vc"
+			>
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

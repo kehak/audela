@@ -1,0 +1,97 @@
+#
+# Fichier : bifsconv.cap
+# Mise a jour $Id: bifsconv.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(bifsconv,imaencours)          "FITS Conversion of Image:"
+set caption(bifsconv,repencours)          "FITS Conversion in Folder:"
+set caption(bifsconv,pasdefichier)        "Unable to convert. The following file does not exist: "
+set caption(bifsconv,formatpasbon)        "Unable to convert. This image format is not supported by BifsConv."
+set caption(bifsconv,sortieconversion)    "Unexpected end of conversion. Please contact Raoul Behrend."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(bifsconv,imaencours)       "Conversion FITS de l'image :"
+   set caption(bifsconv,repencours)       "Conversion FITS dans le répertoire :"
+   set caption(bifsconv,pasdefichier)     "Conversion impossible. Le fichier suivant n'existe pas : "
+   set caption(bifsconv,formatpasbon)     "Conversion impossible. Ce format d'image n'est pas supporté par BifsConv."
+   set caption(bifsconv,sortieconversion) "Arrêt prématuré de la conversion. Contacter Raoul Behrend."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(bifsconv,imaencours)       "Conversione dell'immagine in FITS:"
+   set caption(bifsconv,repencours)       "Conversione FITS nella cartella:"
+   set caption(bifsconv,pasdefichier)     "Conversione impossibile. Il seguente file e` inesistente: "
+   set caption(bifsconv,formatpasbon)     "Conversione impossibile. Questo formato non e' supportato."
+   set caption(bifsconv,sortieconversion) "Arresto prematuro della conversione. Contattare Raoul Behrend."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(bifsconv,imaencours)       "Conversion de la imagen a FITS:"
+   set caption(bifsconv,repencours)       "Conversión FITS en carpeta:"
+   set caption(bifsconv,pasdefichier)     "Conversión imposible. El siguiente fichero no existe: "
+   set caption(bifsconv,formatpasbon)     "Conversión imposible. El formato de la imágen no es soportado por BifsConv."
+   set caption(bifsconv,sortieconversion) "Fin inesperado de la conversión. Por favor contactar con Raoul Behrend."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(bifsconv,imaencours)       "FITS Konversion des Bildes:"
+   set caption(bifsconv,repencours)       "FITS Konversion in einen Register:"
+   set caption(bifsconv,pasdefichier)     "Konversion unmöglich. Die folgende Datei existiert nicht: "
+   set caption(bifsconv,formatpasbon)     "Konversion unmöglich. Dieses Bild Format ist von BifsConv nicht übertragen."
+   set caption(bifsconv,sortieconversion) "Unerwartete Konversion Ende. Bitte mit Raoul Behrend Kontakt aufnehmen."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(bifsconv,imaencours)       "Conversão da imagem em FITS:"
+   set caption(bifsconv,repencours)       "Conversão FITS na pasta:"
+   set caption(bifsconv,pasdefichier)     "Conversão impossível. O ficheiro seguinte não existe: "
+   set caption(bifsconv,formatpasbon)     "Conversão impossível. Este formato de imagem não é suportado por BifsConv."
+   set caption(bifsconv,sortieconversion) "Fim imprevisto da conversão. Por favor contacte Raoul Behrend."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(bifsconv,imaencours)       "FITS billedtransformation:"
+   set caption(bifsconv,repencours)       "FITS transformation i folder:"
+   set caption(bifsconv,pasdefichier)     "Konvertering umulig. Flg. filer eksisterer ikke: "
+   set caption(bifsconv,formatpasbon)     "Konvertering umulig. Billedformatet er ikke understøttet af BifsConv."
+   set caption(bifsconv,sortieconversion) "Uventet afslutning af konvertering . Kontakt Raoul Behrend."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(bifsconv,imaencours)       "FITS Conversion of Image:"
+   set caption(bifsconv,repencours)       "FITS Conversion in Folder:"
+   set caption(bifsconv,pasdefichier)     "Unable to convert. The following file does not exist: "
+   set caption(bifsconv,formatpasbon)     "Unable to convert. This image format is not supported by BifsConv."
+   set caption(bifsconv,sortieconversion) "Unexpected end of conversion. Please contact Raoul Behrend."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(bifsconv,imaencours)       "FITS Conversion of Image:"
+   set caption(bifsconv,repencours)       "FITS Conversion in Folder:"
+   set caption(bifsconv,pasdefichier)     "Unable to convert. The following file does not exist: "
+   set caption(bifsconv,formatpasbon)     "Unable to convert. This image format is not supported by BifsConv."
+   set caption(bifsconv,sortieconversion) "Unexpected end of conversion. Please contact Raoul Behrend."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

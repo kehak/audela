@@ -1,0 +1,205 @@
+#
+# Fichier : alaudine_nt.cap
+# Mise a jour $Id: alaudine_nt.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(alaudine_nt,titre)                  "AlAudine NT Supply with I2C Port"
+
+set caption(alaudine_nt,attention)              "Warning"
+set caption(alaudine_nt,message)                "Control and thermal control are not available."
+
+set caption(alaudine_nt,evaluation)             "Assessment of ambient temperature around CCD camera:"
+set caption(alaudine_nt,degres)                 "°C"
+set caption(alaudine_nt,delta_t)                "Maximum Delta t possible (ambient temperature - CCD temperature):"
+set caption(alaudine_nt,temp_ccd_souhaite)      "CCD Temperature Required:"
+set caption(alaudine_nt,temp_ccd_mesure)        "CCD Temperature Measured:"
+set caption(alaudine_nt,ok)                     "OK"
+set caption(alaudine_nt,appliquer)              "Apply"
+set caption(alaudine_nt,fermer)                 "Close"
+set caption(alaudine_nt,aide)                   "Help"
+
+set caption(alaudine_nt,site_web_ref)           "Reference Web Site:"
+set caption(alaudine_nt,site_alaudine_nt)       "http://www.astrosurf.com/soubie/alaudine.htm"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(alaudine_nt,titre)               "Alimentation AlAudine NT avec port I2C"
+
+   set caption(alaudine_nt,attention)           "Attention"
+   set caption(alaudine_nt,message)             "Le contrôle et la régulation de la température ne sont pas disponibles."
+
+   set caption(alaudine_nt,evaluation)          "Estimation de la température ambiante autour de la caméra CCD :"
+   set caption(alaudine_nt,degres)              "°C"
+   set caption(alaudine_nt,delta_t)             "Delta t (température ambiante - température CCD) maximum possible :"
+   set caption(alaudine_nt,temp_ccd_souhaite)   "Température du CCD demandée :"
+   set caption(alaudine_nt,temp_ccd_mesure)     "Température du CCD mesurée :"
+   set caption(alaudine_nt,ok)                  "OK"
+   set caption(alaudine_nt,appliquer)           "Appliquer"
+   set caption(alaudine_nt,fermer)              "Fermer"
+   set caption(alaudine_nt,aide)                "Aide"
+
+   set caption(alaudine_nt,site_web_ref)        "Site Web de référence :"
+   set caption(alaudine_nt,site_alaudine_nt)    "http://www.astrosurf.com/soubie/alaudine.htm"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(alaudine_nt,titre)               "Alimentazione AlAudine NT con porta I2C"
+
+   set caption(alaudine_nt,attention)           "Attenzione"
+   set caption(alaudine_nt,message)             "I controlli e la regolazione della temperatura non è possibile."
+
+   set caption(alaudine_nt,evaluation)          "Valutazione della temperatura ambiente attorno alla camera CCD:"
+   set caption(alaudine_nt,degres)              "°C"
+   set caption(alaudine_nt,delta_t)             "Delta t massimo possibile (temperatura ambiente - temperatura CCD):"
+   set caption(alaudine_nt,temp_ccd_souhaite)   "Temperatura CCD richiesta:"
+   set caption(alaudine_nt,temp_ccd_mesure)     "Temperatura del CCD misurata:"
+   set caption(alaudine_nt,ok)                  "OK"
+   set caption(alaudine_nt,appliquer)           "Applicare"
+   set caption(alaudine_nt,fermer)              "Chiudere"
+   set caption(alaudine_nt,aide)                "Aiuto"
+
+   set caption(alaudine_nt,site_web_ref)        "Sito Web di riferimento:"
+   set caption(alaudine_nt,site_alaudine_nt)    "http://www.astrosurf.com/soubie/alaudine.htm"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(alaudine_nt,titre)               "Alimentación AlAudine NT con puerto I2C"
+
+   set caption(alaudine_nt,attention)           "Aviso"
+   set caption(alaudine_nt,message)             "El control y regulación de temperatura no esta disponible."
+
+   set caption(alaudine_nt,evaluation)          "Estimación de la temperatura ambiente cerca de la cámara CCD:"
+   set caption(alaudine_nt,degres)              "°C"
+   set caption(alaudine_nt,delta_t)             "Delta t máximo posible (temperatura ambiente - temperatura CCD):"
+   set caption(alaudine_nt,temp_ccd_souhaite)   "Temperatura CCD requerida:"
+   set caption(alaudine_nt,temp_ccd_mesure)     "Temperatura CCD actual:"
+   set caption(alaudine_nt,ok)                  "OK"
+   set caption(alaudine_nt,appliquer)           "Aplicar"
+   set caption(alaudine_nt,fermer)              "Cerrar"
+   set caption(alaudine_nt,aide)                "Ayuda"
+
+   set caption(alaudine_nt,site_web_ref)        "Sitio Web de referencia:"
+   set caption(alaudine_nt,site_alaudine_nt)    "http://www.astrosurf.com/soubie/alaudine.htm"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(alaudine_nt,titre)               "AlAudine NT mit I2C Port Stromversorgung"
+
+   set caption(alaudine_nt,attention)           "Achtung"
+   set caption(alaudine_nt,message)             "Thermische Regulation und Kontrolle sind nicht verfügbar."
+
+   set caption(alaudine_nt,evaluation)          "CCD Kamera umgehende Temperatur Taxierung:"
+   set caption(alaudine_nt,degres)              "°C"
+   set caption(alaudine_nt,delta_t)             "Maximales mögliches Delta t (umgehende Temperatur - CCD Temperatur):"
+   set caption(alaudine_nt,temp_ccd_souhaite)   "Gewünschte CCD Temperatur:"
+   set caption(alaudine_nt,temp_ccd_mesure)     "Gemessene CCD Temperatur:"
+   set caption(alaudine_nt,ok)                  "OK"
+   set caption(alaudine_nt,appliquer)           "Anwenden"
+   set caption(alaudine_nt,fermer)              "Schließen"
+   set caption(alaudine_nt,aide)                "Hilfe"
+
+   set caption(alaudine_nt,site_web_ref)        "Referenz Webseite:"
+   set caption(alaudine_nt,site_alaudine_nt)    "http://www.astrosurf.com/soubie/alaudine.htm"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(alaudine_nt,titre)               "Alimentação AlAudine NT com porta I2C"
+
+   set caption(alaudine_nt,attention)           "Aviso"
+   set caption(alaudine_nt,message)             "O controlo e a regulação de temperatura não se encontram disponíveis."
+
+   set caption(alaudine_nt,evaluation)          "Estimação da temperatura ambiente envolvente à câmara CCD:"
+   set caption(alaudine_nt,degres)              "°C"
+   set caption(alaudine_nt,delta_t)             "Delta t (temperatura ambiente - temperatura CCD) máximo possível:"
+   set caption(alaudine_nt,temp_ccd_souhaite)   "Temperatura desejada do CCD:"
+   set caption(alaudine_nt,temp_ccd_mesure)     "Temperatura medida do CCD:"
+   set caption(alaudine_nt,ok)                  "OK"
+   set caption(alaudine_nt,appliquer)           "Aplicar"
+   set caption(alaudine_nt,fermer)              "Fechar"
+   set caption(alaudine_nt,aide)                "Ajuda"
+
+   set caption(alaudine_nt,site_web_ref)        "Site Web de referência:"
+   set caption(alaudine_nt,site_alaudine_nt)    "http://www.astrosurf.com/soubie/alaudine.htm"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(alaudine_nt,titre)               "AlAudine NT Supply with I2C Port"
+
+   set caption(alaudine_nt,attention)           "Warning"
+   set caption(alaudine_nt,message)             "Control and thermal control are not available."
+
+   set caption(alaudine_nt,evaluation)          "Assessment of ambient temperature around CCD camera:"
+   set caption(alaudine_nt,degres)              "°C"
+   set caption(alaudine_nt,delta_t)             "Maximum Delta t possible (ambient temperature - CCD temperature):"
+   set caption(alaudine_nt,temp_ccd_souhaite)   "CCD Temperature Required:"
+   set caption(alaudine_nt,temp_ccd_mesure)     "CCD Temperature Measured:"
+   set caption(alaudine_nt,ok)                  "OK"
+   set caption(alaudine_nt,appliquer)           "Apply"
+   set caption(alaudine_nt,fermer)              "Close"
+   set caption(alaudine_nt,aide)                "Help"
+
+   set caption(alaudine_nt,site_web_ref)        "Reference Web Site:"
+   set caption(alaudine_nt,site_alaudine_nt)    "http://www.astrosurf.com/soubie/alaudine.htm"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(alaudine_nt,titre)               "AlAudine NT Supply with I2C Port"
+
+   set caption(alaudine_nt,attention)           "Warning"
+   set caption(alaudine_nt,message)             "Control and thermal control are not available."
+
+   set caption(alaudine_nt,evaluation)          "Assessment of ambient temperature around CCD camera:"
+   set caption(alaudine_nt,degres)              "°C"
+   set caption(alaudine_nt,delta_t)             "Maximum Delta t possible (ambient temperature - CCD temperature):"
+   set caption(alaudine_nt,temp_ccd_souhaite)   "CCD Temperature Required:"
+   set caption(alaudine_nt,temp_ccd_mesure)     "CCD Temperature Measured:"
+   set caption(alaudine_nt,ok)                  "OK"
+   set caption(alaudine_nt,appliquer)           "Apply"
+   set caption(alaudine_nt,fermer)              "Close"
+   set caption(alaudine_nt,aide)                "Help"
+
+   set caption(alaudine_nt,site_web_ref)        "Reference Web Site:"
+   set caption(alaudine_nt,site_alaudine_nt)    "http://www.astrosurf.com/soubie/alaudine.htm"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(alaudine_nt,titre)               "AlAudine NT Supply with I2C Port"
+
+   set caption(alaudine_nt,attention)           "Warning"
+   set caption(alaudine_nt,message)             "Control and thermal control are not available."
+
+   set caption(alaudine_nt,evaluation)          "Assessment of ambient temperature around CCD camera:"
+   set caption(alaudine_nt,degres)              "°C"
+   set caption(alaudine_nt,delta_t)             "Maximum Delta t possible (ambient temperature - CCD temperature):"
+   set caption(alaudine_nt,temp_ccd_souhaite)   "CCD Temperature Required:"
+   set caption(alaudine_nt,temp_ccd_mesure)     "CCD Temperature Measured:"
+   set caption(alaudine_nt,ok)                  "OK"
+   set caption(alaudine_nt,appliquer)           "Apply"
+   set caption(alaudine_nt,fermer)              "Close"
+   set caption(alaudine_nt,aide)                "Help"
+
+   set caption(alaudine_nt,site_web_ref)        "Reference Web Site:"
+   set caption(alaudine_nt,site_alaudine_nt)    "http://www.astrosurf.com/soubie/alaudine.htm"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

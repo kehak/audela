@@ -1,0 +1,87 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+    
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+    
+  <meta name="Author" content="Alain Klotz">
+    
+  <meta name="GENERATOR"
+ content="Mozilla/4.75 [fr] (Win98; U) [Netscape]">
+  <title>Libaudine library : updates of source files</title>
+</head>
+  <body>
+  
+<center> 
+<h1> libaudine</h1>
+</center>
+  
+<center> 
+<p><br>
+a Tcl extension library for AudeLA to drive Audine/Genesis CCD cameras <br>
+update 20030630</p>
+</center>
+  
+<p><br>
+ </p>
+<center> 
+<h1> Diary of updates</h1>
+</center>
+  
+<h3> 2002-06-30 :</h3>
+  
+<ul>
+  <li> Correction of a bug in the scan function for datation. Datation was
+in local time and now it takes account for the ::audace::date_sys2ut functionin
+case of Audace to date in UT.</li>
+</ul>
+<h3> 2002-05-08 :</h3>
+  
+<ul>
+ <li> Speed optimisation for reading Kaf-3200 in camera.c (functions read_win_inv, 
+fast_vidage_inv) :</li>
+  
+  <ul>
+ <li> in fast_vidage_inv : decaligne=128 for a Kaf-3200. A bug was fixed
+in the computation of jmax.</li>
+  <li> in read_win_inv : first undigitalized lines are now globaly shifted.
+Then the horizontal register is cleaned.</li>
+  <li> in read_win_inv : wiper of horizontal register before the vertical
+shift was suppressed in the case of Win32 Kaf-3200 and Kaf-1600.</li>
+ 
+  </ul>
+ 
+</ul>
+  
+<h3> 2002-04-26 :</h3>
+  
+<ul>
+ <li> Correction of bugs in camera.c (functions read_ccd*) and in camtcl.c.
+A temporary buffer was dimensioned too small for Kaf-3200 binning 1x1 (was 
+equal to 2048 instead of 2184) !</li>
+ 
+</ul>
+  
+<h3> 2002-04-16 :</h3>
+  
+<ul>
+ <li> Add a new cam1 function "interrupt" : cam1 interrupt 1 (default) make
+use of cli/sti Pc interruption management. Cam1 interrupt 0 don't use cli/sti 
+and should only be used with ioport or sush modules for Win NT cores. Source 
+files concerned : libcam.h (#define COMMON_CMDLIST), libstruct.h (#define 
+COMMON_CAMSTRUCT ... int interrupt), camera.c &amp; camtcl.c (condition before
+calling libcam_bloquer, libcam_debloquer), libcam.c (cmdCamInterrupt and
+cam_init_common).</li>
+  <li> The shutter was always closed by the cam_read_ccd function (camera.c)
+whatever the shutter mode. It now closes only for synchro mode.</li>
+  <li> Manage the LTC1605 converter used by spanish group : http://teleline.terra.es/personal/cristog/audine/audine.htm. 
+Add the new function cam1 cantype. Source files concerned : camtcl.c (char 
+*cam_can[], cmdCamCantype), camtcl.h (prototype of cmdCamCantype), camcmd.h 
+({"cantype", cmdCamCantype}), camera.h (struct camprop define cantypeindex), 
+camera.c (cam_init, read_win_inv, read_line).</li>
+ 
+</ul>
+  <br>
+</body>
+</html>

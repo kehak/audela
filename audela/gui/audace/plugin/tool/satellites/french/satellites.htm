@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Satellites artificiels</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 20 f&eacute;vrier 2016.</p>
+
+<h1>Satellites artificiels</h1>
+<p>Cet outil propose plusieurs fonctions ayant trait aux satellites artificiels :</p>
+<ol>
+<li>recherche des coordonn&eacute;es d'un satellite,</li>
+<li>recherche du satellite proche d'une position,</li>
+<li>&eacute;dition de l'orbite d'un satellite,</li>
+<li>radar &agrave; satellites (et &eacute;toiles) au z&eacute;nith d'une position,</li>
+<li>recherche du nom d'un satellite ou de tous les satellites dans les bases,</li>
+<li>mise &agrave; jour des fichiers TLE.</li>
+</ol>
+<p>Les boutons "Appliquer, "Aide " et "Fermer" sont communs &agrave; tous les onglets et g&egrave;rent la s&eacute;lection des commandes &agrave; ex&eacute;cuter ainsi que l'appel de l'aide et la fermture de l'outil.</p>
+<p>L'activation du bouton "Appliquer" inhibe toutes les variables de tous les onglets.</p>
+<h2> 1. Onglet Coordonn&eacute;es </h2>
+<p>Cette fonction requiert la position GPS de l'observateur, l'heure TU, et le nom du satellite dont on recherche la position.</p>
+<p><img style="width: 406px; height: 203px;" alt="" src="images/satellites_onglet_coord.gif" /></p>
+<p>Le r&eacute;sultat est donn&eacute; dans la console :</p>
+<p><img style="width: 479px; height: 37px;" alt="" src="images/satellites_coords.gif" /></p>
+
+<h2> 2. Onglet Proximit&eacute; </h2>
+<p>Cette fonction requiert la position GPS de l'observateur, l'heure TU, et la direction d&eacute;finie par ses coordonn&eacute;es AD et D&eacute;c.</p>
+<p><img style="width: 402px; height: 200px;" alt="" src="images/satellites_onglet_proxim.gif" /></p>
+<p>Toute la base des satellites est explor&eacute;e ce qui peut prendre un certain temps. La Console refl&egrave;te l'exploration par paquets de 10 satellites (sur plus de 1700). L'angle de s&eacute;paration se r&eacute;duit peu &agrave; peu. Le r&eacute;sultat final donne l'angle de s&eacute;paration suivi du nom du satellte, AD et D&eacute;c. &agrave; l'&eacute;poque J2000.0, l'illumination (1.0000) ou non (0.0000), le gisement (azimut+180&deg;) et la hauteur en degr&eacute;s.</p>
+<p><img style="width: 483px; height: 97px;" alt="" src="images/satellites_nearest.gif" /></p>
+
+<h2> 3. Onglet Orbite </h2>
+<p>Cet outil permet d'acqu&eacute;rir des informations (orbite, position, coordonn&eacute;es de pointage) sur un satellite artificiel. Une option particuli&egrave;re permet de stocker les informations ainsi que le trac&eacute; de l'orbite dans une page html sans encombrer la Console ou le canvas. La page est localis&eacute;e dans le r&eacute;pertoire "images". Il est recommand&eacute; de mettre &agrave; jour les fichiers TLE.</p>
+<h3>Sortie sur la Console</h3>
+<p>Cette fonction requiert la position GPS de l'observateur, l'heure TU, et la s&eacute;lection d'un satellite et le choix "Console".</p>
+<p><img style="width: 404px; height: 199px;" alt="" src="images/satellites_onglet_orbit_console.gif" /></p>
+<p>L'&eacute;dition dans la Console pr&eacute;sente les r&eacute;sultats en trois groupes :<br>
+- Le premier donne quelques caract&eacute;ristiques de l'orbite telles que l'apog&eacute;e et le p&eacute;rig&eacute;e calcul&eacute;s sans tenir compte des variations secondaires telles que la gravit&eacute; ou la non-rotondit&eacute; de la Terre.<br>
+- Le second donne la position GPS actuelle et la magnitude pour certains satellites.<br>
+- Le troisi&egrave;me fournit les coordonn&eacute;es de pointage ainsi que la vitesse de d&eacute;placement angulaire pour v&eacute;rifier la capacit&eacute; de suivi de la monture. Attention il s'agit d'une vitesse quasi instantan&eacute;e et elle peut varier consid&eacute;rablement.</p>
+<p><img style="width: 308px; height: 285px;" alt="" src="images/satellites_orbit_console.gif" /></p>
+<h3>Sortie dans une page HTML</h3>
+<p>Le choix de l'&eacute;dition en mode HTML fait appara&icirc;tre des options compl&eacute;mentaires :</p>
+<ul>
+<li>La vitesse d'animation (entre 1 et 400 fois la vitesse moyenne du satellite sur son orbite).</li>
+<li>La taille de l'image (zoom entre 0.5 et 1.5), &agrave; choisir en fonction de votre &eacute;cran et de la lisibilit&eacute;.</li>
+<li>L'affichage ou non des grilles de coordonn&eacute;es,</li>
+<li>L'affichage ou non du Soleil, de la Lune et du terminateur,</li>
+</ul>
+<p><img style="width: 423px; height: 298px;" alt="" src="images/satellites_onglet_orbit_hml.gif" /></p>
+<p>Le choix de l'&eacute;dition en mode HTML, a pour effet de construire une image SVG dans une page HTML comme ci-dessous et l'appelle dans le navigateur qui doit &ecirc;tre compatible SVG :</p>
+<p>La page comporte, outre un carte avec l'orbite du satellite, des informations identiques &agrave; celles de la Console.</p>
+<p><img style="width: 589px; height: 478px;" alt="" src="images/satellites_orbit_html.gif" /></p>
+<p>L'image .svg pr&eacute;sente une mappemonde &eacute;quirectangulaire classique avec les coordonn&eacute;es Est ou Ouest.<br>
+La carte est d&eacute;cal&eacute;e de mani&egrave;re &agrave; ne pas couper un morceau de l'Europe.<br>
+Le nombre de couleurs est volontairement minimaliste pour all&eacute;ger le poids de l'image (un peu moins de 40 Ko).<br>
+La position de l'observateur est marqu&eacute;e par une croix blanche.<br>
+Les positions du Soleil, de La Lune (ainsi que ses quartiers) et de la fronti&egrave;re entre le jour et la nuit sont ceux &agrave; la date pr&eacute;cise saisie en entr&eacute;e.<br>
+Le terminateur est flout&eacute; sur une distance marquant la diff&eacute;rence entre la nuit et la nuit astronomique (&eacute;l&eacute;vation du Soleil &eacute;gale &agrave; -18&deg;).<br>
+L'orbite du satellite est trac&eacute;e sur une dur&eacute;e un peu sup&eacute;rieure &agrave; la p&eacute;riode orbitale de mani&egrave;re &agrave; visualiser son d&eacute;calage. Il commence son parcours au d&eacute;but de l'orbite et la parcourt &agrave; une vitsse moyenne sans tenir compte des distorsions d'angles notamment dans les tr&egrave;s hautes ou tr&egrave;s basses latitudes. L'animation du satellite durera tant que l'image sera conserv&eacute;e, mais son parcours restera toujours sur le m&ecirc;me trac&eacute;.<br>
+L'image dispose d'une certaine profondeur : Un satellite (un point rouge anim&eacute;) passera sous le Soleil ou la Lune et sous l'ombre de la nuit pour marquer la diff&eacute;rence d'illumination. Effet d'optique : Le Soleil passe sous la Lune pour signaler une &eacute;clipse (essayer une date comme 2015-03-20T09:30:00) !<br>
+L'image contient des informations basiques (nom du satellite et intervalle de temps pour lequel l'orbite est trac&eacute;e), elle peut &ecirc;tre ouverte avec n'importe quel navigateur compatible SVG ind&eacute;pendamment de la page html.</p>
+<p>Les options de sortie et d'&eacute;dition de la page HTML sont sauvegard&eacute;es et rappel&eacute;es lors de l'ouverture de la fen&ecirc;tre.</p>
+
+<h2> 4. Onglet Radar </h2>
+<p>Cet outil donne la localisation des satellites artificiels dans un environnement donn&eacute; :
+<ul>
+<li>coordonn&eacute;es GPS de l'observateur, (par d&eacute;faut celle de l'observateur d'AudeLA),
+<li>date TU (par d&eacute;faut, celle &agrave; l'ouverture de l'outil),
+<li>&eacute;l&eacute;vation minimale (en degr&eacute;s).</li>
+</ul>
+<p><img style="width: 420px; height: 200px;" alt="" src="images/satellites_onglet_radar.gif" /></p>
+<p>La commande produit une page HTML localis&eacute;e dans le r&eacute;pertoire images.<br>
+Elle comporte une image SVG de la position des satellites (en rouge) et des &eacute;toiles brillantes (en bleu) et un tableau donnant le nom des satellites et leurs coordonn&eacute;es.<br>
+Un cercle rouge repr&eacute;sente un satellite illumin&eacute;, un cercle noir un satellite non illumin&eacute;.<br>
+La distance entre chaque cercle du radar est de 10&deg; de hauteur.<br>
+L'ellipse partielle en rouge repr&eacute;sente l'&eacute;quateur c&eacute;leste.</p>
+<p>Si les ecmascripts sont activ&eacute;s, la fen&ecirc;tre inf&eacute;rieure de l'image donne le nom du satellite ou de l'&eacute;toile point&eacute; par la souris, ainsi que ses coordonn&eacute;es RA et DEC.</p>
+<p><img style="width: 506px; height: 719px;" alt="" src="images/satellites_radar.gif" /></p>
+<p>Astuce : chaque activation de la commande ouvre une nouvelle page dans le navigateur; il est donc possible d'avoir plusieurs pages avec des dates un peu diff&eacute;rentes (d&eacute;calage de la dur&eacute;e de prise de vue) bien que seule la derni&egrave;re page soit sauvegard&eacute;e.</p>
+<h3> Ligne de commande </h3>
+<p>Pour cr&eacute;er l'image et la page HTML par ligne de commande, il suffit de taper dans la Console :<br>
+<code>::satellites::createRadarHtm</code> : Pour l'heure actuelle, la position Home et la hauteur de 50&deg;.<br>
+<code>::satellites::createRadarHtm date</code> : Pour la date TU sp&eacute;cifi&eacute;e par 'date', la position Home et la hauteur de 50&deg;.<br>
+<code>::satellites::createRadarHtm date gps 20</code> : Pour la date TU sp&eacute;cifi&eacute;e par 'date', la position GPS sp&eacute;cifi&eacute;e par 'gps' et 20&deg; de hauteur minimale.<br>
+Les erreurs de format de date et de gps sont d&eacute;tect&eacute;es et signal&eacute;es. La commande s'arr&ecirc;te.</p>
+<p>Pour que l'image SVG soit visible, il faut que le navigateur supporte ce format.<br>
+Elle peut &ecirc;tre conserv&eacute;e sans la page HTML.</p>
+<p>Le nombre de satellites cro&icirc;t fortement si l'&eacute;l&eacute;vation saisie est trop faible. Il est raisonnable de ne pas descendre en-dessous de 10&deg;.</p>
+<h2> 5. Onglet Noms </h2>
+<p>Cet onglet permet d'&eacute;diter tous les noms de satellites contenant par exemple "ISS" avec le nom du fichier source. Le seul param&egrave;tre est le radical &agrave; rechercher (il peut &ecirc;tre vide).</p>
+<p><img style="width: 403px; height: 201px;" alt="" src="images/satellites_onglet_noms.gif" /></p>
+<p>Dans le cas par d&eacute;faut "ISS", l'<b>ISS (ZARYA)</b> appara&icirc;t deux fois car il figure dans le fichier <b>amateur.txt</b> et <b>stations.txt</b> (heureusement avec les m&ecirc;mes donn&eacute;es !).<br>
+Les satellites <b>SWISSCUBE</b> et <b>AISSAT 1</b> apparaissent car ils contiennet &eacute;galement le radical "ISS" :.
+<p><img style="width: 457px; height: 55px;" alt="" src="images/satellites_names.gif" /></p>
+<p>Si la fen&ecirc;tre est vide, tous les noms de satellites seront &eacute;dit&eacute;s.</p>
+<h2> 6. Onglet Mise &agrave; jour des fichiers TLE </h2>
+<p>Les fichiers dits TLE contenant les donn&eacute;es concernant les satellites artificiels sont localis&eacute;s dans le r&eacute;pertoire "audace(rep_userCatalog)/tle".<br>
+Pour effectuer leur mise &agrave; jour il suffit d'&ecirc;tre connect&eacute; &agrave; Internet et d'appuyer sur le bouton "Appliquer".</p>
+<p><img style="width: 402px; height: 192px;" alt="" src="images/satellites_onglet_update.gif" /></p>
+<p>La mise &agrave; jour de chaque fichier est signal&eacute;e dans la Console :</p>
+<p><img style="width: 349px; height: 139px;" alt="" src="images/satellites_update.gif" /></p>
+
+</html>
+

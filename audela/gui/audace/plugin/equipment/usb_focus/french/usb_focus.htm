@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Focaliseur USB_FOCUS</title>
+</head>
+
+<body>
+<p class="date">Date de mise à jour : 29 août 2013</p>
+<h1>Focaliseur USB_FOCUS</h1>
+<p>Merci &#224; Vincent Auvray pour les informations sur ce
+focaliseur, voir le <a href="http://www.usb-foc.us/"><b>site
+USB_Focus</b></a>.</p>
+<h2>1. Connexion</h2>
+<p>Si le port s&#233;rie n'est pas connect&#233; (avant le
+lancement ou apr&#232;s un arr&#234;t), toutes les commandes sont
+inhib&#233;es &#224; l'exception du choix du port :</p>
+<p><img style="width: 599px; height: 599px;" alt="" src=
+"images/usb_focus0.gif" /></p>
+<p>Sous Windows, si la fen&#234;tre du port ne contient rien
+alors que le port existe dans le syst&#232;me, il faudra
+vraisemblablement le red&#233;marrer.</p>
+<p>Apr&#232;s lancement ou lors de l'ouverture du panneau (si
+l'&#233;quipement n'a pas &#233;t&#233; arr&#234;t&#233;), toutes
+les commandes sont lib&#233;r&#233;es, &#224; l'exception du
+bouton <b>STOP</b> qui n'est actif qu'en cas de d&#233;placement
+:</p>
+<p><img style="width: 599px; height: 599px;" alt="" src=
+"images/usb_focus1.gif" /></p>
+<p>Les param&#232;tres sont renseign&#233;s avec les valeurs lues
+dans le microcontr&#244;leur du focuser.</p>
+<h2>2. Informations et commandes disponibles</h2>
+<p>Les quatre groupes de commandes sont les suivants :</p>
+<ul>
+<li><b>Logiciel du microprocesseur</b> : le num&#233;ro de
+version n'appara&#238;t qu'apr&#232;s la connexion. Un bouton
+<b>RESET</b> permet de r&#233;tablir les param&#232;tres "usine".
+Les param&#232;tres "utilisateur" sont m&#233;moris&#233;s dans
+le microcontr&#244;leur et rappel&#233;s lors de la
+connexion.</li>
+<li><b>R&#233;glages du moteur</b> : Ils permettent un
+r&#233;glage fin adapt&#233; au montage de l'utilisateur. Sont
+disponibles :
+<ul>
+<li>La course maximale, exprim&#233;e en pas. Par d&#233;faut ce
+nombre est de 65535. Un bouton <b>SET</b> permet de modifier ce
+r&#233;glage.</li>
+<li>La vitesse de d&#233;placement : Un s&#233;lecteur permet de
+choisir une valeur entre 2 (la plus lente) et 9 (la plus
+rapide).</li>
+<li>L'incr&#233;ment : A choisir entre demi-pas (8000 pas/tour)
+ou pas entier (4000 pas/tour) .</li>
+<li>Le sens de rotation principal : A choisir entre le sens des
+aiguilles d'une montre ou l'inverse.</li>
+<li>La compensation des jeux : La fen&#234;tre de saisie est
+automatiquement plac&#233;e sous le sens de rotation inverse du
+sens principal car la compensation est appliqu&#233;e au seul
+sens inverse. La valeur pas d&#233;faut de 500 pas correspond a
+1/8 de tour en mode pas entier.</li>
+</ul>
+</li>
+<li><b>R&#233;glages de la compensation li&#233;es &#224; la
+temp&#233;rature</b> : La temp&#233;rature affich&#233;e est
+celle d&#233;tect&#233;e par le capteur externe au bo&#238;tier.
+Un s&#233;lecteur permet d'activer ou non la compensation &#224;
+effectuer lors de variations de temp&#233;rature.<br />
+Sont &#224; indiquer le coefficient (pas /&#176;C) et le seuil de
+sensibilit&#233; en dessous duquel il n'y a pas de correction. Le
+coefficient (pas le seuil) peut &#234;tre positif ou
+n&#233;gatif.<br />
+Tant que le mode de compensation automatique est enclench&#233;,
+les autres commandes sont inhib&#233;es. Pour changer une valeur,
+il suffit de revenir en mode manuel en d&#233;cochant cette
+option.</li>
+<li><b>D&#233;placement</b> : La position actuelle est
+affich&#233;e. Deux modes de d&#233;placement sont utilisables :
+<ul>
+<li><b>Mode absolu</b> : Indiquer la position &#224; atteindre
+puis appuyer sur <b>GOTO</b>.</li>
+<li><b>Mode incr&#233;mental</b> : Indiquer le d&#233;placement
+&#224; effectuer, en nombre de pas, et s&#233;lectionner le sens
+{+|-}.</li>
+</ul>
+Durant le d&#233;placement, les commandes sont inhib&#233;es,
+&#224; l'exception du bouton <b>STOP</b> qui permet d'interrompre
+un mouvement absolu ou incr&#233;mental.</li>
+</ul>
+<h2>3. Contr&#244;le des saisies</h2>
+Si une saisie n'est pas un entier ou d&#233;passe une limite
+sp&#233;cifique &#224; la variable, un message en informe
+l'utilisateur et la valeur pr&#233;c&#233;dente est
+r&#233;affich&#233;e.
+<ul>
+<li>Nombre maximum de pas : Nombre entier positif inf&#233;rieur
+&#224; 65535.</li>
+<li>Compensation des jeux : Nombre entier positif inf&#233;rieur
+&#224; 4000 (un tour en mode pas entier ou un demi-tour en mode
+demi-pas.</li>
+<li>Position absolu : Nombre entier positif inf&#233;rieur ou
+&#233;gal au nombre maximum de pas indiqu&#233;.</li>
+<li>Pas de d&#233;placement : Nombre entier positif. Si le
+d&#233;placement demand&#233; conduit &#224; une position
+sup&#233;rieure au maximum ou inf&#233;rieure &#224; 0, le nombre
+de pas est corrig&#233; en temps r&#233;el et le mouvement
+ex&#233;cut&#233;.</li>
+<li>Coefficient de compensation en temp&#233;rature : Nombre
+entier positif ou n&#233;gatif, inf&#233;rieur &#224; 999.</li>
+<li>Seuil de sensibilit&#233; : Nombre entier positif
+inf&#233;rieur &#224; 999.</li>
+</ul>
+<h2>4. Divers</h2>
+<p>USB_Focus peut &#234;tre activ&#233; au d&#233;marrage
+d'AudeLA en cochant la case <b>Connexion automatique de cet
+&#233;quipement au prochain d&#233;marrage.</b><br />
+Un message dans la Console informe l'utilisateur sur le
+d&#233;marrage ou l'arr&#234;t du plugin.</p>
+<h2>5. Anomalies</h2>
+<p>Dans quelques rares cas, un message dans la Console affiche un
+message d'erreur :</p>
+<ul>
+<li>Cr&#233;ation du port s&#233;rie.</li>
+<li>Non prise en compte d'une valeur par le
+microcontr&#244;leur.</li>
+<li>Commande non reconnue ou erreur interne au
+microcontr&#244;leur.</li>
+</ul>
+<h2>6. Exemple de montage pratique</h2>
+<p>Le moteur doit entra&#238;ner le bouton de mise au point. Dans
+le cas du Takahashi CN212, il a fallu construire une platine se
+fixant sur le porte-oculaire et pr&#233;voir un syst&#232;me
+d'entra&#238;nement adhoc. <a href=
+"http://www.skymeca.com/"><b>Skym&#233;ca</b></a> s'est
+charg&#233; de faire la platine :</p>
+<p><img style="width: 400px; height: 267px;" alt="" src=
+"images/platine_focuser.gif" /></p>
+Le bouton de mise au point du CN212 peut faire 14 tours. Pour
+parcourir toute la plage de mise au point il faut
+s&#233;lectionner le mode <b>pas entier</b> qui permet d'obtenir
+un maximum de 65535/4000 = un peu plus de 16 tours et limiter la
+<b>course maximale</b> &#224; 14*4000 = 56000 pas.
+<p>Un tour du bouton de mise au point du CN212 fait varier la
+focale de 1 mm en mode Newton [f=820mm F/D=3.9] et de 3.2 mm en
+mode Cassegrain [f=2630 mm F/D=12.4] (Source <b>R&#233;mi
+Petitdemange d'Optique Unterlinden</b>). Un pas codeur
+d'USB_Focus correspond donc, en th&#233;orie, &#224;
+1mm/4000=0.25 microm&#232;tres en Newton et &#224; 3.2 mm/4000=
+0.8 microm&#232;tres en Cassegrain.</p>
+<p>Pour un filtre bleu (470nm) la zone de mise au point critique
+(NCFZ) vaut environ 67 microm&#232;tres en mode Newton et plus de
+600 microm&#232;tres en mode Cassegrain. Dans les deux cas, les
+r&#233;solution est bien inf&#233;rieure &#224; la zone de mise
+au point.</p>
+<h2>7. Int&#233;gration dans l'outil Focalisation</h2>
+<p>Le panneau de configuration de USB_Focus donne acc&#232;s
+&#224; tous les r&#233;glages, y compris la position du
+focuser.<br />
+Pour une mise en &#339;uvre dynamique (cam&#233;ra et outil de
+focalisation), appeler l'outil <b>Cam&#233;ra/Focalisation</b> :
+La position de USB_Focus ainsi que le positionnement en mode
+absolu ou incr&#233;mental sont accessibles &#224; partir de cet
+outil.</p>
+</body></html>

@@ -1,0 +1,421 @@
+#-----------------------------------------------------------------------------
+#--   chaque test a pour entree une liste depareillee de trois images RGB
+#--   les images produites sont stockees dans le repertoire Temp/Com
+#--   le test porte sur :
+#        la concordance entre les intensites R G B constatees avec celles calculees
+#        la validite de EXPOSURE
+#-----------------------------------------------------------------------------
+
+set visuNo 1
+set bufNo [::confVisu::getBufNo $visuNo]
+#--   le nom de la tablelist des fichiers
+set w ".audace.prtr.usr.choix.tablelist"
+#--   le nom de la zone de cmd
+set z ".audace.prtr.usr.table"
+
+variable CLEANUP {
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+   attendu length 0
+}
+
+test imastack_init {initialisation} {AUDACE} {
+   set ::conf(extension,defaut) .fit
+   set ::conf(fichier,compres) 0
+   set ext $::conf(extension,defaut)
+   #--   cree un repertoire et un sous-repertoire
+   set rep [file join $::audace(rep_images) TempTest]
+   if {![file exists $rep]} {file mkdir $rep}
+   if {![file exists [file join $rep Comb]]} {file mkdir [file join $rep Comb]}
+   #--   fixe le point de mesure
+   set coords [list 224 113]
+   #--   recopie les images nécessaires au test
+   foreach file {rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} {
+      file copy -force [file join $::conf(testaudela,rep_images) $file.fit] $::audace(rep_images)
+   }
+   #--   initialise les vecteurs
+   ::blt::vector create red_value green_value blue_value exposure attendu mesure temp -watchunset 1
+   foreach file {rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} {
+      loadima $file.fit
+      #--   liste les intensités R G B des trois images
+      set intensite [lrange [buf$bufNo getpix $coords] 1 end]
+      red_value append [lindex $intensite 0]
+      green_value append [lindex $intensite 1]
+      blue_value append [lindex $intensite 2]
+      #--   liste les EXPOSURE des trois images
+      exposure append [lindex [buf$bufNo getkwd EXPOSURE] 1]
+      set bitpix [lindex [buf$bufNo getkwd BITPIX] 1]
+   }
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+   return ""
+} ""
+
+#-----------------------------------------------------------------------------
+#--   test IMA/STACK ADD
+test imastack_add {addition de rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} -constraints {AUDACE} -setup {} -body {
+   #--   clic sur le menu "Images/Combiner/Somme..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,pile)" "$::caption(audace,menu,somme)..."
+   #--   selectionne rz_rgbr_8 rz_rgbr_15 rz_rgbr_30
+   foreach img {rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} {
+      ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #--   saisit le nom de sortie
+   set nom_image [file join $rep Comb somme$ext]
+   ::testaudela::putLabelEntry $z.sortie.out $nom_image
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   #--   cherche la valeur obtenue
+   mesure set [lrange [buf$bufNo getpix $coords] 1 end]
+   #--   constitue le vecteur des sommes
+   attendu set [list $red_value(sum) $green_value(sum) $blue_value(sum)]
+   #--   calcule la difference
+   attendu expr {round(attendu-mesure)}
+   #--   nb de differences <+-1
+   attendu expr {abs(attendu) <= 1}
+   set result [llength [attendu search 1]]
+   #--   exposure est bon si la difference est inferieur a 0.001 sec
+   if {[expr {$exposure(sum)-[lindex [buf$bufNo getkwd EXPOSURE] 1]}] < "0.001"} {
+      incr result
+   }
+   return $result
+} -cleanup $CLEANUP -result "4"
+
+#--   test IMA/STACK DRIZZLEWCS
+test imastack_drizzlewcs {compositage de m57_1 m_57_2 m57_3 m_57_4} -constraints {AUDACE} -setup {
+   #--   recopie les images nécessaires au test
+   set repIn $::conf(testaudela,rep_images)
+   set repOut $::audace(rep_images)
+   file copy -force [file join $repIn m57.fit] [file join $repOut m57_1.fit]
+   file copy -force [file join $repIn m57.fit] [file join $repOut m57_2.fit]
+   file copy -force [file join $repIn m57.fit] [file join $repOut m57_3.fit]
+   file copy -force [file join $repIn m57.fit] [file join $repOut m57_4.fit]
+} -body {
+   #--   clic sur le menu "Images/Combiner/Drizzle WCS..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,pile)" "$::caption(audace,menu,drizzle)..."
+   #--   selectionne m57_1 m57_2 m57_3 m57_4
+   foreach img {m57_1 m57_2 m57_3 m57_4} {
+      ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #--   saisit le nom de sortie
+   set nom_image [file join $repOut drizzle$ext]
+   ::testaudela::putLabelEntry $z.sortie.out $nom_image
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   set result 0
+   if {[file exists $nom_image]} {
+      set result 1
+   }
+} -cleanup {
+   foreach img [list m57_1 m57_2 m57_3 m57_4 drizzle] {
+      file delete [file join $repOut $img.fit]
+   }
+} -result "1"
+
+#--   test IMA/STACK MEAN
+test imastack_moyenne {moyenne de rz_rgbr_8, rz_rgbr_15 et rz_rgbr_30} -constraints {AUDACE} -setup {} -body {
+   #--   clic sur le menu "Images/Combiner/Moyenne..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,pile)" "$::caption(audace,menu,moyenne)..."
+   #--   selectionne rz_rgbr_8 rz_rgbr_15 rz_rgbr_30
+   foreach  img {rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} {
+      ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #-- saisit le nom de sortie
+   set nom_image [file join $rep Comb moyenne$ext]
+   ::testaudela::putLabelEntry $z.sortie.out $nom_image
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   #--   cherche la valeur obtenue
+   mesure set [lrange [buf$bufNo getpix $coords] 1 end]
+   #--   constitue le vecteur des moyennes
+   attendu set [list $red_value(mean) $green_value(mean) $blue_value(mean)]
+   #--   calcule la difference
+   attendu expr {round(attendu-mesure)}
+   #--   nb de differences egale a 1
+   attendu expr {abs(attendu) <= 1.0}
+   set result [llength [attendu search 1]]
+   #--   exposure est bon si la difference est inferieur a 0.001 sec
+   if {[expr {$exposure(mean)-[lindex [buf$bufNo getkwd EXPOSURE] 1]}] < "0.001"} {
+      incr result
+   }
+   return $result
+} -cleanup $CLEANUP -result "4"
+
+#--   test IMA/STACK MED
+test imastack_mediane {mediane de rz_rgbr_8, rz_rgbr_15 et rz_rgbr_30} -constraints {AUDACE} -setup {} -body {
+   #--   clic sur le menu "Images/Combiner/Mediane..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,pile)" "$::caption(audace,menu,mediane)..."
+   #--   selectionne rz_rgbr_8 rz_rgbr_15 rz_rgbr_30
+   foreach  img {rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} {
+      ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #-- saisit le nom de sortie
+   set nom_image [file join $rep Comb mediane$ext]
+   ::testaudela::putLabelEntry $z.sortie.out $nom_image
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   #--   cherche la valeur obtenue
+   mesure set [lrange [buf$bufNo getpix $coords] 1 end]
+   #--   constitue le vecteur des medianes
+   foreach color {red_value green_value blue_value} {
+      temp expr {median($color)}
+      attendu append $temp(0)
+   }
+   #--   calcule la difference
+   attendu expr {round(attendu-mesure)}
+   #--   nb de differences <+-1
+   attendu expr {abs(attendu) <= 1}
+   set result [llength [attendu search 1]]
+   temp expr {median(exposure)}
+   #--   exposure est bon si la difference est inferieur a 0.001 sec
+   if {[expr {$temp(0)-[lindex [buf$bufNo getkwd EXPOSURE] 1]}] < "0.01"} {
+      incr result
+   }
+   return $result
+} -cleanup $CLEANUP -result "4"
+
+#--   IMA/STACK SORT
+test imastack_moyenne_tri_centile {moyenne triee de rz_rgbr_8, rz_rgbr_15 et rz_rgbr_30} -constraints {AUDACE} -setup {}  -body {
+   #--   clic sur le menu "Images/Combiner/Tri centile..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,pile)" "$::caption(audace,menu,moyenne_tri)..."
+   #--   selectionne rz_rgbr_8 rz_rgbr_15 rz_rgbr_30
+   foreach  img {rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} {
+      ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #--   selectionne l'option "Options"
+   ::testaudela::clicCheckButton $z.ttoptions.che 1
+   #--   selectionne l'option "percent"
+   set seuil "50"
+   ::testaudela::putLabelEntry $z.ttoptions.percent $seuil
+   #-- saisit le nom de sortie
+   set nom_image [file join $rep Comb centile$ext]
+   ::testaudela::putLabelEntry $z.sortie.out $nom_image
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   #--   cherche la valeur obtenue
+   mesure set [lrange [buf$bufNo getpix $coords] 1 end]
+   #--   constitue le vecteur de sortie
+   if {$seuil == "100"}  {
+      attendu set [list $red_value(max) $green_value(max) $blue_value(max)]
+   } elseif {$seuil == "0"}  {
+      attendu set [list $red_value(min) $green_value(min) $blue_value(min)]
+   } else {
+      #--   constitue le vecteur des medianes
+      foreach color {red_value green_value blue_value} {
+         temp expr {median($color)}
+         attendu append $temp(0)
+      }
+   }
+   #--   calcule la difference
+   attendu expr {round(attendu-mesure)}
+   #--   nb de differences <+-1
+   attendu expr {abs(attendu) <= 1}
+   set result [llength [attendu search 1]]
+   #--   SORT renvoie EXPOSURE > moyenne(EXPOSURE) 0.087 ????
+   return $result
+} -cleanup $CLEANUP -result "3"
+
+#--   IMA/STACK PROD
+test imastack_produit {produit de rz_rgbr_8, rz_rgbr_15 et rz_rgbr_30 avec powernorm} -constraints {AUDACE} -setup {} -body {
+   #--   clic sur le menu "Images/Combiner/Produit..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,pile)" "$::caption(audace,menu,produit)..."
+   #--   selectionne rz_rgbr_8 rz_rgbr_15 rz_rgbr_30
+   foreach  img {rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} {
+      ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #--   selectionne l'option "Options"
+   ::testaudela::clicCheckButton $z.ttoptions.che 1
+   #--   selectionne l'option "powernorm"
+   ::testaudela::clicCheckButton $z.ttoptions.powernorm 1
+   #-- saisit le nom de sortie
+   set nom_image [file join $rep Comb moyenne_produit$ext]
+   ::testaudela::putLabelEntry $z.sortie.out $nom_image
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   #--   cherche la valeur obtenue
+   mesure set [lrange [buf$bufNo getpix $coords] 1 end]
+   #--   constitue le vecteur des medianes
+   foreach color {red_value green_value blue_value} {
+      temp expr {prod($color)}
+      #--   applique powernorm
+      temp expr {round(temp^(1./3))}
+      attendu append $temp(0)
+   }
+   #--   calcule la difference
+   attendu expr {round(attendu-mesure)}
+   #--   nb de differences <+-1
+   attendu expr {abs(attendu) <= 1}
+   set result [llength [attendu search 1]]
+   #--   exposure est bon si la difference est inferieur a 0.001 sec
+   if {[expr {$exposure(sum)-[lindex [buf$bufNo getkwd EXPOSURE] 1]}] < "0.001"} {
+      incr result
+   }
+   return $result
+} -cleanup $CLEANUP -result "4"
+
+#--   test IMA/STACK SIG
+test imastack_ecart_type {ecart-type de rz_rgbr_8, rz_rgbr_15 et rz_rgbr_30} -constraints {AUDACE} -setup {} -body {
+   #--   clic sur le menu "Images/Combiner/Ecart-type..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,pile)" "$::caption(audace,menu,ecart_type)..."
+   #--   selectionne rz_rgbr_8 rz_rgbr_15 rz_rgbr_30
+   foreach  img {rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} {
+      ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #-- saisit le nom de sortie
+   set nom_image [file join $rep Comb ecart_type$ext]
+   ::testaudela::putLabelEntry $z.sortie.out $nom_image
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+   set t1 [clock milliseconds]
+
+   #--   procedure de controle
+   #--   cherche la valeur obtenue
+   mesure set [lrange [buf$bufNo getpix $coords] 1 end]
+   #--   constitue le vecteur des racines carrees
+   foreach color {red_value green_value blue_value} {
+      temp expr {sdev($color)*sqrt(2./3)}
+      attendu append $temp(0)
+   }
+   #--   calcule la difference
+   attendu expr {round(attendu-mesure)}
+   #--   nb de differences <+-1
+   attendu expr {abs(attendu) <= 1}
+   set result [llength [attendu search 1]]
+   #--   SIG renvoie EXPOSURE=moyenne(EXPOSURE)
+   #--   exposure est bon si la diffrence est inferieur a 0.001 sec
+   if {[expr {abs($exposure(mean)-[lindex [buf$bufNo getkwd EXPOSURE] 1])}] < "0.001"} {
+      incr result
+   }
+   return $result
+} -cleanup $CLEANUP -result "4"
+
+#--   IMA/STACK PYTHAGORE
+test imastack_racine_carree {racine carree de rz_rgbr_8, rz_rgbr_15 et rz_rgbr_30} -constraints {AUDACE} -setup {} -body {
+   #--   clic sur le menu "Images/Combiner/Racine carrée..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,pile)" "$::caption(audace,menu,racine_carree)..."
+   #--   selectionne rz_rgbr_8 rz_rgbr_15 rz_rgbr_30
+   foreach  img {rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} {
+      ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #-- saisit le nom de sortie
+   set nom_image [file join $rep Comb racine_carree$ext]
+   ::testaudela::putLabelEntry $z.sortie.out $nom_image
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   #--   cherche la valeur obtenue
+   mesure set [lrange [buf$bufNo getpix $coords] 1 end]
+   #--   constitue le vecteur des racines carrees
+   foreach color {red_value green_value blue_value} {
+      temp expr {$color^2}
+      attendu append [expr {sqrt($temp(sum))}]
+   }
+   #--   calcule la difference
+   attendu expr {round(attendu-mesure)}
+   #--   nb de differences <+-1
+   attendu expr {abs(attendu) <= 1}
+   set result [llength [attendu search 1]]
+   #--   PYTHAGORE retourne un EXPOSURE=somme(EXPOSURE)
+   #--   exposure est bon si la difference est inferieur a 0.001 sec
+   if {[expr {abs($exposure(sum)-[lindex [buf$bufNo getkwd EXPOSURE] 1])}] < "0.001"} {
+      incr result
+   }
+   return $result
+} -cleanup $CLEANUP -result "4"
+
+#--   test IMA/STACK SK
+#     concordance des intensites R G B constatees avec celles obtenues lors dun run
+test imastack_moyenne_kappa_sigma {moyenne K de rz_rgbr_8, rz_rgbr_15 et rz_rgbr_30} -constraints {AUDACE} -setup {} -body {
+   #--   clic sur le menu "Images/Combiner/Moyenne kappa*sigma..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,pile)" "$::caption(audace,menu,moyenne_k)..."
+   #--   selectionne rz_rgbr_8 rz_rgbr_15 rz_rgbr_30
+   foreach  img {rz_rgbr_8 rz_rgbr_15 rz_rgbr_30} {
+      ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #--   selectionne l'option "kappa"
+   ::testaudela::putLabelEntry $z.funoptions.kappa "0.8"
+   #-- saisit le nom de sortie
+   set nom_image [file join $rep Comb moyenneSK$ext]
+   ::testaudela::putLabelEntry $z.sortie.out $nom_image
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   mesure set [lrange [buf$bufNo getpix $coords] 1 end ]
+   attendu set [list 100 300 0]
+   #--   calcule la difference
+   attendu expr {round(attendu-mesure)}
+   #--   nb de differences
+   attendu expr {attendu == 0}
+   set result [llength [attendu search 1]]
+   if {[lindex [buf$bufNo getkwd EXPOSURE] 1] == "6.89999983e-002"} {incr result}
+   return $result
+} -cleanup $CLEANUP -result "4"
+
+#-----------------------------------------------------------------------------
+#--   Le test a pour entree une liste depareillee de trois images RGB compressees
+#--   les images produites sont stockees dans le repertoire Temp/Com
+#-----------------------------------------------------------------------------
+#--   IMA/STACK SHUTTER :
+#     concordance des intensites R G B constatees avec celles obtenues lors dun run
+test imastack_shutter {shutter de rz_shutter1 rz_shutter2 rz_shutter3} -constraints {AUDACE} -setup {
+   set ::conf(fichier,compres) "1"
+   set coords [list 123 45]
+   foreach file {rz_shutter1 rz_shutter2 rz_shutter3} {
+      file copy -force [file join $::conf(testaudela,rep_images) $file.fit.gz] $::audace(rep_images)
+   }
+} -body {
+   #--   clic sur le menu "Images/Combiner/Obturateur..."
+   ::testaudela::clicMenu $visuNo "$::caption(audace,menu,pile)" "$::caption(audace,menu,obturateur)..."
+   after 1000
+
+   #--   selectionne rz_shutter1 rz_shutter2 rz_shutter3
+   foreach  img {rz_shutter1 rz_shutter2 rz_shutter3} {
+      ::testaudela::clicCheckButton [$w windowpath $img,0] 1
+   }
+   #-- saisit le nom de sortie
+   set nom_image [file join $rep Comb cartographie.fit.gz]
+   ::testaudela::putLabelEntry $z.sortie.out $nom_image
+   #--   clic sur le bouton Appliquer
+   ::testaudela::clicButton $z.cmd.appliquer
+
+   #--   procedure de controle
+   set result 0
+   mesure set [lrange [buf$bufNo getpix $coords] 1 end ]
+   attendu set [list 53.0]
+   if {$attendu(:) eq "$mesure(:)"} {set result "1"}
+   return $result
+} -cleanup {
+   set ::conf(fichier,compres) "0"
+   #--   clic sur le bouton Fermer
+   ::testaudela::clicButton $z.cmd.fermer
+   #---  efface l'image
+   ::confVisu::deleteImage $visuNo
+   set liste [list rz_shutter1 rz_shutter2 rz_shutter3]
+   ttscript2 "IMA/SERIES . \"$liste\" * * \".fit.gz\" . . . . DELETE"
+} -result "1"
+
+#--   test IMA/SERIES DELETE
+test imastack_clean {nettoyage des fichiers} {AUDACE} {
+   #--   detruit les vecteurs
+   ::blt::vector destroy red_value green_value blue_value exposure attendu mesure temp
+   set liste [list rz_rgbr_8 rz_rgbr_15 rz_rgbr_30]
+   ttscript2 "IMA/SERIES . \"$liste\" * * .fit . . . . DELETE"
+   file delete -force $rep
+   return ""
+} ""
+

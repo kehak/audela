@@ -1,0 +1,70 @@
+#
+# Fichier : aud_menu_6.cap
+# Mise à jour $Id: aud_menu_6.cap 7124 2011-04-08 15:48:25Z robertdelmas  $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(audace,menu,acquisition)                  "Camera"
+set caption(audace,menu,aiming)                       "Telescope"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(audace,menu,acquisition)               "Caméra"
+   set caption(audace,menu,aiming)                    "Télescope"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(audace,menu,acquisition)               "Camera"
+   set caption(audace,menu,aiming)                    "Telescopio"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(audace,menu,acquisition)               "Cámara"
+   set caption(audace,menu,aiming)                    "Telescopio"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(audace,menu,acquisition)               "Kamera"
+   set caption(audace,menu,aiming)                    "Teleskop"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(audace,menu,acquisition)               "Câmara"
+   set caption(audace,menu,aiming)                    "Telescópio"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(audace,menu,acquisition)               "Kamera"
+   set caption(audace,menu,aiming)                    "Teleskop"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(audace,menu,acquisition)               "Camera"
+   set caption(audace,menu,aiming)                    "Telescope"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(audace,menu,acquisition)               "Camera"
+   set caption(audace,menu,aiming)                    "Telescope"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

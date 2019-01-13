@@ -1,0 +1,81 @@
+# -----------------------------------------------------------------------------
+# AUDELA DEV
+# -----------------------------------------------------------------------------
+cdaudela
+svn up
+cd src
+make cleanall
+./configure --with-tcl=/usr/lib64 --with-tk=/usr/lib64 --with-ffmpeg --with-tls --enable-threads
+
+make external
+make contrib
+make
+
+# -----------------------------------------------------------------------------
+# MYSQLTCL
+# -----------------------------------------------------------------------------
+cd /srv/develop/audela/bin
+ln -s /opt/tcl/mysqltcl-3.052/libmysqltcl3.052.so libmysqltcl.so
+
+# -----------------------------------------------------------------------------
+# Suite EPROC-3.1
+# -----------------------------------------------------------------------------
+cd /usr/local/src
+# calcpeh
+cd calceph
+svn up
+./configure
+make clean && make 
+sudo make install
+cd ..
+
+cdeproc
+
+### First install -------------------------------------------------------------
+cd thirdparty
+cd fson && make && make install && cd ..
+cd spice-toolkit && ./get_spice-toolkit-gfortran64b.sh && cd ..
+cd pgplot && ./get_pgplot.sh && cd ..
+cd cdsclient && ./get_cdsclient.sh && cd ..
+
+cd /usr/local/src
+
+tar zxvf eproc-3.1/thirdparty/spice-toolkit/spice-toolkit.tgz
+cd spice-toolkit
+TKLINKOPTIONS="-m64" ./makeall.csh
+cd lib && ln -s spicelib.a libspice.a && cd ..
+cd ..
+
+tar zxvf eproc-3.1/thirdparty/cdsclient/cdsclient.tar.gz
+cd cdsclient-?
+./configure 
+make && make install
+cd ..
+
+tar zxvf eproc-3.1/thirdparty/pgplot/pgplot5.2.tar.gz
+mkdir /usr/local/lib/pgplot
+cp eproc-3.1/thirdparty/pgplot/drivers.list /usr/local/lib/pgplot/.
+cp eproc-3.1/thirdparty/pgplot/local.conf /usr/local/lib/pgplot/.
+cd /usr/local/lib/pgplot
+/usr/local/src/pgplot/makemake /usr/local/src/pgplot linux
+# editer le makefile et changer la ligne:
+pndriv.o : ./png.h ./pngconf.h ./zlib.h ./zconf.h
+en
+pndriv.o : /usr/include/png.h /usr/include/pngconf.h /usr/include/zlib.h /usr/include/zconf.h
+# sauver-quitter
+make
+make clean
+cd ..
+ln -s pgplot/libpgplot.so .
+
+cd eproc-3.1
+./configure --without-cdsclient
+make && make install
+
+### Update --------------------------------------------------------------------
+make superclean
+svn up
+./conf/mike.fv
+
+### Test ----------------------------------------------------------------------
+ephemcc aster -n 22/1

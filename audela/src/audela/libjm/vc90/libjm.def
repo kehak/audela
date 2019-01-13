@@ -1,0 +1,4 @@
+LIBRARY libjm
+EXPORTS Jm_Init @1
+
+

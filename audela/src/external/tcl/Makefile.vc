@@ -1,0 +1,127 @@
+CP= copy
+CPDIR= xcopy /s /e /y /f /i
+RM= -@del /f /q
+RD= -@rmdir /s /q
+
+
+_HASH=^#
+_VC_MANIFEST_EMBED_EXE=
+_VC_MANIFEST_EMBED_DLL=
+VCVER=0
+!if ![echo VCVERSION=_MSC_VER > vercl.x] \
+    && ![echo $(_HASH)if defined(_M_IX86) >> vercl.x] \
+    && ![echo ARCH=IX86 >> vercl.x] \
+    && ![echo $(_HASH)elif defined(_M_AMD64) >> vercl.x] \
+    && ![echo ARCH=AMD64 >> vercl.x] \
+    && ![echo $(_HASH)endif >> vercl.x] \
+    && ![cl -nologo -TC -P vercl.x $(ERRNULL)]
+!include vercl.i
+!if ![echo VCVER= ^\> vercl.vc] \
+    && ![set /a $(VCVERSION) / 100 - 6 >> vercl.vc]
+!include vercl.vc
+!endif
+!endif
+!if ![del $(ERRNUL) /q/f vercl.x vercl.i vercl.vc]
+!endif
+
+
+SOURCE_BIN=tcl\bin_vc$(VCVER)
+SOURCE_LIB=tcl\lib_vc$(VCVER)
+SOURCE_INC=tcl\include
+
+EXTERNAL_INCLUDE=..\include
+EXTERNAL_LIB=..\lib
+AUDELA_BIN=..\..\..\bin
+AUDELA_LIB=..\..\..\lib
+
+$(EXTERNAL_INCLUDE)\tcl.h: $(SOURCE_INC)\tcl.h
+   if not exist $(EXTERNAL_INCLUDE)     mkdir $(EXTERNAL_INCLUDE)
+   $(CPDIR) $(SOURCE_INC)\X11               $(EXTERNAL_INCLUDE)\X11   
+   $(CP) $(SOURCE_INC)\itcl.h               $(EXTERNAL_INCLUDE)
+   $(CP) $(SOURCE_INC)\itclDecls.h          $(EXTERNAL_INCLUDE)
+   $(CP) $(SOURCE_INC)\tcl.h                $(EXTERNAL_INCLUDE)
+   $(CP) $(SOURCE_INC)\tclDecls.h           $(EXTERNAL_INCLUDE)
+   $(CP) $(SOURCE_INC)\tclOO.h              $(EXTERNAL_INCLUDE)
+   $(CP) $(SOURCE_INC)\tclOODecls.h         $(EXTERNAL_INCLUDE)
+   $(CP) $(SOURCE_INC)\tclPlatDecls.h       $(EXTERNAL_INCLUDE)
+   $(CP) $(SOURCE_INC)\tclTomMath.h         $(EXTERNAL_INCLUDE)
+   $(CP) $(SOURCE_INC)\tclTomMathDecls.h    $(EXTERNAL_INCLUDE)
+   $(CP) $(SOURCE_INC)\tdbc.h               $(EXTERNAL_INCLUDE)
+   $(CP) $(SOURCE_INC)\tdbcDecls.h          $(EXTERNAL_INCLUDE)
+   $(CP) $(SOURCE_INC)\tk.h                 $(EXTERNAL_INCLUDE)
+   $(CP) $(SOURCE_INC)\tkDecls.h            $(EXTERNAL_INCLUDE)
+   $(CP) $(SOURCE_INC)\tkIntXlibDecls.h     $(EXTERNAL_INCLUDE)
+   $(CP) $(SOURCE_INC)\tkPlatDecls.h        $(EXTERNAL_INCLUDE)
+   $(CP) $(SOURCE_INC)\tommath_class.h      $(EXTERNAL_INCLUDE)
+   $(CP) $(SOURCE_INC)\tommath_superclass.h $(EXTERNAL_INCLUDE)   
+   
+$(AUDELA_BIN)\tcl86t.dll: $(SOURCE_BIN)\tcl86t.dll
+   if not exist $(AUDELA_BIN)           mkdir $(AUDELA_BIN)
+   $(CP) $(SOURCE_BIN)\tcl86t.dll       $(AUDELA_BIN)
+   $(CP) $(SOURCE_BIN)\tk86t.dll        $(AUDELA_BIN)
+
+$(EXTERNAL_LIB)\tcl86t.lib: $(SOURCE_LIB)\tcl86t.lib
+   if not exist $(EXTERNAL_LIB)         mkdir $(EXTERNAL_LIB)
+   $(CP) $(SOURCE_LIB)\itclstub40.lib   $(EXTERNAL_LIB)
+   $(CP) $(SOURCE_LIB)\tcl86t.lib       $(EXTERNAL_LIB)
+   $(CP) $(SOURCE_LIB)\tclstub86.lib    $(EXTERNAL_LIB)
+   $(CP) $(SOURCE_LIB)\tk86t.lib        $(EXTERNAL_LIB)
+   $(CP) $(SOURCE_LIB)\tkstub86.lib     $(EXTERNAL_LIB)   
+   
+$(AUDELA_LIB)\tcl8.6\package.tcl: $(SOURCE_LIB)\tcl8.6\package.tcl
+   $(CPDIR) $(SOURCE_LIB)\dde1.4              $(AUDELA_LIB)\dde1.4 
+   $(CPDIR) $(SOURCE_LIB)\itcl4.0.3           $(AUDELA_LIB)\itcl4.0.3
+   $(CPDIR) $(SOURCE_LIB)\reg1.3              $(AUDELA_LIB)\reg1.3 
+   $(CPDIR) $(SOURCE_LIB)\sqlite33.8.8.3      $(AUDELA_LIB)\sqlite33.8.8.3 
+   $(CPDIR) $(SOURCE_LIB)\tcl8                $(AUDELA_LIB)\tcl8  
+   $(CPDIR) $(SOURCE_LIB)\tcl8.6              $(AUDELA_LIB)\tcl8.6 
+   $(CPDIR) $(SOURCE_LIB)\tdbc1.0.3           $(AUDELA_LIB)\tdbc1.0.3         
+   $(CPDIR) $(SOURCE_LIB)\tdbcmysql1.0.3      $(AUDELA_LIB)\tdbcmysql1.0.3    
+   $(CPDIR) $(SOURCE_LIB)\tdbcodbc1.0.3       $(AUDELA_LIB)\tdbcodbc1.0.3     
+   $(CPDIR) $(SOURCE_LIB)\tdbcpostgres1.0.3   $(AUDELA_LIB)\tdbcpostgres1.0.3 
+   $(CPDIR) $(SOURCE_LIB)\tdbcsqlite1.0.3     $(AUDELA_LIB)\tdbcsqlite1.0.3   
+   $(CPDIR) $(SOURCE_LIB)\thread2.7.2         $(AUDELA_LIB)\thread2.7.2       
+   $(CPDIR) $(SOURCE_LIB)\tk8.6               $(AUDELA_LIB)\tk8.6             
+   
+install: $(EXTERNAL_INCLUDE)\tcl.h $(AUDELA_BIN)\tcl86t.dll $(EXTERNAL_LIB)\tcl86t.lib $(AUDELA_LIB)\tcl8.6\package.tcl
+
+   
+clean:
+   $(RD) $(EXTERNAL_INCLUDE)\x11
+   $(RM) $(EXTERNAL_INCLUDE)\itcl.h               
+   $(RM) $(EXTERNAL_INCLUDE)\itclDecls.h          
+   $(RM) $(EXTERNAL_INCLUDE)\tcl.h                
+   $(RM) $(EXTERNAL_INCLUDE)\tclDecls.h           
+   $(RM) $(EXTERNAL_INCLUDE)\tclOO.h              
+   $(RM) $(EXTERNAL_INCLUDE)\tclOODecls.h         
+   $(RM) $(EXTERNAL_INCLUDE)\tclPlatDecls.h       
+   $(RM) $(EXTERNAL_INCLUDE)\tclTomMath.h         
+   $(RM) $(EXTERNAL_INCLUDE)\tclTomMathDecls.h    
+   $(RM) $(EXTERNAL_INCLUDE)\tdbc.h               
+   $(RM) $(EXTERNAL_INCLUDE)\tdbcDecls.h          
+   $(RM) $(EXTERNAL_INCLUDE)\tk.h                 
+   $(RM) $(EXTERNAL_INCLUDE)\tkDecls.h            
+   $(RM) $(EXTERNAL_INCLUDE)\tkIntXlibDecls.h     
+   $(RM) $(EXTERNAL_INCLUDE)\tkPlatDecls.h        
+   $(RM) $(EXTERNAL_INCLUDE)\tommath_class.h      
+   $(RM) $(EXTERNAL_INCLUDE)\tommath_superclass.h  
+   $(RM) $(AUDELA_BIN)\tcl86t.dll
+   $(RM) $(AUDELA_BIN)\tk86t.dll
+   $(RM) $(EXTERNAL_LIB)\tclstub86.lib
+   $(RM) $(EXTERNAL_LIB)\tkstub86.lib
+   $(RM) $(EXTERNAL_LIB)\tcl86t.lib
+   $(RM) $(EXTERNAL_LIB)\tk86t.lib
+   $(RM) $(EXTERNAL_LIB)\itclstub40.lib 
+   $(RD) $(AUDELA_LIB)\dde1.4              
+   $(RD) $(AUDELA_LIB)\itcl4.0.3            
+   $(RD) $(AUDELA_LIB)\reg1.3               
+   $(RD) $(AUDELA_LIB)\sqlite33.8.8.3       
+   $(RD) $(AUDELA_LIB)\tcl8              
+   $(RD) $(AUDELA_LIB)\tcl8.6            
+   $(RD) $(AUDELA_LIB)\tdbc1.0.3         
+   $(RD) $(AUDELA_LIB)\tdbcmysql1.0.3    
+   $(RD) $(AUDELA_LIB)\tdbcodbc1.0.3     
+   $(RD) $(AUDELA_LIB)\tdbcpostgres1.0.3 
+   $(RD) $(AUDELA_LIB)\tdbcsqlite1.0.3   
+   $(RD) $(AUDELA_LIB)\thread2.7.2       
+   $(RD) $(AUDELA_LIB)\tk8.6             

@@ -1,0 +1,109 @@
+files.o: ../src/files.c ../src/files.h ../../../include/sysexp.h \
+ ../src/libfiles.h ../src/tt.h ../src/libtt.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+fs_fsio1.o: ../src/fs_fsio1.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+fs_fsio2.o: ../src/fs_fsio2.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+fs_macr1.o: ../src/fs_macr1.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+fs_macr2.o: ../src/fs_macr2.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+fs_macr3.o: ../src/fs_macr3.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+fs_macr4.o: ../src/fs_macr4.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt.o: ../src/tt.c ../src/tt.h ../../../include/sysexp.h ../src/libtt.h \
+ ../src/files.h ../src/libfiles.h ../src/tt_user1.h ../src/tt_user2.h \
+ ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_fits1.o: ../src/tt_fits1.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_fits2.o: ../src/tt_fits2.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_fits3.o: ../src/tt_fits3.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_fits4.o: ../src/tt_fits4.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_fits5.o: ../src/tt_fits5.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_fsio2.o: ../src/tt_fsio2.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_poin1.o: ../src/tt_poin1.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_poin2.o: ../src/tt_poin2.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_scri1.o: ../src/tt_scri1.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_seri1.o: ../src/tt_seri1.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_seri2.o: ../src/tt_seri2.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_seri3.o: ../src/tt_seri3.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_seri4.o: ../src/tt_seri4.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h \
+ ../src/focas.h
+tt_seri5.o: ../src/tt_seri5.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_seri6.o: ../src/tt_seri6.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_stac1.o: ../src/tt_stac1.c ../src/libtt.h ../src/tt.h \
+ ../../../include/sysexp.h ../src/files.h ../src/libfiles.h \
+ ../src/tt_user1.h ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h \
+ ../src/tt_user5.h
+tt_stac2.o: ../src/tt_stac2.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_time1.o: ../src/tt_time1.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_user1.o: ../src/tt_user1.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_user2.o: ../src/tt_user2.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_user3.o: ../src/tt_user3.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_user4.o: ../src/tt_user4.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h \
+ ../src/focas.h
+tt_user5.o: ../src/tt_user5.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_util1.o: ../src/tt_util1.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_util2.o: ../src/tt_util2.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h
+tt_util3.o: ../src/tt_util3.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h \
+ ../src/focas.h
+tt_util4.o: ../src/tt_util4.c ../src/tt.h ../../../include/sysexp.h \
+ ../src/libtt.h ../src/files.h ../src/libfiles.h ../src/tt_user1.h \
+ ../src/tt_user2.h ../src/tt_user3.h ../src/tt_user4.h ../src/tt_user5.h

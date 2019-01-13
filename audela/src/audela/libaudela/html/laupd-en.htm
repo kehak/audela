@@ -1,0 +1,272 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+                                                        
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+                                                        
+  <meta name="Author" content="Alain Klotz">
+                                                        
+  <meta name="GENERATOR"
+ content="Mozilla/4.75 [fr] (Win98; U) [Netscape]">
+  <title>Librairie AudeLA : calendrier des modifications</title>
+</head>
+  <body>
+                            
+<center>              
+<h1> libaudela</h1>
+             </center>
+                            
+<center>              
+<p>a Tcl extension library for astronomy <br>
+             update 20031128</p>
+             </center>
+                               
+<center>              
+<h1> Diary of updates</h1>
+             </center>
+                           
+<h3> </h3>
+                   
+<h3> </h3>
+                 
+<h4>  </h4>
+               
+<h3>2003-11-28 :</h3>
+                              
+<ul>
+  <li>Add the third order possibility of calculation for "buf1 xy2radec" 
+and "buf1 radec2xy" if PV* keywords are presents in the FITS header.<br>
+     </li>
+  <li>Few orrections in &nbsp;function CmdPortTalk in libstd.cpp suggested
+by R. Petitdemange and J. Michelet.</li>
+  <li>All strings are resized to 1000 characters in buf_tcl.cpp.</li>
+</ul>
+<h3>2003-11-11 :</h3>
+                             
+<ul>
+   <li>Add the new function "buf1 save3d" that splits a 2D image into a 3D 
+image. Naxis3 value is a parameter and the naxis2 is splited.</li>
+   <li>Add the new function "visu1 disp2buf" that creates a buffer from the 
+image displayed.<br>
+   </li>
+ 
+</ul>
+ 
+<h3>2003-11-09 :</h3>
+                            
+<ul>
+    <li>Add the new function "fitsheader" that returns a list of keywords 
+and ther values in a header of a FITS file.</li>
+    <li>Add the new function "fitsconvert3d" that converts a series of FITS
+ files 2D (naxis1, naxis2) into only one FITS file 3D (naxis1, naxis2, naxis3).</li>
+    <li>Correction of a bug of number of arguments in the function "buf1
+load3d".<br>
+     </li>
+   
+</ul>
+   
+<h3>2003-10-30 :</h3>
+                             
+<ul>
+     <li>Add the second order possibility of calculation for "buf1 xy2radec" 
+ and "buf1 radec2xy" if PV* keywords are presents in the FITS header.<br>
+     </li>
+     <li>Correction of a bug when no arguments lie after ttscript2 function.<br>
+     </li>
+     
+</ul>
+     
+<h3>2003-10-25 :</h3>
+                            
+<ul>
+      <li>Add a NULL pointer test on pix and p_ast pointers in functions
+CBuffer::xy2radec   and CBuffer::radec2xy in buffer_tcl.cpp.<br>
+       </li>
+       
+</ul>
+         
+<h3>2003-10-19 :</h3>
+                            
+<ul>
+      <li>Add the new function "buf1porttalk" to use the included porttalk
+ librarie  for Win32. Create function CmdPortTalk in libstd.cpp. Modify the
+ project file for Win32 compilation. (made by Michel Pujol)<br>
+      </li>
+       
+</ul>
+       
+<h3>2003-08-30 :</h3>
+                           
+<ul>
+       <li>Add the new function "buf1 load3d" to load a plane or all the
+planes   of an image defined with NAXIS=3. Create functions CBuffer::Load3d
+and cmdLoad3d   in buffer_tcl.cpp.<br>
+       </li>
+         
+</ul>
+         
+<h3>2003-07-29 :</h3>
+                          
+<ul>
+        <li>Add new values for "visu1 zoom". One can now use 0.125, 0.25, 
+0.5,   1, 2, 4 and 8. Corrections in the function CVisu::UpdateDisplay, CVisu::SetZoom,
+   CVisu::GetZoom in &nbsp;cvisu.cpp and cmdVisuZoom in visu_tcl.cpp.<br>
+        </li>
+           
+</ul>
+           
+<h3>2003-07-04 :</h3>
+                          
+<ul>
+         <li>Corrections in the function&nbsp;CBuffer::Load and CBuffer::Save(file 
+   cbuffer.cpp). Freeing of pointer of libtt are properly done when an error 
+   occur.<br>
+         </li>
+             
+</ul>
+             
+<h3>2003-07-02 :</h3>
+                         
+<ul>
+          <li>Minor correction in the function CmdHostaddress (file libstd.cpp).<br>
+          </li>
+               
+</ul>
+               
+<h3>2003-02-28 :</h3>
+                         
+<ul>
+           <li>A new function "buf1 A_starlist" written by Bogumil and Dorota 
+  (Poland)   is implanted.<br>
+          </li>
+                 
+</ul>
+                 
+<h3>2003-02-17 :</h3>
+                        
+<ul>
+            <li> Many obsolete source files are destroyed, mainly for camera
+  and   telescope  internal drivers. From now, all drivers of cam or tel
+must   be  externals. Following source files were destroyed : caudine.cpp,
+ccamera.cpp,    chisis11.cpp, chisis22.cpp,&nbsp;chisis24.cpp, clx200.cpp,
+couranos.cpp,   csercom.cpp, cst7.cpp, ctelesc.cpp, cultima.cpp, robert.cpp,
+angles.cpp,  animate.cpp, ephem.cpp. Following source files were modified
+: pool_tcl.cpp,  libstd.cpp, tel_tcl.cpp, cam_tcl.cpp.</li>
+            <li>A bug of sleep function for Linux compilation was corrected 
+ in  the   ping.cpp source file.<br>
+            </li>
+                   
+</ul>
+                     
+<h3>2003-02-11 :</h3>
+                        
+<ul>
+             <li> Modification of keywords of astrometry in the file cbuffer.cpp.</li>
+                     
+</ul>
+                     
+<h3>2002-12-30 :</h3>
+                       
+<ul>
+              <li> Add function ping (libstd.cpp).</li>
+              <li>Add function hostaddress (libstd.cpp).</li>
+                       
+</ul>
+                         
+<h3>2002-10-17 :</h3>
+                         
+<ul>
+               <li>Modifications in the management of FITS values, espacialy
+  for   float   and double types. This was necessary to compute astrometric
+  transformations.     Files modified are : fitskw.cpp, buf_tcl.cpp, cbuffer.cpp
+  and cbuffer.h.<br>
+               </li>
+                         
+</ul>
+                         
+<h3>2002-09-01 :</h3>
+                            
+<ul>
+              <li> Correction in error messages. In libstd.cpp, function
+message,     EFITSKW_NO_KWDS   was raplaced ELIBSTD_NO_KWDS. Cases concerning
+ELIBSTD_INTERNAL_INVALID_ARG0,        ELIBSTD_NO_SUCH_KWD were deleted. Every
+EFITSKW_NO_KWDS were replaced    by   ELIBSTD_NO_KWDS in the file buf_tcl.cpp.</li>
+                           
+</ul>
+                            
+<h3> 2002-08-26 :</h3>
+                            
+<ul>
+              <li> An option is added to the "buf1 fitgauss" function. This 
+ option    is  ?-fwhmx value -fwhmy? allow to constraint the fwhms'values 
+to fixed  values.   Modifications were made in buf_tcl.cpp, cbuffer.cpp and 
+in cbuffer.h.</li>
+                           
+</ul>
+                            
+<h3> 2002-08-24 :</h3>
+                            
+<ul>
+              <li> Many files were modified to be loaded with Tcl/Tk8.3.</li>
+                           
+</ul>
+                            
+<h3> 2002-04-19 :</h3>
+                            
+<ul>
+              <li> Debug of "DLL" mode of libaudela. File thread.cpp was
+modified.</li>
+                           
+</ul>
+                            
+<h3> 2002-01-14 :</h3>
+                            
+<ul>
+              <li> Debug of "DLL" mode of libaudela. There was a character
+ string    too   short in the error manager when the thread was created for
+ Tcl/Tk.   Files  ccamera.cpp, cam_tcl.cpp and thread.cpp were modified.</li>
+                           
+</ul>
+                            
+<h3> 2001-12-19 :</h3>
+                            
+<ul>
+              <li> Function "buf1 photom" is added in the buf_tcl.cpp file. 
+ Methods     circle  and square were implemented.</li>
+               <li> Function "combit" is added in the libstd.cpp file. It 
+allow    to  read  or write bits on serial port com1 &amp; 2 of PCs.</li>
+                           
+</ul>
+                            
+<h3> 2001-12-09 :</h3>
+                            
+<ul>
+              <li> Somes bugs concerning libaudela.dll were corrected in
+the   thread.cpp     file.</li>
+                           
+</ul>
+                            
+<h3> 2001-11-27 :</h3>
+                            
+<ul>
+              <li> Somes bugs concerning Tcl_Free were corrected in the buf_tcl.cpp 
+     file.</li>
+                           
+</ul>
+               <br>
+             <br>
+            <br>
+           <br>
+          <br>
+         <br>
+        <br>
+       <br>
+      <br>
+     <br>
+    <br>
+   <br>
+  <br>
+ <br>
+</body>
+</html>

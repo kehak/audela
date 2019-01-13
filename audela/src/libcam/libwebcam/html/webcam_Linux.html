@@ -1,0 +1,131 @@
+<HTML> <HEAD> <TITLE>Webcam under Linux</TITLE> </HEAD> <BODY LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff">  <P><HR color=blue>  <P></P> <FONT SIZE=5 COLOR="#ff0000"><B><P ALIGN="center">libwebcam </FONT><FONT SIZE=5>- Linux additional commands for Philips compatible  webcams</P></FONT></B><P><HR color=blue>  <P></P> <FONT SIZE=4><P>Linux implementation is based on </FONT><FONT SIZE=4 COLOR="#ff0000"><B>v4l</B> </FONT><FONT SIZE=4>interface and<B> </FONT><FONT SIZE=4 COLOR="#ff0000">pwc </FONT></B><FONT SIZE=4>and </FONT><FONT SIZE=4 COLOR="#ff0000"><B>pwcx</B> </FONT><FONT SIZE=4>modules, it supports some cameras:</P>  <UL> <LI><B>Philips WebCams</B> : PCA 645VC, PCA 646VC, PCVC    675K, PCVC 680K, PCVC 690K, PCVC 720K/40, PCVC 730K, PCVC 740K, PCVC 750K     <LI><B>Askey </B>VC010  <LI><B>Creative Labs Webcam </B>5, Pro Ex  <LI><B>Logitech QuickCam </B>3000 Pro, 4000 Pro,    Notebook Pro, Zoom,  <LI><B>Samsung </B>MPC-C10, MPC-C30  <LI><B>Sotec Afina Eye     <LI>Visionite </B>VCS UM100, VCS UC300 </LI></UL>  <P>More information about <B>Linux webcams </B>and <B>pwc </B>modules you can find on: <BR></FONT><A href="http://www.smcc.demon.nl/webcam/"><FONT SIZE=4>http://www.smcc.demon.nl/webcam/</FONT></A><FONT SIZE=4></P> <B><P>libwebcam</B> requires <B>pwc</B> module version<FONT color=#ff0000><B> &gt;= 
+8.8</B>&nbsp;<FONT color=#000000> (image 
+grabber&nbsp;works with lower <B>pwc</B> versions 
+but&nbsp;<B>camera setup - </B><B>cam1 
+videosource -</B>&nbsp;doesn't). There is a&nbsp; <B>pwc</B> module version<FONT color=#ff0000><B> &gt;= 
+8.8</B></FONT>  in <B> Linux 
+kernel</B> &gt;= <B>2.4.21 </B>  - you may download&nbsp;it&nbsp;from <A 
+href="http://www.kernel.org">www.kernel.org</A>.
+</FONT></FONT></P><P>&nbsp;</P>
+<P><B>How to compile the kernel?</B></P>
+<UL dir=ltr style="MARGIN-RIGHT: 0px">
+  <LI>extract the kernel <SPAN lang=EN-GB 
+  style="FONT-SIZE: 13.5pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-GB; mso-fareast-language: PL; mso-bidi-language: AR-SA">archive 
+  </SPAN>    (login as root first): 
+  <UL>
+    <LI><FONT face=Courier>&gt; su -</FONT>
+    <LI><FONT face=Courier>&gt; cd /usr/src</FONT>
+    <LI><FONT face=Courier>&gt; tar -zxvf 
+path/linux-2.4.XX.tar.gz</FONT></LI></UL>
+  <LI>kernel configuration (XX - kernel version): 
+  <UL>
+    <LI><FONT face=Courier>&gt; cd linux-2.4.XX</FONT>
+    <LI><FONT face=Courier>&gt; make xconfig</FONT> (or <FONT face=Courier>make 
+    menuconfig</FONT>) 
+    <LI><SPAN lang=EN-GB 
+    style="FONT-SIZE: 13.5pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-GB; mso-fareast-language: PL; mso-bidi-language: AR-SA">parallel 
+    </SPAN> port 
+    <UL>
+      <LI>in "<B>Parallel port support</B>" 
+      section say <B>y</B> (or <B>m</B>) for: 
+      <UL>
+      <LI><EM>"Parallel port support"</EM>
+      <LI><EM>"PC-style <SPAN 
+        lang=EN-GB 
+        style="FONT-SIZE: 13.5pt; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-GB; mso-fareast-language: PL; mso-bidi-language: AR-SA">hardware</SPAN> "</EM></LI></UL>
+      <LI>in <B>"Character devices" </B>section 
+      say <B>m</B> (or <B>y</B>) for: 
+      <UL>
+      <LI><EM>"Support for user-space parallel port 
+        device drivers"</EM></LI></UL> </LI></UL>
+    <LI>  <B>Philips webcams</B> and 
+    <B>USB</B>&nbsp;(please check also on <FONT color=#0000ff><A 
+    href="http://www.smcc.demon.nl/webcam/">www.smcc.demon.nl/webcam/</A></FONT><FONT 
+    color=#000000>)</FONT>
+    <UL>
+      <LI>in "<B>Multimedia devices</B>" section 
+      say <B>m</B> (or <B>y</B>) for: 
+      <UL>
+      <LI><EM>"Video For Linux"</EM></LI></UL>
+      <LI>in "<B>USB support</B>" section say 
+      <B>m</B> (or <B>y</B>) for: 
+      <UL>
+      <LI><EM>"Support for USB"</EM> 
+        (<B>y</B>) 
+ 
+      <LI><EM>"UHCI support"</EM>
+      <LI><EM>"OHCI support"</EM>
+      <LI><EM>"USB Philips Cameras" 
+        </EM>(<B>pwc</B> module)</LI></UL> </LI></UL>
+    <LI>how to configure others options&nbsp;please see 
+    README and kernel documentation
+    <LI>"<B>Save and Exit</B> " kernel <SPAN lang=EN-GB 
+    style="FONT-SIZE: 13.5pt; FONT-FAMILY: 'Times New Roman'; mso-fareast-font-family: 'Times New Roman'; mso-ansi-language: EN-GB; mso-fareast-language: PL; mso-bidi-language: AR-SA">configuration</SPAN>        .</LI></UL>
+  <LI>compile the kernel (it will take a few minutes): 
+  <UL>
+    <LI><FONT face=Courier>&gt; make dep bzImage modules 
+    modules_inastall</FONT></LI></UL>
+  <LI>copy <B>bzImage</B> to <B>/boot</B> and configure your boot loader 
+  (files: <B>/etc/lilo.conf</B> or 
+  <B>/boot/grub/grub.conf</B>): 
+  <UL>
+    <LI><FONT face=Courier>&gt; cp 
+    arch/i386/boot/bzImage /boot/vmlinuz-2.4.XX</FONT>
+    <LI>how to configure your boot loader please check on 
+    man pages 
+    <UL>
+    <LI><FONT face=Courier>&gt; man lilo.conf 
+      </FONT><FONT face="Times New Roman">(before rebooting run: <FONT 
+      face=Courier>/sbin/lilo</FONT>)</FONT>
+    <LI><FONT face=Courier>&gt; man 
+grub</FONT></LI></UL>         
+     </LI></UL>
+  <LI><B>reboot</B> and start 
+  with&nbsp;new kernel 
+  <UL>
+  <LI><FONT face=Courier>&gt; reboot</FONT>    </LI></UL>    </LI></UL>
+  <P dir=ltr>     &nbsp;</P>
+  <P dir=ltr><B>How to load&nbsp;the 
+modules?</B>     </P>
+<UL dir=ltr>
+  <LI>
+  <DIV>login as     root</DIV>
+  <UL>
+    <LI>
+    <DIV><FONT face=Courier>&gt; su -</FONT></DIV></LI></UL>
+  <LI>
+  <DIV><B>pwc</B> and <B>pwcx</B> modules</DIV>
+  <UL>
+    <LI>
+  <DIV>copy your&nbsp;<B>pwcx</B> module 
+    (download it from <A 
+    href="http://www.smcc.demon.nl/webcam/">www.smcc.demon.nl/webcam/</A>     )</DIV>
+    <UL>
+      <LI>
+  <DIV><FONT face=Courier>&gt; cp path/pwcx-i386.o 
+      /lib/modules/2.4.XX/kernel/drivers/usb/pwcx.o </FONT>     </DIV>
+      <LI>
+      <DIV><FONT face=Courier>&gt; depmod</FONT></DIV></LI></UL>
+    <LI>
+    <DIV>load the modules</DIV>
+    <UL>
+      <LI>
+      <DIV><FONT face=Courier>&gt; modprobe usb-ohci </FONT></DIV>
+      <LI>
+      <DIV><FONT face=Courier>&gt; modprobe pwc compression=0 </FONT></DIV>
+      <LI>
+      <DIV><FONT face=Courier>&gt; insmod -f pwcx </FONT></DIV>
+      <LI>
+      <DIV>you can also use <B><FONT face=Courier>pwc</FONT></B> 
+      script from <FONT 
+  face=Courier>.../dev/libwebcam/linux</FONT></DIV></LI></UL></LI></UL>
+  <LI>
+  <DIV><B>ppdev</B> and <B>parport, parport_pc 
+  </B>modules</DIV>
+  <UL>
+    <LI>
+    <DIV><FONT face=Courier>&gt; modprobe ppdev</FONT></DIV></LI></UL></LI></UL></FONT><P><HR color=blue>  <P></P> <FONT SIZE=5 color=#800000><P>Additional commands and options:</FONT><FONT SIZE=4></P> <B><P>::cam::create webcam usb ?options?  </B></P> <BLOCKQUOTE style="MARGIN-RIGHT: 0px">   <P>New options: </FONT></P>   <UL>     <LI><FONT color=#800000 size=4><B>-lpport      </B>port_name</FONT><FONT SIZE=4> - <B>port_name </B>is name of <B>parport</B> device, default is <B>/dev/parport0</B>. Before setting long exposure (only for&nbsp;modified webcams, controlled by parallel port) you need to load <B>parport, parport_pc </B>and <B>ppdev</B> modules or&nbsp;your <B>kernel module autoloader </B>do it automatically, check also if you have access permission (<B>rw</B>) for <B>/dev/parport0</B>. Unfortunately&nbsp;there are some problems with controlling parallel port&nbsp;under Linux on some <B>ECS</B> main boards (<B>K7S5A, K7S5AL, ...</B>).</FONT><FONT SIZE=4 COLOR="#800000">     <LI>-<B>webcamdevice </B>device_name</FONT><FONT SIZE=4> – <B>device_name </B>is name of <B>v4l</B> device, default is <B>/dev/video0.</B>     <LI>-</FONT><FONT SIZE=4 COLOR="#800000"><B>validframe </B>number</FONT><FONT SIZE=4> - <B>pwc </B>kernel module has some buffers,      so&nbsp;when you take long exposure you&nbsp;need to find which buffer      contains your frame. This parameter says which frame is&nbsp;a valid      frame&nbsp;(how many read() calls), if is 0&nbsp;auto detection is performed      (less then 20 read() calls).&nbsp;Default value:  3. </LI></UL></BLOCKQUOTE>  <P><B>cam1 videosource </P></B><BLOCKQUOTE>Shows <B>VideoSource </B>dialog where you&nbsp;set some webcam parameters, like: <B>shutter speed, brightens </B>etc. </BLOCKQUOTE> <P><B>cam1 videoformat</B> </P> <BLOCKQUOTE>Shows <B>VideoFormat</B>&nbsp;dialog where you set picture size. </BLOCKQUOTE> <P><B>cam1 validframe ?number?</B> </P> <B><BLOCKQUOTE>pwc </B>kernel module has some buffers, so&nbsp;when you take long exposure you&nbsp;need to find which buffer contains your frame.&nbsp;<B>Number</B> parameter says 
+  which frame is&nbsp;a valid frame&nbsp;(how many read() calls), if is 
+  0&nbsp;auto detection is performed (less then 20 read() calls). Without 
+  parameter current setting is returned. </BLOCKQUOTE> <P><B>cam1 getvideosource options</B> </P> <BLOCKQUOTE>Returns current camera setting asked by <B>option</B>. Possible options: </BLOCKQUOTE> <UL>   <UL></FONT><FONT SIZE=4 COLOR="#800000"></UL></UL> <BLOCKQUOTE style="MARGIN-RIGHT: 0px">   <UL><LI>-restoreUser</FONT><FONT SIZE=4> - restore user settings</FONT><FONT SIZE=4 COLOR="#800000"><LI>-restoreFactory</FONT><FONT SIZE=4> - restore factory defaults  </FONT><FONT SIZE=4 COLOR="#800000"><LI>-picSettings</FONT><FONT SIZE=4> - returns: <B>brightness contrast colour whiteness</B> </FONT><FONT SIZE=4 COLOR="#800000"><LI>-gain<LI>-sharpness<LI>-shutter</FONT><FONT SIZE=4>&nbsp;- returns shutter speed  </FONT><FONT SIZE=4 COLOR="#800000"><LI>-noise<LI>-compression<LI>-whiteBalance</FONT><FONT SIZE=4> - returns: <B>whiteBalanceMode redLevel blueLevel</B> </FONT><FONT SIZE=4 COLOR="#800000"><LI>-backlight<LI>-flicker </LI></UL></FONT><FONT SIZE=4>For&nbsp;more info&nbsp;see </FONT><A href="http://www.smcc.demon.nl/webcam/api.html"><FONT SIZE=4>Philips USB webcam API.</FONT></A><FONT SIZE=4> </BLOCKQUOTE> <P><B>cam1 setvideosource options option_value</B> </P> <BLOCKQUOTE>Set camera setting given by <B>option value.</B> Possible options:</BLOCKQUOTE> <UL>   <UL></FONT><FONT SIZE=4 COLOR="#800000"></UL></UL> <BLOCKQUOTE style="MARGIN-RIGHT: 0px">   <UL><LI><B>-saveUser</B></FONT><FONT SIZE=4>      - writes the current brightness, contrast, colour and whiteness (gamma)      settings into the camera's internal EEPROM</FONT><FONT SIZE=4 COLOR="#800000"><LI><B>-picSettings</B> brightness contrast colour whiteness  </FONT><FONT SIZE=4 COLOR="#800000">    <LI><B>-gain</B> gainLevel    <LI><B>-sharpness</B>      sharpnesLevel     <LI><B>-shutter</B> shutterSpeed     <LI><B>-noise</B>      noiseReductionLevel<LI><B>-compression</B>      comperssionLevel<LI><B>-whiteBalance</B>      whiteBalanceMode ?redLevel? ?blueLevel? </FONT><FONT SIZE=4><br>     White balance modes:      <UL><LI>"manual" redLevel blueLevel </LI></UL>     <UL><LI>"indoor" </LI></UL>     <UL><LI>"outdoor" </LI></UL>     <UL><LI>"auto" </LI></UL>     <UL><LI>"fl"</LI></UL>  </FONT><FONT SIZE=4 COLOR="#800000"><LI><B>-backlight</B> 0|1<LI><B>-flicker</B> 0|1</LI></UL></FONT><FONT SIZE=4>For&nbsp;more info&nbsp;see </FONT><A href="http://www.smcc.demon.nl/webcam/api.html"><FONT SIZE=4>Philips USB webcam API.</FONT></A><FONT SIZE=4> </BLOCKQUOTE> <P><B>cam1 getvideoformat</P></B><BLOCKQUOTE>Returns video format and picture size: <B>format_name sizeX</FONT><FONT SIZE=4 COLOR="#ff0000">x</FONT><FONT SIZE=4>sizeY</B></BLOCKQUOTE> <P><B>cam1 setvideoformat format_name</B></P> <BLOCKQUOTE style="MARGIN-RIGHT: 0px"><P>Set video format (picture size), possible format names 
+  and its sizes:</FONT>          </P>   <UL><LI><FONT SIZE=4 COLOR="#800000">SQCIF</FONT><FONT SIZE=4> -      128x96&nbsp;  </FONT><LI><FONT SIZE=4 COLOR="#800000">QSIF</FONT><FONT SIZE=4> -      160x120&nbsp;  </FONT><LI><FONT SIZE=4 COLOR="#800000">QCIF</FONT><FONT SIZE=4> - 176x144       </FONT><LI><FONT SIZE=4 COLOR="#800000">SSIF</FONT><FONT SIZE=4> - 240x176       </FONT><LI><FONT SIZE=4 COLOR="#800000">SIF</FONT><FONT SIZE=4> - 320x240       </FONT><LI><FONT SIZE=4 COLOR="#800000">CIF</FONT><FONT SIZE=4> - 352x288       </FONT><LI><FONT SIZE=4 COLOR="#800000">VGA</FONT><FONT SIZE=4>         - 640x480</LI></UL></BLOCKQUOTE>  <P><B>cam1 longueposeport ?port_name?</B> </P> <BLOCKQUOTE>Set or return long exposure <B>device name</B>, see&nbsp;<B>::cam::create</B> options.</BLOCKQUOTE></FONT></BODY> </HTML> 

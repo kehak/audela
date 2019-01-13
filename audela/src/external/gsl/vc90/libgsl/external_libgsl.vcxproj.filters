@@ -1,0 +1,1463 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\blas">
+      <UniqueIdentifier>{738371c8-5fca-420b-b80e-c6b634a0c5f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\block">
+      <UniqueIdentifier>{6b7c22a5-3cf1-4cd4-8f03-ecd361e9022f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cblas">
+      <UniqueIdentifier>{374cbf89-300b-4709-a9fb-7add94828f9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cdf">
+      <UniqueIdentifier>{340c33ef-9cad-4f9c-bc90-4b82ceee0d13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cheb">
+      <UniqueIdentifier>{f262c035-ffbc-4e0e-8df9-727b61962356}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\combination">
+      <UniqueIdentifier>{3298f683-2f02-45e8-b518-a40afaf04c85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\complex">
+      <UniqueIdentifier>{45467475-1417-4fc9-bc2e-fc5e77d46a9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\deriv">
+      <UniqueIdentifier>{326dcf3e-45f3-4b60-bac5-fd6d13fe5e14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\dht">
+      <UniqueIdentifier>{c4ab2bd1-bb26-478e-97d8-c4340b156d32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\diff">
+      <UniqueIdentifier>{0aa013af-3604-4832-b74e-38385ce4e258}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\eigen">
+      <UniqueIdentifier>{a44fc845-fb5d-45c1-afff-46c3fb0dbba0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\err">
+      <UniqueIdentifier>{6c012ff5-a130-40dc-8c9b-0859718b8f0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\fft">
+      <UniqueIdentifier>{7827a5f1-fe21-4421-9aee-07c2c0875432}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\fit">
+      <UniqueIdentifier>{1b1d2718-f7b4-434a-9eef-b3ea7dab630b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\histogram">
+      <UniqueIdentifier>{08f0359c-6644-4bf4-82dc-075604d0d0c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ieee-utils">
+      <UniqueIdentifier>{c921900b-7f7c-4994-80f0-a66db14c4e77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\integration">
+      <UniqueIdentifier>{6771dae7-1f21-4d74-bf26-604584cdacf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\interpolation">
+      <UniqueIdentifier>{6c226e9c-d0d1-43e3-8501-20fac8ff726a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\linalg">
+      <UniqueIdentifier>{3bcfe2ad-9fa9-4821-a02b-058979b26a5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\matrix">
+      <UniqueIdentifier>{7365575e-6f1a-4bc0-aaf7-582abd9a9ec4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\min">
+      <UniqueIdentifier>{bbb680c6-0950-4bd5-96a7-3b5c9caa6d24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\monte">
+      <UniqueIdentifier>{a2a64847-80ab-40d7-8fbb-4e38b6341b32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\multifit">
+      <UniqueIdentifier>{22f2a471-8de7-40e9-a6bd-a269f4679611}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\multimin">
+      <UniqueIdentifier>{79e7c83c-e146-4d46-9692-6d936c41f527}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\multiroots">
+      <UniqueIdentifier>{89cf2bdc-c028-4bf0-917d-64fa0a7afd42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ntuple">
+      <UniqueIdentifier>{163cbdae-41b3-4139-beb3-b585a8183925}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ode-initval">
+      <UniqueIdentifier>{560b59c8-b101-4a4e-8e67-5f5922e33d56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\permutation">
+      <UniqueIdentifier>{04ee5ba7-fa15-4c59-82c0-3525f63bdf86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\poly">
+      <UniqueIdentifier>{85728087-adcd-4fc9-8c77-d0d3f9d515df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\qrng">
+      <UniqueIdentifier>{0a78f19d-3ad6-4cae-abb1-7cb685fafebc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\randist">
+      <UniqueIdentifier>{16939a0f-de10-412c-bf7d-062ca3844bc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\rng">
+      <UniqueIdentifier>{8dd944fd-d6e2-4606-82e5-ea128970e001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\roots">
+      <UniqueIdentifier>{fb690c73-b050-47ac-9dbf-8181a9c969e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\siman">
+      <UniqueIdentifier>{0868b776-a23c-49e1-85d2-47b529f3db02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sort">
+      <UniqueIdentifier>{63bf98a7-0f5b-4319-a238-e464fcbc92e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\specfunc">
+      <UniqueIdentifier>{1d856613-ff19-406b-90db-a86362b5d2e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\statistics">
+      <UniqueIdentifier>{c65fae38-2e8d-4b77-a951-d791efe28d89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sum">
+      <UniqueIdentifier>{cd432571-0288-4b6e-8913-bbe7c758ed61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sys">
+      <UniqueIdentifier>{385f82ce-a840-4a13-98c7-0eaa099511f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\test">
+      <UniqueIdentifier>{fff497c4-06d9-41d3-9454-be9bc8e87bc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{6e4438de-1049-4391-adb1-4c618a215fec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\vector">
+      <UniqueIdentifier>{aa37a135-fbe7-48ff-97af-df97f0ad545f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\wavelet">
+      <UniqueIdentifier>{20a95902-a7f4-49e6-899d-ee0bc4b215f9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\gsl-1.8\blas\blas.c">
+      <Filter>Source Files\blas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\block\block.c">
+      <Filter>Source Files\block</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\block\file.c">
+      <Filter>Source Files\block</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\block\init.c">
+      <Filter>Source Files\block</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\beta.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\betainv.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\binomial.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\cauchy.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\cauchyinv.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\chisq.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\chisqinv.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\exponential.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\exponentialinv.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\exppow.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\fdist.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\fdistinv.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\flat.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\flatinv.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\gamma.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\gammainv.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\gauss.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\gaussinv.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\geometric.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\gumbel1.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\gumbel1inv.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\gumbel2.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\gumbel2inv.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\hypergeometric.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\laplace.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\laplaceinv.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\logistic.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\logisticinv.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\lognormal.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\lognormalinv.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\nbinomial.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\pareto.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\paretoinv.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\pascal.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\poisson.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\rayleigh.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\rayleighinv.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\tdist.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\tdistinv.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\weibull.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cdf\weibullinv.c">
+      <Filter>Source Files\cdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cheb\deriv.c">
+      <Filter>Source Files\cheb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cheb\eval.c">
+      <Filter>Source Files\cheb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cheb\init.c">
+      <Filter>Source Files\cheb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\cheb\integ.c">
+      <Filter>Source Files\cheb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\combination\combination.c">
+      <Filter>Source Files\combination</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\combination\file.c">
+      <Filter>Source Files\combination</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\combination\init.c">
+      <Filter>Source Files\combination</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\complex\math.c">
+      <Filter>Source Files\complex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\deriv\deriv.c">
+      <Filter>Source Files\deriv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\dht\dht.c">
+      <Filter>Source Files\dht</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\diff\diff.c">
+      <Filter>Source Files\diff</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\eigen\herm.c">
+      <Filter>Source Files\eigen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\eigen\hermv.c">
+      <Filter>Source Files\eigen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\eigen\jacobi.c">
+      <Filter>Source Files\eigen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\eigen\sort.c">
+      <Filter>Source Files\eigen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\eigen\symm.c">
+      <Filter>Source Files\eigen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\eigen\symmv.c">
+      <Filter>Source Files\eigen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\err\error.c">
+      <Filter>Source Files\err</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\err\message.c">
+      <Filter>Source Files\err</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\err\stream.c">
+      <Filter>Source Files\err</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\err\strerror.c">
+      <Filter>Source Files\err</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\fft\dft.c">
+      <Filter>Source Files\fft</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\fft\fft.c">
+      <Filter>Source Files\fft</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\fit\linear.c">
+      <Filter>Source Files\fit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\add.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\add2d.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\calloc_range.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\calloc_range2d.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\copy.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\copy2d.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\file.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\file2d.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\get.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\get2d.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\init.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\init2d.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\maxval.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\maxval2d.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\oper.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\oper2d.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\params.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\params2d.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\pdf.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\pdf2d.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\reset.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\reset2d.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\stat.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\histogram\stat2d.c">
+      <Filter>Source Files\histogram</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ieee-utils\env.c">
+      <Filter>Source Files\ieee-utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ieee-utils\fp.c">
+      <Filter>Source Files\ieee-utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ieee-utils\make_rep.c">
+      <Filter>Source Files\ieee-utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ieee-utils\print.c">
+      <Filter>Source Files\ieee-utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ieee-utils\read.c">
+      <Filter>Source Files\ieee-utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\integration\qag.c">
+      <Filter>Source Files\integration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\integration\qagp.c">
+      <Filter>Source Files\integration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\integration\qags.c">
+      <Filter>Source Files\integration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\integration\qawc.c">
+      <Filter>Source Files\integration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\integration\qawf.c">
+      <Filter>Source Files\integration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\integration\qawo.c">
+      <Filter>Source Files\integration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\integration\qaws.c">
+      <Filter>Source Files\integration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\integration\qcheb.c">
+      <Filter>Source Files\integration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\integration\qk.c">
+      <Filter>Source Files\integration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\integration\qk15.c">
+      <Filter>Source Files\integration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\integration\qk21.c">
+      <Filter>Source Files\integration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\integration\qk31.c">
+      <Filter>Source Files\integration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\integration\qk41.c">
+      <Filter>Source Files\integration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\integration\qk51.c">
+      <Filter>Source Files\integration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\integration\qk61.c">
+      <Filter>Source Files\integration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\integration\qmomo.c">
+      <Filter>Source Files\integration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\integration\qmomof.c">
+      <Filter>Source Files\integration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\integration\qng.c">
+      <Filter>Source Files\integration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\integration\workspace.c">
+      <Filter>Source Files\integration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\interpolation\accel.c">
+      <Filter>Source Files\interpolation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\interpolation\akima.c">
+      <Filter>Source Files\interpolation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\interpolation\bsearch.c">
+      <Filter>Source Files\interpolation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\interpolation\cspline.c">
+      <Filter>Source Files\interpolation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\interpolation\interp.c">
+      <Filter>Source Files\interpolation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\interpolation\linear.c">
+      <Filter>Source Files\interpolation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\interpolation\poly.c">
+      <Filter>Source Files\interpolation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\interpolation\spline.c">
+      <Filter>Source Files\interpolation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\linalg\balance.c">
+      <Filter>Source Files\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\linalg\bidiag.c">
+      <Filter>Source Files\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\linalg\cholesky.c">
+      <Filter>Source Files\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\linalg\exponential.c">
+      <Filter>Source Files\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\linalg\hermtd.c">
+      <Filter>Source Files\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\linalg\hh.c">
+      <Filter>Source Files\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\linalg\householder.c">
+      <Filter>Source Files\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\linalg\householdercomplex.c">
+      <Filter>Source Files\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\linalg\lq.c">
+      <Filter>Source Files\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\linalg\lu.c">
+      <Filter>Source Files\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\linalg\luc.c">
+      <Filter>Source Files\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\linalg\multiply.c">
+      <Filter>Source Files\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\linalg\ptlq.c">
+      <Filter>Source Files\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\linalg\qr.c">
+      <Filter>Source Files\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\linalg\qrpt.c">
+      <Filter>Source Files\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\linalg\svd.c">
+      <Filter>Source Files\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\linalg\symmtd.c">
+      <Filter>Source Files\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\linalg\tridiag.c">
+      <Filter>Source Files\linalg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\matrix\copy.c">
+      <Filter>Source Files\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\matrix\file.c">
+      <Filter>Source Files\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\matrix\getset.c">
+      <Filter>Source Files\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\matrix\init.c">
+      <Filter>Source Files\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\matrix\matrix.c">
+      <Filter>Source Files\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\matrix\minmax.c">
+      <Filter>Source Files\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\matrix\oper.c">
+      <Filter>Source Files\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\matrix\prop.c">
+      <Filter>Source Files\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\matrix\rowcol.c">
+      <Filter>Source Files\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\matrix\submatrix.c">
+      <Filter>Source Files\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\matrix\swap.c">
+      <Filter>Source Files\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\matrix\view.c">
+      <Filter>Source Files\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\min\bracketing.c">
+      <Filter>Source Files\min</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\min\brent.c">
+      <Filter>Source Files\min</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\min\convergence.c">
+      <Filter>Source Files\min</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\min\fsolver.c">
+      <Filter>Source Files\min</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\min\golden.c">
+      <Filter>Source Files\min</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\monte\miser.c">
+      <Filter>Source Files\monte</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\monte\plain.c">
+      <Filter>Source Files\monte</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\monte\vegas.c">
+      <Filter>Source Files\monte</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multifit\convergence.c">
+      <Filter>Source Files\multifit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multifit\covar.c">
+      <Filter>Source Files\multifit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multifit\fdfsolver.c">
+      <Filter>Source Files\multifit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multifit\fsolver.c">
+      <Filter>Source Files\multifit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multifit\gradient.c">
+      <Filter>Source Files\multifit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multifit\lmder.c">
+      <Filter>Source Files\multifit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multifit\multilinear.c">
+      <Filter>Source Files\multifit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multifit\work.c">
+      <Filter>Source Files\multifit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multimin\conjugate_fr.c">
+      <Filter>Source Files\multimin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multimin\conjugate_pr.c">
+      <Filter>Source Files\multimin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multimin\convergence.c">
+      <Filter>Source Files\multimin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multimin\diff.c">
+      <Filter>Source Files\multimin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multimin\fdfminimizer.c">
+      <Filter>Source Files\multimin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multimin\fminimizer.c">
+      <Filter>Source Files\multimin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multimin\simplex.c">
+      <Filter>Source Files\multimin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multimin\steepest_descent.c">
+      <Filter>Source Files\multimin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multimin\vector_bfgs.c">
+      <Filter>Source Files\multimin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multiroots\broyden.c">
+      <Filter>Source Files\multiroots</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multiroots\convergence.c">
+      <Filter>Source Files\multiroots</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multiroots\dnewton.c">
+      <Filter>Source Files\multiroots</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multiroots\fdfsolver.c">
+      <Filter>Source Files\multiroots</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multiroots\fdjac.c">
+      <Filter>Source Files\multiroots</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multiroots\fsolver.c">
+      <Filter>Source Files\multiroots</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multiroots\gnewton.c">
+      <Filter>Source Files\multiroots</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multiroots\hybrid.c">
+      <Filter>Source Files\multiroots</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multiroots\hybridj.c">
+      <Filter>Source Files\multiroots</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\multiroots\newton.c">
+      <Filter>Source Files\multiroots</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ntuple\ntuple.c">
+      <Filter>Source Files\ntuple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\bsimp.c">
+      <Filter>Source Files\ode-initval</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\control.c">
+      <Filter>Source Files\ode-initval</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\cscal.c">
+      <Filter>Source Files\ode-initval</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\cstd.c">
+      <Filter>Source Files\ode-initval</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\evolve.c">
+      <Filter>Source Files\ode-initval</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\gear1.c">
+      <Filter>Source Files\ode-initval</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\gear2.c">
+      <Filter>Source Files\ode-initval</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\rk2.c">
+      <Filter>Source Files\ode-initval</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\rk2imp.c">
+      <Filter>Source Files\ode-initval</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\rk2simp.c">
+      <Filter>Source Files\ode-initval</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\rk4.c">
+      <Filter>Source Files\ode-initval</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\rk4imp.c">
+      <Filter>Source Files\ode-initval</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\rk8pd.c">
+      <Filter>Source Files\ode-initval</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\rkck.c">
+      <Filter>Source Files\ode-initval</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\rkf45.c">
+      <Filter>Source Files\ode-initval</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\ode-initval\step.c">
+      <Filter>Source Files\ode-initval</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\permutation\canonical.c">
+      <Filter>Source Files\permutation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\permutation\file.c">
+      <Filter>Source Files\permutation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\permutation\init.c">
+      <Filter>Source Files\permutation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\permutation\permutation.c">
+      <Filter>Source Files\permutation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\permutation\permute.c">
+      <Filter>Source Files\permutation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\poly\dd.c">
+      <Filter>Source Files\poly</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\poly\eval.c">
+      <Filter>Source Files\poly</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\poly\solve_cubic.c">
+      <Filter>Source Files\poly</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\poly\solve_quadratic.c">
+      <Filter>Source Files\poly</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\poly\zsolve.c">
+      <Filter>Source Files\poly</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\poly\zsolve_cubic.c">
+      <Filter>Source Files\poly</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\poly\zsolve_init.c">
+      <Filter>Source Files\poly</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\poly\zsolve_quadratic.c">
+      <Filter>Source Files\poly</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\qrng\niederreiter-2.c">
+      <Filter>Source Files\qrng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\qrng\qrng.c">
+      <Filter>Source Files\qrng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\qrng\sobol.c">
+      <Filter>Source Files\qrng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\bernoulli.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\beta.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\bigauss.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\binomial.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\binomial_tpe.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\cauchy.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\chisq.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\dirichlet.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\discrete.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\erlang.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\exponential.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\exppow.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\fdist.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\flat.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\gamma.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\gauss.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\gausstail.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\gausszig.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\geometric.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\gumbel.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\hyperg.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\landau.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\laplace.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\levy.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\logarithmic.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\logistic.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\lognormal.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\multinomial.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\nbinomial.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\pareto.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\pascal.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\poisson.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\rayleigh.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\shuffle.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\sphere.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\tdist.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\randist\weibull.c">
+      <Filter>Source Files\randist</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\borosh13.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\cmrg.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\coveyou.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\default.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\file.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\fishman18.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\fishman20.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\fishman2x.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\gfsr4.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\knuthran.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\knuthran2.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\lecuyer21.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\minstd.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\mrg.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\mt.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\r250.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\ran0.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\ran1.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\ran2.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\ran3.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\rand.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\rand48.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\random.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\randu.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\ranf.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\ranlux.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\ranlxd.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\ranlxs.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\ranmar.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\rng.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\slatec.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\taus.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\taus113.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\transputer.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\tt.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\types.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\uni.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\uni32.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\vax.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\waterman14.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\rng\zuf.c">
+      <Filter>Source Files\rng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\roots\bisection.c">
+      <Filter>Source Files\roots</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\roots\brent.c">
+      <Filter>Source Files\roots</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\roots\convergence.c">
+      <Filter>Source Files\roots</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\roots\falsepos.c">
+      <Filter>Source Files\roots</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\roots\fdfsolver.c">
+      <Filter>Source Files\roots</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\roots\fsolver.c">
+      <Filter>Source Files\roots</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\roots\newton.c">
+      <Filter>Source Files\roots</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\roots\secant.c">
+      <Filter>Source Files\roots</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\roots\steffenson.c">
+      <Filter>Source Files\roots</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\siman\siman.c">
+      <Filter>Source Files\siman</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sort\sort.c">
+      <Filter>Source Files\sort</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sort\sortind.c">
+      <Filter>Source Files\sort</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sort\sortvec.c">
+      <Filter>Source Files\sort</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sort\sortvecind.c">
+      <Filter>Source Files\sort</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sort\subset.c">
+      <Filter>Source Files\sort</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sort\subsetind.c">
+      <Filter>Source Files\sort</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\airy.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\airy_der.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\airy_zero.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\atanint.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_amp_phase.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_i.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_I0.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_I1.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_In.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_Inu.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_j.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_J0.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_J1.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_Jn.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_Jnu.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_k.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_K0.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_K1.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_Kn.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_Knu.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_olver.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_sequence.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_temme.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_y.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_Y0.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_Y1.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_Yn.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_Ynu.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\bessel_zero.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\beta.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\beta_inc.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\clausen.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\coulomb.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\coulomb_bound.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\coupling.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\dawson.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\debye.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\dilog.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\elementary.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\ellint.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\elljac.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\erfc.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\exp.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\expint.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\expint3.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\fermi_dirac.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\gamma.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\gamma_inc.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\gegenbauer.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\hyperg.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\hyperg_0F1.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\hyperg_1F1.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\hyperg_2F0.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\hyperg_2F1.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\hyperg_U.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\laguerre.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\lambert.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\legendre_con.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\legendre_H3d.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\legendre_poly.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\legendre_Qn.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\log.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\poch.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\pow_int.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\psi.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\result.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\shint.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\sinint.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\synchrotron.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\transport.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\trig.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\specfunc\zeta.c">
+      <Filter>Source Files\specfunc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\statistics\absdev.c">
+      <Filter>Source Files\statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\statistics\covariance.c">
+      <Filter>Source Files\statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\statistics\kurtosis.c">
+      <Filter>Source Files\statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\statistics\lag1.c">
+      <Filter>Source Files\statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\statistics\mean.c">
+      <Filter>Source Files\statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\statistics\median.c">
+      <Filter>Source Files\statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\statistics\minmax.c">
+      <Filter>Source Files\statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\statistics\p_variance.c">
+      <Filter>Source Files\statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\statistics\quantiles.c">
+      <Filter>Source Files\statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\statistics\skew.c">
+      <Filter>Source Files\statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\statistics\ttest.c">
+      <Filter>Source Files\statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\statistics\variance.c">
+      <Filter>Source Files\statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\statistics\wabsdev.c">
+      <Filter>Source Files\statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\statistics\wkurtosis.c">
+      <Filter>Source Files\statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\statistics\wmean.c">
+      <Filter>Source Files\statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\statistics\wskew.c">
+      <Filter>Source Files\statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\statistics\wvariance.c">
+      <Filter>Source Files\statistics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sum\levin_u.c">
+      <Filter>Source Files\sum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sum\levin_utrunc.c">
+      <Filter>Source Files\sum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sum\work_u.c">
+      <Filter>Source Files\sum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sum\work_utrunc.c">
+      <Filter>Source Files\sum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sys\coerce.c">
+      <Filter>Source Files\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sys\expm1.c">
+      <Filter>Source Files\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sys\fcmp.c">
+      <Filter>Source Files\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sys\fdiv.c">
+      <Filter>Source Files\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sys\hypot.c">
+      <Filter>Source Files\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sys\infnan.c">
+      <Filter>Source Files\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sys\invhyp.c">
+      <Filter>Source Files\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sys\ldfrexp.c">
+      <Filter>Source Files\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sys\log1p.c">
+      <Filter>Source Files\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sys\minmax.c">
+      <Filter>Source Files\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sys\pow_int.c">
+      <Filter>Source Files\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\sys\prec.c">
+      <Filter>Source Files\sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\test\results.c">
+      <Filter>Source Files\test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\utils\placeholder.c">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\vector\copy.c">
+      <Filter>Source Files\vector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\vector\file.c">
+      <Filter>Source Files\vector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\vector\init.c">
+      <Filter>Source Files\vector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\vector\minmax.c">
+      <Filter>Source Files\vector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\vector\oper.c">
+      <Filter>Source Files\vector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\vector\prop.c">
+      <Filter>Source Files\vector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\vector\reim.c">
+      <Filter>Source Files\vector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\vector\subvector.c">
+      <Filter>Source Files\vector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\vector\swap.c">
+      <Filter>Source Files\vector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\vector\vector.c">
+      <Filter>Source Files\vector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\vector\view.c">
+      <Filter>Source Files\vector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\wavelet\bspline.c">
+      <Filter>Source Files\wavelet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\wavelet\daubechies.c">
+      <Filter>Source Files\wavelet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\wavelet\dwt.c">
+      <Filter>Source Files\wavelet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\wavelet\haar.c">
+      <Filter>Source Files\wavelet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gsl-1.8\wavelet\wavelet.c">
+      <Filter>Source Files\wavelet</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

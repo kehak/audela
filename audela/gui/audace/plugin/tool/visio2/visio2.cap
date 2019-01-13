@@ -1,0 +1,601 @@
+#
+# Fichier : visio2.cap
+# Mise a jour $Id: visio2.cap 7013 2011-03-26 19:16:34Z robertdelmas  $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(visio2,title)                    "Viewer 2"
+
+#--- types de fichier
+set caption(visio2,parent_folder)            "Parent Folder"
+set caption(visio2,folder)                   "Folder"
+set caption(visio2,image)                    "Image"
+set caption(visio2,movie)                    "Movie"
+set caption(visio2,file)                     "File"
+set caption(visio2,disque)                   "Disk"
+
+#--- menus
+set caption(visio2,refresh)                  "Update"
+set caption(visio2,select_all)               "Select All"
+set caption(visio2,rename_file)              "Rename..."
+set caption(visio2,delete_file)              "Delete..."
+set caption(visio2,get_file)                 "Move"
+set caption(visio2,column_name)              "Name"
+set caption(visio2,column_type)              "Type"
+set caption(visio2,column_series)            "Series"
+set caption(visio2,column_date)              "Date"
+set caption(visio2,column_size)              "Size"
+set caption(visio2,full_screen)              "Full Screen"
+set caption(visio2,config)                   "Set up..."
+set caption(visio2,slideshow)                "Slideshow"
+set caption(visio2,play_movie)               "Play Movie"
+set caption(visio2,help)                     "Help..."
+
+#--- messages
+set caption(visio2,dialog_title)             "Viewer 2"
+set caption(visio2,delete_file_confirm)      "Are you sure you want to delete the file?"
+set caption(visio2,delete_dir_confirm)       "Are you sure you want to delete the folder and its contents?"
+set caption(visio2,select_file_error)        "Select a file first"
+set caption(visio2,slideshow_error)          "Select several images first"
+set caption(visio2,ftp_connection_title)     "FTP Connection"
+set caption(visio2,ftp_connection_error)     "Connection to Server Failed:"
+set caption(visio2,ftp_connection_close)     "Close Connection to Server:"
+set caption(visio2,delete_button0)           "OK"
+set caption(visio2,delete_button1)           "OK For All"
+set caption(visio2,delete_button2)           "No"
+set caption(visio2,delete_button3)           "Cancel"
+set caption(visio2,help,titre)               "Help for this Tool"
+set caption(visio2,help,titre1)              "Help for the Tool:"
+
+set caption(visio2,confirm_overwrite)        "File already exists. Do you want to replace it?"
+set caption(visio2,show_directory)           "Folder is empty or missing."
+
+#--- fenetre de configuration
+set caption(visio2,known_files)              "Recognized Files:"
+set caption(visio2,show_all_files)           "Display the Other Files"
+set caption(visio2,remark)                   "bmp, jpg, tiff files require Img 1.2.4 package\navi, mov, mpeg files require tmci package (Windows only)."
+set caption(visio2,remark1)                  "avi, mov, mpeg files require tmci package (Windows only)."
+
+#--- fenetre de renommage des fichiers
+set caption(visio2,genericName)              "Generic Name"
+set caption(visio2,firstIndex)               "First index"
+set caption(visio2,rename_file_confirm)      "Are you sure you want to rename the file?"
+set caption(visio2,overwrite)                "Overwrite existing files"
+set caption(visio2,destinationFolder)        "Target"
+set caption(visio2,renameFile)               "Rename files"
+set caption(visio2,copyFile)                 "Copy files"
+set caption(visio2,newName)                  "New Name"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(visio2,title)                 "Visionneuse bis"
+
+   #--- types de fichier
+   set caption(visio2,parent_folder)         "Répertoire parent"
+   set caption(visio2,folder)                "Répertoire"
+   set caption(visio2,image)                 "Image"
+   set caption(visio2,movie)                 "Film"
+   set caption(visio2,file)                  "Fichier"
+   set caption(visio2,disque)                "Disque"
+
+   #--- menus
+   set caption(visio2,refresh)               "Actualiser"
+   set caption(visio2,select_all)            "Tout sélectionner"
+   set caption(visio2,rename_file)           "Renommer..."
+   set caption(visio2,delete_file)           "Supprimer..."
+   set caption(visio2,get_file)              "Transférer"
+   set caption(visio2,column_name)           "Nom"
+   set caption(visio2,column_type)           "Type"
+   set caption(visio2,column_series)         "Série"
+   set caption(visio2,column_date)           "Date"
+   set caption(visio2,column_size)           "Taille"
+   set caption(visio2,full_screen)           "Plein écran"
+   set caption(visio2,config)                "Configurer..."
+   set caption(visio2,slideshow)             "Diaporama"
+   set caption(visio2,play_movie)            "Voir le film"
+   set caption(visio2,help)                  "Aide..."
+
+   #--- messages
+   set caption(visio2,dialog_title)          "Visionneuse bis"
+   set caption(visio2,delete_file_confirm)   "Etes-vous sûr de vouloir supprimer le fichier ?"
+   set caption(visio2,delete_dir_confirm)    "Etes-vous sûr de vouloir supprimer le répertoire et son contenu ?"
+   set caption(visio2,select_file_error)     "Sélectionner d'abord un fichier"
+   set caption(visio2,slideshow_error)       "Sélectionner d'abord plusieurs images"
+   set caption(visio2,ftp_connection_title)  "Connexion FTP"
+   set caption(visio2,ftp_connection_error)  "Echec de la connexion au serveur :"
+   set caption(visio2,ftp_connection_close)  "Fermer la connexion au serveur :"
+   set caption(visio2,delete_button0)        "OK"
+   set caption(visio2,delete_button1)        "OK pour tous"
+   set caption(visio2,delete_button2)        "Non"
+   set caption(visio2,delete_button3)        "Abandonner"
+   set caption(visio2,help,titre)            "Aide de cet outil"
+   set caption(visio2,help,titre1)           "Aide de l'outil :"
+
+   set caption(visio2,confirm_overwrite)     "Le fichier existe déjà. Voulez-vous l'écraser ?"
+   set caption(visio2,show_directory)        "Le répertoire est vide ou absent."
+
+   #--- fenetre de configuration
+   set caption(visio2,known_files)           "Fichiers reconnus :"
+   set caption(visio2,show_all_files)        "Afficher les autres fichiers"
+   set caption(visio2,remark)                "Les fichiers bmp, jpg, tiff nécessitent le package Img 1.2.4\nLes fichiers avi, mov, mpeg nécessitent le package tmci (Windows uniquement)."
+   set caption(visio2,remark1)               "Les fichiers avi, mov, mpeg nécessitent le package tmci (Windows uniquement)."
+
+   #--- fenetre de renommage des fichiers
+   set caption(visio2,genericName)           "Nom générique"
+   set caption(visio2,firstIndex)            "Premier indice"
+   set caption(visio2,rename_file_confirm)   "Etes-vous sûr de vouloir renommer le fichier ?"
+   set caption(visio2,overwrite)             "Ecraser les fichiers existants"
+   set caption(visio2,destinationFolder)     "Destination"
+   set caption(visio2,renameFile)            "Renommer les fichiers"
+   set caption(visio2,copyFile)              "Copier les fichiers"
+   set caption(visio2,newName)               "Nouveau nom"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(visio2,title)                 "Visualizzatore 2"
+
+   #--- types de fichier
+   set caption(visio2,parent_folder)         "Cartella superiore"
+   set caption(visio2,folder)                "Cartella"
+   set caption(visio2,image)                 "Immagine"
+   set caption(visio2,movie)                 "Filmato"
+   set caption(visio2,file)                  "File"
+   set caption(visio2,disque)                "Disco"
+
+   #--- menus
+   set caption(visio2,refresh)               "Aggiorna"
+   set caption(visio2,select_all)            "Seleziona tutti"
+   set caption(visio2,rename_file)           "Rinominare..."
+   set caption(visio2,delete_file)           "Eliminare..."
+   set caption(visio2,get_file)              "Muovi"
+   set caption(visio2,column_name)           "Nome"
+   set caption(visio2,column_type)           "Tipo"
+   set caption(visio2,column_series)         "Sequenza"
+   set caption(visio2,column_date)           "Data"
+   set caption(visio2,column_size)           "Dimensione"
+   set caption(visio2,full_screen)           "Tutto schermo"
+   set caption(visio2,config)                "Configurare..."
+   set caption(visio2,slideshow)             "Mostra"
+   set caption(visio2,play_movie)            "Vedi filmato"
+   set caption(visio2,help)                  "Aiuto..."
+
+   #--- messages
+   set caption(visio2,dialog_title)          "Visualizzatore 2"
+   set caption(visio2,delete_file_confirm)   "Siete sicuri di voler cancellare il file?"
+   set caption(visio2,delete_dir_confirm)    "Siete sicuri di voler eliminare la cartella con il suo conteneuto?"
+   set caption(visio2,select_file_error)     "Selezionare un file"
+   set caption(visio2,slideshow_error)       "Selezionare piu` immagini"
+   set caption(visio2,ftp_connection_title)  "Connessione FTP"
+   set caption(visio2,ftp_connection_error)  "Connessione al server fallita:"
+   set caption(visio2,ftp_connection_close)  "Chiudere la connessione al server:"
+   set caption(visio2,delete_button0)        "OK"
+   set caption(visio2,delete_button1)        "OK per tutti"
+   set caption(visio2,delete_button2)        "No"
+   set caption(visio2,delete_button3)        "Cancellare"
+   set caption(visio2,help,titre)            "Aiuto per questo tool"
+   set caption(visio2,help,titre1)           "Aiuto per lo tool:"
+
+   set caption(visio2,confirm_overwrite)     "Il file e` gia` esistente. Sostituirlo?"
+   set caption(visio2,show_directory)        "La cartella e` vuota o assente."
+
+   #--- fenetre de configuration
+   set caption(visio2,known_files)           "File riconosciuti:"
+   set caption(visio2,show_all_files)        "Visualizza gli altri file"
+   set caption(visio2,remark)                "I file bmp, jpg, tiff richiedono il package Img 1.2.4\nI file avi, mov, mpeg richiedono il package tmci (solo per Windows)."
+   set caption(visio2,remark1)               "I file avi, mov, mpeg richiedono il package tmci (solo per Windows)."
+
+   #--- fenetre de renommage des fichiers
+   set caption(visio2,genericName)           "Nomi generici"
+   set caption(visio2,firstIndex)            "Primo indice"
+   set caption(visio2,rename_file_confirm)   "Sei sicuro di voler rinominare il file?"
+   set caption(visio2,overwrite)             "Sovrascrivere i file esistenti"
+   set caption(visio2,destinationFolder)     "Destinazione"
+   set caption(visio2,renameFile)            "Rinominare i file esistenti"
+   set caption(visio2,copyFile)              "Copiare i file"
+   set caption(visio2,newName)               "Nuovo nome"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(visio2,title)                 "Visor 2"
+
+   #--- types de fichier
+   set caption(visio2,parent_folder)         "Carpeta padre"
+   set caption(visio2,folder)                "Carpeta"
+   set caption(visio2,image)                 "Imagen"
+   set caption(visio2,movie)                 "Película"
+   set caption(visio2,file)                  "Fichero"
+   set caption(visio2,disque)                "Disco"
+
+   #--- menus
+   set caption(visio2,refresh)               "Actualizar"
+   set caption(visio2,select_all)            "Seleccionar todo"
+   set caption(visio2,rename_file)           "Renombrar..."
+   set caption(visio2,delete_file)           "Suprimir..."
+   set caption(visio2,get_file)              "Transferir"
+   set caption(visio2,column_name)           "Nombre"
+   set caption(visio2,column_type)           "Tipo"
+   set caption(visio2,column_series)         "Serie"
+   set caption(visio2,column_date)           "Fecha"
+   set caption(visio2,column_size)           "Tamaño"
+   set caption(visio2,full_screen)           "Pantalla completa"
+   set caption(visio2,config)                "Configurar..."
+   set caption(visio2,slideshow)             "Presentación"
+   set caption(visio2,play_movie)            "Ver secuencia"
+   set caption(visio2,help)                  "Ayuda..."
+
+   #--- messages
+   set caption(visio2,dialog_title)          "Visor 2"
+   set caption(visio2,delete_file_confirm)   "Seguro que desea borrar el fichero?"
+   set caption(visio2,delete_dir_confirm)    "Seguro que quiere borrar la carpeta y todo su contenido?"
+   set caption(visio2,select_file_error)     "Seleccionar primero un fichero"
+   set caption(visio2,slideshow_error)       "Seleccionar primero varias imágenes"
+   set caption(visio2,ftp_connection_title)  "Conexión FTP"
+   set caption(visio2,ftp_connection_error)  "La conexión al servidor falló:"
+   set caption(visio2,ftp_connection_close)  "Cerrar conexión al servidor:"
+   set caption(visio2,delete_button0)        "OK"
+   set caption(visio2,delete_button1)        "OK para todo"
+   set caption(visio2,delete_button2)        "No"
+   set caption(visio2,delete_button3)        "Cancelar"
+   set caption(visio2,help,titre)            "Ayuda para esta herramienta"
+   set caption(visio2,help,titre1)           "Ajuda para del herramienta:"
+
+   set caption(visio2,confirm_overwrite)     "El fichero ya existe. Quiere reemplazarlo?"
+   set caption(visio2,show_directory)        "La carpeta está vacía o no existe."
+
+   #--- fenetre de configuration
+   set caption(visio2,known_files)           "Ficheros reconocidos:"
+   set caption(visio2,show_all_files)        "Mostrar los otros ficheros"
+   set caption(visio2,remark)                "Los tipos de fichero bmp, jpg, y tiff requieren el paquete Img 1.2.4\nLos ficheros de tipo avi, mov y mpeg requieren el paquete tmci (sólo Windows)."
+   set caption(visio2,remark1)               "Los ficheros de tipo avi, mov y mpeg requieren el paquete tmci (sólo Windows)."
+
+   #--- fenetre de renommage des fichiers
+   set caption(visio2,genericName)           "Nombre genérico"
+   set caption(visio2,firstIndex)            "Primer índice"
+   set caption(visio2,rename_file_confirm)   "Seguro que desea renombrar el fichero?"
+   set caption(visio2,overwrite)             "Machacar fichero existente"
+   set caption(visio2,destinationFolder)     "Destino"
+   set caption(visio2,renameFile)            "Renombrar ficheros"
+   set caption(visio2,copyFile)              "Copiar ficheros"
+   set caption(visio2,newName)               "Nombre nuevo"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(visio2,title)                 "Diabetrachter 2"
+
+   #--- types de fichier
+   set caption(visio2,parent_folder)         "Verwandt Verzeichnis"
+   set caption(visio2,folder)                "Verzeichnis"
+   set caption(visio2,image)                 "Bild"
+   set caption(visio2,movie)                 "Film"
+   set caption(visio2,file)                  "Datei"
+   set caption(visio2,disque)                "Disc"
+
+   #--- menus
+   set caption(visio2,refresh)               "Aktualisieren"
+   set caption(visio2,select_all)            "Alles auswählen"
+   set caption(visio2,rename_file)           "Wiedernennen..."
+   set caption(visio2,delete_file)           "Löschen..."
+   set caption(visio2,get_file)              "Bewegen"
+   set caption(visio2,column_name)           "Namen"
+   set caption(visio2,column_type)           "Typ"
+   set caption(visio2,column_series)         "Reihe"
+   set caption(visio2,column_date)           "Datum"
+   set caption(visio2,column_size)           "Größe"
+   set caption(visio2,full_screen)           "Voll Bildschirm"
+   set caption(visio2,config)                "Einrichten..."
+   set caption(visio2,slideshow)             "Diashow"
+   set caption(visio2,play_movie)            "Der Film spielen"
+   set caption(visio2,help)                  "Hilfe..."
+
+   #--- messages
+   set caption(visio2,dialog_title)          "Diabetrachter 2"
+   set caption(visio2,delete_file_confirm)   "Sind sie sicher dass sie diese Datei löschen willen ?"
+   set caption(visio2,delete_dir_confirm)    "Sind sie sicher dass sie diesen Register und seinen Gehalt löschen willen ?"
+   set caption(visio2,select_file_error)     "Erst eine Datei wählen"
+   set caption(visio2,slideshow_error)       "Erst mehrere Bilder wählen"
+   set caption(visio2,ftp_connection_title)  "FTP Verbindung"
+   set caption(visio2,ftp_connection_error)  "Verbindung zum Server durchgefallen:"
+   set caption(visio2,ftp_connection_close)  "Verbindung zum Server schließen:"
+   set caption(visio2,delete_button0)        "OK"
+   set caption(visio2,delete_button1)        "OK für alle"
+   set caption(visio2,delete_button2)        "Nein"
+   set caption(visio2,delete_button3)        "Abrechen"
+   set caption(visio2,help,titre)            "Hilfe für dieses Gerät"
+   set caption(visio2,help,titre1)           "Hilfe für die Gerät:"
+
+   set caption(visio2,confirm_overwrite)     "Die Datei existiert schon. Vollen sie ihr austauchen ?"
+   set caption(visio2,show_directory)        "Der Register ist lehr oder existiert nicht."
+
+   #--- fenetre de configuration
+   set caption(visio2,known_files)           "Erkennten Dateien:"
+   set caption(visio2,show_all_files)        "Die andere Dateien zeigen"
+   set caption(visio2,remark)                "Die bmp, jpg, tiff Dateien nötigen das Img 1.2.4 Programmpaket\nDie avi, mov, mpeg Dateien nötigen das tmci Programmpaket (nur Windows)."
+   set caption(visio2,remark1)               "Die avi, mov, mpeg Dateien nötigen das tmci Programmpaket (nur Windows)."
+
+   #--- fenetre de renommage des fichiers
+   set caption(visio2,genericName)           "Generischen Namen"
+   set caption(visio2,firstIndex)            "Ersten Index"
+   set caption(visio2,rename_file_confirm)   "Sind die sicher dies Datei umbenennen zu willen?"
+   set caption(visio2,overwrite)             "Die existierende Dateien überschreiben"
+   set caption(visio2,destinationFolder)     "Ziel"
+   set caption(visio2,renameFile)            "Dateien umbenennen"
+   set caption(visio2,copyFile)              "Dateien nachbilden"
+   set caption(visio2,newName)               "Neuen Namen"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(visio2,title)                 "Visualizador 2"
+
+   #--- types de fichier
+   set caption(visio2,parent_folder)         "Directório raiz"
+   set caption(visio2,folder)                "Directório"
+   set caption(visio2,image)                 "Imagem"
+   set caption(visio2,movie)                 "Filme"
+   set caption(visio2,file)                  "Ficheiro"
+   set caption(visio2,disque)                "Disco"
+
+   #--- menus
+   set caption(visio2,refresh)               "Actualizar"
+   set caption(visio2,select_all)            "Seleccionar tudo"
+   set caption(visio2,rename_file)           "Mudar o nome..."
+   set caption(visio2,delete_file)           "Eliminar..."
+   set caption(visio2,get_file)              "Mover"
+   set caption(visio2,column_name)           "Nome"
+   set caption(visio2,column_type)           "Tipo"
+   set caption(visio2,column_series)         "Série"
+   set caption(visio2,column_date)           "Data"
+   set caption(visio2,column_size)           "Tamanho"
+   set caption(visio2,full_screen)           "Ecrã inteiro"
+   set caption(visio2,config)                "Configurar..."
+   set caption(visio2,slideshow)             "Diaporama"
+   set caption(visio2,play_movie)            "Ver o filme"
+   set caption(visio2,help)                  "Ajuda..."
+
+   #--- messages
+   set caption(visio2,dialog_title)          "Visualizador 2"
+   set caption(visio2,delete_file_confirm)   "Tem a certeza que deseja eliminar o ficheiro?"
+   set caption(visio2,delete_dir_confirm)    "Tem a certeza que deseja eliminar o directório e o seu conteúdo?"
+   set caption(visio2,select_file_error)     "Seleccionar primeiro um ficheiro"
+   set caption(visio2,slideshow_error)       "Seleccionar primeiro várias imagens"
+   set caption(visio2,ftp_connection_title)  "Ligação FTP"
+   set caption(visio2,ftp_connection_error)  "Falha na ligação ao servidor:"
+   set caption(visio2,ftp_connection_close)  "Fechar a ligação ao servidor:"
+   set caption(visio2,delete_button0)        "OK"
+   set caption(visio2,delete_button1)        "OK para tudo"
+   set caption(visio2,delete_button2)        "Não"
+   set caption(visio2,delete_button3)        "Cancelar"
+   set caption(visio2,help,titre)            "Ajuda para esta ferramenta"
+   set caption(visio2,help,titre1)           "Ajuda para del ferramenta:"
+
+   set caption(visio2,confirm_overwrite)     "O ficheiro já existe. Deseja substituí-lo?"
+   set caption(visio2,show_directory)        "O directório está vazio ou não existe."
+
+   #--- fenetre de configuration
+   set caption(visio2,known_files)           "Ficheiros reconhecidos:"
+   set caption(visio2,show_all_files)        "Mostrar os outros ficheiros"
+   set caption(visio2,remark)                "Os ficheiros bmp, jpg, tiff necessitam do pacote Img 1.2.4\nOs ficheiros avi, mov, mpeg necessitam do pacote tmci (Windows somente)."
+   set caption(visio2,remark1)               "Os ficheiros avi, mov, mpeg necessitam do pacote tmci (Windows somente)."
+
+   #--- fenetre de renommage des fichiers
+   set caption(visio2,genericName)           "Nome genérico"
+   set caption(visio2,firstIndex)            "Primeiro índice"
+   set caption(visio2,rename_file_confirm)   "Tem a certeza que deseja mudar nome do ficheiro?"
+   set caption(visio2,overwrite)             "Subsituir ficheiros existentes"
+   set caption(visio2,destinationFolder)     "Destino"
+   set caption(visio2,renameFile)            "Mudar nome os ficheiros"
+   set caption(visio2,copyFile)              "Copiar ficheiros"
+   set caption(visio2,newName)               "Novo nome"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(visio2,title)                 "Viewer 2"
+
+   #--- types de fichier
+   set caption(visio2,parent_folder)         "Parent Folder"
+   set caption(visio2,folder)                "Mappe"
+   set caption(visio2,image)                 "Billede"
+   set caption(visio2,movie)                 "Movie"
+   set caption(visio2,file)                  "File"
+   set caption(visio2,disque)                "Disk"
+
+   #--- menus
+   set caption(visio2,refresh)               "Update"
+   set caption(visio2,select_all)            "Select All"
+   set caption(visio2,rename_file)           "Rename..."
+   set caption(visio2,delete_file)           "Delete..."
+   set caption(visio2,get_file)              "Move"
+   set caption(visio2,column_name)           "Navn"
+   set caption(visio2,column_type)           "Type"
+   set caption(visio2,column_series)         "Series"
+   set caption(visio2,column_date)           "Date"
+   set caption(visio2,column_size)           "Size"
+   set caption(visio2,full_screen)           "Fuld skærm"
+   set caption(visio2,config)                "Set up..."
+   set caption(visio2,slideshow)             "Slideshow"
+   set caption(visio2,play_movie)            "Play Movie"
+   set caption(visio2,help)                  "Hjælp..."
+
+   #--- messages
+   set caption(visio2,dialog_title)          "Viewer 2"
+   set caption(visio2,delete_file_confirm)   "Are you sure you want to delete the file?"
+   set caption(visio2,delete_dir_confirm)    "Are you sure you want to delete the folder and its contents?"
+   set caption(visio2,select_file_error)     "Select a file first"
+   set caption(visio2,slideshow_error)       "Select several images first"
+   set caption(visio2,ftp_connection_title)  "FTP Connection"
+   set caption(visio2,ftp_connection_error)  "Connection to Server Failed:"
+   set caption(visio2,ftp_connection_close)  "Close Connection to Server:"
+   set caption(visio2,delete_button0)        "OK"
+   set caption(visio2,delete_button1)        "OK For All"
+   set caption(visio2,delete_button2)        "No"
+   set caption(visio2,delete_button3)        "Cancel"
+   set caption(visio2,help,titre)            "Help for this Tool"
+   set caption(visio2,help,titre1)           "Help for the Tool:"
+
+   set caption(visio2,confirm_overwrite)     "File already exists. Do you want to replace it?"
+   set caption(visio2,show_directory)        "Folder is empty or missing."
+
+   #--- fenetre de configuration
+   set caption(visio2,known_files)           "Recognized Files:"
+   set caption(visio2,show_all_files)        "Display the Other Files"
+   set caption(visio2,remark)                "bmp, jpg, tiff files require Img 1.2.4 package\navi, mov, mpeg files require tmci package (Windows only)."
+   set caption(visio2,remark1)               "avi, mov, mpeg files require tmci package (Windows only)."
+
+   #--- fenetre de renommage des fichiers
+   set caption(visio2,genericName)           "Generic Name"
+   set caption(visio2,firstIndex)            "First index"
+   set caption(visio2,rename_file_confirm)   "Are you sure you want to rename the file?"
+   set caption(visio2,overwrite)             "Overwrite existing files"
+   set caption(visio2,destinationFolder)     "Target"
+   set caption(visio2,renameFile)            "Rename files"
+   set caption(visio2,copyFile)              "Copy files"
+   set caption(visio2,newName)               "New Name"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(visio2,title)                 "Viewer 2"
+
+   #--- types de fichier
+   set caption(visio2,parent_folder)         "Parent Folder"
+   set caption(visio2,folder)                "Folder"
+   set caption(visio2,image)                 "Image"
+   set caption(visio2,movie)                 "Movie"
+   set caption(visio2,file)                  "File"
+   set caption(visio2,disque)                "Disk"
+
+   #--- menus
+   set caption(visio2,refresh)               "Update"
+   set caption(visio2,select_all)            "Select All"
+   set caption(visio2,rename_file)           "Rename..."
+   set caption(visio2,delete_file)           "Delete..."
+   set caption(visio2,get_file)              "Move"
+   set caption(visio2,column_name)           "Name"
+   set caption(visio2,column_type)           "Type"
+   set caption(visio2,column_series)         "Series"
+   set caption(visio2,column_date)           "Date"
+   set caption(visio2,column_size)           "Size"
+   set caption(visio2,full_screen)           "Full Screen"
+   set caption(visio2,config)                "Set up..."
+   set caption(visio2,slideshow)             "Slideshow"
+   set caption(visio2,play_movie)            "Play Movie"
+   set caption(visio2,help)                  "Help..."
+
+   #--- messages
+   set caption(visio2,dialog_title)          "Viewer 2"
+   set caption(visio2,delete_file_confirm)   "Are you sure you want to delete the file?"
+   set caption(visio2,delete_dir_confirm)    "Are you sure you want to delete the folder and its contents?"
+   set caption(visio2,select_file_error)     "Select a file first"
+   set caption(visio2,slideshow_error)       "Select several images first"
+   set caption(visio2,ftp_connection_title)  "FTP Connection"
+   set caption(visio2,ftp_connection_error)  "Connection to Server Failed:"
+   set caption(visio2,ftp_connection_close)  "Close Connection to Server:"
+   set caption(visio2,delete_button0)        "OK"
+   set caption(visio2,delete_button1)        "OK For All"
+   set caption(visio2,delete_button2)        "No"
+   set caption(visio2,delete_button3)        "Cancel"
+   set caption(visio2,help,titre)            "Help for this Tool"
+   set caption(visio2,help,titre1)           "Help for the Tool:"
+
+   set caption(visio2,confirm_overwrite)     "File already exists. Do you want to replace it?"
+   set caption(visio2,show_directory)        "Folder is empty or missing."
+
+   #--- fenetre de configuration
+   set caption(visio2,known_files)           "Recognized Files:"
+   set caption(visio2,show_all_files)        "Display the Other Files"
+   set caption(visio2,remark)                "bmp, jpg, tiff files require Img 1.2.4 package\navi, mov, mpeg files require tmci package (Windows only)."
+   set caption(visio2,remark1)               "avi, mov, mpeg files require tmci package (Windows only)."
+
+   #--- fenetre de renommage des fichiers
+   set caption(visio2,genericName)           "Generic Name"
+   set caption(visio2,firstIndex)            "First index"
+   set caption(visio2,rename_file_confirm)   "Are you sure you want to rename the file?"
+   set caption(visio2,overwrite)             "Overwrite existing files"
+   set caption(visio2,destinationFolder)     "Target"
+   set caption(visio2,renameFile)            "Rename files"
+   set caption(visio2,copyFile)              "Copy files"
+   set caption(visio2,newName)               "New Name"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(visio2,title)                 "Viewer 2"
+
+   #--- types de fichier
+   set caption(visio2,parent_folder)         "Parent Folder"
+   set caption(visio2,folder)                "Folder"
+   set caption(visio2,image)                 "Image"
+   set caption(visio2,movie)                 "Movie"
+   set caption(visio2,file)                  "File"
+   set caption(visio2,disque)                "Disk"
+
+   #--- menus
+   set caption(visio2,refresh)               "Update"
+   set caption(visio2,select_all)            "Select All"
+   set caption(visio2,rename_file)           "Rename..."
+   set caption(visio2,delete_file)           "Delete..."
+   set caption(visio2,get_file)              "Move"
+   set caption(visio2,column_name)           "Name"
+   set caption(visio2,column_type)           "Type"
+   set caption(visio2,column_series)         "Series"
+   set caption(visio2,column_date)           "Date"
+   set caption(visio2,column_size)           "Size"
+   set caption(visio2,full_screen)           "Full Screen"
+   set caption(visio2,config)                "Set up..."
+   set caption(visio2,slideshow)             "Slideshow"
+   set caption(visio2,play_movie)            "Play Movie"
+   set caption(visio2,help)                  "Help..."
+
+   #--- messages
+   set caption(visio2,dialog_title)          "Viewer 2"
+   set caption(visio2,delete_file_confirm)   "Are you sure you want to delete the file?"
+   set caption(visio2,delete_dir_confirm)    "Are you sure you want to delete the folder and its contents?"
+   set caption(visio2,select_file_error)     "Select a file first"
+   set caption(visio2,slideshow_error)       "Select several images first"
+   set caption(visio2,ftp_connection_title)  "FTP Connection"
+   set caption(visio2,ftp_connection_error)  "Connection to Server Failed:"
+   set caption(visio2,ftp_connection_close)  "Close Connection to Server:"
+   set caption(visio2,delete_button0)        "OK"
+   set caption(visio2,delete_button1)        "OK For All"
+   set caption(visio2,delete_button2)        "No"
+   set caption(visio2,delete_button3)        "Cancel"
+   set caption(visio2,help,titre)            "Help for this Tool"
+   set caption(visio2,help,titre1)           "Help for the Tool:"
+
+   set caption(visio2,confirm_overwrite)     "File already exists. Do you want to replace it?"
+   set caption(visio2,show_directory)        "Folder is empty or missing."
+
+   #--- fenetre de configuration
+   set caption(visio2,known_files)           "Recognized Files:"
+   set caption(visio2,show_all_files)        "Display the Other Files"
+   set caption(visio2,remark)                "bmp, jpg, tiff files require Img 1.2.4 package\navi, mov, mpeg files require tmci package (Windows only)."
+   set caption(visio2,remark1)               "avi, mov, mpeg files require tmci package (Windows only)."
+
+   #--- fenetre de renommage des fichiers
+   set caption(visio2,genericName)           "Generic Name"
+   set caption(visio2,firstIndex)            "First index"
+   set caption(visio2,rename_file_confirm)   "Are you sure you want to rename the file?"
+   set caption(visio2,overwrite)             "Overwrite existing files"
+   set caption(visio2,destinationFolder)     "Target"
+   set caption(visio2,renameFile)            "Rename files"
+   set caption(visio2,copyFile)              "Copy files"
+   set caption(visio2,newName)               "New Name"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

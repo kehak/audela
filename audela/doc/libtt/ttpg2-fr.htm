@@ -1,0 +1,364 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="Author" content="Alain Klotz">
+  <meta name="GENERATOR" content="Mozilla/4.75 [fr] (Win98; U) [Netscape]">
+  <title>Librairie TT : Manuel du programmeur</title>
+</head>
+  <body>
+
+<center><b><font size="+3">LIB TT</font></b> <br>
+    une librairie de pr&eacute;traitement d'images astronomiques <br>
+    version 20061105
+<p><b><font size="+3">Manuel du programmeur</font></b> <br>
+    <b><font size="+2">Utiliser libTT dans un logiciel</font></b></p>
+    </center>
+
+<p><br>
+     </p>
+
+<h1> 1. Utilisation de la librairie</h1>
+     L'utilisation n&eacute;cessite l'emploi des fichiers <b>libtt.h</b>,
+<b>sysexp.h</b>   et le fichier de librairie <b>libtt</b> (suivi de l'extension
+<b>.dll .so   .sl .lib</b> en fonction du syst&egrave;me d'exploitation).
+Quelques fonctions   d'acc&egrave;s directe aux routines de fitsio peuvent
+&ecirc;tre accessibles   en incluant <b>libfiles.h</b> (emploi lourd et peu
+recommand&eacute;).
+<p>L'adressage de la librairie TT exige au moins trois param&egrave;tres :
+ </p>
+
+<ul>
+     <li> <a name="numero de service"></a>le num&eacute;ro de service,</li>
+      <li> le nombre de param&egrave;tres qui suivent</li>
+      <li> les param&egrave;tres.</li>
+
+</ul>
+     Les options de compilation en C et le prototypage pour appeler la librairie
+  tt se trouvent dans le module libtt.h &agrave; inclure (#include "libtt.h")
+  dans le source d'appel &agrave; la librairie (voir paragraphe pr&eacute;c&eacute;dent
+  concernant la compilation). L'appel, se fait par la fonction&nbsp; libtt_main.
+  Par exemple :
+<pre><b>&nbsp;&nbsp; int msg;<br>&nbsp;&nbsp; msg=libtt_main(TT_SCRIPT_2,1,texte);</b></pre>
+     TT_SCRIPT_2 est une d&eacute;finition (#define) de libtt.h et correspond
+  au num&eacute;ro de service associ&eacute; &agrave; l'ex&eacute;cution d'un
+ <a href="#mode%20script">script</a>. Le nombre 1 annonce qu'un seul param&egrave;tre
+ va suivre. Le pointeur de la chaine de caract&egrave;res texte (format&eacute;e
+ C ANSI) est l'unique param&egrave;tre de la fonction.
+<p>La fonction libtt_main retourne toujours un entier de type (int) correspondant
+  &agrave; un num&eacute;ro d'erreur. L'ex&eacute;cution s'est pass&eacute;e
+  sans probl&egrave;me si l'entier de retour vaut DLL_OK (z&eacute;ro). Si
+ une erreur est d&eacute;tect&eacute;e, on peut traduire le num&eacute;ro
+d'erreur en un message clair (en anglais) par le service TT_ERROR_MESSAGE.
+Dans le cas de l'utilisation du mode script, on peut lire des compl&eacute;ments
+sur la cause d'une erreur dans le fichier <b>tt.err</b>. Enfin, toujours dans
+le mode script, le fichier <b>tt.log</b> permet de tracer les diff&eacute;rentes
+  actions de la librairie TT. </p>
+
+<p>On distingue deux types de services, le <a href="#mode%20script">mode script</a>
+et le <a href="#mode%20pointeur">mode pointeur</a>. Le mode script a pour
+r&ocirc;le d'effectuer des op&eacute;rations sur des fichiers FITS en entr&eacute;e
+et en sortie. Le mode pointeur permet d'effectuer des op&eacute;rations entre
+des pointeurs et des fichiers FITS. </p>
+
+<p>Les images sont au format flottant 4 octets (float) en m&eacute;moire de
+libtt afin de pr&eacute;server les qualit&eacute;s photom&eacute;triques lors
+des traitements. </p>
+
+<h2> <a name="mode script"></a>1.2. Les services du mode script de TT</h2>
+     L'int&eacute;r&ecirc;t principal de la librairie TT est de pouvoir ex&eacute;cuter
+  des commandes entr&eacute;es sous la forme de script. Les <a
+ href="#numero%20de%20service">num&eacute;ros de service</a> associ&eacute;s
+  &agrave; ce mode sont :
+<ul>
+     <li> TT_SCRIPT_2. L'unique param&egrave;tre est une chaine de caract&egrave;res
+  contenant le script.</li>
+      <li> TT_SCRIPT_3. L'unique param&egrave;tre est une chaine de caract&egrave;res
+  contenant le nom du fichier texte contenant lui m&ecirc;me le script.</li>
+
+</ul>
+     La syntaxe des scripts est d&eacute;taill&eacute;e dans le <a
+ href="ttus1-fr.htm">manuel de l'utilisateur</a>.
+<h2> <a name="mode pointeur"></a>1.3. Les services du mode pointeur de TT</h2>
+     Le mode pointeur permet de charger et de sauvergarder des images de
+fichiers   FITS vers un pointeur en m&eacute;moire et d'effectuer quelques
+pr&eacute;traitement   d'image.
+<p>Dans une fonction qui va appeler la librairie libtt en mode pointeur, on
+d&eacute;finira les variables suivantes qui permettent de faire &agrave; peu
+pr&egrave;s l'ensemble des op&eacute;rations utiles : </p>
+
+<pre><b>&nbsp;&nbsp; /* --- pour la description des caracteristiques de l'image ---*/<br>&nbsp;&nbsp; int naxis1,naxis2,datatype,bitpix;<br>&nbsp;&nbsp; char fullname[FLEN_FILENAME];<br>&nbsp;&nbsp; /* --- pour la description generale d'une liste de mots cle ---*/<br>&nbsp;&nbsp; int nbkeys,*datatypes;<br>&nbsp;&nbsp; char **keynames,**values,**comments,**units;<br>&nbsp;&nbsp; /* --- pour la description des statistiques ---*/<br>&nbsp;&nbsp; double locut,hicut,maxi,mini,mean,sigma,bgmean,bgsigma,contrast;</b></pre>
+     Le mode pointeur utilise des noms de fichiers complet, c'est &agrave;
+ dire  que le nom inclus le r&eacute;pertoire et le suffixe. Ainsi : c:\toto\j.fit
+  est un nom complet. Il existe une subtilit&eacute; &agrave; cela qui permet
+  d'abouter plusieurs images dans un m&ecirc;me fichier FITS. Pour cela, il
+ suffit de rajouter, au nom complet, un point virgule suivi du num&eacute;ro
+  d'unit&eacute; d'ent&ecirc;te-donn&eacute;e (HDU) concern&eacute;e. Par
+exemple :
+<p>c:\toto\j.fit;1 est l'image situ&eacute;e dans le premier HDU du fichier
+  c:\toto\j.fit <br>
+    c:\toto\j.fit;2 est l'image situ&eacute;e dans le deuxi&egrave;me HDU
+du  fichier c:\toto\j.fit </p>
+
+<p>Lorsque l'on va &eacute;crire l'image, il faut pr&eacute;ciser derri&egrave;re
+  quel num&eacute;ro de HDU on veut sauver. Ainsi, c:\toto\j.fit;4 signifie
+  que l'on va ins&eacute;rer un nouveau HDU entre le HDU 4 et 5 actuel. Les
+  HDU &gt;=5 seront donc d&eacute;cal&eacute;s d'une unit&eacute;. </p>
+
+<p>Lorsque l'on va lire une image, il faut juste pr&eacute;ciser le num&eacute;ro
+  du HDU de l'image &agrave; lire. </p>
+
+<p>Il est aussi possible d'utiliser la syntaxe des noms de fichiers &eacute;tendus
+  (Extended Filename Syntax) de Fitsio pour lire ou &eacute;crire une image.
+  Se reporter &agrave; la documentation sp&eacute;cifique de Fitsio (http://heasarc.gsfc.nasa.gov/docs/software/fitsio/filters.html)
+  pour cette utilisation. </p>
+
+<h3> 1.3.1. Description des services du mode pointeur</h3>
+
+<h4> 1.3.1.1 Chargement d'une image FITS :</h4>
+     Le pointeur qui va accueillir l'image en m&eacute;moire peut &ecirc;tre
+ de n'importe quel type. Nous choisirons ici le cas d'un pointeur *p de type
+  (short) :
+<pre><b>&nbsp;&nbsp; short *p;<br>&nbsp;&nbsp; sprintf(fullname,"toto.fit");<br>&nbsp;&nbsp; datatype=TSHORT;<br>&nbsp;&nbsp; msg=libtt_main(TT_PTR_LOADIMA,5,fullname,&amp;datatype,&amp;p,&amp;naxis1,&amp;naxis2);</b></pre>
+     datatype contient le type du pointeur *p (voir la liste dans libtt.h).
+ La zone m&eacute;moire associ&eacute;e au pointeur est allou&eacute;e dans
+ libtt par Fitsio. On pourra liberer la m&eacute;moire dans libtt en utilisant
+ la fonction d&eacute;di&eacute;e :
+<pre>&nbsp;&nbsp;<b> msg=libtt_main(TT_PTR_FREEPTR,1,&amp;p);</b></pre>
+
+<h4> <a name="loadhdr"></a>1.3.1.2 Chargement des mots cl&eacute; d'une ent&ecirc;te
+  FITS :</h4>
+     Le chargement de l'ensemble des mots cl&eacute; d'une ent&ecirc;te FITS
+ se fait de la fa&ccedil;on suivante :
+<pre><b>&nbsp;&nbsp; sprintf(fullname,"toto.fit");<br>&nbsp;&nbsp; msg=libtt_main(TT_PTR_LOADKEYS,7,fullname,&amp;nbkeys,&amp;keynames,&amp;values,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;comments,&amp;units,&amp;datatypes);</b></pre>
+     Les pointeurs suivants vont accueillir la liste des mots cl&eacute;
+et  leurs param&egrave;tres :
+<ul>
+     <li> keynames : liste des noms des mot cl&eacute;</li>
+      <li> values : liste des valeurs associ&eacute;es aux mots cl&eacute;</li>
+      <li> comments : liste des commentaires associ&eacute;s aux mot cl&eacute;s.</li>
+      <li> units : liste des unit&eacute;s associ&eacute;es aux mots cl&eacute;.</li>
+      <li> datatypes : liste des datatype associ&eacute;e aux values</li>
+
+</ul>
+     L'acc&egrave;s &agrave; la cha&icirc;ne de caract&egrave;res associ&eacute;e
+  au ki&egrave;me mot cl&eacute; est keynames[k]. La valeur correspondante
+ est stock&eacute;e dans values[k] et son type dans datatypes[k]. De m&ecirc;me
+  pour comments[k] et units[k].
+<p>La variable nbkeys contient le nombre de mots cl&eacute; dans l'ent&ecirc;te.
+  Les zones m&eacute;moire associ&eacute;e aux pointeur est allou&eacute;e
+ dans libtt. On pourra liberer la m&eacute;moire dans libtt en utilisant la
+ fonction d&eacute;di&eacute;e : </p>
+
+<pre><b>&nbsp;&nbsp; msg=libtt_main(TT_PTR_FREEKEYS,5,&amp;keynames,&amp;values,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;comments,&amp;units,&amp;datatypes);</b></pre>
+
+<h4> 1.3.1.3. Sauvegarde d'une image FITS</h4>
+     Le pointeur qui accueille l'image en m&eacute;moire peut &ecirc;tre
+de  n'importe quel type. Nous choisirons ici le cas d'un pointeur *p de type
+(float) et nous allons sauver l'image sous la forme de (short) :
+<pre><b>&nbsp;&nbsp; float *p;<br>&nbsp;&nbsp; ...<br>&nbsp;&nbsp; sprintf(fullname,"toto.fit");<br>&nbsp;&nbsp; datatype=TFLOAT;<br>&nbsp;&nbsp; bitpix=SHORT_IMG;<br>&nbsp;&nbsp; msg=libtt_main(TT_PTR_SAVEIMA,5,fullname,p,&amp;datatype,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;naxis1,&amp;naxis2,&amp;bitpix);</b></pre>
+     Dans ce cadre, une liste de mots cl&eacute; minimale est cr&eacute;e
+automatiquement   dans l'ent&ecirc;te FITS de l'image. Il s'agit des mots
+cl&eacute; : SIMPLE,   BITPIX, NAXIS, NAXIS1, NAXIS2, EXTEND.
+<p>Si l'on souhaite sauver, en m&ecirc;me temps la liste de mots cl&eacute;,
+  on ajoutera des param&egrave;tres : </p>
+
+<pre><b>&nbsp;&nbsp; msg=libtt_main(TT_PTR_SAVEIMA,12,fullname,p,&amp;datatype,&amp;naxis1,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;naxis2,&amp;bitpix,&amp;nbkeys,keynames,values,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comments,units,datatypes);</b></pre>
+     Il s'agit de la m&ecirc;me fonction, seul le nombre de param&egrave;tres
+  change et l'on n'oubliera pas d'allouer, ant&eacute;rieurement, de la place
+  m&eacute;moire pour les pointeurs des mots cl&eacute;s (fonction libtt_main(TT_PTR_ALLOKEYS,...)).<br>
+<p>Si l'on souhaite sauver, en m&ecirc;me temps la liste de mots cl&eacute;,
+une image dont le nombre d'axes est d&eacute;termin&eacute; par les mots
+cl&eacute; NAXIS, NAXIS* et le type par le mot cl&eacute; BITPIX, on utilisera
+la fonction suivante: </p>
+
+<pre><b>&nbsp;&nbsp; msg=libtt_main(TT_PTR_SAVEIMAKEYDIM,9,fullname,p,&amp;datatype,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;nbkeys,keynames,values,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comments,units,datatypes);</b></pre>
+Pour cette fonction, on n'oubliera pas d'allouer, ant&eacute;rieurement,
+de la place   m&eacute;moire pour les pointeurs des mots cl&eacute;s (fonction
+libtt_main(TT_PTR_ALLOKEYS,...)) et d'assigner une valeur valide pour les
+mots cl&eacute; BITPIX, NAXIS, NAXIS1 jusqu'&agrave; NAXISn o&ugrave; n est
+la valeur de NAXIS (sinon msg retourne un code erreur).<br>
+<h4> 1.3.1.4. Cr&eacute;ation d'une liste de mots cl&eacute;s.</h4>
+     Il convient d'allouer de la m&eacute;moire pour les pointeurs de la
+liste   de mots cl&eacute; :
+<pre><b>&nbsp;&nbsp; msg=libtt_main(TT_PTR_ALLOKEYS,6,&amp;nbkeys,&amp;keynames,&amp;values,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;comments,&amp;units,&amp;datatypes);</b></pre>
+     nbkey contient le nombre de mots cl&eacute;s &agrave; allouer. On peut
+ ensuite remplir facilement la liste :
+<pre><b>&nbsp;&nbsp; sprintf(keynames[0],"MIPS-HI");<br>&nbsp;&nbsp; sprintf(values[0],"%d",(int)(hicut));<br>&nbsp;&nbsp; datatypes[0]=TINT;<br>&nbsp;&nbsp; sprintf(comments[0],"High cut");<br>&nbsp;&nbsp; sprintf(units[0],"ADU");</b></pre>
+     A la fin d'utilisation de la liste de mots cl&eacute;, on pensera &agrave;
+  lib&eacute;rer la m&eacute;moire :
+<pre><b>&nbsp;&nbsp; msg=libtt_main(TT_PTR_FREEKEYS,5,&amp;keynames,&amp;values,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;comments,&amp;units,&amp;datatypes);</b></pre>
+     Le surtypage de mots cl&eacute;s est possible mais n'est pas tenu en
+compte   pour les mots cl&eacute; r&eacute;serv&eacute;s : SIMPLE, BITPIX,
+NAXIS,  NAXIS1, NAXIS2, EXTEND.
+<h4> 1.3.1.5. Sauvegarde des mots cl&eacute; d'une ent&ecirc;te FITS</h4>
+     Si l'on souhaite enregistrer une liste mots cl&eacute;s &agrave; ajouter
+  dans une ent&ecirc;te d'un fichier FITS existant, on proc&egrave;de ainsi
+  :
+<pre><b>&nbsp;&nbsp; msg=libtt_main(TT_PTR_SAVEKEYS,7,fullname,&amp;nbkeys,keynames,values,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comments,units,datatypes);</b></pre>
+
+<h4> 1.3.1.6. Analyse statistique d'une image pointeur</h4>
+     Il est souvent utile de conna&icirc;tre les caract&eacute;ritiques d'une
+  image. TT poss&egrave;de une fonction statistique qui permet de d&eacute;terminer
+  rapidement les seuils de visualisation entre autres :
+<pre><b>&nbsp;&nbsp; msg=libtt_main(TT_PTR_STATIMA,13,p,&amp;datatype,&amp;naxis1,&amp;naxis2,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;locut,&amp;hicut,&amp;maxi,&amp;mini,&amp;mean,&amp;sigma,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;bgmean,&amp;bgsigma,&amp;contrast);</b></pre>
+     Dans ces param&egrave;tres (tous de type double), on trouvera :
+<ul>
+     <li> locut : valeur du seuil bas</li>
+      <li> hicut : valeur du seuil haut</li>
+      <li> maxi : valeur maximale</li>
+      <li> mini : valeur minimale</li>
+      <li> mean : valeur moyenne</li>
+      <li> sigma : valeur de l'&eacute;cart type</li>
+      <li> bgmean : valeur du fond de ciel</li>
+      <li> bgsigma : valeur de l'&eacute;cart type du fond de ciel</li>
+      <li> contrast : valeur du contraste local sur toute l'image</li>
+
+</ul>
+
+<h4> 1.3.1.7. Calcul des seuils de visualisation d'une image pointeur</h4>
+     Il est souvent utile de d&eacute;terminer automatiquement les seuils
+d'une   image. Cette fonction est un version plus rapide que TT_PTR_STATIMA
+car seuls les seuils sont calcul&eacute;s (cf. m&eacute;thode de la fonction
+CUTS de IMA/SERIES) :
+<pre><b>&nbsp;&nbsp; msg=libtt_main(TT_PTR_CUTSIMA,6,p,&amp;datatype,&amp;naxis1,&amp;naxis2,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;locut,&amp;hicut);</b></pre>
+     Dans ces param&egrave;tres (tous de type double), on trouvera :
+<ul>
+     <li> locut : valeur du seuil bas</li>
+      <li> hicut : valeur du seuil haut</li>
+
+</ul>
+     Enfin, le calcul des seuils par analyse de l'histogramme fournit la
+valeur   du mode. Il est possible de r&eacute;cup&eacute;rer la valeur du
+mode de  la fa&ccedil;on suivante :
+<pre><b>&nbsp;&nbsp; msg=libtt_main(TT_PTR_CUTSIMA,7,p,&amp;datatype,&amp;naxis1,&amp;naxis2,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;locut,&amp;hicut,&amp;mode);</b></pre>
+     La variable mode est de type (double).
+<h4> 1.3.1.8. Sauvegarde d'une image JPEG noir &amp; blanc</h4>
+     La fonction de sauvgarde au format JPEG contient des param&egrave;tres
+ identiques &agrave; une sauvegarde FITS &agrave; cela pr&egrave;s qu'il faut
+ ajouter les seuil bas et haut.
+<pre><b><tt>&nbsp;&nbsp; int quality=75;<br></tt>&nbsp;&nbsp; sprintf(fullname,"toto.jpg");<br>&nbsp;&nbsp; msg=libtt_main(TT_PTR_SAVEJPG,8,fullname,p,&amp;datatype,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;naxis1,&amp;naxis2,&amp;locut,&amp;hicut,&amp;quality);</b></pre>
+     Quality (de type int) est un param&egrave;tre qui fixe le crit&egrave;re
+  de d&eacute;gradation de l'image. Z&eacute;ro pour une image compl&egrave;tement
+  d&eacute;grad&eacute;e et 100 pour une compression sans perte. A noter que
+ libTT limite la valeur minimale de quality &agrave; 5. Les seuils sont de
+ type (double).
+<p>A noter que la librairie libtt n'a pas pour vocation de lire des formats
+  JPEG. </p>
+
+<h4> 1.3.1.9. Sauvegarde d'une image JPEG couleur</h4>
+     La fonction de sauvegarde au format JPEG couleur n&eacute;cessite trois
+ pointeurs (RGB) :
+<pre><b>&nbsp;&nbsp; sprintf(fullname,"toto.jpg");<br>&nbsp;&nbsp; msg=libtt_main(TT_PTR_SAVEJPGCOLOR,14,fullname,pr,pg,pb,&amp;datatype,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;naxis1,&amp;naxis2,&amp;locutr,&amp;hicutr,&amp;locutg,&amp;hicutg,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;locutb,&amp;hicutb,&amp;quality);</b></pre>
+     &nbsp;Les seuils sont de type (double). La variable quality est de type
+ (int).
+<h4> 1.3.1.10. Traitement d'une image de type pointeur</h4>
+     Il est possible d'acc&eacute;der &agrave; l'ensemble des fonctions de
+ traitement  d'image de type IMA/SERIES pour une seule image repr&eacute;sent&eacute;e
+  par son pointeur. Dans ce cas, l'exemple ci-dessous illustre l'utilisation
+  de ce type de traitement.
+<pre><b>&nbsp;&nbsp; msg=libtt_main(TT_PTR_IMASERIES,7,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;p,&amp;datatype,&amp;naxis1,&amp;naxis2,&amp;p,&amp;datatype,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "OFFSET offset=1000");</b></pre>
+     Les quatre premiers param&egrave;tres sont associ&eacute;s &agrave;
+l'image   d'entr&eacute;e. Les deux param&egrave;tres suivants sont associ&eacute;s
+  &agrave; l'image de sortie qui peut donc &ecirc;tre redirig&eacute;e vers
+  un autre pointeur. S'il s'agit du m&ecirc;me pointeur en entr&eacute;e et
+  en sortie et que ses dimensions (naxis1 et naxis2) ont chang&eacute; alors
+  le pointeur sera redimensionn&eacute; A la fin du traitement, les valeurs
+  de naxis1 et naxis2 sont donc &eacute;ventuellement chang&eacute;es.
+
+<p>La cha&icirc;ne de caract&egrave;re ("OFFSET offset=1000" dans l'exemple)
+  contient la syntaxe de la fonction de traitement et de ses param&egrave;tres
+  optionnels tels que d&eacute;crits dans la liste des <a
+ href="ttus1-fr.htm#functions">fonctions</a>. </p>
+
+<p>Certaines fonctions de type IMA/SERIES ont besoin de param&egrave;tres
+  pr&eacute;sents dans l'ent&ecirc;te FITS de l'image pour effectuer le traitement
+  (CATCHART ou ASTROMETRY par exemple). Il convient de passer la liste des
+ mots cl&eacute;s de l'ent&ecirc;te <a href="#loadhdr">pr&eacute;alablement
+ charg&eacute;e</a>. Dans ce cas, il y a 13 arguments &agrave; passer. Les
+ 7 premiers sont ceux d&eacute;finis pr&eacute;c&eacute;demment, et les suivants
+ correspondent au nombre de mots cl&eacute; (nbkeys) de l'ent&ecirc;te et
+des arguments (nom, valeur, commentaire, unit&eacute;, type de donn&eacute;es)
+ de la liste : </p>
+
+<pre><b>&nbsp;&nbsp; msg=libtt_main(TT_PTR_IMASERIES,13,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;p,&amp;datatype,&amp;naxis1,&amp;naxis2,&amp;p,&amp;datatype,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "OFFSET offset=1000",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;nbkeys,&amp;keynames,&amp;values,&amp;comments,&amp;units,&amp;datatypes);</b></pre>
+     A la fin du traitement, le contenu de la liste aura augment&eacute;
+en  fonction de l'historique du traitement (une r&eacute;allocation m&eacute;moire
+ est donc effectu&eacute;e). <br>
+
+<h4> 1.3.1.11. Chargement d'une image FITS &agrave; 3 axes (NAXIS=3) :</h4>
+     Le pointeur qui va accueillir l'image en m&eacute;moire peut &ecirc;tre
+ de n'importe quel type. Nous choisirons ici le cas d'un pointeur *p de type
+  (short) :
+<pre><b>&nbsp;&nbsp; short *p;<br>   int iaxis3;<br>&nbsp;&nbsp; sprintf(fullname,"toto.fit");<br>&nbsp;&nbsp; datatype=TSHORT;<br>   iaxis3=10;<br>&nbsp;&nbsp; msg=libtt_main(TT_PTR_LOADIMA3D,7,fullname,&amp;datatype,&amp;iaxis3,&amp;p,&amp;naxis1,&amp;naxis2,&amp;naxis3);</b></pre>
+     datatype contient le type du pointeur *p (voir la liste dans libtt.h).
+ La valeur de iaxis3 prend la valeur du plan image &agrave; charger (on ne
+ charge qu'un plan image par rapport aux NAXIS3 disponibles). La zone m&eacute;moire
+ associ&eacute;e au pointeur est allou&eacute;e dans libtt par Fitsio. On
+pourra liberer la m&eacute;moire dans libtt en utilisant la fonction d&eacute;di&eacute;e
+ :
+<pre>&nbsp;&nbsp;<b> msg=libtt_main(TT_PTR_FREEPTR,1,&amp;p);</b></pre>
+
+<h4> 1.3.1.12. Sauvegarde d'une image FITS &agrave; 3 axes (image "cube")</h4>
+     Le pointeur qui accueille l'image en m&eacute;moire peut &ecirc;tre
+de  n'importe quel type et repr&eacute;sente un cube d'images. Nous choisirons
+ ici le cas d'un pointeur *p de type (float) et nous allons sauver l'image
+ sous la forme de (short) :
+<pre><b>&nbsp;&nbsp; float *p;<br>&nbsp;&nbsp; ...<br>&nbsp;&nbsp; sprintf(fullname,"toto.fit");<br>&nbsp;&nbsp; datatype=TFLOAT;<br>&nbsp;&nbsp; bitpix=SHORT_IMG;<br>&nbsp;&nbsp; msg=libtt_main(TT_PTR_SAVEIMA3D,7,fullname,p,&amp;datatype,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;naxis1,&amp;naxis2,&amp;naxis3,&amp;bitpix);</b></pre>
+     Dans ce cadre, une liste de mots cl&eacute; minimale est cr&eacute;e
+automatiquement   dans l'ent&ecirc;te FITS de l'image. Il s'agit des mots
+cl&eacute; : SIMPLE,   BITPIX, NAXIS, NAXIS1, NAXIS2, NAXIS3, EXTEND.
+
+<p>Si l'on souhaite sauver, en m&ecirc;me temps la liste de mots cl&eacute;,
+  on ajoutera des param&egrave;tres : </p>
+
+<pre><b>&nbsp;&nbsp; msg=libtt_main(TT_PTR_SAVEIMA3D,13,fullname,p,&amp;datatype,&amp;naxis1,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;naxis2,&amp;naxis3,&amp;bitpix,&amp;nbkeys,keynames,values,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comments,units,datatypes);</b></pre>
+     Il s'agit de la m&ecirc;me fonction, seul le nombre de param&egrave;tres
+  change et l'on n'oubliera pas d'allouer, ant&eacute;rieurement, de la place
+  m&eacute;moire pour les pointeurs des mots cl&eacute;s (fonction libtt_main(TT_PTR_ALLOKEYS,...)).<br>
+
+<h4> 1.3.1.13. Sauvegarde d'une image FITS &agrave; 1 axe (image "vecteur")</h4>
+     Le pointeur qui accueille l'image en m&eacute;moire peut &ecirc;tre
+de  n'importe quel type et repr&eacute;sente un vecteur. Nous choisirons
+ ici le cas d'un pointeur *p de type (float) et nous allons sauver l'image
+ sous la forme de (short) :
+<pre><b>&nbsp;&nbsp; float *p;<br>&nbsp;&nbsp; ...<br>&nbsp;&nbsp; sprintf(fullname,"toto.fit");<br>&nbsp;&nbsp; datatype=TFLOAT;<br>&nbsp;&nbsp; bitpix=SHORT_IMG;<br>&nbsp;&nbsp; msg=libtt_main(TT_PTR_SAVEIMA1D,5,fullname,p,&amp;datatype,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;naxis1,&amp;bitpix);</b></pre>
+     Dans ce cadre, une liste de mots cl&eacute; minimale est cr&eacute;e
+automatiquement   dans l'ent&ecirc;te FITS de l'image. Il s'agit des mots
+cl&eacute; : SIMPLE,   BITPIX, NAXIS, NAXIS1, EXTEND.
+<p>Si l'on souhaite sauver, en m&ecirc;me temps la liste de mots cl&eacute;,
+  on ajoutera des param&egrave;tres : </p>
+
+<pre><b>&nbsp;&nbsp; msg=libtt_main(TT_PTR_SAVEIMA1D,11,fullname,p,&amp;datatype,&amp;naxis1,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;bitpix,&amp;nbkeys,keynames,values,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comments,units,datatypes);</b></pre>
+     Il s'agit de la m&ecirc;me fonction, seul le nombre de param&egrave;tres
+  change et l'on n'oubliera pas d'allouer, ant&eacute;rieurement, de la place
+  m&eacute;moire pour les pointeurs des mots cl&eacute;s (fonction libtt_main(TT_PTR_ALLOKEYS,...)).<br>
+  <br>
+ <br>
+
+<h3> 1.3.2. Exemple de programme utilisant le mode pointeur</h3>
+     Le listing ci dessous a pour but d'illustrer l'utilisation de libtt
+pour   generer une image, la sauver en FITS et en JPEG, la recharger, et
+faire des op&eacute;rations sur les mots cl&eacute; de l"ent&ecirc;te FITS
+et effectuer   un traitement de l'image. Ce listing est extrait du fichier
+essai.c du package   libtt.
+<pre><b>/***************************************************************************/<br>/* Ce programme a pour role de montrer l'utilisation des appels aux&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/* fonctions de la librairie 'libtt'.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/* La librairie 'libtt' ne comporte qu'une seule fonction d'entree :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/* int libtt_main(int service, ...);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/* Le service est un numero de fonction de la librairie. Le numero de&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/* service sera avantageusement remplace par son identificateur defini&nbsp;&nbsp;&nbsp;&nbsp; */<br>/* dans les #define de libtt.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/* ... est une suite de pointeurs (parametres passes a chaque service),&nbsp;&nbsp;&nbsp; */<br>/* La valeur de retour est un code d'erreur. Zero si aucun probleme.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/* Les exemples ci-apres ont pour mission d'eclaircir tout cela...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/***************************************************************************/<br><br>#include &lt;stdio.h&gt;<br>#include &lt;stdlib.h&gt;<br>#include &lt;string.h&gt;<br>#include &lt;time.h&gt;<br>#include &lt;math.h&gt;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /****************************************/<br>#include "libtt.h"&nbsp;&nbsp;&nbsp;&nbsp; /* pour beneficier des #define de libtt */<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /****************************************/<br><br>int main();<br>int essai_pointer(void);<br><br>void print(char *texte);&nbsp;&nbsp;&nbsp; /* imprime un texte a l'ecran&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>void print_erreur(int msg); /* imprime le numero d'erreur a l'ecran */<br><br>int open_libtt(void);&nbsp; /* pour charger la librairie libtt */<br>int close_libtt(void); /* pour fermer la librairie libtt&nbsp; */<br>#ifdef OS_WIN32<br>&nbsp;&nbsp; /* chargement de la librairie dynamique pour Windows */<br>&nbsp;&nbsp; #include &lt;windows.h&gt;<br>&nbsp;&nbsp; HINSTANCE dll_tt;<br>&nbsp;&nbsp; typedef int __stdcall LIBTT(int,...);<br>&nbsp;&nbsp; LIBTT *libtt_main;<br>&nbsp;&nbsp; #define LIBTT_MAIN "_libtt_main"<br>&nbsp;&nbsp; #define LIBTT_NAME "libtt.dll"<br>#endif<br>#ifdef __linux__<br>&nbsp;&nbsp; /* chargement de la librairie dynamique pour Linux */<br>&nbsp;&nbsp; #include &lt;dlfcn.h&gt;<br>&nbsp;&nbsp; void *so_tt;<br>&nbsp;&nbsp; typedef int LIBTT(int,...);<br>&nbsp;&nbsp; LIBTT *libtt_main;<br>&nbsp;&nbsp; #define LIBTT_MAIN "libtt_main"<br>&nbsp;&nbsp; #define LIBTT_NAME "libtt.so"<br>#endif<br><br>/***************************************************************************/<br>/* main :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/***************************************************************************/<br>int main() {<br>&nbsp;&nbsp; int msg;<br>&nbsp;&nbsp; open_libtt();<br>&nbsp;&nbsp; if ((msg=essai_pointer())!=0) {print_erreur(msg);}<br>&nbsp;&nbsp; close_libtt();<br><br>&nbsp;&nbsp; return(msg);<br>}<br><br>/***************************************************************************/<br>/* open_libtt :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/***************************************************************************/<br>/* charge la librairie dynamique libtt en memoire&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/* Valeurs de retour :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/* =0 : librairie et point d'entree bien charges.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/* =1 : ne trouve pas la librairie.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/* =2 : librairie bien chargee mais point d'entree non trouve.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/***************************************************************************/<br>int open_libtt(void)<br>{<br>#ifdef OS_WIN32<br>&nbsp;&nbsp; dll_tt = LoadLibrary(LIBTT_NAME);<br>&nbsp;&nbsp; if((dll_tt!=NULL)) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; libtt_main = (LIBTT*)GetProcAddress(dll_tt,LIBTT_MAIN);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(libtt_main==NULL) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return(2);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp; } else {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return(1);<br>&nbsp;&nbsp; }<br>#endif<br>#ifdef __linux__<br>&nbsp;&nbsp; so_tt=dlopen(LIBTT_NAME,RTLD_LAZY);<br>&nbsp;&nbsp; if (so_tt!=NULL) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; libtt_main=dlsym(so_tt,LIBTT_MAIN);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(libtt_main==NULL) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return(2);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp; } else {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return(1);<br>&nbsp;&nbsp; }<br>#endif<br>&nbsp;&nbsp; return(0);<br>}<br><br>/***************************************************************************/<br>/* close_libtt :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/***************************************************************************/<br>/* ferme la librairie dynamique libtt en memoire&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/***************************************************************************/<br>int close_libtt(void)<br>{<br>#ifdef OS_WIN32<br>&nbsp;&nbsp; FreeLibrary(dll_tt);<br>#endif<br>#ifdef __linux__<br>&nbsp;&nbsp; dlclose(so_tt);<br>#endif<br>&nbsp;&nbsp; return 0;<br>}<br><br>/***************************************************************************/<br>/* essai_pointer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/***************************************************************************/<br>/* On montre ici la facon d'appeler libtt pour effectuer des operations&nbsp;&nbsp;&nbsp; */<br>/* entre un fichier FITS et un pointeur d'image.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/* On gere les mots cles de l'entete.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/***************************************************************************/<br>int essai_pointer(void)<br>{<br>&nbsp;&nbsp; int msg;<br>&nbsp;&nbsp; int k,k1,k2;<br>&nbsp;&nbsp; char texte[256];<br>&nbsp;<br>&nbsp;&nbsp; /* --- pour la description d'une image de type unsigned short ---*/<br>&nbsp;&nbsp; unsigned short *p;<br><br>&nbsp;&nbsp; /* --- pour la description des caracteristiques de l'image ---*/<br>&nbsp;&nbsp; int naxis1,naxis2,datatype,bitpix;<br>&nbsp;&nbsp; /* FLEN_FILENAME est defini dans libtt.h */<br>&nbsp;&nbsp; char fullname[FLEN_FILENAME];</b></pre>
+
+<pre><b>&nbsp;&nbsp; /* --- pour la description generale d'une liste de mots cle ---*/<br>&nbsp;&nbsp; int nbkeys;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* nombre de mots cles dans la liste */<br>&nbsp;&nbsp; char **keynames;&nbsp;&nbsp;&nbsp; /* liste mots cles */<br>&nbsp;&nbsp; char **values;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* liste de valeurs associees aux mots cle */<br>&nbsp;&nbsp; char **comments;&nbsp;&nbsp;&nbsp; /* liste de commentaires associes aux mots cle */<br>&nbsp;&nbsp; char **units;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* liste des unites physiques a ajouter aux commentaires */<br>&nbsp;&nbsp; int *datatypes;&nbsp;&nbsp;&nbsp;&nbsp; /* liste de datatype associe a chaque values */<br><br>&nbsp;&nbsp; /* --- pour la description des statistiques ---*/<br>&nbsp;&nbsp; double locut,hicut,maxi,mini,mean,sigma,bgmean,bgsigma,contrast;<br><br>&nbsp;&nbsp; /* --- on commence par creer une image dans un pointeur ---*/<br>&nbsp;&nbsp; naxis1=50;<br>&nbsp;&nbsp; naxis2=100;<br>&nbsp;&nbsp; datatype=TUSHORT;</b></pre>
+
+<pre><b>&nbsp;&nbsp; /* datatype doit obligatoirement etre du type de *p */<br>&nbsp;&nbsp; p=(unsigned short*)calloc(naxis1*naxis2,sizeof(unsigned short));<br>&nbsp;&nbsp; for (k1=0;k1&lt;naxis1;k1++) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (k2=0;k2&lt;naxis2;k2++) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p[naxis2*k1+k2]=40000+naxis2*k1+k2;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp; }<br><br>&nbsp;&nbsp; /* --- on effectue une analyse statistique du pointeur ---*/<br>&nbsp;&nbsp; if ((msg=libtt_main(TT_PTR_STATIMA,13,p,&amp;datatype,&amp;naxis1,&amp;naxis2,<br>&nbsp;&nbsp;&nbsp; &amp;locut,&amp;hicut,&amp;maxi,&amp;mini,&amp;mean,&amp;sigma,&amp;bgmean,&amp;bgsigma,&amp;contrast))!=0) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; free(p);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return(msg);<br>&nbsp;&nbsp; }</b></pre>
+
+<pre><b>&nbsp;&nbsp; /* --- affiche les parametres statistiques ---*/<br>&nbsp;&nbsp; sprintf(texte,"%f %f %f %f %f %f %f %f %f",<br>&nbsp;&nbsp;&nbsp; locut,hicut,maxi,mini,mean,sigma,bgmean,bgsigma,contrast);<br>&nbsp;&nbsp; print(texte);</b></pre>
+
+<pre><b>&nbsp;&nbsp; /* --- on cree une liste de nbkeys mots cles pour l'entete ---*/<br>&nbsp;&nbsp; nbkeys=3;</b></pre>
+
+<pre><b>&nbsp;&nbsp; /* allocation memoire des la liste */<br>&nbsp;&nbsp; if ((msg=libtt_main(TT_PTR_ALLOKEYS,6,&amp;nbkeys,&amp;keynames,&amp;values,<br>&nbsp;&nbsp;&nbsp; &amp;comments,&amp;units,&amp;datatypes))!=0) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; free(p);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return(msg);<br>&nbsp;&nbsp; }<br><br>&nbsp;&nbsp; /* --- remplissage des valeurs du premier mot cle --- */<br>&nbsp;&nbsp; sprintf(keynames[0],"MIPS-HI");<br>&nbsp;&nbsp; sprintf(values[0],"%d",(int)(hicut));<br>&nbsp;&nbsp; datatypes[0]=TINT;<br>&nbsp;&nbsp; sprintf(comments[0],"High cut");<br>&nbsp;&nbsp; sprintf(units[0],"ADU");</b></pre>
+
+<pre><b>&nbsp;&nbsp; /* --- remplissage des valeurs du deuxieme mot cle --- */<br>&nbsp;&nbsp; sprintf(keynames[1],"MIPS-LO");<br>&nbsp;&nbsp; sprintf(values[1],"%d",(int)(locut));<br>&nbsp;&nbsp; datatypes[1]=TINT;<br>&nbsp;&nbsp; sprintf(comments[1],"Low cut");<br>&nbsp;&nbsp; sprintf(units[1],"ADU");<br><br>&nbsp;&nbsp; /* --- remplissage des valeurs du troisieme mot cle --- */<br>&nbsp;&nbsp; sprintf(keynames[2],"CHAINE");<br>&nbsp;&nbsp; sprintf(values[2],"salut les filles");<br>&nbsp;&nbsp; datatypes[2]=TSTRING;<br>&nbsp;&nbsp; sprintf(comments[2],"On rigole un peu");<br>&nbsp;&nbsp; sprintf(units[2],"");<br><br>&nbsp;&nbsp; /* --- on sauve l'image avec l'entete ---*/<br>&nbsp;&nbsp; sprintf(fullname,"toto.fit");<br>&nbsp;&nbsp; bitpix=USHORT_IMG;<br>&nbsp;&nbsp; /* le bitpix=USOHRT_IMG genere un bitpix=16 mais adapte les bzero */<br>&nbsp;&nbsp; /* et bscale de facon a stocker des entiers 16 bits non signes.&nbsp;&nbsp; */<br>&nbsp;&nbsp; if ((msg=libtt_main(TT_PTR_SAVEIMA,12,fullname,p,&amp;datatype,&amp;naxis1,<br>&nbsp;&nbsp;&nbsp; &amp;naxis2,&amp;bitpix,&amp;nbkeys,keynames,values,comments,units,datatypes))!=0) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; free(p);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; libtt_main(TT_PTR_FREEKEYS,5,&amp;keynames,&amp;values,&amp;comments,&amp;units,&amp;datatypes);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return(msg);<br>&nbsp;&nbsp; }<br><br>&nbsp;&nbsp; /* --- on libere la memoire de la liste de mots cles ---*/<br>&nbsp;&nbsp; libtt_main(TT_PTR_FREEKEYS,5,&amp;keynames,&amp;values,&amp;comments,&amp;units,&amp;datatypes);<br><br>&nbsp;&nbsp; /* --- on sauve l'image jpeg ---*/<br>&nbsp;&nbsp; sprintf(fullname,"toto.jpg");<br>&nbsp;&nbsp; if ((msg=libtt_main(TT_PTR_SAVEJPG,7,fullname,p,&amp;datatype,&amp;naxis1,<br>&nbsp;&nbsp;&nbsp; &amp;naxis2,&amp;locut,&amp;hicut))!=0) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; free(p);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return(msg);<br>&nbsp;&nbsp; }<br><br>&nbsp;&nbsp; /* --- on libere la memoire du pointeur image ---*/<br>&nbsp;&nbsp; free(p);<br><br>&nbsp;&nbsp; /* --- on charge l'image en memoire sans les mots cles ---*/<br>&nbsp;&nbsp; sprintf(fullname,"toto.fit");<br>&nbsp;&nbsp; naxis1=0;<br>&nbsp;&nbsp; naxis2=0;<br>&nbsp;&nbsp; datatype=TUSHORT;<br><br>&nbsp;&nbsp; /* quelque soit la valeur de BITPIX, on contraint, avec datatype, */<br>&nbsp;&nbsp; /* le type du pointeur image qu'il faut dimensionner et remplir.&nbsp; */<br>&nbsp;&nbsp; if ((msg=libtt_main(TT_PTR_LOADIMA,5,fullname,&amp;datatype,&amp;p,&amp;naxis1,<br>&nbsp;&nbsp;&nbsp; &amp;naxis2))!=0) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return(msg);<br>&nbsp;&nbsp; }<br><br>&nbsp;&nbsp; /* --- on imprime a l'ecran quelques carateristiques de l'image ---*/<br>&nbsp;&nbsp; sprintf(texte,"naxis1=%d",naxis1); print(texte);<br>&nbsp;&nbsp; sprintf(texte,"naxis2=%d",naxis2); print(texte);<br>&nbsp;&nbsp; sprintf(texte,"pixel(2,3)=%d (il faut trouver 40203)",p[naxis2*2+3]); print(texte);<br><br>&nbsp;&nbsp; /* --- on charge maintenant la liste de mots cles ---*/<br>&nbsp;&nbsp; if ((msg=libtt_main(TT_PTR_LOADKEYS,7,fullname,&amp;nbkeys,&amp;keynames,&amp;values,<br>&nbsp;&nbsp;&nbsp; &amp;comments,&amp;units,&amp;datatypes))!=0) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; free(p);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return(msg);<br>&nbsp;&nbsp; }<br><br>&nbsp;&nbsp; /* --- on imprime a l'ecran la liste des mots cles ---*/<br>&nbsp;&nbsp; for (k=0;k&lt;nbkeys;k++) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sprintf(texte,"%s=%s &lt;%s&gt; [%s] type=%d",keynames[k],values[k],comments[k],units[k],datatypes[k]);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print(texte);<br>&nbsp;&nbsp; }<br><br>&nbsp;&nbsp; /* --- on effectue un offset sur le pointeur de l'image ---*/<br>&nbsp;&nbsp; sprintf(texte,"nbkeys=%d avant l'offset\n",nbkeys); print(texte);<br>&nbsp;&nbsp; if ((msg=libtt_main(TT_PTR_IMASERIES,13,<br>&nbsp;&nbsp;&nbsp; &amp;p,&amp;datatype,&amp;naxis1,&amp;naxis2,&amp;p,&amp;datatype,<br>&nbsp;&nbsp;&nbsp; "OFFSET offset=1000",<br>&nbsp;&nbsp;&nbsp; &amp;nbkeys,&amp;keynames,&amp;values,&amp;comments,&amp;units,&amp;datatypes))!=0) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; libtt_main(TT_PTR_FREEKEYS,5,&amp;keynames,&amp;values,&amp;comments,&amp;units,&amp;datatypes);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; free(p);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return(msg);<br>&nbsp;&nbsp; }<br>&nbsp;&nbsp; sprintf(texte,"nbkeys=%d apres l'offset\n",nbkeys); print(texte);<br><br>&nbsp;&nbsp; /* --- on libere la memoire de la liste de mots cles ---*/<br>&nbsp;&nbsp; libtt_main(TT_PTR_FREEKEYS,5,&amp;keynames,&amp;values,&amp;comments,&amp;units,&amp;datatypes);<br><br>&nbsp;&nbsp; /* --- on libere la memoire du pointeur image ---*/<br>&nbsp;&nbsp; free(p);<br><br>&nbsp;&nbsp; return(0);<br>}<br><br>/***************************************************************************/<br>/* Permet d'afficher un message a l'ecran.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/* A remplacer par l'envoi du texte sur une boite de message pour les&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/* environnements a fenetres.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>/***************************************************************************/<br>void print(char *texte)<br>{<br>&nbsp;&nbsp; printf("%s\n",texte);<br>}<br><br>/***************************************************************************/<br>/* Permet d'afficher les messages d'erreur provenant de la librairie libtt */<br>/***************************************************************************/<br>void print_erreur(int msg)<br>{<br>&nbsp;&nbsp; char texte[256];<br>&nbsp;&nbsp; /* --- ecrit le numero d'erreur ---*/<br>&nbsp;&nbsp; sprintf(texte,"Erreur (%d) detectee dans libtt",msg);<br>&nbsp;&nbsp; print(texte);<br>&nbsp;&nbsp; /* --- ecrit le message d'erreur en clair ---*/<br>&nbsp;&nbsp; libtt_main(TT_ERROR_MESSAGE,2,&amp;msg,texte);<br>&nbsp;&nbsp; print(texte);<br>}</b></pre>
+     &nbsp; <br>
+    <br>
+   <br>
+  <br>
+ <br>
+</body>
+</html>

@@ -1,0 +1,2 @@
+LIBRARY libbeckhoffadstcl
+EXPORTS Beckhoffadstcl_Init @1

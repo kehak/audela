@@ -1,0 +1,152 @@
+#
+# Fichier : bddimages_go.cap
+# $Id: bddimages_go.cap 13886 2016-05-22 21:55:06Z jberthier $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(bddimages_go,titre)                 "Images Database"
+set caption(bddimages_go,bddimages)             "Images Database"
+set caption(bddimages_go,help_titre)            "Help for this Tool"
+set caption(bddimages_go,help_titre1)           "Help for the Tool:"
+set caption(bddimages_go,choosedb)              "Choose a database"
+set caption(bddimages_go,configuration)         "Configuration"
+set caption(bddimages_go,status)                "DB Status"
+set caption(bddimages_go,insertion)             "Inserting Images"
+set caption(bddimages_go,recherche)             "Search"
+set caption(bddimages_go,reports)               "Reports"
+set caption(bddimages_go,test)                  "Test"
+set caption(bddimages_go,ressource)             "Re-source"
+set caption(bddimages_go,cleanconsole)          "clean console"
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+   set caption(bddimages_go,titre)              "Base de données d'images"
+   set caption(bddimages_go,bddimages)          "Base de données\nd'images"
+   set caption(bddimages_go,help_titre)         "Aide de cet outil"
+   set caption(bddimages_go,help_titre1)        "Aide de l'outil :"
+   set caption(bddimages_go,choosedb)           "Choisir une bdd"
+   set caption(bddimages_go,configuration)      "Configuration"
+   set caption(bddimages_go,status)             "Statut de la BDD"
+   set caption(bddimages_go,insertion)          "Insertion d'images"
+   set caption(bddimages_go,recherche)          "Recherche"
+   set caption(bddimages_go,reports)            "Rapports"
+   set caption(bddimages_go,test)               "Test"
+   set caption(bddimages_go,ressource)          "Re-source"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+   set caption(bddimages_go,titre)              "Images Database"
+   set caption(bddimages_go,bddimages)          "Images Database"
+   set caption(bddimages_go,help_titre)         "Help for this Tool"
+   set caption(bddimages_go,help_titre1)        "Help for the Tool:"
+   set caption(bddimages_go,choosedb)           "Choose a database"
+   set caption(bddimages_go,configuration)      "Configuration"
+   set caption(bddimages_go,status)             "DB Status"
+   set caption(bddimages_go,insertion)          "Inserting Images"
+   set caption(bddimages_go,recherche)          "Search"
+   set caption(bddimages_go,reports)            "Reports"
+   set caption(bddimages_go,test)               "Test"
+   set caption(bddimages_go,ressource)          "Re-source"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+   set caption(bddimages_go,titre)              "Images Database"
+   set caption(bddimages_go,bddimages)          "Images Database"
+   set caption(bddimages_go,help_titre)         "Help for this Tool"
+   set caption(bddimages_go,help_titre1)        "Help for the Tool:"
+   set caption(bddimages_go,choosedb)           "Choose a database"
+   set caption(bddimages_go,configuration)      "Configuration"
+   set caption(bddimages_go,status)             "DB Status"
+   set caption(bddimages_go,insertion)          "Inserting Images"
+   set caption(bddimages_go,recherche)          "Search"
+   set caption(bddimages_go,reports)            "Reports"
+   set caption(bddimages_go,test)               "Test"
+   set caption(bddimages_go,ressource)          "Re-source"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+   set caption(bddimages_go,titre)              "Images Database"
+   set caption(bddimages_go,bddimages)          "Images Database"
+   set caption(bddimages_go,help_titre)         "Help for this Tool"
+   set caption(bddimages_go,help_titre1)        "Help for the Tool:"
+   set caption(bddimages_go,choosedb)           "Choose a database"
+   set caption(bddimages_go,configuration)      "Configuration"
+   set caption(bddimages_go,status)             "DB Status"
+   set caption(bddimages_go,insertion)          "Inserting Images"
+   set caption(bddimages_go,recherche)          "Search"
+   set caption(bddimages_go,reports)            "Reports"
+   set caption(bddimages_go,test)               "Test"
+   set caption(bddimages_go,ressource)          "Re-source"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+   set caption(bddimages_go,titre)              "Images Database"
+   set caption(bddimages_go,bddimages)          "Images Database"
+   set caption(bddimages_go,help_titre)         "Help for this Tool"
+   set caption(bddimages_go,help_titre1)        "Help for the Tool:"
+   set caption(bddimages_go,choosedb)           "Choose a database"
+   set caption(bddimages_go,configuration)      "Configuration"
+   set caption(bddimages_go,status)             "DB Status"
+   set caption(bddimages_go,insertion)          "Inserting Images"
+   set caption(bddimages_go,recherche)          "Search"
+   set caption(bddimages_go,reports)            "Reports"
+   set caption(bddimages_go,test)               "Test"
+   set caption(bddimages_go,ressource)          "Re-source"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+   set caption(bddimages_go,titre)              "Images Database"
+   set caption(bddimages_go,bddimages)          "Images Database"
+   set caption(bddimages_go,help_titre)         "Help for this Tool"
+   set caption(bddimages_go,help_titre1)        "Help for the Tool:"
+   set caption(bddimages_go,choosedb)           "Choose a database"
+   set caption(bddimages_go,configuration)      "Configuration"
+   set caption(bddimages_go,status)             "DB Status"
+   set caption(bddimages_go,insertion)          "Inserting Images"
+   set caption(bddimages_go,recherche)          "Search"
+   set caption(bddimages_go,reports)            "Reports"
+   set caption(bddimages_go,test)               "Test"
+   set caption(bddimages_go,ressource)          "Re-source"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+   set caption(bddimages_go,titre)              "Images Database"
+   set caption(bddimages_go,bddimages)          "Images Database"
+   set caption(bddimages_go,help_titre)         "Help for this Tool"
+   set caption(bddimages_go,help_titre1)        "Help for the Tool:"
+   set caption(bddimages_go,choosedb)           "Choose a database"
+   set caption(bddimages_go,configuration)      "Configuration"
+   set caption(bddimages_go,status)             "DB Status"
+   set caption(bddimages_go,insertion)          "Inserting Images"
+   set caption(bddimages_go,recherche)          "Search"
+   set caption(bddimages_go,reports)            "Reports"
+   set caption(bddimages_go,test)               "Test"
+   set caption(bddimages_go,ressource)          "Re-source"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+   set caption(bddimages_go,titre)              "Images Database"
+   set caption(bddimages_go,bddimages)          "Images Database"
+   set caption(bddimages_go,help_titre)         "Help for this Tool"
+   set caption(bddimages_go,help_titre1)        "Help for the Tool:"
+   set caption(bddimages_go,choosedb)           "Choose a database"
+   set caption(bddimages_go,configuration)      "Configuration"
+   set caption(bddimages_go,status)             "DB Status"
+   set caption(bddimages_go,insertion)          "Inserting Images"
+   set caption(bddimages_go,recherche)          "Search"
+   set caption(bddimages_go,reports)            "Reports"
+   set caption(bddimages_go,test)               "Test"
+   set caption(bddimages_go,ressource)          "Re-source"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================

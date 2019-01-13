@@ -1,0 +1,160 @@
+#
+# Fichier : ascom.cap
+# Mise a jour $Id: ascom.cap 9940 2013-08-10 07:56:40Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(ascom,monture)                       "ASCOM"
+set caption(ascom,driver)                        "ASCOM Driver"
+set caption(ascom,configurer)                    "Set up"
+set caption(ascom,raquette_tel)                  "Hand controller on screen"
+
+set caption(ascom,install_1)                     "End of ASCOM plugin installation"
+set caption(ascom,install_2)                     "libascom.dll library updated."
+
+set caption(ascom,2points)                       ":"
+
+set caption(ascom,titre_site_web)                "Reference Web Site:"
+set caption(ascom,site_web_ref)                  "http://ascom-standards.org/"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(ascom,monture)                    "ASCOM"
+   set caption(ascom,driver)                     "Driver ASCOM"
+   set caption(ascom,configurer)                 "Configurer"
+   set caption(ascom,raquette_tel)               "Raquette à l'écran"
+
+   set caption(ascom,install_1)                  "Fin de l'installation du plugin ASCOM"
+   set caption(ascom,install_2)                  "La librairie libascom.dll a été mise à jour."
+
+   set caption(ascom,2points)                    ":"
+
+   set caption(ascom,titre_site_web)             "Site Web de référence :"
+   set caption(ascom,site_web_ref)               "http://ascom-standards.org/"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(ascom,monture)                    "ASCOM"
+   set caption(ascom,driver)                     "Driver ASCOM"
+   set caption(ascom,configurer)                 "Configurare"
+   set caption(ascom,raquette_tel)               "Pulsantiera a schermo"
+
+   set caption(ascom,install_1)                  "Fine installazione del plugin ASCOM"
+   set caption(ascom,install_2)                  "La libreria libascom.dll è stata aggiornata."
+
+   set caption(ascom,2points)                    ":"
+
+   set caption(ascom,titre_site_web)             "Sito Web di riferimento:"
+   set caption(ascom,site_web_ref)               "http://ascom-standards.org/"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(ascom,monture)                    "ASCOM"
+   set caption(ascom,driver)                     "Driver ASCOM"
+   set caption(ascom,configurer)                 "Configurar"
+   set caption(ascom,raquette_tel)               "Controlador virtual"
+
+   set caption(ascom,install_1)                  "Fin de la instalación del plugin ASCOM"
+   set caption(ascom,install_2)                  "Libreria libascom.dll actualizada."
+
+   set caption(ascom,2points)                    ":"
+
+   set caption(ascom,titre_site_web)             "Sitio Web de referencia:"
+   set caption(ascom,site_web_ref)               "http://ascom-standards.org/"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(ascom,monture)                    "ASCOM"
+   set caption(ascom,driver)                     "ASCOM Treiber"
+   set caption(ascom,configurer)                 "Konfigurieren"
+   set caption(ascom,raquette_tel)               "Hand Kontroller am Bildschirm"
+
+   set caption(ascom,install_1)                  "Ende der ASCOM-Plugin-Installation"
+   set caption(ascom,install_2)                  "Die libascom.dll Bibliothek ist aktualisiert."
+
+   set caption(ascom,2points)                    ":"
+
+   set caption(ascom,titre_site_web)             "Referenz Webseite:"
+   set caption(ascom,site_web_ref)               "http://ascom-standards.org/"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(ascom,monture)                    "ASCOM"
+   set caption(ascom,driver)                     "Driver ASCOM"
+   set caption(ascom,configurer)                 "Configuração"
+   set caption(ascom,raquette_tel)               "Controlador de mão no ecrã"
+
+   set caption(ascom,install_1)                  "Fin da instalação do plugin ASCOM"
+   set caption(ascom,install_2)                  "A livraria libascom.dll foi actualizada."
+
+   set caption(ascom,2points)                    ":"
+
+   set caption(ascom,titre_site_web)             "Site Web de referência:"
+   set caption(ascom,site_web_ref)               "http://ascom-standards.org/"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(ascom,monture)                    "ASCOM"
+   set caption(ascom,driver)                     "ASCOM Driver"
+   set caption(ascom,configurer)                 "Set up"
+   set caption(ascom,raquette_tel)               "Hand controller on screen"
+
+   set caption(ascom,install_1)                  "End of ASCOM plugin installation"
+   set caption(ascom,install_2)                  "libascom.dll library updated."
+
+   set caption(ascom,2points)                    ":"
+
+   set caption(ascom,titre_site_web)             "Reference Web Site:"
+   set caption(ascom,site_web_ref)               "http://ascom-standards.org/"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(ascom,monture)                    "ASCOM"
+   set caption(ascom,driver)                     "ASCOM Driver"
+   set caption(ascom,configurer)                 "Set up"
+   set caption(ascom,raquette_tel)               "Hand controller on screen"
+
+   set caption(ascom,install_1)                  "End of ASCOM plugin installation"
+   set caption(ascom,install_2)                  "libascom.dll library updated."
+
+   set caption(ascom,2points)                    ":"
+
+   set caption(ascom,titre_site_web)             "Reference Web Site:"
+   set caption(ascom,site_web_ref)               "http://ascom-standards.org/"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(ascom,monture)                    "ASCOM"
+   set caption(ascom,driver)                     "ASCOM Driver"
+   set caption(ascom,configurer)                 "Set up"
+   set caption(ascom,raquette_tel)               "Hand controller on screen"
+
+   set caption(ascom,install_1)                  "End of ASCOM plugin installation"
+   set caption(ascom,install_2)                  "libascom.dll library updated."
+
+   set caption(ascom,2points)                    ":"
+
+   set caption(ascom,titre_site_web)             "Reference Web Site:"
+   set caption(ascom,site_web_ref)               "http://ascom-standards.org/"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

@@ -1,0 +1,264 @@
+#------------------------------------------------------------------
+# source [ file join $audace(rep_plugin) tool atos atos_ocr_gui.cap
+#------------------------------------------------------------------
+#
+# Fichier        : atos_ocr_gui.cap
+# Description    : Caption pour la GUI de la reconnaissance de caractere 
+# Auteur         : Frederic Vachier
+# Mise à jour $Id: atos_ocr_gui.cap 10653 2014-04-07 23:21:31Z jberthier $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(atos_ocr_gui,bar_title_fits)      "ATOS - Time extraction FITS"
+set caption(atos_ocr_gui,bar_title_avi)       "ATOS - Time extraction AVI"
+set caption(atos_ocr_gui,titre_fits)          "Dating a batch of images (FITS)"
+set caption(atos_ocr_gui,titre_avi)           "Dating a video (AVI)"
+set caption(atos_ocr_gui,fermer)              "Close"
+set caption(atos_ocr_gui,aide)                "Help"
+set caption(atos_ocr_gui,dir_images)          "Image directory"
+set caption(atos_ocr_gui,prefix_images)       "Image filename prefix"
+set caption(atos_ocr_gui,type_incrustateur)   "Time inserter: "
+set caption(atos_ocr_gui,select)              "Select"
+set caption(atos_ocr_gui,date_field)          "Date fields (h:m:s ms \[ms\]):"
+set caption(atos_ocr_gui,ocr_verifie)         "Verified"
+set caption(atos_ocr_gui,ocr_interpole)       "Fitted"
+set caption(atos_ocr_gui,ocr_nb_img)          "Nb images"
+set caption(atos_ocr_gui,ocr_nb_verif)        "Nb verified dates"
+set caption(atos_ocr_gui,ocr_nb_ocr)          "Nb dates by ocr"
+set caption(atos_ocr_gui,ocr_nb_interpole)    "Nb fitted dates"
+set caption(atos_ocr_gui,start)               "Starts timings extraction"
+set caption(atos_ocr_gui,graph)               "Displays timings correlation"
+set caption(atos_ocr_gui,save)                "Save extracted timings"
+set caption(atos_ocr_gui,datation)            "Timings"
+set caption(atos_ocr_gui,ocr)                 "OCR"
+set caption(atos_ocr_gui,interpole)           "Interpolation"
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(atos_ocr_gui,bar_title_fits)      "ATOS - Extraction temps FITS"
+   set caption(atos_ocr_gui,bar_title_avi)       "ATOS - Extraction temps AVI"
+   set caption(atos_ocr_gui,titre_fits)          "Datation d'un lot d'images (FITS)"
+   set caption(atos_ocr_gui,titre_avi)           "Datation d'une video (AVI)"
+   set caption(atos_ocr_gui,fermer)              "Fermer"
+   set caption(atos_ocr_gui,aide)                "Aide"
+   set caption(atos_ocr_gui,dir_images)          "Répertoire des images"
+   set caption(atos_ocr_gui,prefix_images)       "Préfixe du nom des images"
+   set caption(atos_ocr_gui,type_incrustateur)   "Type d'incrustateur : "
+   set caption(atos_ocr_gui,select)              "Selection"
+   set caption(atos_ocr_gui,date_field)          "Champs date (h:m:s ms \[ms\]):"
+   set caption(atos_ocr_gui,ocr_verifie)         "Verifié"
+   set caption(atos_ocr_gui,ocr_interpole)       "Interpolé"
+   set caption(atos_ocr_gui,ocr_nb_img)          "Nb images"
+   set caption(atos_ocr_gui,ocr_nb_verif)        "Nb dates verifiées"
+   set caption(atos_ocr_gui,ocr_nb_ocr)          "Nb dates par ocr"
+   set caption(atos_ocr_gui,ocr_nb_interpole)    "Nb dates interpolées"
+   set caption(atos_ocr_gui,start)               "Démarre l'extraction des dates"
+   set caption(atos_ocr_gui,graph)               "Affiche la correlation des dates"
+   set caption(atos_ocr_gui,save)                "Sauve les dates extraites"
+   set caption(atos_ocr_gui,datation)            "Datation"
+   set caption(atos_ocr_gui,ocr)                 "OCR"
+   set caption(atos_ocr_gui,interpole)           "Interpolation"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(atos_ocr_gui,bar_title_fits)      "ATOS - Time extraction FITS"
+   set caption(atos_ocr_gui,bar_title_avi)       "ATOS - Time extraction AVI"
+   set caption(atos_ocr_gui,titre_fits)          "Dating a batch of images (FITS)"
+   set caption(atos_ocr_gui,titre_avi)           "Dating a video (AVI)"
+   set caption(atos_ocr_gui,fermer)              "Close"
+   set caption(atos_ocr_gui,aide)                "Help"
+   set caption(atos_ocr_gui,dir_images)          "Image directory"
+   set caption(atos_ocr_gui,prefix_images)       "Image filename prefix"
+   set caption(atos_ocr_gui,type_incrustateur)   "Time inserter: "
+   set caption(atos_ocr_gui,select)              "Select"
+   set caption(atos_ocr_gui,date_field)          "Date fields (h:m:s ms \[ms\]):"
+   set caption(atos_ocr_gui,ocr_verifie)         "Verified"
+   set caption(atos_ocr_gui,ocr_interpole)       "Fitted"
+   set caption(atos_ocr_gui,ocr_nb_img)          "Nb images"
+   set caption(atos_ocr_gui,ocr_nb_verif)        "Nb verified dates"
+   set caption(atos_ocr_gui,ocr_nb_ocr)          "Nb dates by ocr"
+   set caption(atos_ocr_gui,ocr_nb_interpole)    "Nb fitted dates"
+   set caption(atos_ocr_gui,start)               "Starts timings extraction"
+   set caption(atos_ocr_gui,graph)               "Displays timings correlation"
+   set caption(atos_ocr_gui,save)                "Save extracted timings"
+   set caption(atos_ocr_gui,datation)            "Timings"
+   set caption(atos_ocr_gui,ocr)                 "OCR"
+   set caption(atos_ocr_gui,interpole)           "Interpolation"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(atos_ocr_gui,bar_title_fits)      "ATOS - Time extraction FITS"
+   set caption(atos_ocr_gui,bar_title_avi)       "ATOS - Time extraction AVI"
+   set caption(atos_ocr_gui,titre_fits)          "Dating a batch of images (FITS)"
+   set caption(atos_ocr_gui,titre_avi)           "Dating a video (AVI)"
+   set caption(atos_ocr_gui,fermer)              "Close"
+   set caption(atos_ocr_gui,aide)                "Help"
+   set caption(atos_ocr_gui,dir_images)          "Image directory"
+   set caption(atos_ocr_gui,prefix_images)       "Image filename prefix"
+   set caption(atos_ocr_gui,type_incrustateur)   "Time inserter: "
+   set caption(atos_ocr_gui,select)              "Select"
+   set caption(atos_ocr_gui,date_field)          "Date fields (h:m:s ms \[ms\]):"
+   set caption(atos_ocr_gui,ocr_verifie)         "Verified"
+   set caption(atos_ocr_gui,ocr_interpole)       "Fitted"
+   set caption(atos_ocr_gui,ocr_nb_img)          "Nb images"
+   set caption(atos_ocr_gui,ocr_nb_verif)        "Nb verified dates"
+   set caption(atos_ocr_gui,ocr_nb_ocr)          "Nb dates by ocr"
+   set caption(atos_ocr_gui,ocr_nb_interpole)    "Nb fitted dates"
+   set caption(atos_ocr_gui,start)               "Starts timings extraction"
+   set caption(atos_ocr_gui,graph)               "Displays timings correlation"
+   set caption(atos_ocr_gui,save)                "Save extracted timings"
+   set caption(atos_ocr_gui,datation)            "Timings"
+   set caption(atos_ocr_gui,ocr)                 "OCR"
+   set caption(atos_ocr_gui,interpole)           "Interpolation"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(atos_ocr_gui,bar_title_fits)      "ATOS - Time extraction FITS"
+   set caption(atos_ocr_gui,bar_title_avi)       "ATOS - Time extraction AVI"
+   set caption(atos_ocr_gui,titre_fits)          "Dating a batch of images (FITS)"
+   set caption(atos_ocr_gui,titre_avi)           "Dating a video (AVI)"
+   set caption(atos_ocr_gui,fermer)              "Close"
+   set caption(atos_ocr_gui,aide)                "Help"
+   set caption(atos_ocr_gui,dir_images)          "Image directory"
+   set caption(atos_ocr_gui,prefix_images)       "Image filename prefix"
+   set caption(atos_ocr_gui,type_incrustateur)   "Time inserter: "
+   set caption(atos_ocr_gui,select)              "Select"
+   set caption(atos_ocr_gui,date_field)          "Date fields (h:m:s ms \[ms\]):"
+   set caption(atos_ocr_gui,ocr_verifie)         "Verified"
+   set caption(atos_ocr_gui,ocr_interpole)       "Fitted"
+   set caption(atos_ocr_gui,ocr_nb_img)          "Nb images"
+   set caption(atos_ocr_gui,ocr_nb_verif)        "Nb verified dates"
+   set caption(atos_ocr_gui,ocr_nb_ocr)          "Nb dates by ocr"
+   set caption(atos_ocr_gui,ocr_nb_interpole)    "Nb fitted dates"
+   set caption(atos_ocr_gui,start)               "Starts timings extraction"
+   set caption(atos_ocr_gui,graph)               "Displays timings correlation"
+   set caption(atos_ocr_gui,save)                "Save extracted timings"
+   set caption(atos_ocr_gui,datation)            "Timings"
+   set caption(atos_ocr_gui,ocr)                 "OCR"
+   set caption(atos_ocr_gui,interpole)           "Interpolation"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(atos_ocr_gui,bar_title_fits)      "ATOS - Time extraction FITS"
+   set caption(atos_ocr_gui,bar_title_avi)       "ATOS - Time extraction AVI"
+   set caption(atos_ocr_gui,titre_fits)          "Dating a batch of images (FITS)"
+   set caption(atos_ocr_gui,titre_avi)           "Dating a video (AVI)"
+   set caption(atos_ocr_gui,fermer)              "Close"
+   set caption(atos_ocr_gui,aide)                "Help"
+   set caption(atos_ocr_gui,dir_images)          "Image directory"
+   set caption(atos_ocr_gui,prefix_images)       "Image filename prefix"
+   set caption(atos_ocr_gui,type_incrustateur)   "Time inserter: "
+   set caption(atos_ocr_gui,select)              "Select"
+   set caption(atos_ocr_gui,date_field)          "Date fields (h:m:s ms \[ms\]):"
+   set caption(atos_ocr_gui,ocr_verifie)         "Verified"
+   set caption(atos_ocr_gui,ocr_interpole)       "Fitted"
+   set caption(atos_ocr_gui,ocr_nb_img)          "Nb images"
+   set caption(atos_ocr_gui,ocr_nb_verif)        "Nb verified dates"
+   set caption(atos_ocr_gui,ocr_nb_ocr)          "Nb dates by ocr"
+   set caption(atos_ocr_gui,ocr_nb_interpole)    "Nb fitted dates"
+   set caption(atos_ocr_gui,start)               "Starts timings extraction"
+   set caption(atos_ocr_gui,graph)               "Displays timings correlation"
+   set caption(atos_ocr_gui,save)                "Save extracted timings"
+   set caption(atos_ocr_gui,datation)            "Timings"
+   set caption(atos_ocr_gui,ocr)                 "OCR"
+   set caption(atos_ocr_gui,interpole)           "Interpolation"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(atos_ocr_gui,bar_title_fits)      "ATOS - Time extraction FITS"
+   set caption(atos_ocr_gui,bar_title_avi)       "ATOS - Time extraction AVI"
+   set caption(atos_ocr_gui,titre_fits)          "Dating a batch of images (FITS)"
+   set caption(atos_ocr_gui,titre_avi)           "Dating a video (AVI)"
+   set caption(atos_ocr_gui,fermer)              "Close"
+   set caption(atos_ocr_gui,aide)                "Help"
+   set caption(atos_ocr_gui,dir_images)          "Image directory"
+   set caption(atos_ocr_gui,prefix_images)       "Image filename prefix"
+   set caption(atos_ocr_gui,type_incrustateur)   "Time inserter: "
+   set caption(atos_ocr_gui,select)              "Select"
+   set caption(atos_ocr_gui,date_field)          "Date fields (h:m:s ms \[ms\]):"
+   set caption(atos_ocr_gui,ocr_verifie)         "Verified"
+   set caption(atos_ocr_gui,ocr_interpole)       "Fitted"
+   set caption(atos_ocr_gui,ocr_nb_img)          "Nb images"
+   set caption(atos_ocr_gui,ocr_nb_verif)        "Nb verified dates"
+   set caption(atos_ocr_gui,ocr_nb_ocr)          "Nb dates by ocr"
+   set caption(atos_ocr_gui,ocr_nb_interpole)    "Nb fitted dates"
+   set caption(atos_ocr_gui,start)               "Starts timings extraction"
+   set caption(atos_ocr_gui,graph)               "Displays timings correlation"
+   set caption(atos_ocr_gui,save)                "Save extracted timings"
+   set caption(atos_ocr_gui,datation)            "Timings"
+   set caption(atos_ocr_gui,ocr)                 "OCR"
+   set caption(atos_ocr_gui,interpole)           "Interpolation"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(atos_ocr_gui,bar_title_fits)      "ATOS - Time extraction FITS"
+   set caption(atos_ocr_gui,bar_title_avi)       "ATOS - Time extraction AVI"
+   set caption(atos_ocr_gui,titre_fits)          "Dating a batch of images (FITS)"
+   set caption(atos_ocr_gui,titre_avi)           "Dating a video (AVI)"
+   set caption(atos_ocr_gui,fermer)              "Close"
+   set caption(atos_ocr_gui,aide)                "Help"
+   set caption(atos_ocr_gui,dir_images)          "Image directory"
+   set caption(atos_ocr_gui,prefix_images)       "Image filename prefix"
+   set caption(atos_ocr_gui,type_incrustateur)   "Time inserter: "
+   set caption(atos_ocr_gui,select)              "Select"
+   set caption(atos_ocr_gui,date_field)          "Date fields (h:m:s ms \[ms\]):"
+   set caption(atos_ocr_gui,ocr_verifie)         "Verified"
+   set caption(atos_ocr_gui,ocr_interpole)       "Fitted"
+   set caption(atos_ocr_gui,ocr_nb_img)          "Nb images"
+   set caption(atos_ocr_gui,ocr_nb_verif)        "Nb verified dates"
+   set caption(atos_ocr_gui,ocr_nb_ocr)          "Nb dates by ocr"
+   set caption(atos_ocr_gui,ocr_nb_interpole)    "Nb fitted dates"
+   set caption(atos_ocr_gui,start)               "Starts timings extraction"
+   set caption(atos_ocr_gui,graph)               "Displays timings correlation"
+   set caption(atos_ocr_gui,save)                "Save extracted timings"
+   set caption(atos_ocr_gui,datation)            "Timings"
+   set caption(atos_ocr_gui,ocr)                 "OCR"
+   set caption(atos_ocr_gui,interpole)           "Interpolation"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(atos_ocr_gui,bar_title_fits)      "ATOS - Time extraction FITS"
+   set caption(atos_ocr_gui,bar_title_avi)       "ATOS - Time extraction AVI"
+   set caption(atos_ocr_gui,titre_fits)          "Dating a batch of images (FITS)"
+   set caption(atos_ocr_gui,titre_avi)           "Dating a video (AVI)"
+   set caption(atos_ocr_gui,fermer)              "Close"
+   set caption(atos_ocr_gui,aide)                "Help"
+   set caption(atos_ocr_gui,dir_images)          "Image directory"
+   set caption(atos_ocr_gui,prefix_images)       "Image filename prefix"
+   set caption(atos_ocr_gui,type_incrustateur)   "Time inserter: "
+   set caption(atos_ocr_gui,select)              "Select"
+   set caption(atos_ocr_gui,date_field)          "Date fields (h:m:s ms \[ms\]):"
+   set caption(atos_ocr_gui,ocr_verifie)         "Verified"
+   set caption(atos_ocr_gui,ocr_interpole)       "Fitted"
+   set caption(atos_ocr_gui,ocr_nb_img)          "Nb images"
+   set caption(atos_ocr_gui,ocr_nb_verif)        "Nb verified dates"
+   set caption(atos_ocr_gui,ocr_nb_ocr)          "Nb dates by ocr"
+   set caption(atos_ocr_gui,ocr_nb_interpole)    "Nb fitted dates"
+   set caption(atos_ocr_gui,start)               "Starts timings extraction"
+   set caption(atos_ocr_gui,graph)               "Displays timings correlation"
+   set caption(atos_ocr_gui,save)                "Save extracted timings"
+   set caption(atos_ocr_gui,datation)            "Timings"
+   set caption(atos_ocr_gui,ocr)                 "OCR"
+   set caption(atos_ocr_gui,interpole)           "Interpolation"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

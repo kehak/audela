@@ -1,0 +1,2 @@
+LIBRARY libouranos
+EXPORTS Ouranos_Init @1

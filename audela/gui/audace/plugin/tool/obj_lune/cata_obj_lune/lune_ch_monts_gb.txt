@@ -1,0 +1,18 @@
+Montes Agricola           29.1N   54.2W   141.0   18                                              Georgius; German Earth scientist (1494-1555)
+Montes Alpes              46.4N   0.8W    281.0   12                                              Named from terrestrial Alps
+Montes Apenninus          18.9N   3.7W    401.0   21  22                                          Named from terrestrial Apennines
+Montes Archimedes         25.3N   4.6W    163.0   22                                              Named from nearby crater
+Montes Carpatus           14.5N   24.4W   361.0   20  31                                          Named from terrestrial Carpathians
+Montes Caucasus           38.4N   10.0E   445.0   13                                              Named from terrestrial Caucasus Mountains
+Montes Cordillera         17.5S   81.6W   574.0   39  50                                  VII     Spanish for "mountain chain"                            
+Montes Haemus             19.9N   9.2E    560.0   23                                              Named for range in the Balkans
+Montes Harbinger          27.0N   41.0W   90.0    19                                              Harbingers of dawn on crater Aristarchus
+Montes Jura               47.1N   34.0W   422.0   10                                              Named from terrestrial Jura Mountains
+Montes Pyrenaeus          15.6S   41.2E   164.0   48  58                                          Named from terrestrial Pyrenees
+Montes Recti              48.0N   20.0W   90.0    11                                              Latin for "straight range"                            
+Montes Riphaeus           7.7S    28.1W   189.0   41  42                                          Named from range in Asia (now Ural Mountains)
+Montes Rook               20.6S   82.5W   791.0   50                                      VII     Lawrence; British astronomer (1622-1666)
+Montes Secchi             3.0N    43.0E   50.0    37                                              Named from nearby crater
+Montes Spitzbergen        35.0N   5.0W    60.0    12                                              German for "sharp peaks", and named for resemblance to the terrestrial island group
+Montes Taurus             28.4N   41.1E   172.0   25                                              Named from terrestrial Taurus Mountains
+Montes Teneriffe          47.1N   11.8W   182.0   3   11                                          Named from terrestrial island

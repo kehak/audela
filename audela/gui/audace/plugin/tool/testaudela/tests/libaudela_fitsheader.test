@@ -1,0 +1,71 @@
+
+#-------------------------------------------------------------------------------
+test fitsheader {motcles m57.fit} { } {
+   #--- je teste la commande fitsheader
+   set keywords [fitsheader [file join $::conf(testaudela,rep_images) m57.fit]]
+   #--- je retourne le nombre de mots cles trouves
+   return [llength $keywords]
+} "94"
+
+#-------------------------------------------------------------------------------
+test fitsheader_accent {mots cles été/57.fit} { } {
+   #--- je cree un repetoire avec des accents
+   file mkdir [file join $::audace(rep_images) été]
+   #--- je copie un fichier dans ce repertoire
+   file copy [file join $::conf(testaudela,rep_images) m57.fit] [file join $::audace(rep_images) été]
+   #--- je teste la commande fitsheader
+   set keywords [fitsheader [file join $::audace(rep_images) été m57.fit]]
+   #--- je retourne le nombre mots cles trouves
+   return [llength $keywords]
+} "94"
+
+#-------------------------------------------------------------------------------
+test convert3d_accent {convert3d été/m57_color.fit} { } {
+   #--- je copie un fichier dans le repertoire été
+   file copy [file join $::conf(testaudela,rep_images) m57.fit] [file join $::audace(rep_images) été m57_1.fit]
+   file copy [file join $::conf(testaudela,rep_images) m57.fit] [file join $::audace(rep_images) été m57_2.fit]
+   file copy [file join $::conf(testaudela,rep_images) m57.fit] [file join $::audace(rep_images) été m57_3.fit]
+   #--- je teste la commande fitsconvert3d
+   set keywords [fitsconvert3d [file join $::audace(rep_images) été m57_] 3 .fit [file join $::audace(rep_images) été m57_color]]
+
+   #--- je recupere la valeur du mot cle NAXIS3
+   set keywords [fitsheader [file join $::audace(rep_images) été m57_color.fit]]
+   set naxis3   [lindex [lsearch  -index 0 -inline $keywords  "NAXIS3"] 1]
+   #--- je retourne naxis3
+   return $naxis3
+} "3"
+
+#-------------------------------------------------------------------------------
+test save3d_accent {save3d été/47toucan_R.fit} { } {
+   #--- je charge une image couleur
+   buf1 load [file join $::conf(testaudela,rep_images) m57.fit]
+   #--- je recupere le mot cle COMMENT
+   set keyword [buf1 getkwd COMMENT ]
+   set result ""
+   #-- je recupere tous les mots cles COMMENT
+   foreach { name value type comment unit } $keyword {
+      lappend result $name
+   }
+   return $result
+} "COMMENT COMMENT COMMENT COMMENT"
+
+#-------------------------------------------------------------------------------
+test save3d_keyword_multiple {mot cle multiple} { } {
+   #--- je charge une image couleur
+   buf1 load [file join $::conf(testaudela,rep_images) 47toucan.jpg]
+   #--- je teste la commande save3d
+   set result [buf1 save3d [file join $::audace(rep_images) été 47toucan_R] 3 1 1 ]
+   #-- je recupere la valeur du mot cle NAXIS
+   set keywords [fitsheader [file join $::audace(rep_images) été 47toucan_R.fit]]
+   set naxis [lindex [lsearch -index 0 -inline $keywords  "NAXIS"] 1]
+   #--- je retourne naxis
+   return $naxis
+} "3"
+
+#-------------------------------------------------------------------------------
+test bufloadfits_clean {supprime} {
+   buf1 clear
+   file delete -force [file join $::audace(rep_images) été]
+   return ""
+} ""
+

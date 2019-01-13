@@ -1,0 +1,403 @@
+#
+# Fichier : lx200.cap
+# Mise a jour $Id: lx200.cap 13616 2016-04-05 15:34:15Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(lx200,monture)                       "LX200"
+set caption(lx200,ouranos)                       "AudeCom + Ouranos"
+set caption(lx200,format_court_long)             "Short Long"
+set caption(lx200,port_liaison)                  "Port / Link"
+set caption(lx200,configurer)                    "Set up"
+set caption(lx200,controle)                      "Control"
+set caption(lx200,modele)                        "Model"
+set caption(lx200,modele_lx200)                  "LX200"
+set caption(lx200,modele_lx200_gps)              "LX200 GPS"
+set caption(lx200,modele_audecom)                "AudeCom"
+set caption(lx200,modele_skysensor)              "SkySensor 2000 PC"
+set caption(lx200,modele_gemini)                 "Losmandy Gemini"
+set caption(lx200,modele_ite-lente)              "Ite-lente"
+set caption(lx200,modele_mel_bartels)            "Mel BARTELS"
+set caption(lx200,modele_astro_physics)          "Astro-Physics"
+set caption(lx200,modele_fs2)                    "FS2"
+set caption(lx200,format)                        "Format"
+set caption(lx200,maj_lx200)                     "Update time, longitude, latitude and altitude of LX200"
+set caption(lx200,rappelAD)                      "R.A. Guide Speed (arcsec/sec.)"
+set caption(lx200,rappelDec)                     "Dec. Guide Speed (arcsec/sec.)"
+set caption(lx200,vitesseSiderale)               "(Sidereal Speed = 15 arcsec/sec.)"
+set caption(lx200,ite-lente_tempo)               "Tempo"
+set caption(lx200,ite-lente_A0,go)               "GO A0"
+set caption(lx200,ite-lente_A0,stop)             "Stop A0"
+set caption(lx200,ite-lente_A1,go)               "GO A1"
+set caption(lx200,ite-lente_A1,stop)             "Stop A1"
+set caption(lx200,ite-lente_ack)                 "ACK"
+set caption(lx200,raquette_tel)                  "Hand controller on screen"
+set caption(lx200,park)                          "Park"
+set caption(lx200,unpark)                        "Unpark"
+
+set caption(lx200,install_1)                     "End of LX200 plugin installation"
+set caption(lx200,install_2)                     "liblx200.dll library updated."
+
+set caption(lx200,port_lx200)                    "LX200 Port"
+set caption(lx200,2points)                       ":"
+
+set caption(lx200,titre_site_web)                "Reference Web Site:"
+set caption(lx200,site_web_ref)                  "http://www.meade.com/support/CommandSet.html"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(lx200,monture)                    "LX200"
+   set caption(lx200,ouranos)                    "AudeCom + Ouranos"
+   set caption(lx200,format_court_long)          "court long"
+   set caption(lx200,port_liaison)               "Port / Liaison"
+   set caption(lx200,configurer)                 "Configurer"
+   set caption(lx200,controle)                   "Contrôle"
+   set caption(lx200,modele)                     "Modèle"
+   set caption(lx200,modele_lx200)               "LX200"
+   set caption(lx200,modele_lx200_gps)           "LX200 GPS"
+   set caption(lx200,modele_audecom)             "AudeCom"
+   set caption(lx200,modele_skysensor)           "SkySensor 2000 PC"
+   set caption(lx200,modele_gemini)              "Losmandy Gemini"
+   set caption(lx200,modele_ite-lente)           "Ite-lente"
+   set caption(lx200,modele_mel_bartels)         "Mel BARTELS"
+   set caption(lx200,modele_astro_physics)       "Astro-Physics"
+   set caption(lx200,modele_fs2)                 "FS2"
+   set caption(lx200,format)                     "Format"
+   set caption(lx200,maj_lx200)                  "Mise à jour heure, longitude, latitude et altitude du LX200"
+   set caption(lx200,rappelAD)                   "Vitesse de rappel en A.D. (arcsec/sec.)"
+   set caption(lx200,rappelDec)                  "Vitesse de rappel en Déc. (arcsec/sec.)"
+   set caption(lx200,vitesseSiderale)            "(vitesse sidérale = 15 arcsec/sec.)"
+   set caption(lx200,ite-lente_tempo)            "Tempo"
+   set caption(lx200,ite-lente_A0,go)            "GO A0"
+   set caption(lx200,ite-lente_A0,stop)          "Stop A0"
+   set caption(lx200,ite-lente_A1,go)            "GO A1"
+   set caption(lx200,ite-lente_A1,stop)          "Stop A1"
+   set caption(lx200,ite-lente_ack)              "ACK"
+   set caption(lx200,raquette_tel)               "Raquette à l'écran"
+   set caption(lx200,park)                       "Park"
+   set caption(lx200,unpark)                     "Unpark"
+
+   set caption(lx200,install_1)                  "Fin de l'installation du plugin LX200"
+   set caption(lx200,install_2)                  "La librairie liblx200.dll a été mise à jour."
+
+   set caption(lx200,port_lx200)                 "Port LX200"
+   set caption(lx200,2points)                    ":"
+
+   set caption(lx200,titre_site_web)             "Site Web de référence :"
+   set caption(lx200,site_web_ref)               "http://www.meade.com/support/CommandSet.html"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(lx200,monture)                    "LX200"
+   set caption(lx200,ouranos)                    "AudeCom + Ouranos"
+   set caption(lx200,format_court_long)          "corto lungo"
+   set caption(lx200,port_liaison)               "Porta / Collegamento"
+   set caption(lx200,configurer)                 "Configurare"
+   set caption(lx200,controle)                   "Controllo"
+   set caption(lx200,modele)                     "Modello"
+   set caption(lx200,modele_lx200)               "LX200"
+   set caption(lx200,modele_lx200_gps)           "LX200 GPS"
+   set caption(lx200,modele_audecom)             "AudeCom"
+   set caption(lx200,modele_skysensor)           "SkySensor 2000 PC"
+   set caption(lx200,modele_gemini)              "Losmandy Gemini"
+   set caption(lx200,modele_ite-lente)           "Ite-lente"
+   set caption(lx200,modele_mel_bartels)         "Mel BARTELS"
+   set caption(lx200,modele_astro_physics)       "Astro-Physics"
+   set caption(lx200,modele_fs2)                 "FS2"
+   set caption(lx200,format)                     "Formato"
+   set caption(lx200,maj_lx200)                  "Aggiornamento di ora, longitudine, latitudine ed altitudine dell' LX200"
+   set caption(lx200,rappelAD)                   "Velocità guida in A.R. (arcsec/sec.)"
+   set caption(lx200,rappelDec)                  "Velocità guida in Dec. (arcsec/sec.)"
+   set caption(lx200,vitesseSiderale)            "(velocità siderale = 15 arcsec/sec.)"
+   set caption(lx200,ite-lente_tempo)            "Tempo"
+   set caption(lx200,ite-lente_A0,go)            "GO A0"
+   set caption(lx200,ite-lente_A0,stop)          "Stop A0"
+   set caption(lx200,ite-lente_A1,go)            "GO A1"
+   set caption(lx200,ite-lente_A1,stop)          "Stop A1"
+   set caption(lx200,ite-lente_ack)              "ACK"
+   set caption(lx200,raquette_tel)               "Pulsantiera a schermo"
+   set caption(lx200,park)                       "Park"
+   set caption(lx200,unpark)                     "Unpark"
+
+   set caption(lx200,install_1)                  "Fine installazione del plugin LX200"
+   set caption(lx200,install_2)                  "La libreria liblx200.dll è stata aggiornata."
+
+   set caption(lx200,port_lx200)                 "Porta LX200"
+   set caption(lx200,2points)                    ":"
+
+   set caption(lx200,titre_site_web)             "Sito Web di riferimento:"
+   set caption(lx200,site_web_ref)               "http://www.meade.com/support/CommandSet.html"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(lx200,monture)                    "LX200"
+   set caption(lx200,ouranos)                    "AudeCom + Ouranos"
+   set caption(lx200,format_court_long)          "corto largo"
+   set caption(lx200,port_liaison)               "Puerto / Enlace"
+   set caption(lx200,configurer)                 "Configurar"
+   set caption(lx200,controle)                   "Control"
+   set caption(lx200,modele)                     "Modelo"
+   set caption(lx200,modele_lx200)               "LX200"
+   set caption(lx200,modele_lx200_gps)           "LX200 GPS"
+   set caption(lx200,modele_audecom)             "AudeCom"
+   set caption(lx200,modele_skysensor)           "SkySensor 2000 PC"
+   set caption(lx200,modele_gemini)              "Losmandy Gemini"
+   set caption(lx200,modele_ite-lente)           "Ite-lente"
+   set caption(lx200,modele_mel_bartels)         "Mel BARTELS"
+   set caption(lx200,modele_astro_physics)       "Astro-Physics"
+   set caption(lx200,modele_fs2)                 "FS2"
+   set caption(lx200,format)                     "Formato"
+   set caption(lx200,maj_lx200)                  "Actualizar hora, longitud, latitud y altitud del LX200"
+   set caption(lx200,rappelAD)                   "Velocidad de guiado A.R. (arcsec/sec.)"
+   set caption(lx200,rappelDec)                  "Velocidad de guiado Dec. (arcsec/sec.)"
+   set caption(lx200,vitesseSiderale)            "(velocidad sideral = 15 arcsec/sec.)"
+   set caption(lx200,ite-lente_tempo)            "Tempo"
+   set caption(lx200,ite-lente_A0,go)            "GO A0"
+   set caption(lx200,ite-lente_A0,stop)          "Stop A0"
+   set caption(lx200,ite-lente_A1,go)            "GO A1"
+   set caption(lx200,ite-lente_A1,stop)          "Stop A1"
+   set caption(lx200,ite-lente_ack)              "ACK"
+   set caption(lx200,raquette_tel)               "Controlador virtual"
+   set caption(lx200,park)                       "Park"
+   set caption(lx200,unpark)                     "Unpark"
+
+   set caption(lx200,install_1)                  "Fin de la instalación del plugin LX200"
+   set caption(lx200,install_2)                  "Libreria liblx200.dll actualizada."
+
+   set caption(lx200,port_lx200)                 "Puerto LX200"
+   set caption(lx200,2points)                    ":"
+
+   set caption(lx200,titre_site_web)             "Sitio Web de referencia:"
+   set caption(lx200,site_web_ref)               "http://www.meade.com/support/CommandSet.html"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(lx200,monture)                    "LX200"
+   set caption(lx200,ouranos)                    "AudeCom + Ouranos"
+   set caption(lx200,format_court_long)          "kurz lang"
+   set caption(lx200,port_liaison)               "Port / Link"
+   set caption(lx200,configurer)                 "Konfigurieren"
+   set caption(lx200,controle)                   "Kontroll"
+   set caption(lx200,modele)                     "Modell"
+   set caption(lx200,modele_lx200)               "LX200"
+   set caption(lx200,modele_lx200_gps)           "LX200 GPS"
+   set caption(lx200,modele_audecom)             "AudeCom"
+   set caption(lx200,modele_skysensor)           "SkySensor 2000 PC"
+   set caption(lx200,modele_gemini)              "Losmandy Gemini"
+   set caption(lx200,modele_ite-lente)           "Ite-lente"
+   set caption(lx200,modele_mel_bartels)         "Mel BARTELS"
+   set caption(lx200,modele_astro_physics)       "Astro-Physics"
+   set caption(lx200,modele_fs2)                 "FS2"
+   set caption(lx200,format)                     "Format"
+   set caption(lx200,maj_lx200)                  "Zeit, Länge, Breite, Höhe des LX200 Aktualisierung"
+   set caption(lx200,rappelAD)                   "R.A. Rückruf Geschwindigkeit (arcsek/Sek.)"
+   set caption(lx200,rappelDec)                  "Dek. Rückruf Geschwindigkeit (arcsek/Sek.)"
+   set caption(lx200,vitesseSiderale)            "(Siderische Geschwindigkeit = 15 arcsek/Sek.)"
+   set caption(lx200,ite-lente_tempo)            "Tempo"
+   set caption(lx200,ite-lente_A0,go)            "GO A0"
+   set caption(lx200,ite-lente_A0,stop)          "Stop A0"
+   set caption(lx200,ite-lente_A1,go)            "GO A1"
+   set caption(lx200,ite-lente_A1,stop)          "Stop A1"
+   set caption(lx200,ite-lente_ack)              "ACK"
+   set caption(lx200,raquette_tel)               "Hand Kontroller am Bildschirm"
+   set caption(lx200,park)                       "Park"
+   set caption(lx200,unpark)                     "Unpark"
+
+   set caption(lx200,install_1)                  "Ende der LX200-Plugin-Installation"
+   set caption(lx200,install_2)                  "Die liblx200.dll Bibliothek ist aktualisiert."
+
+   set caption(lx200,port_lx200)                 "LX200 Port"
+   set caption(lx200,2points)                    ":"
+
+   set caption(lx200,titre_site_web)             "Referenz Webseite:"
+   set caption(lx200,site_web_ref)               "http://www.meade.com/support/CommandSet.html"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(lx200,monture)                    "LX200"
+   set caption(lx200,ouranos)                    "AudeCom + Ouranos"
+   set caption(lx200,format_court_long)          "Curto Longo"
+   set caption(lx200,port_liaison)               "Porta / Ligação"
+   set caption(lx200,configurer)                 "Configuração"
+   set caption(lx200,controle)                   "Controlo"
+   set caption(lx200,modele)                     "Modelo"
+   set caption(lx200,modele_lx200)               "LX200"
+   set caption(lx200,modele_lx200_gps)           "LX200 GPS"
+   set caption(lx200,modele_audecom)             "AudeCom"
+   set caption(lx200,modele_skysensor)           "SkySensor 2000 PC"
+   set caption(lx200,modele_gemini)              "Losmandy Gemini"
+   set caption(lx200,modele_ite-lente)           "Ite-lente"
+   set caption(lx200,modele_mel_bartels)         "Mel BARTELS"
+   set caption(lx200,modele_astro_physics)       "Astro-Physics"
+   set caption(lx200,modele_fs2)                 "FS2"
+   set caption(lx200,format)                     "Formato"
+   set caption(lx200,maj_lx200)                  "Actualizar tempo, longitude, latitude e altitude do LX200"
+   set caption(lx200,rappelAD)                   "Velocidade de guia A.R. (arcsec/sec.)"
+   set caption(lx200,rappelDec)                  "Velocidade de guia Dec. (arcsec/sec.)"
+   set caption(lx200,vitesseSiderale)            "(velocidade sideral = 15 arcsec/sec.)"
+   set caption(lx200,ite-lente_tempo)            "Tempo"
+   set caption(lx200,ite-lente_A0,go)            "GO A0"
+   set caption(lx200,ite-lente_A0,stop)          "Stop A0"
+   set caption(lx200,ite-lente_A1,go)            "GO A1"
+   set caption(lx200,ite-lente_A1,stop)          "Stop A1"
+   set caption(lx200,ite-lente_ack)              "ACK"
+   set caption(lx200,raquette_tel)               "Controlador de mão no ecrã"
+   set caption(lx200,park)                       "Park"
+   set caption(lx200,unpark)                     "Unpark"
+
+   set caption(lx200,install_1)                  "Fin da instalação do plugin LX200"
+   set caption(lx200,install_2)                  "A livraria liblx200.dll foi actualizada."
+
+   set caption(lx200,port_lx200)                 "Porta LX200"
+   set caption(lx200,2points)                    ":"
+
+   set caption(lx200,titre_site_web)             "Site Web de referência:"
+   set caption(lx200,site_web_ref)               "http://www.meade.com/support/CommandSet.html"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(lx200,monture)                    "LX200"
+   set caption(lx200,ouranos)                    "AudeCom + Ouranos"
+   set caption(lx200,format_court_long)          "Short Long"
+   set caption(lx200,port_liaison)               "Port / Link"
+   set caption(lx200,configurer)                 "Set up"
+   set caption(lx200,controle)                   "Control"
+   set caption(lx200,modele)                     "Model"
+   set caption(lx200,modele_lx200)               "LX200"
+   set caption(lx200,modele_lx200_gps)           "LX200 GPS"
+   set caption(lx200,modele_audecom)             "AudeCom"
+   set caption(lx200,modele_skysensor)           "SkySensor 2000 PC"
+   set caption(lx200,modele_gemini)              "Losmandy Gemini"
+   set caption(lx200,modele_ite-lente)           "Ite-lente"
+   set caption(lx200,modele_mel_bartels)         "Mel BARTELS"
+   set caption(lx200,modele_astro_physics)       "Astro-Physics"
+   set caption(lx200,modele_fs2)                 "FS2"
+   set caption(lx200,format)                     "Format"
+   set caption(lx200,maj_lx200)                  "Update time, longitude, latitude and altitude of LX200"
+   set caption(lx200,rappelAD)                   "R.A. Guide Speed (arcsec/sec.)"
+   set caption(lx200,rappelDec)                  "Dec. Guide Speed (arcsec/sec.)"
+   set caption(lx200,vitesseSiderale)            "(Sidereal Speed = 15 arcsec/sec.)"
+   set caption(lx200,ite-lente_tempo)            "Tempo"
+   set caption(lx200,ite-lente_A0,go)            "GO A0"
+   set caption(lx200,ite-lente_A0,stop)          "Stop A0"
+   set caption(lx200,ite-lente_A1,go)            "GO A1"
+   set caption(lx200,ite-lente_A1,stop)          "Stop A1"
+   set caption(lx200,ite-lente_ack)              "ACK"
+   set caption(lx200,raquette_tel)               "Hand controller on screen"
+   set caption(lx200,park)                       "Park"
+   set caption(lx200,unpark)                     "Unpark"
+
+   set caption(lx200,install_1)                  "End of LX200 plugin installation"
+   set caption(lx200,install_2)                  "liblx200.dll library updated."
+
+   set caption(lx200,port_lx200)                 "LX200 Port"
+   set caption(lx200,2points)                    ":"
+
+   set caption(lx200,titre_site_web)             "Reference Web Site:"
+   set caption(lx200,site_web_ref)               "http://www.meade.com/support/CommandSet.html"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(lx200,monture)                    "LX200"
+   set caption(lx200,ouranos)                    "AudeCom + Ouranos"
+   set caption(lx200,format_court_long)          "Short Long"
+   set caption(lx200,port_liaison)               "Port / Link"
+   set caption(lx200,configurer)                 "Set up"
+   set caption(lx200,controle)                   "Control"
+   set caption(lx200,modele)                     "Model"
+   set caption(lx200,modele_lx200)               "LX200"
+   set caption(lx200,modele_lx200_gps)           "LX200 GPS"
+   set caption(lx200,modele_audecom)             "AudeCom"
+   set caption(lx200,modele_skysensor)           "SkySensor 2000 PC"
+   set caption(lx200,modele_gemini)              "Losmandy Gemini"
+   set caption(lx200,modele_ite-lente)           "Ite-lente"
+   set caption(lx200,modele_mel_bartels)         "Mel BARTELS"
+   set caption(lx200,modele_astro_physics)       "Astro-Physics"
+   set caption(lx200,modele_fs2)                 "FS2"
+   set caption(lx200,format)                     "Format"
+   set caption(lx200,maj_lx200)                  "Update time, longitude, latitude and altitude of LX200"
+   set caption(lx200,rappelAD)                   "R.A. Guide Speed (arcsec/sec.)"
+   set caption(lx200,rappelDec)                  "Dec. Guide Speed (arcsec/sec.)"
+   set caption(lx200,vitesseSiderale)            "(Sidereal Speed = 15 arcsec/sec.)"
+   set caption(lx200,ite-lente_tempo)            "Tempo"
+   set caption(lx200,ite-lente_A0,go)            "GO A0"
+   set caption(lx200,ite-lente_A0,stop)          "Stop A0"
+   set caption(lx200,ite-lente_A1,go)            "GO A1"
+   set caption(lx200,ite-lente_A1,stop)          "Stop A1"
+   set caption(lx200,ite-lente_ack)              "ACK"
+   set caption(lx200,raquette_tel)               "Hand controller on screen"
+   set caption(lx200,park)                       "Park"
+   set caption(lx200,unpark)                     "Unpark"
+
+   set caption(lx200,install_1)                  "End of LX200 plugin installation"
+   set caption(lx200,install_2)                  "liblx200.dll library updated."
+
+   set caption(lx200,port_lx200)                 "LX200 Port"
+   set caption(lx200,2points)                    ":"
+
+   set caption(lx200,titre_site_web)             "Reference Web Site:"
+   set caption(lx200,site_web_ref)               "http://www.meade.com/support/CommandSet.html"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(lx200,monture)                    "LX200"
+   set caption(lx200,ouranos)                    "AudeCom + Ouranos"
+   set caption(lx200,format_court_long)          "Short Long"
+   set caption(lx200,port_liaison)               "Port / Link"
+   set caption(lx200,configurer)                 "Set up"
+   set caption(lx200,controle)                   "Control"
+   set caption(lx200,modele)                     "Model"
+   set caption(lx200,modele_lx200)               "LX200"
+   set caption(lx200,modele_lx200_gps)           "LX200 GPS"
+   set caption(lx200,modele_audecom)             "AudeCom"
+   set caption(lx200,modele_skysensor)           "SkySensor 2000 PC"
+   set caption(lx200,modele_gemini)              "Losmandy Gemini"
+   set caption(lx200,modele_ite-lente)           "Ite-lente"
+   set caption(lx200,modele_mel_bartels)         "Mel BARTELS"
+   set caption(lx200,modele_astro_physics)       "Astro-Physics"
+   set caption(lx200,modele_fs2)                 "FS2"
+   set caption(lx200,format)                     "Format"
+   set caption(lx200,maj_lx200)                  "Update time, longitude, latitude and altitude of LX200"
+   set caption(lx200,rappelAD)                   "R.A. Guide Speed (arcsec/sec.)"
+   set caption(lx200,rappelDec)                  "Dec. Guide Speed (arcsec/sec.)"
+   set caption(lx200,vitesseSiderale)            "(Sidereal Speed = 15 arcsec/sec.)"
+   set caption(lx200,ite-lente_tempo)            "Tempo"
+   set caption(lx200,ite-lente_A0,go)            "GO A0"
+   set caption(lx200,ite-lente_A0,stop)          "Stop A0"
+   set caption(lx200,ite-lente_A1,go)            "GO A1"
+   set caption(lx200,ite-lente_A1,stop)          "Stop A1"
+   set caption(lx200,ite-lente_ack)              "ACK"
+   set caption(lx200,raquette_tel)               "Hand controller on screen"
+   set caption(lx200,park)                       "Park"
+   set caption(lx200,unpark)                     "Unpark"
+
+   set caption(lx200,install_1)                  "End of LX200 plugin installation"
+   set caption(lx200,install_2)                  "liblx200.dll library updated."
+
+   set caption(lx200,port_lx200)                 "LX200 Port"
+   set caption(lx200,2points)                    ":"
+
+   set caption(lx200,titre_site_web)             "Reference Web Site:"
+   set caption(lx200,site_web_ref)               "http://www.meade.com/support/CommandSet.html"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

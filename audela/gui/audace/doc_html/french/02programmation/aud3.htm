@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Fonctions spécifiques à l'interface Aud'ACE</title>
+
+  
+</head><body>
+<p class="date">Date de mise à jour : 02 avril 2011</p>
+
+<h1>Fonctions spécifiques à l'interface Aud'ACE </h1>
+
+<p>Les fonctions qui suivent sont implémentées dans les scripts Aud'ACE
+(hors des namespaces).</p>
+
+<h2> 1. Visualisation</h2>
+
+<h3> <a name="animate" id="animate">animate filename nb
+?millisecondes? ?nbtours?</a></h3>
+
+<p>Affiche successivement <em>nb</em> images de nom générique <em>filename</em>.
+Le délai d'attente entre chaque image est de <em>millisecondes</em>
+millisecondes (200 par défaut). L'animation est répétées <em>nbtours</em>
+fois (10 par défaut).</p>
+
+<h2> 2. Traitement d'image</h2>
+
+<h3><a name="mult" id="mult">mult constant</a></h3>
+
+<p>Multiplie tous les pixels de l'image en mémoire dans le buffer 1 par
+une valeur constante <em>constant</em> (en adu).</p>
+
+<h3><a name="convgauss" id="convgauss">convgauss sigma</a></h3>
+
+<p>Convolution de l'image en mémoire dans le buffer 1 par une fonction
+gaussienne dont le paramètre d'étalement <em>sigma</em> (en pixels).</p>
+
+<h3><a name="uncosmic" id="uncosmic">uncosmic coef</a></h3>
+
+<p>Filtre kernel médian pondéré pour éliminer les cosmiques. Le filtre
+est inactif si <em>coef</em>=0 et devient très efficace pour <em>coef</em>&gt;1.
+</p>
+
+<h3><a name="register" id="register">register in out number</a></h3>
+
+<p>Translate les <em>number</em> images de nom générique <em>in</em>
+pour les recentrer automatiquement par rapport aux étoiles présentes
+sur l'image. Les <em>number</em> images de sortie sont nommées par le
+nom générique <em>out</em>.</p>
+
+<h3><a name="add2" id="add2">add1 in operand out const</a></h3>
+
+<h3>add2 in operand out const nb</h3>
+
+<p>Addition d'une image <em>operand</em> à un lot de <em>nb</em>
+images de nom générique <em>in</em>. <em>const</em> est un nombre (en
+pas codeurs) à ajouter à tous les pixels. Le nom générique des images
+de sortie est <em>out</em>.</p>
+
+<h3><a name="div2" id="div2">div1 in operand out const</a></h3>
+
+<h3>div2 in operand out const nb</h3>
+
+<p>Division d'une image <em>operand</em> à un lot de <em>nb</em>
+images de nom générique <em>in</em>. <em>const</em> est un nombre (en
+pas codeurs) à multiplier à tous les pixels. Le nom générique des
+images de sortie est <em>out</em>.</p>
+
+<h3><a name="mult2" id="mult2">mult1 in out const</a></h3>
+
+<h3>mult2 in out const nb</h3>
+
+<p>Multiplication d'une valeur constante <em>const</em> (en pas
+codeurs) à tous les pixels d'un lot de <em>nb</em> images de nom
+générique <em>in</em>. Le nom générique des images de sortie est <em>out</em>.</p>
+
+<h3><a name="ngain2" id="ngain2">ngain1 in out const </a></h3>
+
+<h3>ngain2 in out const nb</h3>
+
+<p>Normalisation du gain à un lot de <em>nb</em> images de nom
+générique <em>in</em>. <em>const</em>
+est un nombre (en pas codeurs) qui représente la moyenne des pixels des
+images de sortie. Le nom générique des images de sortie est <em>out</em>.</p>
+
+<h3><a name="noffset2" id="noffset2">noffset1 in out const </a></h3>
+
+<h3>noffset2 in out const nb</h3>
+
+<p>Normalisation du fond de ciel à un lot de <em>nb</em> images de nom
+générique <em>in</em>. <em>const</em> est un nombre (en pas codeurs)
+qui représente la moyenne des pixels des images de sortie. Le nom
+générique des images de sortie est <em>out</em></p>
+
+<h3><a name="offset2" id="offset2">offset1 in out const </a></h3>
+
+<h3>offset2 in out const nb</h3>
+
+<p>Addition d'une valeur constante <em>const</em> (en pas codeurs) à
+tous les pixels d'un lot de <em>nb</em> images de nom générique <em>in</em>.
+Le nom générique des images de sortie est <em>out</em>.</p>
+
+<h3>
+</h3>
+
+<h3><a name="opt2" id="opt2">opt1 in dark offset out</a></h3>
+
+<h3>opt2 in dark offset out nb</h3>
+
+<p>Soustraction du noir optimisé à un lot de <em>nb</em> images de nom
+générique <em>in</em>. Le nom de fichier du noir est <em>dark</em> et
+le nom de fichier de précharge (bias) s'appelle <em>offset</em>. Le
+nom générique des images de sortie est <em>out</em>.</p>
+
+<h3><a name="register2" id="register2">register2 in out number</a></h3>
+
+<p>Registration d'un lot de <em>nb</em> images de nom générique <em>in</em>.
+Le nom générique des images de sortie est <em>out</em>.</p>
+
+<h3><a name="sadd" id="sadd">sadd in out number</a></h3>
+
+<p>Somme d'une pile de <em>nb</em> images de nom générique <em>in</em>.
+Le nom de l'image de sortie est <em>out</em>.</p>
+
+<h3><a name="scale2" id="scale2">scale1 in out scale_x scale_y</a></h3>
+
+<h3>scale2 in out nb scale_x scale_y</h3>
+
+<p>Re-échantillonnage d'un lot de <em>nb</em> images de nom générique <em>in</em>.
+<em>scale_x</em> et <em>scale_y</em> sont les facteurs d'échelle. Le
+nom générique des images de sortie est <em>out</em>.</p>
+
+<h3>
+</h3>
+
+<h3><a name="smean" id="smean">smean in out number</a></h3>
+
+<p>Moyenne d'une pile de <em>nb</em> images de nom générique <em>in</em>.
+Le nom de l'image de sortie est <em>out</em>.</p>
+
+<h3><a name="smedian" id="smedian">smedian in out number</a></h3>
+
+<p>Médiane d'une pile de <em>nb</em> images de nom générique <em>in</em>.
+Le nom de l'image de sortie est <em>out</em>.</p>
+
+<h3><a name="sub2" id="sub2">sub1 in operand out const</a></h3>
+
+<h3>sub2 in operand out const nb</h3>
+
+<p>Soustraction d'une image <em>operand</em> à un lot de <em>nb</em>
+images de nom générique <em>in</em>. <em>const</em> est un nombre (en
+pas codeurs) à ajouter à tous les pixels.</p>
+
+<h3><a name="trans2" id="trans2">trans2 in out number dx dy</a></h3>
+
+<p>Translation d'un lot de <em>nb</em> images de nom générique <em>in</em>.
+Le nom générique des images de sortie est <em>out</em>. La translation
+vaut <em>dx</em> et <em>dy</em> (en pixels).</p>
+
+<h3><a name="ssort" id="ssort">ssort in out number percent</a></h3>
+
+<p>Tri et attribue au niveau <em>percent</em> (de 0 pour le mini à 100
+pour le maxi) les pixels d'une pile de <em>nb</em> images de nom
+générique <em>in</em>. Le nom de l'image de sortie est <em>out</em>.</p>
+
+<h3><a name="ssk" id="ssk">ssk in out
+number kappa</a></h3>
+
+<p>Synthèse d'une image sigma-kappa au niveau <em>kappa</em>, à partir
+d'une pile de <em>nb</em> images de nom générique <em>in</em>. Le nom
+de l'image de sortie est <em>out</em>.</p>
+
+<h3><a name="uncosmic2" id="uncosmic2">uncosmic2
+in out number coef</a></h3>
+
+<p>Corrige les cosmiques d'un lot de <em>nb</em> images de nom
+générique <em>in</em>. Le nom générique des images de sortie est <em>out</em>.
+Le filtre est inefficace si <em>coef</em>=0 et devient très efficace
+pour <em>coef</em>&gt;1.</p>
+
+<h3><a name="convgauss2" id="convgauss2">convgauss2 in out number sigma</a></h3>
+
+<p>Convolue un lot de <em>nb</em> images de nom générique <em>in </em>par
+une gaussienne de paramètre d'étalement <em>sigma</em> (en pixels). Le
+nom générique des images de sortie est <em>out</em>. Le filtre est
+inefficace si <em>coef</em>=0 et devient très efficace pour <em>coef</em>&gt;1.</p>
+
+<h2> 3. Communication réseau</h2>
+
+<h3><a name="create_server" id="create_server">create_server ?port?</a></h3>
+
+<p>Crée un serveur à protocole RPC. Le port (5000 par défaut) est réglé
+par l'option <em>port</em>. La variable rpcid(serveur) contient
+d'identificateur Tcl du serveur. La variable rcpid(state) prend la
+valeur "server".</p>
+
+<h3><a name="delete_server" id="delete_server">delete_server ?id?</a></h3>
+
+<p>Détruit un serveur à protocole RPC. L'option id (par défaut vaut le
+contenu de la variable rpcid(serveur)) contient l'identificateur Tcl du
+serveur à détruire. La variable rcpid(state) prend la valeur "". Il
+faut s'assurer préalablement que des clients ne sont pas connectés.</p>
+
+<h3><a name="create_client" id="create_client">create_client
+?ip_serveur?
+?port_serveur? ?ip_client? ?port_client?</a></h3>
+
+<p>Connecte le client sur le serveur de numéro IP ip_serveur
+(192.168.0.1 par défaut) et sur le port port_serveur (5000 par défaut).
+La variable rpcid(client) contient d'identificateur Tcl du client. La
+variable rcpid(state) prend la valeur "client".</p>
+
+<p>Si l'on souhaite afficher les images sur l'application Aud'ACE
+cliente (un dossier doit être partagé localement) alors il faut créer
+une connexion client/serveur dans l'autre sens. Le client doit donc
+indiquer son numéro IP ip_client (vaut le contenu de la variable
+rpcid(client) par défaut) et son numéro de port (5000 par défaut).</p>
+
+<p>La variable rcpid(state) prend la valeur "client/server".</p>
+
+<h3><a name="delete_client" id="delete_client">delete_client ?id?</a></h3>
+
+<p>Déconnecte un serveur à protocole RPC. L'option id contient
+l'identificateur Tcl du client à déconnecter. Par défaut ?id? vaut le
+contenu de la variable rpcid(client). Après déconnexion, la variable
+rcpid(state) prend la valeur "".</p>
+
+<h3><a name="send" id="send">send arg</a></h3>
+
+<p>Envoie une ligne de commande (<em>arg</em>) d'un client vers un
+serveur à protocole RPC.</p>
+
+</body></html>

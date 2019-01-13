@@ -1,0 +1,1297 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Liste de toutes les fonctions</title></head><body>
+<p class="date">Date de mise &agrave; jour : 01 février 2017</p>
+
+<h1>Liste de toutes les fonctions </h1>
+<p>Nous donnons la liste de toutes les fonctions disponibles dans
+AudeLA, plus quelques unes de TCL et TK qui sont très utiles. En
+ce qui concerne les fonctions associées à des objets de
+AudeLA, elles sont présentées en fonction de l'objet
+numéro 1. Les fonctions ont été rassemblées
+par thème et sont suivies de leur origine: </p>
+<ul>
+  <li>[TC] : Fonction TCL, disponible dans toutes les applications
+AudeLA</li>
+  <li>[AL] : Fonction AudeLA, disponible dans toutes les applications
+AudeLA </li>
+  <li>[AC] : Fonction Aud'ACE, disponible uniquement avec l'interface
+Aud'ACE </li>
+  <li>[MC] : Fonction de la librairie d'extension MC, disponible dans
+toutes les applications AudeLA </li>
+  <li>[RG] : Fonction de la librairie d'extension RGB, disponible dans
+toutes les applications AudeLA </li>
+  <li>[GZ] : Fonction de la librairie d'extension GZIP, disponible dans
+toutes les applications AudeLA </li>
+  <li>[GS] : Fonction de la librairie d'extension G.S.L., disponible
+dans toutes les applications AudeLA </li>
+  <li>[DC] : Fonction d'une librairie de driver de caméra </li>
+  <li>[DT] : Fonction d'une librairie de driver de télescope </li>
+  <li>[DP] : Fonction de la librairie d'extension DP </li>
+  <li>[BLT] : Fonction de la librairie d'extension BLT </li>
+  <li>[BM] : Fonction de la librairie d'extension LibBM </li>
+  <li>[JM] : Fonction de la librairie d'extension LibJM </li>
+  <li>[GS] : Fonction de la librairie d'extension LibGS </li>
+</ul>
+<h1> Accès aux fichiers images </h1>
+<a href="buf.htm#load">buf1 load</a> : [AL] charge une image au format
+FITS, RAW, JPEG, BMP, GIF, PNG ou TIFF <br />
+<a href="buf.htm#save">buf1 save</a> : [AL] enregistre une image au format
+FITS, RAW, JPEG, BMP, PNG ou TIFF <br />
+cd : [TC] change le nom du dossier courant <br />
+<a href="aud1.htm#delete2">delete2</a> : [AC] efface une série
+de fichiers images indicés <br />
+<a href="aud1.htm#dir">dir</a> : [AC] listage des fichiers d'un
+répertoire <br />
+glob : [TC] retourne le contenu du dossier <br />
+<a href="aud1.htm#loadima">loadima</a> : [AC] charge une image au format
+FITS, RAW, JPEG, BMP, GIF, PNG ou TIFF dans un buffer <br />
+pwd : [TC] retourne le nom du dossier courant <br />
+<a href="aud1.htm#saveima">saveima</a> : [AC] enregistre une image au format
+FITS, RAW, JPEG, BMP, PNG ou TIFF à partir d'un buffer <br />
+<a href="buf.htm#savejpeg">buf1 savejpeg</a> : [AL] enregistre une
+image au format JPEG<br />
+<a href="buf.htm#bitpix">buf1 bitpix</a> : [AL] fixe le type de
+données à enregistrer dans le fichier FITS (16 bits
+signés par défaut) <br />
+<a href="buf.htm#extension">buf1 extension</a> : [AL] fixe le nom de
+l'extension par défaut des fichiers FITS (.fit par
+défaut) <br />
+<a href="buf.htm#compress">buf1 compress</a> : [AL] fixe le type de
+compression des fichiers FITS à enregistrer (aucune par
+défaut) <br />
+<a href="../../../../../doc/libaudela/audus1_fr.htm#fits2colorjpeg">fits2colorjpeg</a> : [AL]
+enregistre trois buffers sous la forme d'une seul fichier Jpeg couleur <br />
+<a href="../../../../../doc/librgb/rgbus-fr.htm#rgb_save">rgb_save</a> : [RG] enregistre les
+trois buffers RGB en un fichier FITS couleur <br />
+<a href="../../../../../doc/librgb/rgbus-fr.htm#rgb_load">rgb_load</a> : [RG] lit les trois
+buffers RGB à partir d'un fichier FITS couleur <br />
+file delete : [TC] efface un fichier quelconque <br />
+file copy : [TC] copie un fichier quelconque <br />
+file mkdir : [TC] crée un nouveau dossier <br />
+file : [TC] jeu de fonctions puissantes de gestion de fichiers <br />
+<a href="../../../../../doc/libgzip/gzipus-fr.htm#gzip">gzip</a> : [GZ] compresse un ou plusieurs
+fichiers <br />
+<a href="../../../../../doc/libgzip/gzipus-fr.htm#gunzip">gunzip</a> : [GZ] décompresse un
+ou plusieurs fichiers
+<h1> En-tête FITS des images</h1>
+<a href="buf.htm#clear">buf1 clear</a> : [AL] : RAZ de l'image et de
+l'en-tête <br />
+<a href="buf.htm#getkwd">buf1 getkwd</a> : [AL] : retourne la valeur
+d'un mot clé <br />
+<a href="buf.htm#getkwds">buf1 getkwds</a> : [AL] : retourne la liste
+de tous les mots clés<br />
+<a href="buf.htm#setkwd">buf1 setkwd</a> : [AL] : ajoute un nouveau mot
+clé <br />
+<a href="buf.htm#copykwd">buf1 copykwd</a> : [AL] : copie tous les mots
+clés d'un buffer vers un autre <br />
+<a href="buf.htm#delkwd">buf1 delkwd</a> : [AL] : efface un mot
+clé <br />
+<a href="buf.htm#delkwds">buf1 delkwds</a> : [AL] : efface tous les
+mots clés <br />
+<a href="aud1.htm#fitsdate">fitsdate</a> : [AC] renvoie la date
+courante au format FITS <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#HEADERFITS">buf1 imaseries "HEADERFITS <em>options</em>"</a>
+: [AL] ajoute des mots clés à partir d'un fichier texte <a href="aud.htm#audaceheader"><br />
+</a>
+<h1> Acquisition des images</h1>
+<a href="aud1.htm#acq">acq</a> : [AC] acquisition d'une image de cam1
+et affichage sur l'écran dans Aud'ACE <br />
+<a href="cam.htm#port">cam1 port</a> : [DC] spécifie le
+numéro du port parallèle sur lequel est connecté
+la caméra <br />
+<a href="cam.htm#debug">cam1 debug</a> : [DC] retourne des traces pour les fonctions de la partie commune de la caméra connectée<br />
+<a href="cam.htm#info">cam1 info</a> : [DC] retourne les informations
+sur la caméra connectée <br />
+<a href="cam.htm#exptime">cam1 exptime</a> : [DC] spécifie la
+valeur du temps d'exposition de la prochaine acquisition <br />
+<a href="cam.htm#bin">cam1 bin</a> : [DC] spécifie la valeur du
+binning de la prochaine acquisition <br />
+<a href="cam.htm#acq">cam1 acq</a> : [DC] déclenche une
+acquisition CCD <br />
+<a href="cam.htm#stop">cam1 stop</a> : [DC] arrête une pose avant
+la fin du temps indiqué par exptime <br />
+<a href="cam.htm#scan">cam1 scan</a> : [DC] acquisition d'image en mode
+scan (caméra Audine uniquement) <br />
+<a href="cam.htm#scanloop">cam1 scanloop</a> : [DC]
+détermination du nombre de boucles pour cam1 scan (caméra
+Audine uniquement) <br />
+<a href="cam.htm#breakscan">cam1 breakscan</a> : [DC] interruption d'un
+scan <br />
+<a href="cam.htm#window">cam1 window</a> : [DC] sélectionne une
+fenêtre dans l'image pour la prochaine acquisition <br />
+<a href="cam.htm#buf">cam1 buf</a> : [DC] spécifie le
+numéro de buffer dans lequel va être stocké l'image
+acquise <br />
+<a href="cam.htm#tel">cam1 tel</a> : [DC] spécifie le
+numéro de télescope sur lequel seront lues les
+coordonnées pointées pour remplir l'en-tête FITS <br />
+vwait cam_acq1 : [TC] attend la fin de la pose <br />
+<a href="cam.htm#ccd">cam1 ccd</a> : [DC] retourne le nom du capteur
+CCD qui équipe la caméra <br />
+<a href="cam.htm#name">cam1 name</a> : [DC] retourne le nom de la
+caméra CCD <br />
+<a href="cam.htm#nbpix">cam1 nbpix</a> : [DC] retourne le nombre de
+pixels <br />
+<a href="cam.htm#nbcells">cam1 nbcells</a> : [DC] retourne le nombre de
+photosites total <br />
+<a href="cam.htm#celldim">cam1 celldim</a> : [DC] retourne la dimension
+d'un photosite (en mètres) <br />
+<a href="cam.htm#pixdim">cam1 pixdim</a> : [DC] retourne la dimension
+d'un pixel (en mètres) <br />
+<a href="cam.htm#maxdyn">cam1 maxdyn</a> : [DC] retourne le nombre de
+pas codeurs de saturation du convertisseur numérique <br />
+<a href="cam.htm#fillfactor">cam1 fillfactor</a> : [DC] retourne le
+facteur de remplissage des photosites <br />
+<a href="cam.htm#rgb">cam1 rgb</a> : [DC] retourne le type de codage
+RGB dans le cas d'un capteur couleur <br />
+<a href="cam.htm#timer">cam1 timer</a> : [DC] retourne le nombre de
+secondes écoulées depuis le début de pose <br />
+<a href="cam.htm#readnoise">cam1 readnoise</a> : [AL] retourne la
+valeur du bruit de lecture théorique (électrons) <br />
+<a href="cam.htm#gain">cam1 gain</a> : [AL] retourne la valeur du gain
+théorique (électrons / ADU) <br />
+<a href="cam.htm#temperature">cam1 temperature</a> : [DC] retourne la
+température du CCD (degrés Celsius) <br />
+<a href="cam.htm#infotemp">cam1 infotemp</a> : [DC] informations sur la
+régulation en température (SBIG) <br />
+<a href="cam.htm#aotiptilt">cam1 aotiptilt</a> : [DC] tiptilt AO7/AO8
+(SBIG) <br />
+<a href="cam.htm#activaterelay">cam1 activaterelay</a> : [DC] commande
+d'une boîte à relais (SBIG) <br />
+<a href="cam.htm#shutter">cam1 shutter</a> : [DC] fixe le mode de
+fonctionnement de l'obturateur <br />
+<a href="cam.htm#foclen">cam1 foclen</a> : [DC] fixe la valeur de la
+focale de l'objectif placé devant le CCD (en mètres) <br />
+<a href="cam.htm#overscan">cam1 overscan</a> : [DC] détermine si
+l'on tient compte des pixels d'overscan pour lire l'image <br />
+<a href="cam.htm#shuttertype">cam1 shuttertype</a> : [DC] fixe le type
+d'obturateur (Audine seulement) <br />
+<a href="cam.htm#obtupierre">cam1 obtupierre</a> : [DC]
+paramétrage pour obturateur Pierre Thierry (Audine seulement) <br />
+<a href="cam.htm#ampli">cam1 ampli</a> : [DC] fixe le mode de
+fonctionnement de l'amplificateur (Audine seulement) <br />
+<a href="cam.htm#outtime">cam1 outtime</a> : [DC] calcule la
+durée d'une instruction out sur port // (Audine et Kitty
+seulement) <br />
+<a href="cam.htm#portadress">cam1 portadress</a> : [DC] fixe la valeur
+décimale de l'adresse du port parallèle (Audine) <br />
+<a href="cam.htm#videosource">cam1 videosource</a> : [DC] modification
+des paramètres d'acquisition (WebCam seulement) <br />
+<a href="cam.htm#videoformat">cam1 videoformat</a> : [DC] modification
+du format d'image (WebCam seulement) <br />
+<a href="cam.htm#wipe">cam1 wipe</a> : [DC] rinçage de tous les
+pixels du CCD (Audine seulement) <br />
+<a href="cam.htm#read">cam1 read</a> : [DC] lecture immédiate,
+sans rinçage, des pixels du CCD avec le binning fixé par
+cam1 bin (Audine seulement) <br />
+<a href="cam.htm#acqnormal">cam1 acqnormal</a> : [DC] mode de lecture
+normal pour enseignements en Travaux Pratiques (Audine seulement) <br />
+<a href="cam.htm#acqspecial">cam1 acqspecial</a> : [DC] mode de lecture
+spécial pour enseignements en Travaux Pratiques (Audine
+seulement) <br />
+<a href="cam.htm#interrupt">cam1 interrupt</a> : [DC] autorise ou
+interdit d'utiliser les interruptions cli/sti lors de l'accès au
+port parallèle <br />
+<a href="cam.htm#cantype">cam1 cantype</a> : [DC] type de convertisseur
+analogique numérique (Audine seulement) <br />
+<a href="cam.htm#delayloops">cam1 delayloops</a> : [DC] délais
+de synchronisation avec le microcontrôleur des Hi-SIS 22 (Hi-SIS
+seulement) <br />
+<a href="cam.htm#bell">cam1 bell</a> : [DC] autorise ou interdit
+l'émission de signaux sonores par la caméra (Hi-SIS
+seulement) <br />
+<a href="cam.htm#fan">cam1 fan</a> : [DC] réglages de puissance
+des modules Peltier (Hi-SIS seulement) <br />
+<a href="cam.htm#filterwheel">cam1 filterwheel</a> : [DC]
+positionnement d'un filtre (Hi-SIS seulement) <br />
+<a href="cam.htm#shutterdelay">cam1 shutterdelay</a> : [DC]
+délais d'attente entre l'ordre de fermeture de l'obturateur et
+le début de lecture (Hi-SIS seulement) <br />
+<a href="cam.htm#reset">cam1 reset</a> : [DC] initialisation du
+microcontrôleur (Hi-SIS seulement) <br />
+<a href="cam.htm#register">cam1 register</a> : [DC] lecture et
+écriture d'ordres dans le registre du microcontrôleur
+(Hi-SIS seulement) <br />
+<a href="cam.htm#status">cam1 status</a> : [DC] retourne l'état
+actuel du microcontrôleur (Hi-SIS seulement) <br />
+<a href="cam.htm#gainampli">cam1 gainampli</a> : [DC] réglage du
+gain de l'amplificateur de la chaîne analogique (Hi-SIS
+seulement) <br />
+<a href="cam.htm#longuepose">cam1 longuepose</a> : [DC] choix du type
+de pose pour les WebCam modifiées (WebCam seulement) <br />
+<a href="cam.htm#longueposeport">cam1 longueposeport</a> : [DC] port de
+contrôle pour les WebCam modifiées (WebCam seulement) <br />
+<a href="cam.htm#longueposestartvalue">cam1 longueposestartvalue</a> :
+[DC] valeur de du bit au départ pour les WebCam modifiées
+(WebCam seulement) <br />
+<a href="cam.htm#longueposestopvalue">cam1 longueposestopvalue</a> :
+[DC] valeur de du bit de fin de pose pour les WebCam modifiées
+(WebCam seulement) <br />
+<h1> Visualisation des images</h1>
+<a href="aud1.htm#mirrorx">mirrorx</a> : [AC] miroir suivant l'axe X
+(échange de colonnes) <br />
+<a href="aud1.htm#mirrory">mirrory</a> : [AC] miroir suivant l'axe Y
+(échange de lignes) <br />
+<a href="aud1.htm#visu">visu</a> : [AC] visualisation d'une image du
+buffer de travail d'Aud'ACE <br />
+<a href="visu.htm#buf">visu1 buf</a> : [AL] spécifie le
+numéro de buffer à visualiser <br />
+<a href="visu.htm#image">visu1 image</a> : [AL] : retourne le
+numéro de l'image TK <br />
+<a href="visu.htm#palette">visu1 pal</a> : [AL] spécifie la palette
+de visualisation <br />
+<a href="visu.htm#cut">visu1 cut</a> : [AL] spécifie les seuils
+de visualisation <br />
+<a href="visu.htm#window">visu1 window</a> : [AL] spécifie une
+fenêtre d'image à visualiser <br />
+<a href="visu.htm#zoom">visu1 zoom</a> : [AL] spécifie un zoom
+d'affichage <br />
+<a href="visu.htm#disp">visu1 disp</a> : [AL] affiche l'image sur
+l'écran <br />
+<a href="../../../../../doc/librgb/rgbus-fr.htm#rgb_visu">rgb_visu</a> : [RGB] affiche une image
+couleur à l'écran à partir de trois buffers <br />
+<a href="buf.htm#autocuts">buf1 autocuts</a> : [AL] retourne les seuils
+haut et bas <br />
+<a href="aud3.htm#animate">animate</a> : [AC] effectue une animation
+à partir de fichiers FITS <br />
+<a href="aud.htm#autovisu">::audace::autovisu</a> : [AC] calcule
+les seuils de visualisation et affiche l'image <br />
+<a href="aud.htm#cursor">::audace::cursor</a> : [AC] change
+l'aspect du curseur sur la zone image <br />
+<a href="aud.htm#bg">::audace::bg</a> : [AC] change la couleur du
+fond de la zone de visu en dehors de l'image <br />
+<h1> Analyse d'images</h1>
+<h2> Analyse de points</h2>
+<a href="buf.htm#getpix">buf1 getpix</a> : [AL] : retourne la valeur du
+pixel
+<h2> Analyse de lignes</h2>
+<a href="../../../../../doc/libtt/ttus1-fr.htm#SORTX">buf1 imaseries "SORTX <em>options</em>"</a>
+: [AL] extrait le profil trié dans une bande verticale et
+retourne un fichier ASCII <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#SORTY">buf1 imaseries "SORTY <em>options</em>"</a>
+: [AL] extrait le profil trié dans une bande horizontale et
+retourne un fichier ASCII <br />
+<a href="buf.htm#binx">buf1 binx</a> : [AL] binning selon les colonnes
+et retourne un fichier ASCII <br />
+<a href="buf.htm#biny">buf1 biny</a> : [AL] binning selon les lignes et
+retourne un fichier ASCII <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#BINX">buf1 imaseries "BINX <em>options</em>"</a>
+: [AL] extrait le profil sommé dans une bande verticale et
+retourne un fichier ASCII <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#BINY">buf1 imaseries "BINY <em>options</em>"</a>
+: [AL] extrait le profil sommé dans une bande horizontale et
+retourne un fichier ASCII <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#MEDIANX">buf1 imaseries "MEDIANX <em>options</em>"</a>
+: [AL] extrait le profil médian dans une bande verticale et
+retourne un fichier ASCII <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#MEDIANY">buf1 imaseries "MEDIANY <em>options</em>"</a>
+: [AL] extrait le profil médian dans une bande horizontale et
+retourne un fichier ASCII <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#PROFILE">buf1 imaseries "PROFILE <em>options</em>"</a>
+: [AL] extrait le profile d'une ligne ou d'une colonne et retourne un
+fichier ASCII <br />
+<a href="aud1.htm#binx">binx</a> : [AC] sommation de colonnes <br />
+<a href="aud1.htm#biny">biny</a> : [AC] sommation de lignes
+<h2> Analyse globale</h2>
+<a href="buf.htm#stat">buf1 stat</a> : [AL] retourne des valeurs
+statistiques <br />
+<a href="aud1.htm#stat">stat</a> : [AC] retourne les résultat
+d'une analyse statistique sur l'image <br />
+<a href="buf.htm#histo">buf1 histo</a> : [AL] retourne des listes
+permettant d'afficher un histogramme <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#STAT">buf1 imaseries "STAT <em>options</em>"</a>
+: [AL] calcule les statistiques (ajoutées aux mots clés) <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#CUTS">buf1 imaseries "CUTS <em>options</em>"</a>
+: [AL] calcule les valeurs des seuils de visualisation <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#MATRIX">buf1 imaseries "MATRIX <em>options</em>"</a>
+: [AL] écrit la valeur des pixels d'une fenêtre dans un
+fichier texte
+<h2> Analyse morphologique</h2>
+<a href="buf.htm#fwhm">buf1 fwhm</a> : [AL] retourne la largeur
+à mi hauteur des étoiles <br />
+<a href="aud1.htm#fwhm">fwhm</a> : [AC] calcul de la fwhm dans une
+fenêtre préalablement tracée sur l'image<br />
+<a href="buf.htm#fitgauss">buf1 fitgauss</a> : [AL] retourne les
+paramètres d'ajustement de gaussienne dans une fenêtre
+<h2> Photométrie</h2>
+<a href="buf.htm#flux">buf1 flux</a> : [AL] retourne le flux
+intégré dans une fenêtre <br />
+<a href="buf.htm#phot">buf1 phot</a> : [AL] retourne le flux
+intégré d'un objet dans une fenêtre <br />
+<a href="buf.htm#photom">buf1 photom</a> : [AL] retourne le flux
+intégré d'un objet dans une ouverture
+<h2> Astrométrie</h2>
+<a href="buf.htm#centro">buf1 centro</a> : [AL] retourne le photocentre
+d'un objet sur l'image <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#CATCHART">buf1 imaseries "CATCHART <em>options</em>"</a>
+: [AL] extrait une liste d'objets d'un catalogue <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#ASTROMETRY">buf1 imaseries "ASTROMETRY <em>options</em>"</a>
+: [AL] calcule les paramètres astrométriques d'ordre 1 <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#ASTROMETRY2">buf1 imaseries "ASTROMETRY2 <em>options</em>"</a>
+: [AL] Calcule les paramètres astrométriques au second
+ordre de déformations <br />
+<a href="buf.htm#xy2radec">buf1 xy2radec</a> : [AL] conversion des
+coordonnées image en coordonnées célestes <br />
+<a href="buf.htm#radec2xy">buf1 radec2xy</a> : [AL] conversion de
+coordonnées célestes en coordonnées image <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_xy2radec">mc_xy2radec</a> : [MC] conversion des
+coordonnées image en coordonnées célestes <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_radec2xy">mc_radec2xy</a> : [MC] conversion de
+coordonnées célestes en coordonnées image
+<h1> Traitement des images</h1>
+<a href="buf.htm#pointer">buf1 pointer</a> : [AL] retourne la valeur
+décimal de l'adresse du pointeur image
+<h2> Traitement par fonction générique</h2>
+<a href="../../../../../doc/libaudela/audus1_fr.htm#ttscript">ttscript</a> : [AL] exécute un
+fichier script TT sur un lot d'images <br />
+<a href="../../../../../doc/libaudela/audus1_fr.htm#ttscript2">ttscript2</a> : [AL] exécute
+un script TT sur un lot d'images <br />
+<a href="buf.htm#imaseries">buf1 imaseries</a> : [AL] exécute
+une fonction TT de type IMA/SERIES sur le buffer
+<h2> Traitement d'une image par un opérateur simple</h2>
+<a href="buf.htm#copyto">buf1 copyto</a> : [AL] copie l'image d'un
+buffer vers un autre <br />
+<a href="buf.htm#offset">buf1 offset</a> : [AL] ajoute une constante
+à l'image <br />
+<a href="buf.htm#noffset">buf1 noffset</a> : [AL] normalise le fond de
+ciel par offset <br />
+<a href="buf.htm#ngain">buf1 ngain</a> : [AL] normalise le fond de ciel
+par le gain <br />
+<a href="aud1.htm#offset">offset</a> : [AC] ajoute ou retranche une
+constante à l'image <br />
+<a href="aud1.htm#ngain">ngain</a> : [AC] normalisation du gain d'une
+image à l'image en mémoire <br />
+<a href="aud1.htm#noffset">noffset</a> : [AC] normalisation du fond de
+ciel d'une image à l'image en mémoire <br />
+<a href="aud1.htm#log">log</a> : [AC] transformation logarithmique de
+l'image <br />
+<a href="buf.htm#clear">buf1 clear</a>: [AL] efface l'image (toutes les
+valeurs de pixels à zéro) <br />
+<a href="buf.htm#clipmax">buf1 clipmax </a>: [AL] écrête
+toutes les valeurs supérieures à un seuil fixé <br />
+<a href="buf.htm#clipmin">buf1 clipmin</a> : [AL] écrête
+toutes les valeurs inférieures à un seuil fixé <br />
+<a href="buf.htm#setpix">buf1 setpix</a> : [AL] affecte une valeur
+à un pixel de coordonnées données <br />
+<a href="buf.htm#log">buf1 log</a> : [AL] effectue une transformation
+logarithmique à l'image <br />
+<a href="buf.htm#setpixels">buf1 setpixels</a> : [AL] détruit
+l'image et reformate le buffer (remplace buf1 format) <br />
+<a href="aud3.htm#mult">mult</a> : [AC] multiplication par une
+constante <br />
+<a href="buf.htm#mult">buf1 mult</a> : [AL] multiplie l'image par une
+constante <br />
+<a href="../../../../../doc/librgb/rgbus-fr.htm#rgb_split">rgb_split</a> : [RG] extrait trois
+buffers à partir d'un seul qui contient l'information RGB <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#OFFSET">buf1 imaseries "OFFSET <em>options</em>"</a>
+: [AL] ajoute une valeur constante <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#NORMGAIN">buf1 imaseries "NORMGAIN <em>options</em>"</a>
+: [AL] normalisation du gain <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#NORMOFFSET">buf1 imaseries "NORMOFFSET <em>options</em>"</a>
+: [AL] normalisation du fond de ciel <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#MULT">buf1 imaseries "MULT <em>options</em>"</a>
+: [AL] multiplie par une valeur constante <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#LOG">buf1 imaseries "LOG <em>options</em>"</a> :
+[AL] transformation logarithmique
+<h2> Traitement d'une image avec une autre image</h2>
+<a href="buf.htm#sub">buf1 sub</a> : [AL] soustrait une image <br />
+<a href="buf.htm#add">buf1 add</a> : [AL] additionne une image <br />
+<a href="buf.htm#div">buf1 div</a> : [AL] divise par une image <br />
+<a href="buf.htm#opt">buf1 opt</a> : [AL] corrige l'image par le bias
+et le dark optimisé <br />
+<a href="aud1.htm#sub">sub</a> : [AC] soustraction de deux images <br />
+<a href="aud1.htm#add">add</a> : [AC] addition d'une image à
+l'image en mémoire <br />
+<a href="aud1.htm#div">div</a> : [AC] division d'une image à
+l'image en mémoire <br />
+<a href="aud1.htm#opt">opt</a> : [AC] soustraction d'une image dark
+optimisée à l'image en mémoire <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#SUB">buf1 imaseries "SUB <em>options</em>"</a> :
+[AL] soustrait une image <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#seriesADD">buf1 imaseries "ADD <em>options</em>"</a>
+:
+[AL] ajoute une image <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#DIV">buf1 imaseries "DIV <em>options</em>"</a> :
+[AL] divise par une image <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#OPT">buf1 imaseries "OPT <em>options</em>"</a> :
+[AL] correction par optimisation du thermique <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#SUBDARK">buf1 imaseries "SUBDARK <em>options</em>"</a>
+: [AL] soustraction du noir
+<h2> Traitement d'une image par un filtre</h2>
+<a href="buf.htm#unsmear">buf1 unsmear</a> : [AL] corrige les
+traînées de smearing <br />
+<a href="aud1.htm#deconvflat">deconvflat</a> : [AC] traitement du
+smearing (absence d'obturateur) <br />
+<a href="buf.htm#synthegauss">buf1 synthegauss</a> : [AL] ajoute une
+gaussienne fixée sur l'image <br />
+<a href="aud3.htm#convgauss">convgauss</a> : [AC] convolution par une
+gaussienne <br />
+<a href="aud3.htm#uncosmic">uncosmic</a> : [AC] filtre médian
+pondéré pour éliminer les cosmiques <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#FILTER">buf1 imaseries "FILTER <em>options</em>"</a>
+: [AL] applique un filtre kernel (passe haut, bas, médian, etc.)
+<br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#UNSMEARING">buf1 imaseries "UNSMEARING <em>options</em>"</a>
+: [AL] correction des traînées de smearing <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#CONV">buf1 imaseries "CONV <em>options</em>"</a>
+: [AL] convolution (gaussienne, etc.) <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#BACK">buf1 imaseries "BACK <em>options</em>"</a>
+: [AL] extrait l'image du fond de ciel
+<h2> Traitement géométrique d'une image</h2>
+<a href="aud3.htm#register">register</a> : [AC] registration d'une
+image à l'image en mémoire <br />
+<a href="aud1.htm#rot">rot</a> : [AC] rotation d'une image <br />
+<a href="aud1.htm#window">window</a> : [AC] extraction d'une sous-image
+<br />
+<a href="buf.htm#scar">buf1 scar</a> : [AL] cicatrisation dans une
+fenêtre <br />
+<a href="buf.htm#scale">buf1 scale</a> : [AL] re-échantillonne
+l'image <br />
+<a href="buf.htm#window">buf1 window</a> : [AL] extrait une
+fenêtre dans l'image <br />
+<a href="buf.htm#rot">buf1 rot</a> : [AL] rotation d'un angle
+fixé autour d'un point <br />
+<a href="buf.htm#mirrorx">buf1 mirrorx</a> : [AL] effectue un miroir
+droite-gauche <br />
+<a href="buf.htm#mirrory">buf1 mirrory</a> : [AL] effectue un
+retournement haut-bas <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#RESAMPLE">buf1 imaseries "RESAMPLE <em>options</em>"</a>
+: [AL] anamorphose bilinéaire <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#ROT">buf1 imaseries "ROT <em>options</em>"</a> :
+[AL] rotation de l'image <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#SORTX">buf1 imaseries "SORTX <em>options</em>"</a>
+: [AL] extrait le profil trié dans une bande verticale et
+retourne un fichier ASCII <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#SORTY">buf1 imaseries "SORTY <em>options</em>"</a>
+: [AL] extrait le profil trié dans une bande horizontale et
+retourne un fichier ASCII <br />
+<a href="buf.htm#binx">buf1 binx</a> : [AL] binning selon les colonnes
+et retourne un fichier ASCII <br />
+<a href="buf.htm#biny">buf1 biny</a> : [AL] binning selon les lignes et
+retourne un fichier ASCII <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#BINX">buf1 imaseries "BINX <em>options</em>"</a>
+: [AL] extrait le profil sommé dans une bande verticale et
+retourne un fichier ASCII <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#BINY">buf1 imaseries "BINY <em>options</em>"</a>
+: [AL] extrait le profil sommé dans une bande horizontale et
+retourne un fichier ASCII <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#MEDIANX">buf1 imaseries "MEDIANX <em>options</em>"</a>
+: [AL] extrait le profil médian dans une bande verticale et
+retourne un fichier ASCII <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#MEDIANY">buf1 imaseries "MEDIANY <em>options</em>"</a>
+: [AL] extrait le profil médian dans une bande horizontale et
+retourne un fichier ASCII <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#PROFILE">buf1 imaseries "PROFILE <em>options</em>"</a>
+: [AL] extrait le profile d'une ligne ou d'une colonne et retourne un
+fichier ASCII <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#WINDOW">buf1 imaseries "WINDOW <em>options</em>"</a>
+: [AL] extrait une fenêtre <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#REC2POL">buf1 imaseries "REC2POL <em>options</em>"</a>
+: [AL] transformation polaire <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#POL2REC">buf1 imaseries "POL2REC <em>options</em>"</a>
+: [AL] transformation rectangulaire <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#TRANS">buf1 imaseries "TRANS <em>options</em>"</a>
+: [AL] translation <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#INVERT">buf1 imaseries "INVERT <em>options</em>"</a>
+: [AL] retournements géométriques divers <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#RGRADIENT">buf1 imaseries "RGRADIENT <em>options</em>"</a>
+: [AL] gradient rotationnel <br />
+<a href="../../../../../doc/libtt/ttus1-fr.htm#HOUGH">buf1 imaseries "HOUGH <em>options</em>"</a>
+: [AL] transformée de Hough
+<h2> Traitement d'un lot d'images</h2>
+<a href="../../../../../doc/libaudela/audus1_fr.htm#ttscript">ttscript</a> : [AL] exécute un
+fichier script TT sur un lot d'images <br />
+<a href="../../../../../doc/libaudela/audus1_fr.htm#ttscript2">ttscript2</a> : [AL] exécute
+un script TT sur un lot d'images <br />
+<a href="aud3.htm#add2">add2</a> : [AL] addition d'une image
+à un lot d'images <br />
+<a href="aud3.htm#add2">add2</a> : [surcharge AC] addition d'une image
+à un lot d'images <br />
+<a href="aud3.htm#div2">div2</a> : [AL] division d'une image
+à un lot d'images <br />
+<a href="aud3.htm#div2">div2</a> : [surcharge AC] division d'une image
+à un lot d'images <br />
+<a href="aud1.htm#extract_flat">extract_flat</a> : [AC] extraction d'un
+flat des images de la nuit <br />
+<a href="aud3.htm#offset2">offset2</a> : [AL] addition d'une
+valeur constante à un lot d'images <br />
+<a href="aud3.htm#offset2">offset2</a> : [surcharge AC] addition d'une
+valeur constante à un lot d'images <br />
+<a href="aud3.htm#ngain2">ngain2</a> : [AL ] normalisation du gain
+d'un lot d'images <br />
+<a href="aud3.htm#ngain2">ngain2</a> : [surcharge AC] normalisation du
+gain d'un lot d'images <br />
+<a href="aud3.htm#noffset2">noffset2</a> : [AL] normalisation du
+fond de ciel d'un lot d'images <br />
+<a href="aud3.htm#noffset2">noffset2</a> : [surcharge AC] normalisation
+du fond de ciel d'un lot d'images <br />
+<a href="aud3.htm#opt2">opt2</a> : [AL] soustraction d'une image
+dark optimisée à un lot d'images <br />
+<a href="aud3.htm#opt2">opt2</a> : [surcharge AC] soustraction d'une
+image dark optimisée à un lot d'images <br />
+<a href="aud3.htm#register2">register2</a> : [AL] registration
+d'un lot d'images <br />
+<a href="aud3.htm#register2">register2</a> : [surcharge AC]
+registration d'un lot d'images <br />
+<a href="aud3.htm#sadd">sadd</a> : [AL] addition d'un lot d'images
+<br />
+<a href="aud3.htm#sadd">sadd</a> : [surcharge AC] addition d'un lot
+d'images <br />
+<a href="aud3.htm#smean">smean</a> : [AL] pile moyenne d'un lot
+d'images <br />
+<a href="aud3.htm#smean">smean</a> : [surcharge AC] pile moyenne d'un
+lot d'images <br />
+<a href="aud3.htm#smedian">smedian</a> : [AL] pile médiane
+d'un lot d'images <br />
+<a href="aud3.htm#smedian">smedian</a> : [surcharge AC] pile
+médiane d'un lot d'images <br />
+<a href="aud3.htm#scale2">scale2</a> : [surcharge AC]
+ré-échantillonnage
+d'un lot d'images<br />
+<a href="aud3.htm#sub2">sub2</a>
+: [AL]
+soustraction d'une image à un lot d'images <br />
+<a href="aud3.htm#sub2">sub2</a> : [surcharge AC] soustraction d'une
+image à un lot d'images <br />
+<a href="aud3.htm#trans2">trans2</a> : [AL] translation d'un lot
+d'images <br />
+<a href="aud3.htm#trans2">trans2</a> : [surcharge AC] translation d'un
+lot d'images <br />
+<a href="aud3.htm#ssort">ssort</a> : [AC] synthèse d'une image
+"triée" à partir d'une pile d'images <br />
+<a href="aud3.htm#ssk">ssk</a> : [AC] synthèse d'une image
+sigma-kappa à partir d'une pile d'images <br />
+<a href="aud3.htm#uncosmic2">uncosmic2</a> : [AC] filtre médian
+pondéré pour éliminer les cosmiques sur un lot
+d'images <br />
+<a href="aud3.htm#convgauss2">convgauss2</a> : [AC] convolution par une
+gaussienne sur une pile d'images <br />
+<a href="aud3.htm#mult2">mult2</a> : [AC] multiplication par une
+constante sur une pile d'images
+<h1> Lire et écrire des fichiers texte</h1>
+open : [TC] ouvre un fichier et retourne un identificateur <br />
+read : [TC] lit tout le contenu du fichier et retourne l'ensemble du
+texte dans une chaîne de caractères <br />
+puts : [TC] écrit le contenu d'une variable dans le fichier <br />
+split : [TC] découpe une chaîne de caractère en une
+liste (pour isoler les champs ou les lignes de texte) <br />
+close : [TC] ferme un fichier <br />
+eof : [TC] retourne l'état de fin de fichier <br />
+<a href="audplotxy.htm#::plotxy::fileread">::plotxy::fileread</a> :
+[AC] lit le contenu d'un fichier texte de valeurs et retourne une liste
+pour chaque colonne
+<h1> Fonctions d'attente</h1>
+after : [TC] attend pendant une durée fixée (en
+millisecondes) <br />
+vwait : [TC] attend qu'une variable spécifiée change de
+valeur pour continuer <br />
+tkwait : [TC] attend qu'une fenêtre graphique change
+d'état pour continuer
+<h1> Conversion d'angles</h1>
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_angle2deg">mc_angle2deg</a> : [MC] conversion d'un Angle
+vers les degrés décimaux <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_angle2rad">mc_angle2rad</a> : [MC] conversion d'un Angle
+vers les radians <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_angle2hms">mc_angle2hms</a> : [MC] conversion d'un Angle
+vers {heure minute seconde} <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_angle2dms">mc_angle2dms</a> : [MC] conversion d'un Angle
+vers {degré minute seconde} <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_angle2lx200ra">mc_angle2lx200ra</a> : [MC] conversion d'un
+Angle vers le format LX200 de RA <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_angle2lx200dec">mc_angle2lx200dec</a> : [MC] conversion d'un
+Angle vers le format LX200 de DEC <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_anglesep">mc_anglesep</a> : [MC] calcul de l'angle et de
+l'angle de position qui sépare deux coordonnées <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_radec2altaz">mc_radec2altaz</a> : [MC] conversion ra,dec vers
+le système altazimutal (Azimut, Hauteur, Angle horaire et Angle
+parallactique) <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_altaz2radec">mc_altaz2radec</a> : [MC] conversion Azimut,
+Hauteur vers le système équatorial <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_hadec2altaz">mc_hadec2altaz</a> : [MC] conversion Angle
+Horaire,dec vers le système altazimutal (Azimut, Hauteur, Angle
+horaire et Angle parallactique) <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_altaz2hadec">mc_altaz2hadec</a> : [MC] conversion Azimut,
+Hauteur vers le système équatorial horaire <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_refraction">mc_refraction</a> : [MC] calcule la
+réfraction atmosphérique <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_anglescomp">mc_anglescomp</a> : [MC] effectue une
+opération arithmétique (+, -, *, /, modulo) sur deux
+angles <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_precessradec">mc_precessradec</a> : [MC] correction de la
+précession de coordonnées ra,dec <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_nutationradec">mc_nutationradec</a> : [MC] correction de la
+nutation de coordonnées ra,dec <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_aberrationradec">mc_aberrationradec</a> : [MC] corrections
+d'aberrations annuelles, diurnes et Eterms de coordonnées ra,dec
+<br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_listradec">mc_listradec</a> : [MC] Génère une
+liste de listes {X Y RA DEC} pour effectuer une mosaïque <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_buf2field">mc_buf2field</a> : [MC] retourne une liste de
+paramètres optiques à partir de l'en-tête FITS <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_home2gps">mc_home2gps</a> : [MC] retourne une liste de
+format GPS à partir d'une liste de type Home <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_home2mpc">mc_home2mpc</a> : [MC] retourne une liste de
+format MPC à partir d'une liste de type Home <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_home2geosys">mc_home2geosys</a> : [MC] conversion de
+coordonnées géodésiques d'un système vers
+un autre <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_radec2galactic">mc_radec2galactic</a> : [MC] conversion de
+coordonnées équatoriales en coordonnées
+galactiques de type II <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_galactic2radec">mc_galactic2radec</a> : [MC] conversion de
+coordonnées galactiques de type II en coordonnées
+équatoriales <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_radec2ecliptic">mc_radec2ecliptic</a> : [MC] conversion de
+coordonnées équatoriales en coordonnées
+écliptiques <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_ecliptic2radec">mc_ecliptic2radec</a> : [MC] conversion de
+coordonnées écliptiques en coordonnées
+équatoriales <br />
+<h1> Conversion de dates</h1>
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_date2jd">mc_date2jd</a> : [MC] conversion d'une Date en
+jour julien <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_date2ymdhms">mc_date2ymdhms</a> : [MC] conversion d'une Date
+en {année mois jours heure minute seconde} <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_date2lst">mc_date2lst</a> : [MC] : conversion d'une Date
+en temps sidéral exprimé en degrés décimaux
+<br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_date2listdates">mc_date2listdates</a> : [MC]
+génère une liste de date avec un incrément <br />
+<a href="aud.htm#date_sys2ut">::audace::date_sys2ut</a> : [AC]
+retourne l'heure TU <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_date2iso8601">mc_date2iso8601</a> : [MC] transforme une date
+en format d'en-tête FITS DATE-OBS <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_datescomp">mc_datescomp</a> : [MC] effectue une
+opération arithmétique à partir d'une date <br />
+<a href="../../../../../doc/libaudela/audus1_fr.htm#getclicks">getclicks</a> : [AL] retourne un
+nombre qui s'incrémente à chaque milliseconde <br />
+clock : [TC] retourne la date et l'heure courante sous divers formats
+<h1> Ephémérides</h1>
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_ephem">mc_ephem</a> : [MC] génération
+d'éphémérides de corps du système solaire <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_readcat">mc_readcat</a> : [MC] fonction permettant de
+lister les astres dans un champ d'image CCD <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_libration">mc_libration</a> : [MC] fonction de
+calcul des librations de la Lune <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_baryvel">mc_baryvel</a> : [MC] calcul de la
+correction barycentrique de vitesse <br />
+<a href="../../../../../doc/libmc/mcusr_fr.htm#mc_rvcor">mc_rvcor</a> : [MC] calcul de la
+correction de vitesse pour les systèmes de
+référence LSR, galactocentriques, etc. <br />
+<h1> Graphiques de données</h1>
+<a href="audplotxy.htm#::plotxy::figure">::plotxy::figure</a> : [AC]
+sélectionne un nom de figure courante <br />
+<a href="audplotxy.htm#::plotxy::clg">::plotxy::clg</a> : [AC] efface
+la figure courante <br />
+<a href="audplotxy.htm#::plotxy::plot">::plotxy::plot</a> : [AC]
+affiche un graphique sur la figure courante <br />
+<a href="audplotxy.htm#::plotxy::xlabel">::plotxy::xlabel</a> : [AC]
+affiche l'intitulé de l'axe X sur la figure courante <br />
+<a href="audplotxy.htm#::plotxy::ylabel">::plotxy::ylabel</a> : [AC]
+affiche l'intitulé de l'axe Y sur la figure courante <br />
+<a href="audplotxy.htm#::plotxy::title">::plotxy::title</a> : [AC]
+affiche l'intitulé du graphe sur la figure courante <br />
+<a href="audplotxy.htm#::plotxy::legend">::plotxy::legend</a> : [AC]
+affiche la légende du graphe <br />
+<a href="blt1.htm#::blt::graph">::blt::graph</a> : [BLT] crée une zone
+graphique <br />
+<a href="blt1.htm#::blt::vector">::blt::vector</a> : [BLT] crée un vecteur de
+données à dessiner
+<h1> Télescopes</h1>
+<a href="tel.htm#drivername">tel1 drivername</a> : [DT] nom de la
+librairie et date de la compilation <br />
+<a href="tel.htm#name">tel1 name</a> : [DT] nom du modèle de la monture <br />
+<a href="tel.htm#product">tel1 product</a> : [DT] nom générique de la monture <br />
+<a href="tel.htm#protocol">tel1 protocol </a>: [DT] nom du protocole <br />
+<a href="tel.htm#port">tel1 port</a> : [DT] nom du port de
+communication <br />
+<a href="tel.htm#channel">tel1 channel</a> : [DT] nom du channel TCL du
+port de communication ouvert <br />
+<a href="tel.htm#foclen">tel1 foclen</a> : [DT] longueur focale
+(mètres) de l'optique <br />
+<a href="tel.htm#testcom">tel1 testcom</a> : [DT] teste si la
+communication est correcte <br />
+<a href="tel.htm#model">tel1 model</a> : [DT] assigne le nom des
+fonctions TCL de conversion<br />
+<a href="tel.htm#radec">tel1 radec motor</a> : [DT] allume ou
+éteint le moteur de suivi sidéral <br />
+<a href="tel.htm#radec">tel1 radec init</a> : [DT] initialise les
+coordonnées à la position ra,dec <br />
+<a href="tel.htm#radec">tel1 radec coord</a> : [DT] lit les
+coordonnées courantes ra,dec <br />
+<a href="tel.htm#radec">tel1 radec goto</a> : [DT] commence le pointage
+vers les coordonnées ra,dec <br />
+<a href="tel.htm#radec">tel1 radec move</a> : [DT] fait fonctionner un
+moteur ra ou dec dans une direction donnée <br />
+<a href="tel.htm#radec">tel1 radec stop</a> : [DT] arrête tout
+mouvement des moteurs ra et dec en cours <br />
+<a href="tel.htm#radec">tel1 radec state</a> : [DT] retourne l'état des moteurs ra et dec <br />
+<a href="tel.htm#radec">tel1 radec survey</a> : [DT] marche/arrêt du rafraîchissement des coordonnées toutes les secondes <br />
+<div style="margin-left: 40px;">Commandes obsolètes :<br />
+<a href="tel.htm#match">tel1 match</a> : [DT] équivalent
+à tel1 radec init <br />
+<a href="tel.htm#coord">tel1 coord</a> : [DT] équivalent
+à tel1 radec coord <br />
+<a href="tel.htm#goto">tel1 goto</a> : [DT] équivalent à
+tel1 radec goto<br />
+<a href="tel.htm#move">tel1 move</a> : [DT] équivalent à
+tel1 radec move<br />
+<a href="tel.htm#stop">tel1 stop</a> : [DT] équivalent à
+tel1 radec stop<br />
+<a href="tel.htm#speed">tel1 speed</a> : [DT] fixe la vitesse pour la
+fonction tel1 goto et tel1 move<br />
+</div>
+<a href="tel.htm#focus">tel1 focus motor</a> : [DT] allume ou
+éteint le moteur de focalisation <br />
+<a href="tel.htm#focus">tel1 focus init</a> : [DT] initialise la valeur du
+codeur du moteur de focalisation <br />
+<a href="tel.htm#focus">tel1 focus coord</a> : [DT] lit la valeur
+courante du codeur de focalisation <br />
+<a href="tel.htm#focus">tel1 focus goto</a> : [DT] amène le moteur de
+focalisation à une valeur de codeur fixée <br />
+<a href="tel.htm#focus">tel1 focus move</a> : [DT] fait fonctionner le
+moteur de focalisation dans une direction donnée <br />
+<a href="tel.htm#focus">tel1 focus stop</a> : [DT] arrête tout
+mouvement du moteur de focalisation <br />
+<a href="tel.htm#date">tel1 date</a> : [DT] mise à jour de
+l'horloge du microcontrôleur du télescope (LX200) <br />
+<a href="tel.htm#home">tel1 home</a> : [DT] mise à jour de
+l'observatoire du microcontrôleur du télescope (LX200) <br />
+<a href="tel.htm#longformat">tel1 longformat</a> : [DT] choix du format
+des coordonnées (LX200) <br />
+<a href="tel.htm#tempo">tel1 tempo</a>: [DT] fixe le délais de
+temporisation (millisecondes) pour une entrée/sortie (LX200)
+<h1> Calcul scientifique matriciel</h1>
+<a href="../../../../../doc/libgsltcl/gsltclus-fr.htm#gsl_mlength">gsl_mlength</a> : [GS] retourne
+les dimensions d'une matrice de type "liste de liste" <br />
+<a href="../../../../../doc/libgsltcl/gsltclus-fr.htm#gsl_mindex">gsl_mindex</a> : [GS] retourne la
+valeur de l'élément de matrice <br />
+<a href="../../../../../doc/libgsltcl/gsltclus-fr.htm#gsl_mreplace">gsl_mreplace</a> : [GS] remplace
+la valeur de l'élément de matrice <br />
+<a href="../../../../../doc/libgsltcl/gsltclus-fr.htm#gsl_mtranspose">gsl_mtranspose</a> : [GS]
+transpose la matrice de type "liste de liste" <br />
+<a href="../../../../../doc/libgsltcl/gsltclus-fr.htm#gsl_msub">gsl_msub</a> : [GS] soustrait deux
+matrices de type "liste de liste" <br />
+<a href="../../../../../doc/libgsltcl/gsltclus-fr.htm#gsl_madd">gsl_madd</a> : [GS] additionne deux
+matrices de type "liste de liste" <br />
+<a href="../../../../../doc/libgsltcl/gsltclus-fr.htm#gsl_mmult">gsl_mmult</a> : [GS] multiplie deux
+matrices de type "liste de liste" <br />
+<a href="../../../../../doc/libgsltcl/gsltclus-fr.htm#gsl_mdet">gsl_mdet</a> : [GS] renvoie la
+valeur du déterminant de la matrice <br />
+<a href="../../../../../doc/libgsltcl/gsltclus-fr.htm#gsl_minv">gsl_minv</a> : [GS] renvoie la
+matrice inverse <br />
+<a href="../../../../../doc/libgsltcl/gsltclus-fr.htm#gsl_meigsym">gsl_meigsym</a> : [GS] calcule
+les valeurs et vecteurs propres d'une matrice symétrique <br />
+<a href="../../../../../doc/libgsltcl/gsltclus-fr.htm#gsl_msolvelin">gsl_msolvelin</a> : [GS]
+résout le système linéaire <br />
+<a href="../../../../../doc/libgsltcl/gsltclus-fr.htm#gsl_mfitmultilin">gsl_mfitmultilin</a> : [GS]
+ajustement multilinéaire <br />
+<a href="../../../../../doc/libgsltcl/gsltclus-fr.htm#gsl_fft">gsl_fft</a> : [GS] transformée
+de Fourier rapide d'un vecteur de type "liste" <br />
+<a href="../../../../../doc/libgsltcl/gsltclus-fr.htm#gsl_ifft">gsl_ifft</a> : [GS]
+transformée de Fourier rapide inverse de deux vecteurs de type
+"liste"
+<h1> Accès au port série</h1>
+<a href="../../../../../doc/libaudela/audus1_fr.htm#combit">combit</a> : [AL] lit ou écrit
+des états binaires sur les broches du port série <br />
+open : [TC] ouvre un port série pour communiquer <br />
+fconfigure : [TC] configure les paramètres (vitesse,
+parité, etc.) du port série <br />
+puts : [TC] écrit un ou plusieurs octets sur le port
+série <br />
+read : [TC] lit un ou plusieurs octets sur le port série <br />
+close : [TC] ferme la communication ouverte avec open
+<h1> Communication réseau TCP/IP</h1>
+<a href="../../../../../doc/libaudela/audus1_fr.htm#hostaddress">hostaddress</a> : [AL] retourne les
+adresses IP de la machine locale <br />
+<a href="../../../../../doc/libaudela/audus1_fr.htm#ping">ping</a> : [AL] effectue un ping sur une
+adresse IP<a href="dp1.htm"><br />
+dp_MakeRPCServer</a> : [DP] crée un serveur à protocole
+RPC <br />
+<a href="dp1.htm">dp_MakeRPCClient</a> : [DP] connecte un client
+à protocole RPC <br />
+<a href="dp1.htm">dp_RPC</a> : [DP] envoie une commande par le
+protocole RPC <br />
+close : [TC] déconnecte un serveur ou un client <br />
+<a href="dp1.htm">dp_admin delete</a> : [DP] déconnecte un
+serveur ou un client à protocole RPC (à utiliser avec
+close) <br />
+<a href="aud3.htm#create_server">create_server</a> : [AC] crée
+un serveur à protocole RPC <br />
+<a href="aud3.htm#delete_server">delete_server</a> : [AC]
+détruit un serveur à protocole RPC <br />
+<a href="aud3.htm#create_client">create_client</a> : [AC] connecte un
+client à protocole RPC <br />
+<a href="aud3.htm#delete_client">delete_client</a> : [AC]
+déconnecte un client à protocole RPC <br />
+<a href="aud3.htm#send">send</a> : [AC] envoie une ligne de commande
+d'un client vers un serveur à protocole RPC
+<h1> Conversion de fichiers images au format FITS</h1>
+<a href="bifsconv.htm#bifsconv">bifsconv</a> : [AC] convertit au format
+FITS un fichier image du dossier images courant<br />
+<a href="bifsconv.htm#bifsconv_full">bifsconv_full</a> : [AC] convertit
+au format FITS un fichier image d'un dossier quelconque<br />
+<a href="bifsconv.htm#convert_fits">convert_fits</a> : [AC] convertit
+au format FITS une série d'images<br />
+<a href="bifsconv.htm#convert_fits_all">convert_fits_all</a> : [AC]
+convertit au format FITS toutes les images d'un dossier<br />
+<a href="bifsconv.htm#convert_fits_subdir">convert_fits_subdir</a> :
+[AC] idem à convert_fits_all mais en étendant la
+conversion aux sous-dossiers<br />
+<a href="bifsconv.htm#loadima_nofits">loadima_nofits</a> : [AC]
+chargement dans le tampon image Aud'ACE et affichage d'une image qui ne
+serait pas au format FITS<br />
+<h1> Traitement d'images stellaires</h1>
+<a href="compute_stellaire.htm#compute_stellaire">compute_stellaire</a>
+: [AC] prétraitement complet d'une série d'images,
+addition sigma-kappa des meilleures et affichage<br />
+<h1> Gestion d'images FITS polychromes</h1>
+<a href="poly.htm#seriesApoly">seriesApoly</a> : [AC] création
+d'une série d'images polychromes à partir de plusieurs
+séries monochromes<br />
+<a href="poly.htm#polyAserie">polyAserie</a> : [AC] extraction d'une
+série monochrome à partir d'une série d'images
+polychromes<br />
+<a href="poly.htm#polyAseries">polyAseries</a> : [AC] conversion d'une
+série d'images polychromes en plusieurs séries monochromes<br />
+<a href="poly.htm#poly_nbcouleurs">poly_nbcouleurs</a> : [AC] renvoie
+le nombre de plans couleurs de la série<br />
+<a href="poly.htm#poly_fenetre">poly_fenetre</a> : [AC] fenêtrage
+d'une série de fichiers polychromes<br />
+<a href="poly.htm#poly_souris_fenetre">poly_souris_fenetre</a> : [AC]
+fenêtrage après sélection à la souris sur
+l'image Aud'ACE d'une série de fichiers polychromes<br />
+<a href="poly.htm#poly_rot">poly_rot</a> : [AC] rotation d'une
+série de fichiers polychromes<br />
+<a href="poly.htm#poly_trans">poly_trans</a> : [AC] translation d'une
+série de fichiers polychromes<br />
+<a href="poly.htm#poly_series_traligne">poly_series_traligne</a> : [AC]
+registration manuelle entre plusieurs séries d'images
+polychromes par translation et rotation<br />
+<h1> Utilisation conjointe d'Aud'ACE et d'Iris</h1>
+<a href="iris.htm#iris">iris</a> : [AC] fait exécuter à
+Iris une commande<br />
+<a href="iris.htm#iris2_select">iris2_select</a> : [AC] permet,
+après un bestof, de ne copier que le nombre d'images choisi et
+pas toute la série<br />
+<a href="iris.htm#iris2_compute_trichro1">iris2_compute_trichro1</a> :
+[AC] analogue à la commande compute_trichro1 d'Iris avec
+quelques améliorations<br />
+<h1> Fonctions diverses</h1>
+<a href="divers.htm#charge">charge</a> : [AC] charge en mémoire
+un fichier image<br />
+<a href="divers.htm#sauve">sauve</a> : [AC] enregistre sur le disque
+une image en mémoire<br />
+<a href="divers.htm#sauve_jpeg">sauve_jpeg</a> : [AC] sauvegarde au
+format JPEG de l'image affichée par Aud'ACE<br />
+<a href="divers.htm#soustrait">soustrait</a> : [AC] soustraction d'une
+image enregistrée sur le disque à une image en
+mémoire tampon (buffer)<br />
+<a href="divers.htm#normalise">normalise</a> : [AC] normalisation d'une
+image en mémoire tampon (buffer) par une image
+sauvegardée sur disque<br />
+<a href="divers.htm#suppr_serie">suppr_serie</a> : [AC] suppression
+d'une série d'images<br />
+<a href="divers.htm#suppr_fin_serie">suppr_fin_serie</a> : [AC]
+suppression de la fin d'une série d'images<br />
+<a href="divers.htm#suppr_debut_serie">suppr_debut_serie</a> : [AC]
+suppression du début d'une série d'images<br />
+<a href="divers.htm#renumerote">renumerote</a> : [AC]
+renumérotation d'une série d'images<br />
+<a href="divers.htm#renomme">renomme</a> : [AC] renomme une
+série d'images<br />
+<a href="divers.htm#copie">copie</a> : [AC] copie une série
+d'images<br />
+<a href="divers.htm#copie_partielle">copie_partielle</a> : [AC] copie
+une partie d'une série d'images<br />
+<a href="divers.htm#serie_charge">serie_charge</a> : [AC] charge en
+mémoire une série d'images<br />
+<a href="divers.htm#serie_fenetre">serie_fenetre</a> : [AC]
+fenêtrage d'une série d'images<br />
+<a href="divers.htm#souris_fenetre">souris_fenetre</a> : [AC]
+fenêtrage d'une série d'images (à partir d'une
+sélection à la souris sur l'image affichée dans
+Aud'ACE)<br />
+<a href="divers.htm#serie_rot">serie_rot</a> : [AC] rotation d'une
+série d'images<br />
+<a href="divers.htm#serie_trans">serie_trans</a> : [AC] translate une
+série d'images<br />
+<a href="divers.htm#series_traligne">series_traligne</a> : [AC]
+registration manuelle entre plusieurs séries d'images par
+translation et rotation<br />
+<a href="divers.htm#serie_sauvejpeg">serie_sauvejpeg</a> : [AC]
+conversion d'une série d'images au format JPEG<br />
+<a href="divers.htm#mediane">mediane</a> : [AC] calcule l'image
+médiane de la série d'images d'entrée<br />
+<a href="divers.htm#serie_soustrait">serie_soustrait</a> : [AC]
+soustraction d'une image en mémoire à une série
+d'images<br />
+<a href="divers.htm#serie_normalise">serie_normalise</a> : [AC]
+normalisation par une image en mémoire d'une série
+d'images<br />
+<a href="divers.htm#normalise_gain">normalise_gain</a> : [AC]
+normalisation du gain d'une série d'images<br />
+<a href="divers.htm#aligne">aligne</a> : [AC] alignement (registration)
+par translation d'une série d'images<br />
+<a href="divers.htm#TestEntier">TestEntier</a> : [AC] renvoie la valeur
+"1" pour un nombre entier et "0" sinon<br />
+<a href="divers.htm#TestReel">TestReel</a> : [AC] renvoie la valeur "1"
+pour une nombre réel et "0" sinon<br />
+<a href="divers.htm#dernier_est_chiffre">dernier_est_chiffre</a> : [AC]
+renvoie "1" si le dernier caractère du mot est un chiffre et "0"
+sinon<br />
+<a href="divers.htm#nom_valide">nom_valide</a> : [AC] renvoie "1" si le
+mot en entrée ne contient pas d'accents, et "0" s'il en comporte<br />
+<a href="divers.htm#suppr_accents">suppr_accents</a> : [AC]
+dépouille un mot de ses accents<br />
+<a href="divers.htm#decomp">decomp</a> : [AC] décompose un nom
+de fichier en {dossier nom_générique index extension
+compression}<br />
+<a href="divers.htm#liste_index">liste_index</a> : [AC] renvoie la
+liste des index de la série indiquée<br />
+<a href="divers.htm#liste_series">liste_series</a> : [AC] renvoie la
+liste des noms des séries d'un dossier<br />
+<a href="divers.htm#liste_sousreps">liste_sousreps</a> : [AC] renvoie
+la liste des sous-dossiers d'un dossier<br />
+<a href="divers.htm#serie_existe">serie_existe</a> : [AC] renvoie "1"
+si la série existe, "0" sinon<br />
+<a href="divers.htm#numerotation_usuelle">numerotation_usuelle</a> :
+[AC] renvoie "1" si une série est numérotée de
+façon usuelle, "0" sinon<br />
+<a href="divers.htm#compare_index_series">compare_index_series</a> :
+[AC] renvoie "1" si deux séries ont la même indexation,
+"0" sinon<br />
+<a href="divers.htm#cree_sousrep">cree_sousrep</a> : [AC]
+création d'un dossier<br />
+<a href="divers.htm#cree_fichier">cree_fichier</a> : [AC]
+création d'un fichier<br />
+<a href="divers.htm#syntaxe_args">syntaxe_args</a> : [AC] teste la
+validité d'une liste d'arguments<br />
+<a href="divers.htm#range_options">range_options</a> : [AC] trie une
+liste d'options<br />
+<a href="divers.htm#calcul_trzaligne">calcul_trzaligne</a> : [AC]
+calcul des paramètres de translation, rotation et zoom
+caractérisant la transformation d'un couple de points en leurs
+images<br />
+<a href="divers.htm#date_chiffresAlettres">date_chiffresAlettres</a> :
+[AC] transforme une date de la forme {année mois jour} en
+nombres en une date "jour mois année" avec le mois en lettres et
+en français<br />
+<a href="divers.htm#lmin">lmin</a> : [AC] renvoie le minimum d'une
+liste de nombres<br />
+<a href="divers.htm#lmax">lmax</a> : [AC] renvoie le maximum d'une
+liste de nombres<br />
+<h1> Fonctions de la librairie libbm</h1>
+<a href="libbm.htm#bm_versionlib">bm_versionlib</a> : [BM] retourne le
+numéro de la version de la librairie utilisée<br />
+<a href="libbm.htm#bm_max">bm_max</a> : [BM] retourne la valeur et les
+coordonnées du maximum d'une image<br />
+<a href="libbm.htm#bm_hard2visu">bm_hard2visu</a> : [BM] transforme une
+image monochrome conformément à la fonction de transfert
+d'affichage<br />
+<a href="libbm.htm#bm_soustrait">bm_soustrait</a> : [BM] soustraction
+entre deux tampons images<br />
+<a href="libbm.htm#bm_ajoute">bm_ajoute</a> : [BM] addition de deux
+tampons images<br />
+<a href="libbm.htm#bm_multiplie">bm_multiplie</a> : [BM] multiplication
+entre deux tampons images<br />
+<a href="libbm.htm#bm_multiplie_ajoute">bm_multiplie_ajoute</a> : [BM]
+multiplication entre deux tampons images<br />
+<a href="libbm.htm#bm_divise">bm_divise</a> : [BM] division entre deux
+tampons images<br />
+<a href="libbm.htm#bm_carre">bm_carre</a> : [BM] multiplie une image
+par elle-même<br />
+<a href="libbm.htm#bm_carre_ajoute">bm_carre_ajoute</a> : [BM]
+multiplie une image par elle-même<br />
+<a href="libbm.htm#bm_racine_carree">bm_racine_carree</a> : [BM] prend
+la racine carrée d'une image<br />
+<a href="libbm.htm#bm_marche">bm_marche</a> : [BM] fonction "signe" sur
+l'image (transforme les valeurs positives en "1" et les valeurs
+négatives en "-1")<br />
+<a href="libbm.htm#bm_Dxx">bm_Dxx</a> : [BM] calcule la
+dérivée seconde de l'image suivant l'axe des abscisses<br />
+<a href="libbm.htm#bm_Dyy">bm_Dyy</a> : [BM] calcule la
+dérivée seconde de l'image suivant l'axe des
+ordonnées<br />
+<a href="libbm.htm#bm_mediane">bm_mediane</a> : [BM] calcul de l'image
+médiane d'une liste de tampons images<br />
+<h1> Fonctions de la librairie libjm</h1>
+<a href="libjm.htm#jm_versionlib">jm_versionlib</a> : [JM] retourne le
+numéro de la version de la bibliothèque libjm<br />
+<a href="libjm.htm#jm_heurepc">jm_heurepc</a> : [JM] lit ou
+écrit l'heure système d'un PC<br />
+<a href="libjm.htm#jm_reglageheurepc">jm_reglageheurepc</a> : [JM]
+retarde ou avance l'heure système d'un PC<br />
+<a href="libjm.htm#calaphot_fluxellipse">calaphot_fluxellipse</a> :
+[JM] calcule le flux dans une ellipse<br />
+<a href="libjm.htm#calaphot_fitgauss2d">calaphot_fitgauss2d</a> : [JM]
+retourne les paramètres d'ajustement d'une gaussienne dans une
+fenêtre (analogue à fitgauss, mais en 2 dimensions)<br />
+<a href="libjm.htm#dft2d">dft2d</a> : [JM] calcule la
+Transformée de Fourier Discrète d'une image<br />
+<a href="libjm.htm#idft2d">idft2d</a> : [JM] calcule la
+Transformée de Fourier Discrète Inverse de deux images
+appariées<br />
+<a href="libjm.htm#acorr2d">acorr2d</a> : [JM] calcule la fonction
+d'auto-corrélation d'une image<br />
+<a href="libjm.htm#icorr2d">icorr2d</a> : [JM] calcule la fonction
+d'inter-corrélation de deux images<br />
+<a href="libjm.htm#conv2d">conv2d</a> : [JM] calcule le produit de
+convolution de deux images<br />
+<h1> Fonctions de la librairie libgs</h1>
+<a href="libgs.htm#gs_version">gs_version</a> : [GS] retourne le
+numéro de la version de la librairie utilisée<br />
+<a href="libgs.htm#gs_guide_version">gs_guide version</a> : [GS]
+renvoie GUIDE6, GUIDE7 ou GUIDE8<br />
+<a href="libgs.htm#gs_guide_refresh">gs_guide refresh</a> : [GS]
+rafraîchit l'heure courante de GUIDE<br />
+<a href="libgs.htm#gs_guide_show">gs_guide show</a> : [GS] permet
+d'afficher la fenêtre de GUIDE<br />
+<a href="libgs.htm#gs_guide_hide">gs_guide hide</a> : [GS] permet de
+masquer la fenêtre de GUIDE<br />
+<a href="libgs.htm#gs_guide_restore">gs_guide restore</a> : [GS]
+restaure le dernier état de la fenêtre de GUIDE<br />
+<a href="libgs.htm#gs_guide_objet">gs_guide objet</a> : [GS] permet de
+pointer GUIDE sur un objet<br />
+<a href="libgs.htm#gs_guide_coord">gs_guide coord</a> : [GS] permet de
+pointer GUIDE sur une position<br />
+<a href="libgs.htm#gs_guide_zoom">gs_guide_zoom</a> : [GS] permet de
+fixer le niveau du zoom de la fenêtre de GUIDE<br />
+<h1> Divers</h1>
+<a href="../../../../../doc/libaudela/audus1_fr.htm#historik">historik</a> : [AL] gestion d'une
+liste contenant l'historique de commandes <br />
+<a href="../../../../../doc/libaudela/audus1_fr.htm#libstd_id">libstd_id</a> : [AL] retourne la date
+de compilation de LibAudeLA <br />
+<a href="../../../../../doc/libaudela/audus1_fr.htm#getbitapp">getbitapp</a> : [AL] retourne le type
+de compilation de l'application AudeLA/Aud'ACE (32 ou 64 bits)
+<h1> Variables utiles </h1>
+<h2> Variables audace </h2>
+audace(bufNo) : [AC] numéro du buffer de la visu principale<br />
+audace(camNo) : [AC] numéro de la caméra associée
+à la visu principale<br />
+audace(imageNo) : [AC] numéro de l'image TK de la visu principale<br />
+audace(telNo) : [AC] numéro du télescope<br />
+audace(visuNo) : [AC] numéro de la visu principale<br /><br />
+audace(rep_archives) : [AC] répertoire dédié aux archives de données<br />
+audace(rep_caption) : [AC] répertoire dédié aux
+captions (fichiers pour les traductions)<br />
+audace(rep_doc_html) : [AC] répertoire dédié
+à la documentation html<br />
+audace(rep_doc_pdf) : [AC] répertoire dédié
+à la documentation pdf<br />
+audace(rep_gui) : [AC] répertoire des&nbsp; programmes IHM
+(Interface Homme Machine) ou GUI (Graphic User Interface)<br />
+audace(rep_home) : [AC] répertoire dédié aux
+fichiers de configuration d'Aud'ACE<br />
+audace(rep_images) : [AC] répertoire dédié aux
+images<br />
+audace(rep_install) : [AC] répertoire d'installation d'AudeLA<br />
+audace(rep_log) : [AC] répertoire dédié aux
+fichiers de traces<br />
+audace(rep_mesdocuments) : [AC] répertoire Mes documents<br />
+audace(rep_plugin) : [AC] répertoire dédié aux plugins<br />
+audace(rep_scripts) : [AC] répertoire dédié aux scripts<br />
+audace(rep_temp) : [AC] répertoire dédié aux
+fichiers temporaires<br />
+audace(rep_travail) : [AC] répertoire dédié aux
+fichiers de travail (répertoire courant utilisé par les commandes
+tapées dans la Console)<br />
+audace(rep_userFiltre) : [AC] répertoire dédié
+aux filtres utilisateurs<br />
+audace(rep_userPalette) : [AC] répertoire dédié
+aux palettes utilisateurs<br /><br />
+
+audace(rep_catalogues) : [AC] répertoire dédié aux
+catalogues installés avec AudeLA<br />
+audace(rep_userCatalog) : [AC] répertoire dédié
+aux catalogues utilisateurs<br />
+audace(rep_userCatalog2mass) : [AC] répertoire dédié
+aux catalogues utilisateurs 2MASS<br />
+audace(rep_userCatalogBmk) : [AC] répertoire dédié
+aux catalogues utilisateurs BMK<br />
+audace(rep_userCatalogHIPP) : [AC] répertoire dédié
+aux catalogues utilisateurs HIPP<br />
+audace(rep_userCatalogGaia1) : [AC] répertoire dédié
+aux catalogues utilisateurs GAIA1<br />
+audace(rep_userCatalogLoneos) : [AC] répertoire dédié
+aux catalogues utilisateurs LONEOS<br />
+audace(rep_userCatalogMicrocat) : [AC] répertoire dédié
+aux catalogues utilisateurs MicroCat<br />
+audace(rep_userCatalogNomad1) : [AC] répertoire dédié
+aux catalogues utilisateurs NOMAD1<br />
+audace(rep_userCatalogPpmx) : [AC] répertoire dédié
+aux catalogues utilisateurs PPMX<br />
+audace(rep_userCatalogPpmxl) : [AC] répertoire dédié
+aux catalogues utilisateurs PPMXL<br />
+audace(rep_userCatalogTle) : [AC] répertoire dédié
+aux catalogues utilisateurs TLE<br />
+audace(rep_userCatalogTycho2_fast) : [AC] répertoire dédié
+aux catalogues utilisateurs TYCHO2_Fast<br />
+audace(rep_userCatalogUcac2) : [AC] répertoire dédié
+aux catalogues utilisateurs UCAC2<br />
+audace(rep_userCatalogUcac3) : [AC] répertoire dédié
+aux catalogues utilisateurs UCAC3<br />
+audace(rep_userCatalogUcac4) : [AC] répertoire dédié
+aux catalogues utilisateurs UCAC4<br />
+audace(rep_userCatalogUrat1) : [AC] répertoire dédié
+aux catalogues utilisateurs URAT1<br />
+audace(rep_userCatalogUsnoa2) : [AC] répertoire dédié
+aux catalogues utilisateurs USNOA2.0<br />
+audace(rep_userCatalogUsnosa2) : [AC] répertoire dédié
+aux catalogues utilisateurs USNO-SA2<br />
+audace(rep_userCatalogWFIBC) : [AC] répertoire dédié
+aux catalogues utilisateurs WFIBC<br /><br />
+
+audace(hl,format,hmsint) : [AC] heure locale du moment au format "HHh
+MMm SSs" (par exemple : 23h 57m 14s)<br />
+audace(hl,format,hm) : [AC] heure locale du moment au format "HH
+MM" (par exemple : 09 27)<br />
+audace(tu,format,dmyhmsint) : [AC] date et heure TU du moment au format
+"JJ/MM/AA HH:MM:SS TU" (par exemple : 06/01/02 22:57:55 TU)<br />
+audace(tu,format,hmsint) : [AC] heure TU du moment au format "HHh MMm
+SSs" (par exemple : 22h 57m 14s)<br />
+audace(tu,format,dmy) : [AC] date TU du moment au format
+"JJ/MM/AAAA" (par exemple : 25/05/2010)<br />
+audace(tsl) : [AC] heure TSL du moment au format "HH MM SS.SSSSSS" (par
+exemple : 6 9 22.310192)<br />
+audace(tsl,format,hmsint) : [AC] heure TSL du moment au format "HHh MMm
+SSs" (par exemple : 06h 09m 44s)<br />
+audace(tsl,format,zenith) : [AC] Ascension Droite du zénith<br /><br />
+audace(focus,currentFocus) : [AC] position actuelle du dispositif
+de mise au point (focuser)<br />
+audace(focus,labelspeed) : [AC] vitesse
+du dispositif
+de mise au point (focuser)<br />
+audace(focus,rate) : [AC] pourcentage de la vitesse du dispositif
+de mise au point
+(0% : Vitesse la plus lente, 100% : Vitesse la plus
+rapide)<br />
+audace(focus,speed) : [AC] numéro de la vitesse du dispositif
+de mise au point (1 : Vitesse la plus lente, n : Vitesse la plus rapide)<br />
+audace(focus,targetFocus) : [AC] position cible du dispositif
+de mise au point (focuser)<br />
+<br />
+audace(telescope,controle) : [AC] état de surveillance du suivi
+sidéral ('Suivi On' en fonctionnement, 'Suivi Off' à
+l'arrêt)<br />
+audace(telescope,getdec) : [AC] position actuelle de la monture en
+Déclinaison<br />
+audace(telescope,getra) : [AC] position actuelle de la monture en
+Ascension Droite<br />
+audace(telescope,goto) : [AC] état de surveillance du GOTO ('1'
+va vers l'objet, '0' est arrivé à destination)<br />
+audace(telescope,inittel) : [AC]&nbsp; initialisation de la monture
+AudeCom<br />
+audace(telescope,labelspeed) : [AC] vitesse (suivi, guidage, pointage)
+de la monture<br />
+audace(telescope,rate) : [AC] pourcentage de la vitesse de la monture
+(0% : Vitesse la plus lente, 100% : Vitesse la plus
+rapide)<br />
+audace(telescope,speed) : [AC] numéro de la vitesse de la
+monture (1 : Vitesse la plus lente, n : Vitesse la plus rapide)<br />
+audace(telescope,targetDec) : [AC] Déclinaison de l'objet cible<br />
+audace(telescope,targetEquinox) : [AC] équinoxe de l'objet cible<br />
+audace(telescope,targetName) : [AC] nom de l'objet cible<br />
+audace(telescope,targetRa) : [AC] Ascension Droite de l'objet cible<br /><br />
+audace(base) : [AC] vaut '.audace'<br />
+audace(Console) : [AC] vaut '.console'<br />
+audace(endCopyright) : [AC] année en cours pour la borne
+supérieure du Copyright<br />
+audace(extensionList) : [AC] liste des extensions des images
+associées à la caméra en cours d'utilisation<br />
+audace(hCanvas) : [AC] nom TK du canvas de la visu principale<br />
+audace(list_binning) : [AC] liste des binnings associées
+à la caméra en cours d'utilisation<br />
+audace(posobs,observateur,gps) : [AC] position GPS de l'observateur
+(par exemple : GPS 1.377972 E 43.660917 142)<br />
+audace(quitterEnCours) : [AC] indicateur d'arrêt d'AudeLA<br />
+audace(satel,server) : [AC] serveur du plugin "Satellites artificiels"<br />
+audace(satel,tlefiles) : [AC] noms des fichiers TLE du plugin "Satellites artificiels"<br /><br />
+audace(meteo,obs,pressure) : [AC] pression atmosphérique du site en Pa lue sur une station météo<br />
+audace(meteo,obs,temperature) : [AC] température du site en °C lue sur une station météo<br />
+audace(meteo,obs,humidity) : [AC] humidité relative du site en % lue sur une station météo<br /><br />
+audace(color,cursor_blue) : [AC] couleur dédiée aux
+glissières (état passif) pour les images N&amp;B<br />
+audace(color,cursor_blue_actif) : [AC] couleur dédiée aux
+glissières (état actif) pour les images N&amp;B<br />
+audace(color,cursor_rgb_blue) : [AC] couleur dédiée aux
+glissières (état passif) pour les images couleurs (bleue)<br />
+audace(color,cursor_rgb_green) : [AC] couleur dédiée aux
+glissières (état passif) pour les images couleurs (verte)<br />
+audace(color,cursor_rgb_red) : [AC] couleur dédiée aux
+glissières (état passif) pour les images couleurs (rouge)<br />
+audace(color,cursor_rgb_actif) : [AC] couleur dédiée aux
+glissières (état actif) pour les images couleurs<br /><br />
+[AC] couleur dédiée à des widgets, utiliser le
+menu 'Configuration'
+--&gt; 'Apparence' pour identifier les widgets concernés et
+pour changer la
+couleur :<br />
+audace(color,activeBackColor)<br />
+audace(color,activeTextColor)<br />
+audace(color,backColor)<br />
+audace(color,backColor2)<br />
+audace(color,canvas)<br />
+audace(color,disabledTextColor)<br />
+audace(color,drag_rectangle)<br />
+audace(color,entryBackColor)<br />
+audace(color,entryBackColor2)<br />
+audace(color,entryTextColor)<br />
+audace(color,listBox)<br />
+audace(color,textColor)<br />
+audace(color,textConsoleCmd)<br />
+audace(color,textConsoleEntete)<br />
+audace(color,textConsoleErreur)<br />
+audace(color,textConsolePrompt)<br />
+audace(color,textConsoleResultat)<br />
+<br />
+[AC] police de caractères, taille et fonte dédiées
+aux widgets définis par leur classe, utiliser le menu
+'Configuration' --&gt; 'Police de
+caractères' pour changer l'apparence :<br />
+audace(font,Button)<br />
+audace(font,Checkbutton)<br />
+audace(font,ComboBox)<br />
+audace(font,Entry)<br />
+audace(font,Graph)<br />
+audace(font,Label)<br />
+audace(font,LabelFrame)<br />
+audace(font,ListBox)<br />
+audace(font,Listbox)<br />
+audace(font,Menu)<br />
+audace(font,Menubutton)<br />
+audace(font,Message)<br />
+audace(font,Radiobutton)<br />
+audace(font,Scale)<br />
+audace(font,Spinbox)<br />
+audace(font,Tablelist)<br />
+audace(font,Text)<br />
+<h2> Variables conf </h2>
+conf(editnotice_pdf) : [AC] nom complet du programme de visualisation
+des documents au format PDF<br />
+conf(editscript) : [AC] nom complet du programme d'édition des
+documents au format TCL<br />
+conf(editsite_htm) : [AC] nom complet du programme de visualisation des
+documents au format HTML<br />
+conf(edit_viewer) : [AC] nom complet du programme de visualisation
+d'images (viewer)<br />
+conf(exec_aladin) : [AC] nom complet du programme du client Aladin<br />
+conf(exec_java) : [AC] nom complet de l'interpréteur Java<br />
+conf(extension,defaut) : [AC] extension par défaut
+ajoutée aux noms des fichiers image
+<h2> Variables audela </h2>
+audela(version) : [AL] version du logiciel (par exemple : 1.5.20100505)<br />
+audela(major) : [AL] vaut '1' pour notre exemple de version ci-dessus<br />
+audela(minor) : [AL] vaut '5' pour notre exemple de version ci-dessus<br />
+audela(patch) : [AL] vaut '20100505' pour notre exemple de version
+ci-dessus<br />
+audela(date) : [AL] date de la version (par exemple 05/05/2010)<br />
+audela(hInstance) : [AL] numéro d'instance d'AudeLA dans Windows<br />
+audela_start_dir : [AL] répertoire où sont
+installés les binaires<br />
+<br />
+
+</body></html>
+

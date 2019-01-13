@@ -1,0 +1,31 @@
+Mons Agnes                18.6N   5.3E    1.0                                                     Greek female name
+Mons Ampère               19.0N   4.0W    30.0    22                                              André Marie; French physicist (1775-1836)
+Mons André                5.2N    120.6E  10.0                                                    French male name
+Mons Ardeshir             5.0N    121.0E  8.0                                                     Persian (Iranian) king's name
+Mons Argaeus              19.0N   29.0E   50.0    24  25                                          Named from peak in Asia Minor (now Erciyas Dagi)
+Mons Bradley              22.0N   1.0E    30.0    22                                              James; British astronomer (1692-1762)
+Mons Delisle              29.5N   35.8W   30.0    19                                              Named from nearby crater
+Mons Dieter               5.0N    120.2E  20.0                                                    German male name
+Mons Dilip                5.6N    120.8E  2.0                                                     Indian male name
+Mons Esam                 14.6N   35.7E   8.0     36                                              Arabic male name
+Mons Euler                23.3N   29.2W   27.0                                                    Leonhard; Swiss mathematician (1707-1783); now called Mons Vinogradov
+Mons Ganau                4.8N    120.6E  14.0                                                    African male name
+Mons Gruithuisen Delta    36.0N   39.5W   20.0    9                                               Named from nearby crater
+Mons Gruithuisen Gamma    36.6N   40.5W   20.0    9                                               Named from nearby crater
+Mons Hadley               26.5N   4.7E    25.0    22                                              Hadley, John; British instrument maker (1682-1743)
+Mons Hadley Delta         25.8N   3.8E    15.0    22                                              Named from nearby mountain
+Mons Hansteen             12.1S   50.0W   30.0    40                                              Named from nearby crater
+Mons Herodotus            27.5N   53.0W   5.0     18                                              Named from nearby crater
+Mons Huygens              20.0N   2.9W    40.0    22                                              Christian; Dutch astronomer, mathematician, physicist (1629-1695)
+Mons La Hire              27.8N   25.5W   25.0    20                                              Philippe de; French mathematician, astronomer (1640-1718)
+Mons Maraldi              20.3N   35.3E   15.0    25                                              Named from nearby crater
+Mons Moro                 12.0S   19.7W   10.0    42                                              Antonio Lazzaro; Italian Earth scientist (1687-1764)
+Mons Penck                10.0S   21.6E   30.0    46                                              Albrecht; German geographer (1858-1945)
+Mons Pico                 45.7N   8.9W    25.0    11                                              Spanish for "peak"
+Mons Piton                40.6N   1.1W    25.0    12                                              Named from Mt. Piton on Tenerife Islands
+Mons Rümker               40.8N   58.1W   70.0    8                                               Karl Ludwig Christian; German astronomer (1788-1862)
+Mons Usov                 12.0N   63.0E   15.0    38                                              Mikhail A.; Soviet geologist (1883-1933)
+Mons Vinogradov           22.4N   32.4W   25.0    19                                              Aleksander Pavlovich; Soviet geochemist, cosmochemist (1895-1975) formerly called Mons Euler
+Mons Vitruvius            19.4N   30.8E   15.0    25                                              Named from nearby crater
+Mons Wolff                17.0N   6.8W    35.0    21                                              Christian, Baron von; German philosopher (1679-1754)
+Mont Blanc                45.0N   1.0E    25.0    12                                              Named for terrestrial mountain in Alps

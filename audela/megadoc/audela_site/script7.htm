@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Construire sa propre interface (1)</title>
+</head>
+
+<body>
+  <h3> 1 - Fonctions de base</h3>
+  <p>Audela permet de reprogrammer enti&egrave;rement l'interface utilisateur. Cette page donne un exemple qui permet de mettre en oeuvre les fonctions de base &agrave; conna&icirc;tre pour g&eacute;n&eacute;rer une interface sous forme d'un script Audela. Il faut &eacute;videmment ma&icirc;triser le langage Tk pour comprendre le contenu qui suit..</p>
+  <h3> 1. Cahier des charges</h3>
+  Nous avons divis&eacute; notre exemple en deux parties. La premi&egrave;re partie, d&eacute;crite sur cette page, consiste &agrave; cr&eacute;er une interface graphique simple:
+  <p align="center"><img src="images/interface/test1-fr.jpg" height="427" width="608" /></p>
+  <p>La fen&ecirc;tre est compos&eacute;e de quatre zones. En partant du bas : une ligne blanche permettant d'entrer des commandes en ligne (interpr&eacute;teur Tcl). Une zone grise permettant d'afficher des valeurs ou des messages retourn&eacute;s par l'interpr&eacute;teur Tcl. Une zone de boutons pour effectuer facilement des op&eacute;rations standard. Une zone noire dans laquelle sera affich&eacute;e l'image.</p>
+  <p>La seconde partie, d&eacute;crite dans la <a href="script7a.htm">page suivante</a>, consiste &agrave; ajouter des fonctionnalit&eacute;s &agrave; l'interface simple d&eacute;crite pr&eacute;c&eacute;demment (barres de d&eacute;filement, coordonn&eacute;es du curseur, valeur du pixel point&eacute; sur l'image, barres de r&eacute;glages des seuils de visualisation et d&eacute;finir un cadre sur l'image avec la souris):</p>
+  <p align="center"><img src="images/interface/test5-fr.jpg" height="427" width="608" /></p>
+  <p>Nous appellerons le script test.tcl
+  </p>
+  <h3> 2. Accessibilit&eacute; de la nouvelle interface</h3>
+  <p>Avant de commencer &agrave; programmer, il est important de savoir comment fonctionne Audela. Le programme audela (audela.exe sous Windows) charge les librairies de Tcl/Tk en premier. Ensuite, il charge les librairies ajoutant les fonctions pour l'astronomie (gestion des images FITS, pilotage de cam&eacute;ra, etc.). Enfin, il interpr&egrave;te le script audela.tcl contenu dans le dossier binwin (ou binlinux sous Linux). Le script
+  <b>audela.tcl</b> fourni avec le logiciel, contient un menu permettant de choisir son interface:</p>
+  <p align="center"><img src="images/interface/lap1-fr.jpg" height="277" width="408" /></p>
+  <p>La ligne situ&eacute;e en bas de l'interface permet de lancer n'importe qu'elle nouvelle interface. Par d&eacute;faut, c'est le script test.tcl qui sera ex&eacute;cut&eacute; par appui sur le bouton "Lancer".La ligne contient deux arguments. Le premier est le chemin d'acc&egrave;s au script et le second argument est le nom du fichier script. De cette fa&ccedil;on, il est tr&egrave;s simple de changer d'interface.</p>
+  <p>Notons que l'on peut aussi lancer directement un script d'interface, sans passer par le panneau de choix du script audela.tcl, en ajoutant une option dans la ligne de commande de Audela (cf. raccourci sous Windows):</p>
+  <blockquote>audela -file ..\test\test.tcl</blockquote>
+  <h3> 3. Ecriture du script</h3>
+  <p>Le fichier script test.tcl pr&eacute;sent dans le dossier test de la distribution du logiciel Audela correspond &agrave; l'interface munie des fonctionnalit&eacute;s avanc&eacute;es (barres de d&eacute;filement, etc.). Pour comprendre comment on construit un tel script, nous allons le d&eacute;crire &eacute;tape par &eacute;tape. Cette page consiste &agrave; d&eacute;crire uniquement les cr&eacute;ation de l'interface simple sans fonctionnalit&eacute;s avanc&eacute;es. Ces derni&egrave;res seront d&eacute;crites &agrave; la <a href="script7a.htm">page suivante</a>.</p>
+  <p>Nous avons d&eacute;coup&eacute; test.tcl en morceaux de fa&ccedil;on &agrave; bien distinguer les diff&eacute;rentes parties du script. Il faut donc coller tous les morceaux bout &agrave; bout pour g&eacute;n&eacute;rer test.tcl.</p>
+  <h3> 3.1. Initialisation des variables</h3>
+  <p>Analysons les premi&egrave;res lignes du script test.tcl :</p>
+  <pre>#--- definition des variables globales (arrays)</pre>
+  <pre>global caption</pre>
+  <pre>global color</pre>
+  <pre>global zone</pre>
+  <p>La premi&egrave;re ligne commence par # : c'est un commentaire (inactif). Les trois autres lignes rendent visibles les variables caption, color et zone pour tout le script. Ces variables vont contenir des renseignements g&eacute;n&eacute;raux &agrave; partager entre les diff&eacute;rentes fonctions, d'o&ugrave; l'int&eacute;r&ecirc;t de les rendre "visible".</p>
+  <pre>#--- description du texte a placer sur l'ecran</pre>
+  <pre>set caption(main_title) "test"</pre>
+  <pre>set caption(acq) "Acquisition CCD"</pre>
+  <pre>set caption(load) "Charger"</pre>
+  <pre>set caption(save) "Sauver"</pre>
+  <pre>set caption(exit) "Quitter"</pre>
+  <pre>set caption(wait) "En cours..."</pre>
+  <p>La variable caption est utilis&eacute;e ici comme un <a href="script2.htm">"array" (tableau) de Tcl</a>. Cela permet de regrouper toutes les l&eacute;gendes dans un seul nom g&eacute;n&eacute;rique (tout comme les structures dans d'autres langages).</p>
+  <pre>#--- definition des couleurs</pre>
+  <pre>set color(back) #123456</pre>
+  <pre>set color(back_image) #000000</pre>
+  <p>La variable color est aussi un array. La couleur est cod&eacute;e sous la forme de 3 s&eacute;ries de 2 caract&egrave;res. Chaque s&eacute;rie repr&eacute;sente une couleur &eacute;l&eacute;mentaire pour composition additive. La premi&egrave;re s&eacute;rie renseigne l'intensit&eacute; du rouge, la deuxi&egrave;me le vert et la troisi&egrave;me le bleu. Le codage est r&eacute;alis&eacute; en hexad&eacute;cimal. 00 pour z&eacute;ro jusqu'&agrave; FF pour 256. Par exemple #FF0000 repr&eacute;sente le rouge pur le plus intense.</p>
+  <h3> 3.2. Mise en place de l'interface graphique</h3>
+  <pre>#--- cache la fenetre racine</pre>
+  <pre>wm withdraw .</pre>
+  <p>Efface la fen&ecirc;tre "racine" qui porte le nom point. Il va s'agir en fait de la petite interface contenant le menu de choix d'interface g&eacute;n&eacute;r&eacute; par audela.tcl.</p>
+  <pre>#--- cree la fenetre .test de niveau le plus haut</pre>
+  <pre>toplevel .test -class Toplevel -bg $color(back)</pre>
+  <pre>wm geometry .test 600x400+0+0</pre>
+  <pre>wm resizable .test 1 1</pre>
+  <pre>wm minsize .test 600 400</pre>
+  <pre>wm maxsize .test 1024 768</pre>
+  <pre>wm title .test $caption(main_title)</pre>
+  <p>On cr&eacute;e une fen&ecirc;tre de niveau le plus haut (toplevel) qui s'appele .test dont on sp&eacute;cifie la couleur par la variable color(back).</p>
+  <p>wm est le Window Manager qui va enregistrer les propri&eacute;t&eacute;s de la fen&ecirc;tre de plus haut niveau.</p>
+  <ul>
+    <li> geometry permet de fixer la g&eacute;om&eacute;trie et l'emplacement de base de la fen&ecirc;tre en coordonn&eacute;es &eacute;cran (+0+0 sont les coordonn&eacute;es &eacute;cran du coin en haut &agrave; gauche de la fen&ecirc;tre .test).</li>
+    <li> resizable permet de signaler que l'on autorise l'utilisateur &agrave; redimensionner la fen&ecirc;tre.</li>
+    <li> minsize et maxsize imposent des limites de redimensionnement en coordonn&eacute;es &eacute;cran.</li>
+    <li> title permet d'ins&eacute;rer un texte dans la barre de la fen&ecirc;tre.</li>
+  </ul>
+  Les coordonn&eacute;es de l'&eacute;cran sont croissantes de gauche &agrave; droite pour l'axe horizontal et de haut en bas pour l'axe vertical. La coordonn&eacute;e &eacute;cran (0,0) est donc situ&eacute;e en haut &agrave; gauche de l'&eacute;cran.
+  <p>Le processus de cr&eacute;ation d'une fen&ecirc;tre est hi&eacute;rarchique. Toute fen&ecirc;tre est obligatoirement la fille d'une autre. La fen&ecirc;tre principale (root) est toujours d&eacute;sign&eacute;e par un point. Dans notre exemple .test est une fen&ecirc;tre fille de . que l'on cache. Seule la fen&ecirc;tre fille .test reste donc visible &agrave; l'&eacute;cran.</p>
+  <p>Pour d'avantages de pr&eacute;cisions sur la fonction wm, consulter le Guide de r&eacute;f&eacute;rence Tcl/Tk (page <a href="images/tk12.gif">12</a>)</p>
+  <h3> 3.3. La ligne de commande</h3>
+  <pre>#--- cree la ligne de commande</pre>
+  <pre>entry .test.command_line \</pre>
+  <pre> -font {{Arial} 8 bold} -textvariable command_line \</pre>
+  <pre> -borderwidth 1 -relief groove</pre>
+  <pre>pack .test.command_line \</pre>
+  <pre> -in .test -fill x -side bottom \</pre>
+  <pre> -padx 3 -pady 3</pre>
+  <pre>set zone(command_line) .test.command_line</pre>
+  <p>La ligne de commande est un widget (diminutif de WINdow gadGET) de type entry. Les options sont d&eacute;sign&eacute;es par un mot cl&eacute; pr&eacute;c&eacute;d&eacute; de - et suivi des arguments. Pour d'avantages de pr&eacute;cisions sur la fonction entry et ses options, consulter le Guide de r&eacute;f&eacute;rence Tcl/Tk (page <a href="images/tk7.gif">7</a>).</p>
+  <p>Le widget cr&eacute;e va &ecirc;tre affich&eacute; &agrave; l'&eacute;cran gr&acirc;ce &agrave; la fonction pack. De nombreuses options permettent de placer et de dimensionner le widget &agrave; volont&eacute;:</p>
+  <ul>
+    <li> -in sp&eacute;cifie le nom de la fen&ecirc;tre dans laquelle on va placer le widget.</li>
+    <li> -fill x signifie que l'on va remplir toute la largeur disponible.</li>
+    <li> -side bottom impose de placer le widget en bas de la fen&ecirc;tre parente.</li>
+  </ul>
+  Pour d'avantages de pr&eacute;cisions sur la fonction pack et ses options, consulter le Guide de r&eacute;f&eacute;rence Tcl/Tk (pages <a href="images/tk12.gif">12</a>, <a href="images/tk13.gif">13</a>)
+  <p>L'array zone permet de stocker le nom des fen&ecirc;tres qui seront utiles pour le programme.</p>
+  <p>La barre \ situ&eacute;e en fin de ligne signifie &agrave; l'interpr&eacute;teur que la ligne suivante contient la suite. Le packer suit la logique de rectangle disponible. Pour une fen&ecirc;tre donn&eacute;e, on ne peut packer qu'un widget qui va occuper toute la largeur(-fill x), toute la longueur (-fill y) ou bien les deux (-fill both). Si l'on souhaite ne pas utiliser toute la surface disponible alors il faut embo&icirc;ter le petit widget dans un plus grand qui sera un widget de type frame par exemple. L'embo&icirc;tement logique des widget constitue un point crucial de la cr&eacute;ation d'une interface &agrave; fen&ecirc;tre sous Tk. Il faut le ma&icirc;triser. Pour cela, on consultera le paragraphe <a href="possoz/tcltk_cours_tk.html#HDR9">"Le packer et sa strat&eacute;gie" du cours d'Anne Possoz</a>.</p>
+  <h3> 3.4. La console de retour d'&eacute;tat</h3>
+  <pre>#--- cree la console de retour d'etats</pre>
+  <pre>listbox .test.lst1 \</pre>
+  <pre> -height 3 \</pre>
+  <pre> -borderwidth 1 -relief sunken</pre>
+  <pre>pack .test.lst1 \</pre>
+  <pre> -in .test -fill x -side bottom \</pre>
+  <pre> -padx 3 -pady 3</pre>
+  <pre>set zone(status_list) .test.lst1</pre>
+  <p>La zone de retour d'&eacute;tats est un widget de type listbox. Pour d'avantages de pr&eacute;cisions sur la fonction listbox et ses options, consulter le Guide de r&eacute;f&eacute;rence Tcl/Tk (pages <a href="images/tk7.gif">7</a>, <a href="images/tk8.gif">8</a>).</p>
+  <pre>#--- cree un ascenseur vertical pour la console de retour d'etats</pre>
+  <pre>scrollbar .test.lst1.scr1 -orient vertical \</pre>
+  <pre> -command {.test.lst1 yview}</pre>
+  <pre>pack .test.lst1.scr1 \</pre>
+  <pre> -in .test.lst1 -side right -fill y</pre>
+  <pre>set zone(status_scrl) .test.lst1.scr1</pre>
+  <p>La barre de d&eacute;filement est un widget fils de la listbox. Noter que -command contient le nom de la listbox sur laquelle le d&eacute;filement des barres vertical agit (yview pour vertical). Pour d'avantages de pr&eacute;cisions sur la fonction scrollbar et ses options, consulter le Guide de r&eacute;f&eacute;rence Tcl/Tk (pages <a href="images/tk10.gif">10</a>, <a href="images/tk11.gif">11</a>).</p>
+  <p>Pack remplit toute la hauteur et la barre est coll&eacute;e &agrave; droite de la listbox.</p>
+  <h3> 3.5. Les boutons de commande</h3>
+  <p>Nous allons maintenant disposer les boutons de commande dans une zone de fa&ccedil;on &agrave; ce qu'ils soient align&eacute;s horizontalement. Il faut donc d'abord cr&eacute;er une zone que l'on appelle un frame. Ensuite on peut y ins&eacute;rer les boutons :</p>
+  <pre>#--- cree un frame pour y mettre des boutons</pre>
+  <pre>frame .test.frame1 \</pre>
+  <pre> -borderwidth 0 -cursor arrow -bg $color(back)</pre>
+  <pre>pack .test.frame1 \</pre>
+  <pre> -in .test -anchor s -side bottom -expand 0 -fill x</pre>
+  <p>Le widget frame d&eacute;finit une zone d'&eacute;cran uniforme. Elle permet de rassembler plusieurs autres widgets enfant (ici des boutons). Pour d'avantages de pr&eacute;cisions sur la fonction frame et ses options, consulter le Guide de r&eacute;f&eacute;rence Tcl/Tk (pages <a href="images/tk9.gif">9</a>, <a href="images/tk10.gif">10</a>).</p>
+  <pre>#--- cree le bouton 'acquisition'</pre>
+  <pre>button .test.frame1.but_acq \</pre>
+  <pre> -text $caption(acq) -borderwidth 4 \</pre>
+  <pre> -command { testacq }</pre>
+  <pre>pack .test.frame1.but_acq \</pre>
+  <pre> -in .test.frame1 -side left -anchor w \</pre>
+  <pre> -padx 3 -pady 3</pre>
+  <pre>set zone(acq) .test.frame1.but_acq</pre>
+  <p>Le bouton acquisition est fils de la frame nomm&eacute;e 'frame1'. L'option command renvoie sur une proc destin&eacute;e &agrave; traiter les actions &agrave; effectuer lorsqu'on appuie sur le bouton. Pour d'avantages de pr&eacute;cisions sur la fonction button et ses options, consulter le Guide de r&eacute;f&eacute;rence Tcl/Tk (page <a href="images/tk9.gif">9</a>).</p>
+  <p>L'option -anchor du packer permet d'accrocher le bouton &agrave; l'ouest du frame parent.</p>
+  <pre>#--- cree le bouton 'charger'</pre>
+  <pre>button .test.frame1.but_load \</pre>
+  <pre> -text $caption(load) -borderwidth 4 \</pre>
+  <pre> -command { testload }</pre>
+  <pre>pack .test.frame1.but_load \</pre>
+  <pre> -in .test.frame1 -side left -anchor w \</pre>
+  <pre> -padx 3 -pady 3</pre>
+  <pre>set zone(load) .test.frame1.but_load</pre>
+  <pre>#--- cree le bouton 'sauver'</pre>
+  <pre>button .test.frame1.but_save \</pre>
+  <pre> -text $caption(save) -borderwidth 4 \</pre>
+  <pre> -command { testsave }</pre>
+  <pre>pack .test.frame1.but_save \</pre>
+  <pre> -in .test.frame1 -side left -anchor w \</pre>
+  <pre> -padx 3 -pady 3</pre>
+  <pre>set zone(save) .test.frame1.but_save</pre>
+  <pre>#--- cree le bouton 'quitter'</pre>
+  <pre>button .test.frame1.but_exit \</pre>
+  <pre> -text $caption(exit) -borderwidth 4 \</pre>
+  <pre> -command { testexit }</pre>
+  <pre>pack .test.frame1.but_exit \</pre>
+  <pre> -in .test.frame1 -side left -anchor w \</pre>
+  <pre> -padx 3 -pady 3</pre>
+  <pre>set zone(exit) .test.frame1.but_exit</pre>
+  <h3> 3.6. La zone d'affichage de l'image</h3>
+  <p> La zone d'affichage des images est probablement la chose la plus d&eacute;licate &agrave; comprendre dans la cr&eacute;ation d'une interface. Elle se passe en plusieurs temps. Le premier, d&eacute;crit maintenant, consiste &agrave; cr&eacute;er un widget Tk capable d'accueillir une image. C'est le canvas (canevas en fran&ccedil;ais) :</p>
+  <pre>#--- cree le canevas pour l'image</pre>
+  <pre>canvas .test.image1 \</pre>
+  <pre> -bg $color(back_image)</pre>
+  <pre>pack .test.image1 \</pre>
+  <pre> -in .test -expand 1 -side top -anchor center -fill both</pre>
+  <pre>set zone(image1) .test.image1</pre>
+  <p>Le widget canvas d&eacute;finit une zone d'&eacute;cran dans laquelle on pourra ensuite afficher des graphes (l'image dans notre cas). Pour d'avantages de pr&eacute;cisions sur la fonction canvas et ses options, consulter le Guide de r&eacute;f&eacute;rence Tcl/Tk (pages <a href="images/tk6.gif">6</a>, <a href="images/tk7.gif">7</a>).</p>
+  <h3> 3.7. Mise en place des liaisons</h3>
+  <p>Les liaisons permettent d'associer des commandes &agrave; ex&eacute;cuter si un &eacute;v&eacute;nement a eu lieu (d&eacute;placement de la souris, clic, appui sur une touche du clavier, etc.).</p>
+  <pre>#--- detruit la fenetre principale avec la croix en haut a droite</pre>
+  <pre>bind .test &lt;Destroy> { destroy .test; exit }</pre>
+  <p>D&eacute;truit la fen&ecirc;tre Toplevel .test si l'on clique sur la croix en haut &agrave; droite de la fen&ecirc;tre.</p>
+  <pre>#--- execute une commande a partir de la ligne de commande</pre>
+  <pre>bind $zone(command_line) &lt;Key-Return> {</pre>
+  <pre> set resultat [eval $command_line]</pre>
+  <pre> if { [string compare $resultat ""] != 0 } {</pre>
+  <pre> $zone(status_list) insert end "$resultat"</pre>
+  <pre> }</pre>
+  <pre> set $command_line ""</pre>
+  <pre>}</pre>
+  <p>Si l'on appuie sur la touche Entr&eacute;e et que le widget $zone(command_line) est actif, alors on ex&eacute;cute les lignes qui suivent. Eval $command_line est le coeur du fonctionnement de la ligne de commande. La fonction eval va interpr&eacute;ter la ligne de commande. La cha&icirc;ne de caract&egrave;res, en retour, est plac&eacute;e dans la variable resultat (pas d'accent sur le e en Tcl). Si le r&eacute;sultat n'est pas vide alors il est affich&eacute; dans la zone de retour d'&eacute;tat, &agrave; la fin de la liste.</p>
+  <p>Les liaisons (souvent appel&eacute;es bindings) sont tr&egrave;s importantes et permettent de g&eacute;rer n'importe quel &eacute;v&eacute;nement de la souris en rapport avec un widget.</p>
+  <h3> 3.8. Mise place des instruments &agrave; piloter</h3>
+  <p>On entre ici dans l'utilisation des fonctions que Audela ajoute &agrave; Tcl.</p>
+  <pre>#--- declare un buffer pour placer les images en m&eacute;moire</pre>
+  <pre>buf::create 1</pre>
+  <pre>#--- declare une connexion avec une cam&eacute;ra Audine sur LPT1</pre>
+  <pre>cam::create audine lpt1 1</pre>
+  <h3> 3.9. Mise en place de l'&eacute;cran de visualisation</h3>
+  <pre>#--- declare un nouvel objet de visualisation pour afficher le contenu  du buffer</pre>
+  <pre>visu::create 1 1</pre>
+  <p>Espace de visu. Permet de cr&eacute;er un lien entre le buffer et la zone image de Tk.</p>
+  <pre>#--- cree un widget image dans un canvas pour afficher l'objet de visualisation</pre>
+  <pre>$zone(image1) create image 1 1 -image image1 -anchor nw -tag img1</pre>
+  <p>Cr&eacute;e un widget de type image dans le canvas $zone(image1).</p>
+  <h3> 3.10. Les proc&eacute;dures utilisateur</h3>
+  <p>Les boutons sont munis de l'option -command qui ex&eacute;cute des ordres si le bouton est appuy&eacute;. Il serait lourd et peu judicieux de placer les ordres &agrave; ex&eacute;cuter dans la description du bouton. Pour &eacute;claircir la lecture du script, on pr&eacute;f&egrave;re que l'option -command entre dans une fonction (proc) sp&eacute;cifique d&eacute;crite maintenant.</p>
+  <pre>proc testacq { } {</pre>
+  <pre> #--- acquisition de l'image</pre>
+  <pre> cam1 exptime 15</pre>
+  <pre> cam1 bin {2 2}</pre>
+  <pre> cam1 acq</pre>
+  <pre> vwait status_cam1</pre>
+  <pre> #--- statistiques pour calculer les seuils de visu</pre>
+  <pre> set mystatistics [buf1 stat]</pre>
+  <pre> set mycuts [lrange $mystatistics 0 1]</pre>
+  <pre> #--- seuils de visu et affichage</pre>
+  <pre> visu1 cut $mycuts</pre>
+  <pre> visu1 disp</pre>
+  <pre>}</pre>
+  <pre>proc testload { } {</pre>
+  <pre> global caption</pre>
+  <pre> set filename [tk_getOpenFile -title $caption(load) \</pre>
+  <pre> -filetypes {{{Images FITS} {.fit}}} \</pre>
+  <pre> -initialdir .. ]</pre>
+  <pre> if {$filename!=""} {</pre>
+  <pre> buf1 load $filename</pre>
+  <pre> visu1 disp</pre>
+  <pre> }</pre>
+  <pre>}</pre>
+  <pre>proc testsave { } {</pre>
+  <pre> global caption</pre>
+  <pre> set filename [tk_getSaveFile -title $caption(load) \</pre>
+  <pre> -filetypes {{{Images FITS} {.fit}}} \</pre>
+  <pre> -initialdir .. ]</pre>
+  <pre> if {$filename!=""} {</pre>
+  <pre> buf1 save $filename</pre>
+  <pre> }</pre>
+  <pre>}</pre>
+  <pre>proc testexit { } {</pre>
+  <pre> destroy .test</pre>
+  <pre> exit</pre>
+  <pre>}</pre>
+  <p>Avec cette interface, vous pouvez acqu&eacute;rir, charger, sauver et afficher des images. Vous pouvez maintenant ajouter des fonctions suppl&eacute;mentaires en lisant la page suivante : <a href="script7a.htm">script7a.htm</a>.</p>
+</body>
+</html>

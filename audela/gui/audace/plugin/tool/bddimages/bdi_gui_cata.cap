@@ -1,0 +1,177 @@
+## @file bdi_gui_cata.cap
+#  @brief     D&eacute;claration des textes localis&eacute;s pour la GUI de mesure astrom&eacute;trique en mode manuel.
+#  @author    Frederic Vachier and Jerome Berthier
+#  @version   1.0
+#  @date      2013
+#  @copyright GNU Public License.
+#  @par Ressource
+#  @code  source [file join $audace(rep_install) gui audace plugin tool bddimages bdi_gui_cata.cap]
+#  @endcode
+#
+# $Id: bdi_gui_cata.cap 13117 2016-05-21 02:00:00Z jberthier $
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+set caption(bddimages_imgcorrection,main_title)     "BddImages - Navigation dans la base"
+set caption(bddimages_imgcorrection,titre)          "Insertion dans la base de données"
+set caption(bddimages_imgcorrection,label_nbimg)    "Nb d'images au total :"
+set caption(bddimages_imgcorrection,label_nbimgins) "Nb d'images insérées :"
+set caption(bddimages_imgcorrection,label_nbimgerr) "Nb d'images en erreur :"
+set caption(bddimages_imgcorrection,label_nbheader) "Nb de header :"
+
+set caption(bddimages_imgcorrection,connect)        "Connexion à MySql"
+set caption(bddimages_imgcorrection,inser)          "Insertion"
+set caption(bddimages_imgcorrection,refresh)        "Rafraîchir"
+set caption(bddimages_imgcorrection,lectentete)     "Lecture des en-têtes"
+set caption(bddimages_imgcorrection,inserauto)      "Insertion continue"
+set caption(bddimages_imgcorrection,inserall)       "Insérer tout"
+set caption(bddimages_imgcorrection,ok)             "OK"
+set caption(bddimages_imgcorrection,annuler)        "Annuler"
+set caption(bddimages_imgcorrection,aide)           "Aide"
+set caption(bddimages_imgcorrection,fermer)         "Fermer"
+set caption(bddimages_imgcorrection,selectall)      "Sélectionner tout"
+set caption(bddimages_imgcorrection,voirimg)        "Voir l'image"
+set caption(bddimages_imgcorrection,voirheader)     "Voir le header"
+set caption(bddimages_imgcorrection,msg_erreur)     "Erreur"
+set caption(bddimages_imgcorrection,msg_internet)   "Erreur connexion"
+   
+# -- Colonnes de la table --
+set caption(bddimages_imgcorrection,etat)           "Etat"
+set caption(bddimages_imgcorrection,nom)            "Nom"
+set caption(bddimages_imgcorrection,dateobs)        "Date"
+set caption(bddimages_imgcorrection,telescope)      "Site"
+set caption(bddimages_imgcorrection,taille)         "Taille"
+set caption(bddimages_imgcorrection,erreur)         "Erreur"
+
+# -- ListBox --
+set caption(bddimages_imgcorrection,toutes)         "toutes les"
+set caption(bddimages_imgcorrection,nimporte)       "n'importe laquelle des"
+
+set caption(bddimages_imgcorrection,elem)           "éléments"
+
+set caption(bddimages_imgcorrection,alea)           "mode aléatoire"
+set caption(bddimages_imgcorrection,dateobs)        "DATE-OBS"
+set caption(bddimages_imgcorrection,telescope)      "Télescope"
+set caption(bddimages_imgcorrection,plrecmod)       "le(s) plus récemment modifié(s)"
+set caption(bddimages_imgcorrection,morecmod)       "le(s) moins récemment modifié(s)"
+set caption(bddimages_imgcorrection,plrecajo)       "le(s) plus récemment ajouté(s)"
+set caption(bddimages_imgcorrection,morecajo)       "le(s) moins récemment ajouté(s)"
+
+set caption(bddimages_imgcorrection,contient)       "contient"
+set caption(bddimages_imgcorrection,notcontient)    "ne contient pas"
+set caption(bddimages_imgcorrection,voirvaleurs)    "voir valeurs"
+
+# -- Erreurs --
+set caption(bddimages_imgcorrection,err0)           "Image insérée"
+set caption(bddimages_imgcorrection,err1)           "Image existante dans la base"
+set caption(bddimages_imgcorrection,err101)         "Création table images impossible"
+set caption(bddimages_imgcorrection,err102)         ""
+set caption(bddimages_imgcorrection,err103)         ""
+set caption(bddimages_imgcorrection,err104)         ""
+set caption(bddimages_imgcorrection,err105)         "Impossible de supprimer l'image dans incoming"
+set caption(bddimages_imgcorrection,err205)         ""
+set caption(bddimages_imgcorrection,err206)         "Création nouvelle table images_ impossible"
+
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+   set caption(bddimages_imgcorrection,main_title)     "BddImages - Navigation dans la base"
+   set caption(bddimages_imgcorrection,titre)          "Insertion dans la base de données"
+   set caption(bddimages_imgcorrection,label_nbimg)    "Nb d'images au total :"
+   set caption(bddimages_imgcorrection,label_nbimgins) "Nb d'images insérées :"
+   set caption(bddimages_imgcorrection,label_nbimgerr) "Nb d'images en erreur :"
+   set caption(bddimages_imgcorrection,label_nbheader) "Nb de header :"
+   
+   set caption(bddimages_imgcorrection,connect)        "Connexion à MySql"
+   set caption(bddimages_imgcorrection,inser)          "Insertion"
+   set caption(bddimages_imgcorrection,refresh)        "Rafraîchir"
+   set caption(bddimages_imgcorrection,lectentete)     "Lecture des en-têtes"
+   set caption(bddimages_imgcorrection,inserauto)      "Insertion continue"
+   set caption(bddimages_imgcorrection,inserall)       "Insérer tout"
+   set caption(bddimages_imgcorrection,ok)             "OK"
+   set caption(bddimages_imgcorrection,annuler)        "Annuler"
+   set caption(bddimages_imgcorrection,aide)           "Aide"
+   set caption(bddimages_imgcorrection,fermer)         "Fermer"
+   set caption(bddimages_imgcorrection,selectall)      "Sélectionner tout"
+   set caption(bddimages_imgcorrection,voirimg)        "Voir l'image"
+   set caption(bddimages_imgcorrection,voirheader)     "Voir le header"
+   set caption(bddimages_imgcorrection,msg_erreur)     "Erreur"
+   set caption(bddimages_imgcorrection,msg_internet)   "Erreur connexion"
+   
+   # -- Colonnes de la table --
+   set caption(bddimages_imgcorrection,etat)           "Etat"
+   set caption(bddimages_imgcorrection,nom)            "Nom"
+   set caption(bddimages_imgcorrection,dateobs)        "Date"
+   set caption(bddimages_imgcorrection,telescope)      "Site"
+   set caption(bddimages_imgcorrection,taille)         "Taille"
+   set caption(bddimages_imgcorrection,erreur)         "Erreur"
+   
+   # -- ListBox --
+   set caption(bddimages_imgcorrection,toutes)         "toutes les"
+   set caption(bddimages_imgcorrection,nimporte)       "n'importe laquelle des"
+   
+   set caption(bddimages_imgcorrection,elem)           "éléments"
+   
+   set caption(bddimages_imgcorrection,alea)           "mode aléatoire"
+   set caption(bddimages_imgcorrection,dateobs)        "DATE-OBS"
+   set caption(bddimages_imgcorrection,telescope)      "Télescope"
+   set caption(bddimages_imgcorrection,plrecmod)       "le(s) plus récemment modifié(s)"
+   set caption(bddimages_imgcorrection,morecmod)       "le(s) moins récemment modifié(s)"
+   set caption(bddimages_imgcorrection,plrecajo)       "le(s) plus récemment ajouté(s)"
+   set caption(bddimages_imgcorrection,morecajo)       "le(s) moins récemment ajouté(s)"
+   
+   set caption(bddimages_imgcorrection,contient)       "contient"
+   set caption(bddimages_imgcorrection,notcontient)    "ne contient pas"
+   set caption(bddimages_imgcorrection,voirvaleurs)    "voir valeurs"
+   
+   # -- Erreurs --
+   set caption(bddimages_imgcorrection,err0)           "Image insérée"
+   set caption(bddimages_imgcorrection,err1)           "Image existante dans la base"
+   set caption(bddimages_imgcorrection,err101)         "Création table images impossible"
+   set caption(bddimages_imgcorrection,err102)         ""
+   set caption(bddimages_imgcorrection,err103)         ""
+   set caption(bddimages_imgcorrection,err104)         ""
+   set caption(bddimages_imgcorrection,err105)         "Impossible de supprimer l'image dans incoming"
+   set caption(bddimages_imgcorrection,err205)         ""
+   set caption(bddimages_imgcorrection,err206)         "Création nouvelle table images_ impossible"
+
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

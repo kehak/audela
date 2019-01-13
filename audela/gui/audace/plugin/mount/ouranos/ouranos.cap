@@ -1,0 +1,421 @@
+#
+# Fichier : ouranos.cap
+# Mise a jour $Id: ouranos.cap 9940 2013-08-10 07:56:40Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(ouranos,monture)                     "Ouranos"
+set caption(ouranos,unites)                      "Coordinates"
+set caption(ouranos,raquette)                    "Ouranos Hand Controller"
+set caption(ouranos,on)                          "on"
+set caption(ouranos,off)                         "off"
+set caption(ouranos,ferme)                       "Closed"
+set caption(ouranos,inv)                         "Reversal"
+set caption(ouranos,init1)                       "Dec. = 90°"
+set caption(ouranos,init2)                       "Dec. = 0°"
+set caption(ouranos,init3)                       "Dec. = -90°"
+set caption(ouranos,frequence)                   "every"
+set caption(ouranos,pas)                         "steps"
+set caption(ouranos,seconde)                     "sec."
+set caption(ouranos,res_codeur)                  "Encoder Resolution"
+set caption(ouranos,res_codeurs)                 "Encoders Resolution:"
+set caption(ouranos,reglage)                     "Adjust"
+set caption(ouranos,stop)                        "Stop"
+set caption(ouranos,lire)                        "Read"
+set caption(ouranos,port)                        "Port"
+set caption(ouranos,configurer)                  "Set up"
+set caption(ouranos,controle)                    "Control"
+
+set caption(ouranos,pos_tel)                     "Ouranos - Telescope Position"
+set caption(ouranos,ad1)                         "Right Ascension:"
+set caption(ouranos,dec1)                        "Declination:"
+set caption(ouranos,x1)                          "x1"
+set caption(ouranos,x5)                          "x5"
+set caption(ouranos,:5)                          ":5"
+
+set caption(ouranos,ra)                          "RA"
+set caption(ouranos,dec)                         "Dec."
+set caption(ouranos,et)                          "and"
+
+set caption(ouranos,install_1)                   "End of Ouranos plugin installation"
+set caption(ouranos,install_2)                   "libouranos.dll library updated."
+
+set caption(ouranos,port_ouranos)                "Ouranos Port"
+set caption(ouranos,2points)                     ":"
+
+set caption(ouranos,titre_site_web)              "Reference Web Site:"
+set caption(ouranos,site_ouranos)                "http://www.microtec.net/~pdufour/ouranosa.htm"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(ouranos,monture)                  "Ouranos"
+   set caption(ouranos,unites)                   "Coordonnées"
+   set caption(ouranos,raquette)                 "Raquette Ouranos"
+   set caption(ouranos,on)                       "on"
+   set caption(ouranos,off)                      "off"
+   set caption(ouranos,ferme)                    "Fermé"
+   set caption(ouranos,inv)                      "Inversion"
+   set caption(ouranos,init1)                    "Déc. = 90°"
+   set caption(ouranos,init2)                    "Déc. = 0°"
+   set caption(ouranos,init3)                    "Déc. = -90°"
+   set caption(ouranos,frequence)                "toutes les"
+   set caption(ouranos,pas)                      "pas"
+   set caption(ouranos,seconde)                  "sec."
+   set caption(ouranos,res_codeur)               "Résolution encodeur"
+   set caption(ouranos,res_codeurs)              "Résolution des encodeurs :"
+   set caption(ouranos,reglage)                  "Régler"
+   set caption(ouranos,stop)                     "Stopper"
+   set caption(ouranos,lire)                     "Lire"
+   set caption(ouranos,port)                     "Port"
+   set caption(ouranos,configurer)               "Configurer"
+   set caption(ouranos,controle)                 "Contrôle"
+
+   set caption(ouranos,pos_tel)                  "Ouranos - Position du télescope"
+   set caption(ouranos,ad1)                      "Ascension Droite :"
+   set caption(ouranos,dec1)                     "Déclinaison :"
+   set caption(ouranos,x1)                       "x1"
+   set caption(ouranos,x5)                       "x5"
+   set caption(ouranos,:5)                       ":5"
+
+   set caption(ouranos,ra)                       "AD"
+   set caption(ouranos,dec)                      "Déc."
+   set caption(ouranos,et)                       "et"
+
+   set caption(ouranos,install_1)                "Fin de l'installation du plugin Ouranos"
+   set caption(ouranos,install_2)                "La librairie libouranos.dll a été mise à jour."
+
+   set caption(ouranos,port_ouranos)             "Port Ouranos"
+   set caption(ouranos,2points)                  ":"
+
+   set caption(ouranos,titre_site_web)           "Site Web de référence :"
+   set caption(ouranos,site_ouranos)             "http://www.microtec.net/~pdufour/ouranos.htm"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(ouranos,monture)                  "Ouranos"
+   set caption(ouranos,unites)                   "Coordinates"
+   set caption(ouranos,raquette)                 "Pulsantiera Ouranos"
+   set caption(ouranos,on)                       "on"
+   set caption(ouranos,off)                      "off"
+   set caption(ouranos,ferme)                    "Chiuso"
+   set caption(ouranos,inv)                      "Inversione"
+   set caption(ouranos,init1)                    "Dec. = 90°"
+   set caption(ouranos,init2)                    "Dec. = 0°"
+   set caption(ouranos,init3)                    "Dec. = -90°"
+   set caption(ouranos,frequence)                "tutti i"
+   set caption(ouranos,pas)                      "passi"
+   set caption(ouranos,seconde)                  "sec."
+   set caption(ouranos,res_codeur)               "Risoluzione encoder"
+   set caption(ouranos,res_codeurs)              "Risoluzione encoders:"
+   set caption(ouranos,reglage)                  "Regolaz."
+   set caption(ouranos,stop)                     "Stop"
+   set caption(ouranos,lire)                     "Lettura"
+   set caption(ouranos,port)                     "Porta"
+   set caption(ouranos,configurer)               "Configurare"
+   set caption(ouranos,controle)                 "Controllo"
+
+   set caption(ouranos,pos_tel)                  "Ouranos - Posizione telescopio"
+   set caption(ouranos,ad1)                      "Ascensione Retta:"
+   set caption(ouranos,dec1)                     "Declinazione:"
+   set caption(ouranos,x1)                       "x1"
+   set caption(ouranos,x5)                       "x5"
+   set caption(ouranos,:5)                       ":5"
+
+   set caption(ouranos,ra)                       "AR"
+   set caption(ouranos,dec)                      "Dec."
+   set caption(ouranos,et)                       "e"
+
+   set caption(ouranos,install_1)                "Fine installazione del plugin Ouranos"
+   set caption(ouranos,install_2)                "La libreria libouranos.dll è stata aggiornata."
+
+   set caption(ouranos,port_ouranos)             "Porta Ouranos"
+   set caption(ouranos,2points)                  ":"
+
+   set caption(ouranos,titre_site_web)           "Sito Web di riferimento:"
+   set caption(ouranos,site_ouranos)             "http://www.microtec.net/~pdufour/ouranosa.htm"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(ouranos,monture)                  "Ouranos"
+   set caption(ouranos,unites)                   "Coordenadas"
+   set caption(ouranos,raquette)                 "Controlador de mano Ouranos"
+   set caption(ouranos,on)                       "on"
+   set caption(ouranos,off)                      "off"
+   set caption(ouranos,ferme)                    "Cerrado"
+   set caption(ouranos,inv)                      "Inverso"
+   set caption(ouranos,init1)                    "Dec. = 90°"
+   set caption(ouranos,init2)                    "Dec. = 0°"
+   set caption(ouranos,init3)                    "Dec. = -90°"
+   set caption(ouranos,frequence)                "cada"
+   set caption(ouranos,pas)                      "pasos"
+   set caption(ouranos,seconde)                  "seg."
+   set caption(ouranos,res_codeur)               "Resolucion Encoder"
+   set caption(ouranos,res_codeurs)              "Resolución Encoders:"
+   set caption(ouranos,reglage)                  "Ajustar"
+   set caption(ouranos,stop)                     "Stop"
+   set caption(ouranos,lire)                     "Leer"
+   set caption(ouranos,port)                     "Puerto"
+   set caption(ouranos,configurer)               "Configurar"
+   set caption(ouranos,controle)                 "Control"
+
+   set caption(ouranos,pos_tel)                  "Ouranos - Posición Telescopio"
+   set caption(ouranos,ad1)                      "Ascensión Recta:"
+   set caption(ouranos,dec1)                     "Declinación:"
+   set caption(ouranos,x1)                       "x1"
+   set caption(ouranos,x5)                       "x5"
+   set caption(ouranos,:5)                       ":5"
+
+   set caption(ouranos,ra)                       "AR"
+   set caption(ouranos,dec)                      "Dec."
+   set caption(ouranos,et)                       "y"
+
+   set caption(ouranos,install_1)                "Fin de la instalación del plugin Ouranos"
+   set caption(ouranos,install_2)                "Libreria libouranos.dll actualizada."
+
+   set caption(ouranos,port_ouranos)             "Puerto Ouranos"
+   set caption(ouranos,2points)                  ":"
+
+   set caption(ouranos,titre_site_web)           "Sitio Web de referencia:"
+   set caption(ouranos,site_ouranos)             "http://www.microtec.net/~pdufour/ouranosa.htm"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(ouranos,monture)                  "Ouranos"
+   set caption(ouranos,unites)                   "Koordinaten"
+   set caption(ouranos,raquette)                 "Ouranos Hand Kontroller"
+   set caption(ouranos,on)                       "ein"
+   set caption(ouranos,off)                      "aus"
+   set caption(ouranos,ferme)                    "Geschlossen"
+   set caption(ouranos,inv)                      "Umkehrung"
+   set caption(ouranos,init1)                    "Dek. = 90°"
+   set caption(ouranos,init2)                    "Dek. = 0°"
+   set caption(ouranos,init3)                    "Dek. = -90°"
+   set caption(ouranos,frequence)                "Alle"
+   set caption(ouranos,pas)                      "Schritte"
+   set caption(ouranos,seconde)                  "sek."
+   set caption(ouranos,res_codeur)               "Kodierer Auflösung"
+   set caption(ouranos,res_codeurs)              "Auflösung des Kodierer:"
+   set caption(ouranos,reglage)                  "Aufstellen"
+   set caption(ouranos,stop)                     "Halten"
+   set caption(ouranos,lire)                     "Lesen"
+   set caption(ouranos,port)                     "Port"
+   set caption(ouranos,configurer)               "Konfigurieren"
+   set caption(ouranos,controle)                 "Kontroll"
+
+   set caption(ouranos,pos_tel)                  "Ouranos - Teleskop Position"
+   set caption(ouranos,ad1)                      "Rektaszension:"
+   set caption(ouranos,dec1)                     "Deklination:"
+   set caption(ouranos,x1)                       "x1"
+   set caption(ouranos,x5)                       "x5"
+   set caption(ouranos,:5)                       ":5"
+
+   set caption(ouranos,ra)                       "RA"
+   set caption(ouranos,dec)                      "Dek."
+   set caption(ouranos,et)                       "und"
+
+   set caption(ouranos,install_1)                "Ende der Ouranos-Plugin-Installation"
+   set caption(ouranos,install_2)                "Die libouranos.dll Bibliothek ist aktualisiert."
+
+   set caption(ouranos,port_ouranos)             "Ouranos Port"
+   set caption(ouranos,2points)                  ":"
+
+   set caption(ouranos,titre_site_web)           "Referenz Webseite:"
+   set caption(ouranos,site_ouranos)             "http://www.microtec.net/~pdufour/ouranosa.htm"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(ouranos,monture)                  "Ouranos"
+   set caption(ouranos,unites)                   "Coordenadas"
+   set caption(ouranos,raquette)                 "Controlador de mão Ouranos"
+   set caption(ouranos,on)                       "on"
+   set caption(ouranos,off)                      "off"
+   set caption(ouranos,ferme)                    "Fechado"
+   set caption(ouranos,inv)                      "Inverso"
+   set caption(ouranos,init1)                    "Dec. = 90°"
+   set caption(ouranos,init2)                    "Dec. = 0°"
+   set caption(ouranos,init3)                    "Dec. = -90°"
+   set caption(ouranos,frequence)                "todos"
+   set caption(ouranos,pas)                      "passos"
+   set caption(ouranos,seconde)                  "seg."
+   set caption(ouranos,res_codeur)               "Resolução do codificador"
+   set caption(ouranos,res_codeurs)              "Resolução dos codificadores:"
+   set caption(ouranos,reglage)                  "Ajustar"
+   set caption(ouranos,stop)                     "Parar"
+   set caption(ouranos,lire)                     "Ler"
+   set caption(ouranos,port)                     "Porta"
+   set caption(ouranos,configurer)               "Configuração"
+   set caption(ouranos,controle)                 "Controlo"
+
+   set caption(ouranos,pos_tel)                  "Ouranos - Posição do telescópio"
+   set caption(ouranos,ad1)                      "Ascenção Recta:"
+   set caption(ouranos,dec1)                     "Declinação:"
+   set caption(ouranos,x1)                       "x1"
+   set caption(ouranos,x5)                       "x5"
+   set caption(ouranos,:5)                       ":5"
+
+   set caption(ouranos,ra)                       "AR"
+   set caption(ouranos,dec)                      "Dec."
+   set caption(ouranos,et)                       "e"
+
+   set caption(ouranos,install_1)                "Fin da instalação do plugin Ouranos"
+   set caption(ouranos,install_2)                "A livraria libouranos.dll foi actualizada."
+
+   set caption(ouranos,port_ouranos)             "Porta Ouranos"
+   set caption(ouranos,2points)                  ":"
+
+   set caption(ouranos,titre_site_web)           "Site Web de referência:"
+   set caption(ouranos,site_ouranos)             "http://www.microtec.net/~pdufour/ouranosa.htm"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(ouranos,monture)                  "Ouranos"
+   set caption(ouranos,unites)                   "Coordinates"
+   set caption(ouranos,raquette)                 "Ouranos Hand Controller"
+   set caption(ouranos,on)                       "on"
+   set caption(ouranos,off)                      "off"
+   set caption(ouranos,ferme)                    "Closed"
+   set caption(ouranos,inv)                      "Reversal"
+   set caption(ouranos,init1)                    "Dec. = 90°"
+   set caption(ouranos,init2)                    "Dec. = 0°"
+   set caption(ouranos,init3)                    "Dec. = -90°"
+   set caption(ouranos,frequence)                "every"
+   set caption(ouranos,pas)                      "steps"
+   set caption(ouranos,seconde)                  "sec."
+   set caption(ouranos,res_codeur)               "Encoder Resolution"
+   set caption(ouranos,res_codeurs)              "Encoders Resolution:"
+   set caption(ouranos,reglage)                  "Adjust"
+   set caption(ouranos,stop)                     "Stop"
+   set caption(ouranos,lire)                     "Read"
+   set caption(ouranos,port)                     "Port"
+   set caption(ouranos,configurer)               "Set up"
+   set caption(ouranos,controle)                 "Control"
+
+   set caption(ouranos,pos_tel)                  "Ouranos - Telescope Position"
+   set caption(ouranos,ad1)                      "Right Ascension:"
+   set caption(ouranos,dec1)                     "Declination:"
+   set caption(ouranos,x1)                       "x1"
+   set caption(ouranos,x5)                       "x5"
+   set caption(ouranos,:5)                       ":5"
+
+   set caption(ouranos,ra)                       "RA"
+   set caption(ouranos,dec)                      "Dec."
+   set caption(ouranos,et)                       "and"
+
+   set caption(ouranos,install_1)                "End of Ouranos plugin installation"
+   set caption(ouranos,install_2)                "libouranos.dll library updated."
+
+   set caption(ouranos,port_ouranos)             "Ouranos Port"
+   set caption(ouranos,2points)                  ":"
+
+   set caption(ouranos,titre_site_web)           "Reference Web Site:"
+   set caption(ouranos,site_ouranos)             "http://www.microtec.net/~pdufour/ouranosa.htm"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(ouranos,monture)                  "Ouranos"
+   set caption(ouranos,unites)                   "Coordinates"
+   set caption(ouranos,raquette)                 "Ouranos Hand Controller"
+   set caption(ouranos,on)                       "on"
+   set caption(ouranos,off)                      "off"
+   set caption(ouranos,ferme)                    "Closed"
+   set caption(ouranos,inv)                      "Reversal"
+   set caption(ouranos,init1)                    "Dec. = 90°"
+   set caption(ouranos,init2)                    "Dec. = 0°"
+   set caption(ouranos,init3)                    "Dec. = -90°"
+   set caption(ouranos,frequence)                "every"
+   set caption(ouranos,pas)                      "steps"
+   set caption(ouranos,seconde)                  "sec."
+   set caption(ouranos,res_codeur)               "Encoder Resolution"
+   set caption(ouranos,res_codeurs)              "Encoders Resolution:"
+   set caption(ouranos,reglage)                  "Adjust"
+   set caption(ouranos,stop)                     "Stop"
+   set caption(ouranos,lire)                     "Read"
+   set caption(ouranos,port)                     "Port"
+   set caption(ouranos,configurer)               "Set up"
+   set caption(ouranos,controle)                 "Control"
+
+   set caption(ouranos,pos_tel)                  "Ouranos - Telescope Position"
+   set caption(ouranos,ad1)                      "Right Ascension:"
+   set caption(ouranos,dec1)                     "Declination:"
+   set caption(ouranos,x1)                       "x1"
+   set caption(ouranos,x5)                       "x5"
+   set caption(ouranos,:5)                       ":5"
+
+   set caption(ouranos,ra)                       "RA"
+   set caption(ouranos,dec)                      "Dec."
+   set caption(ouranos,et)                       "and"
+
+   set caption(ouranos,install_1)                "End of Ouranos plugin installation"
+   set caption(ouranos,install_2)                "libouranos.dll library updated."
+
+   set caption(ouranos,port_ouranos)             "Ouranos Port"
+   set caption(ouranos,2points)                  ":"
+
+   set caption(ouranos,titre_site_web)           "Reference Web Site:"
+   set caption(ouranos,site_ouranos)             "http://www.microtec.net/~pdufour/ouranosa.htm"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(ouranos,monture)                  "Ouranos"
+   set caption(ouranos,unites)                   "Coordinates"
+   set caption(ouranos,raquette)                 "Ouranos Hand Controller"
+   set caption(ouranos,on)                       "on"
+   set caption(ouranos,off)                      "off"
+   set caption(ouranos,ferme)                    "Closed"
+   set caption(ouranos,inv)                      "Reversal"
+   set caption(ouranos,init1)                    "Dec. = 90°"
+   set caption(ouranos,init2)                    "Dec. = 0°"
+   set caption(ouranos,init3)                    "Dec. = -90°"
+   set caption(ouranos,frequence)                "every"
+   set caption(ouranos,pas)                      "steps"
+   set caption(ouranos,seconde)                  "sec."
+   set caption(ouranos,res_codeur)               "Encoder Resolution"
+   set caption(ouranos,res_codeurs)              "Encoders Resolution:"
+   set caption(ouranos,reglage)                  "Adjust"
+   set caption(ouranos,stop)                     "Stop"
+   set caption(ouranos,lire)                     "Read"
+   set caption(ouranos,port)                     "Port"
+   set caption(ouranos,configurer)               "Set up"
+   set caption(ouranos,controle)                 "Control"
+
+   set caption(ouranos,pos_tel)                  "Ouranos - Telescope Position"
+   set caption(ouranos,ad1)                      "Right Ascension:"
+   set caption(ouranos,dec1)                     "Declination:"
+   set caption(ouranos,x1)                       "x1"
+   set caption(ouranos,x5)                       "x5"
+   set caption(ouranos,:5)                       ":5"
+
+   set caption(ouranos,ra)                       "RA"
+   set caption(ouranos,dec)                      "Dec."
+   set caption(ouranos,et)                       "and"
+
+   set caption(ouranos,install_1)                "End of Ouranos plugin installation"
+   set caption(ouranos,install_2)                "libouranos.dll library updated."
+
+   set caption(ouranos,port_ouranos)             "Ouranos Port"
+   set caption(ouranos,2points)                  ":"
+
+   set caption(ouranos,titre_site_web)           "Reference Web Site:"
+   set caption(ouranos,site_ouranos)             "http://www.microtec.net/~pdufour/ouranosa.htm"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

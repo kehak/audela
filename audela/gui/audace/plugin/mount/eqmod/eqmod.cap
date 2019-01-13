@@ -1,0 +1,421 @@
+#
+# Fichier : eqmod.cap
+# Mise a jour $Id: eqmod.cap 9940 2013-08-10 07:56:40Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(eqmod,monture)                   "EQMOD"
+set caption(eqmod,port)                      "Port"
+set caption(eqmod,configurer)                "Set up"
+set caption(eqmod,controle)                  "Control"
+set caption(eqmod,raquette_tel)              "Hand controller on screen"
+
+set caption(eqmod,config_tube)               "Tube Setup:"
+set caption(eqmod,tube_ouest)                "Tube to West"
+set caption(eqmod,tube_est)                  "Tube to East"
+
+set caption(eqmod,pos_tube)                  "Tube Current Position:"
+set caption(eqmod,ouest)                     "West"
+set caption(eqmod,est)                       "East"
+set caption(eqmod,nord)                      "North"
+set caption(eqmod,sud)                       "South"
+set caption(eqmod,pole_nord)                 "North Pole"
+set caption(eqmod,pole_sud)                  "South Pole"
+
+set caption(eqmod,retournement)              "Flip Limits for a GOTO:"
+set caption(eqmod,reference)                 "Distance to Meridian:"
+set caption(eqmod,limite_est)                "To the East (in h)"
+set caption(eqmod,limite_ouest)              "To the West (in h)"
+
+set caption(eqmod,moteur_on)                 "Motor On"
+set caption(eqmod,N/A)                       "------"
+set caption(eqmod,angle_horaire)             "Hour Angle:"
+set caption(eqmod,AD)                        "Right Ascension:"
+set caption(eqmod,DEC)                       "Declination:"
+set caption(eqmod,position_AD)               "RA Position:"
+set caption(eqmod,position_DEC)              "Dec. Position:"
+set caption(eqmod,valeurDefaut)              "Default Value:"
+
+set caption(eqmod,install_1)                 "End of EQMOD plugin installation"
+set caption(eqmod,install_2)                 "libeqmod.dll library updated."
+
+set caption(eqmod,positionMonture)           "Mount Location:"
+set caption(eqmod,port_eqmod)                "EQMOD Port"
+set caption(eqmod,2points)                   ":"
+
+set caption(eqmod,titre_site_web)            "Reference Web Site:"
+set caption(eqmod,site_eqmod)                "http://eq-mod.sourceforge.net/introindex.html"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(eqmod,monture)                "EQMOD"
+   set caption(eqmod,port)                   "Port"
+   set caption(eqmod,configurer)             "Configurer"
+   set caption(eqmod,controle)               "Contrôle"
+   set caption(eqmod,raquette_tel)           "Raquette à l'écran"
+
+   set caption(eqmod,config_tube)            "Configuration du tube :"
+   set caption(eqmod,tube_ouest)             "Tube à l'ouest"
+   set caption(eqmod,tube_est)               "Tube à l'est"
+
+   set caption(eqmod,pos_tube)               "Position actuelle du tube :"
+   set caption(eqmod,ouest)                  "Ouest"
+   set caption(eqmod,est)                    "Est"
+   set caption(eqmod,nord)                   "Nord"
+   set caption(eqmod,sud)                    "Sud"
+   set caption(eqmod,pole_nord)              "Pôle Nord"
+   set caption(eqmod,pole_sud)               "Pôle Sud"
+
+   set caption(eqmod,retournement)           "Limites de retournement pour un GOTO :"
+   set caption(eqmod,reference)              "Ecarts par rapport au méridien :"
+   set caption(eqmod,limite_est)             "Vers l'est (en h)"
+   set caption(eqmod,limite_ouest)           "Vers l'ouest (en h)"
+
+   set caption(eqmod,moteur_on)              "Moteur On"
+   set caption(eqmod,N/A)                    "------"
+   set caption(eqmod,angle_horaire)          "Angle horaire :"
+   set caption(eqmod,AD)                     "Ascension Droite :"
+   set caption(eqmod,DEC)                    "Déclinaison :"
+   set caption(eqmod,position_AD)            "Position AD :"
+   set caption(eqmod,position_DEC)           "Position Déc. :"
+   set caption(eqmod,valeurDefaut)           "Valeur par défaut :"
+
+   set caption(eqmod,install_1)              "Fin de l'installation du plugin EQMOD"
+   set caption(eqmod,install_2)              "La librairie libeqmod.dll a été mise à jour."
+
+   set caption(eqmod,positionMonture)        "Localisation de la monture :"
+   set caption(eqmod,port_eqmod)             "Port EQMOD"
+   set caption(eqmod,2points)                ":"
+
+   set caption(eqmod,titre_site_web)         "Site Web de référence :"
+   set caption(eqmod,site_eqmod)             "http://www.freewebs.com/eq6modfr/"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(eqmod,monture)                "EQMOD"
+   set caption(eqmod,port)                   "Porta"
+   set caption(eqmod,configurer)             "Configurare"
+   set caption(eqmod,controle)               "Controllo"
+   set caption(eqmod,raquette_tel)           "Pulsantiera a schermo"
+
+   set caption(eqmod,config_tube)            "Configurazione del tubo:"
+   set caption(eqmod,tube_ouest)             "Tubo a ovest"
+   set caption(eqmod,tube_est)               "Tubo a est"
+
+   set caption(eqmod,pos_tube)               "Posizione attuale del tubo:"
+   set caption(eqmod,ouest)                  "Ovest"
+   set caption(eqmod,est)                    "Est"
+   set caption(eqmod,nord)                   "Nord"
+   set caption(eqmod,sud)                    "Sud"
+   set caption(eqmod,pole_nord)              "Polo Nord"
+   set caption(eqmod,pole_sud)               "Polo Sud"
+
+   set caption(eqmod,retournement)           "Soglie di capovolgimento per un GOTO System:"
+   set caption(eqmod,reference)              "Distanza al Meridiano:"
+   set caption(eqmod,limite_est)             "Verso est (in h)"
+   set caption(eqmod,limite_ouest)           "Verso Ovest (in h)"
+
+   set caption(eqmod,moteur_on)              "Motore On"
+   set caption(eqmod,N/A)                    "------"
+   set caption(eqmod,angle_horaire)          "Angolo orario:"
+   set caption(eqmod,AD)                     "Ascensione Retta:"
+   set caption(eqmod,DEC)                    "Declinazione:"
+   set caption(eqmod,position_AD)            "Posizione A.R.:"
+   set caption(eqmod,position_DEC)           "Posizione Dec.:"
+   set caption(eqmod,valeurDefaut)           "Valore di default:"
+
+   set caption(eqmod,install_1)              "Fine installazione del plugin EQMOD"
+   set caption(eqmod,install_2)              "La libreria libeqmod.dll è stata aggiornata."
+
+   set caption(eqmod,positionMonture)        "Posizione della montatura:"
+   set caption(eqmod,port_eqmod)             "Porta EQMOD"
+   set caption(eqmod,2points)                ":"
+
+   set caption(eqmod,titre_site_web)         "Sito Web di riferimento:"
+   set caption(eqmod,site_eqmod)             "http://eq-mod.sourceforge.net/introindex.html"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(eqmod,monture)                "EQMOD"
+   set caption(eqmod,port)                   "Puerto"
+   set caption(eqmod,configurer)             "Configurar"
+   set caption(eqmod,controle)               "Control"
+   set caption(eqmod,raquette_tel)           "Controlador virtual"
+
+   set caption(eqmod,config_tube)            "Configuración de tubo:"
+   set caption(eqmod,tube_ouest)             "Tubo al oeste"
+   set caption(eqmod,tube_est)               "Tubo al este"
+
+   set caption(eqmod,pos_tube)               "Posición actual de tubo:"
+   set caption(eqmod,ouest)                  "Oeste"
+   set caption(eqmod,est)                    "Este"
+   set caption(eqmod,nord)                   "Norte"
+   set caption(eqmod,sud)                    "Sur"
+   set caption(eqmod,pole_nord)              "Polo Norte"
+   set caption(eqmod,pole_sud)               "Polo Sur"
+
+   set caption(eqmod,retournement)           "Limites de inversión para un GOTO:"
+   set caption(eqmod,reference)              "Distancia al meridiano:"
+   set caption(eqmod,limite_est)             "Hacia el Este (en h)"
+   set caption(eqmod,limite_ouest)           "Hacia el Oeste (en h)"
+
+   set caption(eqmod,moteur_on)              "Motor On"
+   set caption(eqmod,N/A)                    "------"
+   set caption(eqmod,angle_horaire)          "Angulo horario:"
+   set caption(eqmod,AD)                     "Ascensión Recta:"
+   set caption(eqmod,DEC)                    "Declinación:"
+   set caption(eqmod,position_AD)            "Posición AR:"
+   set caption(eqmod,position_DEC)           "Posición Dec.:"
+   set caption(eqmod,valeurDefaut)           "Valor por defecto:"
+
+   set caption(eqmod,install_1)              "Fin de la instalación del plugin EQMOD"
+   set caption(eqmod,install_2)              "Libreria libeqmod.dll actualizada."
+
+   set caption(eqmod,positionMonture)        "Localización de la montura:"
+   set caption(eqmod,port_eqmod)             "Puerto EQMOD"
+   set caption(eqmod,2points)                ":"
+
+   set caption(eqmod,titre_site_web)         "Sitio Web de referencia:"
+   set caption(eqmod,site_eqmod)             "http://eq-mod.sourceforge.net/introindex.html"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(eqmod,monture)                "EQMOD"
+   set caption(eqmod,port)                   "Port"
+   set caption(eqmod,configurer)             "Konfigurieren"
+   set caption(eqmod,controle)               "Kontroll"
+   set caption(eqmod,raquette_tel)           "Hand Kontroller am Bildschirm"
+
+   set caption(eqmod,config_tube)            "Rohr Einstellungen:"
+   set caption(eqmod,tube_ouest)             "Rohr nach West"
+   set caption(eqmod,tube_est)               "Rohr nach Ost"
+
+   set caption(eqmod,pos_tube)               "Rohr aktuelle Position:"
+   set caption(eqmod,ouest)                  "West"
+   set caption(eqmod,est)                    "Ost"
+   set caption(eqmod,nord)                   "Nord"
+   set caption(eqmod,sud)                    "Sud"
+   set caption(eqmod,pole_nord)              "Nordpol"
+   set caption(eqmod,pole_sud)               "Südpol"
+
+   set caption(eqmod,retournement)           "Flip Grenzen für einen GOTO:"
+   set caption(eqmod,reference)              "Entfernung zum Meridian:"
+   set caption(eqmod,limite_est)             "Zum Osten (in h)"
+   set caption(eqmod,limite_ouest)           "Zum Westen (in h)"
+
+   set caption(eqmod,moteur_on)              "Motor On"
+   set caption(eqmod,N/A)                    "------"
+   set caption(eqmod,angle_horaire)          "Zeit Winkel:"
+   set caption(eqmod,AD)                     "Rektaszension:"
+   set caption(eqmod,DEC)                    "Deklination:"
+   set caption(eqmod,position_AD)            "Rek. Position:"
+   set caption(eqmod,position_DEC)           "Dek. Position:"
+   set caption(eqmod,valeurDefaut)           "Standardwert:"
+
+   set caption(eqmod,install_1)              "Ende der EQMOD-Plugin-Installation"
+   set caption(eqmod,install_2)              "Die libeqmod.dll Bibliothek ist aktualisiert."
+
+   set caption(eqmod,positionMonture)        "Montierung Ort:"
+   set caption(eqmod,port_eqmod)             "EQMOD Port"
+   set caption(eqmod,2points)                ":"
+
+   set caption(eqmod,titre_site_web)         "Referenz Webseite:"
+   set caption(eqmod,site_eqmod)             "http://eq-mod.sourceforge.net/introindex.html"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(eqmod,monture)                "EQMOD"
+   set caption(eqmod,port)                   "Porta"
+   set caption(eqmod,configurer)             "Configuração"
+   set caption(eqmod,controle)               "Controlo"
+   set caption(eqmod,raquette_tel)           "Controlador de mão no ecrã"
+
+   set caption(eqmod,config_tube)            "# Configuration du tube :"
+   set caption(eqmod,tube_ouest)             "Tubo a oeste"
+   set caption(eqmod,tube_est)               "Tubo a este"
+
+   set caption(eqmod,pos_tube)               "# Position actuelle du tube :"
+   set caption(eqmod,ouest)                  "Oeste"
+   set caption(eqmod,est)                    "Este"
+   set caption(eqmod,nord)                   "Norte"
+   set caption(eqmod,sud)                    "Sul"
+   set caption(eqmod,pole_nord)              "# Pôle Nord"
+   set caption(eqmod,pole_sud)               "# Pôle Sud"
+
+   set caption(eqmod,retournement)           "# Limites de retournement pour un GOTO :"
+   set caption(eqmod,reference)              "# Ecarts par rapport au méridien :"
+   set caption(eqmod,limite_est)             "# Vers l'est (en h)"
+   set caption(eqmod,limite_ouest)           "# Vers l'ouest (en h)"
+
+   set caption(eqmod,moteur_on)              "Motor On"
+   set caption(eqmod,N/A)                    "------"
+   set caption(eqmod,angle_horaire)          "Ângulo horário:"
+   set caption(eqmod,AD)                     "Ascenção Recta:"
+   set caption(eqmod,DEC)                    "Declinação:"
+   set caption(eqmod,position_AD)            "Posição AR:"
+   set caption(eqmod,position_DEC)           "Posição Dec.:"
+   set caption(eqmod,valeurDefaut)           "Valor por defeito:"
+
+   set caption(eqmod,install_1)              "Fin da instalação do plugin EQMOD"
+   set caption(eqmod,install_2)              "A livraria libeqmod.dll foi actualizada."
+
+   set caption(eqmod,positionMonture)        "# Localisation de la monture :"
+   set caption(eqmod,port_eqmod)             "Porta EQMOD"
+   set caption(eqmod,2points)                ":"
+
+   set caption(eqmod,titre_site_web)         "Site Web de referência:"
+   set caption(eqmod,site_eqmod)             "http://eq-mod.sourceforge.net/introindex.html"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(eqmod,monture)                "EQMOD"
+   set caption(eqmod,port)                   "Port"
+   set caption(eqmod,configurer)             "Set up"
+   set caption(eqmod,controle)               "Control"
+   set caption(eqmod,raquette_tel)           "Hand controller on screen"
+
+   set caption(eqmod,config_tube)            "Tube Setup:"
+   set caption(eqmod,tube_ouest)             "Tube to West"
+   set caption(eqmod,tube_est)               "Tube to East"
+
+   set caption(eqmod,pos_tube)               "Tube Current Position:"
+   set caption(eqmod,ouest)                  "West"
+   set caption(eqmod,est)                    "East"
+   set caption(eqmod,nord)                   "North"
+   set caption(eqmod,sud)                    "South"
+   set caption(eqmod,pole_nord)              "North Pole"
+   set caption(eqmod,pole_sud)               "South Pole"
+
+   set caption(eqmod,retournement)           "Flip Limits for a GOTO:"
+   set caption(eqmod,reference)              "Distance to Meridian:"
+   set caption(eqmod,limite_est)             "To the East (in h)"
+   set caption(eqmod,limite_ouest)           "To the West (in h)"
+
+   set caption(eqmod,moteur_on)              "Motor On"
+   set caption(eqmod,N/A)                    "------"
+   set caption(eqmod,angle_horaire)          "Hour Angle:"
+   set caption(eqmod,AD)                     "Right Ascension:"
+   set caption(eqmod,DEC)                    "Declination:"
+   set caption(eqmod,position_AD)            "RA Position:"
+   set caption(eqmod,position_DEC)           "Dec. Position:"
+   set caption(eqmod,valeurDefaut)           "Default Value:"
+
+   set caption(eqmod,install_1)              "End of EQMOD plugin installation"
+   set caption(eqmod,install_2)              "libeqmod.dll library updated."
+
+   set caption(eqmod,positionMonture)        "Mount Location:"
+   set caption(eqmod,port_eqmod)             "EQMOD Port"
+   set caption(eqmod,2points)                ":"
+
+   set caption(eqmod,titre_site_web)         "Reference Web Site:"
+   set caption(eqmod,site_eqmod)             "http://eq-mod.sourceforge.net/introindex.html"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(eqmod,monture)                "EQMOD"
+   set caption(eqmod,port)                   "Port"
+   set caption(eqmod,configurer)             "Set up"
+   set caption(eqmod,controle)               "Control"
+   set caption(eqmod,raquette_tel)           "Hand controller on screen"
+
+   set caption(eqmod,config_tube)            "Tube Setup:"
+   set caption(eqmod,tube_ouest)             "Tube to West"
+   set caption(eqmod,tube_est)               "Tube to East"
+
+   set caption(eqmod,pos_tube)               "Tube Current Position:"
+   set caption(eqmod,ouest)                  "West"
+   set caption(eqmod,est)                    "East"
+   set caption(eqmod,nord)                   "North"
+   set caption(eqmod,sud)                    "South"
+   set caption(eqmod,pole_nord)              "North Pole"
+   set caption(eqmod,pole_sud)               "South Pole"
+
+   set caption(eqmod,retournement)           "Flip Limits for a GOTO:"
+   set caption(eqmod,reference)              "Distance to Meridian:"
+   set caption(eqmod,limite_est)             "To the East (in h)"
+   set caption(eqmod,limite_ouest)           "To the West (in h)"
+
+   set caption(eqmod,moteur_on)              "Motor On"
+   set caption(eqmod,N/A)                    "------"
+   set caption(eqmod,angle_horaire)          "Hour Angle:"
+   set caption(eqmod,AD)                     "Right Ascension:"
+   set caption(eqmod,DEC)                    "Declination:"
+   set caption(eqmod,position_AD)            "RA Position:"
+   set caption(eqmod,position_DEC)           "Dec. Position:"
+   set caption(eqmod,valeurDefaut)           "Default Value:"
+
+   set caption(eqmod,install_1)              "End of EQMOD plugin installation"
+   set caption(eqmod,install_2)              "libeqmod.dll library updated."
+
+   set caption(eqmod,positionMonture)        "Mount Location:"
+   set caption(eqmod,port_eqmod)             "EQMOD Port"
+   set caption(eqmod,2points)                ":"
+
+   set caption(eqmod,titre_site_web)         "Reference Web Site:"
+   set caption(eqmod,site_eqmod)             "http://eq-mod.sourceforge.net/introindex.html"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(eqmod,monture)                "EQMOD"
+   set caption(eqmod,port)                   "Port"
+   set caption(eqmod,configurer)             "Set up"
+   set caption(eqmod,controle)               "Control"
+   set caption(eqmod,raquette_tel)           "Hand controller on screen"
+
+   set caption(eqmod,config_tube)            "Tube Setup:"
+   set caption(eqmod,tube_ouest)             "Tube to West"
+   set caption(eqmod,tube_est)               "Tube to East"
+
+   set caption(eqmod,pos_tube)               "Tube Current Position:"
+   set caption(eqmod,ouest)                  "West"
+   set caption(eqmod,est)                    "East"
+   set caption(eqmod,nord)                   "North"
+   set caption(eqmod,sud)                    "South"
+   set caption(eqmod,pole_nord)              "North Pole"
+   set caption(eqmod,pole_sud)               "South Pole"
+
+   set caption(eqmod,retournement)           "Flip Limits for a GOTO:"
+   set caption(eqmod,reference)              "Distance to Meridian:"
+   set caption(eqmod,limite_est)             "To the East (in h)"
+   set caption(eqmod,limite_ouest)           "To the West (in h)"
+
+   set caption(eqmod,moteur_on)              "Motor On"
+   set caption(eqmod,N/A)                    "------"
+   set caption(eqmod,angle_horaire)          "Hour Angle:"
+   set caption(eqmod,AD)                     "Right Ascension:"
+   set caption(eqmod,DEC)                    "Declination:"
+   set caption(eqmod,position_AD)            "RA Position:"
+   set caption(eqmod,position_DEC)           "Dec. Position:"
+   set caption(eqmod,valeurDefaut)           "Default Value:"
+
+   set caption(eqmod,install_1)              "End of EQMOD plugin installation"
+   set caption(eqmod,install_2)              "libeqmod.dll library updated."
+
+   set caption(eqmod,positionMonture)        "Mount Location:"
+   set caption(eqmod,port_eqmod)             "EQMOD Port"
+   set caption(eqmod,2points)                ":"
+
+   set caption(eqmod,titre_site_web)         "Reference Web Site:"
+   set caption(eqmod,site_eqmod)             "http://eq-mod.sourceforge.net/introindex.html"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

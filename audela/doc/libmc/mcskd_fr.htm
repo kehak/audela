@@ -1,0 +1,451 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="Author" content="Alain Klotz">
+  <meta name="GENERATOR" content="Mozilla/4.5 [fr] (Win98; I) [Netscape]"><title>Librairie MC : Manuel de l'utilisateur</title></head><body>
+<center><b><font size="+3">LIB MC</font></b> <br>
+Planification des observations avec
+la&nbsp; librairie de calculs de m&eacute;canique c&eacute;leste <br>
+version 20140623<br>
+Alain KLOTZ
+<p><b><font size="+3">Manuel de l'utilisateur</font></b></p>
+</center>
+<p>La planification des observations est li&eacute;es intimement
+&agrave; l'&eacute;l&eacute;vation des objets &agrave; observer et aux
+&eacute;l&eacute;vations su Soleil et de la Lune. Les fonctions de
+libmc, li&eacute;es &agrave; la plannification, reposent sur le fait
+que l'on effectue les calculs sur une dur&eacute;e d'environ 24 heures
+correspondant &agrave; deux passages cons&eacute;cutifs du Soleil au
+m&eacute;ridien (c'est &agrave; dire d'angle horaire = 0h). Cette
+cr&eacute;neau de temps est appel&eacute; mer2mer dans la suite de ce
+document. Le choix
+mer2mer permet d'assurer un d&eacute;coupage sans ambiguit&eacute; pour
+n'importe quel endroit de la Terre (y compris aux p&ocirc;les).
+N&eacute;anmoins, nous d&eacute;finissons une p&eacute;riode rise2rise,
+correspondant &agrave; deux lev&eacute;s de Soleils cons&eacute;cutifs.</p>
+<p>La notion de lever du Soleil, pour un observatoire robotique, n'est
+pas forc&eacute;ment la plus judicieuse pour d&eacute;finir le debut et
+la fin des observations dans une p&eacute;riode mer2mer. En effet, dans
+certains domaines de longueurs d'onde, on peut observer en plein jour
+car la brillance du fond de ciel d&eacute;pend de la longueur d'onde.
+Dans ce document, la notion de lever/coucher du Soleil correspond
+&agrave; une &eacute;l&eacute;vation du Soleil au dessus de laquelle
+l'observatoire est physiquement ferm&eacute; (toit ferm&eacute;, cimier
+ferm&eacute;). La notion de cr&eacute;puscule correspond &agrave; une
+&eacute;l&eacute;vation du Soleil au dessous de la quelle le
+t&eacute;lescope est apte &agrave; effectuer des pointages en toute
+s&eacute;curit&eacute; pour les instruments. Ces notions
+d&eacute;finissent donc deux &eacute;l&eacute;vations qui permettent
+&agrave; l'astronome de d&eacute;terminer par avance les heures de
+d&eacute;but et de fin d'observation. Pour un instant donn&eacute;, la
+fonction <span style="font-weight: bold;">mc_nextnight</span>&nbsp;permet
+de calculer les heures correspondantes &agrave; mer2mer et rise2rise.</p>
+<p>La fonction <span style="font-weight: bold;">mc_obsconditions</span>
+g&eacute;n&egrave;re un fichier qui permet de suivre les conditions
+locales d'observation d'un objet sur une p&eacute;riode mer2mer. On
+peut ainsi d&eacute;terminer les meilleures p&eacute;riodes
+d"observation ou bien d&eacute;terminer les moments de passage derriere
+un obstacle d&eacute;finit par une ligne d'horizon (avec la fonction <span style="font-weight: bold;">mc_horizon</span>).</p>
+<p>La fonction <span style="font-weight: bold;">mc_scheduler</span>
+g&eacute;n&egrave;re un planning de nuit pour enchainer des
+s&eacute;quences en tenant compte de quotas et de priorit&eacute;s.
+Before running the mc_scheduler function one must define a list of
+sequences. We call "sequence" a basic observation block asked by an
+astronomer. Many constraints can be defined as attributes for each
+sequence (limits, priority, quota, etc.). The mc_scheduler function
+generates an ASCII file. Each line define an observation refered a
+given input sequence. The scheduler is based on priority and quotas in
+order to mix observation of many astronomers that wants to share time
+of the same telescope.<br>
+</p>
+<hr style="width: 100%; height: 2px;">
+<h2 style="text-align: center;">MANUEL DE REFERENCE</h2>
+<br>
+<span style="font-weight: bold;"></span><span style="font-weight: bold;">mc_horizon</span>
+:
+G&eacute;n&egrave;re des listes pour tenir d'obtacles qui bouchent
+l'horizon d'observation.<br>
+<span style="font-weight: bold;"></span><span style="font-weight: bold;">mc_nextnight</span>
+: Retourne les heures de d&eacute;but et fin de la prochaine
+p&eacute;riode mer2mer ou de la p&eacute;riode mer2mer en cours ainsi
+que les heures de
+lever/coucher du Soleil et du cr&eacute;puscule dans cette
+p&eacute;riode. A noter que cette fonction retourne aussi les
+r&eacute;sultats pour la prochaine p&eacute;riode rise2rise.<br>
+<span style="font-weight: bold;">mc_obsconditions</span> :
+G&eacute;n&egrave;re un fichier qui permet de suivre les conditions
+d'observation d'un objet sur une p&eacute;riode mer2mer.<br>
+<span style="font-weight: bold;">mc_scheduler</span> :
+g&eacute;n&egrave;re un planning de nuit pour enchainer des
+s&eacute;quences en tenant compte de quotas et de priorit&eacute;s<br>
+<br>
+<span style="font-weight: bold;"></span>Liste de type Sequence : Le
+type Sequence est une liste qui d&eacute;finit un cr&eacute;neau de
+dates dans lequel on sp&eacute;cifie des coordonn&eacute;es &agrave;
+pointer et des contraintes d'observation. La liste est construite
+&agrave; partir de listes de type {key value}. La liste des key est la
+suivante :<br>
+<br>
+IDSEQ : index de sequence (-1 par d&eacute;faut)<br>
+JD1 : &nbsp;d&eacute;but du cr&eacute;neau d'observation
+(1900-01-01T00:00:00 par d&eacute;faut)<br>
+JD2 : &nbsp;fin du cr&eacute;neau d'observation (9999-01-01T00:00:00
+par d&eacute;faut)<br>
+ELEV : &eacute;l&eacute;vation minimale pour observer (15
+degr&eacute;s&nbsp; par d&eacute;faut)<br>
+MOONDIST : angle de garde &agrave; la Lune (40 degr&eacute;s
+&eacute;quivalent Pleine Lune par d&eacute;faut)<br>
+SUNDIST : angle de garde au Soleil (20 degr&eacute;s par d&eacute;faut)<br>
+SKYLEVEL : magnitude surfacique du ciel minimale pour observer (16
+Vmag/arcsec2 par d&eacute;faut)<br>
+STARTEXP : condition de d&eacute;marrage des acquisitions dans le
+cr&eacute;neau [jd1 jd2]. BESTELEV, IMMEDIATE, MIDDLE (BESTELEV par
+d&eacute;faut)<br>
+STARTSYNCHRO : =1 pour synchroniser tr&egrave;s
+pr&eacute;cis&eacute;ment
+le d&eacute;but d'acquisition avec le pointage (0 par d&eacute;faut)<br>
+IDUSER : index d'utilisateur (-1 par d&eacute;faut)<br>
+UPRIORITY : niveau de priorit&eacute; de l'utilisateur (1 par
+d&eacute;faut)<br>
+UQUOTA : niveau de quota de l'utilisateur (1% par d&eacute;faut)<br>
+AXE_TYPE : d&eacute;finition du type d'axes utilis&eacute; pour
+d&eacute;finir les coordonn&eacute;es &agrave; pointer&nbsp;EQUATORIAL,
+HADEC, ALTAZ (EQUATORIAL par d&eacute;faut). Cas EQUATORIAL, axe1=RA et
+axe2=DEC. Cas HADEC, axe1=HA et axe2=DEC. Cas ALTAZ, axe1=AZ et
+axe2=ELEV.<br>
+AXE_SLEW1 : vitesse de pointage estim&eacute;e sur l'axe 1 (2 deg/sec
+par d&eacute;faut)<br>
+AXE_SLEW2 : vitesse de pointage estim&eacute;e sur l'axe 2 (2 deg/sec
+par d&eacute;faut)<br>
+AXE_SLEW_SYNCHRO : =1 pour synchroniser tr&egrave;s
+pr&eacute;cis&eacute;ment le pointage avec les coordonn&eacute;es (0
+par d&eacute;faut)<br>
+AXE_EQUINOX : &eacute;quinoxe de r&eacute;f&eacute;rence dans le cas
+AXE_TYPE=EQUATORIAL (J2000 par d&eacute;faut)<br>
+AXE_EPOCH : &eacute;poque de r&eacute;f&eacute;rence dans le cas
+AXE_TYPE=EQUATORIAL (J2000 par d&eacute;faut)<br>
+AXE_MURA : mouvement propre sur RA dans le cas AXE_TYPE=EQUATORIAL (0
+mas/yr par d&eacute;faut)<br>
+AXE_MUDEC : mouvement propre sur DEC dans le cas AXE_TYPE=EQUATORIAL (0
+mas/yr par d&eacute;faut)<br>
+AXE_PLX : parallaxe stellaire dans le cas AXE_TYPE=EQUATORIAL (0 mas
+par d&eacute;faut)<br>
+AXE_n (n=0 &agrave; 19) : liste JD, POS_AXE1, POS_AXE2 d'une
+&eacute;ph&eacute;m&eacute;ride pour l'objet (AXE_n {0 0 0} par
+d&eacute;faut)<br>
+DELAY_SLEW : d&eacute;lai estim&eacute; pour commencer le pointage (10
+sec par d&eacute;faut)<br>
+DELAY_INSTRUM : d&eacute;lai estim&eacute; de mise en place des
+instruments (10 sec par d&eacute;faut)<br>
+DELAY_EXPOSURES : d&eacute;lai estim&eacute; occup&eacute; &agrave;
+effectuer les acquisitions (60 sec par d&eacute;faut)<br>
+<br>
+Exemple 1 : Pour d&eacute;finir une s&eacute;quence valable tous les
+jours aux coordonn&eacute;es J2000 RA=2h31m DEC=+41d25m :<br>
+set seq [list {AXE_0 {now 2h31m +41d25m}} ]<br>
+<br>
+Exemple 2 : Pour d&eacute;finir une s&eacute;quence qui commence le 30
+d&eacute;cembre 2009 et fini le 2 janvier 2010 avec une
+&eacute;ph&eacute;m&eacute;ride &agrave; partir de laquelle la position
+r&eacute;elle sera interpol&eacute;e :<br>
+set seq [list {JD1 2009-12-30T00:00:00} {JD2 2010-01-02T00:00:00}
+{AXE_0 {2009-12-27T00:00:00 2h12m +21d34m}}&nbsp;{AXE_1
+{2010-01-10T00:00:00 2h14m +22d29m}} ]<br>
+<br>
+DETAIL DES FONCTIONS<br>
+<ul>
+  <li><span style="font-weight: bold;">mc_horizon</span> :
+G&eacute;n&egrave;re des listes pour tenir d'obtacles qui bouchent
+l'horizon d'observation</li>
+</ul>
+<p>D&eacute;finition :</p>
+<p>mc_horizon Home Type_coords List_coords<br>
+<br>
+Home : Localisation du t&eacute;lescope</p>
+<p>Type_coords : ALTAZ=Les coordonn&eacute;es de List_coords sont de
+type altaz. HADEC=Les coordonn&eacute;es de type hadec.</p>
+<p>List_coords : D&eacute;finition de points critiques limitant
+l'observation &agrave; l'horizon. Si Type_coords=ALTAZ, List_coords est
+une liste compos&eacute;e d'&eacute;l&eacute;ments de type {azimut
+elevation} exprim&eacute;s en degr&eacute;s.&nbsp;Si Type_coords=HADEC,
+List_coords est une liste compos&eacute;e d'&eacute;l&eacute;ments de
+type {d&eacute;clinaison angle_horaire_est angle_horaire_ouest}
+exprim&eacute;s en degr&eacute;s. </p>
+<p>Sorties :&nbsp;</p>
+<p>On trouvera 5 listes&nbsp;</p>
+<p>Liste 0 : liste des azimuts de l'horizon {0 1 2 3 4 .... 360}</p>
+<p>Liste 1 : liste des &eacute;l&eacute;vations (en degr&eacute;s)
+correspondant &agrave; la liste d'azimuts.</p>
+<p>Liste 2 : liste des d&eacute;clinaisons {-90 -89 .... 89 90}</p>
+<p>Liste 3 : liste des angles horaires du couchant (ouest, en
+degr&eacute;s) correspondant &agrave; la liste des d&eacute;clinaisons.</p>
+<p>Liste 4 : liste des angles horaires du levant (est, en
+degr&eacute;s) correspondant &agrave; la liste des d&eacute;clinaisons.</p>
+<p>Exemples :</p>
+set horizon ""<br>
+lappend horizon [list -38 350 10]<br>
+lappend horizon [list -30 [mc_angle2deg 23h00] [mc_angle2deg 2h55]]<br>
+lappend horizon [list -15 [mc_angle2deg 20h50] [mc_angle2deg 4h50]]<br>
+lappend horizon [list&nbsp;&nbsp; 0 [mc_angle2deg 19h35] [mc_angle2deg
+5h30]]<br>
+lappend horizon [list&nbsp; 20 [mc_angle2deg 19h30] [mc_angle2deg 7h00]]<br>
+lappend horizon [list&nbsp; 30 [mc_angle2deg 19h10] [mc_angle2deg 8h15]]<br>
+lappend horizon [list&nbsp; 40 [mc_angle2deg 16h35] [mc_angle2deg 8h50]]<br>
+lappend horizon [list&nbsp; 90 [mc_angle2deg 15h35] [mc_angle2deg 8h30]]<br>
+set res [mc_horizon {GPS 5 E 43 1230} HADEC $horizon]<br>
+set xs [lindex $res 2]<br>
+set ys [lindex $res 3]<br>
+::plotxy::plot $xs $ys r<br>
+<br>
+set horizon ""<br>
+lappend horizon [list 0 10]<br>
+lappend horizon [list 45 10]<br>
+lappend horizon [list 90 20]<br>
+lappend horizon [list 135 30]<br>
+lappend horizon [list 180 20]<br>
+lappend horizon [list 225 10]<br>
+lappend horizon [list 270 10]<br>
+lappend horizon [list 335 10]<br>
+set res [mc_horizon {GPS 5 E 43 1230} ALTAZ $horizon]<br>
+set xs [lindex $res 2]<br>
+set ys [lindex $res 4]<br>
+::plotxy::plot $xs $ys r<br>
+<br>
+<ul>
+  <li><span style="font-weight: bold;">mc_nextnight</span>
+: Retourne les heures de d&eacute;but et fin de la prochaine
+p&eacute;riode mer2mer ou de la p&eacute;riode mer2mer en cours ainsi
+que les heures de
+lever/coucher du Soleil et du cr&eacute;puscule dans cette
+p&eacute;riode. A noter que cette fonction retourne aussi les
+r&eacute;sultats pour la prochaine p&eacute;riode rise2rise.</li>
+</ul>
+<p>D&eacute;finition :</p>
+<p>mc_nextnight Date Home ?elev_sun_set? ?elev_sun_twilight?<br>
+</p>
+<p>Date : date actuelle</p>
+<p>Home : Localisation du t&eacute;lescope</p>
+<p>elev_sun_set : El&eacute;vation du Soleil correspondant au
+lever/coucher (degr&eacute;s).</p>
+<p>elev_sun_twilight : El&eacute;vation du Soleil correpondant aux
+cr&eacute;puscules (degr&eacute;s).</p>
+<p>Sorties :</p>
+<p>On trouvera deux listes :</p>
+<p>Liste 0 : liste mer2mer contenant les dates juliennes dans l'ordre
+suivant : prev_mer, sun_set, dusk, dawn, sun_rise, next_mer.</p>
+<p>Liste 1 : liste rise2rise contenant les dates juliennes dans l'ordre
+suivant : prev_sun_rise, mer, sun_set, dusk, dawn, next_sun_rise.</p>
+<p>Exemple1 : mc_nextnight 2009-12-31T00:01 {GPS 5 E 43 1230} 0 -9</p>
+<p>Exemple2 : mc_nextnight 2009-12-31T09:01 {GPS 5 E 43 1230} 0 -9</p>
+<p>Exemple3 : Calcul et affichage des param&egrave;tres pour la
+prochaine nuit</p>
+<p>set home $audace(posobs,observateur,gps)<br>
+set date [mc_date2jd [::audace::date_sys2ut]]<br>
+set res [mc_nextnight $date $home -9 -12]<br>
+set mer2mer [lindex $res 0]<br>
+set rise2rise [lindex $res 1]<br>
+proc afelev { date home } {<br>
+&nbsp;&nbsp; set res [lindex [mc_ephem sun $date {ALTITUDE AZIMUTH}
+-topo $home] 0 ]<br>
+&nbsp;&nbsp; return "[format %6.2f [lindex $res 1 ]] [format %+6.2f
+[lindex $res 0 ]]"<br>
+}<br>
+::console::affiche_resultat "========= MER2MER home=$home\n"<br>
+::console::affiche_resultat "prev_mer, [mc_date2iso8601 [lindex
+$mer2mer 0]] : [afelev [lindex $mer2mer 0] $home]\n"<br>
+::console::affiche_resultat "sun_set,&nbsp; [mc_date2iso8601 [lindex
+$mer2mer 1]] : [afelev [lindex $mer2mer 1] $home]\n" <br>
+::console::affiche_resultat "dusk,&nbsp;&nbsp;&nbsp;&nbsp;
+[mc_date2iso8601 [lindex $mer2mer 2]] : [afelev [lindex $mer2mer 2]
+$home]\n" <br>
+::console::affiche_resultat "dawn,&nbsp;&nbsp;&nbsp;&nbsp;
+[mc_date2iso8601 [lindex $mer2mer 3]] : [afelev [lindex $mer2mer 3]
+$home]\n" <br>
+::console::affiche_resultat "sun_rise, [mc_date2iso8601 [lindex
+$mer2mer 4]] : [afelev [lindex $mer2mer 4] $home]\n" <br>
+::console::affiche_resultat "next_mer, [mc_date2iso8601 [lindex
+$mer2mer 5]] : [afelev [lindex $mer2mer 5] $home]\n"<br>
+::console::affiche_resultat "========= RISE2RISE home=$home\n"<br>
+::console::affiche_resultat "prev_sun_rise, [mc_date2iso8601 [lindex
+$rise2rise 0]] : [afelev [lindex $rise2rise 0] $home]\n"<br>
+::console::affiche_resultat
+"mer,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[mc_date2iso8601 [lindex $rise2rise 1]] : [afelev [lindex $rise2rise 1]
+$home]\n"<br>
+::console::affiche_resultat
+"sun_set,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [mc_date2iso8601 [lindex
+$rise2rise 2]] : [afelev [lindex $rise2rise 2] $home]\n" <br>
+::console::affiche_resultat
+"dusk,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[mc_date2iso8601 [lindex $rise2rise 3]] : [afelev [lindex $rise2rise 3]
+$home]\n" <br>
+::console::affiche_resultat
+"dawn,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[mc_date2iso8601 [lindex $rise2rise 4]] : [afelev [lindex $rise2rise 4]
+$home]\n" <br>
+::console::affiche_resultat "next_sun_rise, [mc_date2iso8601 [lindex
+$rise2rise 5]] : [afelev [lindex $rise2rise 5] $home]\n"<br>
+</p>
+<ul>
+  <li><span style="font-weight: bold;">mc_obsconditions</span> :
+G&eacute;n&egrave;re un fichier qui permet de suivre les conditions
+d'observation d'un objet sur une p&eacute;riode mer2mer.</li>
+</ul>
+D&eacute;finition :
+<p>mc_obsconditions : Date Home Sequence step_day output_filename
+?type_Horizon Horizon?
+</p>
+<p>Sorties :&nbsp;</p>
+<p>Fichier texte :</p>
+<p>col1 :&nbsp;jour julien<br>
+col2 : temps sid&eacute;ral local (deg) <br>
+col3 :&nbsp;sun_azimut (deg) <br>
+col4 :&nbsp;sun_elev (deg) <br>
+col5 :&nbsp;moon_azimut (deg) <br>
+col6 : moon_elev (deg) <br>
+col7 :&nbsp;moon_phase (deg) <br>
+col8 : obj_azimut (deg) <br>
+col9 : obj_elev (deg) <br>
+col10 : obj_ha (deg) <br>
+col11 : obj_ra (deg) <br>
+col12 : obj_dec (deg)<br>
+col13 :&nbsp;skylevel (Vmag/arcsec2 ou -50 si l'objet est couch&eacute;
+ou cach&eacute; par un obstacle)<br>
+col14 :&nbsp;sun_dist (deg) <br>
+col15 : moon_dist (deg) </p>
+
+<p>Exemple 1: Pour conna&icirc;tre les conditions locales
+d'observations d'un objet aux coordonn&eacute;es RA=20 deg et DEC=+26
+deg.</p>
+mc_obsconditions
+2009-12-16T18:00:00 {GPS 5 E 43 1230} {&nbsp; { {ELEV 0}&nbsp;{AXE_0
+now 20 +26} } } [expr 60./86400] "test.txt"<br>
+<p>Les trois premi&egrave;res lignes du fichier de sortie sont :</p>
+<p>2455181.98310 264.16&nbsp;&nbsp; 360.00&nbsp;&nbsp; +23.71&nbsp;&nbsp;&nbsp; 0.32&nbsp;&nbsp;
++20.51&nbsp;&nbsp; 176.77 &nbsp;&nbsp; 233.86 &nbsp;&nbsp; +1.07 &nbsp; 244.02&nbsp;&nbsp;&nbsp; 20.14&nbsp;&nbsp;
++26.06&nbsp;&nbsp; +4.41&nbsp; 122.16&nbsp;&nbsp; 123.36<br>
+2455181.98380 264.41&nbsp; &nbsp; &nbsp;&nbsp; 0.25 &nbsp;
++23.71&nbsp;&nbsp;&nbsp;
+0.56&nbsp;&nbsp; +20.51&nbsp;&nbsp; 176.77&nbsp;&nbsp;&nbsp; 234.03
+&nbsp;&nbsp; +1.20 &nbsp; 244.27&nbsp;&nbsp;&nbsp; 20.14&nbsp;&nbsp;
++26.06&nbsp;&nbsp; +4.41&nbsp; 122.17&nbsp;&nbsp; 123.36<br>
+2455181.98449 264.66&nbsp;&nbsp; &nbsp; &nbsp; 0.50&nbsp;&nbsp;
++23.70&nbsp;&nbsp;&nbsp;
+0.79&nbsp;&nbsp; +20.51&nbsp;&nbsp; 176.78 &nbsp;&nbsp; 234.20
+&nbsp;&nbsp; +1.34&nbsp;&nbsp; 244.52&nbsp;&nbsp;&nbsp;
+20.14&nbsp;&nbsp;
++26.06&nbsp;&nbsp; +4.41&nbsp; 122.18&nbsp;&nbsp; 123.36</p>
+<ul>
+  <li><span style="font-weight: bold;">mc_scheduler</span> :
+g&eacute;n&egrave;re un planning de nuit pour enchainer des
+s&eacute;quences en tenant compte de quotas et de priorit&eacute;s</li>
+</ul>
+<p>D&eacute;finition :</p>
+<p>mc_scheduler Date Home Sequences ?type_Horizon Horizon?
+?-output_type 0|1? ?-output_file filename? ?-log_file filename?
+?-haset_limit Angle? ?-harise_limit Angle? ?-decinf_limit Angle?
+?-decsup_limit Angle? ?-azset_limit Angle? ?-azrise_limit Angle?
+?-elevinf_limit Angle? ?-elevsup_limit Angle?<br>
+</p>
+<p>Date : date actuelle</p>
+<p>Home : Localisation du t&eacute;lescope</p>
+<p>Sequences : liste des s&eacute;quences qu'il faut planifier.<br>
+</p>
+<p>type_Horizon :&nbsp;ALTAZ=Les coordonn&eacute;es de List_coords sont
+de
+type altaz. HADEC=Les coordonn&eacute;es de type hadec.</p>
+<p>Horizon : D&eacute;finition de points critiques limitant
+l'observation &agrave; l'horizon. Si Type_coords=ALTAZ, List_coords est
+une liste compos&eacute;e d'&eacute;l&eacute;ments de type {azimut
+elevation} exprim&eacute;s en degr&eacute;s.&nbsp;Si Type_coords=HADEC,
+List_coords est une liste compos&eacute;e d'&eacute;l&eacute;ments de
+type {d&eacute;clinaison angle_horaire_est angle_horaire_ouest}
+exprim&eacute;s en degr&eacute;s. </p>
+-output_type 0|1 : 0=no output_file 1=output file (usualy set to 1)<br>
+-output_file filename : Filename of outputs <br>
+-log_file filename : Log file name. It is a very long and verbose file
+that describe the logic of the scheduling.<br>
+-haset_limit Angle : Western limit hour angle<br>
+-harise_limit Angle : Eastern limit hour angle<br>
+-decinf_limit Angle : Southern limit declinason<br>
+-decsup_limit Angle : Nothern limit declination<br>
+-azset_limit Angle : Western limit azimut angle<br>
+-azrise_limit Angle : Eastern limit azimut angle<br>
+-elevinf_limit Angle : Lower limit elevation angle<br>
+-elevsup_limit Angle : Upper limit elevation angle<br>
+<p>Sorties :&nbsp;</p>
+<p>Fichier texte (-output_file filename)</p>
+Col 1 : idseq (order number in the input Sequence list)<br>
+Col 2 : jd_slew_start_with_slew (Julian day of the start of telescope
+slew)<br>
+Col 3 : jd_slew_start_without_slew<br>
+Col 4 : jd_acq_start (Julian day of the start of acquisition)<br>
+Col 5 : jd_acq_end (Julian day of the end of acquisition)<br>
+Col 6 : jd_elev_max (Julian day of the maximum elevation during the
+night)<br>
+Col 7 : order (Sequence order of the scheduling)<br>
+Col 8 : percent_quota_used (Percent of quota used after this sequence)<br>
+Col 9 : az_acq_start (azimut at the time of observation start)<br>
+Col 10 : elev_acq_start (elevation at the time of observation start)<br>
+Col 11 : ha_acq_start (hour angle at the time of observation start)<br>
+Col 12 : ra_acq_start (right ascension at the time of observation start)<br>
+Col 13 : dec_acq_start (declinasion at the time of observation start)<br>
+Col 14 : az_acq_end (azimut at the time of observation stop)<br>
+Col 15 : elev_acq_end (elevation at the time of observation stop)<br>
+Col 16 : ha_acq_end (hour angle at the time of observation stop)<br>
+Col 17 : ra_acq_end (right ascension at the time of observation stop)<br>
+Col 18 : dec_acq_end (declinasion at the time of observation stop)<br>
+<br>
+Example:<br>
+<br>
+set seqs ""<br>
+lappend seqs [list {AXE_0 {now 2h31m +41d25m} IDUSER 0 UPRIORITY 80
+UQUOTA 50 DELAY_EXPOSURES 120} ]<br>
+lappend seqs [list {AXE_0 {now 23h56m +03d15m} IDUSER 0 UPRIORITY 80
+UQUOTA 50 DELAY_EXPOSURES 200} ]<br>
+lappend seqs [list {AXE_0 {now 13h06m +03d15m} IDUSER 1 UPRIORITY 70
+UQUOTA 30 DELAY_EXPOSURES 60} ]<br>
+<p>mc_scheduler now {GPS 2 E 43.345 148} $seqs&nbsp;-output_type&nbsp;1
+-output_file c:/tmp/schedule.txt -log_file
+c:/tmp/schedule.log&nbsp;-elevinf_limit 20&nbsp;-elevsup_limit 85</p>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: center;">
+<h2>MANUEL UTILISATEUR</h2>
+</div>
+Exemple&nbsp;
+:<br>
+<br>
+# === Definition de la ligne d'horizon locale<br>
+set home {GPS 5.7157 E 43.9319 633.9}<br>
+set horizon ""<br>
+lappend horizon [list&nbsp; 90 [mc_angle2deg 23h00] [mc_angle2deg
+13h00]]<br>
+lappend horizon [list&nbsp; 80 [mc_angle2deg 21h45] [mc_angle2deg
+12h50]]<br>
+lappend horizon [list&nbsp; 70 [mc_angle2deg 20h45] [mc_angle2deg
+12h00]]<br>
+lappend horizon [list&nbsp; 60 [mc_angle2deg 20h00] [mc_angle2deg
+11h30]]<br>
+lappend horizon [list&nbsp; 50 [mc_angle2deg 19h30] [mc_angle2deg
+10h30]]<br>
+lappend horizon [list&nbsp; 40 [mc_angle2deg 18h30] [mc_angle2deg&nbsp;
+9h00]]<br>
+lappend horizon [list&nbsp; 30 [mc_angle2deg 18h00] [mc_angle2deg&nbsp;
+7h50]]<br>
+lappend horizon [list&nbsp; 20 [mc_angle2deg 19h00] [mc_angle2deg&nbsp;
+7h00]]<br>
+lappend horizon [list&nbsp; 10 [mc_angle2deg 19h20] [mc_angle2deg&nbsp;
+6h30]]<br>
+lappend horizon [list&nbsp;&nbsp; 0 [mc_angle2deg 20h00]
+[mc_angle2deg&nbsp; 6h00]]<br>
+lappend horizon [list -10 [mc_angle2deg 20h20] [mc_angle2deg&nbsp;
+5h00]]<br>
+lappend horizon [list -20 [mc_angle2deg 21h00] [mc_angle2deg&nbsp;
+3h30]]<br>
+lappend horizon [list -30 [mc_angle2deg 22h00] [mc_angle2deg&nbsp;
+3h10]]<br>
+lappend horizon [list -40 [mc_angle2deg 23h00] [mc_angle2deg&nbsp;
+2h30]]<br>
+set horizons [mc_horizon $home HADEC $horizon]<br>
+<br>
+</body></html>

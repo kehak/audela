@@ -1,0 +1,168 @@
+#
+# Fichier : joystick.cap
+# Mise a jour $Id: joystick.cap 12812 2016-01-22 18:20:19Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(joystick,titre)                 "Joystick"
+set caption(joystick,Port)                  "Port"
+set caption(joystick,refresh)               "Reload"
+set caption(joystick,test)                  "Test"
+set caption(joystick,stop)                  "Stop"
+set caption(joystick,cardAddress)           "Card address"
+set caption(joystick,changeCardAddress)     "Change address"
+set caption(joystick,open)                  "Open"
+set caption(joystick,close)                 "Close"
+set caption(joystick,connexion)             "Connexion"
+
+set caption(joystick,arreter)               "Stop"
+set caption(joystick,creer_au_demarrage)    "Next time software is run connect this equipment automatically"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(joystick,titre)              "Joystick"
+   set caption(joystick,Port)               "Port"
+   set caption(joystick,refresh)            "Rafraîchir"
+   set caption(joystick,test)               "Test"
+   set caption(joystick,stop)               "Arrêter"
+   set caption(joystick,cardAddress)        "Adresse de la carte"
+   set caption(joystick,changeCardAddress)  "Changer l'adresse"
+   set caption(joystick,open)               "Ouvrir"
+   set caption(joystick,close)              "Fermer"
+   set caption(joystick,connexion)          "Connexion"
+
+   set caption(joystick,arreter)            "Arrêter"
+   set caption(joystick,creer_au_demarrage) "Connexion automatique de cet équipement au prochain démarrage"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(joystick,titre)              "Joystick"
+   set caption(joystick,Port)               "Porta"
+   set caption(joystick,refresh)            "Rinfresca"
+   set caption(joystick,test)               "Test"
+   set caption(joystick,stop)               "Fermare"
+   set caption(joystick,cardAddress)        "# Adresse de la carte"
+   set caption(joystick,changeCardAddress)  "# Changer l'adresse"
+   set caption(joystick,open)               "Aprire"
+   set caption(joystick,close)              "Chiudere"
+   set caption(joystick,connexion)          "Connessione"
+
+   set caption(joystick,arreter)            "Fermare"
+   set caption(joystick,creer_au_demarrage) "Connessione automatica di questo equipaggiamento alla prossima esecuzione del software"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(joystick,titre)              "Joystick"
+   set caption(joystick,Port)               "Puerto"
+   set caption(joystick,refresh)            "Recargar"
+   set caption(joystick,test)               "Test"
+   set caption(joystick,stop)               "Parar"
+   set caption(joystick,cardAddress)        "# Adresse de la carte"
+   set caption(joystick,changeCardAddress)  "# Changer l'adresse"
+   set caption(joystick,open)               "Abrir"
+   set caption(joystick,close)              "Cerrar"
+   set caption(joystick,connexion)          "Conexion"
+
+   set caption(joystick,arreter)            "Parar"
+   set caption(joystick,creer_au_demarrage) "La próxima vez que se ejecute el programa, el equipo se conecta automáticamente"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(joystick,titre)              "Joystick"
+   set caption(joystick,Port)               "Anschlüss"
+   set caption(joystick,refresh)            "Aktualisieren"
+   set caption(joystick,test)               "Test"
+   set caption(joystick,stop)               "Halten"
+   set caption(joystick,cardAddress)        "# Adresse de la carte"
+   set caption(joystick,changeCardAddress)  "# Changer l'adresse"
+   set caption(joystick,open)               "Öffnen"
+   set caption(joystick,close)              "Schließen"
+   set caption(joystick,connexion)          "Anschluß"
+
+   set caption(joystick,arreter)            "Halten"
+   set caption(joystick,creer_au_demarrage) "Nächste Mal diese Einrichtung automatisch anschließen"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(joystick,titre)              "Joystick"
+   set caption(joystick,Port)               "Porta"
+   set caption(joystick,refresh)            "Actualizar"
+   set caption(joystick,test)               "Teste"
+   set caption(joystick,stop)               "Parar"
+   set caption(joystick,cardAddress)        "# Adresse de la carte"
+   set caption(joystick,changeCardAddress)  "# Changer l'adresse"
+   set caption(joystick,open)               "Abrir"
+   set caption(joystick,close)              "Fechar"
+   set caption(joystick,connexion)          "Conexão"
+
+   set caption(joystick,arreter)            "Parar"
+   set caption(joystick,creer_au_demarrage) "O equipamento conecta-se automaticamente na próxima execução do programa"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(joystick,titre)              "Joystick"
+   set caption(joystick,Port)               "Port"
+   set caption(joystick,refresh)            "Genindlæs"
+   set caption(joystick,test)               "Test"
+   set caption(joystick,stop)               "Stop"
+   set caption(joystick,cardAddress)        "# Adresse de la carte"
+   set caption(joystick,changeCardAddress)  "# Changer l'adresse"
+   set caption(joystick,open)               "Åbn"
+   set caption(joystick,close)              "Luk"
+   set caption(joystick,connexion)          "Forbindelse"
+
+   set caption(joystick,arreter)            "Stop"
+   set caption(joystick,creer_au_demarrage) "Tilslut automatisk dette udstyr ved næste start"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(joystick,titre)              "Joystick"
+   set caption(joystick,Port)               "Port"
+   set caption(joystick,refresh)            "Reload"
+   set caption(joystick,test)               "Test"
+   set caption(joystick,stop)               "Stop"
+   set caption(joystick,cardAddress)        "Card address"
+   set caption(joystick,changeCardAddress)  "Change address"
+   set caption(joystick,open)               "Open"
+   set caption(joystick,close)              "Close"
+   set caption(joystick,connexion)          "Connexion"
+
+   set caption(joystick,arreter)            "Stop"
+   set caption(joystick,creer_au_demarrage) "Next time software is run connect this equipment automatically"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(joystick,titre)              "Joystick"
+   set caption(joystick,Port)               "Port"
+   set caption(joystick,refresh)            "Reload"
+   set caption(joystick,test)               "Test"
+   set caption(joystick,stop)               "Stop"
+   set caption(joystick,cardAddress)        "Card address"
+   set caption(joystick,changeCardAddress)  "Change address"
+   set caption(joystick,open)               "Open"
+   set caption(joystick,close)              "Close"
+   set caption(joystick,connexion)          "Connexion"
+
+   set caption(joystick,arreter)            "Stop"
+   set caption(joystick,creer_au_demarrage) "Next time software is run connect this equipment automatically"
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

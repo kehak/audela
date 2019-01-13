@@ -1,0 +1,133 @@
+#
+# Fichier : conflink.cap
+# Mise a jour $Id: conflink.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(conflink,liaison)                "Link:"
+set caption(conflink,config)                 "Link Configuration"
+set caption(conflink,creer_au_demarrage)     "Next time software is run connect this link automatically"
+set caption(conflink,ok)                     "OK"
+set caption(conflink,appliquer)              "Apply"
+set caption(conflink,fermer)                 "Close"
+set caption(conflink,aide)                   "Help"
+
+set caption(conflink,pas_liaison)            "No Link."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(conflink,liaison)             "Liaison :"
+   set caption(conflink,config)              "Configuration de la liaison"
+   set caption(conflink,creer_au_demarrage)  "Connexion automatique de cette liaison au prochain démarrage"
+   set caption(conflink,ok)                  "OK"
+   set caption(conflink,appliquer)           "Appliquer"
+   set caption(conflink,fermer)              "Fermer"
+   set caption(conflink,aide)                "Aide"
+
+   set caption(conflink,pas_liaison)         "Il n'y a pas de liaison présente."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(conflink,liaison)             "Collegamento:"
+   set caption(conflink,config)              "Configurazione del collegamento"
+   set caption(conflink,creer_au_demarrage)  "Connessione automatica di questo collegamento alla prossima esecuzione del software"
+   set caption(conflink,ok)                  "OK"
+   set caption(conflink,appliquer)           "Applicare"
+   set caption(conflink,fermer)              "Chiudere"
+   set caption(conflink,aide)                "Aiuto"
+
+   set caption(conflink,pas_liaison)         "Nessun collegamento."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(conflink,liaison)             "Enlace:"
+   set caption(conflink,config)              "Configuracion del enlace"
+   set caption(conflink,creer_au_demarrage)  "La próxima vez que se ejecute el programa, el enlace se conecta automáticamente"
+   set caption(conflink,ok)                  "OK"
+   set caption(conflink,appliquer)           "Aplicar"
+   set caption(conflink,fermer)              "Cerrar"
+   set caption(conflink,aide)                "Ayuda"
+
+   set caption(conflink,pas_liaison)         "No hay enlace."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(conflink,liaison)             "Link :"
+   set caption(conflink,config)              "Link Konfiguration"
+   set caption(conflink,creer_au_demarrage)  "Nächste Mal diesem Link automatisch anschließen"
+   set caption(conflink,ok)                  "OK"
+   set caption(conflink,appliquer)           "Anwenden"
+   set caption(conflink,fermer)              "Schließen"
+   set caption(conflink,aide)                "Hilfe"
+
+   set caption(conflink,pas_liaison)         "Kein Link."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(conflink,liaison)             "Ligação:"
+   set caption(conflink,config)              "Configuração da ligação"
+   set caption(conflink,creer_au_demarrage)  "Estabelecer esta ligação automaticamente da próxima vez que o software for executado"
+   set caption(conflink,ok)                  "OK"
+   set caption(conflink,appliquer)           "Aplicar"
+   set caption(conflink,fermer)              "Fechar"
+   set caption(conflink,aide)                "Ajuda"
+
+   set caption(conflink,pas_liaison)         "Sem ligação."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(conflink,liaison)             "Link:"
+   set caption(conflink,config)              "Link Configuration"
+   set caption(conflink,creer_au_demarrage)  "Next time software is run connect this link automatically"
+   set caption(conflink,ok)                  "OK"
+   set caption(conflink,appliquer)           "Apply"
+   set caption(conflink,fermer)              "Close"
+   set caption(conflink,aide)                "Help"
+
+   set caption(conflink,pas_liaison)         "No Link."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(conflink,liaison)             "Link:"
+   set caption(conflink,config)              "Link Configuration"
+   set caption(conflink,creer_au_demarrage)  "Next time software is run connect this link automatically"
+   set caption(conflink,ok)                  "OK"
+   set caption(conflink,appliquer)           "Apply"
+   set caption(conflink,fermer)              "Close"
+   set caption(conflink,aide)                "Help"
+
+   set caption(conflink,pas_liaison)         "No Link."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(conflink,liaison)             "Link:"
+   set caption(conflink,config)              "Link Configuration"
+   set caption(conflink,creer_au_demarrage)  "Next time software is run connect this link automatically"
+   set caption(conflink,ok)                  "OK"
+   set caption(conflink,appliquer)           "Apply"
+   set caption(conflink,fermer)              "Close"
+   set caption(conflink,aide)                "Help"
+
+   set caption(conflink,pas_liaison)         "No Link."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

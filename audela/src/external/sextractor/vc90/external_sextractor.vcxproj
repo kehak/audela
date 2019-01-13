@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7F8080A4-14CF-4782-B2A0-74A6134C9765}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.24730.2</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\..\..\..\..\bin\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <TypeLibraryName>.\Release/external_sextractor.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_CONSOLE;__STDC__;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile>.\Release/external_sextractor.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>..\..\..\..\bin\sex.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <ProgramDatabaseFile>.\Release/sex.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release/external_sextractor.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <TypeLibraryName>.\Debug/external_sextractor.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_CONSOLE;__STDC__;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>.\Debug/external_sextractor.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040c</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>..\..\..\..\bin\sex.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/sex.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug/external_sextractor.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\analyse.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\assoc.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\astrom.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\back.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\bpro.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\catout.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\check.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\clean.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\extract.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\field.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\filter.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitsbody.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitscat.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitscheck.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitscleanup.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitsconv.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitshead.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitskey.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitsmisc.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitsread.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitstab.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitsutil.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\fits\fitswrite.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\flag.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\graph.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\growth.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\image.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\interpolate.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\main.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\makeit.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\manobjlist.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\misc.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\neurro.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\pc.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\photom.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\plist.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\prefs.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\psf.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\readimage.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\refine.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\retina.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\scan.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\som.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\wcs\cel.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\wcs\lin.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\wcs\poly.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\wcs\proj.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\wcs\sph.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\wcs\tnx.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\wcs\wcs.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\wcs\wcstrig.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\weight.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\winpos.c" />
+    <ClCompile Include="..\sextractor\sextractor-2.5.0\src\xml.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\assoc.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\astrom.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\back.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\bpro.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\check.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\clean.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\extract.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\field.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\filter.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\fitscat.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\flag.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\growth.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\image.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\interpolate.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\neurro.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\photom.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\plist.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\poly.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\psf.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\retina.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\som.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\wcs\cel.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\wcs\lin.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\wcs\proj.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\wcs\wcs.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\wcs\wcstrig.h" />
+    <ClInclude Include="..\sextractor\sextractor-2.5.0\src\weight.h" />
+    <ClInclude Include="..\ssextractor-2.5.0\rc\prefs.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

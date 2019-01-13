@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=UTF-8">
+  <title>Cicatriser</title>
+</head>
+<body>
+<p class="date">Date de mise &agrave; jour : 08 janvier 2011<br>
+</p>
+<h1>Cicatriser </h1>
+Cette fonction permet de retoucher localement des images N&amp;B et des
+plans couleurs (naxis = 2) ainsi que des images couleurs ou RVB (naxis
+= 3).<br>
+Dans le cas d'images couleurs, le temps de traitement est important.<br>
+<br>
+On acc&egrave;de &agrave; cette fonction de 2 mani&egrave;res
+diff&eacute;rentes :<br>
+- par le menu d&eacute;roulant <span style="font-weight: bold;">Images</span>
+--&gt; <span style="font-weight: bold;">Retoucher</span> --&gt; <span
+ style="font-weight: bold;">Cicatriser</span>,<br>
+- ou par le menu contextuel , clic du bouton droit de la souris sur
+l'image (voir ci-dessous).<br>
+<br>
+La fonction <span style="font-weight: bold;">Cicatriser</span>
+applique localement une correction pour supprimer un d&eacute;faut, par
+exemple un rayon cosmique.<br>
+<br>
+Elle cicatrise les valeurs des pixels &agrave; l'int&eacute;rieur d'une
+fen&ecirc;tre pr&eacute;alablement trac&eacute;e avec la souris en
+utilisant son bouton gauche (<span style="color: rgb(51, 102, 255);">cadre
+bleu sur l'image &agrave; cot&eacute; de <span
+ style="font-weight: bold;">Histogramme</span></span>) par un
+r&eacute;seau de lignes et de colonnes interpol&eacute;es &agrave;
+partir des pixels se situant sur le bord de cette fen&ecirc;tre.<br>
+<br>
+<img style="width: 639px; height: 507px;" alt=""
+ src="images/cicatriser_1.gif"><br>
+<br>
+L'&eacute;toile &agrave; l'int&eacute;rieur du <span
+ style="color: rgb(51, 102, 255);">cadre bleu</span> a
+&eacute;t&eacute; effac&eacute;e.<br>
+<br>
+<img style="width: 429px; height: 211px;" alt=""
+ src="images/cicatriser_2.gif"><br>
+<br>
+Il faut s'assurer que le <span style="color: rgb(51, 102, 255);">cadre
+bleu</span> ainsi trac&eacute; (<span style="color: rgb(51, 102, 255);">dans
+le coin inf&eacute;rieur droit de l'image</span>) ne chevauche pas une
+&eacute;toile du champ, car dans ce cas le signal de cette
+&eacute;toile serait pris en compte dans la cicatrisation qui
+g&eacute;n&egrave;rerait un nouveau d&eacute;faut comme dans l'exemple
+ci-dessous.<br>
+<br>
+<img style="width: 639px; height: 507px;" alt=""
+ src="images/cicatriser_3.gif"><br>
+<br>
+L'&eacute;toile pr&eacute;sente sur la bordure du <span
+ style="color: rgb(51, 102, 255);">cadre bleu</span> a
+perturb&eacute;e la cicatrisation.<br>
+<br>
+<img style="width: 345px; height: 237px;" alt=""
+ src="images/cicatriser_4.gif"><br>
+<br>
+Attention, cette fonction modifie uniquement l'image affich&eacute;e
+&agrave; l'&eacute;cran, si cette correction vous convient vous devez
+imp&eacute;rativement la sauvegarder pour conserver les retouches, en
+utilisant par exemple <span style="font-weight: bold;">Enregistrer</span>
+du menu <span style="font-weight: bold;">Fichier</span>.<br>
+<br>
+</body>
+</html>

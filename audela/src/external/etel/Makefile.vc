@@ -1,0 +1,85 @@
+
+#rem Parametres de xcopy :
+#rem  /D  copie uniquement les fichiers dont l'heure source est plus récente que l'heure de destination.
+#rem  /I  Si la destination n'existe pas et que plus d'un fichier est copié, considérer la destination comme devant être un répertoire.
+#rem  /S  Copie les répertoires et sous-répertoires à l'exception des répertoires vides.
+#rem  /Y  Supprime la demande de confirmation de remplacement de fichiers de destination existants.
+CP= @xcopy /D /I /Y 
+#CP= copy 
+RM= -@del /f /q
+
+#SOURCE=.\ide_32bits_2_11
+SOURCE=.\ide_32bits_4_16
+
+#rem  les fichiers *.h ne doivent pas etre copies dans le repertoire ..\include 
+#rem  car ils contiennent stdint.h specifique a la librairie Etel qui ne doit pas etre mélé
+#rem  aux autres fichiers .h dans ..\include à cause du conflit avec stdint.h founi avec VS2015. 
+#rem  En consequence les fichiers .h de la librairie Etel sont copiés dans 
+#rem  le repertoire specifique ..\include\etel
+EXTERNAL_INCLUDE=..\include\etel
+
+EXTERNAL_LIB=..\lib
+
+AUDELA_BIN=..\..\..\bin
+
+build:
+
+install: build
+	@echo "Build IDE Version = $(SOURCE)"
+	@echo off
+	@if not exist $(EXTERNAL_INCLUDE)  mkdir $(EXTERNAL_INCLUDE)
+	@if not exist $(EXTERNAL_LIB)      mkdir $(EXTERNAL_LIB)
+	@if not exist $(AUDELA_BIN)        mkdir $(AUDELA_BIN)
+	$(CP) $(SOURCE)\include\dmd40.h  $(EXTERNAL_INCLUDE) >NUL
+	$(CP) $(SOURCE)\include\dsa40.h  $(EXTERNAL_INCLUDE) >NUL
+	$(CP) $(SOURCE)\include\etb40.h  $(EXTERNAL_INCLUDE) >NUL
+	$(CP) $(SOURCE)\include\lib40.h  $(EXTERNAL_INCLUDE) >NUL
+	$(CP) $(SOURCE)\include\tra40.h  $(EXTERNAL_INCLUDE) >NUL
+	@rem $(CP) $(SOURCE)\include\stdint.h  $(EXTERNAL_INCLUDE)
+	$(CP) $(SOURCE)\lib\dsa40c.lib   $(EXTERNAL_LIB) >NUL
+	$(CP) $(SOURCE)\bin\*.dll   $(AUDELA_BIN) >NUL
+	$(CP) $(SOURCE)\include\emp40.h  $(EXTERNAL_INCLUDE) >NUL
+
+clean:
+	@echo "Clean IDE Version = $(SOURCE)"
+	$(RM) $(EXTERNAL_INCLUDE)\dsa40.h
+	$(RM) $(EXTERNAL_INCLUDE)\etb40.h
+	$(RM) $(EXTERNAL_INCLUDE)\lib40.h
+	$(RM) $(EXTERNAL_INCLUDE)\tra40.h
+	rem $(RM) $(EXTERNAL_INCLUDE)\stdint.h
+	$(RM) $(EXTERNAL_INCLUDE)
+	$(RM) $(EXTERNAL_LIB)\dsa40c.lib
+	$(RM) $(AUDELA_BIN)\assert40c.dll
+	$(RM) $(AUDELA_BIN)\assert40cd.dll
+	$(RM) $(AUDELA_BIN)\dex40c.dll
+	$(RM) $(AUDELA_BIN)\dex40cd.dll
+	$(RM) $(AUDELA_BIN)\dmd40c.dll
+	$(RM) $(AUDELA_BIN)\dmd40cd.dll
+	$(RM) $(AUDELA_BIN)\dsa40c.dll
+	$(RM) $(AUDELA_BIN)\dsa40cd.dll
+	$(RM) $(AUDELA_BIN)\ekd40_32c.dll
+	$(RM) $(AUDELA_BIN)\ekd40_32cd.dll
+	$(RM) $(AUDELA_BIN)\ekd40c.dll
+	$(RM) $(AUDELA_BIN)\ekd40cd.dll
+	$(RM) $(AUDELA_BIN)\emp40c.dll
+	$(RM) $(AUDELA_BIN)\emp40cd.dll
+	$(RM) $(AUDELA_BIN)\esc40c.dll
+	$(RM) $(AUDELA_BIN)\esc40cd.dll
+	$(RM) $(AUDELA_BIN)\esd40c.dll
+	$(RM) $(AUDELA_BIN)\esd40cd.dll
+	$(RM) $(AUDELA_BIN)\etb40c.dll
+	$(RM) $(AUDELA_BIN)\etb40cd.dll
+	$(RM) $(AUDELA_BIN)\etne40c.dll
+	$(RM) $(AUDELA_BIN)\etne40cd.dll
+	$(RM) $(AUDELA_BIN)\ftbusui.dll
+	$(RM) $(AUDELA_BIN)\ftd2xx.dll
+	$(RM) $(AUDELA_BIN)\lib40c.dll
+	$(RM) $(AUDELA_BIN)\lib40cd.dll
+	$(RM) $(AUDELA_BIN)\tra40c.dll
+	$(RM) $(AUDELA_BIN)\tra40cd.dll
+	$(RM) $(AUDELA_BIN)\wdapi910.dll
+	$(RM) $(AUDELA_BIN)\wdapi1021.dll
+	$(RM) $(AUDELA_BIN)\wdapi1021_32.dll
+	$(RM) $(AUDELA_BIN)\wdapi1110.dll
+	$(RM) $(AUDELA_BIN)\wdapi1110_32.dll
+

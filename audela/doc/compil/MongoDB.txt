@@ -1,0 +1,296 @@
+MongoDB apporte la possibilité de faire du NoSQL dans Audela :
+
+***************
+Coté Serveur : 
+***************
+
+  SITE
+
+     http://docs.mongodb.org
+     http://docs.mongodb.org/manual/tutorial/install-mongodb-on-linux/
+     http://docs.mongodb.org/manual/reference/configuration-options/
+
+  TELECHARGEMENT
+   
+     Install MongoDB From Tarball
+  
+  INSTALLATION
+
+     curl -O https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.0.6.tgz
+     tar zxvf mongodb-linux-x86_64-3.0.6.tgz
+     mv mongodb-linux-x86_64-3.0.6 /usr/local/src/mongodb-server
+     cd /usr/local/src/mongodb-server/bin
+
+     Ajouter ces lignes dans le ~/.bashrc
+          # MongoDB
+          export PATH=/usr/local/src/mongodb-server/bin:$PATH
+
+     Creer le fichier /etc/mongod.conf (En tant que root)
+          systemLog:
+             destination: file
+             path: "/var/log/mongodb/mongod.log"
+             logAppend: true
+          storage:
+             dbPath: "~/.audela/mongodb"
+             journal:
+                enabled: true
+          processManagement:
+             fork: false
+          net:
+             bindIp: 127.0.0.1
+             port: 27017
+
+     Creer le fichier /var/log/mongodb/mongod.log (En tant que root)
+        mkdir -p /var/log/mongodb/
+        touch /var/log/mongodb/mongod.log
+        chmod 777 /var/log/mongodb/mongod.log
+        tail -f /var/log/mongodb/mongod.log
+
+     Creer le repertoire de la base
+        mkdir -p ~/.audela/mongodb
+
+  DEMARRAGE
+      
+      mongod --config /etc/mongod.conf
+  
+  VERIF  
+     La commande : 
+        ps -edf | grep mongod
+     doit faire aparaitre
+        fred      3402  3366  0 13:42 pts/6    00:00:00 mongod --config /etc/mongod.conf
+
+
+**************
+Coté Driver C
+**************
+
+  SITE
+
+     https://github.com/mongodb/mongo-c-driver-legacy
+  
+  TELECHARGEMENT
+
+     Telecharger avec le bouton : Download ZIP
+  
+  INSTALLATION 
+
+     unzip mongo-c-driver-legacy-master.zip
+     mv mongo-c-driver-legacy-master /usr/local/src/mongodb-c-driver
+     cd /usr/local/src/mongodb-c-driver
+     make
+     make install
+
+
+
+****************
+Coté Client TCL
+****************
+    
+  SITE
+
+     https://github.com/flightaware/mongotcl
+   
+  TELECHARGEMENT
+
+     Telecharger avec le bouton : Download ZIP
+  
+  CORRECTION 
+     
+     Editer le fichier generic/mongotcl.c
+     
+     remplacer ~ligne 770
+
+         if (mongo_create_index (md->conn, Tcl_GetString(objv[2]), keyBson, name, updateFlags, ttl, outBson) != MONGO_OK) {
+	         return mongotcl_setMongoError (interp, md->conn);
+         }
+
+     par     
+     
+			char *name;
+			int ttl;
+			if (mongo_create_index (md->conn, Tcl_GetString(objv[2]), keyBson, name, updateFlags, ttl, outBson) != MONGO_OK) {
+				return mongotcl_setMongoError (interp, md->conn);
+			}
+
+     Editer le fichier generic/bson.c ~ligne 98
+
+        et remplacer la ligne :
+    
+				bson_iterator_code_scope( &i, &scope );
+
+     par
+				/* bson_iterator_code_scope( &i, &scope );*/
+
+
+  INSTALLATION 
+
+     unzip mongotcl-master.zip
+     mv mongotcl-master /usr/local/src/mongodb-tclclient
+     cd /usr/local/src/mongodb-tclclient/
+
+     autoconf
+     ./configure --with-tcl=/usr/lib64 --mandir=/usr/local/man --prefix=/usr/local --exec-prefix=/usr/local
+     make
+     make install     
+     
+  DEMARRAGE
+  
+****************
+Coté Audela
+****************
+  
+  CHARGEMENT
+     Dans la console taper
+     
+lappend auto_path /usr/local/src/mongodb-tclclient/
+package require mongo
+set mongo [::mongo::mongo create m]
+$mongo init
+$mongo client 127.0.0.1 27017
+$mongo check_connection
+
+commandes mongo : 
+insert, update, insert_batch, cursor, search, find, count, init, 
+last_error, prev_error, remove, create_index, set_op_timeout, 
+client, reconnect, disconnect, check_connection, is_master, 
+write_concern, run_command, replica_set_init, 
+replica_set_add_seed, replica_set_client, clear_errors, 
+authenticate, add_user, drop_collection, drop_db, or delete
+
+
+
+Tests en cours :
+
+: % set bson [::mongo::bson create #auto]
+bson0
+% $bson init string "name" "Joe" int "age" 33 finish
+% $bson print
+	name : 2 	 Joe
+	age : 16 	 33
+% $mongo insert "tutorial.persons" $bson
+
+% $mongo count tutorial persons
+1
+
+% $mongo find "tutorial.persons" ...
+
+
+
+
+
+
+****************
+Les bases du langage NOSQL par le client mongo:
+****************
+
+voir le tuto youtube : 
+
+    https://www.youtube.com/watch?v=2ajlfURobd8
+
+Commandes :
+
+ $ mongo
+MongoDB shell version: 3.0.6
+connecting to: test
+Welcome to the MongoDB shell.
+For interactive help, type "help".
+For more comprehensive documentation, see
+	http://docs.mongodb.org/
+Questions? Try the support group
+	http://groups.google.com/group/mongodb-user
+Server has startup warnings: 
+2015-08-28T13:42:52.169+0200 I CONTROL  [initandlisten] 
+2015-08-28T13:42:52.169+0200 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
+2015-08-28T13:42:52.169+0200 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+2015-08-28T13:42:52.169+0200 I CONTROL  [initandlisten] 
+2015-08-28T13:42:52.169+0200 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/defrag is 'always'.
+2015-08-28T13:42:52.169+0200 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+2015-08-28T13:42:52.169+0200 I CONTROL  [initandlisten] 
+
+
+
+> use tutorial
+switched to db tutorial
+
+** INSERTION DE DONNEES
+
+> emp = { name: 'John' } ;
+{ "name" : "John" }
+> emp2= { age: 34};
+{ "age" : 34 }
+
+
+> db.employees.save(emp);
+WriteResult({ "nInserted" : 1 })
+> db.employees.save(emp2);
+WriteResult({ "nInserted" : 1 })
+
+> db.employees.find();
+{ "_id" : ObjectId("55e070dbd22ff6614c0500b3"), "name" : "John" }
+{ "_id" : ObjectId("55e070e7d22ff6614c0500b4"), "age" : 34 }
+
+
+> emp3 = { _id:1, name: 'Emma'};
+{ "_id" : 1, "name" : "Emma" }
+> db.employees.save(emp3);
+WriteResult({ "nMatched" : 0, "nUpserted" : 1, "nModified" : 0, "_id" : 1 })
+> db.employees.find();
+{ "_id" : ObjectId("55e070dbd22ff6614c0500b3"), "name" : "John" }
+{ "_id" : ObjectId("55e070e7d22ff6614c0500b4"), "age" : 34 }
+{ "_id" : 1, "name" : "Emma" }
+
+
+> db.employees.insert({name: 'Jacob'});
+WriteResult({ "nInserted" : 1 })
+> db.employees.find();
+{ "_id" : ObjectId("55e070dbd22ff6614c0500b3"), "name" : "John" }
+{ "_id" : ObjectId("55e070e7d22ff6614c0500b4"), "age" : 34 }
+{ "_id" : 1, "name" : "Emma" }
+{ "_id" : ObjectId("55e07168d22ff6614c0500b5"), "name" : "Jacob" }
+
+> db.employees.count();
+4
+
+> db.employees.find( {name: 'Emma'});
+{ "_id" : 1, "name" : "Emma" }
+
+
+** UPDATING DATA
+
+
+> db.employees.update( {name:'Emma'}, { $set: { age: 27} } );
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+> db.employees.find( {name: 'Emma'});
+{ "_id" : 1, "name" : "Emma", "age" : 27 }
+
+> db.employees.update( {name:'Emma'}, { $unset: { age: 1 } } );
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+> db.employees.find( {name: 'Emma'});
+{ "_id" : 1, "name" : "Emma" }
+
+
+
+** DELETING DATA
+
+> db.employees.remove( { name: 'Emma' } ) ;
+WriteResult({ "nRemoved" : 1 })
+
+> db.employees.find();
+{ "_id" : ObjectId("55e070dbd22ff6614c0500b3"), "name" : "John" }
+{ "_id" : ObjectId("55e070e7d22ff6614c0500b4"), "age" : 34 }
+{ "_id" : ObjectId("55e07168d22ff6614c0500b5"), "name" : "Jacob" }
+
+> db.employees.remove();
+2015-08-28T16:38:19.798+0200 E QUERY    Error: remove needs a query
+    at Error (<anonymous>)
+    at DBCollection._parseRemove (src/mongo/shell/collection.js:305:32)
+    at DBCollection.remove (src/mongo/shell/collection.js:328:23)
+    at (shell):1:14 at src/mongo/shell/collection.js:305
+> db.employees.find();
+{ "_id" : ObjectId("55e070dbd22ff6614c0500b3"), "name" : "John" }
+{ "_id" : ObjectId("55e070e7d22ff6614c0500b4"), "age" : 34 }
+{ "_id" : ObjectId("55e07168d22ff6614c0500b5"), "name" : "Jacob" }
+
+

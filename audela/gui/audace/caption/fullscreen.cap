@@ -1,0 +1,214 @@
+#
+# Fichier : fullscreen.cap
+# Mise a jour $Id: fullscreen.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+#--- Menu
+set caption(fullscreen,next_image)          "Next Image"
+set caption(fullscreen,previous_image)      "Previous Image"
+set caption(fullscreen,slide_show)          "Slideshow"
+set caption(fullscreen,configure)           "Set up..."
+set caption(fullscreen,close)               "Close (Esc)"
+set caption(fullscreen,zoom_auto)           "Auto"
+set caption(fullscreen,animation)           "Animation"
+set caption(fullscreen,zoom)                "Zoom"
+set caption(fullscreen,help)                "Help..."
+
+#--- Interface de configuration
+set caption(fullscreen,title)               "Full Screen Window Settings"
+set caption(fullscreen,color_label)         "Background Color"
+set caption(fullscreen,auto_start_anim)     "Start Animation Automatically"
+set caption(fullscreen,slide_show1)         "Slideshow:"
+set caption(fullscreen,slide_show_delai)    "Delay"
+set caption(fullscreen,seconde)             "second"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   #--- Menu
+   set caption(fullscreen,next_image)       "Image suivante"
+   set caption(fullscreen,previous_image)   "Image précédente"
+   set caption(fullscreen,slide_show)       "Diaporama"
+   set caption(fullscreen,configure)        "Configurer..."
+   set caption(fullscreen,close)            "Fermer (Echap)"
+   set caption(fullscreen,zoom_auto)        "Auto"
+   set caption(fullscreen,animation)        "Animation"
+   set caption(fullscreen,zoom)             "Zoom"
+   set caption(fullscreen,help)             "Aide..."
+
+   #--- Interface de configuration
+   set caption(fullscreen,title)            "Configuration de la fenêtre plein écran"
+   set caption(fullscreen,color_label)      "Couleur du fond"
+   set caption(fullscreen,auto_start_anim)  "Démarrer les animations automatiquement"
+   set caption(fullscreen,slide_show1)      "Diaporama :"
+   set caption(fullscreen,slide_show_delai) "Délai"
+   set caption(fullscreen,seconde)          "seconde"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   #--- Menu
+   set caption(fullscreen,next_image)       "Prossima immagine"
+   set caption(fullscreen,previous_image)   "Immagine precedente"
+   set caption(fullscreen,slide_show)       "Slideshow"
+   set caption(fullscreen,configure)        "Configurare..."
+   set caption(fullscreen,close)            "Chiudere (Esc)"
+   set caption(fullscreen,zoom_auto)        "Auto"
+   set caption(fullscreen,animation)        "Animazione"
+   set caption(fullscreen,zoom)             "Zoom"
+   set caption(fullscreen,help)             "Aiuto..."
+
+   #--- Interface de configuration
+   set caption(fullscreen,title)            "Configurazione della finestra a tutto schermo"
+   set caption(fullscreen,color_label)      "Colore di fondo"
+   set caption(fullscreen,auto_start_anim)  "Partenza automatica delle animazioni"
+   set caption(fullscreen,slide_show1)      "Slideshow:"
+   set caption(fullscreen,slide_show_delai) "Ritardo"
+   set caption(fullscreen,seconde)          "secondo"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   #--- Menu
+   set caption(fullscreen,next_image)       "Imagen siguiente"
+   set caption(fullscreen,previous_image)   "Imagen anterior"
+   set caption(fullscreen,slide_show)       "Diapositivas"
+   set caption(fullscreen,configure)        "Configurar..."
+   set caption(fullscreen,close)            "Cerrar (Esc)"
+   set caption(fullscreen,zoom_auto)        "Auto"
+   set caption(fullscreen,animation)        "Animación"
+   set caption(fullscreen,zoom)             "Zoom"
+   set caption(fullscreen,help)             "Ayuda..."
+
+   #--- Interface de configuration
+   set caption(fullscreen,title)            "Configuración de pantalla completa"
+   set caption(fullscreen,color_label)      "Color de fondo"
+   set caption(fullscreen,auto_start_anim)  "Comenzar la animación automáticamente"
+   set caption(fullscreen,slide_show1)      "Diapositivas:"
+   set caption(fullscreen,slide_show_delai) "Tiempo"
+   set caption(fullscreen,seconde)          "segundo"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   #--- Menu
+   set caption(fullscreen,next_image)       "Nächstes Bild"
+   set caption(fullscreen,previous_image)   "Voriges Bild"
+   set caption(fullscreen,slide_show)       "Diashow"
+   set caption(fullscreen,configure)        "Konfigurieren..."
+   set caption(fullscreen,close)            "Schließen (Esc)"
+   set caption(fullscreen,zoom_auto)        "Auto"
+   set caption(fullscreen,animation)        "Animation"
+   set caption(fullscreen,zoom)             "Zoom"
+   set caption(fullscreen,help)             "Hilfe..."
+
+   #--- Interface de configuration
+   set caption(fullscreen,title)            "Vollschirm Fenster Konfiguration"
+   set caption(fullscreen,color_label)      "Unterfarbe"
+   set caption(fullscreen,auto_start_anim)  "Die Animationen automatisch anlassen"
+   set caption(fullscreen,slide_show1)      "Diashow:"
+   set caption(fullscreen,slide_show_delai) "Abwarten"
+   set caption(fullscreen,seconde)          "Sekunde"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   #--- Menu
+   set caption(fullscreen,next_image)       "Próxima Imagem"
+   set caption(fullscreen,previous_image)   "Imagem Anterior"
+   set caption(fullscreen,slide_show)       "Slideshow"
+   set caption(fullscreen,configure)        "Configuração..."
+   set caption(fullscreen,close)            "Fechar (Esc)"
+   set caption(fullscreen,zoom_auto)        "Auto"
+   set caption(fullscreen,animation)        "Animação"
+   set caption(fullscreen,zoom)             "Zoom"
+   set caption(fullscreen,help)             "Ajuda..."
+
+   #--- Interface de configuration
+   set caption(fullscreen,title)            "Configurações da janela em ecrã inteiro"
+   set caption(fullscreen,color_label)      "Cor de fundo"
+   set caption(fullscreen,auto_start_anim)  "Começar Animação Automaticamente"
+   set caption(fullscreen,slide_show1)      "Slideshow:"
+   set caption(fullscreen,slide_show_delai) "Atraso"
+   set caption(fullscreen,seconde)          "segundo"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   #--- Menu
+   set caption(FullScreen,next_image)       "Næste billede"
+   set caption(FullScreen,previous_image)   "Foregående billede"
+   set caption(FullScreen,slide_show)       "Slideshow"
+   set caption(FullScreen,configure)        "Opsætning..."
+   set caption(fullscreen,close)            "Luk (Esc)"
+   set caption(fullscreen,zoom_auto)        "Auto"
+   set caption(FullScreen,animation)        "Animation"
+   set caption(fullscreen,zoom)             "Zoom"
+   set caption(fullscreen,help)             "Hjælp..."
+
+   #--- Interface de configuration
+   set caption(FullScreen,title)            "Windows-indstilling til fuld skærm"
+   set caption(FullScreen,color_label)      "Baggrundsfarve"
+   set caption(FullScreen,auto_start_anim)  "Start animation automatisk"
+   set caption(fullscreen,slide_show1)      "Slideshow:"
+   set caption(fullscreen,slide_show_delai) "Forsinkelse"
+   set caption(fullscreen,seconde)          "sekund"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   #--- Menu
+   set caption(fullscreen,next_image)       "Next Image"
+   set caption(fullscreen,previous_image)   "Previous Image"
+   set caption(fullscreen,slide_show)       "Slideshow"
+   set caption(fullscreen,configure)        "Set up..."
+   set caption(fullscreen,close)            "Close (Esc)"
+   set caption(fullscreen,zoom_auto)        "Auto"
+   set caption(fullscreen,animation)        "Animation"
+   set caption(fullscreen,zoom)             "Zoom"
+   set caption(fullscreen,help)             "Help..."
+
+   #--- Interface de configuration
+   set caption(fullscreen,title)            "Full Screen Window Settings"
+   set caption(fullscreen,color_label)      "Background Color"
+   set caption(fullscreen,auto_start_anim)  "Start Animation Automatically"
+   set caption(fullscreen,slide_show1)      "Slideshow:"
+   set caption(fullscreen,slide_show_delai) "Delay"
+   set caption(fullscreen,seconde)          "second"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   #--- Menu
+   set caption(fullscreen,next_image)       "Next Image"
+   set caption(fullscreen,previous_image)   "Previous Image"
+   set caption(fullscreen,slide_show)       "Slideshow"
+   set caption(fullscreen,configure)        "Set up..."
+   set caption(fullscreen,close)            "Close (Esc)"
+   set caption(fullscreen,zoom_auto)        "Auto"
+   set caption(fullscreen,animation)        "Animation"
+   set caption(fullscreen,zoom)             "Zoom"
+   set caption(fullscreen,help)             "Help..."
+
+   #--- Interface de configuration
+   set caption(fullscreen,title)            "Full Screen Window Settings"
+   set caption(fullscreen,color_label)      "Background Color"
+   set caption(fullscreen,auto_start_anim)  "Start Animation Automatically"
+   set caption(fullscreen,slide_show1)      "Slideshow:"
+   set caption(fullscreen,slide_show_delai) "Delay"
+   set caption(fullscreen,seconde)          "second"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

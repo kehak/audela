@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/dev_template.dwt" codeOutsideHTMLIsLocked="false" -->
+<!-- DW6 -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Ecrire une extension de pilote de cam&eacute;ra ou de t&eacute;lescope</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="keywords" content="astronomy, astronomie, software, Audace, audace, Audela, audela, CCD, ccd, association Aude, association AUDE, amateur astronomer, image, sky, ciel, telescope, télescope, star, étoile, galaxy, ccd camera, camera CCD, astrophotography, Audine, Christian Jasinski, logiciel d'astronomie, astronomy software, astronomie numérique, CCD sensor, astronome amateur">
+<meta name="description" content="Audela : un logiciel d'astronomie CCD libre et gratuit pour tous.  Audela is a free and open-source CCD astronomy software">
+<link rel="stylesheet" href="3col_leftNav.css" type="text/css">
+</head>
+<body> 
+<table id="topTable" cellspacing="0" cellpadding="0"> 
+  <tr> 
+    <td width="85%" valign="middle" id="pageTopLeft"><div align="left" class="style1">Audela</div></td> 
+    <td width="15%"><div align="right"><img src="images/background_a.gif" alt="Audela" width="50" height="50" align="middle"></div></td> 
+</table> 
+<div id="masthead"> 
+  <div id="globalNav"> <a href="index.htm">Accueil</a> | <a href="copi_interfa.htm">Copies d'&eacute;cran</a> | <a href="version_actu.htm">T&eacute;l&eacute;charger</a> | <a href="bug.php">Support</a> | <a href="dev.htm">Documentation</a> | <a href="english.htm">English Version </a></div> 
+  <h2 id="pageName"><!-- InstanceBeginEditable name="Page Title" --><small>Ecrire une extension de pilote de cam&eacute;ra ou de t&eacute;lescope</small><!-- InstanceEndEditable --></h2> 
+  <div id="breadCrumb"> <!-- InstanceBeginEditable name="Breadcrumb" --><a href="index.htm">Home page </a> / <a href="dev.htm">Le coin des développeurs</a> / <a href="exten5.htm"><small>Ecrire une extension de pilote de cam&eacute;ra ou de t&eacute;lescope</small> </a> / <!-- InstanceEndEditable --></div> 
+</div> 
+<!--begin content --> 
+<div class="devContent"> <!-- InstanceBeginEditable name="MainContent" --><h2 align="center"><small>Ecrire une extension de pilote de cam&eacute;ra ou de t&eacute;lescope</small></h2>
+<p>L'extension libaudela permet de cr&eacute;er des "objets" cam&eacute;ras et t&eacute;lescopes. Lorsque l'on cr&eacute;e un tel objet, libaudela va charger une extension Tcl qui contient les fonctions de pilotage qui lui correspondent. Cette extension est commun&eacute;ment appel&eacute;e libcam pour piloter une cam&eacute;ra et libtel dans le cas du pilotage d'une monture de t&eacute;lescope. </p>
+<p>Cette page explique, en d&eacute;tails, comment programmer une librairie d'entension pour piloter une cam&eacute;ra ou une monture de t&eacute;lescope sous Audela. Il est indispensable d'avoir d&eacute;j&agrave; compris le <a href="exten4.htm">fonctionnement d'une extension classique</a>. </p>
+<p>Les fichiers sources ont &eacute;t&eacute; nomm&eacute;s de fa&ccedil;on &agrave; garder une grande claret&eacute; de lecture et pour garder une logique certaine. Il est n&eacute;cessaire de garder cette architechture pour contruire des librairies libcam ou libtel lisibles par tout le monde. C'est pour cette raison que les conseils donn&eacute;s ici sont d&eacute;crits comme des consignes &agrave; respecter. </p>
+<h3>1. Principe d'instanciation</h3>
+<p>L'instanciation est la proc&eacute;dure qui consiste &agrave; enregistrer un driver d'instrument dans l'interpr&eacute;teur Tcl de Audela. Les extensions libcam et libtel ne sont jamais appell&eacute;es directement par l'interpr&eacute;teur Tcl. Elles sont appell&eacute;es par libaudela, au moment de la cr&eacute;ation de l'objet correspondant. Le principe d'instanciation est assez complexe mais permet d'&eacute;crire faiclement une nouvelle extension de pilotage. </p>
+<h3>1.1. Vue de l'utilisateur de l'interpr&eacute;teur Tcl</h3>
+<p>Pour une cam&eacute;ra, la fonction d'appel Tcl est ::cam::create. </p>
+<p>::cam::create audine lpt1 -ccd kaf400 </p>
+<p>la fonction ::cam::create est d&eacute;finie dans libaudela. Elle charge la librairie nomm&eacute;e par le premier argument de la fonction, pr&eacute;c&eacute;d&eacute;e du pr&eacute;fixe lib. Ainsi, dans l'exemple ci-dessus, libaudela va charger la librairie d'extension libaudine et va ajouter ses fonctions &agrave; l'objet qui vient d'&ecirc;tre cr&eacute;e. La fonction ::cam::create retourne un num&eacute;ro identifiant l'objet qui vient d'&ecirc;tre cr&eacute;e. En g&eacute;n&eacute;ral, la cr&eacute;ation d'un objet est effectu&eacute; de la fa&ccedil;on suivante :</p>
+<p>set num [::cam::create audine lpt1 -ccd kaf400] </p>
+<p>La variable Tcl num contient le num&eacute;ro de l'objet cr&eacute;e. On peut appel&eacute; une fonction associ&eacute;e &agrave; l'objet en utilisant la fonction cam suivie du num&eacute;ro de l'objet. Par exemple : </p>
+<p>cam$num info </p>
+<p>retourne une cha&icirc;ne de caract&egrave;res contenant des informations. Dans la suite, on emploiera la fonction cam1 (num=1) pour d&eacute;signer l'appel d'une fonction d'un objet d'une libcam quelconque. </p>
+<h3>1.2. Vue des relations entre libaudela et libcam</h3>
+<p>La figure suivante montre le chemin suivi dans les librairies libaudela et libcam pour enregistrer un nouveau driver d'instrument. Nous avons choisi l'exemple de libcam=libaudine. </p>
+<div align="center"><img
+ src="images/development/archi3_fr.gif" alt="archi3" width="711"
+ height="477"> </div>
+<p>Dans libaudela, la fonction ::cam::create est associ&eacute;e &agrave; la fonction CmdCreatePoolItem. La fonction CmdCreatePoolItemest g&eacute;n&eacute;rique &agrave; tous les objets de Audela : cam, tel mais aussi buf et visu. L'enregistrement des fonctions associ&eacute;es &agrave; l'objet se d&eacute;roule en trois temps : ouverture de l'extension du pilote (interpr&eacute;tation de "load libaudine"), assignation d'un num&eacute;ro &agrave; l'objet (effectu&eacute; dans CmdCreatePoolItem mais non repr&eacute;sent&eacute; sur le sch&eacute;ma ci-dessus), puis enregistrement des fonctions de l'objet (interpr&eacute;tation de "audine cam1 lpt1..."). Nous allons d&eacute;tailler chacune de ces &eacute;tapes. </p>
+<p>A partir de la fonction CmdCreatePoolItem, l'ouverture de l'extension du pilote est r&eacute;alis&eacute;e par la fonction load de Tcl. On ouvre ainsi l'extension du pilote associ&eacute;e au nom du premier argument de la fonction ::cam::create (ici audine, donc on ouvre l'extension libaudine). Le nom du point d'entr&eacute;e de l'extension libaudine (Audine_Init) est d&eacute;fini dans le fichier libname.h. Le point d'entr&eacute;e est &eacute;crit dans libcam.c. L'&eacute;criture du code C est tel que libcam.c est un fichier valable pour tous les pilotes de cam&eacute;ras. Pour cette raison, le fichier source libcam.c est plac&eacute; dans le dossier dev/common/libcam. Le point d'entr&eacute;e ne cr&eacute;e qu'une seule nouvelle commande Tcl qui porte le nom du pilote. Ici "audine". On retourne alors dans la fonction CmdCreatePoolItem. </p>
+<p>Dans la fonction CmdCreatePoolItem, un objet du langage C++ de l'extension libaudela est instanci&eacute; et renvoie un num&eacute;ro. On utilise ce num&eacute;ro, dans l'interpr&eacute;teur Tcl, pour identifier la cam&eacute;ra qui vient d'&ecirc;tre cr&eacute;e. Dans l'exemple ci dessus, c'est le num&eacute;ro 1 qui est attribu&eacute;. </p>
+<p>Dans la fonction CmdCreatePoolItem, on effectue l'interpr&eacute;tation de la fonction audine cr&eacute;e pr&eacute;c&eacute;demment. Cette fonction pointe sur la fonction cmdCamCreate dans le fichier libcam.c. De nombreux arguments arguments sont pass&eacute;s &agrave; la fonction audine (cf. sch&eacute;ma ci-dessus). cam1 est le nom de la commande &agrave; cr&eacute;er (le num&eacute;ro 1 vient de l'&eacute;tape pr&eacute;c&eacute;dente). Les autres arguments sont ceux pass&eacute;s par la fonction ::cam::create. Dans la fonction cmdCamCreate du fichier libcam.c, on enregistre effectivement la fonction cam1 dans l'interpr&eacute;teur Tcl. La fonction cam1 de l'interpr&eacute;teur pointe alors sur la fonction cmdCam. Cette fonction sera donc appel&eacute;e &agrave; chaque fois qu'une commande cam1 sera pass&eacute;e &agrave; l'interpr&eacute;teur Tcl. Il faut noter que la fonction cmdCamCreate effectue les initialisations du pilote. L'&eacute;tape d'initialisation consiste &agrave; remplir les &eacute;l&eacute;ments de la variable cam qui est une structure contenant toutes les informations sur la cam&eacute;ra (nombre de pixels, etc.). L'initialisation invoque aussi l'ex&eacute;cution de la fonction cam_init du fichier camera.c. Cette fonction effectue les initialisations sp&eacute;cifiques &agrave; la cam&eacute;ra demand&eacute;e. Si l'initialisation &eacute;choue, l'ensemble de la proc&eacute;dure ::cam::create est annul&eacute;e. Nous d&eacute;taillerons le contenu du fichier camera.c plus loin. Notons que la fonction TclCreateCommand de la fonction cmdCamCreate, passe le pointeur de la variable cam &agrave; la fonction cam1 (par l'argument de type ClienData qui est en fait un void*). Ceci est important car la variable cam (donc les caract&eacute;ristiques de la cam&eacute;ra) est ainsi transmise &agrave; toutes les fonctions invoqu&eacute;es par cam1. </p>
+<p>A partir de ce moment, toute fonction cam1 pass&eacute;e &agrave; l'interpr&eacute;teur Tcl va pointer sur la fonction cmdCam. Cette fonction analyse le mot du premier argument de la fonction cam1. Par exemple, si l'on a pass&eacute; la fonction cam1 info, le premier argument est le mot info (=argv[1]). Ce mot permet &agrave; la fonction cmdCam d'ex&eacute;cuter la fonction C correspondante de la librairie. Nous verrons, au paragraphe suivant, comment cette partie fonctionne. </p>
+<p>Si l'on analyse la syntaxe du fichier libcam.c, on remarque que seules les d&eacute;finitions du fichier libname.h sont diff&eacute;rentes d'un pilote &agrave; l'autre. Ainsi, pour cr&eacute;er une nouvelle extension de pilote, il suffit de recopier les fichiers d'une extension existante et de changer les quatre lignes des d&eacute;finitions du fichier libname.h. Nous verrons plus loin que d'autres fichiers doivent &ecirc;tre aussi chang&eacute;s, mais jamais libcam.c. </p>
+<h3>2. Principe d'utilisation</h3>
+<p>Une fois la commande ::cam::create effectu&eacute;e, l'utilisateur de l'interpr&eacute;teur peut invoquer la fonction cam1. Chaque appel &agrave; la commande cam1 provoque l'ex&eacute;cution de la fonction cmdCam du fichier libcam.c. Le but de la fonction cmdCam est d'ex&eacute;cuter une fonction C correspondant &agrave; la cha&icirc;ne de caract&egrave;res argv[1] (premier argument de cam1). Le coeur de cette fonction cmdCam est compos&eacute; des lignes suivantes :</p>
+<p>   struct cmditem *cmd; for(cmd=cmdlist;cmd-&gt;cmd!=NULL;cmd++) { if(strcmp(cmd-&gt;cmd,argv[1])==0) { retour = (*cmd-&gt;func)(clientData, interp, argc, argv); break; } }</p> 
+<p>La structure cmditem est d&eacute;finie dans le fichier libcam.h (le type Tcl_CmdProc est de type int) : </p>
+<pre>   struct cmditem {    char *cmd;    Tcl_CmdProc *func;   };</pre> 
+<p>La variable globale cmdlist est d&eacute;finie dans le fichier camcmd.h : </p>
+<p>   static struct cmditem cmdlist[] = {    /* === Common commands for all cameras ===*/    COMMON_CMDLIST    /* === Specific commands for that camera ===*/    {"scan", cmdCamScan},    /* === Last function terminated by NULL pointers ===*/    {NULL, NULL}   };</p> 
+<p>Enfin, COMMON_CMDLIST est d&eacute;fini dans le fichier libcam.h : </p>
+<p> #define COMMON_CMDLIST \ {"drivername", cmdCamDrivername},\ {"name", cmdCamName},\ {"ccd", cmdCamCcd},\ {"nbcells", cmdCamNbcells},\ {"nbpix", cmdCamNbpix},\ {"celldim", cmdCamCelldim},\ {"pixdim", cmdCamPixdim},\ {"maxdyn", cmdCamMaxdyn},\ {"fillfactor", cmdCamFillfactor},\ {"rgb", cmdCamRgb},\ {"info", cmdCamInfo},\ {"port", cmdCamPort},\ {"timer", cmdCamTimer},\ {"gain", cmdCamGain},\ {"readnoise", cmdCamReadnoise},\ {"bin", cmdCamBin},\ {"exptime", cmdCamExptime},\ {"buf", cmdCamBuf},\ {"window", cmdCamWindow},\ {"acq", cmdCamAcq},\ {"stop", cmdCamStop},\ {"tel", cmdCamTel},\ {"shutter", cmdCamShutter},\ {"cooler", cmdCamCooler},\ {"temperature", cmdCamTemperature},\ {"foclen", cmdCamFoclen},\ {"interrupt", cmdCamInterrupt},\ {"overscan", cmdCamOverscan},</p> 
+<p>La boucle for sur la variable cmd, analyse s&eacute;quentiellement les &eacute;l&eacute;ments de la structure cmdlist. Cette structure &eacute;tablit le lien entre une cha&icirc;ne de caract&egrave;res (cmd-&gt;cmd) et le pointeur de la fonction C correspondante (cmd-&gt;func). Au cours de la boucle, si l'&eacute;l&eacute;ment cmd-&gt;cmd est &eacute;gal &agrave; arg[1] alors la fonction cmd-&gt;func est ex&eacute;cut&eacute;e. Les fonctions ex&eacute;cut&eacute;es ont les m&ecirc;mes arguments que la syntaxe classique des fonctions C appel&eacute;es par l'interpr&eacute;teur Tcl (ClientData clientData, Tcl_Interp *interp, int argc, char *argv[]). </p>
+<p>L'ensemble des fonctions d&eacute;finies dans COMMON_CMDLIST du fichier libcam.h sont pr&eacute;sentes dans le fichier libcam.c. Ces fonctions sont communes &agrave; tous les drivers de cam&eacute;ras. Rappelons qu'il ne faut jamais modifier libcam.c et libcam.h, m&ecirc;me si des fonctions vous semblent inutiles pour votre cam&eacute;ra. </p>
+<p>Le fichier camcmd.h permet d'ajouter des fonctions sp&eacute;cifiques &agrave; la cam&eacute;ra &agrave; piloter. Dans l'exemple pr&eacute;cit&eacute;, on a ajout&eacute; la fonction {"scan", cmdCamScan}. L'usage veut que les fonctions C sp&eacute;cifi&eacute;es dans camcmd.h (ici cmdCamScan) soient &eacute;crites dans le fichier camtcl.c. </p>
+<p>Notons que certaines cam&eacute;ras ont besoin d'une proc&eacute;dure de fermeture sp&eacute;cifique lorsque l'on veut les d&eacute;connecter (ports USB, Ethernet, etc.). Pour cela, la fonction ::cam::delete de libaudela appelle syst&eacute;matiquement la fonction cam1 close si elle existe. Dans le cas de ces cam&eacute;ras, la fonction cmdCamClose devra &ecirc;tre d&eacute;finie dans camtcl.c, et la ligne {"close", cmdCamClose} ajout&eacute;e dans camcmd.h. </p>
+<h3>3. Code caract&eacute;ristique &agrave; chaque cam&eacute;ra</h3>
+<p>Nous avons d&eacute;j&agrave; vu qu'une partie des codes sources d'une extension de pilote de cam&eacute;ra est commune &agrave; toutes les cam&eacute;ras. Il s'agit des fichiers libcam.c, libcam.h, util.c et util.h. Les fichiers util.c et util.h fournissent des fonctions d'acc&egrave;s aux ports parall&egrave;les, de remise &agrave; l'heure de l'horloge, etc. </p>
+<p>Le fichier le plus important d'une extension de cam&eacute;ra est camera.c. Il rassemble les codes sp&eacute;cifiques &agrave; la cam&eacute;ra. N&eacute;anmoins, le code de camera.c comporte des fonctions dont la pr&eacute;sence est obligatoire, m&ecirc;me si elles ne font rien. Il s'agit des fonctions suivantes : </p>
+<p>int cam_init(struct camprop *cam, int argc, char **argv) void cam_start_exp(struct camprop *cam,char *amplionoff) void cam_stop_exp(struct camprop *cam) void cam_read_ccd(struct camprop *cam, unsigned short *p) void cam_shutter_on(struct camprop *cam) void cam_shutter_off(struct camprop *cam) void cam_ampli_on(struct camprop *cam) void cam_ampli_off(struct camprop *cam) void cam_measure_temperature(struct camprop *cam) void cam_cooler_on(struct camprop *cam) void cam_cooler_off(struct camprop *cam) void cam_cooler_check(struct camprop *cam) void cam_set_binning(int binx, int biny,struct camprop *cam) void cam_set_exptime(float exptime,struct camprop *cam) void cam_update_window(struct camprop *cam) </p>
+<p>Ces fonctions sont appel&eacute;es par libcam.c. Au pire on les laisse vide. Le tableau ci-dessous donne la liste des fonctions Tcl qui appellent ces fonctions :</p>
+<table cellpadding="2" cellspacing="2" border="1" width="100%"> 
+  <tr> 
+    <td valign="top"> Fonction Tcl</td> 
+    <td valign="top">Fonction dans libcam.c</td> 
+    <td valign="top">Fonction dans camera.c</td> 
+  </tr> 
+  <tr> 
+    <td valign="top"> ::cam::create</td> 
+    <td valign="top"> cmdCamCreate</td> 
+    <td valign="top"> cam_init </td> 
+  </tr> 
+  <tr> 
+    <td valign="top">cam1 acq </td> 
+    <td valign="top">cmdCamAcq </td> 
+    <td valign="top">cam_start_exp cam_stop_exp cam_read_ccd </td> 
+  </tr> 
+  <tr> 
+    <td valign="top">cam1 stop </td> 
+    <td valign="top">cmdCamStop </td> 
+    <td valign="top">cam_stop_exp cam_read_ccd </td> 
+  </tr> 
+  <tr> 
+    <td valign="top">cam1 shutter </td> 
+    <td valign="top">cmdCamShutter </td> 
+    <td valign="top">cam_shutter_on cam_shutter_off </td> 
+  </tr> 
+  <tr> 
+    <td valign="top">cam1 ampli </td> 
+    <td valign="top">cmdCamAmpli </td> 
+    <td valign="top">cam_ampli_on cam_ampli_off </td> 
+  </tr> 
+  <tr> 
+    <td valign="top">cam1 temp </td> 
+    <td valign="top">cmdCamTemperature </td> 
+    <td valign="top">cam_measure_temperature </td> 
+  </tr> 
+  <tr> 
+    <td valign="top">cam1 cooler </td> 
+    <td valign="top">cmdCamCooler </td> 
+    <td valign="top">cam_cooler_on cam_cooler_off cam_cooler_check </td> 
+  </tr> 
+  <tr> 
+    <td valign="top">cam1 binning </td> 
+    <td valign="top">cmdCamBin </td> 
+    <td valign="top">cam_set_binning </td> 
+  </tr> 
+  <tr> 
+    <td valign="top">cam1 exptime </td> 
+    <td valign="top">cmdCamExptime </td> 
+    <td valign="top">cam_set_exptime </td> 
+  </tr> 
+  <tr> 
+    <td valign="top">cam1 window </td> 
+    <td valign="top">cmdCamWindow </td> 
+    <td valign="top">cam_update_window </td> 
+  </tr> 
+</table>
+<p>Comme une librairie d'extension peut piloter plusieurs cam&eacute;ras, il est possible de d&eacute;crire leurs caract&eacute;ristiques principales, au d&eacute;but du fichier camera.c, dans la structure camini. Par exemple, pour la cam&eacute;ra Audine Kaf-401 :</p>
+<p>struct camini cam_ini[] = { {"audine", /* camera name */ "kaf401", /* ccd name */ 768,512, /* maxx maxy */ 14,14, /* overscans x */ 4,4, /* overscans y*/  9e-6,9e-6, /* photosite dim (m) */ 32767., /* observed saturation */ 1., /* filling factor */ 11., /* gain (e/adu) */ 11., /* readnoise (e) */ 1,1, /* default bin x,y */ 1., /* default exptime */ 1, /* default state of shutter (1=synchro) */ 1, /* default num buf for the image */ 1, /* default num tel for the coordinates taken */ 0, /* default port index (0=lpt1) */ 1, /* default cooler index (1=on) */ -15., /* default value for temperature checked */  1, /* default color mask if exists (1=cfa) */ 0, /* default overscan taken in acquisition (0=no) */ 1. /* default focal lenght of front optic system */  },   ...</p> 
+<p>Enfin, le reste du fichier camera.c contient des fonctions de pilotage diverses et sp&eacute;cifiques &agrave; cette cam&eacute;ra.</p>
+<h3>4. Programmer une nouvelle librairie libcam</h3>
+Nous allons &eacute;tudier la librairie nomm&eacute;e camxx (remplacer camxx par telxx dans le cas d'une libtel). Tout comme une extension classique, la structure des dossiers est la suivante dans le dossier dev/libcamxx:
+<p>html : contient des fichiers au format HTML (manuel d'instructions, etc.). linux : contient le fichier Makefile pour construire la librairie sous Linux avec gcc (faire make). vc40 : contient le fichier projet libcamxx..mdp pour construire sous Windows avec Visual C++ 4.0. Ce fichier est compatibles pour les version de Visual C++ plus r&eacute;centes. src : contient les fichiers source,</p>
+<p> libname.h : d&eacute;finitions des noms de la librairie. camcmd.h : d&eacute;finition de la variable globale cmdlist de structure cmditem (telcmd.h pour une libtel). camtcl.c : fonctions d'interfacage entre le l'interpr&eacute;teur Tcl et le C, sp&eacute;cifiques &agrave; la cam&eacute;ra (teltcl.c pour une libtel) . camtcl.h : ent&ecirc;tes des fonctions d&eacute;crites dans le fichier camtcl.c (telcmd.h pour une libtel). camera.c : fonctions de pilotage (telescop.c pour une libtel). camera.h : ent&ecirc;tes des fonctions d&eacute;crites dans le fichier camera.c (telescop.h pour une libtel). </p>
+p
+<p><a name="projet"></a>Sous windows, il faut aussi recr&eacute;er un nouveau projet si l'on utilise le compilateur Visual C++ 4.0. Dans le cas du projet libcamxx, on proc&egrave;dera ainsi, dans l'ordre suivant pour cr&eacute;er le fichier projet libcamxx.mdp (et libcamxx.mak) : </p>
+<ul> 
+  <li> Ouvrir VC++40</li> 
+  <li> File-&gt;New-&gt;Project Workspace</li> 
+  <ul> 
+    <li> Type : dynamic-Link Library</li> 
+    <li> Name : libcamxx</li> 
+    <li> Location : D:\AUDELA\DEV\libcamxx</li> 
+    <li> OK</li> 
+  </ul> 
+  <li> File-&gt;Close Workspace</li> 
+  <li> Fermer VC++40</li> 
+  <li> Copier les deux fichiers libcamxx.mak, libcamxx.mdp dans d:/audela/dev/libcamxx/vc40. Effacer le fichier libcamxx.ncb.</li> 
+  <li> Double cliquer sur d:/audela/dev/libcamxx/vc40/libcamxx.mdp. VC++40 s'ouvre tout seul.</li> 
+  <li> Insert-&gt; Files into project</li> 
+  <ul> 
+    <li> vc40/libcamxx.def</li> 
+  </ul> 
+  <li> Insert-&gt; Files into project</li> 
+  <ul> 
+    <li> src/*.c</li> 
+    <li> ../common/libcam/*.c dans le cas d'une librairie de pilotage de cam&eacute;ra ou ../common/libtel/*.c dans le cas d'une librairie de pilotage de montures de t&eacute;lescopes. </li> 
+  </ul> 
+  <li>Build-&gt;Settings</li> 
+  <ul> 
+    <li> Onglet C/C++ :</li> 
+    <ul> 
+      <li> Processor definitions : , USE_TCL_STUBS, USE_TK_STUBS</li> 
+    </ul> 
+    <ul> 
+      <li> Release Project options ajouter : /I "../../common" /I " ../../common/hwin" ajouter aussi /I " ../../common/libcam" /I "../src" dans le cas d'une librairie de pilotage de cam&eacute;ra ou/I " ../../common/libtel" /I "../src" dans le cas d'une librairie de pilotage de montures de t&eacute;lescopes. </li> 
+    </ul> 
+    <ul> 
+      <li>Release Project options effacer : /Fp"Release/libcamxx.pch" /YX </li> 
+    </ul> 
+    <ul> 
+      <li>Debug Project options ajouter : /I "../../common" /I " ../../common/hwin" ajouter aussi /I " ../../common/libcam" /I "../src" dans le cas d'unelibrairie de pilotage de cam&eacute;raou/I " ../../common/libtel" /I "../src" dans le cas d'une librairie de pilotage de montures de t&eacute;lescopes. </li> 
+    </ul> 
+    <ul> 
+      <li> Debug Project options effacer : /Fp"Debug/libcamxx.pch" /YX</li> 
+    </ul> 
+    <li> Onglet link :</li> 
+    <ul> 
+      <li> Output file name : ../../../binwin/libcamxx.dll</li> 
+    </ul> 
+    <ul> 
+      <li> Object/library modules : ..\..\common\lib_vc40\tclstub83.lib ..\..\common\lib_vc40\tkstub83.lib</li> 
+    </ul> 
+    <ul> 
+      <li> Category : Input, &agrave; la ligne "Ignore libraries", ajouter msvcrt.lib</li> 
+    </ul> 
+    <li> OK</li> 
+  </ul> 
+  <li> File-&gt;Save All</li> 
+</ul>
+Sous Linux, il suffit d'&eacute;diter le fichier Makefile et de remplacer xx par le nom de la librairie.
+<h3>4.1. Ajouter une fonction &agrave; la librairie</h3>
+<p>L'architecture g&eacute;n&eacute;rale des fichiers de libcamxx est organis&eacute;e pour ajouter facilement une nouvelle fonction. Si la fonction cam1 close n'&eacute;tait pas encore programm&eacute;e, voici comment il faudrait proc&eacute;der:</p>
+<ul> 
+  <li>Fichier camcmd.h : ajouter la ligne
+    <pre>{"close", cmdCamClose},</pre> 
+  </li> 
+  <li> Fichier camtcl.c : ajouter le corps de la fonction int cmdCamClose(ClientData clientData, Tcl_Interp *interp, int argc, char *argv[])
+    <pre>{
+ ...corps de la fonction...
+      }</pre> 
+  </li> 
+  <li>Fichier camtcl.h : ajouter la d&eacute;claration de la fonction</li> 
+</ul>
+<blockquote>int cmdCamClose(ClientData clientData, Tcl_Interp *interp, int argc, char *argv[]) 
+  <pre>;</pre> 
+</blockquote>
+<ul> 
+  <li>Fichier camera.c : ajouter &eacute;ventuellement la fonction en C appel&eacute;e par cmdCamClose</li> 
+</ul>
+<blockquote>void close() { ...corps de la fonction... } </blockquote>
+<ul> 
+  <li>Fichier camera.h : ajouter la d&eacute;claration de la fonction</li> 
+</ul>
+<pre>void close(void);</pre> 
+<p>Il faut noter que les deux derni&egrave;res &eacute;tapes ne sont toujours indispensables. Certaines fonctions simples n'exigent pas d'appel autre qu'&agrave; la fonction "C/Tcl". </p>
+<!-- #BeginLibraryItem "/Library/modification date.lbi" --><p style="text-align: right;">
+<script language="javascript">
+<!-- Code after this will be ignored by older browsers
+
+// Assign the last modified date to the variable lastModDate
+	var lastModDate = document.lastModified;
+
+//Create an if statement to test the value of lastModDate
+if (lastModDate == 0) {
+	document.writeln("Dernière modification : date inconnue");
+}
+else {
+	document.writeln("Dernière modification : " + lastModDate);
+}
+
+// Stop hiding the code here -->
+</script>
+</p><!-- #EndLibraryItem --><!-- InstanceEndEditable --></div> 
+<!--end content --> 
+<div id="siteInfo"> 
+  <script language="JavaScript" src="email.js" type="text/javascript"></script> 
+  | <a href="#">English Version </a> | <a href="mailto:audeladev-subscribe@egroups.com">Mailing List Audela</a> | &copy;2004 Audela | <a href="http://www.technospeak.com">Design TechnoSpeak</a> </div> 
+<br> 
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <title>TransformÃ©e de Fourier DiscrÃ¨te Inverse</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="generator" content="Geany 0.18">
+</head>
+<body>
+<p class="date">Date de mise à jour : 08 janvier 2011</p>
+<h1>Transformée de Fourier Discrète Inverse</h1>
+<p>La <b>Transformée de Fourier Discrète Inverse (TFDI)</b>
+convertit deux images dans le domaine fréquentiel (ou domaine de
+Fourier) en une image dans le domaine spatial. Il s'agit d'une
+transformation complexe au sens mathématique du terme. Les deux
+images d'entrée représentent donc soit la partie
+réelle et la partie imaginaire, soit le module et l'argument (ou
+phase) d'une TFD. Tout autre couple d'image donnera un résultat
+imprévisible.</p>
+<p>En conséquence, les 2 images d'entrée doivent impérativement :
+</p>
+<ul>
+  <li>Avoir les mêmes largeur et hauteur.</li>
+  <li>Contenir le mot-clé <em>DFT_ORD</em> avec la même
+valeur (<em>CENTERED</em> ou <em>REGULAR</em>).</li>
+  <li>Contenir le mot_clé <em>DFT_TYPE</em> avec des valeurs
+appariées : <em>REAL</em> et <em>IMAG</em>, ou bien <em>SPECTRUM</em>
+et <em>PHASE</em>.</li>
+</ul>
+<p>Pour la signification des mots-clés <em>DFT_ORD</em> et <em>DFT_TYPE</em>,
+voir la commande
+<a href="1110TFD.html">Transformée de Fourier Discrète</a> .<br>
+A l'issue du calcul, l'image affichée est systématiquement sauvegardée
+dans le répertoire images courant sous le nom de "<span
+ style="font-style: italic;">image.fit</span>". <span
+ style="text-decoration: underline;">Si un fichier existant portait
+déjà ce nom, son contenu sera écrasé</span>. <br>
+L'image résultat est codée sur 16 bits non signés.
+</p>
+</body>
+</html>

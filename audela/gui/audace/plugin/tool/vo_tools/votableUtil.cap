@@ -1,0 +1,70 @@
+#
+# Fichier : votableUtil.cap
+# $Id: votableUtil.cap 13890 2016-05-23 16:35:52Z jberthier $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(votableUtil,no_image)    "Impossible to display objects because there is no image in the canvas"
+set caption(votableUtil,nb_objets)   " plotted objects\n"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(votableUtil,no_image)    "Impossible de tracer les objets car il n'y a aucune image dans le canvas"
+   set caption(votableUtil,nb_objets)   " objets affichés\n"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(votableUtil,no_image)    "Impossible to display objects because there is no image in the canvas"
+   set caption(votableUtil,nb_objets)   " plotted objects\n"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(votableUtil,no_image)    "Impossible to display objects because there is no image in the canvas"
+   set caption(votableUtil,nb_objets)   " plotted objects\n"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(votableUtil,no_image)    "Impossible to display objects because there is no image in the canvas"
+   set caption(votableUtil,nb_objets)   " plotted objects\n"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(votableUtil,no_image)    "Impossible to display objects because there is no image in the canvas"
+   set caption(votableUtil,nb_objets)   " plotted objects\n"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(votableUtil,no_image)    "Impossible to display objects because there is no image in the canvas"
+   set caption(votableUtil,nb_objets)   " plotted objects\n"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(votableUtil,no_image)    "Impossible to display objects because there is no image in the canvas"
+   set caption(votableUtil,nb_objets)   " plotted objects\n"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(votableUtil,no_image)    "Impossible to display objects because there is no image in the canvas"
+   set caption(votableUtil,nb_objets)   " plotted objects\n"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

@@ -1,0 +1,745 @@
+#
+# Fichier : caption.cap
+# Mise a jour $Id: caption.cap 12754 2016-01-20 19:02:12Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(audace,titre)                             "Aud'ACE"
+set caption(audace,tool)                              "Tool:"
+
+set caption(console,titre)                            "Terminal"
+set caption(console,debug)                            "Debug"
+
+set caption(audace,console_rate)                      "Access not possible"
+set caption(audace,console_gagne)                     "Access OK"
+set caption(audace,console_annule)                    "Cancelled"
+
+set caption(audace,aide)                              "Aud'ACE Help"
+set caption(audace,pas_repertoire_aide)               "Help folder does not exist:"
+
+set caption(audace,reseau_execute)                    "Run:"
+set caption(audace,reseau_client)                     "Client:"
+set caption(audace,reseau_detruit)                    "Server destroyed:"
+set caption(audace,reseau_connecte)                   "Client correctly connected:"
+set caption(audace,reseau_serveur_retour)             "Image display server created:"
+set caption(audace,reseau_deconnecte)                 "Client disconnected:"
+set caption(audace,reseau_deconnexion)                "Disconnection of the server:"
+set caption(audace,reseau_connexion_client)           "Connection through the client:"
+set caption(audace,reseau_reponse_vers)               "Reply to:"
+
+set caption(ping,appareil_connecte)                   "There is a device at IP address:"
+set caption(ping,pas_appareil_connecte)               "There is no device at IP address:"
+
+set caption(audace,temps_universel)                   "UT"
+set caption(audace,temps_heurelegale)                 "CT"
+
+set caption(audace,enregistrer_config1)               "Save new setup before quitting?"
+set caption(audace,enregistrer_config2)               "Save setup?"
+set caption(audace,enregistrer_config3)               "Setup saved."
+set caption(audace,enregistrer_config4)               "Setup saving not required."
+set caption(audace,enregistrer_config5)               "Saving aborted."
+
+set caption(confVisu,fermer)                          "Close"
+set caption(confVisu,reticule)                        "Crosshair"
+set caption(confVisu,seuil_haut)                      "H.T."
+set caption(confVisu,seuil_bas)                       "L.T."
+set caption(confVisu,seuil_auto)                      "Auto"
+set caption(confVisu,attention)                       "Warning"
+set caption(confVisu,tracer_boite)                    "Please draw a square with your mouse."
+set caption(confVisu,boite_seuil)                     "..."
+set caption(confVisu,zoom-)                           "Zoom -"
+set caption(confVisu,zoom+)                           "Zoom +"
+set caption(confVisu,RA)                              "RA"
+set caption(confVisu,DEC)                             "Dec."
+set caption(confVisu,tiret)                           "-"
+set caption(confVisu,2points)                         ":"
+set caption(confVisu,egale)                           "="
+set caption(confVisu,I)                               "I"
+set caption(confVisu,X)                               "X"
+set caption(confVisu,Y)                               "Y"
+set caption(confVisu,rouge)                           "R:"
+set caption(confVisu,vert)                            "G:"
+set caption(confVisu,bleu)                            "B:"
+set caption(confVisu,non_connecte)                    "Not connected"
+set caption(confVisu,fitsHduList)                     "HDU"
+set caption(confVisu,fermeture_impossible)            "Aud'ACE cannot be stopped because of an on-going action in the tool: %s"
+set caption(confVisu,fermeture_outil_impossible)      "%s cannot be stopped because it is running."
+set caption(confVisu,traitement_en-cours_1)           "# Des traitements sont en cours dans :"
+set caption(confVisu,traitement_en-cours_2)           "# Voulez-vous quitter néanmoins ?"
+set caption(confVisu,label_1)                         "RGB Thresholds"
+set caption(confVisu,label_2)                         "Low Thresholds"
+set caption(confVisu,label_3)                         "High Thresholds"
+set caption(confVisu,msg)                             "The FITS header does not include the required keywords."
+
+set caption(plotxy,figure)                            "Figure"
+
+set caption(sectiongraph,title)                       "Graph of the section"
+set caption(sectiongraph,refreshAuto)                 "Auto Refresh After Image Change"
+set caption(sectiongraph,refreshManuel)               "Refresh Now"
+set caption(sectiongraph,values)                      " | Mean: %s | Median: %s | Standard Deviation: %s"
+
+set caption(meteosensor_tools,celsius)                "Celsius"
+set caption(meteosensor_tools,degres)                 "degrees"
+set caption(meteosensor_tools,pourcent)               "percent"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(audace,titre)                          "Aud'ACE"
+   set caption(audace,tool)                           "Outil :"
+
+   set caption(console,titre)                         "Console"
+   set caption(console,debug)                         "Débug"
+
+   set caption(audace,console_rate)                   "Accès non possible"
+   set caption(audace,console_gagne)                  "Accès réussi"
+   set caption(audace,console_annule)                 "Annulé"
+
+   set caption(audace,aide)                           "Aide Aud'ACE"
+   set caption(audace,pas_repertoire_aide)            "Le répertoire de l'aide n'existe pas :"
+
+   set caption(audace,reseau_execute)                 "Exécute :"
+   set caption(audace,reseau_client)                  "Client :"
+   set caption(audace,reseau_detruit)                 "Serveur détruit :"
+   set caption(audace,reseau_connecte)                "Client bien connecté :"
+   set caption(audace,reseau_serveur_retour)          "Création d'un serveur de retour :"
+   set caption(audace,reseau_deconnecte)              "Client déconnecté :"
+   set caption(audace,reseau_deconnexion)             "Déconnexion du serveur :"
+   set caption(audace,reseau_connexion_client)        "Connexion par le client :"
+   set caption(audace,reseau_reponse_vers)            "Réponse vers :"
+
+   set caption(ping,appareil_connecte)                "Il y a un appareil à l'adresse IP :"
+   set caption(ping,pas_appareil_connecte)            "Il n'y a pas d'appareil à l'adresse IP :"
+
+   set caption(audace,temps_universel)                "TU"
+   set caption(audace,temps_heurelegale)              "HL"
+
+   set caption(audace,enregistrer_config1)            "Voulez-vous enregistrer la nouvelle configuration de Aud'ACE avant de quitter ?"
+   set caption(audace,enregistrer_config2)            "Enregistrer la configuration ?"
+   set caption(audace,enregistrer_config3)            "Configuration enregistrée."
+   set caption(audace,enregistrer_config4)            "Pas d'enregistrement de configuration nécessaire."
+   set caption(audace,enregistrer_config5)            "Enregistrement abandonné."
+
+   set caption(confVisu,fermer)                       "Fermer"
+   set caption(confVisu,reticule)                     "Réticule"
+   set caption(confVisu,seuil_haut)                   "S.h."
+   set caption(confVisu,seuil_bas)                    "S.b."
+   set caption(confVisu,seuil_auto)                   "Auto"
+   set caption(confVisu,attention)                    "Attention"
+   set caption(confVisu,tracer_boite)                 "Veuillez tracer un cadre à la souris."
+   set caption(confVisu,boite_seuil)                  "..."
+   set caption(confVisu,zoom-)                        "Zoom -"
+   set caption(confVisu,zoom+)                        "Zoom +"
+   set caption(confVisu,RA)                           "AD"
+   set caption(confVisu,DEC)                          "Déc."
+   set caption(confVisu,tiret)                        "-"
+   set caption(confVisu,2points)                      ":"
+   set caption(confVisu,egale)                        "="
+   set caption(confVisu,I)                            "I"
+   set caption(confVisu,X)                            "X"
+   set caption(confVisu,Y)                            "Y"
+   set caption(confVisu,rouge)                        "R:"
+   set caption(confVisu,vert)                         "V:"
+   set caption(confVisu,bleu)                         "B:"
+   set caption(confVisu,non_connecte)                 "Non connectée"
+   set caption(confVisu,fitsHduList)                  "HDU"
+   set caption(confVisu,fermeture_impossible)         "Impossible d'arrêter Aud'ACE car une opération est en cours dans l'outil : %s"
+   set caption(confVisu,fermeture_outil_impossible)   "Impossible d'arrêter %s car une opération est en cours."
+   set caption(confVisu,traitement_en-cours_1)        "Des traitements sont en cours dans :"
+   set caption(confVisu,traitement_en-cours_2)        "Voulez-vous quitter néanmoins ?"
+   set caption(confVisu,label_1)                      "Seuils RVB"
+   set caption(confVisu,label_2)                      "Seuils bas"
+   set caption(confVisu,label_3)                      "Seuils hauts"
+   set caption(confVisu,msg)                          "L'en-tête FITS ne contient pas les mots clés nécessaires."
+
+   set caption(plotxy,figure)                         "Figure"
+
+   set caption(sectiongraph,title)                    "Graphe de la coupe"
+   set caption(sectiongraph,refreshAuto)              "Rafraîchissement automatique lors du changement de l'image"
+   set caption(sectiongraph,refreshManuel)            "Rafraîchir maintenant"
+   set caption(sectiongraph,values)                   " | Moyenne : %s | Médiane : %s | Ecart-type : %s"
+
+   set caption(meteosensor_tools,celsius)             "Celsius"
+   set caption(meteosensor_tools,degres)              "degrés"
+   set caption(meteosensor_tools,pourcent)            "pourcent"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(audace,titre)                          "Aud'ACE"
+   set caption(audace,tool)                           "Accessorio:"
+
+   set caption(console,titre)                         "Console"
+   set caption(console,debug)                         "Debug"
+
+   set caption(audace,console_rate)                   "Accesso non possibile"
+   set caption(audace,console_gagne)                  "Accesso riuscito"
+   set caption(audace,console_annule)                 "Cancellato"
+
+   set caption(audace,aide)                           "Aiuto Aud'ACE"
+   set caption(audace,pas_repertoire_aide)            "La cartella non esiste:"
+
+   set caption(audace,reseau_execute)                 "Esegui:"
+   set caption(audace,reseau_client)                  "Client:"
+   set caption(audace,reseau_detruit)                 "Server distrutto:"
+   set caption(audace,reseau_connecte)                "Client connesso correttamente:"
+   set caption(audace,reseau_serveur_retour)          "Server immagini creato:"
+   set caption(audace,reseau_deconnecte)              "Client sconnesso:"
+   set caption(audace,reseau_deconnexion)             "Disconnessione del server:"
+   set caption(audace,reseau_connexion_client)        "Connessione tramite client:"
+   set caption(audace,reseau_reponse_vers)            "Risposta a:"
+
+   set caption(ping,appareil_connecte)                "Vi e' un apparecchio all'indirizzo IP:"
+   set caption(ping,pas_appareil_connecte)            "Non ci sono apparecchi all' indirizzo IP:"
+
+   set caption(audace,temps_universel)                "TU"
+   set caption(audace,temps_heurelegale)              "O"
+
+   set caption(audace,enregistrer_config1)            "Volete salvare questa configurazione prima di uscire?"
+   set caption(audace,enregistrer_config2)            "Salvare la configurazione?"
+   set caption(audace,enregistrer_config3)            "Configurazione salvata."
+   set caption(audace,enregistrer_config4)            "Non e` richiesto il salvataggio della configurazione."
+   set caption(audace,enregistrer_config5)            "Salvataggio abbandonato."
+
+   set caption(confVisu,fermer)                       "Chiudere"
+   set caption(confVisu,reticule)                     "Reticolo"
+   set caption(confVisu,seuil_haut)                   "S.mas."
+   set caption(confVisu,seuil_bas)                    "S.min."
+   set caption(confVisu,seuil_auto)                   "Auto"
+   set caption(confVisu,attention)                    "Attenzione"
+   set caption(confVisu,tracer_boite)                 "Disegnare un quadrato con il mouse."
+   set caption(confVisu,boite_seuil)                  "..."
+   set caption(confVisu,zoom-)                        "Zoom -"
+   set caption(confVisu,zoom+)                        "Zoom +"
+   set caption(confVisu,RA)                           "AR"
+   set caption(confVisu,DEC)                          "Dec."
+   set caption(confVisu,tiret)                        "-"
+   set caption(confVisu,2points)                      ":"
+   set caption(confVisu,egale)                        "="
+   set caption(confVisu,I)                            "I"
+   set caption(confVisu,X)                            "X"
+   set caption(confVisu,Y)                            "Y"
+   set caption(confVisu,rouge)                        "R:"
+   set caption(confVisu,vert)                         "V:"
+   set caption(confVisu,bleu)                         "B:"
+   set caption(confVisu,non_connecte)                 "Non connessa"
+   set caption(confVisu,fitsHduList)                  "HDU"
+   set caption(confVisu,fermeture_impossible)         "Impossibile arrestare Aud'ACE a causa di una operazione in corso nella utility: %s"
+   set caption(confVisu,fermeture_outil_impossible)   "Impossibile fermare %s a causa di una operazione in corso."
+   set caption(confVisu,traitement_en-cours_1)        "# Des traitements sont en cours dans :"
+   set caption(confVisu,traitement_en-cours_2)        "# Voulez-vous quitter néanmoins ?"
+   set caption(confVisu,label_1)                      "Soglie RGB"
+   set caption(confVisu,label_2)                      "Soglie basse"
+   set caption(confVisu,label_3)                      "Soglie alte"
+   set caption(confVisu,msg)                          "Intestazione FITS non contiene le keyword necessarie."
+
+   set caption(plotxy,figure)                         "Figura"
+
+   set caption(sectiongraph,title)                    "Grafico della sezione"
+   set caption(sectiongraph,refreshAuto)              "Aggiornamento automatico quando si cambia l'immagine"
+   set caption(sectiongraph,refreshManuel)            "Aggiornamento immediato"
+   set caption(sectiongraph,values)                   " | Media: %s | Mediana: %s | Scarto tipico: %s"
+
+   set caption(meteosensor_tools,celsius)             "Celsius"
+   set caption(meteosensor_tools,degres)              "gradi"
+   set caption(meteosensor_tools,pourcent)            "percento"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(audace,titre)                          "Aud'ACE"
+   set caption(audace,tool)                           "Herramienta:"
+
+   set caption(console,titre)                         "Consola"
+   set caption(console,debug)                         "Depurar"
+
+   set caption(audace,console_rate)                   "El acceso no es posible"
+   set caption(audace,console_gagne)                  "Acceso correcto"
+   set caption(audace,console_annule)                 "Cancelado"
+
+   set caption(audace,aide)                           "Ayuda Aud'ACE"
+   set caption(audace,pas_repertoire_aide)            "La carpeta de ayudas no existe:"
+
+   set caption(audace,reseau_execute)                 "Ejecutar:"
+   set caption(audace,reseau_client)                  "Cliente:"
+   set caption(audace,reseau_detruit)                 "Servidor borrado:"
+   set caption(audace,reseau_connecte)                "Cliente conectado correctamente:"
+   set caption(audace,reseau_serveur_retour)          "Creado un servidor de imágenes:"
+   set caption(audace,reseau_deconnecte)              "Cliente desconectado:"
+   set caption(audace,reseau_deconnexion)             "Desconexión de un servidor:"
+   set caption(audace,reseau_connexion_client)        "Conexion a través del cliente:"
+   set caption(audace,reseau_reponse_vers)            "Responder a:"
+
+   set caption(ping,appareil_connecte)                "Ya existe un dispositivo en la dirección IP:"
+   set caption(ping,pas_appareil_connecte)            "No existe dispositivo en la dirección IP:"
+
+   set caption(audace,temps_universel)                "TU"
+   set caption(audace,temps_heurelegale)              "HC"
+
+   set caption(audace,enregistrer_config1)            "¿ Guardar las nuevas preferencias antes de salir ?"
+   set caption(audace,enregistrer_config2)            "¿ Guardar preferencias ?"
+   set caption(audace,enregistrer_config3)            "Preferencias guardadas."
+   set caption(audace,enregistrer_config4)            "No hace falta guardar las preferencias."
+   set caption(audace,enregistrer_config5)            "Operación de guardar abortada."
+
+   set caption(confVisu,fermer)                       "Cerrar"
+   set caption(confVisu,reticule)                     "Retículo"
+   set caption(confVisu,seuil_haut)                   "U.a."
+   set caption(confVisu,seuil_bas)                    "U.b."
+   set caption(confVisu,seuil_auto)                   "Auto"
+   set caption(confVisu,attention)                    "Cuidado"
+   set caption(confVisu,tracer_boite)                 "Porfavor, dibuje un recuadro con el ratón."
+   set caption(confVisu,boite_seuil)                  "..."
+   set caption(confVisu,zoom-)                        "Zoom -"
+   set caption(confVisu,zoom+)                        "Zoom +"
+   set caption(confVisu,RA)                           "RA"
+   set caption(confVisu,DEC)                          "Dec."
+   set caption(confVisu,tiret)                        "-"
+   set caption(confVisu,2points)                      ":"
+   set caption(confVisu,egale)                        "="
+   set caption(confVisu,I)                            "I"
+   set caption(confVisu,X)                            "X"
+   set caption(confVisu,Y)                            "Y"
+   set caption(confVisu,rouge)                        "R:"
+   set caption(confVisu,vert)                         "V:"
+   set caption(confVisu,bleu)                         "A:"
+   set caption(confVisu,non_connecte)                 "No conectado"
+   set caption(confVisu,fitsHduList)                  "HDU"
+   set caption(confVisu,fermeture_impossible)         "Imposible detener Aud'ACE debido a una operción en curso en la herramienta: %s"
+   set caption(confVisu,fermeture_outil_impossible)   "Imposible detener %s porque hay una operación en curso."
+   set caption(confVisu,traitement_en-cours_1)        "# Des traitements sont en cours dans :"
+   set caption(confVisu,traitement_en-cours_2)        "# Voulez-vous quitter néanmoins ?"
+   set caption(confVisu,label_1)                      "Umbrales RVA"
+   set caption(confVisu,label_2)                      "Umbrales bajos"
+   set caption(confVisu,label_3)                      "Umbrales altos"
+   set caption(confVisu,msg)                          "La cabecera FITS no contiene las palabras claves requeridas."
+
+   set caption(plotxy,figure)                         "Figura"
+
+   set caption(sectiongraph,title)                    "Gráfica de la sección"
+   set caption(sectiongraph,refreshAuto)              "Refresco automática cuando se cambia la imagen"
+   set caption(sectiongraph,refreshManuel)            "Refrescar ahora"
+   set caption(sectiongraph,values)                   " | Media: %s | Mediana: %s | Desviación típica: %s"
+
+   set caption(meteosensor_tools,celsius)             "Celsius"
+   set caption(meteosensor_tools,degres)              "grados"
+   set caption(meteosensor_tools,pourcent)            "porciento"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(audace,titre)                          "Aud'ACE"
+   set caption(audace,tool)                           "Gerät:"
+
+   set caption(console,titre)                         "Konsole"
+   set caption(console,debug)                         "Debug"
+
+   set caption(audace,console_rate)                   "Unmöglichen Zugang"
+   set caption(audace,console_gagne)                  "Zugriff gelungen"
+   set caption(audace,console_annule)                 "Annulliert"
+
+   set caption(audace,aide)                           "Aud'ACE Hilfe"
+   set caption(audace,pas_repertoire_aide)            "Das Hilferegister existiert nicht:"
+
+   set caption(audace,reseau_execute)                 "Ausführt:"
+   set caption(audace,reseau_client)                  "Kunde:"
+   set caption(audace,reseau_detruit)                 "Anbieter Zerstört:"
+   set caption(audace,reseau_connecte)                "Kunde Gut angeschlossen:"
+   set caption(audace,reseau_serveur_retour)          "Rückwärts Anbieter bereiten:"
+   set caption(audace,reseau_deconnecte)              "Kunde Abgeklemmt:"
+   set caption(audace,reseau_deconnexion)             "Abklemmung vom Anbieter:"
+   set caption(audace,reseau_connexion_client)        "Anschluß durch den Kunden:"
+   set caption(audace,reseau_reponse_vers)            "Antworten zu:"
+
+   set caption(ping,appareil_connecte)                "Ein Gerät mit diese IP Nummer existiert:"
+   set caption(ping,pas_appareil_connecte)            "Kein Gerät mit diese IP Nummer existiert:"
+
+   set caption(audace,temps_universel)                "WZ"
+   set caption(audace,temps_heurelegale)              "UZ"
+
+   set caption(audace,enregistrer_config1)            "Wollen sie die neue Aude'ACE Gestalt bevor beenden speichern?"
+   set caption(audace,enregistrer_config2)            "Gestalt speichern ?"
+   set caption(audace,enregistrer_config3)            "Gestalt gespeichert."
+   set caption(audace,enregistrer_config4)            "Keine Gestalt Speicherung notwendig."
+   set caption(audace,enregistrer_config5)            "Speichern annulliert."
+
+   set caption(confVisu,fermer)                       "Schließen"
+   set caption(confVisu,reticule)                     "Fadenkreuzes"
+   set caption(confVisu,seuil_haut)                   "H.H."
+   set caption(confVisu,seuil_bas)                    "H.T."
+   set caption(confVisu,seuil_auto)                   "Auto"
+   set caption(confVisu,attention)                    "Achtung"
+   set caption(confVisu,tracer_boite)                 "Bitte, einen Rahmen mit der Mause zeichnen."
+   set caption(confVisu,boite_seuil)                  "..."
+   set caption(confVisu,zoom-)                        "Zoom -"
+   set caption(confVisu,zoom+)                        "Zoom +"
+   set caption(confVisu,RA)                           "RA"
+   set caption(confVisu,DEC)                          "Dek."
+   set caption(confVisu,tiret)                        "-"
+   set caption(confVisu,2points)                      ":"
+   set caption(confVisu,egale)                        "="
+   set caption(confVisu,I)                            "I"
+   set caption(confVisu,X)                            "X"
+   set caption(confVisu,Y)                            "Y"
+   set caption(confVisu,rouge)                        "R:"
+   set caption(confVisu,vert)                         "G:"
+   set caption(confVisu,bleu)                         "B:"
+   set caption(confVisu,non_connecte)                 "Nicht verbun"
+   set caption(confVisu,fitsHduList)                  "HDU"
+   set caption(confVisu,fermeture_impossible)         "Unmöglich Aud’ACE zu beenden weil eine Aktion im %s Werkzeug an ist."
+   set caption(confVisu,fermeture_outil_impossible)   "Unmöglich %s zu halten weil ein Vorgang ist laufend."
+   set caption(confVisu,traitement_en-cours_1)        "# Des traitements sont en cours dans :"
+   set caption(confVisu,traitement_en-cours_2)        "# Voulez-vous quitter néanmoins ?"
+   set caption(confVisu,label_1)                      "RGB Schwellen"
+   set caption(confVisu,label_2)                      "Niedrige Schwellen"
+   set caption(confVisu,label_3)                      "Hohe Schwellen"
+   set caption(confVisu,msg)                          "Die FITS Header hat die benötigten Stichwörter nicht."
+
+   set caption(plotxy,figure)                         "Figur"
+
+   set caption(sectiongraph,title)                    "Abschnitt Grafik"
+   set caption(sectiongraph,refreshAuto)              "Automatische Auffrischung, wenn das Bild zu ändern"
+   set caption(sectiongraph,refreshManuel)            "Jetzt auffrischen"
+   set caption(sectiongraph,values)                   " | Mittelwert: %s | Medianwert: %s | Typische Abweichung: %s"
+
+   set caption(meteosensor_tools,celsius)             "Celsius"
+   set caption(meteosensor_tools,degres)              "Graden"
+   set caption(meteosensor_tools,pourcent)            "Prozent"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(audace,titre)                          "Aud'ACE"
+   set caption(audace,tool)                           "Ferramenta:"
+
+   set caption(console,titre)                         "Consola"
+   set caption(console,debug)                         "Debug"
+
+   set caption(audace,console_rate)                   "O acesso não é possivel"
+   set caption(audace,console_gagne)                  "Acesso OK"
+   set caption(audace,console_annule)                 "Cancelado"
+
+   set caption(audace,aide)                           "Ajuda Aud'ACE"
+   set caption(audace,pas_repertoire_aide)            "A pasta ajuda não existe:"
+
+   set caption(audace,reseau_execute)                 "Correr:"
+   set caption(audace,reseau_client)                  "Cliente:"
+   set caption(audace,reseau_detruit)                 "Servidor destruído:"
+   set caption(audace,reseau_connecte)                "Cliente conectado correctamente:"
+   set caption(audace,reseau_serveur_retour)          "Servidor de imagens criado:"
+   set caption(audace,reseau_deconnecte)              "Cliente disconectado:"
+   set caption(audace,reseau_deconnexion)             "Desconectado do servidor:"
+   set caption(audace,reseau_connexion_client)        "Conexão através do cliente:"
+   set caption(audace,reseau_reponse_vers)            "Responder a:"
+
+   set caption(ping,appareil_connecte)                "Existe um dispositivo no endereço IP:"
+   set caption(ping,pas_appareil_connecte)            "Não existe um dispositivo no endereço IP:"
+
+   set caption(audace,temps_universel)                "UT"
+   set caption(audace,temps_heurelegale)              "CT"
+
+   set caption(audace,enregistrer_config1)            "Guardar nova configuração antes de sair?"
+   set caption(audace,enregistrer_config2)            "Guardar configuração?"
+   set caption(audace,enregistrer_config3)            "Configuração guardada com êxito."
+   set caption(audace,enregistrer_config4)            "Não é necessário guardar configuração."
+   set caption(audace,enregistrer_config5)            "Operação \"guardar\" abortada."
+
+   set caption(confVisu,fermer)                       "Fechar"
+   set caption(confVisu,reticule)                     "Retículo"
+   set caption(confVisu,seuil_haut)                   "H.T."
+   set caption(confVisu,seuil_bas)                    "L.T."
+   set caption(confVisu,seuil_auto)                   "Auto"
+   set caption(confVisu,attention)                    "Aviso"
+   set caption(confVisu,tracer_boite)                 "Por favor desenhe um quadrado com o seu rato."
+   set caption(confVisu,boite_seuil)                  "..."
+   set caption(confVisu,zoom-)                        "Zoom -"
+   set caption(confVisu,zoom+)                        "Zoom +"
+   set caption(confVisu,RA)                           "AR"
+   set caption(confVisu,DEC)                          "Dec."
+   set caption(confVisu,tiret)                        "-"
+   set caption(confVisu,2points)                      ":"
+   set caption(confVisu,egale)                        "="
+   set caption(confVisu,I)                            "I"
+   set caption(confVisu,X)                            "X"
+   set caption(confVisu,Y)                            "Y"
+   set caption(confVisu,rouge)                        "R:"
+   set caption(confVisu,vert)                         "G:"
+   set caption(confVisu,bleu)                         "B:"
+   set caption(confVisu,non_connecte)                 "Não conectado"
+   set caption(confVisu,fitsHduList)                  "HDU"
+   set caption(confVisu,fermeture_impossible)         "Impossível parar Aud'ACE devido a uma operação em curso na ferramenta: %s"
+   set caption(confVisu,fermeture_outil_impossible)   "Impossível parar %s porque uma operação está em curso."
+   set caption(confVisu,traitement_en-cours_1)        "# Des traitements sont en cours dans :"
+   set caption(confVisu,traitement_en-cours_2)        "# Voulez-vous quitter néanmoins ?"
+   set caption(confVisu,label_1)                      "Limiares RGB"
+   set caption(confVisu,label_2)                      "Limiares inferiores"
+   set caption(confVisu,label_3)                      "Limiares superiores"
+   set caption(confVisu,msg)                          "O cabeçalho FITS não contém as palavras-chave necessárias."
+
+   set caption(plotxy,figure)                         "Figura"
+
+   set caption(sectiongraph,title)                    "Gráfico da secção"
+   set caption(sectiongraph,refreshAuto)              "Actualização automática quando se muda a imagem"
+   set caption(sectiongraph,refreshManuel)            "Actualizar agora"
+   set caption(sectiongraph,values)                   " | Média: %s | Mediana: %s | Desvio Padrão: %s"
+
+   set caption(meteosensor_tools,celsius)             "Celsius"
+   set caption(meteosensor_tools,degres)              "graus"
+   set caption(meteosensor_tools,pourcent)            "porcento"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(audace,titre)                          "Aud'ACE"
+   set caption(audace,tool)                           "Værktøj:"
+
+   set caption(console,titre)                         "Konsol"
+   set caption(console,debug)                         "Debug"
+
+   set caption(audace,console_rate)                   "Ingen adgang"
+   set caption(audace,console_gagne)                  "Adgang: OK!"
+   set caption(audace,console_annule)                 "Annulleret"
+
+   set caption(audace,aide)                           "Aud'ACE-Hjælp"
+   set caption(audace,pas_repertoire_aide)            "Hjælp-mappen findes ikke:"
+
+   set caption(audace,reseau_execute)                 "Kør:"
+   set caption(audace,reseau_client)                  "Klient:"
+   set caption(audace,reseau_detruit)                 "Server Serverfejl:"
+   set caption(audace,reseau_connecte)                "Klient korrekt tilsluttet:"
+   set caption(audace,reseau_serveur_retour)          "Image display server dannet:"
+   set caption(audace,reseau_deconnecte)              "Klient afbrudt:"
+   set caption(audace,reseau_deconnexion)             "Afbryd Server:"
+   set caption(audace,reseau_connexion_client)        "Forbindelse gennem klienten:"
+   set caption(audace,reseau_reponse_vers)            "Svar til:"
+
+   set caption(ping,appareil_connecte)                "Der findes en enhed på denne IP-adresse:"
+   set caption(ping,pas_appareil_connecte)            "Der findes ikke nogen enhed på denne IP-adresse:"
+
+   set caption(audace,temps_universel)                "UT"
+   set caption(audace,temps_heurelegale)              "CT"
+
+   set caption(audace,enregistrer_config1)            "Gem ny opsætning før afslutning?"
+   set caption(audace,enregistrer_config2)            "Gem opsætning?"
+   set caption(audace,enregistrer_config3)            "Opsætning gemt."
+   set caption(audace,enregistrer_config4)            "Gem opsætning - Er ikke nødvendig."
+   set caption(audace,enregistrer_config5)            "Gem - Annulleret."
+
+   set caption(confVisu,fermer)                       "Luk"
+   set caption(confVisu,reticule)                     "Trådkors"
+   set caption(confVisu,seuil_haut)                   "H.t."
+   set caption(confVisu,seuil_bas)                    "L.t."
+   set caption(confVisu,seuil_auto)                   "Auto"
+   set caption(confVisu,attention)                    "Advarsel"
+   set caption(confVisu,tracer_boite)                 "Tegn en ramme med musen."
+   set caption(confVisu,boite_seuil)                  "..."
+   set caption(confVisu,zoom-)                        "Zoom -"
+   set caption(confVisu,zoom+)                        "Zoom +"
+   set caption(confVisu,RA)                           "RA"
+   set caption(confVisu,DEC)                          "Dec."
+   set caption(confVisu,tiret)                        "-"
+   set caption(confVisu,2points)                      ":"
+   set caption(confVisu,egale)                        "="
+   set caption(confVisu,I)                            "I"
+   set caption(confVisu,X)                            "X"
+   set caption(confVisu,Y)                            "Y"
+   set caption(confVisu,rouge)                        "R:"
+   set caption(confVisu,vert)                         "G:"
+   set caption(confVisu,bleu)                         "B:"
+   set caption(confVisu,non_connecte)                 "Ikke tilsluttet"
+   set caption(confVisu,fitsHduList)                  "HDU"
+   set caption(confVisu,fermeture_impossible)         "Aud'ACE kan ikke afsluttes, da anden proces kører i værktøjet: %s"
+   set caption(confVisu,fermeture_outil_impossible)   "%s kan ikke annulleres, da processen kører."
+   set caption(confVisu,traitement_en-cours_1)        "# Des traitements sont en cours dans :"
+   set caption(confVisu,traitement_en-cours_2)        "# Voulez-vous quitter néanmoins ?"
+   set caption(confVisu,label_1)                      "RGB tærskelværdier"
+   set caption(confVisu,label_2)                      "Lav tærskelværdier"
+   set caption(confVisu,label_3)                      "Høj tærskelværdier"
+   set caption(confVisu,msg)                          "FITS header indeholder ikke de krævede nøgleord."
+
+   set caption(plotxy,figure)                         "Figur"
+
+   set caption(sectiongraph,title)                    "Graf af udsnittet"
+   set caption(sectiongraph,refreshAuto)              "Automatisk opdatere, når der skiftes billedet"
+   set caption(sectiongraph,refreshManuel)            "Opdatér nu"
+   set caption(sectiongraph,values)                   " | Middelværdi: %s | Median: %s | Standardafvigelse: %s"
+
+   set caption(meteosensor_tools,celsius)             "Celsius"
+   set caption(meteosensor_tools,degres)              "grader"
+   set caption(meteosensor_tools,pourcent)            "procent"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(audace,titre)                          "Aud'ACE"
+   set caption(audace,tool)                           "Tool:"
+
+   set caption(console,titre)                         "Terminal"
+   set caption(console,debug)                         "Debug"
+
+   set caption(audace,console_rate)                   "Access not possible"
+   set caption(audace,console_gagne)                  "Access OK"
+   set caption(audace,console_annule)                 "Cancelled"
+
+   set caption(audace,aide)                           "Aud'ACE Help"
+   set caption(audace,pas_repertoire_aide)            "Help folder does not exist:"
+
+   set caption(audace,reseau_execute)                 "Run:"
+   set caption(audace,reseau_client)                  "Client:"
+   set caption(audace,reseau_detruit)                 "Server destroyed:"
+   set caption(audace,reseau_connecte)                "Client correctly connected:"
+   set caption(audace,reseau_serveur_retour)          "Image display server created:"
+   set caption(audace,reseau_deconnecte)              "Client disconnected:"
+   set caption(audace,reseau_deconnexion)             "Disconnection of the server:"
+   set caption(audace,reseau_connexion_client)        "Connection through the client:"
+   set caption(audace,reseau_reponse_vers)            "Reply to:"
+
+   set caption(ping,appareil_connecte)                "There is a device at IP address:"
+   set caption(ping,pas_appareil_connecte)            "There is no device at IP address:"
+
+   set caption(audace,temps_universel)                "UT"
+   set caption(audace,temps_heurelegale)              "CT"
+
+   set caption(audace,enregistrer_config1)            "Save new setup before quitting?"
+   set caption(audace,enregistrer_config2)            "Save setup?"
+   set caption(audace,enregistrer_config3)            "Setup saved."
+   set caption(audace,enregistrer_config4)            "Setup saving not required."
+   set caption(audace,enregistrer_config5)            "Saving aborted."
+
+   set caption(confVisu,fermer)                       "Close"
+   set caption(confVisu,reticule)                     "Crosshair"
+   set caption(confVisu,seuil_haut)                   "H.T."
+   set caption(confVisu,seuil_bas)                    "L.T."
+   set caption(confVisu,seuil_auto)                   "Auto"
+   set caption(confVisu,attention)                    "Warning"
+   set caption(confVisu,tracer_boite)                 "Please draw a square with your mouse."
+   set caption(confVisu,boite_seuil)                  "..."
+   set caption(confVisu,zoom-)                        "Zoom -"
+   set caption(confVisu,zoom+)                        "Zoom +"
+   set caption(confVisu,RA)                           "RA"
+   set caption(confVisu,DEC)                          "Dec."
+   set caption(confVisu,tiret)                        "-"
+   set caption(confVisu,2points)                      ":"
+   set caption(confVisu,egale)                        "="
+   set caption(confVisu,I)                            "I"
+   set caption(confVisu,X)                            "X"
+   set caption(confVisu,Y)                            "Y"
+   set caption(confVisu,rouge)                        "R:"
+   set caption(confVisu,vert)                         "G:"
+   set caption(confVisu,bleu)                         "B:"
+   set caption(confVisu,non_connecte)                 "Not connected"
+   set caption(confVisu,fitsHduList)                  "HDU"
+   set caption(confVisu,fermeture_impossible)         "Aud'ACE cannot be stopped because of an on-going action in the tool: %s"
+   set caption(confVisu,fermeture_outil_impossible)   "%s cannot be stopped because it is running."
+   set caption(confVisu,traitement_en-cours_1)        "# Des traitements sont en cours dans :"
+   set caption(confVisu,traitement_en-cours_2)        "# Voulez-vous quitter néanmoins ?"
+   set caption(confVisu,label_1)                      "RGB Thresholds"
+   set caption(confVisu,label_2)                      "Low Thresholds"
+   set caption(confVisu,label_3)                      "High Thresholds"
+   set caption(confVisu,msg)                          "The FITS header does not include the required keywords."
+
+   set caption(plotxy,figure)                         "Figure"
+
+   set caption(sectiongraph,title)                    "Graph of the section"
+   set caption(sectiongraph,refreshAuto)              "Auto Refresh After Image Change"
+   set caption(sectiongraph,refreshManuel)            "Refresh Now"
+   set caption(sectiongraph,values)                   " | Mean: %s | Median: %s | Standard Deviation: %s"
+
+   set caption(meteosensor_tools,celsius)             "Celsius"
+   set caption(meteosensor_tools,degres)              "degrees"
+   set caption(meteosensor_tools,pourcent)            "percent"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(audace,titre)                          "Aud'ACE"
+   set caption(audace,tool)                           "Tool:"
+
+   set caption(console,titre)                         "Terminal"
+   set caption(console,debug)                         "Debug"
+
+   set caption(audace,console_rate)                   "Access not possible"
+   set caption(audace,console_gagne)                  "Access OK"
+   set caption(audace,console_annule)                 "Cancelled"
+
+   set caption(audace,aide)                           "Aud'ACE Help"
+   set caption(audace,pas_repertoire_aide)            "Help folder does not exist:"
+
+   set caption(audace,reseau_execute)                 "Run:"
+   set caption(audace,reseau_client)                  "Client:"
+   set caption(audace,reseau_detruit)                 "Server destroyed:"
+   set caption(audace,reseau_connecte)                "Client correctly connected:"
+   set caption(audace,reseau_serveur_retour)          "Image display server created:"
+   set caption(audace,reseau_deconnecte)              "Client disconnected:"
+   set caption(audace,reseau_deconnexion)             "Disconnection of the server:"
+   set caption(audace,reseau_connexion_client)        "Connection through the client:"
+   set caption(audace,reseau_reponse_vers)            "Reply to:"
+
+   set caption(ping,appareil_connecte)                "There is a device at IP address:"
+   set caption(ping,pas_appareil_connecte)            "There is no device at IP address:"
+
+   set caption(audace,temps_universel)                "UT"
+   set caption(audace,temps_heurelegale)              "CT"
+
+   set caption(audace,enregistrer_config1)            "Save new setup before quitting?"
+   set caption(audace,enregistrer_config2)            "Save setup?"
+   set caption(audace,enregistrer_config3)            "Setup saved."
+   set caption(audace,enregistrer_config4)            "Setup saving not required."
+   set caption(audace,enregistrer_config5)            "Saving aborted."
+
+   set caption(confVisu,fermer)                       "Close"
+   set caption(confVisu,reticule)                     "Crosshair"
+   set caption(confVisu,seuil_haut)                   "H.T."
+   set caption(confVisu,seuil_bas)                    "L.T."
+   set caption(confVisu,seuil_auto)                   "Auto"
+   set caption(confVisu,attention)                    "Warning"
+   set caption(confVisu,tracer_boite)                 "Please draw a square with your mouse."
+   set caption(confVisu,boite_seuil)                  "..."
+   set caption(confVisu,zoom-)                        "Zoom -"
+   set caption(confVisu,zoom+)                        "Zoom +"
+   set caption(confVisu,RA)                           "RA"
+   set caption(confVisu,DEC)                          "Dec."
+   set caption(confVisu,tiret)                        "-"
+   set caption(confVisu,2points)                      ":"
+   set caption(confVisu,egale)                        "="
+   set caption(confVisu,I)                            "I"
+   set caption(confVisu,X)                            "X"
+   set caption(confVisu,Y)                            "Y"
+   set caption(confVisu,rouge)                        "R:"
+   set caption(confVisu,vert)                         "G:"
+   set caption(confVisu,bleu)                         "B:"
+   set caption(confVisu,non_connecte)                 "Not connected"
+   set caption(confVisu,fitsHduList)                  "HDU"
+   set caption(confVisu,fermeture_impossible)         "Aud'ACE cannot be stopped because of an on-going action in the tool: %s"
+   set caption(confVisu,fermeture_outil_impossible)   "%s cannot be stopped because it is running."
+   set caption(confVisu,traitement_en-cours_1)        "# Des traitements sont en cours dans :"
+   set caption(confVisu,traitement_en-cours_2)        "# Voulez-vous quitter néanmoins ?"
+   set caption(confVisu,label_1)                      "RGB Thresholds"
+   set caption(confVisu,label_2)                      "Low Thresholds"
+   set caption(confVisu,label_3)                      "High Thresholds"
+   set caption(confVisu,msg)                          "The FITS header does not include the required keywords."
+
+   set caption(plotxy,figure)                         "Figure"
+
+   set caption(sectiongraph,title)                    "Graph of the section"
+   set caption(sectiongraph,refreshAuto)              "Auto Refresh After Image Change"
+   set caption(sectiongraph,refreshManuel)            "Refresh Now"
+   set caption(sectiongraph,values)                   " | Mean: %s | Median: %s | Standard Deviation: %s"
+
+   set caption(meteosensor_tools,celsius)             "Celsius"
+   set caption(meteosensor_tools,degres)              "degrees"
+   set caption(meteosensor_tools,pourcent)            "percent"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

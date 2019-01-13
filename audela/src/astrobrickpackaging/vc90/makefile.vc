@@ -1,0 +1,33 @@
+#  makefile.vc 
+#  deploy astrobrick libraies to atrobrick user folder 
+
+CP= copy
+RM= -del /f /q
+
+BIN=..\..\..\bin
+ASTROBRICK_CSHARP=..\..\..\astrobrick_user\csharp
+ASTROBRICK_PYTHON=..\..\..\astrobrick_user\python
+
+SRC= $(BIN)\libabsimple.dll \
+	 $(BIN)\libcatalog.dll \
+	 $(BIN)\libtt.dll
+	 
+
+DEST_CSHARP = $(SRC:..\..\..\bin=..\..\..\astrobrick_user\csharp)
+DEST_PYTHON = $(SRC:..\..\..\bin=..\..\..\astrobrick_user\python)
+
+.SUFFIXES: .dll
+
+{$(BIN)}.dll{$(ASTROBRICK_CSHARP)}.dll :
+	$(CP) $** $@	
+
+{$(BIN)}.dll{$(ASTROBRICK_PYTHON)}.dll :
+	$(CP) $** $@	
+
+#--- build
+build: $(DEST_CSHARP) $(DEST_PYTHON)
+
+#--- clean	
+clean: 
+	$(RM) $(DEST_CSHARP) 
+	$(RM) $(DEST_PYTHON)

@@ -1,0 +1,1022 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="Author" content="Alain Klotz">
+  <meta name="GENERATOR"
+ content="Mozilla/4.75 [fr] (Win98; U) [Netscape]">
+  <title>Library MC : User manual</title>
+</head>
+<body>
+<center><b><font size="+3">LIB MC</font></b> <br>
+a library designed for celestial mechanics <br>
+version 20140915<br>
+Alain KLOTZ
+<p><b><font size="+3">User manual</font></b></p>
+</center>
+<p>Libmc is a Tcl extension library which adds functions concerning
+celestial mechanics. This user guide is adressed to users of Tcl
+scripts who want to use the libmc functions. Functions of libmc which
+require AudeLA "buffer" can be used only with the AudeLA platform. <br>
+&nbsp; </p>
+<h1> <a name="general"></a>1. Introduction</h1>
+<h2> <a name="load"></a>1.1. Loading the library in a Tcl interpreter</h2>
+To load the libmc library in a Tcl interpreter, use the following
+function :
+<p><b>load libmc[info sharedlibextension]</b> </p>
+<p>in your current Tcl interpreter. The command [info
+sharedlibextension] allow, to the Tcl interpreter, to append letters
+for the suffix .dll or .so corresponding to the operating system
+Windows or Linux. </p>
+<p>If the interpreter returns the error message : couldn't load file
+"libmc": invalid argument, it means that the file of the libmc library
+(libmc.dll with Windows and libmc.so with Linux) is not placed in the
+current folder of the interpreter (cf. pwd and cd function of Tcl). </p>
+<h2> 1.2. General principles of Mc functions</h2>
+Every libmc function, added to Tcl, begins with the prefix mc_ in order
+to be easily reconizable. For instance, function mc_date2jd converts a
+date in a julian day. The parameter of the function mc_date2jd is a
+Tcl variable which defines the date under differents formats. For
+exemple, in order to compute the julian day of the present time, the
+parameter is now. The syntax should be :
+<p><b>mc_date2jd now</b> </p>
+<p>If the interpreter returns the error message : invalid command name
+"mc_date2jd", it means that&nbsp; <a href="#load">the libmc library
+was not loaded</a> correctly. </p>
+<h1> <a name="reference"></a>2. Reference guide for MC functions</h1>
+The Tcl functions, added by MC, give many possibilities. According to
+the Tcl syntax, every function is followed by mandatory parameters and
+ended by optional parameters. These parameters must respect some
+constraints. MC used specific "types" of parameters. They are listed
+below :
+<ul>
+  <li> <a href="#date">Date</a> : to define a date</li>
+  <li> <a href="#angle">Angle</a> : to define a angle</li>
+  <li> <a href="#object">Object</a> : to define a planet or a star.</li>
+  <li> <a href="#home">Home</a> : to define a a location on the Earth
+surface</li>
+  <li> <a href="#field">Field</a> : to define the field of view of an
+image</li>
+  <li> <a href="#format">Format</a> : to define an output format of
+values.</li>
+  <li> -<a href="#constraint">constraint</a> : to define a constraint
+option.</li>
+</ul>
+For exemple, the syntax of the function mc_date2jd is : date2jd Date <br>
+&nbsp;
+<h2> 2.1. Definition of parameter types for MC :</h2>
+<h3> <a name="date"></a>2.1.1. Types Date and ListDates</h3>
+the definition of a date can be writed by differents forms :
+<ul>
+  <li> jd : a floating number upper or equal to 1000000 defines
+a julian date</li>
+  <li> mjd : a floating number lower to 1000000 defines a modified
+julian date (jd - 2400000.5)</li>
+  <li> NOW : the word now takes the date and the time from the
+operating system.</li>
+  <li> NOW0 : the word now0 takes the date and the time at 0h a.m. from
+the operating system</li>
+  <li> NOW1 : the word now1 takes the date and the time at 24h
+p.m. from the operating system</li>
+  <li> {year month day h m s} : a gregorian date as a calendar. It is
+possible to use floating numbers. For instance {2001 12 23.567}.</li>
+  <li> yyyy-mm-ddThh:mm:ss.ss : a gregorian date coded as the format
+DATE-OBS of a header FITS</li>
+  <li> J2000 : definition date for an equinox (B1950, J2010.56, etc.).</li>
+</ul>
+N.B. Words NOW, NOW0 et NOW1 can be written uppercase or lowercase
+without incidence.
+<p>The type ListDates of MC defines a Tcl list of elements of type
+Date. For
+exemple : </p>
+<p>{2000 1 1} {2000 1 2} 2451056.4563 {2000-01-03T00:00:00} now </p>
+<h3> <a name="angle"></a>2.1.2. Types Angle and ListAngles</h3>
+An angle can be written by many ways. Some following exemples
+show these possibilities :
+<ul>
+  <li> 45&deg;34'28" :</li>
+  <li> 45d34m28s : is equal to 45&deg;34'28"</li>
+  <li> 45d34m28s9 : is equal to 45&deg;34'28.9"</li>
+  <li> 45d34m28.9s : is equal to 45&deg;34'28.9"</li>
+  <li> 45d34 : is equal to 45&deg;34'</li>
+  <li> 45.34 : is interpreted as 45.34 d&eacute;cimal degrees.</li>
+  <li> -45d34.5 : is interpreted as -45&deg;34'30"</li>
+  <li> 1h30m : is interpreted as 22.5 decimal degrees (1 hour is equal
+to 15 degrees).</li>
+  <li> 1.57r : is interpreted as 1.57 radians.</li>
+  <li> {45 34 28.4} : is interpreted as 45d34m28.4s</li>
+  <li> {1 30 h} : is interpreted as 1h30m.</li>
+  <li> {1.57 r} : is interpreted as 1.57 radians</li>
+</ul>
+The type ListAngles of MC defines a Tcl list of elements of type Angle.
+For exemple :
+<p>{45d34} {-45 38 6.4} {1h30m} {2 r} </p>
+<h3> <a name="object"></a>2.1.3. Types Object and ListObjects</h3>
+A planet or a star can be defined by a list of elements defined (by
+order) :
+<ul>
+  <li> Name : character string which contains the name of the objects
+(planets or stars). A * is interpreted as every objects.</li>
+</ul>
+<ul>
+  <li> Format : origin of orbital data. Possible values are :</li>
+  <ul>
+    <li> INTERNAL : (default) if Name is the name, in english, of
+a solar system planet (Mercury, ..., Pluto, Sun, Moon).</li>
+    <li> BOWELLFILE : to read data in the astorb.dat file of the
+Lowell observatory.</li>
+    <li> MCPFILE : to read data in the Mpcorb file of the Minor Planet
+Center</li>
+    <li> ASTROMMICROCAT to read stars from the astrometric CDROM
+Microcat</li>
+    <li> LONEOSMICROCAT to read Loneos stars from the CDROM Microcat.</li>
+    <li> TYCHOMICROCAT to read Tycho stars only from the astrometric
+CDROM Microcat.</li>
+    <li> USNO to read stars from the CDROM USNO (USNO A ou SA).</li>
+    <br>
+&nbsp;
+  </ul>
+  <li> Data : orbital data. Values depends on the Format :</li>
+  <ul>
+    <li> Format = INTERNAL : don't fill this element</li>
+    <li> Format = BOWELLFILE : full name of the file which contains
+orbital elements.</li>
+    <li> Format = MPCFILE : full name of the file which contains
+orbital elements.</li>
+    <li> Format = ASTROMMICROCAT : full name of the path to acces to
+the Microcat catalog.</li>
+    <li> Format = LONEOSMICROCAT : full name of the path to acces to
+the Microcat catalog.</li>
+    <li> Format = TYCHOMICROCAT : full name of the path to acces
+to the Microcat catalog.</li>
+    <li> Format = USNO : full name of the path to acces to the Microcat
+catalog.</li>
+  </ul>
+</ul>
+N.B. Words that defines Format and Data can be written uppercase or
+lowercase without incidence.
+<p>For exemple, Jupiter planet is define by the following list </p>
+<p>{jupiter internal} </p>
+<p>or only by the word Jupiter since Internal is the default value. On
+the other hand, for the astero&iuml;d 1997DQ : </p>
+<p>{1997DQ Bowellfile astorb.dat} </p>
+<p>The type ListObjectss is a list of Objects or * for every objects
+defined in the Data element. For exemple, </p>
+<p>{ { {1} {6809} {10222} {1997DQ} } Mpcfile mpcorb.txt } </p>
+<p>One another exemple, to define the nine planets of the solar system
+plus the moon and the sun : </p>
+<p>{ * Internal} </p>
+<p>which can be written by only * because Internal is the default value
+of Format. </p>
+<h3> <a name="home"></a>2.1.4. Type Home</h3>
+Type Home is used to locate a point on the Earth surface. By this way,
+one can compute an topocentric ephemeris for that location (taking
+account parallax effects). Type Home is defined by a list of the
+following elements :
+<ul>
+  <li> Format : to define the coordinate system employed. Choices are :</li>
+  <ul>
+    <li> GPS : to define geographic coordinates longitude, latitude et
+altitude.</li>
+    <li> MPC : to define coordinates by longitude, rho cos(phi'), rho
+sin(phi')</li>
+    <li> MPCSTATION : to define coordinates from an IAU station number.</li>
+  </ul>
+</ul>
+The other elements depend on the value of Format :
+<ul>
+  <li> If Format = GPS, following elements are :</li>
+  <ul>
+    <li> Longitude : floating point degrees. Positive value between 0
+and 180.</li>
+    <li> Sens : E or W for the direction of the longitude from
+Greenwich.</li>
+    <li> Latitude : in floating point degres. Positive for the northern
+hemisphere, n&eacute;gative for the southern.</li>
+    <li> Altitude : in meters above the sea.</li>
+  </ul>
+  <li> If Format = MPC, following elements are :</li>
+  <ul>
+    <li> Longitude : floating point degrees. Positive towards East.
+Valeur between 0 and 360.</li>
+    <li> Rhocosphip : value of rho cos(phi').</li>
+    <li> Rhosinphip : value of rho sin(phi').</li>
+  </ul>
+  <li> If Format = MPCSTATION, following elements are :</li>
+  <ul>
+    <li> Num&eacute;ro :&nbsp; IAU station number</li>
+    <li> Filename : name of the file that contains the IAU station
+numbers and their locations.</li>
+  </ul>
+</ul>
+N.B. Word that defines Format can be written uppercase or lowercase
+without incidence.
+<p>For example, for the Paris observatory, located at 2.3375 degrees
+eastern from Greenwich, rho*sin(phi') = 0.74918 and rho*cos(phi') =
+0.65950, one writes : </p>
+<p>{ MPC 2.3375 0.65950 0.74918 } </p>
+<p>Another example is given for an observatory located at 3 degrees
+western from Greenwich, a latitude of 46 degrees and an altitude of 456
+meters : </p>
+<p>{ GPS 3 W 46 456 } </p>
+<h3> <a name="field"></a>2.1.5. Type Field</h3>
+Type Home is used to define a field of view seen by an optic system
+which produce a gnomonic projection (a CCD image for example). Type
+Field is defined by a list of the following elements :
+<ul>
+  <li> Format : to define prjection parameters. Values are :</li>
+  <ul>
+    <li> BUFFER : to give projection parameters from a FITS image
+storaged in an AudeLA buffer.</li>
+    <li> OPTIC : to give explicitly the projection parameters.</li>
+  </ul>
+</ul>
+According to the value of format, the other elements are :
+<ul>
+  <li> If Format = BUFFER, other elements are :</li>
+  <ul>
+    <li> Num&eacute;ro : The buffer number which contains the image.</li>
+  </ul>
+  <li> If Format = OPTIC, other elements are:</li>
+  <ul>
+    <li> NAXIS1 Value : number of points on the X axis.</li>
+    <li> NAXIS2 Value : number of points on the Y axis.</li>
+    <li> FOCLEN Value : focal length (in meters).</li>
+    <li> PIXSIZE1 Value : pixel size (in meters) on the X axis.
+Negative value if the right ascensions increase when X decrease.</li>
+    <li> PIXSIZE2 Value : pixel size (in meters) on the Y axis.
+Negative value if the declination increase when X decrease.</li>
+    <li> CROTA2 Value : position angle of North against the top of the
+image.</li>
+    <li> RA Value : right ascension J2000.0 of the center of the
+field, expressed in floating point degres.</li>
+    <li> DEC Value : declination J2000.0 of the center of the field,
+expressed in floating point degres.</li>
+  </ul>
+</ul>
+N.B. Word that defines Format (NAXIS1, etc.) can be written uppercase
+or lowercase without incidence.
+<p>For example, to define a field centered on 12h00m and 15d with a 2.5
+meters focal length telescope, a 768x512 pixels of 9 microns size
+camera, one writes : </p>
+<p>{ OPTIC NAXIS1 768 NAXIS2 512 FOCLEN 2.5 PIXSIZE1 9e-6 PIXSIZE2 9e-6
+CROTA2 0 RA 180 DEC 15 } <br>
+&nbsp; </p>
+<h3> <a name="format"></a>2.1.6. Types Format and ListFormat</h3>
+Output format is a word which indicate the data to print. Values are :
+<ul>
+  <li> RA : Right ascension (J2000.0) floating point degrees.</li>
+  <li> RAH : Right ascension (J2000.0) hour integer value</li>
+  <li> RAH.H : Right ascension (J2000.0) hour floating point value</li>
+  <li> RAM : Right ascension (J2000.0) minute time integer value</li>
+  <li> RAM.M : Right ascension (J2000.0) minute time floating point
+value</li>
+  <li> RAS : Right ascension (J2000.0) second time integer value</li>
+  <li> RAS.S : Right ascension (J2000.0) second time floating point
+value</li>
+  <li> DEC : Declination (J2000.0) floating point degrees</li>
+  <li> DECD : Declination (J2000.0) degrees, integer value.</li>
+  <li> DECM : Declination (J2000.0) minutes of degrees, integer value.</li>
+  <li> DECM.M : Declination (J2000.0) minutes of degrees, floating
+point value.</li>
+  <li> DECS : Declination (J2000.0) seconds of degrees, integer value.</li>
+  <li> DECS.S : Declination (J2000.0) seconds of degrees, floating
+point value.</li>
+  <li> OBJENAME : NAme of the object.</li>
+  <li> JD : Julian day.</li>
+  <li> YEAR : Year (integer)</li>
+  <li> MONTH : Month (integer)</li>
+  <li> DAY : Day (floating point).</li>
+  <li> MAG : Magnitude</li>
+  <li> DELTA : Distance to the Earth in U.A.</li>
+  <li> R : Distance Object-Sun in U.A.</li>
+  <li> ELONG : Elongation from the Sun</li>
+  <li> MOONELONG : angular distance from the Moon.</li>
+  <li> PHASE : Phase of the object.</li>
+  <li> APPDIAM : Apparent diamater in degrees.</li>
+  <li> AZIMUTH : Azinuth in degres (use the option -toto)</li>
+  <li> ALTITUDE : Altitude above the horizon in degres (use the option
+-toto)</li>
+  <li> HA : Hour angle in degres (use the option -topo)</li>
+  <li>APPDIAMEQU : equatorial apparent diametre in &nbsp;degrees</li>
+  <li>APPDIAMPOL : polar apparent diametre in &nbsp;degrees</li>
+  <li>LONGI : longitude of the central medidian in the system I</li>
+  <li>LONGII :&nbsp;longitude of the central medidian in the system I</li>
+  <li>LONGIII :&nbsp;longitude of the central medidian in the system I</li>
+  <li>LATI : planetocentric latitude of the center</li>
+  <li>POSNORTH : position angle of the north pole of the planet</li>
+  <li>POSSUN : position angle of the bright limb of the planet</li>
+  <li> LONGI_SUN : Longitude of Sun in the system I on a map of the
+planet.</li>
+  <li> LATI_SUN : Latitude&nbsp;of Sun on a map of the planet.</li>
+</ul>
+N.B. Words that defines Format can be written uppercase or lowercase
+without incidence.
+<p>Type ListFormat allows to write a list of parameters of type Format.
+For example, to output the name, date and magnitude of an object, one
+writes : </p>
+<p>{ OBJENAME YEAR MONTH DAY MAG } </p>
+<h3> <a name="constraint"></a>2.1.7. Type option -constraint</h3>
+Type -constraint is dedicaced to options. It allows to exclude objects
+out acceptable limits. Two syntaxes can be employed :
+<ul>
+  <li> -contrainst&gt; Value : to exclude every object which has a
+value lower than the Value.</li>
+  <li> -contrainst&lt; Value : to exclude every object which has a
+value upper than the Value.</li>
+</ul>
+The following words can be used as constraints :
+<ul>
+  <li> dec : for the declination</li>
+  <li> elong : for the Sun elongation</li>
+  <li> moonelong : for the elongation against the Moon.</li>
+  <li> delta : for an object-Earth distance.</li>
+  <li> r : for an object-Sun distance.</li>
+  <li> mag : for a magnitude</li>
+  <li> altitude : for an altitude above the horizon</li>
+  <li> azimuth : for an azimuth</li>
+  <li> ha : for an hour angle.</li>
+  <li> magr : for a R magnitude</li>
+  <li> magb : for a B magnitude</li>
+</ul>
+N.B. Words that defines Options and their arguments can be written
+uppercase or lowercase without incidence.
+<p>Note : concerning options azimuth et ha, the meaning of &gt; et &lt;
+differs slightly. -ha&lt; 15 means to keep every object which have a
+hour angle value lower than 15 degrees from the meridian. Same thing
+for azimuth. </p>
+<p>For example, one wichs to keep only objects brighter than mag 12 but
+fainter than mag 10, having declinations upper to -15 degres, an
+altutide upper than 30 degrees. One writes : </p>
+<p>-mag&lt; 12 -mag&gt; 10 -dec&gt; -15 -altitude&gt; 30 </p>
+<h2> 2.2. Tcl extension functions of MC</h2>
+Here we explain how to use the MC functions in the Tcl interpreter.
+<h3> 2.2.1. Ephemeris</h3>
+Le function which generates ephemeris is called mc_ephem.
+<p><a name="mc_ephem"></a><b>mc_ephem <a href="#object">ListObjects</a>
+?<a href="#date">ListDates_UTC</a>? ?<a href="#format">ListFormat</a>? -<a
+ href="#constraint">constraint Value</a> -<a href="#home">topo Home</a></b><b>
+?-equinox Date|apparent? ?-tt-utc seconds?</b> </p>
+<p>By default, ListDate=NOW and ListFormat={ OBJENAME RA DEC}. The
+output equinox is J2000 by default but can be changed using -equinox.
+Output coordinates are in the apparent frame if using option -equinox
+apparent.<br>
+<br>
+Be carefull, dates must be entered in UTC and will be converted into
+terrestrial time (TT) automatically if the option -tt-tu is not used.<br>
+</p>
+<p>It returns a list. Each element contains data defined by ListFormat.
+The last element of the list is different. It contains some
+informations
+about the computation. Star catalogs are not taken into account.
+Options
+-contrainst, magr and magb are not taken into account. </p>
+<p>In the peculiar cases of objects of type astero&iuml;ds from the
+Bowell ou MPC database, their are two extra options : </p>
+<ul>
+  <li> -numb 0 : to not compute numbered astero&iuml;ds.</li>
+  <li> -prov 0 : to not compute provisional designated astero&iuml;ds.</li>
+</ul>
+Examples :
+<ul>
+  <li> <b><tt><font size="+1">mc_ephem *</font></tt></b></li>
+  <br>
+Compute the geocentric position of the nine planets of the solar
+system, plus the Sun and the Moon, for the present instant. <br>
+&nbsp; <li> <b><tt><font size="+1">mc_ephem * {{2000 4 13}} {OBJENAME
+RAH RAM.M DECD DECM.M}</font></tt></b></li>
+  <br>
+Compute the geocentric position of the nine planets of the solar
+system, plus the Sun and the Moon, for the 13th April 2000 at 0h UT.
+It returns the following list :
+  <p>{Sun 1 26.51470203 +9 4.75296865 } {Moon 8 59.20600127 +18
+12.25042233
+} {Mercury 0 4.04371737 -2 21.69687295 } {Venus 0 30.60449346 +1
+39.94498600 } {Mars 2 50.80720143 +16 35.91445832 } {Jupiter 2
+39.11224733 +14 33.64514056 } {Saturn 3 0.23361403 +14 56.34185673 }
+{Uranus 21 30.94094013 -15 25.37372123 } {Neptune 20 34.89529996 -18
+27.53202026 } {Pluto 16 50.73396726 -11 8.99983823 } {Ok {J2000.0
+coordinates} 10}&nbsp; </p>
+  <li> <b><tt><font size="+1">mc_ephem {Sun Moon} [list {1999 8 11 10
+26} ] -topo {GPS 2 E 48.5 125</font></tt></b><b><tt><font size="+1">}</font></tt></b></li>
+  <br>
+Compute the topocentric position of the Sun and the Moon, for the 11th
+August 1999 at 10h26 UTC. The location is defined by its geographic
+coordinates (longitude 2 degrees eastern from Greenwich, latitude 48.5
+degrees in the northern hemisphere and an altitude of 125 meters). It
+returns the following list :.
+  <p>{Sun&nbsp;&nbsp; 140.760916&nbsp;&nbsp;&nbsp; 15.333936 }
+{Moon&nbsp;&nbsp; 140.792685&nbsp;&nbsp;&nbsp; 15.342969 } {Ok {J2000.0
+coordinates} 2}&nbsp;<br>
+&nbsp; </p>
+  <li> <b><tt><font size="+1">mc_ephem {* Bowellfile astorb.dat} now
+{OBJENAME RA DEC MAG} -ha&lt; 45 -dec&gt; -15 -dec&lt; 40 -mag&lt; 17
+-moonelong&gt; 30 -topo {MPCSTATION 148 stations.txt}</font></tt></b></li>
+  <br>
+Compute the topocentric position, for the IAU station&nbsp; number 148,
+of every astero&iuml;d from the Bowell database, brighter than
+magnitude 17, located at hour angles lower than 45 degrees from the
+meridan, between declinations -14 and +40 degrees, and with an
+elongation upper than 30 degrees from the Moon.<br>
+  <br>
+  <li> <b><tt><font size="+1">set date 2011-03-18T00:00:00<br>
+set tt_minus_utc_sec [expr ([mc_date2tt $date]-[mc_date2jd
+$date])*86400]<br>
+set res [lindex [mc_ephem sun $date {ra dec} -tt-utc $tt_minus_utc_sec]
+0 ]<br>
+set ra [mc_angle2hms [lindex $res 0]]<br>
+set dec [mc_angle2dms [lindex $res 1] 90]<br>
+::console::affiche_resultat "$date $ra $dec\n"<br>
+    </font></tt></b><br>
+Compute Sun coordinates at a date defined in TT.<br>
+    <b><tt><font size="+1"></font></tt></b></li>
+</ul>
+In order to compute the ephemeris of an object for many dates, it is
+usefull to generate the ListDates from the function <a
+ href="#mc_date2listdates">mc_date2listdates</a>.<br>
+<br>
+In the special case of the Moon, one can calculate the libration
+parameters of the physical observation.<br>
+<br>
+For Sun, Mercury, Venus, Mars, Jupiter, Saturn, Uranus and Neptune,
+ephemeris are calculated from the VSOP87 theory troncated to terms
+giving
+accuracy better than 2 arcsec.<br>
+<br>
+<b>mc_libration&nbsp;<a href="#date">Dates</a> ?<a href="#home">Home</a></b><b>?</b>
+<p>Compute the geocentric parameters of libration (or topocentric ones
+if Home is specified).A 6 element list is returned : <br>
+</p>
+<blockquote>
+  <p>selenographic longitude of center (Earth at z&eacute;nith).<br>
+selenographic latitude of center (Earth at z&eacute;nith).<br>
+position angle of the Moon rotation axis (polar axis)<br>
+selenographic longitude of sun at zenith.<br>
+selenographic latitude of sun at zenith.<br>
+selenographic colongitude of sun at zenith.<br>
+  </p>
+</blockquote>
+Note that selengraphic longitudes are positives in the western
+direction (towards Mare Crisium).<br>
+<h3> 2.2.2. Objects in a field</h3>
+mc_readcat returns a list of objects in the field of a CCD image. Its
+syntax is :
+<p><b>mc_readcat <a href="#field">Field</a> <a href="#object">ListObjects</a>
+Output -<a href="#constraint">constraint Value</a> -objmax Value -<a
+ href="#date">date Date</a> -<a href="#home">topo Home</a></b> </p>
+<p>The mandatory parameter Output indicates how to print the output
+datas : a Tcl list or a file : </p>
+<ul>
+  <li> {FILE Filename} : That list of two elements begins with the word
+FILE and the second word is the fille name of the texte file for the
+output datas.</li>
+  <li> LIST : To obtain output datas in a returned Tcl list.</li>
+</ul>
+The option -objmax allow to limit the number of objects in the output
+datas. By defualt, its value is 1000.
+<p>The only options -contrainst, magb are magv can be used. </p>
+<p>Option -date allows to define a date for the case of computation of
+planetary positions (NOW by default). </p>
+<p>Option -topo allows to define an Earth location for the case of
+computation of planetary positions (geocentric by default). </p>
+<p>The output format is : {RA DEC MAGB MAGR X Y OBJENAME}. Le field
+OBJENAME is written only for planets. The last element of the list
+differ from the others. It contains some informations about the
+computation. </p>
+<p>Examples : </p>
+<ul>
+  <li> <b><tt><font size="+1">mc_readcat { OPTIC NAXIS1 768 NAXIS2 512
+FOCLEN 2.5 PIXSIZE1 9e-6 PIXSIZE2 9e-6 CROTA2 0 RA 180 DEC 15 } {*
+TYCHOMICROCAT f:\\} {LIST}</font></tt></b></li>
+  <br>
+Compute the projection of every Tycho stars that are in the field
+defined by the FITS keywords. <br>
+&nbsp; <li> <b><tt><font size="+1">mc_readcat { BUFFER 1 } {*
+BOWELLFILE astorb.dat} {LIST} -magb&lt; 18 -magr&lt; 18</font></tt></b></li>
+  <br>
+Compute the projection of every astero&iuml;ds, from the Bowell
+database, that are in the field defined by the FITS keywords of the
+buffer
+1 image. Only astero&iuml;ds brighter than magnitude 18 are outputed.
+</ul>
+<h3> 2.2.3. Angle convertions</h3>
+<b>mc_angle2deg</b> <a href="#angle">Angle</a> : returns angle
+formatted floating point degrees. <br>
+<b>mc_angle2rad</b> <a href="#angle">Angle</a> : returns angle
+formatted floating point radians. <br>
+<b>mc_angle2dms</b> <a href="#angle">Angle</a> ?limit? ?nozero|zero?
+?subsecdigits? ?auto|+? ?list|string? : return the angle as arc
+degrees,minute and second. The result is returned between 0 and 360
+degrees. Option
+limit (=360 by default) allow to limit&nbsp; the range of the angle. If
+the angle is upper than the limit then it is returned negative. For a
+declination, one must use limit as 90. Option nozero|zero format the
+output
+with leading zeroes before digits (=nozero by default). Option
+subsecdigits
+allow to return a number of digits after seconds. Option auto|+ allow
+to
+display the signe before the result (=auto by default hence no sign
+appear
+if the result is positive). Option list|string allow to format the
+output
+as a list (three elements {12 56 34.234} ex.) or as simple string
+(12d56m34s234 for exemple). <br>
+<b>mc_angle2hms</b> <a href="#angle">Angle</a> ?limit? ?nozero|zero?
+?subsecdigits? ?auto|+? ?list|string? : return the angle as
+hours,minute and second of time. The result is returned between 0 and
+24 hours. Option limit (=360 by default) allow to limit&nbsp; the range
+of the angle (limit must expressed in degrees). If the angle is upper
+than the limit then
+it is returned negative. Option nozero|zero format the output with
+leading zeroes before digits (=nozero by default). Option subsecdigits
+allow to return a number of digits after seconds. Option auto|+ allow
+to display
+the signe before the result (=auto by default hence no sign appear if
+the
+result is positive). Option list|string allow to format the output as a
+list (three elements {12 56 34.234} ex.) or as simple string
+(12h56m34s234
+for exemple). <br>
+<b>mc_angle2lx200dec</b> <a href="#angle">Angle</a> ?-format
+long|short? : returns angle formatted as a string for the function Sd
+of the LX200 protocol. Option "-format" allows to choose the output
+result as the long or short writting as it is described in the LX200
+protocol. <br>
+<b>mc_angle2lx200ra</b> <a href="#angle">Angle</a> ?-format
+long|short? : returns angle formatted as a string for the function Sr
+of the LX200 protocol. Option "-format" allows to choose the output
+result as the long or short writting as it is described in the LX200
+protocol. <br>
+<b>mc_anglesep</b> <a href="#angle">ListAngles</a> ?Units?: Returns
+angle distance and the position angle. ListAngles is composed by 4
+angles on the following order : Ra1 Dec1 Ra2 Dec2. The result is
+expressed in degrees by default. It can be expressed in redian if
+Unit=Radian. <br>
+<b>mc_angles2nexstar</b> <a href="#angle">Angle</a> <a href="#angle">Angle</a>
+?bits?: returns a string formatted for the functions of the Nexstar
+protocol. Bits=16 (default value) or 24.<br>
+<b>mc_nexstar2angles </b>Ultima2000_string : returns a list RA
+DEC (in degrees) from a string formatted by the Nexstar protocol.
+<p><b>mc_radec2altaz </b><a href="#angle">Angle_ra</a> <a
+ href="#angle">Angle_dec
+</a><a href="#home">Home</a><a href="#date">Date</a> : returns a list
+that
+contains four usefull angles used in the altaz coordinate system :
+Azimut,
+Altitude, Hour angle and Parallactic angle. <br>
+<b>mc_hadec2altaz </b><a href="#angle">Angle_ha</a> <a href="#angle">Angle_dec
+</a><a href="#home">Home</a><a href="#date">Date</a> : returns a list
+that contains four usefull angles used in the altaz coordinate system :
+Azimut, Altitude, Hour angle and Parallactic angle. <br>
+<b>mc_altaz2radec </b><a href="#angle">Angle_Azimuth</a> <a
+ href="#angle">Angle_Altitude </a><a href="#home">Home</a><a
+ href="#date">Date</a> : returns a list Ra,Dec from azimut and altitude
+<br>
+<b>mc_altaz2hadec </b><a href="#angle">Angle_Azimuth</a> <a
+ href="#angle">Angle_Altitud e</a><a href="#home">Home</a><a
+ href="#date">Date</a> : returns a list Hour Angle,Dec from azimut and
+altitude <br>
+<b>mc_refraction</b>&nbsp; altitude out2in|in2out ?temperature_K?
+?pressure_Pa? ?wavelength_nm humidity_percent Home? : compute the
+correction (degrees) due to the atmospheric
+refraction, to correct the altitude (above horizon). out2in to compute
+the corrction from the out of atmosph&egrave;re (add the result) and
+in2out for the inverse case (substract the result). Temperature is
+expressed in
+Kelvin (283K by default) and pressure is expressed in Pascal (101000Pa
+by
+default). If the three parameters wavelength_nm humidity_percent Home
+are given then the refraction is computed with a better accuracy.<br>
+<br>
+<b>mc_radec2altaz </b><a
+ href="file:///C:/d/audela-1.4.0/audela/src/audela/libmc/html/mcusr_us.htm#angle">Angle_ra</a>
+<a
+ href="file:///C:/d/audela-1.4.0/audela/src/audela/libmc/html/mcusr_us.htm#angle">Angle_dec</a><a
+ href="file:///C:/d/audela-1.4.0/audela/src/audela/libmc/html/mcusr_us.htm#home">
+Home</a><a
+ href="file:///C:/d/audela-1.4.0/audela/src/audela/libmc/html/mcusr_us.htm#date">Date</a>
+: returns a list that contains four usefull angles used in the altalt
+coordinate system : Roll, Pitch, Hour angle and Parallactic angle. <br>
+<b>mc_hadec2altaz </b><a
+ href="file:///C:/d/audela-1.4.0/audela/src/audela/libmc/html/mcusr_us.htm#angle">Angle_ha</a>
+<a
+ href="file:///C:/d/audela-1.4.0/audela/src/audela/libmc/html/mcusr_us.htm#angle">Angle_dec
+</a><a
+ href="file:///C:/d/audela-1.4.0/audela/src/audela/libmc/html/mcusr_us.htm#home">Home</a><a
+ href="file:///C:/d/audela-1.4.0/audela/src/audela/libmc/html/mcusr_us.htm#date">Date</a>
+: returns a list that contains four usefull angles used in the altalt
+coordinate system :&nbsp;Roll, Pitch, Hour angle and Parallactic angle.
+<br>
+<b>mc_altaz2radec </b><a
+ href="file:///C:/d/audela-1.4.0/audela/src/audela/libmc/html/mcusr_us.htm#angle">Angle_Roll</a>
+<a
+ href="file:///C:/d/audela-1.4.0/audela/src/audela/libmc/html/mcusr_us.htm#angle">Angle_Pitch
+</a><a
+ href="file:///C:/d/audela-1.4.0/audela/src/audela/libmc/html/mcusr_us.htm#home">Home</a><a
+ href="file:///C:/d/audela-1.4.0/audela/src/audela/libmc/html/mcusr_us.htm#date">Date</a>
+: returns a list Ra,Dec from roll and pitch <br>
+<b>mc_altaz2hadec </b><a
+ href="file:///C:/d/audela-1.4.0/audela/src/audela/libmc/html/mcusr_us.htm#angle">Angle_Roll</a>
+<a
+ href="file:///C:/d/audela-1.4.0/audela/src/audela/libmc/html/mcusr_us.htm#angle">Angle_Pitch</a><a
+ href="file:///C:/d/audela-1.4.0/audela/src/audela/libmc/html/mcusr_us.htm#home">
+Home</a><a
+ href="file:///C:/d/audela-1.4.0/audela/src/audela/libmc/html/mcusr_us.htm#date">Date</a>
+: returns a list Hour Angle,Dec from roll and pitch <br>
+</p>
+<p><b>mc_anglescomp</b> <a href="#angle">Angle1</a> operand <a
+ href="#angle">Angle2</a> : performs a mathematical operation
+(+,-,*,/,modulo) for the two angles. </p>
+<p><b>mc_home2geosys</b> <a href="#home">Home</a> geosys1 geosys2
+?-height? : conversion of geodesic coordinates from a system (geosys1)
+to another one (geosys2). The knowed systems are ED50 and WGS84. The
+option -height allow to return a fourth parameter, the height above the
+reference ellipsoid.<br>
+<br>
+<b>mc_radec2galactic</b> <a href="#angle">Angles_RaDec</a> <a
+ href="#date">Date_Equinox</a> : transform the listAngles_RaDec at the
+equinox Date_Equinox to the galactic coordinates (type II).<br>
+<b>mc_galactic2radec</b> <a href="#angle">Angles_LonLat</a>&nbsp;<a
+ href="#date">Date_Equinox</a> : transform the listAngles_LonLat of the
+galactic coordinates (type II) to the RaDec coordinates at the equinox
+Date_Equinox.<b><br>
+mc_radec2ecliptic</b>&nbsp;<a href="#angle">Angles_RaDec</a> <a
+ href="#date">Date_Equinox</a> : transform the listAngles_RaDec at the
+equinox Date_Equinox to the ecliptic coordinates.<br>
+<b>mc_ecliptic2radec</b> <a href="#angle">Angles_LonLat</a>&nbsp;<a
+ href="#date">Date_Equinox</a> : transform the listAngles_LonLat of
+ecliptic coordinates to the RaDec coordinates at the equinox
+Date_Equinox.<br>
+<br>
+</p>
+<h3> 2.2.4. Date conversions</h3>
+<b>mc_date2jd</b> <a href="#date">Date</a> : returns the julian day
+from a type Date. <br>
+<b><a name="mc_date2tt"></a>mc_date2tt</b> <a href="#date">Date</a> :
+converts the date in terretrial time expressed in julian day. <br>
+<b>mc_date2ymdhms</b> <a href="#date">Date</a> : returns the gregorian
+calendar date (Yyyy Mm Dd Hh Mm Ss.sss) from a type Date <br>
+<b>mc_date2lst</b> <a href="#date">Date</a> <a href="#home">Home</a>
+: returns the local sideral time formatted Hh Mm Ss.sss from paraeter
+type Date and Home. <br>
+<a name="mc_date2listdates"></a><b>mc_date2listdates</b> <a
+ href="#date">Date</a> DateStep NbSteps : returns a list of ListDates
+from an initial Date increased NbSteps times the step DateStep (in
+days). <br>
+<b>mc_date2iso8601</b> <a href="#date">Date</a>: returns a date as a
+FITS header argument of DATE-OBS. <br>
+<b>mc_datescomp</b> <a href="#date">Date</a> Operand days : performs a
+mathematical operation from a type Date.<br>
+<b><a name="mc_tt2bary"></a>mc_tt2bary</b> <a href="#date">Date</a> <a
+ href="#angle">Angle_Ra</a> <a href="#angle">Angle_Dec</a> <a
+ href="#date">Equinox</a> ?<a href="#home">Home</a>? : returns the
+julian day corresponding to the arrival at the solar system barycenter,
+of an event observed on the Earth at a date expressed in terrestrial
+time.<br>
+<b><a name="mc_dates_ut2bary"></a>mc_dates_ut2bary</b> <a href="#date">ListDates_UT</a>
+<a href="#angle">Angle_Ra</a> <a href="#angle">Angle_Dec</a> <a
+ href="#date">Equinox</a> ?<a href="#home">Home</a>? : returns the
+julian days corresponding to the
+arrival at the solar system barycenter, of a series of events observed
+on
+the Earth at a date expressed in universal time UTC.<br>
+<p>Examples : </p>
+<ul>
+  <li> <b><tt><font size="+1">mc_date2ymdhms now</font></tt></b></li>
+  <br>
+Returns a list formatted as year, month, day, hour, minute, second :
+  <p>2000 2 11 12 51 56.999991 <br>
+&nbsp; </p>
+  <li> <b><tt><font size="+1">mc_date2jd {2000 2 11 12 51 56.999991}</font></tt></b></li>
+  <br>
+Returns the julian day :
+  <p>2451586.036076 <br>
+&nbsp; </p>
+  <li> <b><tt><font size="+1">mc_date2lst now {gps 20 e 45 130}</font></tt></b></li>
+  <br>
+Returns a list formatted hour, minute, second from the actaul time and
+a location :
+  <p>23 37 5.098954 <br>
+&nbsp; </p>
+  <li> <b><tt><font size="+1">mc_date2listdates now0 0.5 20</font></tt></b></li>
+  <br>
+Returns a list of Dates (in julian days). The first element of
+the returned list is the today date at 0h, and the following dates are
+increased by a step of 0.5 days. One compute 20 dates by this way :
+  <p>2451585.500000 2451586.000000 2451586.500000 2451587.000000
+2451587.500000 2451588.000000 2451588.500000 2451589.000000
+2451589.500000 2451590.000000 2451590.500000 2451591.000000
+2451591.500000 2451592.000000 2451592.500000 2451593.000000
+2451593.500000 2451594.000000 2451594.500000 2451595.000000 </p>
+  <p>That list is usefull to compute an ephemeris (cf. function <a
+ href="#mc_ephem">mc_ephem</a>). <br>
+&nbsp;</p>
+</ul>
+<h3> 2.2.5. Astrometry</h3>
+<b>mc_buf2field</b> Numbuffer : returns a ListField of optical
+parameters from the header FITSQ of the image staraged in the buffer
+Numbuffer. <br>
+<b>mc_xy2radec</b> x y <a href="#field">Field</a> : returns a list
+formatted {RA DEC}from the cartesian coordinates x et y. <br>
+<b>mc_radec2xy</b> ra dec <a href="#field">Field</a> : returns
+a list formatted {X Y}from the coordinates ra and dec. <br>
+<b>mc_precessradec</b> <a href="#angle">ListAngles</a> <a href="#date">Date_eq1Date_eq2</a>
+?<a href="#angle">Listangles_proper</a>? : returns an angle list in
+degrees (Ra and Dec) corrected by precession from coordinates Listangle
+formated {ra dec} with the equinox Date_eq1 towards equinox Date_eq2.
+One may add annual proper motions with Listangles_proper (list Date
+type). <br>
+<b>mc_nutationradec</b> <a href="#angle">ListAngles</a> <a
+ href="#date">Date</a> ?-reverse? : returns an angle list in degrees
+(Ra and Dec) corrected by nutation from coordinates Listangle formated
+{ra dec}. Option -reverse must be used to perfom the reverse
+computation.
+<br>
+<b>mc_aberrationradec </b>annual|diurnal|eterms <a href="#angle">ListAngles</a><a
+ href="#date">Date</a> ?<a href="#home">Home</a>? ?-reverse?: returns
+an angle list in degrees (Ra and Dec) corrected by aberration from
+coordinates Listangle formated {ra dec}. One can choice, annual
+aberration (annual), elliptical terms aberration (eterms) or diurnal
+aberration (diurnal). In this last case, one must use the homeplace
+(Home). Option -reverse must be used to perfom the reverse computation.<br>
+<b>mc_parallaxradec&nbsp;</b><a
+ href="file:///C:/d/audela-1.4.0/audela/src/audela/libmc/html/mcusr_us.htm#angle">ListAngles</a><a
+ href="file:///C:/d/audela-1.4.0/audela/src/audela/libmc/html/mcusr_us.htm#angle">
+</a><a
+ href="file:///C:/d/audela-1.4.0/audela/src/audela/libmc/html/mcusr_us.htm#date">Date</a>
+PLX_mas: returns an angle list in degrees (Ra and Dec) corrected by
+annual parallax from coordinates Listangle formated {ra dec}. PLX is
+the parallax angle given in milli arcseconds. <br>
+<p><b>mc_listradec</b> <a href="#field">Field</a> Mosaic ComPix :
+generate a list of {X Y RA DEC} from a field of type Field, making a
+mosa&iuml;c defined by the parameter Mosaic with an overlap of ComPix
+pixels between each field. The mosa&iuml;c can be generated by
+different ways : </p>
+<ul>
+  <li> Mosaic = {FREE dx1 dy1 dx2 dy2 ...}: The first field is computed
+by a shift of dx1,dy1 pixels from the field defined by Field. The
+second field is computed by a shift of dx2,dy2 pixels from the first
+field
+(always refered to the previous field). The ComPix parameters has no
+effect.</li>
+  <li> Mosaic = {NAXIS1 Nbfields} : The first field is defined
+by Field. The following fields are shifted against the increased X axis
+if Nbfields is positive (respectively against the decreased X axis if
+NbFields is negative). There are NbFields field computed.</li>
+  <li> Mosaic = {NAXIS2 Nbfields} : The first field is defined
+by Field. The following fields are shifted against the increased Y axis
+if Nbfields is positive (respectively against the decreased Y axis if
+NbFields is negative). There are NbFields field computed.</li>
+  <li> Mosaic = {ROLL Nbfields Parity} : The first field is defined by
+Field. The following fields are shifted as a spiral around the Field.
+There will be NbFields fields. The order of the fields is :</li>
+</ul>
+<center>
+<table border="1" cols="3" width="30">
+  <tbody>
+    <tr>
+      <td>9</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>6</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<blockquote>If Parity=0 then every fields will be computed (default
+value). <br>
+If Parity=1 then only the odd fields will be computed <br>
+If Parity=2 then only the even fields will be computed</blockquote>
+<ul>
+  <li> Mosaic = {RANDOM Nbfields} :&nbsp; The first field is defined by
+Field. The following fields are shifted randomly in a square of Compix
+pixels by side centered on the Field position. There are NbFields field
+computed.</li>
+</ul>
+Examples :
+<ul>
+  <li> <b><tt><font size="+1">mc_listradec {optic naxis1 256 naxis2
+256 foclen 16 pixsize1 40e-6 pixsize2 40e-6 crota2 0 ra 95.345 dec
+67.97} {roll 10} 15</font></tt></b></li>
+  <br>
+Compute 10 fields that follow a spiral around the coordinates ra=95.345
+degrees and dec 67.97=degrees. Field are overlapped by 15 pixels. Each
+image will be taken by a 256x256 matrix with pixels of 40 microns size
+and a focal length of 16 meters.
+  <p>{95.345000 67.970000 128.000000 128.000000} {95.345000 68.004521
+128.000000 369.000000} {95.252830 68.004495 369.000000 369.000000}
+{95.252967 67.969974 369.000000 128.000000} {95.253104 67.935454
+369.000000 -113.000000} {95.345000 67.935479 128.000000 -113.000000}
+{95.436896 67.935454 -113.000000 -113.000000} {95.437033 67.969974
+-113.000000 128.000000} {95.437170 68.004495 -113.000000 369.000000}
+{95.437307 68.039016 -113.000000 610.000000} </p>
+  <p>Each element contains the right ascension (in degrees), the
+declination (in degrees) and the x,y cartesian coordinates of the
+center of the field in the coordinates system taken from the first
+field. <br>
+&nbsp; </p>
+  <li> <b><tt><font size="+1">mc_xy2radec 13.45 115.78 {optic naxis1
+256 naxis2 256 foclen 16 pixsize1 40e-6 pixsize2 40e-6 crota2 0 ra
+95.345 dec 67.97}</font></tt></b></li>
+  <br>
+Compute the ra,dec coordinates correponding to the cartesian
+coordinates x=13.45 y=115.78 on an image defined by its optical
+parameters.
+  <p>95.388741 67.968244 </p>
+  <p>Coordinates ra,dec are expressed in degrees. <br>
+&nbsp; </p>
+  <li> <b><tt><font size="+1">mc_precessradec {2h31m48s704
+89d15m50s72} J2000 J2050 {0h0m0s19877 -0&deg;0'0.0152"}</font></tt></b></li>
+  <br>
+Compute coordinates ra,dec for equinox J2050, for a star (Polaris for
+that exemple) with coordinates 2h31m48s704 89d15m50s72 to the equinox
+J2000.0 which have a proper motion of 0.19877s et -0.0152" per year.
+  <p>57.068444 89.454271 <br>
+&nbsp;</p>
+</ul>
+<h3> 2.2.6. Home conversions</h3>
+<b>mc_home2gps</b> <a href="#home">Home</a> : returns a list of GPS
+format from type Home list. <br>
+<b>mc_home2mpc</b> <a href="#home">Home</a> : returns a list of MPC
+format from type Home list.<br>
+<b><a name="mc_homecep"></a>mc_homecep</b> <a href="mcusr_fr.htm#home">Home</a>
+xp_arcsec yp_arcsec :&nbsp;returns a list of GPS format from type Home
+list which is corrected by the true pole (see <a
+ href="http://www.iers.org/nn_11252/IERS/EN/DataProducts/EarthOrientationData/__Function/generischeTabelle__ID6.html">IERS
+bulletins</a>)
+<p>example : </p>
+<ul>
+  <li> <b><tt><font size="+1">mc_home2gps {MPC 2.0375 0.72481 0.68867}</font></tt></b></li>
+  <br>
+Transformation MPC-&gt;GPS does not allow to compute the altitude.
+  <p>GPS 2.037500 E 43.727580 0.000000</p>
+</ul>
+<h3>2.2.7. Radial velocities corrections</h3>
+<b>mc_baryvel</b> <a href="#date">Date</a> <a href="#angle">Angle_Ra</a>
+<a href="#angle">Angle_Dec</a> <a href="#date">Equinox</a> ?<a
+ href="#home">Home</a>? : return the heliocentric and barycventric
+corrections to add
+to the radial velocity measurement of an object at coordinates Angle_Ra
+Angle_Dec at equinox Equinox. The result is retruned as a six element
+list. The first element is the heliocentric correction (km/s), the
+second element are the h&eacute;liocentric xyz components (position AU
+and velocity km/s), the third element is the h&eacute;liocentric date.
+The fourth element is the berycentric correction (km/s), the fith
+element are the h&eacute;liocentric xyz components (position AU and
+velocity km/s),
+the sixth element is the h&eacute;liocentric date. The diurnal
+correction
+is added if Home is used.<br>
+<br>
+<b>mc_lsr</b> <a href="#angle">AnglesRaDec</a> <a href="#date">Equinox</a>
+reference : Return the correction to add to
+the radial velocity measurement of an object at coordinates Angle_Ra
+Angle_Dec
+at equinox Equinox, for the following referencial systems :<br>
+<ul>
+  <li>KLSR : Kinetic&nbsp;Local Standard of Rest (=Conventional Local
+Standard of Rest) based on average velocity of stars in the Solar
+neighborhood. Gordon (1975) "Computer Programs for Radio Astronomy," by
+M.A.Gordon,
+page 281, in " Methods of Experimental Physics: Volume 12:
+Astrophysics,
+Part C: <br>
+Radio Observations", ed. M.L.Meeks, Academic Press 1976.</li>
+  <li>DLSR : Dynamical &nbsp;Local Standard of Rest. Solar peculiar
+velocity with respect to a frame in circular motion about the galactic
+center. Delhaye (1965) pages 73-74, in&nbsp; "Stars and Stellar
+Systems, Volume 5: Galactic Structure", ed. Blaauw and Schmidt, Univ.
+of Chicago Press (1965).</li>
+  <li>GALC :&nbsp; Galactocentric.&nbsp; Dynamical center of the
+galaxy. Kerr and Lynden-Bell (1986) Mon.Not.Roy.Astron.Soc. vol.221,
+p.1023 (1986)</li>
+  <li>LOG :&nbsp; Local Group. Mean motion of Local Group Galaxies.
+Yahil et al. 1977 Astrophys.J. vol.217,&nbsp; p.903, November 1, 1977.</li>
+  <li>COSM :&nbsp; Cosmic Microwave Background.&nbsp; COBE measurements
+of dipole anisotropy. Kogut et al. 1993 Astrophys.J. vol.419,&nbsp;
+p.1, December 10, 1993.</li>
+</ul>
+<b><a name="mc_cosmology_calculator"></a>mc_cosmology_calculator</b>
+redshift ?Hubble_constant_km/s/Mpc?
+?Omega_matter? ?Omega_vecuum? : Return an information list concerning
+data computed using cosmological theories relative to the input
+redshift value. The arguments Hubble_constant, Omega_matter et
+Omega_vecuum are taken 71, 0.27 et 0.73 by default.
+<h3>2.2.8. Utilitaires de cartographie de surfaces plan&eacute;taires</h3>
+<b><a name="mc_xy2lonlat"></a>mc_xy2lonlat</b> lc bc P f xc yc req x y
+?ls bs power? : returns the planetographic longitude and latitude of
+a point of coordinates (x,y) mesured on an image. The input parameters
+are:<br>
+<ul>
+  <li>lc : center longitude (Angle)&nbsp;&lt; LONGI&gt;</li>
+  <li>bc : center latitude (Angle) &lt;LATI&gt;</li>
+  <li>p : position angle of the north pole (Angle)&nbsp;&lt;
+POSNORTH&gt;</li>
+  <li>merir : central meridian (Angle)</li>
+  <li>f : 1 - ratio of the polar and equatorial radius of the
+planet&nbsp;&lt; 1 - APPDIAMPOL / APPDIAMEQU&gt;</li>
+  <li>xc : X center position of the planet on the image (pixel)</li>
+  <li>yc : Y center position of the planet on the image (pixel)</li>
+  <li>rc : equatorial radius of the planet on the image (pixel)</li>
+  <li>x&nbsp;: x position on the image (pixels)</li>
+  <li>y&nbsp;: y position on the image (pixels)</li>
+  <li>ls : sun longitude in planetographic coordinates (Angle)
+[optional] &lt;LONGI_SUN&gt;</li>
+  <li>bs : sun latitude in planetographic coordinates (Angle)
+[optional] &lt;LATI_SUN&gt;</li>
+  <li>power : power of a cosinus law to predict berder extinction
+[optional]</li>
+  <li>lon : longitude on a planetographic map (Angle)</li>
+  <li>lat : longitude on a planetographic map (Angle)</li>
+</ul>
+In &lt;&gt;, are indicated the options of the function mc_ephem which
+allow to compute the corresponding values. A list of three elements are
+in the outputs:<br>
+<ul>
+  <li>lon : longitude on a planetographic map (Angle)</li>
+  <li>lat : longitude on a planetographic map (Angle)</li>
+  <li>visibility : lightning attenuation (0 when dark to 1 for
+brightenest and -1 if the region if back). Visibility value is valid
+only if optional parameters are inputed.<br>
+  </li>
+</ul>
+<b><a name="mc_lonlat2xy"></a>mc_lonlat2xy</b> lc bc P f xc yc req lon
+lat ?ls bs power? :&nbsp;returns the coordinates (x,y) measured on
+an image from the planetographic longitude and latitude. The input
+parameters are:<br>
+<ul>
+  <li>lc : center longitude (Angle)&nbsp;&lt; LONGI&gt;</li>
+  <li>bc : center latitude (Angle) &lt;LATI&gt;</li>
+  <li>p : position angle of the north pole (Angle)&nbsp;&lt;
+POSNORTH&gt;</li>
+  <li>merir : central meridian (Angle)</li>
+  <li>f : 1 - ratio of the polar and equatorial radius of the
+planet&nbsp;&lt; 1 - APPDIAMPOL / APPDIAMEQU&gt;</li>
+  <li>xc : X center position of the planet on the image (pixel)</li>
+  <li>yc : Y center position of the planet on the image (pixel)</li>
+  <li>rc : equatorial radius of the planet on the image (pixel)</li>
+  <li>lon : longitude on a planetographic map (Angle)</li>
+  <li>lat : longitude on a planetographic map (Angle)</li>
+  <li>ls : sun longitude in planetographic coordinates (Angle)
+[optional] &lt;LONGI_SUN&gt;</li>
+  <li>bs : sun latitude in planetographic coordinates (Angle)
+[optional] &lt;LATI_SUN&gt;</li>
+  <li>power : power of a cosinus law to predict berder extinction
+[optional]</li>
+  <li>lon : longitude on a planetographic map (Angle)</li>
+  <li>lat : longitude on a planetographic map (Angle)</li>
+</ul>
+In &lt;&gt;, are indicated the options of the function mc_ephem which
+allow to compute the corresponding values. A list of three elements are
+in the outputs:<br>
+<ul>
+  <li>x&nbsp;: x position on the image (pixels)</li>
+  <li>y&nbsp;: y position on the image (pixels)</li>
+  <li>visibility : lightning attenuation (0 when dark to 1 for
+brightenest and -1 if the region if back). Visibility value is valid
+only if optional parameters are inputed.</li>
+</ul>
+example : to compute the coordinates (lon,lat) of the point
+(x,y)=(117,146) on an image of the Saturn planet. On the image, the
+planet is centered at the point (120,135) and has an equatorial
+diameter of 50 pixels. The image is taken on 1st mars 2003 at
+6h34min12s UT. The following Tcl functions allow to compute (lon,lat) :<br>
+<br>
+set res [lindex [mc_ephem saturn 2003-03-01T06:34:12 \<br>
+&nbsp; &nbsp;{LONGI LATI LONGI_SUN LATI_SUN POSNORTH APPDIAMPOL
+APPDIAMEQU}] 0]<br>
+set longi [lindex $res 0]<br>
+set lati [lindex $res 1]<br>
+set longi_sun [lindex $res 2]<br>
+set lati_sun [lindex $res 3]<br>
+set posnorth [lindex $res 4]<br>
+set appdiampol [lindex $res 5]<br>
+set appdiamequ [lindex $res 6]<br>
+set f [expr 1.-$appdiampol/$appdiamequ]<br>
+set power 0.1<br>
+<br>
+set x 117<br>
+set y 146<br>
+set res [mc_xy2lonlat $longi $lati $posnorth $f 120 135 50 $x $y
+$longi_sun $lati_sun $power]<br>
+set lon [lindex $res 0]<br>
+set lat [lindex $res 1]<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

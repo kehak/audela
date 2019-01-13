@@ -1,0 +1,217 @@
+
+set visuNo 1
+
+set home {GPS 5.7157 E 43.9319 633.9}
+set pressure 101325
+set temperature 290
+set symbols  { IH ID NP CH ME MA FO HF DAF TF }
+set coefficients [list -5.38167630694 0.566423070348 -0.346039329249 -2.10939774003 -1.38154109773 -0.882510007747 -0.0731565653905 1.08326085084 -1.51336285238 2.24002431262 ]
+
+###set symbols  { IH ID NP CH ME MA }
+###set coefficients [list -5.38167630694 0.566423070348 -0.346039329249 -2.10939774003 -1.38154109773 -0.882510007747  ]
+
+#-------------------------------------------------------------------------------
+#  modpoi_passage cat2tel avec modele nul et date J2000
+#-------------------------------------------------------------------------------
+test tool_modpoimc_hip2tel_nul {hip2tel model_only nul refraction=0} {AUDACE} {
+
+   set dateTu [list 2009 11 14 20 00 00]
+   set hip    [list 1 0 285.0 40.0 $dateTu 0 0 0 0]
+   set nulCoeff [list 0 0 0 0 0 0 0 0 0 0]
+
+   set coords [mc_hip2tel $hip $dateTu $home $pressure $temperature $symbols $nulCoeff -model_only 1 -refraction 0]
+
+   set ra_tel [mc_angle2hms [lindex $coords 10] 360 zero 2 auto string]
+   set dec_tel [mc_angle2dms [lindex $coords 11] 90 zero 2 + string]
+   set result [list $ra_tel $dec_tel]
+   return  $result
+} "19h00m00s00 +40d00m00s00"
+
+#-------------------------------------------------------------------------------
+#  modpoi_passage tel2cat avec modele nul
+#-------------------------------------------------------------------------------
+test tool_modpoimc_tel2cat_nul {tel2cat model only nul refraction=0} {AUDACE} {
+
+   # Usage: mc_tel2cat Coords TypeObs Date_UTC Home Pressure Temperature ?Type List_ModelSymbols List_ModelValues?
+   set dateTu [list 2009 11 14 20 00 00]
+   set radec  [list 19h00m00s00 +40d00m00s00]
+   set nulCoeff [list 0 0 0 0 0 0 0 0 0 0]
+
+   set coords [mc_tel2cat $radec EQUATORIAL $dateTu $home $pressure $temperature $symbols $nulCoeff -model_only 1  -refraction 0]
+
+   set ra_cat [mc_angle2hms [lindex $coords 0] 360 zero 0 auto string]
+   set dec_cat [mc_angle2dms [lindex $coords 1] 90 zero 0 + string]
+
+   return  [list $ra_cat $dec_cat]
+} "19h00m00s +40d00m00s"
+
+#-------------------------------------------------------------------------------
+#  hip2tel et cat2tel model nul now
+#-------------------------------------------------------------------------------
+test tool_modpoimc_hip2tel_nul_now {hip2tel et cat2tel model nul now} {AUDACE} {
+
+   set dateTu "now"
+   set hip    [list 1 0 285.0 40.0 J2000 0 0 0 0]
+   set nulCoeff [list 0 0 0 0 0 0 0 0 0 0]
+
+   # Usage: mc_tel2cat Coords TypeObs Date_UTC Home Pressure Temperature ?Type List_ModelSymbols List_ModelValues?
+   set coords [mc_hip2tel $hip $dateTu $home $pressure $temperature $symbols $nulCoeff  ]
+
+   set ra_tel [mc_angle2hms [lindex $coords 0] 360 zero 2 auto string]
+   set dec_tel [mc_angle2dms [lindex $coords 1] 90 zero 2 + string]
+
+   set coords [mc_tel2cat [list $ra_tel $dec_tel] EQUATORIAL $dateTu $home $pressure $temperature $symbols $nulCoeff ]
+   set ra_cat [mc_angle2hms [lindex $coords 0] 360 zero 0 auto string]
+   set dec_cat [mc_angle2dms [lindex $coords 1] 90 zero 0 + string]
+   return  [list $ra_cat $dec_cat]
+} "19h00m00s +40d00m00s"
+
+#-------------------------------------------------------------------------------
+#  compute_coeff null
+#-------------------------------------------------------------------------------
+test tool_modpoimc_compute_coeff_nul_now {mc_compute_matrix_modpoi model nul} {AUDACE} {
+
+   ###set starList { {262.769798757 26.1161349282 0.060 0.015} {264.917175225 46.0048037403 -0.031 0.010} {229.381522045 -9.39537562448 -0.141 -0.011} {237.921754574 20.9540062566 -0.058 0.010} {240.770230908 46.0071960949 0.034 -0.048} {207.495454218 -34.4222204842 0.020 -0.033} {201.437032453 -11.1955444943 0.028 -0.016} {207.49653863 15.7521866891 -0.045 0.017} {205.288772602 54.6247457185 -0.076 -0.003} }
+   ###set starList { {262.769798757 26.1161349282 0.060 0.015} {264.917175225 46.0048037403 -0.031 0.010} {229.381522045 -9.39537562448 -0.001 -0.011} {237.921754574 20.9540062566 -0.058 0.010} {240.770230908 46.0071960949 0.034 -0.048} {207.495454218 -34.4222204842 0.020 -0.033} {201.437032453 -11.1955444943 0.028 -0.016} {207.49653863 15.7521866891 -0.045 0.017} {205.288772602 54.6247457185 -0.076 -0.003} }
+   set starList { {262.769798757 26.1161349282 0.0 0.0 } {264.917175225 46.0048037403 0.0 0.0 } {229.381522045 -9.39537562448  0.0 0.0 } {237.921754574 20.9540062566  0.0 0.0 } {240.770230908 46.0071960949  0.0 0.0 } {207.495454218 -34.4222204842  0.0 0.0 } {201.437032453 -11.1955444943  0.0 0.0 } {207.49653863 15.7521866891  0.0 0.0 } {205.288772602 54.6247457185  0.0 0.0 } }
+
+   set matrices [mc_compute_matrix_modpoi $starList EQUATORIAL $home $symbols { 0 1 2 3} ]
+   set matX [lindex $matrices 0]
+   set vecY [lindex $matrices 1]
+   set vecW [lindex $matrices 2]
+
+   #--- calcul des coefficients du modele
+   set result [gsl_mfitmultilin $vecY $matX $vecW]
+
+   #--- calcul des coefficients du modele
+   set nulCoefficients [lindex $result 0]
+   set nulChisquare [lindex $result 1]
+   set nulCovar [lindex $result 2]
+
+   return $nulCoefficients
+
+} " 0 0 0 0 0 0 0 0 0 0 "
+
+#-------------------------------------------------------------------------------
+#  modpoi_passage cat2tel
+#-------------------------------------------------------------------------------
+test tool_modpoimc_hip2tel_OHP {hip2tel model only OHP refraction=0} {AUDACE} {
+
+   #-- mc_hip2tel List_coords Date_UTC Home Pressure Temperature ?Type List_ModelSymbols List_ModelValues
+   #    List_coords =
+   #       id   : identifiant hypparcos de l'toile, sinon utilisé  =0 (nombre entier)
+   #       mag  : magnitude , si non utilisé = 0.0  (nombre décimal)
+   #       ra   : ascension droite (en degrés décimaux)
+   #       dec  : declinaison (en degrés décimaux)
+   #       equinox : date de l'equinoxe , date du jour=now, ou format ISO8601
+   #       epoch   : date de l'epoque d'origine des mouvements propres , inutilise si mura et mudec sont nuls
+   #       mura : mouvement propre ra (en degré par an)
+   #       mudec : mouvement propre dec (en degré par an)
+   #       plx   : parallaxe , =0 si inconnu (en mas=milliseconde d'arc)s
+   #    Date : date TU
+   #    Home : position GPS
+   #    Pressure 101325
+   #    Temperature 290
+   #    List_ModelSymbols
+   #    List_ModelValues
+
+   ###set radec  [list 19h00m00s0  +40d0m0s]
+   set hip    [list 1 0 285.0 40.0 J2000 0 0 0 0]
+   set dateTu [list 2009 11 14 20 00 00]
+
+   set coords [mc_hip2tel $hip $dateTu $home $pressure $temperature $symbols $coefficients -model_only 1 -refraction 0 ]
+
+   set ra_tel [mc_angle2hms [lindex $coords 10] 360 zero 2 auto string]
+   set dec_tel [mc_angle2dms [lindex $coords 11] 90 zero 2 + string]
+   set ha_tel [lindex $coords 12]
+   set az_tel [lindex $coords 13]
+   set elev_tel [lindex $coords 14]
+   set result [list $ra_tel $dec_tel]
+   return  $result
+} "19h00m30s05 +39d58m24s87"
+#### "18h59m29s9 +39d58m24s"
+
+#-------------------------------------------------------------------------------
+#  modpoi_passage tel2cat
+#-------------------------------------------------------------------------------
+test tool_modpoimc_tel2cat_OHP {tel2cat OHP} {AUDACE} {
+
+   # Usage: mc_tel2cat Coords TypeObs Date_UTC Home Pressure Temperature ?Type List_ModelSymbols List_ModelValues?
+   set dateTu [list 2009 11 14 20 00 00]
+   set radec  [list 19h00m30s05 +39d58m24s87]
+   set coords [mc_tel2cat $radec EQUATORIAL $dateTu $home $pressure $temperature $symbols $coefficients -model_only 1 -refraction 0]
+
+   set ra_cat [mc_angle2hms [lindex $coords 0] 360 zero 2 auto string]
+   set dec_cat [mc_angle2dms [lindex $coords 1] 90 zero 2 + string]
+   return  [list $ra_cat $dec_cat]
+} "18h59m59s99 +39d59m59s99"
+
+#-------------------------------------------------------------------------------
+#  mc_hip2tel avec correction precesssion , nutaton , refraction , ....
+#-------------------------------------------------------------------------------
+test tool_modpoimc_hip2tel_OHP {mc_hip2tel OHP} {AUDACE} {
+
+   set radec  [list 19h00m00s0  +40d0m0s]
+   set dateTu [list 2009 11 14 20 00 00]
+   set hip    [list 1 0 285.0 40.0 J2000 0 0 0 0]
+
+   set coords [mc_hip2tel $hip $dateTu $home $pressure $temperature $symbols $coefficients]
+
+   set ra_tel [mc_angle2hms [lindex $coords 10] 360 zero 0 auto string]
+   set dec_tel [mc_angle2dms [lindex $coords 11] 90 zero 0 + string]
+   set ha_tel [lindex $coords 12]
+   set az_tel [lindex $coords 13]
+   set elev_tel [lindex $coords 14]
+   set result [list $ra_tel $dec_tel]
+   return  $result
+} "19h00m55s +40d00m07s"
+
+#### resultat de ::modpoi_cat2tel "18h59m55s0 +40d0m8s"
+
+#-------------------------------------------------------------------------------
+#  mc_tel2cat avec correction precesssion , nutaton , refraction , ....
+#-------------------------------------------------------------------------------
+test tool_modpoi_mc_tel2cat_m_OHP {mc_tel2cat avec precession OHP} {AUDACE} {
+
+   set radec  "19h00m55s17 +40d00m08s84"
+   set dateTu  [list 2009 11 14 20 00 00]
+
+   # Usage: Coords TypeObs Date_UTC Home Pressure Temperature ?Type List_ModelSymbols List_ModelValues? ?-model_only 1|0?
+   set coords [mc_tel2cat $radec EQUATORIAL $dateTu $home $pressure $temperature $symbols $coefficients ]
+   set ra_cat [mc_angle2hms [lindex $coords 0] 360 zero 2 auto string]
+   set dec_cat [mc_angle2dms [lindex $coords 1] 90 zero 2 + string]
+   return  [list $ra_cat $dec_cat]
+} "19h00m00s24 +40d00m01s68"
+
+#-------------------------------------------------------------------------------
+#  modpoi_passage tel2cat
+#-------------------------------------------------------------------------------
+test tool_modpoi_mc_tel2cat_OHP {mc_tel2cat OHP} {AUDACE} {
+
+   # Usage: mc_tel2cat Coords TypeObs Date_UTC Home Pressure Temperature ?Type List_ModelSymbols List_ModelValues?
+   set dateTu [list 2009 11 14 20 00 00]
+   set radec  "18h59m55s0 +40d0m8s"
+
+   set coords [mc_tel2cat $radec EQUATORIAL $dateTu $home $pressure $temperature $symbols $coefficients]
+   set ra_cat [mc_angle2hms [lindex $coords 0] 360 zero 2 auto string]
+   set dec_cat [mc_angle2dms [lindex $coords 1] 90 zero 2 + string]
+   return  [list $ra_cat $dec_cat]
+} "18h59m00s03 +40d00m01s35"
+
+#-------------------------------------------------------------------------------
+#  modpoi_passage tel2cat
+#-------------------------------------------------------------------------------
+test tool_modpoi_mc_tel2cat_OHP {mc_tel2cat OHP} {AUDACE} {
+
+   # Usage: mc_tel2cat Coords TypeObs Date_UTC Home Pressure Temperature ?Type List_ModelSymbols List_ModelValues?
+   set dateTu [list 2009 11 14 20 00 00]
+   set radec  "00h00m00s0 +00d00m0s"
+
+   set coords [mc_tel2cat $radec EQUATORIAL $dateTu $home $pressure $temperature $symbols $coefficients]
+   set ra_cat [mc_angle2hms [lindex $coords 0] 360 zero 2 auto string]
+   set dec_cat [mc_angle2dms [lindex $coords 1] 90 zero 2 + string]
+   return  [list $ra_cat $dec_cat]
+} "23h59m02s42 -00d01m56s59"
+
+#### resultat de ::modpoi_tel2cat "18h59m59s8 +39d59m59s0"
+

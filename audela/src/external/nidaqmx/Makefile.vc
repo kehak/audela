@@ -1,0 +1,18 @@
+CP= copy
+RM= -@del /f /q
+
+SOURCE=nidaqmx
+EXTERNAL_INCLUDE=..\include
+EXTERNAL_LIB=..\lib
+
+build:
+
+install: build
+	if not exist $(EXTERNAL_INCLUDE)  mkdir $(EXTERNAL_INCLUDE)
+	if not exist $(EXTERNAL_LIB)      mkdir $(EXTERNAL_LIB)
+	$(CP) $(SOURCE)\include\NIDAQmx.h $(EXTERNAL_INCLUDE)
+	$(CP) $(SOURCE)\lib\NIDAQmx.lib   $(EXTERNAL_LIB)
+
+clean:
+	$(RM) $(EXTERNAL_INCLUDE)\NIDAQmx.h
+	$(RM) $(EXTERNAL_LIB)\NIDAQmx.lib

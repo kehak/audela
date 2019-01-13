@@ -1,0 +1,4 @@
+LIBRARY libeshel
+EXPORTS Avi_Init @1
+
+

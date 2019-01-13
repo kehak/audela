@@ -1,0 +1,131 @@
+AudeLA-2.x.0
+
+Voici un exemple pas à pas d'installation de Audela en version de développement
+sur une OpenSuse 13.2 64bits
+
+- Dans ce qui va suivre :
+root> signifie qu'il faut etre le superutilisateur pour procéder aux installations
+user> votre utilisateur habituel
+%     en utilisant l interpréteur tcl
+
+
+
+
+==========
+1 Installation des packetages 
+==========
+
+root> zypper install subversion gsl gsl-devel tkimg
+root> zypper install libmysqlclient-devel mariadb
+root> zypper install tcl-devel tk-devel
+root> zypper install gcc gcc-c++ make
+
+
+
+==========
+2 Installer libmysqltcl
+==========
+prerequis : libmysqlclient-devel
+
+télécharger : http://www.xdobry.de/mysqltcl/mysqltcl-3.052.tar.gz
+et désarchiver dans /opt/tcl
+
+root> cd /opt/tcl/mysqltcl-3.052
+root> ./configure --enable-64bit --enable-threads --with-tcl=/usr/lib64 --with-mysql-lib=/usr/lib64
+
+root> make
+root> make install
+
+
+
+==========
+3 Gestion des clés SSH
+==========
+Seulement Si vous avez un compte Sourceforge. 
+sinon passer au point suivant.
+
+se mettre dans le répertoire ~/.ssh
+
+taper la commande :
+ > ssh-keygen -t dsa -C "USERNAME@shell.sf.net"
+en remplaçant USERNAME par votre login sourceforge
+
+ceci cree 2 fichiers :
+id_dsa : la clé privée
+id_dsa.pub : la clé publique
+
+aller sur le site :  https://sourceforge.net/account/services
+puis Edit SSH Keys for Shell/CVS
+copier le contenu du fichier id_dsa.pub (en faisant bien attention qu il
+n y ait pas de retour charriot dans la ligne)
+puis cliquer sur update.
+
+retour a la page : https://sourceforge.net/account/services
+vérifier que la clé est bien prise en compte
+
+
+==========
+4 Dépôt Sourceforge de Audela
+==========
+se mettre (par exemple) dans le répertoire /srv/develop (façon ros)
+avoir verifier que le repertoire /srv/develop a les droits de l utilisateur courant.
+
+Télécharger Audela (http://sourceforge.net/p/audela/code/HEAD/tree/) :
+
+anonyme (read only): 
+user> svn checkout svn://svn.code.sf.net/p/audela/code/trunk/audela audela
+
+identifie (read/write):
+user> svn checkout svn+ssh://<USERNAME>@svn.code.sf.net/p/audela/code/trunk/audela audela
+
+
+==========
+5 Installer Audela
+==========
+
+user> cd /srv/develop/audela/src
+user> ./configure --with-tcl=/usr/lib64 --with-tk=/usr/lib64 --with-ffmpeg --with-tls --enable-threads
+user> make external
+user> make contrib
+user> make
+
+make clean && make external && make contrib && make
+
+
+==========
+6 Subtilités pour mysqltcl
+==========
+
+user> cd /srv/develop/audela/bin
+user> ln -s /opt/tcl/mysqltcl-3.052/libmysqltcl3.052.so libmysqltcl.so
+
+
+==========
+7 Plugin ATOS : video pour Audela
+==========
+dans Yast2 -> gestion des utilisateurs
+ajouter les groupes : dialout disk tty video
+
+
+==========
+8 demarrage de Audela
+==========
+user> cd /srv/develop/audela/bin
+user> ./audela.sh
+
+Vérifier la console que tous les paquetages sont bien lancés
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

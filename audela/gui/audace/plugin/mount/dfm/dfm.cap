@@ -1,0 +1,196 @@
+#
+# Fichier : dfm.cap
+# Mise a jour $Id: dfm.cap 9940 2013-08-10 07:56:40Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(dfm,monture)                    "DFM"
+set caption(dfm,mode)                       "Mode"
+set caption(dfm,host)                       "Host"
+set caption(dfm,port)                       "Port"
+set caption(dfm,configurer)                 "Set up"
+set caption(dfm,controle)                   "Control"
+set caption(dfm,raquette_tel)               "Hand controller on screen"
+
+set caption(dfm,install_1)                  "End of DFM plugin installation"
+set caption(dfm,install_2)                  "libdfm.dll library updated."
+
+set caption(dfm,port_dfm)                   "DFM Port"
+set caption(dfm,2points)                    ":"
+
+set caption(dfm,titre_site_web)             "Reference Web Site:"
+set caption(dfm,site_dfm)                   "http://www.dfmengineering.com/"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(dfm,monture)                 "DFM"
+   set caption(dfm,mode)                    "Mode"
+   set caption(dfm,host)                    "Host"
+   set caption(dfm,port)                    "Port"
+   set caption(dfm,configurer)              "Configurer"
+   set caption(dfm,controle)                "Contrôle"
+   set caption(dfm,raquette_tel)            "Raquette à l'écran"
+
+   set caption(dfm,install_1)               "Fin de l'installation du plugin DFM"
+   set caption(dfm,install_2)               "La librairie libdfm.dll a été mise à jour."
+
+   set caption(dfm,port_dfm)                "Port DFM"
+   set caption(dfm,2points)                 ":"
+
+   set caption(dfm,titre_site_web)          "Site Web de référence :"
+   set caption(dfm,site_dfm)                "http://www.dfmengineering.com/"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(dfm,monture)                 "DFM"
+   set caption(dfm,mode)                    "Modalita`"
+   set caption(dfm,host)                    "Host"
+   set caption(dfm,port)                    "Porta"
+   set caption(dfm,configurer)              "Configurare"
+   set caption(dfm,controle)                "Controllo"
+   set caption(dfm,raquette_tel)            "Pulsantiera a schermo"
+
+   set caption(dfm,install_1)               "Fine installazione del plugin DFM"
+   set caption(dfm,install_2)               "La libreria libdfm.dll è stata aggiornata."
+
+   set caption(dfm,port_dfm)                "Porta DFM"
+   set caption(dfm,2points)                 ":"
+
+   set caption(dfm,titre_site_web)          "Sito Web di riferimento:"
+   set caption(dfm,site_dfm)                "http://www.dfmengineering.com/"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(dfm,monture)                 "DFM"
+   set caption(dfm,mode)                    "Modo"
+   set caption(dfm,host)                    "Host"
+   set caption(dfm,port)                    "Puerto"
+   set caption(dfm,configurer)              "Configurar"
+   set caption(dfm,controle)                "Control"
+   set caption(dfm,raquette_tel)            "Controlador virtual"
+
+   set caption(dfm,install_1)               "Fin de la instalación del plugin DFM"
+   set caption(dfm,install_2)               "Libreria libdfm.dll actualizada."
+
+   set caption(dfm,port_dfm)                "Puerto DFM"
+   set caption(dfm,2points)                 ":"
+
+   set caption(dfm,titre_site_web)          "Sitio Web de referencia:"
+   set caption(dfm,site_dfm)                "http://www.dfmengineering.com/"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(dfm,monture)                 "DFM"
+   set caption(dfm,mode)                    "Modus"
+   set caption(dfm,host)                    "Host"
+   set caption(dfm,port)                    "Port"
+   set caption(dfm,configurer)              "Konfigurieren"
+   set caption(dfm,controle)                "Kontroll"
+   set caption(dfm,raquette_tel)            "Hand Kontroller am Bildschirm"
+
+   set caption(dfm,install_1)               "Ende der DFM-Plugin-Installation"
+   set caption(dfm,install_2)               "Die libdfm.dll Bibliothek ist aktualisiert."
+
+   set caption(dfm,port_dfm)                "DFM Port"
+   set caption(dfm,2points)                 ":"
+
+   set caption(dfm,titre_site_web)          "Referenz Webseite:"
+   set caption(dfm,site_dfm)                "http://www.dfmengineering.com/"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(dfm,monture)                 "DFM"
+   set caption(dfm,mode)                    "Modo"
+   set caption(dfm,host)                    "Host"
+   set caption(dfm,port)                    "Porta"
+   set caption(dfm,configurer)              "Configuração"
+   set caption(dfm,controle)                "Controlo"
+   set caption(dfm,raquette_tel)            "Controlador de mão no ecrã"
+
+   set caption(dfm,install_1)               "Fin da instalação do plugin DFM"
+   set caption(dfm,install_2)               "A livraria libdfm.dll foi actualizada."
+
+   set caption(dfm,port_dfm)                "Porta DFM"
+   set caption(dfm,2points)                 ":"
+
+   set caption(dfm,titre_site_web)          "Site Web de referência:"
+   set caption(dfm,site_dfm)                "http://www.dfmengineering.com/"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(dfm,monture)                 "DFM"
+   set caption(dfm,mode)                    "Mode"
+   set caption(dfm,host)                    "Host"
+   set caption(dfm,port)                    "Port"
+   set caption(dfm,configurer)              "Set up"
+   set caption(dfm,controle)                "Control"
+   set caption(dfm,raquette_tel)            "Hand controller on screen"
+
+   set caption(dfm,install_1)               "End of DFM plugin installation"
+   set caption(dfm,install_2)               "libdfm.dll library updated."
+
+   set caption(dfm,port_dfm)                "DFM Port"
+   set caption(dfm,2points)                 ":"
+
+   set caption(dfm,titre_site_web)          "Reference Web Site:"
+   set caption(dfm,site_dfm)                "http://www.dfmengineering.com/"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(dfm,monture)                 "DFM"
+   set caption(dfm,mode)                    "Mode"
+   set caption(dfm,host)                    "Host"
+   set caption(dfm,port)                    "Port"
+   set caption(dfm,configurer)              "Set up"
+   set caption(dfm,controle)                "Control"
+   set caption(dfm,raquette_tel)            "Hand controller on screen"
+
+   set caption(dfm,install_1)               "End of DFM plugin installation"
+   set caption(dfm,install_2)               "libdfm.dll library updated."
+
+   set caption(dfm,port_dfm)                "DFM Port"
+   set caption(dfm,2points)                 ":"
+
+   set caption(dfm,titre_site_web)          "Reference Web Site:"
+   set caption(dfm,site_dfm)                "http://www.dfmengineering.com/"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(dfm,monture)                 "DFM"
+   set caption(dfm,mode)                    "Mode"
+   set caption(dfm,host)                    "Host"
+   set caption(dfm,port)                    "Port"
+   set caption(dfm,configurer)              "Set up"
+   set caption(dfm,controle)                "Control"
+   set caption(dfm,raquette_tel)            "Hand controller on screen"
+
+   set caption(dfm,install_1)               "End of DFM plugin installation"
+   set caption(dfm,install_2)               "libdfm.dll library updated."
+
+   set caption(dfm,port_dfm)                "DFM Port"
+   set caption(dfm,2points)                 ":"
+
+   set caption(dfm,titre_site_web)          "Reference Web Site:"
+   set caption(dfm,site_dfm)                "http://www.dfmengineering.com/"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

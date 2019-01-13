@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Fonctions de traitement d'images stellaires</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 13 f&eacute;vrier 2006</p>
+<h1>Fonctions de traitement d'images stellaires </h1>
+<p><strong>Liste des fonctions utilisables :</strong></p>
+<h3> <a name="compute_stellaire" id="compute_stellaire"></a>compute_stellaire <em>brutes ?noirs? ?PLUs? ?noirsdePLU? ?options?</em></h3>
+<p>Pr&eacute;traitement complet d'une s&eacute;rie d'images brutes. Les images pr&eacute;trait&eacute;es sont tri&eacute;es selon la finesse des &eacute;toiles, et l'on conserve un certain pourcentage (par d&eacute;faut 80%) pour une addition sigma-kappa. L'image r&eacute;sultante est affich&eacute;e dans le buffer Aud'ACE.</p>
+<p> Options :</p>
+<ul>
+  <li>-buf : Sp&eacute;cifie le buffer monochrome dans lequel on charge l'image (par d&eacute;faut, c'est le buffer Aud'ACE).</li>
+  <li>-rep : Sp&eacute;cifie le r&eacute;pertoire dans lequel travailler.</li>
+  <li>-ext : Extension de l'image.</li>
+  <li>-polyNo : Sp&eacute;cifie le plan couleurs &agrave; charger (par d&eacute;faut le 1er, qui est le seul disponible pour des images monochromes).</li>
+  <li>-tri : Pourcentage d'images &agrave; conserver apr&egrave;s tri selon la finesse des &eacute;toiles.</li>
+  <li>-altaz : Compensation de la rotation de champ dans le cas de l'utilisation d'une monture altazimutale. On suppose que les mots-cl&eacute;s correspondant aux coordonn&eacute;es de l'objet et &agrave; l'emplacement de l'observateur ont &eacute;t&eacute; renseign&eacute;s dans la premi&egrave;re image de la s&eacute;rie.</li>
+</ul>
+</body>
+
+</html>

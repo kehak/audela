@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Les fonctions de DP</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 11 novembre 2004</p>
+<h1>Les fonctions de DP </h1>
+<p>DP est une extension Tcl propos&eacute;e par un groupe de programmeurs de logiciel libre. L'acc&egrave;s &agrave; l'ensemble du projet DP (sources, documentation, etc.) est :</p>
+<p><a href="http://www.cs.cornell.edu/zeno/projects/tcldp/">http://www.cs.cornell.edu/zeno/projects/tcldp/</a></p>
+<p>Les commandes de DP sont tr&egrave;s puissantes et permettent de mettre en r&eacute;seau des machines Windows et Linux entres elles.</p>
+<p>Dans la distribution Linux de AudeLA, DP n'est pas fournie. Il faut la t&eacute;l&eacute;charger et la compiler. Dans la distribution Windows de AudeLA, DP est fournie compil&eacute;e et pr&ecirc;te &agrave; l'emploi.</p>
+<p>La librairie DP n'est pas charg&eacute;e par d&eacute;faut dans AudeLA (mais elle l'est dans Aud'ACE). Il est n&eacute;cessaire sp&eacute;cifier l'importation de la biblioth&egrave;que par la fonction load de Tcl :</p>
+<p><code>load libdp40[info sharedlibextension]</code> <br />
+  <code>foreach f [glob lib/dp/*.tcl] {</code> <br />
+  <code> source $f</code> <br />
+  <code>}</code></p>
+<p>Dans l'interpr&eacute;teur Tcl. La commande [info sharedlibextension] signifie &agrave; l'interpr&eacute;teur Tcl d'ajouter, automatiquement, les lettres correspondant au suffixe .dll ou .so en fonction du syst&egrave;me d'exploitation. On peut aussi charger automatiquement l'ensemble de DP par la simple commande suivante :</p>
+<p><code>package require dp</code></p>
+<p>Ci dessous, nous dressons la liste des commandes disponibles (commentaires originaux en anglais) :</p>
+<code>dp_accept</code> : accept a TCP client connection <br />
+<code>dp_admin</code> : register/unregister a DP channel for RPC/RDOs <br />
+<code>dp_connect</code> : open a Tcl-DP channel <br />
+<code>dp_copy</code> : perform a bulk copy from one channel to another <br />
+<code>dp_netinfo</code> : allows access to TCP, DNS and SMTP information <br />
+<code>dp_RDO</code> : perform a remote procedure call without return value <br />
+<code>dp_recv</code> : get data from a channel <br />
+<code>dp_RPC</code> : perform a remote procedure call <br />
+<code>dp_send</code> : send data through a channel <br />
+<code>dp_MakeRPCServer</code> : create TCP RPC server channel <br />
+<code>dp_MakeRPCClient</code> : create TCP RPC client channel
+<p>Exemple (&agrave; essayer &agrave; partir de la console de Aud'ACE par exemple) :</p>
+<p><img src="images/dp4.jpg" height="174" width="378" alt="" /></p>
+<code>set rpcid [dp_MakeRPCServer 5000]</code>
+<p>Cr&eacute;e un serveur RPC sur un ordinateur (dont le IP serait 192.168.0.1 par exemple).</p>
+<p><code>set rpcid [dp_MakeRPCClient 192.168.0.1 5000]</code> <br />
+  <code>dp_RPC $rpcid set a 5</code></p>
+<p>Cr&eacute;e un client RPC sur un autre ordinateur qui se connecte sur celui dont le num&eacute;ro IP est 192.168.0.1 et lui envoie la commande "set a 5".</p>
+</body>
+
+</html>

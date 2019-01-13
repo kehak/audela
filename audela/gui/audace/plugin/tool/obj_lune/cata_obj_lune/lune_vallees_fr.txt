@@ -1,0 +1,12 @@
+Vallis Alpes              48.5N   3.2E    166.0   4   12                                          Vallée Alpine
+Vallis Baade              45.9S   76.2W   203.0   61                                      VI      Nommée en fonction du cratère voisin
+Vallis Bohr               12.4N   86.6W   80.0                                            VIII    Nommée en fonction du cratère voisin
+Vallis Bouvard            38.3S   83.1W   284.0   61                                      VII     Alexis ; Astronome et mathématicien français (1767-1843)
+Vallis Capella            7.6S    34.9E   49.0    47                                              Nommée en fonction du cratère voisin
+Vallis Inghirami          43.8S   72.2W   148.0   61                                              Nommée en fonction du cratère voisin
+Vallis Palitzsch          26.4S   64.3E   132.0   59                                              Nommée en fonction du cratère voisin
+Vallis Planck             58.4S   126.1E  451.0                                                   Nommée en fonction du cratère voisin
+Vallis Rheita             42.5S   51.5E   445.0   68                                              Nommée en fonction du cratère voisin
+Vallis Schrödinger        67.0S   105.0E  310.0                                           V       Nommée en fonction du cratère voisin
+Vallis Schröteri          26.2N   50.8W   168.0   18                                              Vallée de Schröter
+Vallis Snellius           31.1S   56.0E   592.0   59  69                                          Nommée en fonction du cratère voisin

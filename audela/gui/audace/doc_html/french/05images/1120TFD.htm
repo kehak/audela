@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <title>Transformée de Fourier Discrète</title>
+  <meta content="Jacques Michelet (jacques.michelet@laposte.net)"
+ name="author">
+</head>
+<body>
+<p class="date">Date de mise à jour : 08 janvier 2011</p>
+<h1>Transformée de Fourier Discrète</h1>
+<p>La <b>Transformée de Fourier Discrète (TFD)</b>
+convertit une image dans le domaine spatial en deux images dans le domaine
+fréquentiel (ou domaine de Fourier). Il s'agit d'une transformation complexe au sens
+mathèmatique du terme. Suivant le choix du format, on aura deux
+résultats différents :<br>
+</p>
+<ul>
+  <li>Format <em>cartésien</em> : La première image résultat sera la <b>partie
+réelle</b> de la TFD, la seconde la <b>partie imaginaire</b>.
+Il faut noter que l'image de la partie réelle sera une image "paire",
+c'est à dire symétrique par rapport aux axes de l'image. L'image de la
+partie imaginaire sera "impaire" ou anti-symétrique.</li>
+  <li>Format <em>polaire</em> : La première image sera le <b>module</b>
+de la TFD, la seconde en représentera l'<span style="font-weight: bold;">argument</span>
+(ou <span style="font-weight: bold;">phase</span>). L'image du
+module peut-être vue comme étant la racine carrée
+du spectre de puissance de l'image de départ. C'est une image "paire", quand
+celle de l'argument est une image "impaire".</li>
+</ul>
+<p>Le paramètre <em>ordre</em> indique la façon dont
+seront rangées les informations dans les fichiers résultats :
+<br>
+</p>
+<ul>
+  <li><em>Centré</em> : Les <b>fréquences basses</b> de
+la TFD sont regroupées au centre des images résultats. L'en-tête
+FITS des deux images contient le mot-clé DFT_ORD avec pour valeur la chaine de
+caractères (string) <em>CENTERED</em>.</li>
+  <li><em>Normal</em> : Les <b>fréquences hautes</b> de la TFD
+sont regroupées au centre des images résultats. L'en-tête
+FITS des deux
+images contient le mot-clé DFT_ORD avec pour valeur la chaine de
+caractères (string) <em>REGULAR</em>.</li>
+</ul>
+L'utilisateur peut choisir de calculer la TFD de l'image préalablement
+affichée ou celle d'un fichier sur le disque dur. <br>
+Dans le cas d'un calcul sur l'image affichée, seront créées dans le
+répertoire d'image courant deux images
+nommées "<span style="font-style: italic;">modulus.fit</span>" et "<span
+ style="font-style: italic;">argument.fit</span>", ou "<span
+ style="font-style: italic;">real.fit</span>" et "<span
+ style="font-style: italic;">imaginary.fit</span>" suivant le choix du
+format (<span style="font-style: italic;">cartésien</span> ou <span
+ style="font-style: italic;">polaire</span>). <span
+ style="text-decoration: underline;">Si des fichiers du disque dur
+portaient ces mêmes noms, leur contenu sera écrasé</span>. A l'issue du
+calcul, l'image affichée est toujours celle
+contenant la partie réelle ou le module de la TFD.<br>
+Si l'utilisateur préfère travailler directement sur des fichiers
+images, il peut choisir librement le répertoire et le nom des fichiers
+générées. Mais là aussi, à l'issue du calcul, l'image affichée est
+toujours celle contenant la partie réelle ou le module de la TFD.
+<p>Les images résultats sont codées sur 16 bits non
+signés. Le résultat d'une TFD étant signé, les valeur des pixels sont
+décalées et normalisées dans l'intervalle [0-32767]. Les mots-clés <em>DFT_OFFS</em>
+et <em>DFT_NORM</em> définissent les valeurs du décalage et du facteur de normalisation.
+<br>
+</p>
+</body>
+</html>

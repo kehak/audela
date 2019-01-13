@@ -1,0 +1,25 @@
+
+** Lister les peripheriques USB avec la commande shell lsusb
+
+$ lsusb
+
+il doit apparaitre la ligne suivante :
+"Future Technology Devices International, Ltd FT232 USB-Serial (UART) IC"
+
+> Bus 003 Device 006: ID 0403:6001 Future Technology Devices International, Ltd FT232 USB-Serial (UART) IC
+
+
+
+$ udevadm info -q path -n /dev/bus/usb/003/006
+/devices/pci0000:00/0000:00:14.0/usb3/3-1/3-1.1/3-1.1.5
+
+$ udevadm info -a -p /devices/pci0000:00/0000:00:14.0/usb3/3-1/3-1.1/3-1.1.5 | grep manufacturer
+
+
+$ ls -al /dev/bus/usb/003/006
+
+$ sudo chmod o+w /dev/bus/usb/003/006
+
+$ ls -al /dev/ttyUSB0
+$ sudo chmod o+rw /dev/ttyUSB0
+

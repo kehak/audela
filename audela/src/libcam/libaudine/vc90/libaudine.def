@@ -1,0 +1,2 @@
+LIBRARY libaudine
+EXPORTS Audine_Init @1

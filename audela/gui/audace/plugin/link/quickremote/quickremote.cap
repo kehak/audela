@@ -1,0 +1,115 @@
+#
+# Fichier : quickremote.cap
+# Mise a jour $Id: quickremote.cap 9990 2013-08-18 17:29:05Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(quickremote,titre)                "QuickRemote"
+set caption(quickremote,available)            "QuickRemote available"
+set caption(quickremote,refresh)              "Reload"
+set caption(quickremote,error)                "Error Message:"
+set caption(quickremote,msg)                  "QuickRemote users must install the FTDI driver (follow the steps explained in the Help)."
+
+set caption(quickremote,installNewVersion)    "Installation of library %s of plugin quickremote v%s completed."
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(quickremote,titre)             "QuickRemote"
+   set caption(quickremote,available)         "QuickRemote disponibles"
+   set caption(quickremote,refresh)           "Rafraîchir"
+   set caption(quickremote,error)             "Message d'erreur :"
+   set caption(quickremote,msg)               "Utilisateurs de QuickRemote : Vous devez installer le driver FTDI (suivre la procédure décrite dans l'aide)."
+
+   set caption(quickremote,installNewVersion) "Fin de l'installation de la librairie %s du plugin quickremote v%s."
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(quickremote,titre)             "QuickRemote"
+   set caption(quickremote,available)         "QuickRemote disponibile"
+   set caption(quickremote,refresh)           "Rinfresca"
+   set caption(quickremote,error)             "Messaggio di errore:"
+   set caption(quickremote,msg)               "Gli utilizzatori di QuickRemote devono Installare il driver FTDI (seguendo le istruzioni descritte nell'help)."
+
+   set caption(quickremote,installNewVersion) "Installazione della libreria %s del plugin quickremote v%s terminata."
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(quickremote,titre)             "QuickRemote"
+   set caption(quickremote,available)         "QuickRemote disponibles"
+   set caption(quickremote,refresh)           "Recargar"
+   set caption(quickremote,error)             "Mensaje de error:"
+   set caption(quickremote,msg)               "Usuarios de QuickRemote: Deben instalar el driver FTDI (seguir el procedimiento descrito en la ayuda)."
+
+   set caption(quickremote,installNewVersion) "Fin de la instalación de la libreria %s del plugin quickremote v%s."
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(quickremote,titre)             "QuickRemote"
+   set caption(quickremote,available)         "QuickRemote verfügbar"
+   set caption(quickremote,refresh)           "Aktualisieren"
+   set caption(quickremote,error)             "Fehlermeldung:"
+   set caption(quickremote,msg)               "QuickRemote Benutzer: Sie müssen die FTDI Treiber installieren (das Verfahren ist in der Hilfe beschrieben)."
+
+   set caption(quickremote,installNewVersion) "Die Installation der Bibliothek %s ist vervollständigt der Plugin quickremote v%s."
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(quickremote,titre)             "QuickRemote"
+   set caption(quickremote,available)         "QuickRemote disponível"
+   set caption(quickremote,refresh)           "Actualizar"
+   set caption(quickremote,error)             "Mensagem de erro:"
+   set caption(quickremote,msg)               "Utilizadores de QuickRemote devem instalar o driver FTDI (seguir o procedimento descrito em Ajuda)."
+
+   set caption(quickremote,installNewVersion) "Instalação da livraria %s do plugin quickremote v%s concluída."
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(quickremote,titre)             "QuickRemote"
+   set caption(quickremote,available)         "QuickRemote disponible"
+   set caption(quickremote,refresh)           "Genindlæs"
+   set caption(quickremote,error)             "Fejlmeddelelse:"
+   set caption(quickremote,msg)               "QuickRemote brugere skal installere FTDI driver (Følg vejledning i Hjælp!)."
+
+   set caption(quickremote,installNewVersion) "Installation of library %s of plugin quickremote v%s completed."
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(quickremote,titre)             "QuickRemote"
+   set caption(quickremote,available)         "QuickRemote available"
+   set caption(quickremote,refresh)           "Reload"
+   set caption(quickremote,error)             "Error Message:"
+   set caption(quickremote,msg)               "QuickRemote users must install the FTDI driver (follow the steps explained in the Help)."
+
+   set caption(quickremote,installNewVersion) "Installation of library %s of plugin quickremote v%s completed."
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(quickremote,titre)             "QuickRemote"
+   set caption(quickremote,available)         "QuickRemote available"
+   set caption(quickremote,refresh)           "Reload"
+   set caption(quickremote,error)             "Error Message:"
+   set caption(quickremote,msg)               "QuickRemote users must install the FTDI driver (follow the steps explained in the Help)."
+
+   set caption(quickremote,installNewVersion) "Installation of library %s of plugin quickremote v%s completed."
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

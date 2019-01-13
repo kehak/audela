@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# This script loads pwc and pwcx modules (support for Philips webcams).
+# Before useing it login as root:
+# su -
+
+modprobe usb-ohci && \
+modprobe pwc compression=0 && \
+insmod -f pwcx && \
+echo && \
+echo "Module was loaded"
+

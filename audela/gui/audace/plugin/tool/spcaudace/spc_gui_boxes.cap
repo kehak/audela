@@ -1,0 +1,259 @@
+#
+# Fichier : spc_gui_boxes.cap
+# Mise a jour $Id: spc_gui_boxes.cap 6795 2011-02-26 16:05:27Z michelpujol $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(spcaudace,boxes,export2png,titre)                "PNG graph creation"
+set caption(spcaudace,boxes,export2png,titre2)               "Profile PNG graph creation"
+set caption(spcaudace,boxes,export2png,stop_button)          "Cancel"
+set caption(spcaudace,boxes,export2png,return_button)        "OK"
+set caption(spcaudace,boxes,export2png,config,mot1)          "Object name"
+set caption(spcaudace,boxes,export2png,config,mot2)          "Telescope"
+set caption(spcaudace,boxes,export2png,config,mot3)          "Spectrograph"
+set caption(spcaudace,boxes,export2png,config,lambda_deb)    "Min wavelength"
+set caption(spcaudace,boxes,export2png,config,lambda_fin)    "Max wavelength"
+set caption(spcaudace,boxes,export2png,config,ydeb)          "Min intensity"
+set caption(spcaudace,boxes,export2png,config,yfin)          "Max intensity"
+set caption(spcaudace,boxes,export2png,caractere)            "Les caractères \", \' and accented characters \nshould not used."
+set caption(spcaudace,boxes,selectzone,titre2)               "Spectrum area coordinates"
+set caption(spcaudace,boxes,selectzone,titre)                "Spectrum area Selection"
+set caption(spcaudace,boxes,selectzone,stop_button)          "Cancel"
+set caption(spcaudace,boxes,selectzone,return_button)        "OK"
+set caption(spcaudace,boxes,selectzone,config,spectre)       "2D spectrum"
+set caption(spcaudace,boxes,selectzone,config,xinf)          "X lower left limit: "
+set caption(spcaudace,boxes,selectzone,config,yinf)          "Y lower left limit: "
+set caption(spcaudace,boxes,selectzone,config,xsup)          "X upper right limit: "
+set caption(spcaudace,boxes,selectzone,config,ysup)          "Y upper right limit: "
+set caption(spcaudace,boxes,selectzone,aide)                 "Uses mouse to select area upper left and lower right coordinates."
+set caption(spcaudace,boxes,erreur,saisie)                   "Entry error: Some fields are empty"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(spcaudace,boxes,export2png,titre)             "Création d'un graphique PNG"
+   set caption(spcaudace,boxes,export2png,titre2)            "Création d'un graphique PNG\ndu profil de raies"
+   set caption(spcaudace,boxes,export2png,stop_button)       "Annuler"
+   set caption(spcaudace,boxes,export2png,return_button)     "OK"
+   set caption(spcaudace,boxes,export2png,config,mot1)       "Nom de l'objet"
+   set caption(spcaudace,boxes,export2png,config,mot2)       "Télescope"
+   set caption(spcaudace,boxes,export2png,config,mot3)       "Spectrographe"
+   set caption(spcaudace,boxes,export2png,config,lambda_deb) "Longueur d'onde minimum"
+   set caption(spcaudace,boxes,export2png,config,lambda_fin) "Longueur d'onde maximum"
+   set caption(spcaudace,boxes,export2png,config,ydeb)       "Intensité minimum"
+   set caption(spcaudace,boxes,export2png,config,yfin)       "Intensite maximum"
+   set caption(spcaudace,boxes,export2png,caractere)         "Les caractères \", \' et accentués ne doivent pas\nêtre utilisés dans les champs."
+   set caption(spcaudace,boxes,selectzone,titre2)            "Coordonnées de la zone\n du spectre à utiliser"
+   set caption(spcaudace,boxes,selectzone,titre)             "Sélection de la zone du spectre"
+   set caption(spcaudace,boxes,selectzone,stop_button)       "Annuler"
+   set caption(spcaudace,boxes,selectzone,return_button)     "OK"
+   set caption(spcaudace,boxes,selectzone,config,spectre)    "Spectre 2D"
+   set caption(spcaudace,boxes,selectzone,config,xinf)       "X inférieur gauche : "
+   set caption(spcaudace,boxes,selectzone,config,yinf)       "Y inférieur gauche : "
+   set caption(spcaudace,boxes,selectzone,config,xsup)       "X supérieur droit : "
+   set caption(spcaudace,boxes,selectzone,config,ysup)       "Y supérieur droit : "
+   set caption(spcaudace,boxes,selectzone,aide)              "Utiliser la souris pour choisir les coordonnées\ndes points inférieur gauche et surpérieur droit \nde la zone à étudier."
+   set caption(spcaudace,boxes,erreur,saisie)                "Erreur de saisie : Certains champs sont restés vides"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(spcaudace,boxes,export2png,titre)             "# Création d'un graphique PNG"
+   set caption(spcaudace,boxes,export2png,titre2)            "# Création d'un graphique PNG\ndu profil de raies"
+   set caption(spcaudace,boxes,export2png,stop_button)       "# Annuler"
+   set caption(spcaudace,boxes,export2png,return_button)     "OK"
+   set caption(spcaudace,boxes,export2png,config,mot1)       "# Nom de l'objet"
+   set caption(spcaudace,boxes,export2png,config,mot2)       "# Télescope"
+   set caption(spcaudace,boxes,export2png,config,mot3)       "# Spectrographe"
+   set caption(spcaudace,boxes,export2png,config,lambda_deb) "# Longueur d'onde minimum"
+   set caption(spcaudace,boxes,export2png,config,lambda_fin) "# Longueur d'onde maximum"
+   set caption(spcaudace,boxes,export2png,config,ydeb)       "# Intensité minimum"
+   set caption(spcaudace,boxes,export2png,config,yfin)       "# Intensite maximum"
+   set caption(spcaudace,boxes,export2png,caractere)         "# Les caractères \", \' et accentués ne doivent pas\nêtre utilisés dans les champs."
+   set caption(spcaudace,boxes,selectzone,titre2)            "# Coordonnées de la zone\n du spectre à utiliser"
+   set caption(spcaudace,boxes,selectzone,titre)             "# Sélection de la zone du spectre"
+   set caption(spcaudace,boxes,selectzone,stop_button)       "# Annuler"
+   set caption(spcaudace,boxes,selectzone,return_button)     "OK"
+   set caption(spcaudace,boxes,selectzone,config,spectre)    "# Spectre 2D"
+   set caption(spcaudace,boxes,selectzone,config,xinf)       "# X inférieur gauche : "
+   set caption(spcaudace,boxes,selectzone,config,yinf)       "# Y inférieur gauche : "
+   set caption(spcaudace,boxes,selectzone,config,xsup)       "# X supérieur droit : "
+   set caption(spcaudace,boxes,selectzone,config,ysup)       "# Y supérieur droit : "
+   set caption(spcaudace,boxes,selectzone,aide)              "# Utiliser la souris pour choisir les coordonnées\ndes points inférieur gauche et surpérieur droit \nde la zone à étudier."
+   set caption(spcaudace,boxes,erreur,saisie)                "# Erreur de saisie : Certains champs sont restés vides"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(spcaudace,boxes,export2png,titre)             "# Création d'un graphique PNG"
+   set caption(spcaudace,boxes,export2png,titre2)            "# Création d'un graphique PNG\ndu profil de raies"
+   set caption(spcaudace,boxes,export2png,stop_button)       "# Annuler"
+   set caption(spcaudace,boxes,export2png,return_button)     "OK"
+   set caption(spcaudace,boxes,export2png,config,mot1)       "# Nom de l'objet"
+   set caption(spcaudace,boxes,export2png,config,mot2)       "# Télescope"
+   set caption(spcaudace,boxes,export2png,config,mot3)       "# Spectrographe"
+   set caption(spcaudace,boxes,export2png,config,lambda_deb) "# Longueur d'onde minimum"
+   set caption(spcaudace,boxes,export2png,config,lambda_fin) "# Longueur d'onde maximum"
+   set caption(spcaudace,boxes,export2png,config,ydeb)       "# Intensité minimum"
+   set caption(spcaudace,boxes,export2png,config,yfin)       "# Intensite maximum"
+   set caption(spcaudace,boxes,export2png,caractere)         "# Les caractères \", \' et accentués ne doivent pas\nêtre utilisés dans les champs."
+   set caption(spcaudace,boxes,selectzone,titre2)            "# Coordonnées de la zone\n du spectre à utiliser"
+   set caption(spcaudace,boxes,selectzone,titre)             "# Sélection de la zone du spectre"
+   set caption(spcaudace,boxes,selectzone,stop_button)       "# Annuler"
+   set caption(spcaudace,boxes,selectzone,return_button)     "OK"
+   set caption(spcaudace,boxes,selectzone,config,spectre)    "# Spectre 2D"
+   set caption(spcaudace,boxes,selectzone,config,xinf)       "# X inférieur gauche : "
+   set caption(spcaudace,boxes,selectzone,config,yinf)       "# Y inférieur gauche : "
+   set caption(spcaudace,boxes,selectzone,config,xsup)       "# X supérieur droit : "
+   set caption(spcaudace,boxes,selectzone,config,ysup)       "# Y supérieur droit : "
+   set caption(spcaudace,boxes,selectzone,aide)              "# Utiliser la souris pour choisir les coordonnées\ndes points inférieur gauche et surpérieur droit \nde la zone à étudier."
+   set caption(spcaudace,boxes,erreur,saisie)                "# Erreur de saisie : Certains champs sont restés vides"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(spcaudace,boxes,export2png,titre)             "# Création d'un graphique PNG"
+   set caption(spcaudace,boxes,export2png,titre2)            "# Création d'un graphique PNG\ndu profil de raies"
+   set caption(spcaudace,boxes,export2png,stop_button)       "# Annuler"
+   set caption(spcaudace,boxes,export2png,return_button)     "OK"
+   set caption(spcaudace,boxes,export2png,config,mot1)       "# Nom de l'objet"
+   set caption(spcaudace,boxes,export2png,config,mot2)       "# Télescope"
+   set caption(spcaudace,boxes,export2png,config,mot3)       "# Spectrographe"
+   set caption(spcaudace,boxes,export2png,config,lambda_deb) "# Longueur d'onde minimum"
+   set caption(spcaudace,boxes,export2png,config,lambda_fin) "# Longueur d'onde maximum"
+   set caption(spcaudace,boxes,export2png,config,ydeb)       "# Intensité minimum"
+   set caption(spcaudace,boxes,export2png,config,yfin)       "# Intensite maximum"
+   set caption(spcaudace,boxes,export2png,caractere)         "# Les caractères \", \' et accentués ne doivent pas\nêtre utilisés dans les champs."
+   set caption(spcaudace,boxes,selectzone,titre2)            "# Coordonnées de la zone\n du spectre à utiliser"
+   set caption(spcaudace,boxes,selectzone,titre)             "# Sélection de la zone du spectre"
+   set caption(spcaudace,boxes,selectzone,stop_button)       "# Annuler"
+   set caption(spcaudace,boxes,selectzone,return_button)     "OK"
+   set caption(spcaudace,boxes,selectzone,config,spectre)    "# Spectre 2D"
+   set caption(spcaudace,boxes,selectzone,config,xinf)       "# X inférieur gauche : "
+   set caption(spcaudace,boxes,selectzone,config,yinf)       "# Y inférieur gauche : "
+   set caption(spcaudace,boxes,selectzone,config,xsup)       "# X supérieur droit : "
+   set caption(spcaudace,boxes,selectzone,config,ysup)       "# Y supérieur droit : "
+   set caption(spcaudace,boxes,selectzone,aide)              "# Utiliser la souris pour choisir les coordonnées\ndes points inférieur gauche et surpérieur droit \nde la zone à étudier."
+   set caption(spcaudace,boxes,erreur,saisie)                "# Erreur de saisie : Certains champs sont restés vides"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(spcaudace,boxes,export2png,titre)             "# Création d'un graphique PNG"
+   set caption(spcaudace,boxes,export2png,titre2)            "# Création d'un graphique PNG\ndu profil de raies"
+   set caption(spcaudace,boxes,export2png,stop_button)       "# Annuler"
+   set caption(spcaudace,boxes,export2png,return_button)     "OK"
+   set caption(spcaudace,boxes,export2png,config,mot1)       "# Nom de l'objet"
+   set caption(spcaudace,boxes,export2png,config,mot2)       "# Télescope"
+   set caption(spcaudace,boxes,export2png,config,mot3)       "# Spectrographe"
+   set caption(spcaudace,boxes,export2png,config,lambda_deb) "# Longueur d'onde minimum"
+   set caption(spcaudace,boxes,export2png,config,lambda_fin) "# Longueur d'onde maximum"
+   set caption(spcaudace,boxes,export2png,config,ydeb)       "# Intensité minimum"
+   set caption(spcaudace,boxes,export2png,config,yfin)       "# Intensite maximum"
+   set caption(spcaudace,boxes,export2png,caractere)         "# Les caractères \", \' et accentués ne doivent pas\nêtre utilisés dans les champs."
+   set caption(spcaudace,boxes,selectzone,titre2)            "# Coordonnées de la zone\n du spectre à utiliser"
+   set caption(spcaudace,boxes,selectzone,titre)             "# Sélection de la zone du spectre"
+   set caption(spcaudace,boxes,selectzone,stop_button)       "# Annuler"
+   set caption(spcaudace,boxes,selectzone,return_button)     "OK"
+   set caption(spcaudace,boxes,selectzone,config,spectre)    "# Spectre 2D"
+   set caption(spcaudace,boxes,selectzone,config,xinf)       "# X inférieur gauche : "
+   set caption(spcaudace,boxes,selectzone,config,yinf)       "# Y inférieur gauche : "
+   set caption(spcaudace,boxes,selectzone,config,xsup)       "# X supérieur droit : "
+   set caption(spcaudace,boxes,selectzone,config,ysup)       "# Y supérieur droit : "
+   set caption(spcaudace,boxes,selectzone,aide)              "# Utiliser la souris pour choisir les coordonnées\ndes points inférieur gauche et surpérieur droit \nde la zone à étudier."
+   set caption(spcaudace,boxes,erreur,saisie)                "# Erreur de saisie : Certains champs sont restés vides"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(spcaudace,boxes,export2png,titre)             "PNG graph creation"
+   set caption(spcaudace,boxes,export2png,titre2)            "Profile PNG graph creation"
+   set caption(spcaudace,boxes,export2png,stop_button)       "Cancel"
+   set caption(spcaudace,boxes,export2png,return_button)     "OK"
+   set caption(spcaudace,boxes,export2png,config,mot1)       "Object name"
+   set caption(spcaudace,boxes,export2png,config,mot2)       "Telescope"
+   set caption(spcaudace,boxes,export2png,config,mot3)       "Spectrograph"
+   set caption(spcaudace,boxes,export2png,config,lambda_deb) "Min wavelength"
+   set caption(spcaudace,boxes,export2png,config,lambda_fin) "Max wavelength"
+   set caption(spcaudace,boxes,export2png,config,ydeb)       "Min intensity"
+   set caption(spcaudace,boxes,export2png,config,yfin)       "Max intensity"
+   set caption(spcaudace,boxes,export2png,caractere)         "Les caractères \", \' and accented characters \nshould not used."
+   set caption(spcaudace,boxes,selectzone,titre2)            "Spectrum area coordinates"
+   set caption(spcaudace,boxes,selectzone,titre)             "Spectrum area Selection"
+   set caption(spcaudace,boxes,selectzone,stop_button)       "Cancel"
+   set caption(spcaudace,boxes,selectzone,return_button)     "OK"
+   set caption(spcaudace,boxes,selectzone,config,spectre)    "2D spectrum"
+   set caption(spcaudace,boxes,selectzone,config,xinf)       "X lower left limit: "
+   set caption(spcaudace,boxes,selectzone,config,yinf)       "Y lower left limit: "
+   set caption(spcaudace,boxes,selectzone,config,xsup)       "X upper right limit: "
+   set caption(spcaudace,boxes,selectzone,config,ysup)       "Y upper right limit: "
+   set caption(spcaudace,boxes,selectzone,aide)              "Uses mouse to select area upper left and lower right coordinates."
+   set caption(spcaudace,boxes,erreur,saisie)                "Entry error: Some fields are empty"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(spcaudace,boxes,export2png,titre)             "PNG graph creation"
+   set caption(spcaudace,boxes,export2png,titre2)            "Profile PNG graph creation"
+   set caption(spcaudace,boxes,export2png,stop_button)       "Cancel"
+   set caption(spcaudace,boxes,export2png,return_button)     "OK"
+   set caption(spcaudace,boxes,export2png,config,mot1)       "Object name"
+   set caption(spcaudace,boxes,export2png,config,mot2)       "Telescope"
+   set caption(spcaudace,boxes,export2png,config,mot3)       "Spectrograph"
+   set caption(spcaudace,boxes,export2png,config,lambda_deb) "Min wavelength"
+   set caption(spcaudace,boxes,export2png,config,lambda_fin) "Max wavelength"
+   set caption(spcaudace,boxes,export2png,config,ydeb)       "Min intensity"
+   set caption(spcaudace,boxes,export2png,config,yfin)       "Max intensity"
+   set caption(spcaudace,boxes,export2png,caractere)         "Les caractères \", \' and accented characters \nshould not used."
+   set caption(spcaudace,boxes,selectzone,titre2)            "Spectrum area coordinates"
+   set caption(spcaudace,boxes,selectzone,titre)             "Spectrum area Selection"
+   set caption(spcaudace,boxes,selectzone,stop_button)       "Cancel"
+   set caption(spcaudace,boxes,selectzone,return_button)     "OK"
+   set caption(spcaudace,boxes,selectzone,config,spectre)    "2D spectrum"
+   set caption(spcaudace,boxes,selectzone,config,xinf)       "X lower left limit: "
+   set caption(spcaudace,boxes,selectzone,config,yinf)       "Y lower left limit: "
+   set caption(spcaudace,boxes,selectzone,config,xsup)       "X upper right limit: "
+   set caption(spcaudace,boxes,selectzone,config,ysup)       "Y upper right limit: "
+   set caption(spcaudace,boxes,selectzone,aide)              "Uses mouse to select area upper left and lower right coordinates."
+   set caption(spcaudace,boxes,erreur,saisie)                "Entry error: Some fields are empty"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(spcaudace,boxes,export2png,titre)             "PNG graph creation"
+   set caption(spcaudace,boxes,export2png,titre2)            "Profile PNG graph creation"
+   set caption(spcaudace,boxes,export2png,stop_button)       "Cancel"
+   set caption(spcaudace,boxes,export2png,return_button)     "OK"
+   set caption(spcaudace,boxes,export2png,config,mot1)       "Object name"
+   set caption(spcaudace,boxes,export2png,config,mot2)       "Telescope"
+   set caption(spcaudace,boxes,export2png,config,mot3)       "Spectrograph"
+   set caption(spcaudace,boxes,export2png,config,lambda_deb) "Min wavelength"
+   set caption(spcaudace,boxes,export2png,config,lambda_fin) "Max wavelength"
+   set caption(spcaudace,boxes,export2png,config,ydeb)       "Min intensity"
+   set caption(spcaudace,boxes,export2png,config,yfin)       "Max intensity"
+   set caption(spcaudace,boxes,export2png,caractere)         "Les caractères \", \' and accented characters \nshould not used."
+   set caption(spcaudace,boxes,selectzone,titre2)            "Spectrum area coordinates"
+   set caption(spcaudace,boxes,selectzone,titre)             "Spectrum area Selection"
+   set caption(spcaudace,boxes,selectzone,stop_button)       "Cancel"
+   set caption(spcaudace,boxes,selectzone,return_button)     "OK"
+   set caption(spcaudace,boxes,selectzone,config,spectre)    "2D spectrum"
+   set caption(spcaudace,boxes,selectzone,config,xinf)       "X lower left limit: "
+   set caption(spcaudace,boxes,selectzone,config,yinf)       "Y lower left limit: "
+   set caption(spcaudace,boxes,selectzone,config,xsup)       "X upper right limit: "
+   set caption(spcaudace,boxes,selectzone,config,ysup)       "Y upper right limit: "
+   set caption(spcaudace,boxes,selectzone,aide)              "Uses mouse to select area upper left and lower right coordinates."
+   set caption(spcaudace,boxes,erreur,saisie)                "Entry error: Some fields are empty"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

@@ -1,0 +1,95 @@
+#
+# Projet EYE
+# Fichier : eye.cap
+# Mise a jour $Id: eye.cap 11738 2015-03-28 18:07:34Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+   set caption(eye,title)              "EYE"
+   set caption(eye,calatoguePath)      "Catalog directory"
+   set caption(eye,selection)          "Selectionner la methode"
+   set caption(eye,statImage)          "Recherche Image"
+   set caption(eye,stat)               "Statistique"
+   set caption(eye,bogumil)            "Bogumil"
+   set caption(eye,calibwcs)           "CalibWCS"
+   set caption(eye,kappa)              "Kappa"
+   set caption(eye,threshin)           "threshin"
+   set caption(eye,fwhm)               "fwhm"
+   set caption(eye,radius)             "radius"
+   set caption(eye,threshold)          "threshold"
+   set caption(eye,calatoguePath)      "Repertoire du catalogue"
+   set caption(eye,catalogue)          "Catalogue stellaire"
+   set caption(eye,magnitude)          "Magnitude limite"
+   set caption(eye,matching)           "Appariement"
+   set caption(eye,delta)              "Delta"
+   set caption(eye,epsilon)            "Epsilon"
+   set caption(eye,calibration)        "Calibration"
+   set caption(eye,deleteStar)         "Efface les reperes"
+   set caption(eye,convertKml)         "Creer fichier kml"
+   set caption(eye,wcs)                "Mots cles"
+   set caption(eye,coords)             "Coordonnees de l'objet a pointer"
+   set caption(eye,nbstars)            "Nombre d'etoiles dans :"
+   set caption(eye,savewcs)            "Enregistre mot-cles"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(eye,title)              "EYE"
+   set caption(eye,calatoguePath)      "Répertoire du catalogue"
+   set caption(eye,selection)          "Sélectionner la méthode"
+   set caption(eye,statImage)          "Recherche Image"
+   set caption(eye,stat)               "Statistique"
+   set caption(eye,bogumil)            "Bogumil"
+   set caption(eye,calibwcs)           "CalibWCS"
+   set caption(eye,kappa)              "Kappa"
+   set caption(eye,threshin)           "threshin"
+   set caption(eye,fwhm)               "fwhm"
+   set caption(eye,radius)             "radius"
+   set caption(eye,threshold)          "threshold"
+   set caption(eye,calatoguePath)      "Répertoire du catalogue"
+   set caption(eye,catalogue)          "Catalogue stellaire"
+   set caption(eye,magnitude)          "Magnitude limite"
+   set caption(eye,matching)           "Appariement"
+   set caption(eye,delta)              "Delta"
+   set caption(eye,epsilon)            "Epsilon"
+   set caption(eye,calibration)        "Calibration"
+   set caption(eye,deleteStar)         "Efface les repères"
+   set caption(eye,convertKml)         "Créer fichier kml"
+   set caption(eye,wcs)                "Mots clés"
+   set caption(eye,coords)             "Coordonnées de l'objet à pointer"
+   set caption(eye,nbstars)            "Nombre d'étoiles dans :"
+   set caption(eye,savewcs)            "Enregistre mots clés"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+
+}
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>LibRGB : Manuel d'utilisation</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 11 novembre 2004</p>
+<h1>LibRGB </h1>
+<h1>Librairie d'extension Tcl pour la manipulation de fichiers d'images en couleur </h1>
+<h1> 1. Introduction</h1>
+<p>La librairie libRGB ajoute des fonctions de manipulation de fichiers et de buffers d'images en couleurs &agrave; un interpr&eacute;teur Tcl utilisant AudeLA. Le principe g&eacute;n&eacute;ral de libRGB est de s&eacute;parer l'image d'un buffer en ses trois composantes rouge, vert, bleu (RGB) et les afficher &agrave; l'&eacute;cran. Techniquement, les cam&eacute;ras CCD couleurs fournissent une image dans le buffer dans lequel les pixels correspondent &agrave; l'une des trois couleurs. En fonction de l'algorithme de codage utilis&eacute; par le constructeur du composant CCD, on peut rep&eacute;rer la couleur de chaque pixel et synth&eacute;tiser trois images correspondant aux couleurs prises s&eacute;par&eacute;ment les unes des autres.</p>
+<h2> 2. Manuel de l'utilisateur</h2>
+<h3> <a name="rgb_split" id="rgb_split"></a>rgb_split numbuf ?-buffer {Nobufr Nobufg Nobufb}? ?-rgb type?</h3>
+<p>S&eacute;pare les trois composantes RGB d'un buffer en trois buffers.</p>
+<p>On peut pr&eacute;ciser le num&eacute;ro des trois buffers R, G et B en les indiquant dans une liste associ&eacute;e &agrave; l'option -buffer. Par d&eacute;faut, les buffers R, G et B ont pour num&eacute;ro respectif 1001, 1002 et 1003. Il n'est pas n&eacute;cessaire de cr&eacute;er les buffers (::buf::create) avant la fonction rgb_split (elle les cr&eacute;e elle m&ecirc;me).</p>
+<p>On peut sp&eacute;cifier le type d'algorithme de codage de la couleur en pr&eacute;cisant le type de l'option -rgb. Les cam&eacute;ras couleurs suivantes ont &eacute;t&eacute; identifi&eacute;es :</p>
+<p>Kaf-0400C : -rgb cfa</p>
+<p>WebCam&nbsp; : -rgb bgr&nbsp; (test&eacute; uniquement sur Philips VestaPro)</p>
+<h3> <a name="rgb_visu" id="rgb_visu"></a>rgb_visu {hicutr locutr} {hicutg locutg} {hicutb locutb} ?-zoom valzoom? ?-window {x1 y1 x2 y2}? ?-buffer {Nobufr Nobufg Nobufb}? ?-image Noimage?</h3>
+<p>Affiche une image couleur dans une zone de visualisation. La liste {hicutr locutr} contient les valeurs num&eacute;riques du seuil haut et du seuil bas de visualisation de l'image rouge. {hicutg locutg} {hicutb locutb} ont les m&ecirc;mes r&ocirc;les mais pour les images verte et bleue respectivement.</p>
+<p>L'option -zoom permet d'effectuer un affichage grossi (valzoom=1 par d&eacute;faut). Les valeurs autoris&eacute;es sont 1, 2 et 4.</p>
+<p>L'option -window permet de n'afficher qu'une fen&ecirc;tre de l'image.</p>
+<p>L'option -buffer permet de pr&eacute;ciser le num&eacute;ro des trois buffers R, G et B en les indiquant dans une liste associ&eacute;e. Par d&eacute;faut, les buffers R, G et B ont pour num&eacute;ro respectif 1001, 1002 et 1003.</p>
+<p>L'option -image permet de pr&eacute;ciser le num&eacute;ro de l'image sp&eacute;cifi&eacute;e par l'option "-image image" lors de la cr&eacute;ation du widget image Tk.</p>
+<p>L'exemple ci dessous montre l'utilisation de la fonction rgb:</p>
+<p><code>#--- cr&eacute;e une fenetre</code> <br />
+  <code>toplevel .testcolor</code> <br />
+  <code>wm geometry .testcolor 768x512+0+0</code> <br />
+  <code>wm title .testcolor "test pour images en couleur"</code></p>
+<p><code>#--- cree le canevas pour l'image</code> <br />
+  <code>canvas .testcolor.canvas -borderwidth 0 -relief flat -width 768 -height 512</code> <br />
+  <code>pack .testcolor.canvas</code></p>
+<p><code>#--- cree un widget image dans un canvas pour afficher l'objet de visualisation</code> <br />
+  <code>.testcolor.canvas create image 1 1 -image image1000 -anchor nw -tag img1</code></p>
+<p><code>#--- cree une zone de visualisation pour le buffer 1001, l'image 1000 (et on cr&eacute;e l'objet visu20)</code> <br />
+  <code>::visu::create 1001 1000 20</code></p>
+<p><code>#--- charge une image RGB</code> <br />
+  <code>buf1 load m57</code> <br />
+  <code>#--- s&eacute;pare l'image RGB du buffer 1 en trois buffers 51, 52 et 53 pour R, G et B</code> <br />
+  <code>rgb_split 1 -buffer {51 52 53} -rgb bgr</code></p>
+<p><code>#--- affiche l'image en couleur &agrave; partir des buffers 51, 52 et 53</code> <br />
+  <code>reg_visu {300 0} {300 0} {300 0} -buffer {51 52 53} -image 1000</code></p>
+<h3> <a name="rgb_save" id="rgb_save"></a>rgb_save filename ?filenameg filenameb? ?-buffer {Nobufr Nobufg Nobufb}?</h3>
+<p>Cette fonction permet d'enregistrer les trois buffers image dans un seul fichier FITS. filename est le nom du fichier FITS qui contiendra l'image couleur enregistr&eacute;e.</p>
+<p>L'option -buffer permet de pr&eacute;ciser le num&eacute;ro des trois buffers R, G et B en les indiquant dans une liste associ&eacute;e. Par d&eacute;faut, les buffers R, G et B ont pour num&eacute;ro respectif 1001, 1002 et 1003.</p>
+<p>Si on pr&eacute;cise trois noms de fichiers au lieu d'un seul (cas o&ugrave; filenameg filenameb son utilis&eacute;s) alors l'image couleur sera enregistr&eacute;e par trois fichiers FITS ind&eacute;pendants sur le disque.</p>
+<h3> <a name="rgb_load" id="rgb_load"></a>rgb_load filename ?filenameg filenameb? ?-buffer {Nobufr Nobufg Nobufb}?</h3>
+<p>Cette fonction permet de lire les trois buffers image enregistr&eacute;s pr&eacute;alablement dans un seul fichier FITS. filename est le nom du fichier FITS qui contient l'image couleur.</p>
+<p>L'option -buffer permet de pr&eacute;ciser le num&eacute;ro des trois buffers R, G et B en les indiquant dans une liste associ&eacute;e. Par d&eacute;faut, les buffers R, G et B ont pour num&eacute;ro respectif 1001, 1002 et 1003.</p>
+<p>Si on pr&eacute;cise trois noms de fichiers au lieu d'un seul (cas o&ugrave; filenameg filenameb son utilis&eacute;s) alors l'image couleur sera charg&eacute;e en m&eacute;moire &agrave; partir des trois fichiers FITS ind&eacute;pendants sur le disque.</p>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+CXX = g++
+CC  = gcc
+LD  = gcc
+CP  = cp
+RM  = rm -f -v
+RANLIB = ranlib
+AR  = ar rc
+
+
+# Definitions for external tools
+
+AUD_TCL_SPEC          = /usr
+AUD_TCL_BIN_DIR       = /usr/lib
+AUD_TCL_INCLUDE_SPEC  = -I/usr/include/tcl8.6
+AUD_TCL_LIB_SPEC      = -L/usr/lib/x86_64-linux-gnu -ltcl8.6
+AUD_TCL_STUB_LIB_SPEC = -L/usr/lib/x86_64-linux-gnu -ltclstub8.6
+AUD_TK_INCLUDE_SPEC   = 
+AUD_TK_LIB_SPEC       = -L/usr/lib/x86_64-linux-gnu -ltk8.6
+AUD_TK_STUB_LIB_SPEC  = -L/usr/lib/x86_64-linux-gnu -ltkstub8.6
+AUD_TK_BIN_DIR       = /usr/lib
+
+AUD_GSL_CFLAGS = -I/usr/include
+AUD_GSL_LIBS = -L/usr/lib -lgsl -lgslcblas -lm
+GSLFOUND = 1
+
+# AudeLA definitions
+
+ROOT  = /root/audela-code/audela/src
+MAJOR = 3
+MINOR = 0
+PATCH = 0
+EXTRA = b1
+
+PACKAGE = audela
+VERSION = $(MAJOR).$(MINOR).$(PATCH)$(EXTRA)
+
+COMMON    = $(ROOT)
+OUTPUTDIR = $(ROOT)/../bin
+INCLUDE   = $(ROOT)/include
+LIBCAMDIR = $(ROOT)/libcam
+LIBTELDIR = $(ROOT)/libtel
+LIBLINKDIR = $(ROOT)/liblink
+
+EXTDIR = $(ROOT)/external
+EXTINC = $(EXTDIR)/include
+EXTLIB = $(EXTDIR)/lib
+
+WEBCAM_ENABLE = 0
+
+SRCDIR    = ../src
+
+CXXFLAGS = -O2  -fPIC  -DTCL_THREADS  -fno-stack-protector -c -Wall -DUSE_TCL_STUBS -DUSE_TK_STUBS -I $(INCLUDE) $(AUD_TCL_INCLUDE_SPEC) $(AUD_TK_INCLUDE_SPEC)
+LDFLAGS  =  -shared  -ldl -lm -lstdc++ $(AUD_TCL_STUB_LIB_SPEC) $(AUD_TK_STUB_LIB_SPEC)
+
+DLLIB = -ldl
+
+# Definition of modules
+EXTERNAL = andor blt cfitsio fli fitstcl gzip jpeg6b libdcjpeg libdcraw libftd2xx libusb oscadine porttalk sbig sextractor sofa tcl tkhtml
+CONTRIB  = ethernaude libgs av4l libbm
+AUDELA   = audela libtt libtcltt libaudela libaudelatk libgzip libmc librgb libak libgsltcl libjm libml libros libyd libcatalog libcatalog_tcl
+LIBCAMS  = libethernaude libaudine libcagire liboscadine libquicka libgrabber libdigicam
+LIBTELS  = libaudecom libcelestron libcombit libdeltatau libcsi libdfm libeqmod liblx200 libmcmt libouranos libtemma libtelscript
+LIBLINKS = libparallelport libserialport libquickremote
+ASTROBRICK = libabcommon libabaudela libabmc libabsimple
+ASTROBRICK_TCL = abaudela libtclcommon libtclmc libtclaudela libtclaudelatk libtclsimple
+LIBCAMAB = libcamcommon libcamsimulator libcamindi
+LIBTELAB = libtelcommon libtelsimulator libtelindi
+
+ALL = $(CONTRIB) $(AUDELA) $(LIBCAMS) $(LIBTELS) $(LIBLINKS)
+

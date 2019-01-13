@@ -1,0 +1,205 @@
+#
+# Fichier : station_meteo.cap
+# Mise a jour $Id: station_meteo.cap 10176 2013-09-08 21:45:13Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(station_meteo,label)                          "Weather Station"
+
+set caption(station_meteo,sensname)                       "File Name"
+set caption(station_meteo,cumulus)                        "realtime.txt"
+set caption(station_meteo,sentinel)                       "infodata.txt"
+set caption(station_meteo,meteoAcc)                       "Path"
+set caption(station_meteo,search)                         "..."
+set caption(station_meteo,meteo)                          "Read weather data every seconds"
+set caption(station_meteo,attention)                      "Warning"
+set caption(station_meteo,erreur)                         "Choose the right path."
+
+set caption(station_meteo,site_web)                       "Reference Web Site:"
+set caption(station_meteo,site_web_sentinel)              "http://www.shelyak.com/dossier.php?id_dossier=49"
+set caption(station_meteo,site_web_cumulus)               "http://sandaysoft.com/products/cumulus"
+
+set caption(station_meteo,arreter)                        "Stop"
+set caption(station_meteo,creer_au_demarrage)             "Next time software is run connect this equipment automatically"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(station_meteo,label)                       "Station météo"
+
+   set caption(station_meteo,sensname)                    "Nom du fichier"
+   set caption(station_meteo,cumulus)                     "realtime.txt"
+   set caption(station_meteo,sentinel)                    "infodata.txt"
+   set caption(station_meteo,meteoAcc)                    "Chemin d'accès"
+   set caption(station_meteo,search)                      "..."
+   set caption(station_meteo,meteo)                       "Lire les données météo toutes les secondes"
+   set caption(station_meteo,attention)                   "Attention"
+   set caption(station_meteo,erreur)                      "Veuillez indiquer le bon chemin."
+
+   set caption(station_meteo,site_web)                    "Site Web de référence :"
+   set caption(station_meteo,site_web_sentinel)           "http://www.shelyak.com/dossier.php?id_dossier=49"
+   set caption(station_meteo,site_web_cumulus)            "http://sandaysoft.com/products/cumulus"
+
+   set caption(station_meteo,arreter)                     "Arrêter"
+   set caption(station_meteo,creer_au_demarrage)          "Connexion automatique de cet équipement au prochain démarrage"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(station_meteo,label)                       "Stazione Meteo"
+
+   set caption(station_meteo,sensname)                    "Nome file"
+   set caption(station_meteo,cumulus)                     "realtime.txt"
+   set caption(station_meteo,sentinel)                    "infodata.txt"
+   set caption(station_meteo,meteoAcc)                    "Percorso"
+   set caption(station_meteo,search)                      "..."
+   set caption(station_meteo,meteo)                       "Leggi dati meteorologici ogni secondo"
+   set caption(station_meteo,attention)                   "Attenzione"
+   set caption(station_meteo,erreur)                      "Scegli il percorso giusto."
+
+   set caption(station_meteo,site_web)                    "Sito Web di riferimento:"
+   set caption(station_meteo,site_web_sentinel)           "http://www.shelyak.com/dossier.php?id_dossier=49"
+   set caption(station_meteo,site_web_cumulus)            "http://sandaysoft.com/products/cumulus"
+
+   set caption(station_meteo,arreter)                     "Fermare"
+   set caption(station_meteo,creer_au_demarrage)          "Connessione automatica di questo equipaggiamento alla prossima esecuzione del software"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(station_meteo,label)                       "Estación meteorológica"
+
+   set caption(station_meteo,sensname)                    "Nombre de fichero"
+   set caption(station_meteo,cumulus)                     "realtime.txt"
+   set caption(station_meteo,sentinel)                    "infodata.txt"
+   set caption(station_meteo,meteoAcc)                    "Camino de acceso"
+   set caption(station_meteo,search)                      "..."
+   set caption(station_meteo,meteo)                       "Leer datos meteo cada segundo"
+   set caption(station_meteo,attention)                   "Cuidado¡"
+   set caption(station_meteo,erreur)                      "Debe indicar el camino correcto."
+
+   set caption(station_meteo,site_web)                    "Sitio Web de referencia:"
+   set caption(station_meteo,site_web_sentinel)           "http://www.shelyak.com/dossier.php?id_dossier=49"
+   set caption(station_meteo,site_web_cumulus)            "http://sandaysoft.com/products/cumulus"
+
+   set caption(station_meteo,arreter)                     "Parar"
+   set caption(station_meteo,creer_au_demarrage)          "La próxima vez que se ejecute el programa, el equipo se conecta automáticamente"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(station_meteo,label)                       "Wetterwarte"
+
+   set caption(station_meteo,sensname)                    "Dateien Namen"
+   set caption(station_meteo,cumulus)                     "realtime.txt"
+   set caption(station_meteo,sentinel)                    "infodata.txt"
+   set caption(station_meteo,meteoAcc)                    "Zugang Weg"
+   set caption(station_meteo,search)                      "..."
+   set caption(station_meteo,meteo)                       "Wetterdaten jede Sekunde lesen"
+   set caption(station_meteo,attention)                   "Achtung!"
+   set caption(station_meteo,erreur)                      "Den richtigen Weg Bitte geben."
+
+   set caption(station_meteo,site_web)                    "Referenz Webseite:"
+   set caption(station_meteo,site_web_sentinel)           "http://www.shelyak.com/dossier.php?id_dossier=49"
+   set caption(station_meteo,site_web_cumulus)            "http://sandaysoft.com/products/cumulus"
+
+   set caption(station_meteo,arreter)                     "Halten"
+   set caption(station_meteo,creer_au_demarrage)          "Nächste Mal diese Einrichtung automatisch anschließen"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(station_meteo,label)                       "Estação meteorológica"
+
+   set caption(station_meteo,sensname)                    "Nome do Ficheiro"
+   set caption(station_meteo,cumulus)                     "realtime.txt"
+   set caption(station_meteo,sentinel)                    "infodata.txt"
+   set caption(station_meteo,meteoAcc)                    "# Chemin d'accès"
+   set caption(station_meteo,search)                      "..."
+   set caption(station_meteo,meteo)                       "# Lire les données météo toutes les secondes"
+   set caption(station_meteo,attention)                   "Aviso"
+   set caption(station_meteo,erreur)                      "# Veuillez indiquer le bon chemin."
+
+   set caption(station_meteo,site_web)                    "Site Web de referência:"
+   set caption(station_meteo,site_web_sentinel)           "http://www.shelyak.com/dossier.php?id_dossier=49"
+   set caption(station_meteo,site_web_cumulus)            "http://sandaysoft.com/products/cumulus"
+
+   set caption(station_meteo,arreter)                     "Parar"
+   set caption(station_meteo,creer_au_demarrage)          "O equipamento conecta-se automaticamente na próxima execução do programa"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(station_meteo,label)                       "Weather Station"
+
+   set caption(station_meteo,sensname)                    "File Name"
+   set caption(station_meteo,cumulus)                     "realtime.txt"
+   set caption(station_meteo,sentinel)                    "infodata.txt"
+   set caption(station_meteo,meteoAcc)                    "Path"
+   set caption(station_meteo,search)                      "..."
+   set caption(station_meteo,meteo)                       "Read weather data every seconds"
+   set caption(station_meteo,attention)                   "Warning"
+   set caption(station_meteo,erreur)                      "Choose the right path."
+
+   set caption(station_meteo,site_web)                    "Reference Web Site:"
+   set caption(station_meteo,site_web_sentinel)           "http://www.shelyak.com/dossier.php?id_dossier=49"
+   set caption(station_meteo,site_web_cumulus)            "http://sandaysoft.com/products/cumulus"
+
+   set caption(station_meteo,arreter)                     "Stop"
+   set caption(station_meteo,creer_au_demarrage)          "Next time software is run connect this equipment automatically"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(station_meteo,label)                       "Weather Station"
+
+   set caption(station_meteo,sensname)                    "File Name"
+   set caption(station_meteo,cumulus)                     "realtime.txt"
+   set caption(station_meteo,sentinel)                    "infodata.txt"
+   set caption(station_meteo,meteoAcc)                    "Path"
+   set caption(station_meteo,search)                      "..."
+   set caption(station_meteo,meteo)                       "Read weather data every seconds"
+   set caption(station_meteo,attention)                   "Warning"
+   set caption(station_meteo,erreur)                      "Choose the right path."
+
+   set caption(station_meteo,site_web)                    "Reference Web Site:"
+   set caption(station_meteo,site_web_sentinel)           "http://www.shelyak.com/dossier.php?id_dossier=49"
+   set caption(station_meteo,site_web_cumulus)            "http://sandaysoft.com/products/cumulus"
+
+   set caption(station_meteo,arreter)                     "Stop"
+   set caption(station_meteo,creer_au_demarrage)          "Next time software is run connect this equipment automatically"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(station_meteo,label)                       "Weather Station"
+
+   set caption(station_meteo,sensname)                    "File Name"
+   set caption(station_meteo,cumulus)                     "realtime.txt"
+   set caption(station_meteo,sentinel)                    "infodata.txt"
+   set caption(station_meteo,meteoAcc)                    "Path"
+   set caption(station_meteo,search)                      "..."
+   set caption(station_meteo,meteo)                       "Read weather data every seconds"
+   set caption(station_meteo,attention)                   "Warning"
+   set caption(station_meteo,erreur)                      "Choose the right path."
+
+   set caption(station_meteo,site_web)                    "Reference Web Site:"
+   set caption(station_meteo,site_web_sentinel)           "http://www.shelyak.com/dossier.php?id_dossier=49"
+   set caption(station_meteo,site_web_cumulus)            "http://sandaysoft.com/products/cumulus"
+
+   set caption(station_meteo,arreter)                     "Stop"
+   set caption(station_meteo,creer_au_demarrage)          "Next time software is run connect this equipment automatically"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

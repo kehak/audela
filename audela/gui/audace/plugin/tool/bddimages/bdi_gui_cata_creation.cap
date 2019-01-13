@@ -1,0 +1,163 @@
+#
+# Fichier : bdi_gui_cata_creation.cap
+# $Id: bdi_gui_cata_creation.cap 6812 2011-02-27 11:08:08Z jberthier  $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(gui_cata_creation,title)          "Creation of the CATA"
+set caption(gui_cata_creation,prec)           "Previous"
+set caption(gui_cata_creation,next)           "Next"
+set caption(gui_cata_creation,create)         "Create"
+                                              
+set caption(gui_cata_creation,catalogue)      "Catalogues"
+set caption(gui_cata_creation,variables)      "Variables"
+set caption(gui_cata_creation,image)          "Image"
+set caption(gui_cata_creation,sextractor)     "Sextractor"
+set caption(gui_cata_creation,psf)            "PSF"
+set caption(gui_cata_creation,interop)        "Interop"
+set caption(gui_cata_creation,manuel)         "Manual"
+set caption(gui_cata_creation,develop)        "Develop"
+set caption(gui_cata_creation,analyse)        "Continuous analysis"
+                                              
+set caption(gui_cata_creation,conesearch)     "Conesearch"
+set caption(gui_cata_creation,conesearchmsg)  "Choose the reference catalogues to use to identify sources"
+set caption(gui_cata_creation,dispcata)       "Display"
+set caption(gui_cata_creation,dispcatamsg)    "Choose the colors to display catalogues, and the radius of the marks"
+set caption(gui_cata_creation,appariement)    "Cross-match"
+set caption(gui_cata_creation,appariementmsg) "Choose the cross-match method and their parameters"
+set caption(gui_cata_creation,appariementusno) "It not possible to uncheck the USNOA2 catalogue with the calibwcs method"
+
+set caption(gui_cata_creation,paramcata)      "Define the parameters to create the CATA"
+set caption(gui_cata_creation,activelog)      "Activate log"
+set caption(gui_cata_creation,2passes)        "Make 2 passes to calibrate"
+set caption(gui_cata_creation,radecprec)      "Use the last RA,DEC"
+set caption(gui_cata_creation,supprpv)        "Delete PV(1,2)_0 keywords"
+set caption(gui_cata_creation,supprimg)       "Delete IMG Catalog giving sextractor sources"
+set caption(gui_cata_creation,insertcata)     "Insert CATA file"
+set caption(gui_cata_creation,uncosmic)       "Delete cosmics"
+set caption(gui_cata_creation,limitestars)    "* Acceptable limit of the number of idetntified stars:"
+set caption(gui_cata_creation,seuilidentstar) "* Threshold of stellar identification:"
+set caption(gui_cata_creation,seuilidentplan) "* Threshold of planetary identification:"
+set caption(gui_cata_creation,enpos)          "In position :"
+set caption(gui_cata_creation,enmag)          "In magnitude:"
+
+set caption(gui_cata_creation,psftitle)       "Define the options to create the ASTROID cata\n(parameters to measure the PSF)"
+set caption(gui_cata_creation,psfcreer)       "Measure the PSF of sources"
+set caption(gui_cata_creation,psfauto)        "Automatic measure"
+set caption(gui_cata_creation,psfsatu)        "Level of saturation (ADU)"
+set caption(gui_cata_creation,psfdelta)       "Delta (pixel)"
+set caption(gui_cata_creation,psfseuil)       "Threshold (pixel)"
+set caption(gui_cata_creation,psfrayon)       "Maximum radius (pixel)"
+set caption(gui_cata_creation,lepoch)         "Epoch (UTC) :"
+set caption(gui_cata_creation,ltarget)        "Sso name :"
+set caption(gui_cata_creation,lcoord)         "RA DEC (deg) :"
+set caption(gui_cata_creation,lradius)        "FOV Radius (arcmin) :"
+set caption(gui_cata_creation,luaicode)       "IAU code :"
+set caption(gui_cata_creation,butresolve)     "Resolve Sso"
+set caption(gui_cata_creation,butcenter)      "Set Center"
+set caption(gui_cata_creation,butaladin)      "Show in Aladin"
+
+set caption(gui_cata_creation,votitle)        "Interop tools"
+set caption(gui_cata_creation,voconnect)      "Connection to Samp hub"
+set caption(gui_cata_creation,voscript)       "Display the FOV into Aladin"
+set caption(gui_cata_creation,voimgtab)       "Broadcast image and cata"
+
+set caption(gui_cata_creation,manueltitle)    "Manual astrometry on the image"
+
+# *************** Version française **** **********************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(gui_cata_creation,title)           "Création du CATA"
+   set caption(gui_cata_creation,prec)            "Precedent"
+   set caption(gui_cata_creation,next)            "Suivant"
+   set caption(gui_cata_creation,create)          "Créer"
+
+   set caption(gui_cata_creation,catalogue)       "Catalogues"
+   set caption(gui_cata_creation,variables)       "Variables"
+   set caption(gui_cata_creation,image)           "Image"
+   set caption(gui_cata_creation,sextractor)      "Sextractor"
+   set caption(gui_cata_creation,psf)             "PSF"
+   set caption(gui_cata_creation,interop)         "Interop"
+   set caption(gui_cata_creation,manuel)          "Manuel"
+   set caption(gui_cata_creation,develop)         "Develop"
+   set caption(gui_cata_creation,analyse)         "Analyse continue"
+
+   set caption(gui_cata_creation,conesearch)      "Identification"
+   set caption(gui_cata_creation,conesearchmsg)   "Choisir les catalogues de référence\nà utiliser pour l'identification des sources"
+   set caption(gui_cata_creation,dispcata)        "Affichage"
+   set caption(gui_cata_creation,dispcatamsg)     "Choisir les couleurs d'affichage des catalogues et la taille des ronds"
+   set caption(gui_cata_creation,appariement)     "Appariement"
+   set caption(gui_cata_creation,appariementmsg)  "Choisir la methode d'appariement et ses paramètres"
+   set caption(gui_cata_creation,appariementusno) "Il n'est pas possible de décocher le catalogue USNOA2 avec la méthode calibwcs"
+
+   set caption(gui_cata_creation,paramcata)       "Définir les paramètres pour la creation des CATA"
+   set caption(gui_cata_creation,activelog)       "Activation du log"
+   set caption(gui_cata_creation,2passes)         "Faire 2 passes pour calibrer"
+   set caption(gui_cata_creation,radecprec)       "Utiliser les RA,DEC précédent"
+   set caption(gui_cata_creation,supprpv)         "Suppression des PV(1,2)_0"
+   set caption(gui_cata_creation,supprimg)        "Suppression du catalogue IMG"
+   set caption(gui_cata_creation,insertcata)      "Inserer le fichier CATA"
+   set caption(gui_cata_creation,uncosmic)        "Supprimer les cosmiques"
+   set caption(gui_cata_creation,limitestars)     "* Limite acceptable du nb d'étoiles identifiées :"
+   set caption(gui_cata_creation,seuilidentstar)  "* Seuil d'indentification stellaire :"
+   set caption(gui_cata_creation,seuilidentplan)  "* Seuil d'indentification planétaire :"
+   set caption(gui_cata_creation,enpos)           "En position :"
+   set caption(gui_cata_creation,enmag)           "En magnitude:"
+
+   set caption(gui_cata_creation,psftitle)        "Définir les options de création du cata ASTROID\n(paramètres de mesure des PSF)"
+   set caption(gui_cata_creation,psfcreer)        "Mesurer les PSF des sources"
+   set caption(gui_cata_creation,psfauto)         "Mesure automatique"
+   set caption(gui_cata_creation,psfsatu)         "Niveau de saturation (ADU)"
+   set caption(gui_cata_creation,psfdelta)        "Delta (pixel)"
+   set caption(gui_cata_creation,psfseuil)        "Seuil de tolérance (pixel)"
+   set caption(gui_cata_creation,psfrayon)        "Rayon maximum (pixel)"
+
+   set caption(gui_cata_creation,resolver)        "Calcul des coordonnées du centre du FOV\nà partir des éphémérides d'un Sso"
+   set caption(gui_cata_creation,lepoch)          "Epoque (UTC) :"
+   set caption(gui_cata_creation,ltarget)         "Nom Sso :"
+   set caption(gui_cata_creation,lcoord)          "RA DEC (deg) :"
+   set caption(gui_cata_creation,lradius)         "Rayon FOV (arcmin) :"
+   set caption(gui_cata_creation,luaicode)        "UAI code :"
+   set caption(gui_cata_creation,butresolve)      "Resolve Sso"
+   set caption(gui_cata_creation,butcenter)       "Set Center"
+
+   set caption(gui_cata_creation,votitle)         "Outils Interop"
+   set caption(gui_cata_creation,voconnect)       "Connexion au hub Samp"
+   set caption(gui_cata_creation,voscript)        "Afficher le FOV dans Aladin"
+   set caption(gui_cata_creation,voimgtab)        "Envoyer l'image et le cata"
+ 
+   set caption(gui_cata_creation,manueltitle)     "Astrométrie manuelle sur l'image"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================

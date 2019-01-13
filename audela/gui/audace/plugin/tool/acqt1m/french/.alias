@@ -1,0 +1,77 @@
+ alias logapacheerr="tail -f /var/log/apache2/error_log"
+
+# Fonction de recherche
+function findall {
+  find . -wholename \*/\*.\* -prune -exec grep -iH "$1" {} \;
+}
+
+
+ alias pub="cd /data/install/homefred/Documents/Publications/Articles/Science/Articles/2011_AA_Genoide_Kalliope ; pwd "
+ alias data="cd /data/astrodata/Observations/Images/bddimages/bddimages_local/tmp/ ; pwd "
+
+ alias cdeproc="cd /usr/local/src/eproc-3.0 ; pwd "
+
+ alias conf="cd /mnt/userdata/mylinux/icone_application; pwd"
+
+ alias adb="cd /home/max/develop/Projets/adb; pwd"
+ alias ov="cd /work/www/imcce/fr/ephemerides/donnees/ov; pwd"
+ alias cdapache='cd /usr/local/apache2/'
+ alias cdaudela='cd /srv/develop/audela/bin/'
+ alias cdmysql='cd /usr/local/mysql'
+ alias cdtar='cd /Applications'
+ alias cdphp='cd '
+ alias cdinc='cd /xmuleincoming/'
+ alias bdi='cd /srv/develop/audela/gui/audace/plugin/tool/bddimages'
+ alias bditmp='cd /astrodata/Observations/Images/bddimages/bddimages_local/tmp'
+
+ alias www='cd /mnt/userdata/fred/Documents/Profession-Carriere/wwwImcceVachier'
+ alias cdftp='cd /srv/ftp/'
+
+ alias sou=". ~/.bashrc"
+
+
+ alias lsc="ls -lat | more"
+ alias lsd="ll  | grep -e '^d'"
+ alias myip="/sbin/ifconfig | grep Bcast"
+ alias cp="/bin/cp -i"
+ alias mv="/bin/mv -v"
+ alias ncu="nc -untabbed "
+
+ alias rm='/bin/rm -i'
+ alias remove='/bin/rm -rf'
+ alias lsd='ls -F | grep "/"'
+
+ alias myip='/sbin/ifconfig | grep Bcast'
+ alias durep='du --max-depth=1 | sort -n'
+ alias indent='indent -npsl -bap -bbb -bli0 -i3 -npcs -nprs -nsai -nsaf -nsaw -nut'
+
+
+function nccourant
+{
+nc -noask /usr/local/src/eproc-2.6/lib/
+nc -noask /usr/local/src/eproc-2.6/lib/ephe_calculasteroide.f90
+nc -noask /usr/local/src/eproc-2.6/lib/orbsataster.f90
+nc -noask /usr/local/src/eproc-2.6/lib/orbsataster_kepler.f90
+
+}
+
+#
+# le DISPLAY...
+#
+function disp
+{
+   if [[ -n "$1" ]]; then
+      export DISPLAY=$1
+      echo "New display: $DISPLAY"
+   else
+      echo "Current display: $DISPLAY"
+   fi
+}
+
+function mountbouge
+   {
+  mount /dev/sda1
+  mount /dev/sda2      
+   }
+
+

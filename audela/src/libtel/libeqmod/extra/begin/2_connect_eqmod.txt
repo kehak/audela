@@ -1,0 +1,62 @@
+Connexion dans audela de la mounture
+
+Pour que les choses se passent bien, tu places 
+les axes de la monture de façon à ce 
+quela tige du contre poids soit vers le bas 
+et tu fait pointer la déclinaison de façon à 
+ce que le tube vise le pole nord céleste.
+
+ Pour la configuration dans l'onglet EQMOD, tu coches:
+Tube à l'est
+Pôle Nord
+Et tu coches aussi la raquette à l'écran en choisissant SuperPad.
+
+
+
+Il faut choisir de mettre l orientation du tube a l'Est
+pour que les mouvement se fassent dans les bons sens.
+
+
+Connexion dans la console : 
+
+::tel::create eqmod /dev/ttyUSB0
+
+# Localisation de la monture : GPS 0.142300 E 42.936639 2890.5
+Port EQMOD : /dev/ttyUSB0
+
+
+les commandes : 
+
+tel1 drivername 
+# libeqmod {Mar 26 2013}
+
+tel1 name
+# EQMOD
+
+tel1 product
+# eqmod
+
+tel1 protocol
+# EQMOD
+
+tel1 port
+# /dev/ttyUSB0
+
+tel1 channel
+# file4
+
+tel1 foclen
+# 1.000000
+
+tel1 testcom
+# 0
+
+tel1 model
+#  
+
+
+
+
+
+
+

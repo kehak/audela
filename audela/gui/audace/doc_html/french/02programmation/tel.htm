@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Fonctions de pilotage de télescopes</title></head><body>
+<p class="date">Date de mise à jour : 05 avril 2016</p>
+
+<h1>Fonctions de pilotage de télescopes (ou montures) </h1>
+
+<p> Ces commandes permettent de contrôler des télescopes reconnus par
+AudeLA, par exemple le LX200. Les commandes qui permettent de contrôler un télescope,
+s'écrivent "tel" suivi d'un numéro. Ces commandes n'existent pas au
+démarrage d'AudeLA, mais sont crées par la commande "::tel::create
+...". Ainsi il est possible de piloter plusieurs télescopes, mais il
+est laissé à l'utilisateur le soin de ne pas exécuter des commandes
+simultanément. Il est important de savoir que les auteurs ne disposent
+pas personnellement de ces télescopes, et donc qu'il peut y avoir des
+problèmes avec certains. </p>
+
+<p> Les commandes sont divisées en deux catégories : </p>
+
+<p> Les commandes communes : Elles sont utilisables par tous les télescopes
+supportées. </p>
+
+<p> Les commandes spécifiques : Elles sont propres à chaque télescope en fonction
+de fonctionnalités propres. </p>
+
+<h1> 1. Commandes communes</h1>
+
+<h2> 1.1. Commandes d'informations générales</h2>
+
+<h3> <a name="drivername" id="drivername">tel1 drivername</a></h3>
+
+<p>Retourne le nom de la librairie et la date de la dernière
+compilation.</p>
+
+<h3> <a name="name" id="name">tel1 name</a></h3>
+
+<p>Retourne le nom du modèle de la monture associée au driver.</p>
+
+<h3><a name="product" id="name">tel1 product</a></h3>
+
+<p>Retourne le nom générique de la monture associée au driver.</p>
+
+<h3> <a name="port" id="port">tel1 port</a></h3>
+
+<p>Retourne le nom du port de communication (COM1, etc.).</p>
+
+<h3> <a name="foclen" id="foclen">tel1 foclen ?foclen?</a></h3>
+
+<p>Retourne ou assigne la longueur focale (mètres) de l'optique.</p>
+
+<h2> 1.2. Commandes de mouvements</h2>
+
+Ces commandes affectent les moteurs de l'axe horaire (RA), de
+déclinaison (DEC), de focalisation (éventuel). Les commandes affectées
+aux moteurs RA et DEC se nomment <span style="font-weight: bold;">tel1
+radec</span> et les commandes associées au
+moteur de focalisation se nomment <span style="font-weight: bold;">tel1
+focus</span>. Les arguments suivants
+permettent de préciser la nature du mouvement.<br />
+
+<br />
+
+Tout est résumé dans le
+tableau ci-dessous :<br />
+
+<br />
+
+<table border="2" cellpadding="5">
+
+  <tbody>
+    <tr>
+      <td><br />
+      </td>
+      <td><span style="font-weight: bold;"> motor</span> </td>
+      <td><span style="font-weight: bold;"> init</span> </td>
+      <td style="width: 103px;"><span style="font-weight: bold;"> coord</span>
+      </td>
+      <td style="width: 211px;"><span style="font-weight: bold;"> goto</span>
+      </td>
+      <td style="width: 85px;"><span style="font-weight: bold;"> move</span> </td>
+      <td style="width: 56px;"><span style="font-weight: bold;"> stop</span> </td>
+      <td><span style="font-weight: bold;"> state</span> </td>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">survey</span><br />
+      </td>
+    </tr>
+    <tr>
+      <td><a name="radec" id="radec"><span style="font-weight: bold;">tel1
+radec</span> </a></td>
+      <td> ?on|off? Marche/Arrêt du suivi sidéral. </td>
+      <td> {ra dec} <br />
+Initialise les codeurs <br />
+sur des coordonnées. </td>
+      <td style="width: 103px;"> ?-equinox value?<br />
+Retourne la valeur actuelle <br />
+des codeurs.<br />
+L'option -equinox précise la référence des coordonnées (J2000.0 ou
+now). 'now' par défaut.<br />
+      </td>
+      <td style="width: 211px;"> {ra dec}<br />
+?-rate value?<br />
+?-blocking boolean?<br />
+?-backlash boolean?<br />
+?-equinox value?<br />
+Rallie à la position <br />
+indiquée. L'option -rate est un nombre qui varie entre 0 (vitesse <br />
+la plus petite) et 1 (vitesse la plus grande). L'option -blocking
+précise s'il faut attendre la fin du pointage (=1 défaut) ou non (=0)
+pour terminer la commande. L'option -backlash précise si le rattrapage
+des jeux est acif (=1) ou inactif (=0 défaut). L'option -equinox
+précise la référence des coordonnées.<br />
+      </td>
+      <td style="width: 85px;"> n|s|e|w<br />
+?rate?<br />
+Bouge le télescope <br />
+dans une direction.<br />
+rate est un nombre optionnel <br />
+qui varie entre 0 (vitesse <br />
+la plus petite) et 1 (vitesse la plus grande). </td>
+      <td style="width: 56px;"> ?n|s|e|w? <br />
+Arrête le mouvement <br />
+spécifié du télescope. </td>
+      <td style="text-align: left;">Pas d'argument.<br />
+      <br />
+Retourne l'état des moteurs (unknown, tracking, pointing, stopped).<br />
+      </td>
+      <td style="vertical-align: middle; text-align: left;"> ?1|0?
+Marche/Arrêt du rafraîchissement de l'affichage des coordonnées toutes
+les secondes.<br />
+Si pas d'argument, retourne l'état du rafraîchissement.<br />
+      </td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold;"><a name="focus" id="focus">tel1
+focus</a></td>
+      <td> ?on|off? <br />
+Marche/Arrêt du moteur. </td>
+      <td> value <br />
+Initialise le codeur <br />
+sur la valeur. </td>
+      <td style="width: 103px;"> Pas d'argument.<br />
+      <br />
+Retourne la valeur actuelle <br />
+du codeur. </td>
+      <td style="width: 211px;"> value<br />
+?-rate value?<br />
+?-blocking boolean? <br />
+Rallie à la position <br />
+indiquée. L'option -rate est un nombre qui varie entre 0 (vitesse <br />
+la plus petite) et 1 (vitesse la plus grande). L'option
+-blocking précise s'il faut attendre la fin du pointage (=1 défaut) ou
+non (=0) pour terminer la commande.<br />
+      </td>
+      <td style="width: 85px;"> +|-<br />
+?rate? <br />
+Bouge la focalisation dans <br />
+le sens indiqué.<br />
+rate est un nombre optionnel qui varie entre 0 (vitesse <br />
+la plus petite) et 1 (vitesse la plus grande). </td>
+      <td style="width: 56px;">Arrête le mouvement <br />
+de focalisation. </td>
+      <td><br />
+      </td>
+      <td style="vertical-align: top;"><br />
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Par exemple, pour rallier le télescope aux coordonnées 4h56m12s et
+-7d32m23s, on écrira : </p>
+
+<p><code>tel1 radec goto {4h56m12s -7d32m23s}</code></p>
+
+<h1> 2. Commandes spécifique LX200</h1>
+
+<h2> 2.1. Commandes du driver externe (liblx200.dll) :</h2>
+
+<h3> <a name="date" id="date">tel1 date ?Date?</a></h3>
+
+</span>
+</p><p>Mise à jour de l'horloge du microcontrôleur du télescope.</p>
+<span style="font-weight: bold;">
+<h3> <a name="home" id="home">tel1 home ?Home?</a></h3>
+
+</span>
+<p>Mise à jour des coordonnées de l'observatoire (latitude et longitude) dans le microcontrôleur du télescope. Le microcontrôleur ne gère pas l'altitude. Donc si on envoie un home
+bien construit (latitude, longitude et altitude), au retour après lecture de la ROM on n'a pas d'altitude.</p>
+<p>Par exemple si on envoie la commande :</p>
+<p>tel1 home $::audace(posobs,observateur,gps)</p>
+<p>avec ::audace(posobs,observateur,gps) égal à "GPS 1.376722 E 43.659778 142"<br />
+</p>
+<p>En retour on constate que l'altitude est bien à 0 m :<br />
+</p>
+<p># GPS 1.376722 e +43.659778 0
+</p>
+
+<span style="font-weight: bold;">
+<h3> <a name="longformat" id="longformat">tel1 longformat ?on|off?</a></h3>
+
+</span>
+<p>Choix du format des coordonnées (long ou court).</p>
+<span style="font-weight: bold;">
+<h3> <a name="tempo" id="tempo">tel1 tempo ?ms?</a></h3>
+
+</span>
+<p>Fixe le délais de temporisation (millisecondes) entre une
+entrée/sortie.</p>
+
+
+
+</body></html>

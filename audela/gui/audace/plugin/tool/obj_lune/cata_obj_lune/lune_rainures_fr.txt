@@ -1,0 +1,61 @@
+Rima Agatharchides        20.0S   28.0W   50.0    53                                              Nommée en fonction du cratère voisin
+Rima Agricola             29.0N   53.0W   110.0                                                   Nommée en fonction des monts voisins
+Rima Archytas             53.0N   3.0E    90.0    4                                               Nommée en fonction du cratère voisin
+Rima Aridaeus             6.4N    14.0E   250.0   34                                              Nommée en fonction du cratère voisin
+Rima Artsimovich          27.0N   39.0W   70.0                                                    Nommée en fonction du cratère voisin
+Rima Billy                15.0S   48.0W   70.0    51                                              Nommée en fonction du cratère voisin
+Rima Birt                 21.0S   9.0W    50.0    54                                              Nommée en fonction du cratère voisin
+Rima Bradley              23.8N   1.2W    161.0   22                                              Nommée en fonction des monts voisins
+Rima Brayley              21.4N   37.5W   311.0   19                                              Nommée en fonction du cratère voisin
+Rima Calippus             37.0N   13.0E   40.0    13                                              Nommée en fonction du cratère voisin
+Rima Cardanus             11.4N   71.5W   175.0   28                                              Nommée en fonction du cratère voisin
+Rima Carmen               19.8N   29.3E   10.0                                                    Prénom féminin espognol
+Rima Cauchy               10.5N   38.0E   140.0   36                                              Nommée en fonction du cratère voisin
+Rima Cleomedes            27.0N   57.0E   80.0    26                                              A l'intérieur du cratère de même nom
+Rima Cleopatra            30.0N   53.8W   14.0                                                    Prénom féminin grec
+Rima Conon                18.6N   2.0E    30.0    22                                              Nommée en fonction du cratère voisin
+Rima Dawes                17.5N   26.6E   15.0                                                    Nommée en fonction du cratère voisin
+Rima Delisle              31.0N   32.0W   60.0    9                                               Nommée en fonction du cratère voisin
+Rima Diophantus           29.0N   33.0W   150.0   19                                              Nommée en fonction du cratère voisin
+Rima Draper               18.0N   25.0W   160.0                                                   Nommée en fonction du cratère voisin
+Rima Euler                21.0N   31.0W   90.0                                                    Nommée en fonction du cratère voisin
+Rima Flammarion           2.8S    5.6W    80.0    44                                              Nommée en fonction du cratère voisin
+Rima Furnerius            35.0S   61.0E   50.0    69                                              A l'intérieur du cratère de même nom
+Rima G. Bond              33.3N   35.5E   168.0   15                                              Nommée en fonction du cratère voisin
+Rima Galilaei             11.9N   58.5W   89.0    28                                              Nommée en fonction du cratère voisin
+Rima Gärtner              59.0N   36.0E   30.0    6                                               A l'intérieur du cratère de même nom
+Rima Gay-Lussac           13.0N   22.0W   40.0    31                                              Nommée en fonction du cratère voisin
+Rima Hadley               25.0N   3.0E    80.0    22                                              Nommée en fonction des monts voisins
+Rima Hansteen             12.0S   53.0W   25.0    40                                              Nommée en fonction du cratère voisin
+Rima Hase                 33.0S   66.0E   300.0   69                                              Nommée en fonction du cratère voisin
+Rima Herigonius           13.0S   37.0W   100.0   41                                              Nommée en fonction du cratère voisin
+Rima Hesiodus             30.0S   20.0W   256.0   53  54  63                                      Nommée en fonction du cratère voisin
+Rima Hyginus              7.4N    7.8E    219.0   33  34                                          Nommée en fonction du cratère voisin
+Rima Jansen               14.5N   29.0E   35.0    25  36                                          Nommée en fonction du cratère voisin
+Rima Krieger              29.0N   45.6W   22.0                                                    Nommée en fonction du cratère voisin
+Rima Laplace              48.0N   26.0W   130.0                                                   Nommée en fonction du cap voisin
+Rima Mairan               38.0N   47.0W   90.0    9                                               Nommée en fonction du cratère voisin
+Rima Marcello             18.6N   27.7E   2.0                                                     Prénom masculin italien
+Rima Marco Polo           15.4N   2.0W    28.0                                                    Appartient au système de Rimae Bode
+Rima Marius               16.5N   48.9W   121.0   18                                              Nommée en fonction du cratère voisin
+Rima Messier              1.0S    45.0E   100.0   37  48                                          Nommée en fonction du cratère voisin
+Rima Milichius            8.0N    33.0W   100.0   30                                              Nommée en fonction du cratère voisin
+Rima Newcomb              29.9N   43.8E   41.0                                                    Nommée en fonction du cratère voisin
+Rima Oppolzer             1.7S    1.0E    94.0    44                                              Nommée en fonction du cratère voisin
+Rima Ptolemaeus           9.2S    1.8W    153.0                                                   Catena, pas Rima
+Rima Réaumur              3.0S    3.0E    30.0    44                                              Nommée en fonction du cratère voisin
+Rima Reiko                18.6N   27.7E   2.0                                                     Prénom masculin japonais
+Rima Rudolf               19.6N   29.6E   8.0                                                     Prénom masculin allemand
+Rima Schröter             6.0N    12.0W   40.0    32                                              Nommée en fonction du cratère voisin
+Rima Schröter             24.0N   0.0E    200.0                                                   Erreur de nom pour Vallis Schröteri (vallée Schröter) sur LTO 38B3
+Rima Sharp                46.7N   50.5W   107.0   9                                               Nommée en fonction du cratère voisin
+Rima Sheepshanks          58.0N   24.0E   200.0   5                                               Nommée en fonction du cratère voisin
+Rima Siegfried            25.9S   103.0E  14.0                                                    Prénom masculin allemand
+Rima Sirsalis             17.0S   62.0W   /       50                                              Nommée en fonction du cratère voisin
+Rima Suess                6.7N    48.2W   165.0   29                                              Nommée en fonction du cratère voisin
+Rima Sung-Mei             24.6N   11.3E   40.0                                                    Prénom féminin chinois; partie du cratère Lorca
+Rima T. Mayer             13.0N   31.0W   50.0                                                    Nommée en fonction du cratère voisin
+Rima Wan-Yu               20.0N   31.5W   12.0                                                    Prénom féminin chinois
+Rima Widmannstatten       6.1S    85.5E   46.0                                                    Nommée en fonction du cratère voisin
+Rima Yangel'              16.7N   4.6E    30.0                                                    Nommée en fonction du cratère voisin
+Rima Zahia                25.0N   29.5W   16.0                                                    Prénom féminin arabe

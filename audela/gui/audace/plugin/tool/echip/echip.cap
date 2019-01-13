@@ -1,0 +1,260 @@
+#
+# Fichier : echip.cap
+# Mise à jour $Id: echip.cap 9691 2013-07-06 15:09:59Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(echip,title)                  "Electronic Parameters"
+
+set caption(echip,offset)                 "Offset Frame Generic Name"
+set caption(echip,dark)                   "Dark Frame Generic Name"
+set caption(echip,flat)                   "Flat Field Frame Generic Name"
+set caption(echip,nombre)                 "Number"
+set caption(echip,obt)                    "Mechanical Shutter"
+set caption(echip,gain)                   "Gain \[e\/ADU\]"
+set caption(echip,noise)                  "Read Noise \[e\]"
+set caption(echip,bias)                   "Bias \[ADU\]"
+set caption(echip,thermic_signal)         "Thermic Signal \[ADU\/sec\]"
+set caption(echip,sigma)                  "Sigma"
+set caption(echip,saturation)             "Max. Capacity of a Photosite \[ADU\]"
+set caption(echip,exp_critique)           "Critical Exposure Time \[sec\]"
+set caption(echip,exp_max)                "Maximum Exposure Time \[sec\]"
+set caption(echip,dynamic)                "Dynamic Range \[levels\]"
+
+set caption(echip,search)                 "..."
+set caption(echip,ok)                     "OK"
+set caption(echip,apply)                  "Apply"
+set caption(echip,hlpTool)                "Help"
+set caption(echip,hlpFunction)            "Tutorial"
+set caption(echip,close)                  "Close"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(echip,title)               "Paramètres électroniques"
+
+   set caption(echip,offset)              "Nom générique de la Précharge"
+   set caption(echip,dark)                "Nom générique du Noir"
+   set caption(echip,flat)                "Nom générique de la P.L.U."
+   set caption(echip,nombre)              "Nombre"
+   set caption(echip,obt)                 "Obturateur mécanique"
+   set caption(echip,gain)                "Gain \[e\/ADU\]"
+   set caption(echip,noise)               "Bruit de lecture \[e\]"
+   set caption(echip,bias)                "Biais \[ADU\]"
+   set caption(echip,thermic_signal)      "Coefficient thermique \[ADU\/sec\]"
+   set caption(echip,sigma)               "Sigma"
+   set caption(echip,saturation)          "Capacité maxi d'un photosite \[e\]"
+   set caption(echip,exp_critique)        "Temps de pose critique \[sec\]"
+   set caption(echip,exp_max)             "Temps de pose maximum \[sec\]"
+   set caption(echip,dynamic)             "Dynamique \[niveaux\]"
+
+   set caption(echip,search)              "..."
+   set caption(echip,ok)                  "OK"
+   set caption(echip,apply)               "Appliquer"
+   set caption(echip,hlpTool)             "Aide"
+   set caption(echip,hlpFunction)         "Tutoriel"
+   set caption(echip,close)               "Fermer"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(echip,title)               "Parametri elettronici"
+
+   set caption(echip,offset)              "Nome generico del frame di offset"
+   set caption(echip,dark)                "Nome generico della Dark"
+   set caption(echip,flat)                "Nome generico del Flat Field"
+   set caption(echip,nombre)              "Numero"
+   set caption(echip,obt)                 "Otturatore meccanico"
+   set caption(echip,gain)                "Guadagno \[e\/ADU\]"
+   set caption(echip,noise)               "Rumore di lettura \[e\]"
+   set caption(echip,bias)                "Bias \[ADU\]"
+   set caption(echip,thermic_signal)      "Segnale termico \[ADU\/sec\]"
+   set caption(echip,sigma)               "Sigma"
+   set caption(echip,saturation)          "Capacità massima di un photosite \[ADU\]"
+   set caption(echip,exp_critique)        "Tempo critico d'esposizione \[sec\]"
+   set caption(echip,exp_max)             "Tempo massimo di posa \[sec\]"
+   set caption(echip,dynamic)             "Range dinamico \[livelli\]"
+
+   set caption(echip,search)              "..."
+   set caption(echip,ok)                  "OK"
+   set caption(echip,apply)               "Applicare"
+   set caption(echip,hlpTool)             "Aiuto"
+   set caption(echip,hlpFunction)         "Tutorial"
+   set caption(echip,close)               "Chiudere"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(echip,title)               "Parámetros electrónicos"
+
+   set caption(echip,offset)              "Nombre genérico imagen de Offset"
+   set caption(echip,dark)                "Nombre genérico imagen de Dark"
+   set caption(echip,flat)                "Nombre genérico imagen de Flat"
+   set caption(echip,nombre)              "Número"
+   set caption(echip,obt)                 "Obturador mecánico"
+   set caption(echip,gain)                "Ganancia \[e\/ADU\]"
+   set caption(echip,noise)               "Ruido de lectura \[e\]"
+   set caption(echip,bias)                "Nivel de bias \[ADU\]"
+   set caption(echip,thermic_signal)      "Señal térmica \[ADU\/sg\]"
+   set caption(echip,sigma)               "Sigma"
+   set caption(echip,saturation)          "Capacidad max. de un pixel \[ADU\]"
+   set caption(echip,exp_critique)        "Tiempo de exposición crítica \[sg\]"
+   set caption(echip,exp_max)             "Tiempo de exposición max. \[sg\]"
+   set caption(echip,dynamic)             "Rango dinamico \[niveles\]"
+
+   set caption(echip,search)              "..."
+   set caption(echip,ok)                  "OK"
+   set caption(echip,apply)               "Aplicar"
+   set caption(echip,hlpTool)             "Ayuda"
+   set caption(echip,hlpFunction)         "Tutorial"
+   set caption(echip,close)               "Cerrar"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(echip,title)               "Elektronischen Parameter"
+
+   set caption(echip,offset)              "Offset Rahmen generischer Name"
+   set caption(echip,dark)                "Schwarz Rahmen generischer Name"
+   set caption(echip,flat)                "Flachfeld Rahmen generischer Name"
+   set caption(echip,nombre)              "Zahl"
+   set caption(echip,obt)                 "Mechanischer Auslöser"
+   set caption(echip,gain)                "Verstärkung \[e\/ADU\]"
+   set caption(echip,noise)               "Lesen Geräusch \[e\]"
+   set caption(echip,bias)                "Schwarzwerteinstellung \[ADU\]"
+   set caption(echip,thermic_signal)      "Thermischen Koeffizient \[ADU\/sek\]"
+   set caption(echip,sigma)               "Sigma"
+   set caption(echip,saturation)          "Max. Kapazität eines Photosite \[ADU\]"
+   set caption(echip,exp_critique)        "Kritischer Belichtungszeit \[sek\]"
+   set caption(echip,exp_max)             "Maximaler Belichtungszeit \[sek\]"
+   set caption(echip,dynamic)             "Dynamischer Bereich \[Stufen\]"
+
+   set caption(echip,search)              "..."
+   set caption(echip,ok)                  "OK"
+   set caption(echip,apply)               "Anwenden"
+   set caption(echip,hlpTool)             "Hilfe"
+   set caption(echip,hlpFunction)         "Tutorial"
+   set caption(echip,close)               "Schließen"
+
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(echip,title)               "# Paramètres électroniques"
+
+   set caption(echip,offset)              "# Nom générique de la Précharge"
+   set caption(echip,dark)                "# Nom générique du Noir"
+   set caption(echip,flat)                "# Nom générique de la P.L.U."
+   set caption(echip,nombre)              "Número"
+   set caption(echip,obt)                 "# Obturateur mécanique"
+   set caption(echip,gain)                "# Gain \[e\/ADU\]"
+   set caption(echip,noise)               "# Bruit de lecture \[e\]"
+   set caption(echip,bias)                "# Niveau du noir \[ADU\]"
+   set caption(echip,thermic_signal)      "# Coefficient thermique \[ADU\/sec\]"
+   set caption(echip,sigma)               "# Sigma"
+   set caption(echip,saturation)          "# Capacité maxi d'un photosite \[ADU\]"
+   set caption(echip,exp_critique)        "# Temps de pose critique \[sec\]"
+   set caption(echip,exp_max)             "# Temps de pose maximum \[sec\]"
+   set caption(echip,dynamic)             "# Dynamique \[niveaux\]"
+
+   set caption(echip,search)              "..."
+   set caption(echip,ok)                  "OK"
+   set caption(echip,apply)               "Aplicar"
+   set caption(echip,hlpTool)             "Ajuda"
+   set caption(echip,hlpFunction)         "Tutorial"
+   set caption(echip,close)               "Fechar"
+
+# **************** Version danoise ****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(echip,title)               "Electronic Parameters"
+
+   set caption(echip,offset)              "Offset Frame Generic Name"
+   set caption(echip,dark)                "Dark Frame Generic Name"
+   set caption(echip,flat)                "Flat Field Frame Generic Name"
+   set caption(echip,nombre)              "Number"
+   set caption(echip,obt)                 "Mechanical Shutter"
+   set caption(echip,gain)                "Gain \[e\/ADU\]"
+   set caption(echip,noise)               "Read Noise \[e\]"
+   set caption(echip,bias)                "Bias \[ADU\]"
+   set caption(echip,thermic_signal)      "Thermic Signal \[ADU\/sec\]"
+   set caption(echip,sigma)               "Sigma"
+   set caption(echip,saturation)          "Max. Capacity of a Photosite \[ADU\]"
+   set caption(echip,exp_critique)        "Critical Exposure Time \[sec\]"
+   set caption(echip,exp_max)             "Maximum Exposure Time \[sec\]"
+   set caption(echip,dynamic)             "Dynamic Range \[levels\]"
+
+   set caption(echip,search)              "..."
+   set caption(echip,ok)                  "OK"
+   set caption(echip,apply)               "Apply"
+   set caption(echip,hlpTool)             "Help"
+   set caption(echip,hlpFunction)         "Tutorial"
+   set caption(echip,close)               "Close"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(echip,title)               "Electronic Parameters"
+
+   set caption(echip,offset)              "Offset Frame Generic Name"
+   set caption(echip,dark)                "Dark Frame Generic Name"
+   set caption(echip,flat)                "Flat Field Frame Generic Name"
+   set caption(echip,nombre)              "Number"
+   set caption(echip,obt)                 "Mechanical Shutter"
+   set caption(echip,gain)                "Gain \[e\/ADU\]"
+   set caption(echip,noise)               "Read Noise \[e\]"
+   set caption(echip,bias)                "Bias \[ADU\]"
+   set caption(echip,thermic_signal)      "Thermic Signal \[ADU\/sec\]"
+   set caption(echip,sigma)               "Sigma"
+   set caption(echip,saturation)          "Max. Capacity of a Photosite \[ADU\]"
+   set caption(echip,exp_critique)        "Critical Exposure Time \[sec\]"
+   set caption(echip,exp_max)             "Maximum Exposure Time \[sec\]"
+   set caption(echip,dynamic)             "Dynamic Range \[levels\]"
+
+   set caption(echip,search)              "..."
+   set caption(echip,ok)                  "OK"
+   set caption(echip,apply)               "Apply"
+   set caption(echip,hlpTool)             "Help"
+   set caption(echip,hlpFunction)         "Tutorial"
+   set caption(echip,close)               "Close"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(echip,title)               "Electronic Parameters"
+
+   set caption(echip,offset)              "Offset Frame Generic Name"
+   set caption(echip,dark)                "Dark Frame Generic Name"
+   set caption(echip,flat)                "Flat Field Frame Generic Name"
+   set caption(echip,nombre)              "Number"
+   set caption(echip,obt)                 "Mechanical Shutter"
+   set caption(echip,gain)                "Gain \[e\/ADU\]"
+   set caption(echip,noise)               "Read Noise \[e\]"
+   set caption(echip,bias)                "Bias \[ADU\]"
+   set caption(echip,thermic_signal)      "Thermic Signal \[ADU\/sec\]"
+   set caption(echip,sigma)               "Sigma"
+   set caption(echip,saturation)          "Max. Capacity of a Photosite \[ADU\]"
+   set caption(echip,exp_critique)        "Critical Exposure Time \[sec\]"
+   set caption(echip,exp_max)             "Maximum Exposure Time \[sec\]"
+   set caption(echip,dynamic)             "Dynamic Range \[levels\]"
+
+   set caption(echip,search)              "..."
+   set caption(echip,ok)                  "OK"
+   set caption(echip,apply)               "Apply"
+   set caption(echip,hlpTool)             "Help"
+   set caption(echip,hlpFunction)         "Tutorial"
+   set caption(echip,close)               "Close"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

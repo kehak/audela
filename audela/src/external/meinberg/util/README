@@ -1,0 +1,16 @@
+Meinberg utils:
+  acq.py:  script that displays the status of the meinberg (mbgstatus -vvv) and can
+           save the incoming timestamps in the time buffer (START -> gpscap -f ?filename?).
+           It requires "mbgstatus" to be present in the system.
+  gpscap:  similar to the Meinberg command "mbggpscap -c"; it resets the buffer before
+           starting; it has the "-f" option for putting the output into a file; it does
+           not print the mbggpscap header.
+  testUTC: it performs a comparison between the GPS and the system time.
+
+Compilation and installation:
+  acq.py:  go into acq/ and type "make install" as root; it is installed in /usr/local/bin;
+           it needs "gpscap" to work fully (otherwise, the button START does not work).
+  gpscap:  type "make" and "make install" (the latter must be executed as root). It
+           installs in "/usr/local/bin/".
+  testUTC: type "make" and "make install" (the latter must be executed as root). It
+           installs in "/usr/local/bin".

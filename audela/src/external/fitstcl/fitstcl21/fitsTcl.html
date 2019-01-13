@@ -1,0 +1,803 @@
+<html>
+<head>
+    <title>fitsTcl 2.1.1 User's Guide</title>
+<!--#include virtual="/docs/swheader.html"-->
+
+
+<p align=center><font size="7" face="sans-serif"><b>
+   fitsTcl 2.1.1 User's Guide
+</b></font></p>
+
+<p>
+FITS (Flexible Image Transport System) file format is widely used in the 
+astronomical community. But its complexity makes it very difficult for 
+general users to interact with data in FITS format.
+</p>
+
+<p>
+Current FORTRAN and C interfaces to FITS -- <a 
+href="http://heasarc.gsfc.nasa.gov/fitsio">FITSIO/CFITSIO</a>, developed by 
+the HEASARC (High Energy Astrophysics Science Archive Research Center) at 
+the NASA Goddard Space Flight Center -- provide very powerful and robust 
+functions to interact with FITS files. However, utilizing FITSIO/CFITSIO 
+requires some basic FORTRAN/C programming skills, and this low level 
+library often is more powerful, and hence more complex, than the general 
+user needs.
+</p>
+
+<p>
+To provide general users with a simple interface to read/write FITS
+file, we developed fitsTcl, an extension to the simple but powerful
+script language <a href="http://www.tclconsortium.org/">TCL/TK</a>,
+which uses the CFITSIO library.  fitsTcl was developed for the
+<i>fv</i> project and is distributed as part of <i>fv</i>, which can
+be obtained by visiting <a
+href="http://heasarc.gsfc.nasa.gov/ftools/fv/">the <i>fv</i>
+website</a>.  fitsTcl can also be downloaded separately from the <a
+href="http://heasarc.gsfc.nasa.gov/ftools/fv/fitsTcl_home.html">fitsTcl
+web page</a>.  fitsTcl runs under Unix, Windows, and Mac&nbsp;OS.
+</p>
+
+<p>
+fitsTcl is compiled as a dynamic library which can be loaded as a TCL 
+extension. To load fitsTcl, type the following command in a Tcl shell
+(running on UNIX)
+
+<pre>
+% load libfitstcl.so
+</pre>
+
+(Under Mac&nbsp;OS and Windows, the library is instead named
+<tt>fitstcl.dll</tt>.)  If the library is not found you may need to
+set the environment variable <tt>LD_LIBRARY_PATH</tt> (Unix only) to the
+directory containing libfitstcl.so or include an explicit path to the
+file.
+</p>
+
+<p>
+In fitsTcl, every FITS file is treated as a <b>FitsFile</b> object. The 
+following sections describe how to create <b>FitsFile</b> objects and all 
+the methods in a <b>FitsFile</b> object.
+</p>
+
+
+<hr width="100%">
+<p align=center><font size="+2">Handling <b>FitsFile</b> objects</font></p>
+<hr width="50%">
+
+<dl>
+    
+    <dt> <b>fits open</b> <i>fileName mode ?objName?</i>
+    <dd>Create a <b>FitsFile</b> object, open the file and read the
+    header of the current HDU.  (Read the <a
+    href="http://heasarc.gsfc.nasa.gov/fitsio">CFITSIO</a> web pages
+    or documentation to learn about its "Extended File Name Syntax".)
+    <i>mode</i> can be 0 (read only) or 1 (read and write). If no
+    <i>objName</i> is given, a name will be automatically assigned. A
+    new empty FITS file can be created by setting <i>mode</i> to 2. In
+    this case, if the named file exists, then it will be
+    overwritten. Returns <i>objName</i> which will be used in most of
+    the methods as the handle to the object.
+
+    <dt> <b>fits info</b> <i>?objName ...?</i>
+    <dd>Return a list of all the existing objects, or the named objects
+    (supports regular expressions), with the following information: 
+    <p align=center><i>{objName fileName mode CHDU hduType}</i></p>
+    where <i>CHDU</i> is the current HDU (1-primary array, 2-the first extension
+    ...) and <i>hduType</i> is the type of the HDU (0-image, 1-ASCII table, 
+    2-Binary table).
+
+    <dt><i>objName</i> <b>move</b> ?<b>+/-</b>?<i>n</i>
+    <dd>If <i>n</i> has ``+/-'' sign, then move <i>n</i> units relative to the 
+    CHDU, otherwise move to the <i>n</i>th HDU.  Return the extension type of
+    the new HDU: 0-image, 1-ASCII table, 2-Binary Table.
+
+    <dt><i>objName</i> <b>close</b>
+    <dd>Delete object <i>objName</i>.
+    
+    <dt><b>fits close</b>
+    <dd>Delete all the existing objects.
+
+</dl>
+
+<hr width="50%">
+<p align=center><font size="+2">Getting information about the CHDU</font></p>
+<hr width="50%">
+
+<dl>
+    
+    <dt><i>objName</i> <b>info chdu</b>
+    <dd>Return the CHDU. 1=primary, 2=first extension, etc.
+    
+    <dt><i>objName</i> <b>info filesize</b>
+    <dd>Return the size of the file (in units of 2880 bytes).
+    
+    <dt><i>objName</i> <b>info hdutype</b>
+    <dd>Return ``Primary array'', ``Image extension'', ``Binary Table'',
+        or ``ASCII Table''.
+    
+    <dt><i>objName</i> <b>info imgType</b>
+    <dd>Return the type of the image if the CHDU is an image extension.
+    
+    <dt><i>objName</i> <b>info imgdim</b>
+    <dd>Return the dimensions of the image if the CHDU is an image extension.
+    
+    <dt><i>objName</i> <b>info ncols</b>
+    <dd>Return the number of columns in the table if the CHDU is a table 
+    extension.
+    
+    <dt><i>objName</i> <b>info nrows</b>
+    <dd>Return the number of rows in the table if the CHDU is a table extension.
+    
+    <dt><i>objName</i> <b>info nkwds</b>
+    <dd>Return the number of keywords in the header of the CHDU.
+    
+    <dt><i>objName</i> <b>info column</b> ?<b>-exact</b>? <i>?colList?</i>
+    <dd>Without any arguments, return a list of all the column names
+    in the table if the CHDU is a table extension. If <i>colList</i>
+    is present, detailed information about the listed columns, using
+    regular expression name comparisons, is returned in the form of:
+    
+    <P align=center>
+    {<i>Name Type Unit DisplayFormat DefaultFormat ColumnWidth isOffset 
+    isScaled defaultNull</i>}
+    </P>
+    
+    where
+    
+    <table>
+	<tr>
+	    <td rowspan=9 width=20>&nbsp;</td>
+	    <td> <i>Name</i> </td>
+	    <td> name of the column (TTYPE keyword)</td>
+	</tr>
+	<tr>
+	    <td> <i>Type</i> </td>
+	    <td> type of the column (TFORM keyword)</td>
+	</tr>
+	<tr>
+	    <td> <i>Unit</i> </td>
+	    <td> unit of the column (TUNIT keyword)</td>
+	</tr>
+	<tr>
+	    <td> <i>DisplayFormat</i> </td>
+	    <td> format for display (TDISP keyword)</td>
+	</tr>
+	<tr>
+	    <td> <i>DefaultFormat</i> </td>
+	    <td> default format for display (if TDISP keyword is absent)</td>
+	</tr>
+	<tr>
+	    <td> <i>ColumnWidth</i> </td>
+	    <td> the width of the column (in units of characters).</td>
+	</tr>
+	<tr>
+	    <td> <i>isOffset</i> </td>
+	    <td> 0 = no offset (no TZERO keyword), 1 = offset.</td>
+	</tr>
+	<tr>
+	    <td> <i>isScaled</i> </td>
+	    <td> 0 = not scaled (no TSCALE keyword), 1 = scaled.</td>
+	</tr>
+	<tr>
+	    <td> <i>defaultNull</i> </td>
+	    <td> default NULL value (TNULL keyword) </td>
+	</tr>
+    </table>
+    
+    The <b>-exact</b> option turns off the regular expression matching.
+
+</dl>
+
+<hr width="50%">
+<p align=center><font size="+2">Reading data from a FITS file</font></p>
+<hr width="50%">
+
+<dl>
+    
+    <dt><i>objName</i> <b>dump</b> ?<b>-s/-e/-l</b>?
+    <dd>Return all the keyword records in the current header.  The 
+    following options control how the information is formatted:
+    
+    <TABLE>
+	<TR>
+	    <TD rowspan=4 width=20>&nbsp;</TD>
+	    <TD>none</TD>
+	    <TD>return list of all cards in header</TD>
+	</TR>
+	<TR>
+	    <TD><b>-s</b></TD>
+	    <TD>return three lists: {<i>keywords</i>} {<i>values</i>}
+	        {<i>comments</i>} </TD>
+	</TR>
+	<TR>
+	    <TD><b>-e</b></TD>
+	    <TD>return a single string containing a newline-separated list
+                of all header records</TD>
+	</TR>
+	<TR>
+	    <TD><b>-l</b></TD>
+	    <TD>return all the keyword names</TD>
+	</TR>
+    </TABLE>
+
+    <dt> <i>objName</i> <b>get keyword</b> <i>?keyList?</i>
+    <dd> Return a list of {<i>keyword value comment</i>} for all the
+    keywords in <i>keyList</i> (supports regular expressions). If no
+    <i>keyList</i> is given, return a list of entries for all the keywords
+    in the CHDU.  The order in which keywords are listed is
+    undefined. (HISTORY and COMMENT keywords are <i>never</i> returned.)
+    
+    <dt> <i>objName</i> <b>get keyword -num</b> <i>n</i>
+    <dd> Return a list of {<i>keyword value comment</i>} of the <i>n</i>th 
+    keyword.
+
+    <dt><i>objName</i> <b>get wcs</b> <i>?RAcol DecCol?</i>
+    <dd>Return a list of the WCS parameters -- {<i>xrval yrval xrpix yrpix xinc 
+    yinc rot ctype</i>} -- for the CHDU.  If the current HDU is a table,
+    supply the <i>RAcol</i> and <i>DecCol</i> parameters specifying the two
+    columns (as names or column numbers) containing WCS data.  Use defaults for
+    any missing WCS keywords: 1.0 for <i>xinc/yinc</i>; ``none'' for
+    <i>ctype</i>; and 0.0 or all others.  If the RA/Dec identity of the
+    columns (or image axes) are not known, an extra WCS parameter --
+    <i>wcsSwap</i> --
+    can be obtained which, when on, indicates that the X parameters are
+    for Dec instead of RA.  Turn this option on with 
+    <B>fits option wcsSwap 1</B>.
+    
+    <dt><i>objName</i> <b>get wcs -m</b> <i>?Col1 ...?</i>
+    <dd>Similar to above, but information is returned in new-style format,
+    allowing arbitrary matrix transforms.  Return value is
+          <I>{refVals refPix matrix types projections}</I>
+    where each item (except matrix) contains a list of the given information
+    for each image dimension or table column; <i>matrix</i> is the rotation,
+    scale, skew, NxN transformation matrix given as {<i>cd11 .. cd1N
+    cd21 .. cd2N .. cdNN</i>}.  The <B>wcsSwap</B> option has no effect
+    on this command; one must check the <i>types</i> values to see if the RA
+    and Dec transforms are backwards.
+
+    <dt><i>objName</i> <b>get image</b> <i>?firstElem? ?numElem?</i>
+    <dd>Read data elements from the current IMAGE extension and return
+    them in a list.  Without any parameters, the entire image will be returned.
+    If only <i>firstElem</i> is given, return just one element.
+
+    <dt><i>objName</i> <b>get table</b> ?<b>-c</b>? ?<b>-noformat</b>?
+        <i>?colList? ?rows?</i>
+    <dd>Read a block of a table and return list(s) of data. The block range is 
+    set in
+    
+    <TABLE>
+	<TR valign=top>
+	    <TD rowspan=4 width=20>&nbsp;</TD>
+	    <TD><i>colList</i></TD>
+	    <TD>a list of all the columns one wants to read. Read all
+                columns if missing or is ``*''.</TD>
+	</TR>
+	<TR valign=top>
+	    <TD><i>rows</i></TD>
+	    <TD>a comma-separated list of row ranges of the form
+	        <i>start-end</i> (eg, ``3-5,7,9-'')</TD>
+	</TR>
+	<TR valign=top>
+	    <TD><b>-c</b></TD>
+	    <TD>return data from each column as a separate list</TD>
+	</TR>
+	<TR valign=top>
+	    <TD><b>-noformat</b></TD>
+	    <TD>do not format results according to a TDISPn, or default,
+                format</TD>
+	</TR>
+    </TABLE>
+
+    <dt><i>objName</i> <b>get vtable</b> ?<B>-noformat</B>? <i>colName n
+        ?rows?</i>
+    <dd>Return a list of data in the <i>n</i>th vector element in column 
+    <i>colName</i> of the given <i>rows</i>.  The <B>-noformat</B> option
+    turns off any TDISPn formatting.
+    
+</dl>
+
+<hr width="50%">
+<p align=center><font size="+2">Loading data into memory or to a TCL array</font></p>
+<hr width="50%">
+
+<P>When loading data into memory, fitsTcl will normally return
+<i>address dataType numElements</i> where these are:
+
+    <TABLE>
+	<TR VALIGN="TOP">
+	    <TD rowspan=3 width=20>&nbsp;</TD>
+	    <TD><i>address</i></TD>
+	    <TD>Memory address of the data.  Can be recovered in C by <br>
+	    <tt>&nbsp;&nbsp;sscanf(<i>address</i>, "%p", &databuff);</tt><br>
+	    with <tt>void *databuff</tt></TD>
+	</TR>
+	<TR VALIGN="TOP">
+	    <TD><i>dataType</i></TD>
+	    <TD><table cellpadding=0 cellspacing=0 border=0>
+	    <tr height=0>
+	       <td></td>
+               <td width=15 rowspan=6></td>
+               <td></td>
+            </tr>
+	    <tr><td>0 - BYTE_DATA</td> <td>1 byte data</td></tr>
+	    <tr><td>1 - SHORTINT_DATA</td> <td>2 byte integer</td></tr>
+	    <tr><td>2 - INT_DATA</td> <td>4 byte integer</td></tr>
+	    <tr><td>3 - FLOAT_DATA</td> <td>4 byte floating point</td></tr>
+	    <tr><td>4 - DOUBLE_DATA</td> <td>8 byte floating point</td></tr>
+	    </table></TD>
+	</TR>
+	<TR VALIGN="TOP">
+	    <TD><i>numElement</i></TD>
+	    <TD>Number of data elements in the array</TD>
+	</TR>
+    </TABLE>
+
+</P>
+
+<dl>
+    
+    <dt><i>objName</i> <b>load image</b> <i>?slice? ?rotate?</i>
+    <dd>Load a full 2D image in the CHDU into memory and return the address 
+    <i>address</i> (see above).  <i>slice</i> indicates which frame to use
+    if image is 3D.  <i>rotate</i> indicates how many 90-degree
+    counter-clockwise rotations to perform on the image (0-3).
+    
+    <dt><i>objName</i> <b>load iblock</b> <i>arrayName firstRow numRows 
+    firstCol numCols ?slice?</i>
+    <dd>Load a block (start from <i>firstCol</i>, <i>firstRow</i> with size 
+    <i>numCols</i> x <i>numRows</i>) of image data to a 2-D TCL array 
+    <i>arrayName</i> or to memory if <i>arrayName</i> is ``--''. The
+    indices of the array variable are (<i>firstCol-1</i> ... 
+    <i>firstCol+numCols-1</i>, <i>firstRow-1 ... firstRow+numRows-1</i>).
+    A 1D image will be treated as either a single row or column, depending
+    on the row/column parameters supplied.  For a 3D image, <i>slice</i>
+    indicates which frame to use.
+    If <i>arrayName</i> is ``--'', read the data block into memory and 
+    return the pointer information: <i>address dataType numElements</i>.
+    
+    <dt><i>objName</i> <b>load irows</b> <i>firstRow lastRow ?slice?</i>
+
+    <dt><i>objName</i> <b>load icols</b> <i>firstCol lastCol ?slice?</i>
+    <dd>Read and average together a range of rows or columns of an image.
+    Returns <i>address dataType numElements</i>.  <i>dataType</i> will be
+    3 for all image data types except for double for which <i>dataType</i>
+    is 4.
+
+    <dt><i>objName</i> <b>load column</b> <i>colName ?defaultNull?
+    ?firstElement?</i>
+    <dd>Load a column of a table into memory and return <i>address dataType 
+    numElements</i>.  Use the value of <i>defaultNull</i> for NULL values, or
+    internal defaults (normally the data type's maximum value) if ``NULL''
+    or absent.  If <i>colName</i> is a vector column, read the
+    <i>firstElement</i>-th element. One can only load numerical columns.
+    
+    <dt><i>objName</i> <b>load arrayRow</b> <i>colName rowNumber numberElement 
+    ?defaultNull? ?firstElement?</i>
+    <dd>Load a row of a table into memory and return <i>address dataType 
+    numElements</i>.  Use the value of <i>defaultNull</i> for NULL values, or
+    internal defaults (normally the data type's maximum value) if ``NULL''
+    or absent.  If <i>colName</i> is a vector column, read the
+    <i>firstElement</i>-th element. <i>rowNumber</i> is the row number intended.
+    <i>numberElement</i> is the number of elements in a row to extract (use the
+    length of a row as the default value). One can only load numerical columns.
+    
+    <dt><i>objName</i> <b>load vtable</b> <i>colName</i>
+    <dd>Load all elements of the vector column <i>colName</i> and return
+    <i>address dataType numElements</i>.
+
+    <dt><i>objName</i> <b>load tblock ?-noformat?</b> <i>arrayName colList
+    firstRow numRows colIndex ?firstElem?</i>
+    <dd>Load a block of table data to a 2-D TCL array <i>arrayName</i>.
+    <i>colIndex</i> is (almost) the column index of the array to use for
+    the first column read.  The first data index is actually (as for images)
+    (<i>colIndex</i>-1,<i>firstRow</i>-1). For 
+    scaler columns, <i>firstElem</i> = 1.  Without the <B>-noformat</B> flag,
+    values will be returned as strings formatted according to a TDISP keyword
+    or default format based on data type.
+    
+    <dt><i>objName</i> <b>load expr</b> ?<b>-rows</b> <i>rows</i>?
+        <i>expression ?defaultNull?</i>
+    <dd>Evaluate the arithmetic <i>expression</i> on each row (or a
+    subset of rows given by <i>rows</i>) of the CHDU's table and
+    return <i>address dataType numElements</i>, using
+    <i>defaultNull</i> as the null value of any NULL results.
+
+    <dt><i>objName</i> <b>load keyword</b>
+    <dd>Load keywords into fitsTcl's internal hash table.  One usually will
+    not need to call this routine.
+    
+    <dt><i>objName</i> <b>load chdu</b>
+    <dd>Reload the information about the current HDU.  One usually will not
+    need to call this routine.
+
+</dl>
+
+<hr width="50%">
+<p align=center><font size="+2">Writing to a FITS file</font></p>
+<hr width="50%">
+
+<dl>
+    
+    <dt><i>objName</i> <b>insert image</b> <i>bitpix naxis naxesList</i>
+    <dt><i>objName</i> <b>insert image -p</b> <i>?bitpix naxis naxesList?</i>
+    <dd>Insert an empty image HDU (primary header with <b>-p</b>) after the
+    current HDU (or, at start of file for primary array). The image parameters
+    -- <i>bitpix naxis naxesList</i> -- can be left off if
+    creating a zero-length primary array.
+    
+    <dt><i>objName</i> <b>insert table</b> <i>numRows {colNames}
+        {colFormats} ?{colUnits} extensionName?</i>
+    <dt><i>objName</i> <b>insert table -ascii</b> <i>numRows {colNames}
+        {colFormats} ?{colUnits} {colPosition} extensionName rowWidth?</i>
+    <dd>Insert an empty BINARY (default) or ASCII (with <B>-ascii</B>
+    flag) table HDU after the current HDU.  The <i>colNames</i> and
+    <i>colFormats</i> lists must be of equal length (possibly both
+    empty).  The optional parameters can each be empty if one wants to
+    use default/empty values.
+    
+    <dt><i>objName</i> <b>insert keyword</b> <i>index record ?formatFlag?</i>
+    <dd>Insert a new <i>record</i> at the <i>index</i>-th keyword. If
+    <i>formatFlag</i> is 0, write the record exactly as passed, otherwise
+    parse it as a free form <i>keyname value comment</i> and reformat it into a
+    standardized <tt>KEYNAME  = VALUE / COMMENT</tt> (default).
+    
+    <dt><i>objName</i> <b>put keyword</b> ?<b>-num</b> <i>index? record
+        ?formatFlag?</i>
+    <dd>Write a keyword record either at position <i>index</i>; the position
+    of a pre-existing keyword with the same name; or append it if no such
+    keyword exists.  See above for format/meaning of <i>record</i> and 
+    <i>formatFlag</i>.
+
+    <dt><i>objName</i> <b>put history</b> <i>historyStr</i>
+    <dd>Write a HISTORY keyword with content <i>historyStr</i>
+
+    <dt><i>objName</i> <b>insert column</b> <i>index colName colFormat</i>
+    <dd>Insert an empty column with format <i>colFormat</i> before the 
+    <i>index</i>-th column. <i>colFormat</i> specifies the column format
+    as, for example:<br>
+    <tt>&nbsp;&nbsp;</tt>ASCII  Table: A15, I10, E12.5, D20.10, F14.6 ... <br>
+    <tt>&nbsp;&nbsp;</tt>BINARY Table: 15A, 1I, 1J, 1E, 1D, 1L, 1X, 1B, 1C, 1M
+    
+    <dt><i>objName</i> <b>add column</b> <i>colName colFormat ?expression?</i>
+    <dd>Without an <i>expression</i>, append an empty column to the
+    CHDU table; return nothing.  Given an arithmetic
+    <i>expression</i>, though, the indicated column (new or old) will
+    be filled in with the results of the expression evaluated for each
+    row of the table.  If <i>colName</i> does not exist in the current
+    table extension, a new one will be created with format
+    <i>colFormat</i> (see above).  If <i>colFormat</i> is ``default'',
+    the column will be created based on the data type of the result.
+    Return 1 or 0 to indicate whether a new column was created (1) or
+    not (0).  <i>expression</i> can be in either C or Fortran format
+    with table columns and keywords referenced by their names.  Here
+    are some <i>expression</i> samples:
+
+    <table>
+       <tr valign=top>
+          <th rowspan=4 width=20 align=center>&nbsp;</th>
+          <th>Expression</th>
+          <th>Result</th>
+          <th rowspan=4 width=20 align=center>&nbsp;</th>
+       </tr>
+       <tr valign=top>
+          <td align=center>17.2</td>
+          <td>17.2 for every row</td>
+       </tr>
+       <tr valign=top>
+          <td align=center>17 + 4*(PHI &gt; 32)</td>
+	  <td>17 or 21, depending on
+              whether that row of the PHI column is greater than
+              32</td>
+       </tr>
+       <tr valign=top>
+          <td align=center>sqrt( (X-X0)^2 + (Y-Y0)^2 )</td>
+	  <td>Distance of the (X,Y) column coordinates from the (X0,Y0)
+              keyword values</td>
+       </tr>
+    </table>
+
+    See the <a href="http://heasarc.gsfc.nasa.gov/fitsio">CFITSIO</a>
+    web pages and documentation for more details.
+    
+    <dt><i>objName</i> <b>insert row</b> <i>index numRows</i>
+    <dd>Insert number of <i>numRows</i> rows after the <i>index</i>-th row.
+
+    <dt><i>objName</i> <b>add row</b> <i>numRows</i>
+    <dd>Add <i>numRows</i> rows at the end of the CHDU table.
+    
+    <dt><i>objName</i> <b>put image</b> <i>firstElem listOfData</i>
+    <dd>Write a block of data to the CHDU image.  The first pixel of an
+    image has <i>firstElem</i> = 1, not zero.
+    
+    <dt><i>objName</i> <b>put table</b> <i>colName firstElem 
+        rowSpan listOfData</i>
+    <dd>Write a list of data to the <i>firstElem</i>-th element of column
+    <i>colName</i> in the CHDU table.  (For scalar columns <i>firstElem</i>
+    is 1.)
+    <i>rowSpan</i> is a single row range of form <i>start-end</i> with ``-''
+    indicating all rows.
+    
+</dl>
+
+<hr width="50%">
+<p align=center><font size="+2">Deleting data from a FITS file</font></p>
+<hr width="50%">
+
+<dl>
+    
+    <dt><i>objName</i> <b>delete keyword</b> <i>keyList</i>
+    <dd>Delete listed keywords, where the <i>keyList</i> can be the mix of 
+    keyword names and index numbers.  Keywords are deleted individually
+    in sequence, causing keyword positions to change after each deletion,
+    so be careful when deleting multiple keywords by index.
+    
+    <dt><i>objName</i> <b>delete cols</b> <i>colList</i>
+    <dd>Delete listed columns in a table extension.
+    
+    <dt><i>objName</i> <b>delete rows</b> <i>firstRow numRows</i>
+    <dd>Delete a block of rows.
+    
+    <dt><i>objName</i> <b>delete rows -expr</b> <i>expression</i>
+    <dd>Delete rows using <i>expression</i> which must evaluate to a boolean 
+    value.  Rows for which <i>expression</i> evaluates to TRUE get deleted.
+    
+    <dt><i>objName</i> <b>delete chdu</b>
+    <dd>Delete the current HDU.  The HDU immediately following the one deleted
+    (or the preceeding one if the current HDU is the last one of the file) will
+    become the new current HDU.  Returns extension type of new HDU:
+    0-image, 1-ASCII table, 2-Binary Table.
+
+</dl>
+
+<hr width="50%">
+<p align=center><font size="+2">Analyzing FITS data</font></p>
+<hr width="50%">
+
+<dl>
+
+    <dt><i>objName</i> <b>sort</b> ?<b>-merge</b>? <i>colList ?ascendFlags?</i>
+    <dd>Sort table rows using columns in <i>colList</i>.  When <b>-merge</b>
+    is present, if multiple rows have identical sort keys all but one of the
+    rows will be deleted.  If present, <i>ascendFlags</i> contains a list of
+    1s and 0s indicating whether that column will be sorted in ascending
+    (1, the default) or descending (0) order.
+
+    <dt><i>objName</i> <b>column -stat</b> <i>colName ?firstElem? ?rows?</i>
+    <dd>Return statistics on the <i>firstElem</i>-th
+    element (1 for scalar columns) of column <i>colName</i> in the order
+    <i>min firstMinRow max firstMaxRow mean stdDev numData</i>.
+
+    <dt><i>objName</i> <b>column -minmax</b> <i>colName ?firstElem?
+        ?rows?</i>
+    <dd>Returns minimum and maximum values of the <i>firstElem</i>-th
+    element (1 for scalar columns) of column <i>colName</i>.
+
+    <dt><i>objName</i> <b>histogram</b> ?<b>-weight</b> <i>colName|value</i>?
+        ?<b>-inverse</b>? ?<b>-rows</b> <i>rows</i>?
+        <i>filename {binAxis1} ?{binAxis2} ...?</i>
+    <dd>Create a 1D - 4D histogram from columns in the current table.
+    The binning parameters are given by the <i>binAxisN</i> parameters which
+    are lists of the form <i>colName min max binSize</i> where the last 3
+    elements can each be ``-'', indicating default values.  If TLMINn,
+    TLMAXn, and/or TDBINn exist, those values will be used for
+    defaults.  Otherwise, for <i>min</i> and <i>max</i> the defaults
+    are the actual min/max values of the data; for <i>binSize</i> the
+    smaller of one-tenth the data span or 1.0 will be selected.  A weighting
+    value can be indicated with the <b>-weight</b> option.  This can be
+    either another column or a numerical constant.  The <b>-inverse</b>
+    option indicates the weight should be 1.0/weight instead of the weighting
+    value itself.  The histogram can be restricted to certain row ranges using
+    the <b>-rows</b> option.
+
+<!-- Deprecated
+    <dt><i>objName</i> <b>create 1dhisto</b> <i>filename {colList} {binParams} 
+        ?rowSpan?</i>
+    <dt><i>objName</i> <b>create 2dhisto</b> <i>filename {colList} {xbinParams}
+        {ybinParams} ?rowSpan?</i>
+    <dd>Create a 1D or 2D histogram from data in columns
+    <i>colList</i>.  An optional 2nd or 3rd column, respectively, in
+    <i>colList</i> can be used as a weight.  The limits and binning
+    size are given by the 3-element list <i>binParams</i> which holds
+    the <i>min max binSize</i> parameters.  If <i>min</i> or
+    <i>max</i> is ``-'', the true min/max values of the column(s)
+    will be used. A single range of rows can be indicated via the
+    optional <i>rowSpan</i> parameter.  The resulting histogram will
+    be written into the primary array of a new file <i>filename</i>.
+    WCS keywords will be written in the output file to record the
+    binning scales and offsets.
+-->
+    
+    <dt><i>objName</i> <b>smooth</b> <i>{width height} outfile ?inPrimary?</i>
+    <dd>Smooth the current image extension with a boxcar function of
+        dimensions <i>width</i> by <i>height</i> pixels.  The dimensions
+        must be odd integers.  The resulting image will be placed in
+        a new extension appended to the file <i>outfile</i>.  If
+        <i>outfile</i> does not exist, the image will be placed either
+        in the primary or in the first extension, depending on the
+        value of the <i>inPrimary</i> flag; the default is to place it in
+        an extension.
+
+</dl>
+
+<hr width="50%">
+<p align=center><font size="+2">List/Pointer Manipulation</font></p>
+<hr width="50%">
+
+<dl>
+
+    <dt><b>lst2ptr</b> <i>dataList ?dataType? ?naxesList?</i>
+    <dd>Convert a TCL list into a memory-resident array. Returns
+        <i>address dataType naxesList</i> (see the <b>load</b>
+        commands above).  The TCL list will be cast as double values
+        in the absence of the <i>dataType</i> paramter.  The parameter
+        <i>naxesList</i> gives the vector dimensions of the list.  It
+        can be a single number indicating the length of the list (the
+        default value when absent) or a list of numbers which must
+        multiply together to be the list length.  If a list entry
+        contains the string "NULL", the maximum value of the given
+        <i>dataType</i> will be inserted.
+
+    <dt><b>ptr2lst</b> <i>address dataType naxesList</i>
+    <dd>Convert a memory pointer into a TCL list.  Returns <i>dataList
+        dataType naxesList</i> (see <b>lst2ptr</b>).  If an array element
+        contains the maximum value for the given <i>dataType</i>, the
+        string "NULL" will be inserted into the list.
+
+    <dt><b>vexpr ?-ptr? ?-use getDataCallback?</b> <i>expression</i>
+    <dd>Perform a vector calculation using lists or arrays where
+        <i>expression</i> is a <B>C-style</B> arithmetic expression.
+        (Ie, do not use <i>$var</i> notation unless you explicitly want
+        variable substitution before passing <i>expression</i> to
+        <b>vexpr</b>.)  Without any of the options, variable
+        references within <i>expression</i> will be interpretted as
+        local TCL lists (or scalars) containing double data and the
+        result will itself be a simple TCL list.  With the <b>-ptr</b> option
+        set, the answer instead will be returned as a pointer to a
+        memory-resident array.  With either option set, two additional
+        parameters will be returned in a list of the form <i>dataList
+        dataType naxesList</i> or <i>address dataType naxesList</i>.
+        The <b>-use</b> option provides a "callback" routine which is
+        to be used for supplying the variable data.  It gets called
+        when a variable is encountered in the <i>expression</i> and
+        will be passed a single argument containing the name of the
+        variable.  The callback routine should return either
+        "<i>dataList dataType naxesList</i>" or "<b>-ptr</b> <i>address
+        dataType naxesList</i>".  If the callback routine doesn't
+        recognize the variable, it should return an empty string.  The
+        parser will then try to find the variable in the local
+        namespace, as when no callback is supplied.  If this fallback behavior
+        is not desired, raise an error instead.  The callback function
+        can itself check for local variables using the TCL command
+        <b>upvar 1</b> <i>$varName localName</i>.  The following code
+        snippet provides a sample callback function which assumes the
+        expression contains variables storing the results of a <b>load</b>
+        or <b>lst2ptr</b> command (ie, <i>address dataType naxesList</i>):
+
+<listing>
+    proc getPtrData { varName } {
+       upvar $varName myName
+       if [info exists myName] {
+           return [eval list -ptr $myName]
+       } else {
+           error "Variable doesn't exist"
+       }
+    }
+</listing>
+
+        then the following code would calculate the average value of a table
+        column:
+
+<listing>
+    set myCol [<i>objName</i> load column X]
+    vexpr -use getPtrData "sum( (double)myCol ) / nelem( myCol )"
+</listing>
+
+        By default, a vector with a single-valued <i>naxesList</i> is
+        interpretted as a single vector containing n elements such
+        that the above "sum" function sums all of the elements.  In the
+        context of <b>load</b>ing a column, though, one actually has an
+        array of n rows with each row containing 1 (or perhaps more)
+        elements.  To handle this case, one must use the callback
+        function to provide an <i>naxisList</i> of "1 n" (or "2 m",
+        etc) instead of merely "n".  In that case each row will be
+        calculated separately and have its own result.  When
+        <i>naxesList</i> has multiple elements, the final element
+        specifies the number of rows.
+        </p>
+
+        <p>See the <a
+        href="http://heasarc.gsfc.nasa.gov/fitsio">CFITSIO</a> web
+        pages and documentation for details on <i>expression</i>
+        syntax.  One can also read the <i>fv</i> online help file on <a
+        href="http://heasarc.gsfc.nasa.gov/ftools/fv/doc/expressions.html">expression
+        syntax</a>, noting that <b>vexpr</b> can only handle numerical
+        input and output.</p>
+    
+    <dt><b>fits free</b> <i>addressList</i>
+    <dd>Free the memory occupied by the data generated by one of the
+        <b>load</b>, <b>lst2ptr</b>, and <b>vexpr</b> commands.
+
+</dl>
+
+<hr width="50%">
+<p align=center><font size="+2">Other commands</font></p>
+<hr width="50%">
+
+<dl>
+    
+    <dt><i>objName</i> <b>copy</b> <i>filename</i>
+    <dd>Copy the CHDU to a new FITS file. If the CHDU is not an image array, 
+    then an empty primary array is inserted.
+    
+    <dt><i>objName</i> <b>sascii table</b> <i>filename fileMode firstRow 
+        numRows colList widthList</i>
+    <dd>Write the listed columns into an ASCII file. In the output file, each 
+    column has the width listed in <i>widthList</i>.  <i>fileMode</i> indicates
+    how to write the data to <i>filename</i>: 0-create new file and write
+    column headings; 1-append to old file and write column headings;
+    2-append to old file, but don't write any headings.
+    
+    <dt><i>objName</i> <b>sascii image</b> <i>filename fileMode firstRow 
+        numRows firstCol numCols cellSize ?slice?</i>
+    <dd>Write a block of the image data to an ASCII file. In the output file, 
+    the data has width of <i>cellSize</i>.  Use frame <i>slice</i> for 3D
+    image data.
+    
+    <dt><i>objName</i> <b>flush</b> ?<b>clear</b>?
+    <dd>Flush any dirty buffers to the disk.  With <b>clear</b>, free the
+    buffers, too.
+    
+    <dt><i>objName</i> <b>append</b> <i>filename</i>
+    <dd>Append current HDU to another FITS file.
+
+    <dt><i>objName</i> <b>checksum update|verify</b>
+    <dd>Update or Verify the checksum keywords in the current HDU.  If
+    none exist, <b>update</b> will create them.  For <b>verify</b>,
+    the return values are 1 for valid values, 0 if either keyword
+    (CHECKSUM or DATASUM) is missing, and -1 for invalid values.
+    
+    <dt><i>objName</i> <b>info expr</b> <i>expression</i>
+    <dd>Get information on the result of the supplied arithmetic
+    <i>expression</i>. Return value is <i>cDataType numElements
+    {naxesList}</i> where <i>cDataType</i> is the CFITSIO datatype (not
+    fitsTcl's): TDOUBLE, TSTRING, etc; <i>numElements</i> is the number
+    of elements
+    in the result; and <i>naxesList</i> contains the vector dimensions
+    of the result ({1} for scalar result).  An expression which
+    evaluates to a constant (no dependency on the contents of the
+    table) will be indicated by a negative number of elements.
+    
+    <dt><b>range count</b> <i>rangeStr maxElem</i>
+    <dd>Count the number of elements (esp. rows) contained within the
+    comma-separated list of ranges in <i>rangeStr</i> (eg, 1-4,5,7-).
+    To support ranges of the form "7-" which specifies a range from
+    element 7 through the final element, <i>maxElem</i> is passed with
+    the maximum element number.
+
+    <dt><b>fits option</b> <i>?option? ?value?</i>
+    <dd>Modify fitsTcl's default behavior.  With no options, this returns
+    a list of all the current fitsTcl options and their values.  With
+    the <i>option</i> parameter, return the value of that parameter.  When
+    both <i>option</i> and <i>value</i> are supplied, set the parameter
+    to the given value.  Current options: <b>wcsSwap</b> (0).
+
+    <dt><b>fits version</b>
+    <dd>Get version numbers for fitsTcl and underlying cfitsio.
+
+</dl>
+
+<hr>
+
+<address><a href="mailto:elwin@lheamail.gsfc.nasa.gov">Lawrence 
+Brown</a> and <a href="mailto:pwilson@lheamail.gsfc.nasa.gov">Peter 
+Wilson</a></address>
+<!-- Created: Thu Apr  8 14:39:58 EDT 1999 -->
+<!-- hhmts start -->
+Last modified: Thu Jul 22 09:42:41 EDT 1999
+<!-- hhmts end -->
+<!--#include virtual="/docs/lhea/lhea_footer.html"-->
+<!--#include virtual="/docs/corpfooter.html"-->
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+! input file for fitobs
+fitobs.
+! first arc
+        .astna0='test'           ! Asteroid name
+        .ons_name=.T.               ! F = known asteroid, T = unknown asteroid
+        .obsdir0='.'                ! directory of observation file
+        .elefi0='test.eq0'       ! directory of orbit/orbit file
+        .error_model='fcct14'       ! error model file name (defaults to ' ')
+! bizarre control; 
+        .ecclim=     0.9999d0     ! max eccentricity for non bizarre orbit 
+        .samin=      0.5d0        ! min a for non bizarre orbit 
+        .samax=      100.d0       ! max a for non bizarre orbit 
+        .phmin=      0.001d0      ! min q for non bizarre orbit 
+        .ahmax=     200.d0        ! max Q for non bizarre orbit
+propag.
+        .iast=17        ! 0=no asteroids with mass n=no. of massive asteroids 
+        .filbe='AST17'  ! Asteroid file
+        .npoint=600     ! minimum number of data points for a deep close appr
+        .dmea=0.2d0     ! min. distance for control close-app. to Earth only
+        .dter=0.05d0    ! min. distance for control close-app. to M, V, M
+reject.
+        .rejopp = .T.           ! reject entire oppositions
+        .rej_fudge= .F.         ! fudge not used
+IERS.
+        .extrapolation=.T. ! extrapolation of Earth rotation

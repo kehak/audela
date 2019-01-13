@@ -1,0 +1,2 @@
+LIBRARY libquicka
+EXPORTS Quicka_Init @1

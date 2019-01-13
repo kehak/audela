@@ -1,0 +1,259 @@
+#
+# Fichier : fingerlakes.cap
+# Mise a jour $Id: fingerlakes.cap 9974 2013-08-17 15:21:44Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(fingerlakes,camera)                       "FLI"
+
+set caption(fingerlakes,obtu_ouvert)                  "Open"
+set caption(fingerlakes,obtu_ferme)                   "Closed"
+set caption(fingerlakes,obtu_synchro)                 "Synchro"
+
+set caption(fingerlakes,refroidissement)              "Cooling to Temperature"
+set caption(fingerlakes,refroidissement_1)            "°C"
+set caption(fingerlakes,temperature_CCD)              "CCD Temperature:"
+set caption(fingerlakes,deg_c)                        "°C"
+set caption(fingerlakes,power)                        "Peltier Stage Power:"
+set caption(fingerlakes,miroir_x)                     "Top/Bottom Reversal"
+set caption(fingerlakes,miroir_y)                     "Left/Right Reversal"
+set caption(fingerlakes,fonc_obtu)                    "Shutter Operation"
+set caption(fingerlakes,readSpeed)                    "Read Speed"
+
+set caption(fingerlakes,installNewVersion)            "Installation of library %s of plugin fingerlakes v%s completed."
+
+set caption(fingerlakes,port_camera)                  "FLI Port"
+set caption(fingerlakes,2points)                      ":"
+
+set caption(fingerlakes,titre_site_web)               "Reference Web Site:"
+set caption(fingerlakes,site_web_ref)                 "http://www.fli-cam.com"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(fingerlakes,camera)                    "FLI"
+
+   set caption(fingerlakes,obtu_ouvert)               "Ouvert"
+   set caption(fingerlakes,obtu_ferme)                "Fermé"
+   set caption(fingerlakes,obtu_synchro)              "Synchro"
+
+   set caption(fingerlakes,refroidissement)           "Refroidissement à la température de"
+   set caption(fingerlakes,refroidissement_1)         "°C"
+   set caption(fingerlakes,temperature_CCD)           "Température du CCD :"
+   set caption(fingerlakes,deg_c)                     "°C"
+   set caption(fingerlakes,power)                     "Puissance Peltier :"
+   set caption(fingerlakes,miroir_x)                  "Inverser Haut/Bas"
+   set caption(fingerlakes,miroir_y)                  "Inverser Gauche/Droite"
+   set caption(fingerlakes,fonc_obtu)                 "Fonctionnement de l'obturateur"
+   set caption(fingerlakes,readSpeed)                 "Vitesse de lecture"
+
+   set caption(fingerlakes,installNewVersion)         "Fin de l'installation de la librairie %s du plugin fingerlakes v%s."
+
+   set caption(fingerlakes,port_camera)               "Port FLI"
+   set caption(fingerlakes,2points)                   ":"
+
+   set caption(fingerlakes,titre_site_web)            "Site Web de référence :"
+   set caption(fingerlakes,site_web_ref)              "http://www.fli-cam.com"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(fingerlakes,camera)                    "FLI"
+
+   set caption(fingerlakes,obtu_ouvert)               "Aperto"
+   set caption(fingerlakes,obtu_ferme)                "Chiuso"
+   set caption(fingerlakes,obtu_synchro)              "Sincronizza"
+
+   set caption(fingerlakes,refroidissement)           "Raffreddamento alla temperatura di"
+   set caption(fingerlakes,refroidissement_1)         "°C"
+   set caption(fingerlakes,temperature_CCD)           "CCD Temperatura:"
+   set caption(fingerlakes,deg_c)                     "°C"
+   set caption(fingerlakes,power)                     "Potenza stadio Peltier:"
+   set caption(fingerlakes,miroir_x)                  "Inversione Alto/Basso"
+   set caption(fingerlakes,miroir_y)                  "Inversione Sinistra/Destra"
+   set caption(fingerlakes,fonc_obtu)                 "Funzionamento otturatore"
+   set caption(fingerlakes,readSpeed)                 "Velocità di lettura"
+
+   set caption(fingerlakes,installNewVersion)         "Installazione della libreria %s del plugin fingerlakes v%s terminata."
+
+   set caption(fingerlakes,port_camera)               "Porta FLI"
+   set caption(fingerlakes,2points)                   ":"
+
+   set caption(fingerlakes,titre_site_web)            "Sito Web di riferimento:"
+   set caption(fingerlakes,site_web_ref)              "http://www.fli-cam.com"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(fingerlakes,camera)                    "FLI"
+
+   set caption(fingerlakes,obtu_ouvert)               "Abierto"
+   set caption(fingerlakes,obtu_ferme)                "Cerrado"
+   set caption(fingerlakes,obtu_synchro)              "Sincro"
+
+   set caption(fingerlakes,refroidissement)           "Enfriar hasta temperatura"
+   set caption(fingerlakes,refroidissement_1)         "°C"
+   set caption(fingerlakes,temperature_CCD)           "Temperatura CCD:"
+   set caption(fingerlakes,deg_c)                     "°C"
+   set caption(fingerlakes,power)                     "Alimentación Etapa Peltier:"
+   set caption(fingerlakes,miroir_x)                  "Invertir Arriba/Abajo"
+   set caption(fingerlakes,miroir_y)                  "Invertir Izquierda/Derecha"
+   set caption(fingerlakes,fonc_obtu)                 "Funcionamiento del obturador"
+   set caption(fingerlakes,readSpeed)                 "Velocidad de lectura"
+
+   set caption(fingerlakes,installNewVersion)         "Fin de la instalación de la libreria %s del plugin fingerlakes v%s."
+
+   set caption(fingerlakes,port_camera)               "Puerto FLI"
+   set caption(fingerlakes,2points)                   ":"
+
+   set caption(fingerlakes,titre_site_web)            "Sitio Web de referencia:"
+   set caption(fingerlakes,site_web_ref)              "http://www.fli-cam.com"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(fingerlakes,camera)                    "FLI"
+
+   set caption(fingerlakes,obtu_ouvert)               "Offen"
+   set caption(fingerlakes,obtu_ferme)                "Geschlossen"
+   set caption(fingerlakes,obtu_synchro)              "Synchro"
+
+   set caption(fingerlakes,refroidissement)           "Temperatur bis zu"
+   set caption(fingerlakes,refroidissement_1)         "°C kühlen"
+   set caption(fingerlakes,temperature_CCD)           "Temperatur CCD:"
+   set caption(fingerlakes,deg_c)                     "°C"
+   set caption(fingerlakes,power)                     "Peltier Stärke:"
+   set caption(fingerlakes,miroir_x)                  "Oben/Unten umkehren"
+   set caption(fingerlakes,miroir_y)                  "Links/Rechts umkehren"
+   set caption(fingerlakes,fonc_obtu)                 "Verschluss Arbeiten"
+   set caption(fingerlakes,readSpeed)                 "Lesung Geschwindigkeit"
+
+   set caption(fingerlakes,installNewVersion)         "Die Installation der Bibliothek %s ist vervollständigt der Plugin fingerlakes v%s."
+
+   set caption(fingerlakes,port_camera)               "FLI Port"
+   set caption(fingerlakes,2points)                   ":"
+
+   set caption(fingerlakes,titre_site_web)            "Referenz Webseite:"
+   set caption(fingerlakes,site_web_ref)              "http://www.fli-cam.com"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(fingerlakes,camera)                    "FLI"
+
+   set caption(fingerlakes,obtu_ouvert)               "Aberto"
+   set caption(fingerlakes,obtu_ferme)                "Fechado"
+   set caption(fingerlakes,obtu_synchro)              "Sincro"
+
+   set caption(fingerlakes,refroidissement)           "Arrefecendo até Temperatura"
+   set caption(fingerlakes,refroidissement_1)         "°C"
+   set caption(fingerlakes,temperature_CCD)           "Temperatura do CCD:"
+   set caption(fingerlakes,deg_c)                     "°C"
+   set caption(fingerlakes,power)                     "Nível de Potência do Peltier:"
+   set caption(fingerlakes,miroir_x)                  "Inverter Cima/Baixo"
+   set caption(fingerlakes,miroir_y)                  "Inverter Esquerda/Direita"
+   set caption(fingerlakes,fonc_obtu)                 "Operação do obturador"
+   set caption(fingerlakes,readSpeed)                 "Velocidade de leitura"
+
+   set caption(fingerlakes,installNewVersion)         "Instalação da livraria %s do plugin fingerlakes v%s concluída."
+
+   set caption(fingerlakes,port_camera)               "Porta FLI"
+   set caption(fingerlakes,2points)                   ":"
+
+   set caption(fingerlakes,titre_site_web)            "Site Web de referência:"
+   set caption(fingerlakes,site_web_ref)              "http://www.fli-cam.com"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(fingerlakes,camera)                    "FLI"
+
+   set caption(fingerlakes,obtu_ouvert)               "Open"
+   set caption(fingerlakes,obtu_ferme)                "Closed"
+   set caption(fingerlakes,obtu_synchro)              "Synchro"
+
+   set caption(fingerlakes,refroidissement)           "Cooling to Temperature"
+   set caption(fingerlakes,refroidissement_1)         "°C"
+   set caption(fingerlakes,temperature_CCD)           "CCD Temperature:"
+   set caption(fingerlakes,deg_c)                     "°C"
+   set caption(fingerlakes,power)                     "Peltier Stage Power:"
+   set caption(fingerlakes,miroir_x)                  "Top/Bottom Reversal"
+   set caption(fingerlakes,miroir_y)                  "Left/Right Reversal"
+   set caption(fingerlakes,fonc_obtu)                 "Shutter Operation"
+   set caption(fingerlakes,readSpeed)                 "Read Speed"
+
+   set caption(fingerlakes,installNewVersion)         "Installation of library %s of plugin fingerlakes v%s completed."
+
+   set caption(fingerlakes,port_camera)               "FLI Port"
+   set caption(fingerlakes,2points)                   ":"
+
+   set caption(fingerlakes,titre_site_web)            "Reference Web Site:"
+   set caption(fingerlakes,site_web_ref)              "http://www.fli-cam.com"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(fingerlakes,camera)                    "FLI"
+
+   set caption(fingerlakes,obtu_ouvert)               "Open"
+   set caption(fingerlakes,obtu_ferme)                "Closed"
+   set caption(fingerlakes,obtu_synchro)              "Synchro"
+
+   set caption(fingerlakes,refroidissement)           "Cooling to Temperature"
+   set caption(fingerlakes,refroidissement_1)         "°C"
+   set caption(fingerlakes,temperature_CCD)           "CCD Temperature:"
+   set caption(fingerlakes,deg_c)                     "°C"
+   set caption(fingerlakes,power)                     "Peltier Stage Power:"
+   set caption(fingerlakes,miroir_x)                  "Top/Bottom Reversal"
+   set caption(fingerlakes,miroir_y)                  "Left/Right Reversal"
+   set caption(fingerlakes,fonc_obtu)                 "Shutter Operation"
+   set caption(fingerlakes,readSpeed)                 "Read Speed"
+
+   set caption(fingerlakes,installNewVersion)         "Installation of library %s of plugin fingerlakes v%s completed."
+
+   set caption(fingerlakes,port_camera)               "FLI Port"
+   set caption(fingerlakes,2points)                   ":"
+
+   set caption(fingerlakes,titre_site_web)            "Reference Web Site:"
+   set caption(fingerlakes,site_web_ref)              "http://www.fli-cam.com"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(fingerlakes,camera)                    "FLI"
+
+   set caption(fingerlakes,obtu_ouvert)               "Open"
+   set caption(fingerlakes,obtu_ferme)                "Closed"
+   set caption(fingerlakes,obtu_synchro)              "Synchro"
+
+   set caption(fingerlakes,refroidissement)           "Cooling to Temperature"
+   set caption(fingerlakes,refroidissement_1)         "°C"
+   set caption(fingerlakes,temperature_CCD)           "CCD Temperature:"
+   set caption(fingerlakes,deg_c)                     "°C"
+   set caption(fingerlakes,power)                     "Peltier Stage Power:"
+   set caption(fingerlakes,miroir_x)                  "Top/Bottom Reversal"
+   set caption(fingerlakes,miroir_y)                  "Left/Right Reversal"
+   set caption(fingerlakes,fonc_obtu)                 "Shutter Operation"
+   set caption(fingerlakes,readSpeed)                 "Read Speed"
+
+   set caption(fingerlakes,installNewVersion)         "Installation of library %s of plugin fingerlakes v%s completed."
+
+   set caption(fingerlakes,port_camera)               "FLI Port"
+   set caption(fingerlakes,2points)                   ":"
+
+   set caption(fingerlakes,titre_site_web)            "Reference Web Site:"
+   set caption(fingerlakes,site_web_ref)              "http://www.fli-cam.com"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+

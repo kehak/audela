@@ -1,0 +1,2 @@
+LIBRARY libascom
+EXPORTS Ascom_Init @1

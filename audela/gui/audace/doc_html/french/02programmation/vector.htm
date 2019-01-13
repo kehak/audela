@@ -1,0 +1,553 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>Usage des vecteurs</title></head><body>
+<p class="date">Date de mise &#224; jour : 15 juin 2011</p>
+<h1>Usage des vecteurs</h1>
+<p>Ce document pr&#233;sente des possibilit&#233;s d'application
+de blt::vector. Il est n&#233;cessairement incomplet. Pour de
+plus amples informations, consulter 
+<a href="http://tcltk.free.fr/blt/vector.html">http://tcltk.free.fr/blt/vector.html</a></p>
+<p>L'usage des vecteurs a pour principal avantage la
+simplicit&#233; d'&#233;criture du code et donc sa maintenance et
+il &#233;vite d'&#233;crire de tr&#232;s nombreuses boucles.</p>
+<p>La plupart des exemples pr&#233;sent&#233;s peuvent &#234;tre saisis directement dans la Console d'Aud'ACE et le lecteur
+peut v&#233;rifier le r&#233;sultat.</p>
+<h2>1. Qu'est-ce qu'un vecteur ?</h2>
+<p>La r&#233;ponse est simple : C'est une liste (au sens Tcl) de
+valeurs num&#233;riques.
+<br>En Tcl on l'&#233;crit d'une des deux mani&#232;res :</p>
+<code>set liste_de valeurs [ list 1 2 3 4 ]
+<br>set liste_de valeurs { 1 2 3 4 }
+<br></code>
+<p>Pour d&#233;clarer un vecteur, on &#233;crit (le nom du
+vecteur doit obligatoirement commencer par une lettre et contenir
+des lettres, des nombres ou des underscores) :</p>
+<p>
+<code>blt::vector create v_1</code>
+</p>
+<p>Au fait est-ce qu'il existe ?</p>
+<p>
+<code>blt::vector names</code>
+</p>
+<p>Surprise, il n'est pas tout seul.
+<br>Combien d'&#233;l&#233;ments a-t-il ?</p>
+<p>
+<code>set a [ v_1 length ]</code>
+</p>
+<p>Nouvelle surprise : Le vecteur existe mais il a 0
+&#233;l&#233;ment, exactement comme une liste qui aurait
+&#233;t&#233; cr&#233;&#233;e par [ list ].</p>
+<p>Ces commandes sont utiles lors de la mise au point de scripts pour v&#233;rifier les cr&#233;ations/destructions de vecteurs.</p>
+<p>Pour le remplir on peut utiliser plusieurs mani&#232;res
+:</p>
+<p>
+<code>v_1 set [ list 1 2 3 4 ]
+<br>v_1 set { 1 2 3 4 }
+<br>v_1 set $liste_de valeurs
+<br>v_1 append ...(un vecteur, une liste, une valeur, une
+succession des trois)
+<br></code>
+</p>
+<h2>2. Et alors ?</h2>
+<p>Pour traiter une liste Tcl, par exemple rechercher son
+minimum, son maximum, des valeurs n&#233;gatives, traiter les
+&#233;l&#233;ments, il faut &#233;crire une proc&#233;dure qui
+lit chaque valeur de la liste, la compare, &#233;ventuellement
+sort de la boucle si une condition est remplie et retourne le
+r&#233;sultat final. Ce n'est pas tr&#232;s compliqu&#233; mais
+harassant d'&#233;crire des boucles du type :</p>
+<p>
+<code>for { set i 0 } { $i &lt; [ length $liste_valeurs ] } {
+incr i } {
+<br>&nbsp;&nbsp;&nbsp;faire quelque chose
+<br>}
+<br></code>
+</p>
+<p>Pour conna&#238;tre le minimum ou le maximum d'un vecteur, il
+suffit d'&#233;crire :</p>
+<p>
+<code>set minimum $v_1(min)
+<br>set maximum $v_1(max)</code>
+</p>
+<p>La r&#233;ponse est imm&#233;diate.</p>
+<p>En pur Tcl, le calcul de la somme des &#233;l&#233;ments
+n&#233;cessiterait de cr&#233;er une boucle d'accumulation.
+<br>Avec un vecteur, on &#233;crit :</p>
+<p>
+<code>set sum $v_1(sum)
+<br></code>
+</p>Il n'est pas n&#233;cessaire de faire : 
+<code>set mean [ expr { $sum/[llength $liste_de valeurs ] } ]
+<br></code>
+<p>pour conna&#238;tre la moyenne. Il suffit d'&#233;crire :</p>
+<p>
+<code>set mean $v_1(mean)</code>
+</p>
+<p>Ce type de commande fonctionne pour <b>min</b>,<b> max</b>,<b> mean</b>,<b> sum </b>et<b>
+prod</b>, h&#233;las pas pour med.</p>
+<h2>3. Comment &#233;diter un vecteur dans la Console ?</h2>
+<p>
+<code>::console::affiche_resultat "$v_1(:)"</code>
+</p>
+<p>permet d'&#233;diter la totalit&#233; du vecteur. Le (:)
+&#233;quivaut &#224; (d&#233;but : end).</p>
+<p>Pour &#233;diter les valeurs comprises entre l'indice i et j
+:</p>
+<p>
+<code>::console::affiche_resultat "$v_1($i:$j)"</code>
+</p>
+<p>ou mieux :</p>
+<p>
+<code>::console::affiche_resultat "[ v_1 range $i $j ]"</code>
+</p>
+<p>Cette commande retourne une sous-liste. Elle peut donc aussi
+servir pour cr&#233;er ou compl&#233;ter un autre vecteur :</p>
+<code>vecteur2 append [ v_1 range $i $j ]
+<br></code>
+<h2>4. Comment calculer avec un vecteur ?</h2>
+<p>
+<code>v_1 expr { v_1+10 }</code>
+</p>
+<p>Ajoute la valeur 10 &#224; chaque &#233;l&#233;ment du
+vecteur.
+<br>Les op&#233;rations usuelles + - / * % ^ sont valables.</p>
+<p>D'autres op&#233;rations n&#233;cessitent un style analogue
+&#224; celui du Tcl :</p>
+<p>
+<code>abs round random norm
+<br>acos cos hypot sinh
+<br>asin cosh log sqrt
+<br>atan exp log10 tan
+<br>ceil floor sin tanh</code>
+</p>
+<p>Par exemple :</p>
+<p>
+<code>v_1 expr { log(v_1) }</code>
+</p>
+<p>Il est aussi possible d'op&#233;rer sur deux vecteurs de
+longueur identique (les &#233;l&#233;ments &#233;tant
+trait&#233;s deux &#224; deux), &#224; condition de ne pas
+oublier de cr&#233;er le second vecteur :</p>
+<p>
+<code>blt::vector create resultat
+<br>resultat expr { v_1*vecteur2 }</code>
+</p>Si chaque vecteur contient 1000 &#233;l&#233;ments, on
+&#233;crit 1000 multiplications avec une seule ligne de code !
+<p>Les comparateurs &lt; &gt; &lt;= &gt;= == =! et les
+op&#233;rateurs logiques &amp;&amp; || peuvent &#234;tre
+utilis&#233;s : Le vecteur r&#233;sultat contient des 1 pour les
+&#233;l&#233;ments remplissant la condition, sinon 0.</p>
+<p>Des op&#233;rations de d&#233;placements circulaires vers la
+droite &gt;&gt; ou vers la gauche &lt;&lt; des &#233;l&#233;ments
+sont possibles :</p>
+<p>
+<code>v_1 expr { v_1 &gt;&gt; 2 }</code>
+</p>
+<p>Le dernier &#233;l&#233;ment devient le second et
+l'avant-dernier le dernier.</p>
+<p>On remarquera que :</p>
+<ul>
+<li>Le $ si courant en Tcl n'appara&#238;t gu&#232;re que pour
+d&#233;signer une valeur particuli&#232;re de la liste.</li>
+<li>La commande 'set', si fr&#233;quente en Tcl, est &#233;crite
+selon le cas apr&#232;s le nom du vecteur (exemple : v_1 set
+$liste) ou devant le rep&#232;re d'un &#233;l&#233;ment (exemple
+: set v_1(2) ).</li>
+<li>La commande <b>expr</b> n'est pas entour&#233;e de <b>[ ]</b>.</li>
+</ul>
+<h2>5. Comment rep&#233;rer les points ayant une valeur
+particuli&#232;re ?</h2>
+<p>Pour isoler la valeur situ&#233;e &#224; l'indice j du vecteur
+:</p>
+<p>
+<code>set valeur $v_1($j)</code>
+</p>
+<p>Pour rep&#233;rer les positions ayant une valeur
+donn&#233;e :<br>
+</p>
+<p>
+<code>set liste_des_index [ v_1 search $cette_valeur ]</code>
+</p>
+<p>Pour rechercher les valeurs comprises dans un intervalle :</p>
+<p>
+<code>set liste_des_index [ v_1 search $borne1 $borne2 ]</code>
+</p>
+<h2>6. Et la gestion des indices ?</h2>
+<p>Qui n'a pas oubli&#233; une fois qu'une liste Tcl d&#233;marre
+&#224; l'indice 0 et que end est en fait &#233;gal &#224; [ expr
+{[length $liste_de valeurs]-1 }] ?</p>
+<p>Pour les vecteurs c'est pareil (par d&#233;faut) sauf que
+l'indice de d&#233;but est modifiable par :</p>
+<p>
+<code>v_1 offset 1</code>
+</p>
+<p>L'exemple ci-dessus est particuli&#232;rement pratique lorsque
+le but est d'analyser les valeurs d'une ligne ou d'une colonne de
+pixels car celles-ci commence toujours &#224; l'index 1.
+<br>Dans cet exemple, la position d'un point dans la ligne
+serait exactement &#233;gale &#224; l'indice de la valeur du
+point dans le vecteur.</p>
+<p>Comment extraire une sous-liste d'une liste, la modifier puis
+replacer les valeurs au bon endroit ?
+<br>En Tcl il faut m&#233;moriser les indices puis,
+ult&#233;rieurement, ne pas se tromper sur leur rappel.</p>
+<p>
+<code>vecteur2 set [ v_1 range $i $j ]
+<br>vecteur2 offset $i</code>
+</p>
+<p>vecteur2 est le reflet fid&#232;le (indices et valeurs) du
+morceau de vecteur.
+<br>Apr&#232;s traitement, on peut le remettre en place avec
+:</p>
+<p>
+<code>v_1 index $i $j [ vecteur2 range $i $j ]</code>
+</p>
+<p>ou</p>
+<p>
+<code>set start [ vecteur2 offset ]
+<br>v_1 index $i $j [ vecteur2 range $start end ]</code>
+</p>
+<p>Pour conna&#238;tre l'indice initial d'un vecteur :</p>
+<code>set offset [ v_1 offset ]
+<br></code>
+<h2>7. Plus ...</h2>
+<p>D'autres fonctions particuli&#232;res (adev, kurtosis, median,
+q1, q3, prod, sdev, skew, var) existent mais elles ne peuvent pas
+&#234;tre appel&#233;es directement comme min, max, mean et sum.
+<br>La raison en est que les vecteurs disposent d'indices
+sp&#233;ciaux pour min, max , sum et mean permettant d'appeler
+directement les valeurs. La documentation n'est pas tr&#232;s
+explicite sur la mani&#232;re de mettre en &#339;uvre les autres
+fonctions.
+<br>Une solution qui marche est de consid&#233;rer qu'elles
+retournent un vecteur &#224; une seule composante :</p>
+<p>
+<code>resultat expr { adev(v_1) }
+<br>set adev $resultat(:) (&#233;cart moyen par rapport &#224;
+la moyenne)
+<br>resultat expr { kurtosis(v_1) }
+<br>set kurtosis $resultat(:) (moment d'ordre 4)
+<br>resultat expr { median(v_1) }
+<br>set median $resultat(:) (valeur m&#233;diane)
+<br>resultat expr { q1(v_1) }
+<br>set q1 $resultat(:) (premier quartile)
+<br>resultat expr { q3(v_1) }
+<br>set q3 $resultat(:) (troisi&#232;me quartile)
+<br>resultat expr { prod(v_1) }
+<br>set prod $resultat(:) (produit des &#233;l&#233;ments)
+<br>resultat expr { sdev(v_1) }
+<br>set sdev $resultat(:) (racine carr&#233;e de la variance
+var)
+<br>resultat expr { skew(v_1) }
+<br>set skew $resultat(:) (moment d'ordre 3)
+<br>resultat expr { var(v_1) }
+<br>set var $resultat(:) (somme des carr&#233;s des &#233;carts
+&#224; la moyenne, divis&#233;e par le nombre
+d'&#233;l&#233;ments)</code>
+</p>
+<p>D'autres fonctions retournent un vecteur de longueur identique
+au vecteur initial :</p>
+<p>
+<code>resultat expr { norm(v_1) } (vecteur norm&#233; entre 0 et
+1)
+<br>resultat expr { sort(v_1) } (vecteur tri&#233; par ordre
+croissant)</code>
+</p>
+<p>Il existe une autre solution pour sort :</p>
+<p>
+<code>v_1 sort (tri par ordre croissant)
+<br>v_1 sort -reverse (tri par ordre d&#233;croissant)
+<br>v_1 sort vecteur2 (tri par ordre croissant de v_1 et
+r&#233;arrangement du vecteur2 pour que les indices restent
+coh&#233;rents).</code>
+</p>Le lecteur peut aussi essayer random ou srandom.
+<h2>8. Cr&#233;ation (2)</h2>
+<p>Le vecteur v_1 cr&#233;&#233; plus haut n'existait que par son
+nom et avait une longueur initiale nulle (si si).</p>
+<p>La commande :</p>
+<p>
+<code>blt::vector create vecteur(20)</code>
+</p>
+<p>cr&#233;e un vecteur de 20 &#233;l&#233;ments
+initialis&#233;s &#224; la valeur 0, l'indice initial &#233;tant
+0 et l'indice final 19 (soit 20 valeurs).</p>
+<p>Si on veut cr&#233;er un vecteur dont l'index initial est 1 (0
+par d&#233;faut) et de longueur 20 on &#233;crit :</p>
+<p>
+<code>blt::vector create vecteur(1:20)</code>
+</p>
+<p>Plusieurs modes d'affectation de valeurs sont disponibles
+:</p>
+<p>
+<code>set v_1(:3) 12 (le premier &#233;l&#233;ment ayant pour
+indice 1, les &#233;l&#233;ments de rang 1 &#224; 3 valent 12)
+<br>set v_1(4:5) 2 (les &#233;l&#233;ments de rang 4 &#224; 5
+valent 2)
+<br>v_1 index 2 0.5 (le second &#233;l&#233;ment vaut
+maintenant 0.5)
+<br>set i 6
+<br>set v_1($i) 10 (le sixi&#232;me &#233;l&#233;ment vaut 10)
+<br>set v_1{7:2*$i) 20 (les &#233;l&#233;ments de rang 7 &#224;
+rang 12 valent 20)
+<br>set v_1(2*$i+1:) 0.34 (les &#233;l&#233;ments de rang
+sup&#233;rieur 12 valent 0.34)
+<br>set v_1(end) 45 (le dernier &#233;l&#233;ment, le
+vingti&#232;me, vaut 45)
+<br>set v_1(++end) 9 (rajoute un &#233;l&#233;ment de valeur 9
+au vecteur)
+<br>v_1 delete 11 15 (supprime le 11&#232;me et le 15&#232;me
+&#233;l&#233;ment, la longueur du vecteur diminue)
+<br>v_1 length 20 (rajoute des 0 pour que le nombre
+d'&#233;l&#233;ments redevienne &#233;gal &#224; 20)
+<br>v_1 length 5 (supprime tous les &#233;l&#233;ments de rang
+&gt; 5)</code>
+</p>
+<p>Il est aussi possible de cr&#233;er un vecteur avec des
+valeurs &#233;chelonn&#233;es :</p>
+<p>
+<code>v_1 seq 5 10 1</code>
+</p>Ce mode cr&#233;e automatiquement un vecteur dont le
+premier &#233;l&#233;ment vaut 5 et le dernier 10 avec un
+intervalle de 1.
+<p>Il est aussi possible de fusionner des vecteurs :</p>
+<p>
+<code>v_1 merge v_2 v_3</code>
+</p>
+<h2>9. Et destruction</h2>
+<p>Contrairement aux variables locales d'une proc&#233;dure Tcl,
+qui sont d&#233;truites &#224; la fin de la proc&#233;dure, les
+vecteurs subsistent ce qui conduit &#224; encombrer inutilement
+l'espace m&#233;moire et surtout &#224; des r&#233;sultats
+inattendus si on a recours &#224; des 'append' ou si on utilise
+le nom d'un vecteur existant.
+<br>Il est donc prudent de d&#233;clarer les vecteurs avec
+l'option -<b>watchunset 1</b> :</p>
+<p>
+<code>blt::vector create v_1 vecteur2 -watchunset 1</code>
+</p>
+<p>Et &#224; la fin de la proc&#233;dure de tuer les
+vecteurs :</p>
+<p>
+<code>blt::vector destroy v_1 vecteur2</code>
+</p>
+<p>ou &#224; tout le moins, dans les proc&#233;dures
+it&#233;ratives, &#224; utiliser la commande :</p>
+<p>
+<code>v_1 length 0</code>
+</p>
+<p>Ce qui a pour effet de supprimer toutes les valeurs
+ant&#233;rieures : Le vecteur est comme au moment de sa
+cr&#233;ation.</p>
+<h2>10. Quelques exemples pratiques</h2>
+<p>Le nom des commandes 
+<code>set, range, index, split, etc.</code> &#233;voque celui
+concernant les listes.</p>
+<p>Pour utiliser 
+<code>lassign</code> il faut utiliser la notation 
+<b>array</b> comme par exemple :</p>
+<code>lassign $vector(:) x0 y0 x1 y1</code>
+<h3>10.1 Obtention du minimum ou du maximum d'une liste</h3>
+<p>Les fonctions min et max constituent des solutions
+alternatives &#224; des fonctions telles que lmin et lmax.
+<br>Il est aussi possible d'obtenir la liste des indices des
+valeurs &#233;gales au minimum :</p>
+<p>
+<code>set indexes [ v_1 search $v_1(min) ]</code>
+</p>
+<p>Puis de demander le niveau de cette valeur :</p>
+<p>
+<code>set min $v_1([ lindex $indexes 0 ])</code>
+</p>
+<h3>10.2 Valeurs apr&#232;s la virgule</h3>
+<p>L'&#233;quivalent de <b>int</b> n'existe pas et <b>round</b> fait l'arrondi &#224; la valeur la plus proche. Il faut donc utiliser le <b>%</b> :</p>
+<code>v1 set { 12.5 13.4 }
+<br>v2 expr {v1 % 1} ;#-- v2 est &#233;gal &#224; { 0.5 0.4 }
+<br>v1 expr {v1-v2} ;#-- v1 est &#233;gal &#224; { 12.0 13.0 }</code>
+<h3>10.3 Moyenne dynamique d'une s&#233;rie de mesures (dans une
+boucle de rafra&#238;chissement)</h3>
+<p>
+<code>vecteur_mesure append $nouvelle_mesure
+<br>set moyenne $vecteur_mesure(mean)</code>
+</p>
+<h3>10.4 V&#233;rification qu'une liste ne comporte que des
+valeurs num&#233;riques</h3>
+<p>Un vecteur n'admet que des valeurs num&#233;riques, autrement
+il y a erreur.</p>
+<p>
+<code>set liste_a_analyser [ list 1 2 3 blabla ]
+<br>v_1 set $liste_a_analyser</code>
+</p>
+<p>Retourne :</p>
+<p>
+<code>invalid bareword "blabla" .....</code>
+</p>
+<p>On peut mettre &#224; profit cette erreur pour d&#233;tecter
+l'absence d'erreur sans avoir &#224; analyser chaque
+&#233;l&#233;ment :</p>
+<p>
+<code>if ![ catch { v_1 set $liste_a_analyser } ErrInfo ] {
+<br>&nbsp;&nbsp;&nbsp;#-- c'est bien une liste de valeurs num&#233;riques
+<br>&nbsp;&nbsp;&nbsp;todo ...
+<br>} else {
+<br>&nbsp;&nbsp;&nbsp;#-- ce n'est pas une liste de valeurs num&#233;riques
+<br>}</code>
+</p>
+<h3>10.5 V&#233;rification qu'une s&#233;rie de nombres ne
+comporte pas de trou</h3>
+<p>La somme des termes d'une suite arithm&#233;tique est
+donn&#233;e par la formule
+Somme=Nombre_de_termes*(Premier_terme+Dernier_terme)/2.
+<br>On pourra donc &#233;crire :</p>
+<p>
+<code>v_1 set $liste_de_valeurs
+<br>v_1 sort
+<br>if { $v_1(sum) == [ expr { [ v_1 length
+]*($v_1(0)+$v_1(end))/2 } ] } {
+<br>&nbsp;&nbsp;&nbsp;#-- c'est une s&#233;rie sans trou
+<br>&nbsp;&nbsp;&nbsp;todo
+<br>}</code>
+</p>
+<h3>10.6 Filtrage et rep&#233;rage de valeurs en dehors d'un
+intervalle</h3>
+<p>
+<code>set seuil_bas 20
+<br>set seuil_haut 50
+<br>v_1 expr { v_1 &lt; $seuil_bas || v_1 &gt; $seuil_haut
+}</code>
+</p>
+<p>Toutes les valeurs sont remplac&#233;es par des 0 ou des 1
+selon que la valeur est dans l'intervalle ou en dehors.
+<br>Pour conna&#238;tre les positions des &#233;l&#233;ments en
+dehors :</p>
+<p>
+<code>set indexes [ v_1 search 1 ]</code>
+</p>
+<h3>10.7 Calcul des points d'une courbe param&#233;trique</h3>
+<p>Pour calculer 100 points d'une courbe y=a+bx+c*x&#178;, on
+cr&#233;e deux vecteurs :</p>
+<p>
+<code>set a 1.2
+<br>set b 3.5
+<br>set c -1.56
+<br>blt::vector create x y -watchunset 1
+<br>x seq 1 100 1
+<br>y expr { $a+$b*x+$c*x^2}</code>
+</p>
+<p>Et pour afficher le r&#233;sultat :</p>
+<p>
+<code>::plotxy::plot $x(:) $y(:)</code>
+</p>
+<h3>10.8 Passage par nom au lieu de valeur</h3>
+<p>Pour indiquer &#224; une proc&#233;dure les valeurs &#224;
+traiter, il suffit de lui donner le nom du vecteur &#224; traiter
+au lieu de lui passer la liste des valeurs :</p>
+<p>
+<code>proc todo { nom_du_vecteur } {
+<br>&nbsp;&nbsp;&nbsp;$nom_du_vecteur expr { log($nom_du_vecteur^3) }
+<br>}
+<br>todo v_1</code>
+</p>
+<p>Les valeurs de v_1 sont modifi&#233;es sans qu'il soit
+n&#233;cessaire de retourner la liste des valeurs.</p>
+<p>Une autre application concerne blt::graph. Pour cr&#233;er
+une courbe, on &#233;crit :</p>
+<p>
+<code>$w element create courbe -xdata -x $liste_des abscisses
+-ydata $liste_des ordonn&#233;es</code>
+</p>
+<p>Avec les vecteurs il suffit d'&#233;crire :</p>
+<p>
+<code>$w element create courbe -xdata vecteur_abscisses -ydata
+vecteur_ordonnees</code>
+</p>
+<p>La modification du contenu des vecteurs modifie
+automatiquement le graphique.</p>
+<h3>10.9 Interpolation</h3>
+<p>Admettons l'existence d'un vecteur n'ayant que deux valeurs
+ayant pour abscisses 150 et 151 (pixels).</p>
+<p>
+<code>v_1 set [ list 102 98 ]
+<br>v_1 offset 150</code>
+</p>
+<p>Pour d&#233;terminer l'abscisse interm&#233;diaire ayant pour
+valeur 100 (le cas est simple = 150.5) :</p>
+<p>
+<code>v_1 populate z 9 (cr&#233;ation d'un vecteur 'z' comportant
+11 &#233;l&#233;ments et donc 10 intervalles)
+<br>z offset [ expr { [ v_1 offset ]*10 } ] (l'indice de
+d&#233;but de z vaut 10 fois l'indice soit 1500)
+<br>set index [ expr { [ z search 99.9 100.1 ]/10 } ] (la
+r&#233;ponse est divis&#233;e par 10 et vaut 150.5)</code>
+</p>
+<h3>10.10 Vecteurs et matrice</h3>
+<p>Une matrice est une liste de listes :</p>
+<code>set matrice { {1 2 3} {4 5 6} }</code>
+<p>Il est facile d'en d&#233;duire qu'une matrice est une liste
+de vecteurs :</p>
+<p>
+<code>v1 set [list 1 2 3]
+<br>v2 set [list 4 5 6]</code>
+</p>
+<p>La notation suivante ne fonctionne pas :</p>
+<code>set matrice [list un deux]</code>
+<p>par contre la suivante fonctionne :</p>
+<p>
+<code>set matrice [list $v1(:) $v2(:)]
+<br>[gsl_mindex $matrice 1 2] --&gt; 5</code>
+</p>
+<p>La matrice ne tient pas compte des &#233;ventuels offsets des
+vecteurs.</p>
+<p>Pour extraire une ligne de matrice vers un vecteur :</p>
+<p>
+<code>v2 set [lindex $matrice 0]</code>
+</p>
+<h3>10.11 Calcul matriciel</h3>
+<p>Dans le calcul matriciel gsl_mfitmultilin on recourt &#224; un
+vecteur w de pond&#233;ration des valeurs.
+<br>Comment obtenir ce vecteur en sachant qu'il doit avoir le
+m&#234;me nombre d'&#233;l&#233;ments que le vecteur des mesures
+:</p>
+<p>
+<code>blt::vector create w([vecteur_mesures length])</code>
+</p>
+<p>Le vecteur est cr&#233;&#233; mais tous ses &#233;l&#233;ments
+valent 0.</p>
+<p>
+<code>w expr { w == 0 }</code>
+</p>
+<p>Maintenant ils sont tous &#233;gaux &#224; 1 !
+<br>On aurait aussi pu &#233;crire :</p>
+<p>
+<code>set w(:) 1</code>
+</p>
+<h3>10.12 Changement de base</h3>
+<p>Que vaut le binaire 1 0 1 1 0 0 1 1 0 0 0 0 1 1 1 1 en
+d&#233;cimal ?</p>
+<code>base seq 0 15 1 ; #-- exposant de 2
+<br>base expr {2^base} ; #-- puissances de 2
+<br>set base(0) 0 ; #-- patch pour que 2^0 = 0 et non pas 1
+<br>v set { 1 0 1 1 0 0 1 1 0 0 0 0 1 1 1 1 } ; #-- binaire
+&#224; convertir
+<br>v expr { base*v} ; #-- multiplication
+<br>set result $v(sum) ; #-- r&#233;sultat en d&#233;cimal</code>
+<h3>10.13 Multiplexage et d&#233;multiplexage de donn&#233;es
+num&#233;riques</h3>
+<p>Comment alterner des doublets ou des triplets de valeurs au
+sein d'une seule liste ?</p>
+<p>
+<code>v1 set { 1 4 7 }
+<br>v2 set { 2 5 8 }
+<br>v3 set { 3 6 9 }
+<br>foreach a $v(1:) b $v2(:) c $v3(:) {
+<br>&nbsp;&nbsp;&nbsp;result append $a $b $c
+<br>} ; #-- result vaut { 1 2 3 4 5 6 7 8 9 }</code>
+</p>
+<p>L'op&#233;ration de d&#233;multiplexage est aussi simple :</p>
+<code>foreach {a b c} $result(:) {
+<br>&nbsp;&nbsp;&nbsp;v4 append $a ; #-- v4 vaut { 1 4 7 }
+<br>&nbsp;&nbsp;&nbsp;v5 append $b ; #-- v5 vaut { 2 5 8 }
+<br>&nbsp;&nbsp;&nbsp;v6 append $c ; #-- v6 vaut { 3 6 9 }
+<br>}</code>
+</body></html>

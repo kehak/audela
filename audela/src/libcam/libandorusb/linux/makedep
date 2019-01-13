@@ -1,0 +1,4 @@
+util.o: /usr/local/src/audela/src/libcam/util.c \
+ /usr/local/src/audela/src/include/sysexp.h \
+ /usr/local/src/audela/src/include/system.h \
+ /usr/local/src/audela/src/include/libcam/util.h

@@ -1,0 +1,18 @@
+CP= copy
+RM= -@del /f /q
+
+SOURCE=.
+EXTERNAL_INCLUDE=..\include
+EXTERNAL_LIB=..\lib
+
+build:
+
+install: build
+	if not exist $(EXTERNAL_INCLUDE)  mkdir $(EXTERNAL_INCLUDE)
+	if not exist $(EXTERNAL_LIB)      mkdir $(EXTERNAL_LIB)
+	$(CP) $(SOURCE)\include\libusb.h $(EXTERNAL_INCLUDE)
+	$(CP) $(SOURCE)\lib\libusb-1.0.lib   $(EXTERNAL_LIB)
+
+clean:
+	$(RM) $(EXTERNAL_INCLUDE)\libusb.h
+	$(RM) $(EXTERNAL_LIB)\libusb-1.0.lib

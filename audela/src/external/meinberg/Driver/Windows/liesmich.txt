@@ -1,0 +1,182 @@
+$Id: liesmich.txt,v 1.1 2011-02-23 14:18:15 myrtillelaas Exp $
+
+Installation der Meinberg Treibersoftware für Windows
+=====================================================
+
+Die vorliegende Meinberg Treibersoftware für Windows kann unter
+Windows NT sowie Windows 2000 / XP / Server 2003 und Vista eingesetzt 
+werden, um die Systemzeit des Rechners zu synchronisieren. 
+Unterstützt werden sowohl die 32 Bit- als auch die 64 Bit-Versionen (x64) 
+der genannten Betriebssyteme. Alle ausführbaren Dateien sind mit einer 
+beglaubigten, digitalen Signatur von Meinberg versehen, um selbst die 
+Anforderungen von Windows Vista x64 zu erfüllen.
+
+Als Referenzzeit können alle PC-Einsteckkarten von Meinberg mit 
+PCI-, PCI Express- (PCIe) oder ISA-Bus verwendet werden. Alternativ ist es möglich, das 
+Meinberg-Standard-Zeittelegramm von einer externen Funkuhr einzulesen, 
+die an eine serielle Schnittstelle des Rechners (COM-Port) angeschlossen
+ist. Ausser unter Windows NT werden auch Funkuhren von Meinberg mit 
+USB-Schnittstelle unterstuetzt.
+
+Ausführliche Hinweise zum Programm finden Sie in den Hilfe-Seiten
+des Monitorprogramms MbgMon. 
+
+Zur Verteilung der genauen Zeit im Netzwerk kann das frei erhältliche
+Programmpaket NTP verwendet werden:
+http://www.meinberg.de/german/info/ntp.htm
+
+
+Upgrade einer bestehenden Installation
+--------------------------------------
+
+Falls bereit eine ältere Version der Treibersoftware installiert ist,
+kann die neue Version einfach darüber installiert werden.
+Wenn außer dem Zeitservice kein weiteres Programm (Monitorprogramm, 
+kundenspezifisches Programm) auf die Funkuhr zugreift, ist in der 
+Regel nicht einmal ein Reboot erforderlich.
+
+
+
+PCI/PCIe-Karten und USB Uhren unter Windows 2000/XP und neuer (PNP-Betriebssysteme)
+-----------------------------------------------------------------------------------
+
+- Falls die Karte bereits eingebaut wurde, erscheint nach dem 
+  Start des Rechners der Hardware-Assistent und fordert Sie auf, 
+  einen Treiber zu installieren. Wenn die Treibersoftware bereits
+  installiert wurde, werden die Karte und der Treiber korrekt erkannt 
+  und der Hardware-Assistent kann weiter ausgeführt werden, um die 
+  Installation abzuschließen.
+
+- Falls die Treibersoftware noch nicht installiert wurde, beenden
+  Sie den Hardware-Assistenten.
+
+- Starten Sie den Installer, um die Treibersoftware zu installieren.
+
+- Wählen Sie ein Installationsverzeichnis, standardmäßig ist dies:
+  C:\Programme\Meinberg\MbgMon
+
+- Falls die Karte noch nicht eingebaut wurde, fahren Sie nun 
+  den Rechner herunter und installieren Sie die Karte bzw. schließen
+  Sie die USB Uhr an. Nach dem Neustart des Rechners startet automatisch 
+  der Hardware-Assistent.
+  Verfahren Sie, wie oben beschrieben, um den Treiber auszuwählen
+  und zu installieren. 
+
+- Starten Sie das Monitorprogramm MbgMon, um die Funkuhr zu
+  konfigurieren, den Status der Funkuhr zu überprüfen und 
+  den Zeitservice erstmalig zu starten.
+
+
+
+ISA-Karten unter Windows 2000/XP und neuer (PNP-Betriebssysteme)
+----------------------------------------------------------------
+
+- Fahren Sie nun den Rechner herunter und installieren Sie die Karte,
+  bevor Sie die Treibersoftware installieren. 
+
+- Nach dem Neustart starten Sie Installer, um die Treibersoftware 
+  zu installieren. 
+
+- Wählen Sie ein Installationsverzeichnis, standardmäßig ist dies:
+  C:\Programme\Meinberg\MbgMon
+
+- Da eine ISA-Karte nicht automatisch erkannt wird, wird am Ende der
+  Installation eine Meldung angezeigt, dass keine Funkuhr erkannt
+  wurde. Die Meldung bietet die Möglichkeit, gleich im Anschluß
+  an die Treiberinstallation den Hardware-Assistenten zu starten, 
+  um die Karte manuell hinzuzufügen.
+
+- Starten Sie den Hardware-Assistenten.
+
+- Eventuell ist es nötig, die Option "Gerät hinzufügen" auszuwählen.
+  Der Hardware-Assistent sucht dann nach Plug-and-Play-Geräten. Da 
+  die ISA-Karte kein Plug-and-Play-Gerät ist, wird sie nicht 
+  automatisch gefunden.
+
+- Anschließend werden Sie aufgefordert, manuell ein Gerät zu wählen. 
+  Nach der Auswahl "Neues Gerät" besteht die Möglichkeit, einen 
+  Hardware-Typ aus einer Liste auszuwählen.
+
+- Unter dem Typ "Radio Clock" finden Sie alle Karten aufgelistet, 
+  die der Treiber unterstützt. Wählen Sie den Typ Ihrer ISA-Karte
+  aus.
+
+- Wenn der Typ "Radio Clock" nicht aufgelistet wird, müssen Sie zunächst 
+  den Punkt "Alle Geräte anzeigen" auswählen und aut "Weiter" klicken.
+  Anschließend erscheint eine Liste von Herstellern und Geräten dieser 
+  Hersteller, bei der Sie unter "Meinberg" die von Ihnen verwendete Karte 
+  auswählen können.
+
+- Falls keine Hardware- Konflikte auftreten, wird nun der Treiber 
+  installiert und die Installation beendet. Andernfalls werden Sie 
+  aufgefordert, die Ressourcen für die ISA Karte zu ändern.
+  
+- Ändern Sie gegebenenfalls die Port-Basisadresse auf der Registerkarte 
+  "Ressourcen". Die Standardeinstellung ist 300 hex, das entspricht dem 
+  Auslieferungszustand der Karte. Fahren Sie den Rechner herunter und 
+  stellen Sie die gewählte Startadresse über die DIL-Schalter oder die 
+  Jumper auf der Funkuhrenkarte ein. Detaillierte Informationen zur 
+  Einstellung der Portadresse finden Sie in der Bedienungsanleitung 
+  Ihrer Funkuhrenkarte.
+
+- Starten Sie das Monitorprogramm MbgMon, um die Funkuhr zu
+  konfigurieren, den Status der Funkuhr zu überprüfen und 
+  den Zeitservice zu starten.
+
+
+
+PCI-/PCIe oder ISA-Karte unter Windows NT (ohne PNP-Unterstützung)
+-----------------------------------------------------------------
+
+- Starten Sie den Installer, um die Treibersoftware zu installieren.
+
+- Wenn es sich bei der Funkuhr um eine ISA-Karte handelt, markieren 
+  Sie das Kästchen "ISA Karte" und geben Sie die Portadresse ein,
+  mit der die Karte konfiguriert ist. Standardmäßig ist die Karte
+  auf 300 Hex eingestellt. Bei Konflikten wählen Sie eine andere 
+  Portadresse und passen Sie die Einstellung der DIL-Schalter 
+  oder Jumper auf der Karte an. Detaillierte Informationen zur 
+  Einstellung der Portadresse finden Sie in der Bedienungsanleitung 
+  Ihrer Funkuhrenkarte.
+
+- Bei der Installation einer PCI-oder PCIe-Karte ist keine Angabe einer 
+  Adresse erforderlich, da der Treiber die Karte automatisch 
+  erkennt.
+
+- Wählen Sie ein Installationsverzeichnis, standardmäßig ist dies:
+  C:\Programme\Meinberg\MbgMon
+  Führen Sie das Setup-Programm bis zum Abschluß aus.
+
+- Wenn die Funkuhr-Karte noch nicht eingebaut wurde, können Sie 
+  nun den Rechner herunterfahren, die Karte Installieren und den 
+  Rechner anschließend neu starten.
+
+- Starten Sie das Monitorprogramm MbgMon, um die Funkuhr zu
+  konfigurieren, den Status der Funkuhr zu überprüfen und 
+  den Zeitservice zu starten.
+
+
+
+Externe Funkuhr an serieller Schnittstelle
+------------------------------------------
+
+- Starten Sie den Installer, um die Treibersoftware zu installieren.
+
+- Wählen Sie ein Installationsverzeichnis, standardmäßig ist dies:
+  C:\Programme\Meinberg\MbgMon
+  Führen Sie das Setup-Programm bis zum Abschluß aus.
+
+- Starten Sie das Monitorprogramm MbgMon, um die Schnittstelle
+  des Rechners zu parametrieren. Wählen Sie den COM-Port aus, 
+  an den die externe Funkuhr angeschlossen ist und stellen Sie
+  Baudrate und Übertragunsformat (Framing) genauso ein wie 
+  bei der externen Funkuhr. Die Standardwerte hängen vom Typ 
+  der verwendeten Funkuhr ab. Detaillierte Informationen zur 
+  Einstellung der Funkuhr finden Sie in der Bedienungsanleitung 
+  Ihrer Funkuhr.
+
+
+Copyright (C) 2004-2009 Meinberg Funkuhren, Bad Pyrmont, Germany
+
+Internet: http://www.meinberg.de
+Email:    info@meinberg.de

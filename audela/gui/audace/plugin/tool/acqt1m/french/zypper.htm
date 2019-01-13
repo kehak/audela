@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Acquisition (T1M)</title>
+</head>
+
+<body>
+<p class="date">Date de mise &agrave; jour : 01 mai 2013</p>
+
+<h1>Zypper</h1>
+
+      <pre>
+      == Cloner une distrib
+
+      PC1 : rpm -qa > maliste
+      PC2 : cat maliste | zypper install
+
+      == list packages
+         > rpm -qa
+
+      == list packages contents
+         > rpm -ql
+
+      == configure network interfaces
+         > man ifcfg
+         > /etc/sysconfig/network/ifcfg-eth0
+
+      == concise list of installable packages
+         > zypper search 
+
+      == get info on package   
+         > zypper info 
+         > rpm -qi
+
+      == install or update package
+         > zypper install
+
+      == Mettre a jour tous les paquetages installÃ©s
+         > zypper update
+
+      == refresh package cache
+         > zypper refresh
+
+      == install build dependencies of a package   
+         > zypper build-deps-install
+
+      == find package for uninstalled file
+         > webpin
+
+      == online search packages by file
+        -> packages.opensuse-community.org
+
+      == search installable packages by name
+         > zypper search
+
+      == search installable package descriptions
+         > zypper search -d
+
+      == strip version from package   
+        -> sed -e 's/-[^-]\+-[^-]\+$//'   
+
+      == package download cache
+        -> /var/cache/zypper/RPMS
+
+      == zypper search -d
+
+     </pre>
+
+</body>
+
+</html>

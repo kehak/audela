@@ -1,0 +1,25 @@
+#!/bin/bash
+/bin/rm  ../../../../bin/libmeinberg.so
+/bin/rm *.o *.so *.a
+
+gcc -fPIC -Wall -O2 -I. -I./include  -DMBGDEVIO_SIMPLE=1   -c -o mbgdevio.o ./src/mbgdevio.c
+gcc -fPIC -Wall -O2 -I. -I./include  -DMBGDEVIO_SIMPLE=1   -c -o toolutil.o ./src/toolutil.c
+gcc -fPIC -Wall -O2 -I. -I./include  -DMBGDEVIO_SIMPLE=1   -c -o gpsutils.o ./src/gpsutils.c
+gcc -fPIC -Wall -O2 -I. -I./include  -DMBGDEVIO_SIMPLE=1   -c -o pcpsutil.o ./src/pcpsutil.c
+gcc -fPIC -Wall -O2 -I. -I./include  -DMBGDEVIO_SIMPLE=1   -c -o mbgmktm.o  ./src/mbgmktm.c
+gcc -fPIC -Wall -O2 -I. -I./include  -DMBGDEVIO_SIMPLE=1   -c -o pcpslstr.o ./src/pcpslstr.c
+gcc -fPIC -Wall -O2 -I. -I./include  -DMBGDEVIO_SIMPLE=1   -c -o pcpsmktm.o ./src/pcpsmktm.c
+gcc -fPIC -Wall -O2 -I. -I./include  -DMBGDEVIO_SIMPLE=1   -c -o parmpcps.o ./src/parmpcps.c
+gcc -fPIC -Wall -O2 -I. -I./include  -DMBGDEVIO_SIMPLE=1   -c -o parmgps.o  ./src/parmgps.c
+gcc -fPIC -Wall -O2 -I. -I./include  -DMBGDEVIO_SIMPLE=1   -c -o ctrydttm.o ./src/ctrydttm.c
+gcc -fPIC -Wall -O2 -I. -I./include  -DMBGDEVIO_SIMPLE=1   -c -o ctry.o     ./src/ctry.c
+gcc -fPIC -Wall -O2 -I. -I./include  -DMBGDEVIO_SIMPLE=1   -c -o lan_util.o ./src/lan_util.c
+gcc -fPIC -Wall -O2 -I. -I./include  -DMBGDEVIO_SIMPLE=1   -c -o lan_util.o ./src/mbgutil.c
+
+gcc -O2  -fPIC  -DTCL_THREADS  -fno-stack-protector -c -Wall -DUSE_TCL_STUBS -DUSE_TK_STUBS -DUSE_COMPAT_CONST -I./include -I../../../include -I/usr/include -o libmeinberg.o ../src/libmeinberg.c
+gcc -O2  -fPIC  -DTCL_THREADS  -fno-stack-protector -c -Wall -DUSE_TCL_STUBS -DUSE_TK_STUBS -DUSE_COMPAT_CONST -I./include -I../../../include -I/usr/include -o meinbergtcl.o ../src/meinbergtcl.c
+#gcc -O2 -fPIC -fno-stack-protector -c -Wall -DUSE_COMPAT_CONST -I./include -I../../../include -I/usr/include -o meinberg.o ../src/meinberg.c
+
+gcc libmeinberg.o meinbergtcl.o mbgdevio.o toolutil.o gpsutils.o pcpsutil.o mbgmktm.o pcpslstr.o pcpsmktm.o parmpcps.o parmgps.o ctrydttm.o ctry.o lan_util.o -shared  -ldl -lm -lstdc++ -L/usr/lib -ltclstub8.6 -L../../../../bin/ -ltkstub8.6 -o libmeinberg.so 
+
+/bin/cp -f libmeinberg.so  ../../../../bin/

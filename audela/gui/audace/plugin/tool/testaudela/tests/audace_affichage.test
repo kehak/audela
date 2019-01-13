@@ -1,0 +1,94 @@
+
+global caption
+set visuNo 1
+
+#-------------------------------------------------------------------------------
+test affichage_init {buf create} {AUDACE} {
+   #--- je charge l'image
+   loadima [file join $::conf(testaudela,rep_images) m57.fit]
+   update
+   #--- je choisis la fonction de transfert lineaire
+   set ::conf(fonction_transfert,visu$visuNo,mode) 1
+   #--- je choisis le menu "zoom x1"
+   clicMenu $visuNo $caption(audace,menu,display) "$caption(audace,menu,zoom) x 1"
+} ""
+
+#-------------------------------------------------------------------------------
+test affichage_intensite {affichage des coordonnees et intensite} {AUDACE} {
+   #--- je deplace la souris sur le point 120,120
+   mouveMouse $visuNo 122 120
+   #--- je recupere les coordonnees et l'intensite
+   return "[.audace.fra1.labURLX cget -text] [.audace.fra1.labURLY cget -text] [.audace.fra1.labI cget -text]"
+} "X = 123 Y = 117 I = 325.0"
+
+#-------------------------------------------------------------------------------
+test affichage_zoom_05 {zoom x0.5} {AUDACE} {
+   #--- j'appelle le menu "zoom x0.5"
+   clicMenu $visuNo $caption(audace,menu,display) "$caption(audace,menu,zoom) x 0.5"
+   #--- je deplace la souris sur le point 20,20
+   mouveMouse $visuNo 20 20
+   update
+   after 300
+   #--- je recupere les coordonnees et l'intensite
+   return "[.audace.fra1.labURLX cget -text] [.audace.fra1.labURLY cget -text] [.audace.fra1.labI cget -text]"
+} "X = 42 Y = 196 I = 323.0"
+
+#-------------------------------------------------------------------------------
+test affichage_script_zoom_1 {zoom x1 par script} {AUDACE} {
+   #--- je change le zoom avec la commande setZoom
+   confVisu::setZoom $visuNo 1
+
+   #--- je deplace la souris sur le point 20,20
+   mouveMouse $visuNo 122 120
+   update
+   after 300
+   #--- je recupere les coordonnees et l'intensite
+   return "[.audace.fra1.labURLX cget -text] [.audace.fra1.labURLY cget -text] [.audace.fra1.labI cget -text]"
+} "X = 123 Y = 117 I = 325.0"
+
+#-------------------------------------------------------------------------------
+test affichage_script_zoom_05 {zoom x0.5 par script} {AUDACE} {
+   #--- je change le zoom avec la commande setZoom
+   confVisu::setZoom $visuNo 0.5
+   #--- je deplace la souris sur le point 20,20
+   mouveMouse $visuNo 20 20
+   #--- je recupere les coordonnees et l'intensite
+   return "[.audace.fra1.labURLX cget -text] [.audace.fra1.labURLY cget -text] [.audace.fra1.labI cget -text]"
+} "X = 42 Y = 196 I = 323.0"
+
+#-------------------------------------------------------------------------------
+test affichage_script_zoom_1_retour {zoom x1 retour} {AUDACE} {
+   #--- je change le zoom avec la commande setZoom
+   confVisu::setZoom $visuNo 1
+   #--- je deplace la souris sur le point 20,20
+   mouveMouse $visuNo 122 120
+   #--- je recupere les coordonnees et l'intensite
+   return "[.audace.fra1.labURLX cget -text] [.audace.fra1.labURLY cget -text] [.audace.fra1.labI cget -text]"
+} "X = 123 Y = 117 I = 325.0"
+
+#-------------------------------------------------------------------------------
+test visu_color {affiche une image couleur} {AUDACE} {
+   loadima [file join $::conf(testaudela,rep_images) "47toucan.jpg"]
+   update
+   #--- j'appelle le menu "zoom x1"
+   clicMenu $visuNo $caption(audace,menu,display) "$caption(audace,menu,zoom) x 1"
+   #--- je deplace la souris sur le point 20,20
+   mouveMouse $visuNo 20 20
+   #--- je recupere les coordonnees et l'intensite
+   set Irvb [.audace.fra1.labI cget -text]
+   set IsansRVB "[ lindex [ split [ lindex $Irvb 0 ] : ] 1 ] [ lindex [ split [ lindex $Irvb 1 ] : ] 1 ] [ lindex [ split [ lindex $Irvb 2 ] : ] 1 ]"
+   return "[.audace.fra1.labURLX cget -text] [.audace.fra1.labURLY cget -text] $IsansRVB"
+} "X = 21 Y = 579 1.000 0.000 0.000"
+
+#-------------------------------------------------------------------------------
+test visu_end {raz de la visu} {AUDACE} {
+   loadima [file join $::conf(testaudela,rep_images) "47toucan.jpg"]
+   #--- j'appelle le menu "zoom x1"
+   clicMenu $visuNo $caption(audace,menu,display) "$caption(audace,menu,zoom) x 1"
+   #--- j'efface le buffer
+   loadima ""
+   after 300
+   #--- je verifie que les parametres de la visu sont remis aux valeurs par defaut
+   return "[visu$visuNo zoom] [visu$visuNo pal] [visu$visuNo mirrorx] [visu$visuNo mirrory] [visu$visuNo window]"
+} "1 fonction_transfert_1 0 0 full"
+

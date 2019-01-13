@@ -1,0 +1,577 @@
+
+#-------------------------------------------------------------------------------
+test libcatalog_load { load } -constraints {
+   AUDACE
+} -setup {
+
+
+} -body {
+   set catchError [ catch {
+      #--- je charge la librairie libcatalog
+      load [file join $::audela_start_dir libcatalog_tcl[info sharedlibextension]]
+   }]
+   return $catchError
+} -cleanup {
+
+} -result 0
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_list_catalog { liste des catalogues } -constraints {
+   AUDACE
+} -setup {
+
+
+} -body {
+   set catchError [ catch {
+      #--- je charge la librairie libcatalog
+      load [file join $::audela_start_dir libcatalog_tcl[info sharedlibextension]]
+      #--- je recherche les commandes de lecture des catalogues
+      set catas [ info commands cs* ]
+      #--- je liste les catalogues
+      set cats ""
+      foreach cata $catas {
+          lappend cats [ string range $cata 2 end ]
+      }
+      set result $cats
+   } msg]
+   return "$result"
+} -cleanup {
+
+} -result "bmk ppmxl gaia1 gaia2 ppmx tgas wfibc tycho2_fast tycho2 urat1 loneos ucac2 ucac3 ucac4 2mass nomad1 usnoa2"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csgaia1_sansparam { gaia1 sans parametre } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      #--- je recupere le message d'erreur "usage ..."
+      set result [csgaia1]
+   } msg]
+   return $msg
+} -cleanup {
+
+} -result "usage: csgaia1 pathOfCatalog ra(deg) dec(deg) radius(arcmin) ?magnitudeFaint(mag)? ?magnitudeBright(mag)?"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csgaia1_catalog_existe { trouve 273 etoiles } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      set result [csgaia1 [file join $::conf(rep_userCatalogGaia1)] 0 0 10 ]
+   } msg]
+
+   if { $catchError==0 } {
+      return [ llength [ lindex $result 1 ] ]
+   } else {
+      return $msg
+   }
+} -cleanup {
+
+} -result "273"
+
+#-------------------------------------------------------------------------------
+test libcatalog_csgaia2_sansparam { gaia2 sans parametre } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      #--- je recupere le message d'erreur "usage ..."
+      set result [csgaia2]
+   } msg]
+   return $msg
+} -cleanup {
+
+} -result "usage: csgaia2 pathOfCatalog ra(deg) dec(deg) radius(arcmin) ?magnitudeFaint(mag)? ?magnitudeBright(mag)?"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csgaia2_catalog_existe { trouve 298 etoiles } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      set result [csgaia2 [file join $::conf(rep_userCatalogGaia2)] 0 0 10 ]
+   } msg]
+   if { $catchError==0 } {
+      return [ llength [ lindex $result 1 ] ]
+   } else {
+      return $msg
+   }
+} -cleanup {
+
+} -result "298"
+
+#-------------------------------------------------------------------------------
+test libcatalog_csloneos_sansparam { loneos sans parametre } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      #--- je recupere le message d'erreur "usage ..."
+      set result [csloneos]
+   } msg]
+   return $msg
+} -cleanup {
+
+} -result "usage: csloneos pathOfCatalog ra(deg) dec(deg) radius(arcmin) ?magnitudeFaint(mag)? ?magnitudeBright(mag)?"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csloneos_catalog_existe { trouve 13 etoiles } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      set result [csloneos [file join $::conf(rep_userCatalogLoneos)] 0.0 -85.0 240 ]
+   } msg]
+
+   if { $catchError==0 } {
+      return [ llength [ lindex $result 1 ] ]
+   } else {
+      return $msg
+   }
+} -cleanup {
+
+} -result "13"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_cstycho2_sansparam { cstycho2 sans parametre } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      #--- je recupere le message d'erreur "usage ..."
+      set result [cstycho2]
+   } msg]
+   return $msg
+} -cleanup {
+
+} -result "usage: cstycho2 pathOfCatalog ra(deg) dec(deg) radius(arcmin) ?magnitudeFaint(mag)? ?magnitudeBright(mag)?"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_cstycho2_catalog_existe { trouve 1 etoile } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      set result [cstycho2 [file join $::conf(rep_userCatalogTycho2)] 10 5 5]
+   } msg]
+
+   if { $catchError==0 } {
+      return [ llength [ lindex $result 1 ] ]
+   } else {
+      return $msg
+   }
+} -cleanup {
+
+} -result "1"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_cstycho2_fast_sansparam { cstycho2_fast sans parametre } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+  set catchError [ catch {
+      #--- je recupere le message d'erreur "usage ..."
+      set result [cstycho2_fast]
+   } msg]
+   return $msg
+} -cleanup {
+
+} -result "usage: cstycho2_fast pathOfCatalog ra(deg) dec(deg) radius(arcmin) ?magnitudeFaint(mag)? ?magnitudeBright(mag)?"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_cstycho2_fast_catalog_existe { trouve 1 etoile } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      set result [cstycho2_fast [file join $::conf(rep_userCatalogTycho2_fast)] 10 5 5]
+   } msg]
+
+   if { $catchError==0 } {
+      return [ llength [ lindex $result 1 ] ]
+   } else {
+      return $msg
+   }
+} -cleanup {
+
+} -result "1"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csurat1_sansparam { csurat1 sans parametre } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      #--- je recupere le message d'erreur "usage ..."
+      set result [csurat1]
+   } msg]
+   return $msg
+} -cleanup {
+
+} -result "usage: csurat1 pathOfCatalog ra(deg) dec(deg) radius(arcmin) ?magnitudeFaint(mag)? ?magnitudeBright(mag)?"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csurat1_catalog_existe { trouve 13 etoiles } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      set result [csurat1 [file join $::conf(rep_userCatalogUrat1)] 10 5 5]
+   } msg]
+
+   if { $catchError==0 } {
+      return [ llength [ lindex $result 1 ] ]
+   } else {
+      return $msg
+   }
+} -cleanup {
+
+} -result "13"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csucac2_sansparam { csucac2 sans parametre } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      #--- je recupere le message d'erreur "usage ..."
+      set result [csucac2]
+   } msg]
+   return $msg
+} -cleanup {
+
+} -result "usage: csucac2 pathOfCatalog ra(deg) dec(deg) radius(arcmin) ?magnitudeFaint(mag)? ?magnitudeBright(mag)?"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csucac2_catalog_existe { trouve 7 etoiles } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      set result [csucac2 [file join $::conf(rep_userCatalogUcac2)] 10 5 5]
+   } msg]
+
+   if { $catchError==0 } {
+      return [ llength [ lindex $result 1 ] ]
+   } else {
+      return $msg
+   }
+} -cleanup {
+
+} -result "7"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csucac3_sansparam { csucac3 sans parametre } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      #--- je recupere le message d'erreur "usage ..."
+      set result [csucac3]
+   } msg]
+   return $msg
+} -cleanup {
+
+} -result "usage: csucac3 pathOfCatalog ra(deg) dec(deg) radius(arcmin) ?magnitudeFaint(mag)? ?magnitudeBright(mag)?"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csucac3_catalog_existe { trouve 17 etoiles } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      set result [csucac3 [file join $::conf(rep_userCatalogUcac3)] 150 -20 30]
+   } msg]
+   if { $catchError==0 } {
+      return [ llength [ lindex $result 1 ] ]
+   } else {
+      return $msg
+   }
+} -cleanup {
+
+} -result "17"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csucac4_sansparam { csucac4 sans parametre } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      #--- je recupere le message d'erreur "usage ..."
+      set result [csucac4]
+   } msg]
+   return $msg
+} -cleanup {
+
+} -result "usage: csucac4 pathOfCatalog ra(deg) dec(deg) radius(arcmin) ?magnitudeFaint(mag)? ?magnitudeBright(mag)?"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csucac4_catalog_existe { trouve 16 etoiles } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      set result [csucac4 [file join $::conf(rep_userCatalogUcac4)] 10 5 5]
+   } msg]
+
+   if { $catchError==0 } {
+      return [ llength [ lindex $result 1 ] ]
+   } else {
+      return $msg
+   }
+} -cleanup {
+
+} -result "16"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_cs2mass_sansparam { cs2mass sans parametre } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      #--- je recupere le message d'erreur "usage ..."
+      set result [cs2mass]
+   } msg]
+   return $msg
+} -cleanup {
+
+} -result "usage: cs2mass pathOfCatalog ra(deg) dec(deg) radius(arcmin) ?magnitudeFaint(mag)? ?magnitudeBright(mag)?"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_cs2mass_catalog_existe { trouve 52 etoiles } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      set result [cs2mass [file join $::conf(rep_userCatalog2mass)] 10 5 5]
+   } msg]
+
+   if { $catchError==0 } {
+      return [ llength [ lindex $result 1 ] ]
+   } else {
+      return $msg
+   }
+} -cleanup {
+
+} -result "52"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csusnoa2_sansparam { csusnoa2 sans parametre } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      #--- je recupere le message d'erreur "usage ..."
+      set result [csusnoa2]
+   } msg]
+   return $msg
+} -cleanup {
+
+} -result "usage: csusnoa2 pathOfCatalog ra(deg) dec(deg) radius(arcmin) ?magnitudeFaint(mag)? ?magnitudeBright(mag)?"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csusnoa2_catalog_existe { trouve 1366 etoiles } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      set result [csusnoa2 [file join $::conf(rep_userCatalogUsnoa2)] 10 5 5]
+   } msg]
+
+   if { $catchError==0 } {
+      return [ llength [ lindex $result 1 ] ]
+   } else {
+      return $msg
+   }
+} -cleanup {
+
+} -result "1366"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csppmx_sansparam { csppmx sans parametre } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      #--- je recupere le message d'erreur "usage ..."
+      set result [csppmx]
+   } msg]
+   return $msg
+} -cleanup {
+
+} -result "usage: csppmx pathOfCatalog ra(deg) dec(deg) radius(arcmin) ?magnitudeFaint(mag)? ?magnitudeBright(mag)?"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csppmx_catalog_existe { trouve 7 etoiles } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      set result [csppmx [file join $::conf(rep_userCatalogPpmx)] 10 5 5]
+   } msg]
+
+   if { $catchError==0 } {
+      return [ llength [ lindex $result 1 ] ]
+   } else {
+      return $msg
+   }
+} -cleanup {
+
+} -result "7"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csppmxl_sansparam { csppmxl sans parametre } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      #--- je recupere le message d'erreur "usage ..."
+      set result [csppmxl]
+   } msg]
+   return $msg
+} -cleanup {
+
+} -result "usage: csppmxl pathOfCatalog ra(deg) dec(deg) radius(arcmin) ?magnitudeFaint(mag)? ?magnitudeBright(mag)?"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csppmxl_catalog_existe { trouve 160 etoiles } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      set result [csppmxl [file join $::conf(rep_userCatalogPpmxl)] 10 5 5]
+   } msg]
+
+   if { $catchError==0 } {
+      return [ llength [ lindex $result 1 ] ]
+   } else {
+      return $msg
+   }
+} -cleanup {
+
+} -result "160"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csnomad1_sansparam { csnomad1 sans parametre } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      #--- je recupere le message d'erreur "usage ..."
+      set result [csnomad1]
+   } msg]
+   return $msg
+} -cleanup {
+
+} -result "usage: csnomad1 pathOfCatalog ra(deg) dec(deg) radius(arcmin) ?magnitudeFaint(mag)? ?magnitudeBright(mag)?"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csnomad1_catalog_existe { trouve 181 etoiles } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      set result [csnomad1 [file join $::conf(rep_userCatalogNomad1)] 10 5 5]
+   } msg]
+
+   if { $catchError==0 } {
+      return [ llength [ lindex $result 1 ] ]
+   } else {
+      return $msg
+   }
+} -cleanup {
+
+} -result "181"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csbmk_sansparam { csbmk sans parametre } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      #--- je recupere le message d'erreur "usage ..."
+      set result [csbmk]
+   } msg]
+   return $msg
+} -cleanup {
+
+} -result "usage: csbmk pathOfCatalog ra(deg) dec(deg) radius(arcmin) ?magnitudeFaint(mag)? ?magnitudeBright(mag)?"
+
+
+#-------------------------------------------------------------------------------
+test libcatalog_csbmk_catalog_existe { trouve 30 etoiles } -constraints {
+   AUDACE
+} -setup {
+
+} -body {
+   set catchError [ catch {
+      set result [csbmk [file join $::conf(rep_userCatalogBmk)] 10 5 60]
+   } msg]
+
+   if { $catchError==0 } {
+      return [ llength [ lindex $result 1 ] ]
+   } else {
+      return $msg
+   }
+} -cleanup {
+
+} -result "30"

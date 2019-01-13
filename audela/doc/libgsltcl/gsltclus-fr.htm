@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Librairie GSL : Manuel de l'utilisateur</title>
+</head>
+<body>
+<p class="date">Date de mise &agrave; jour : 22 ao&ucirc;t 2013</p>
+<h1>LibGSLTcl </h1>
+<h1>Librairie d'extension Tcl pour le calcul scientifique </h1>
+<h1> 1. Introduction</h1>
+<p>La librairie libgsltcl ajoute des fonctions de calculs scientifiques
+&agrave; un interpr&eacute;teur Tcl. Cette librairie utilise la Gnu
+Scientific Library :</p>
+<p><a href="http://sources.redhat.com/gsl/">http://sources.redhat.com/gsl/</a></p>
+<p>Le principe g&eacute;n&eacute;ral de libgsltcl est de transformer
+des listes Tcl en vecteurs C qui sont soumis au calcul par les
+fonctions C de GSL. En retour, libgsltcl, fourni le r&eacute;sultat
+sous forme d'une liste &agrave; l'interpr&eacute;teur Tcl. Par exemple,
+pour calculer la transform&eacute;e de Fourier du vecteur de valeurs 1;
+2; 5; 7; 3; 1; -7; -4; -1; 0; on &eacute;crira :</p>
+<code>set vec {1 2 5 7 3 1 -7 -4 -1 0}</code> <br />
+<code>gsl_fft $vec</code>
+<p>En retour, la fonction renvoie deux listes qui correspondent aux
+composantes r&eacute;elles et imaginaires du r&eacute;sultat de la
+transform&eacute;e de Fourier.</p>
+<p>Les vecteurs sont de type "liste Tcl" (ListVector). Les matrices
+sont d&eacute;finies comme des "listes de listes Tcl" (ListMatrix). Par
+exemple, la matrice :</p>
+<code>&nbsp;&nbsp;&nbsp; [ 2 6 7 ]</code> <br />
+<code>a = [ 1 2 3 ]</code> <br />
+<code>&nbsp;&nbsp;&nbsp; [ 1 9 8 ]</code>
+<p>sera cod&eacute;e de la fa&ccedil;on suivante en Tcl :</p>
+<p><code>set a { {2 6 7} {1 2 3} {1 9 8} }</code></p>
+<p>On v&eacute;rifiera que l'&eacute;l&eacute;ment de la 1&egrave;re
+ligne et 3i&egrave;me colonne vaut 7 :</p>
+<p><code>gsl_mindex $a 1 3</code></p>
+<p>Dans toutes les fonctions, l'ordre des indices d'une matrice est
+toujours de la forme <em>ligne</em> puis <em>colonne</em>.</p>
+<h1> 2. Manuel de l'utilisateur</h1>
+<h2> 2.1. Manipulation des donn&eacute;es</h2>
+<h3> <a name="gsl_mlength" id="gsl_mlength" />gsl_mlength ListMatrix</h3>
+<p>Retourne une liste de deux &eacute;l&eacute;ments dont les valeurs
+sont les dimensions (nlignes ncolonnes) de la matrice ListMatrix.</p>
+<h3> <a name="gsl_mindex" id="gsl_mindex" />gsl_mindex ListMatrix
+IndexLig IndexCol</h3>
+<p>Retourne la valeur de l'&eacute;l&eacute;ment situ&eacute; &agrave;
+la position (IndexLig IndexCol) de la matrice ListMatrix.</p>
+<h3> <a name="gsl_mreplace" id="gsl_mreplace" />gsl_mreplace
+ListMatrix IndexLig IndexCol Value</h3>
+<p>Remplace la valeur de l'&eacute;l&eacute;ment situ&eacute; &agrave;
+la position (IndexLig IndexCol) de la matrice ListMatrix par Value.</p>
+<h2> 2.2. Alg&egrave;bre matricielle</h2>
+<h3> <a name="gsl_mtranspose" id="gsl_mtranspose" />gsl_mtranspose
+ListMatrix</h3>
+<p>Retourne la matrice r&eacute;sultat de la transpos&eacute;e de la
+matrice ListMatrix.</p>
+<h3> <a name="gsl_madd" id="gsl_madd" />gsl_madd ListMatrixA
+ListMatrixB</h3>
+<p>Retourne la matrice r&eacute;sultat de la somme alg&eacute;brique de
+ListMatrixA et ListMatrixB.</p>
+<h3> <a name="gsl_msub" id="gsl_msub" />gsl_msub ListMatrixA
+ListMatrixB</h3>
+<p>Retourne la matrice r&eacute;sultat de la diff&eacute;rence
+alg&eacute;brique de ListMatrixA et ListMatrixB.</p>
+<h3> <a name="gsl_mmult" id="gsl_mmult" />gsl_mmult ListMatrixA
+ListMatrixB</h3>
+<p>Retourne la matrice r&eacute;sultat de la multiplication
+alg&eacute;brique de ListMatrixA par ListMatrixB.</p>
+<h3> <a name="gsl_mdet" id="gsl_mdet" />gsl_mdet ListMatrix</h3>
+<p>Retourne la valeur du d&eacute;terminant de la matrice ListMatrix.</p>
+<h3> <a name="gsl_minv" id="gsl_minv" />gsl_minv ListMatrix</h3>
+<p>Retourne la matrice r&eacute;sultat de l'inverse de la matrice
+ListMatrix.</p>
+<h3> <a name="gsl_meigsym" id="gsl_meigsym" />gsl_meigsym ListMatrix</h3>
+<p>Retourne le vecteur des valeurs propres et la matrice des vecteurs
+propres de la matrice ListMatrix. Par exemple :</p>
+<code>set a { {2 6 7} {1 6 3} {7 3 8} }</code> <br />
+<code>gsl_meigsym $a</code>
+<p>Retourne :</p>
+<code>{13.816095 4.882125 -2.698219} {{0.497108 0.285358 0.819423}
+{0.365628 -0.925327 0.100428} {0.786892 0.249681 -0.564323}}</code>
+<h2> 2.3. Calculs d'alg&egrave;bre lin&eacute;aire</h2>
+<h3> <a name="gsl_msolvelin" id="gsl_msolvelin" />gsl_msolvelin
+ListMatrixA ListVectorB</h3>
+<p>Cette fonction permet de trouver les valeurs du vecteur inconnu X
+d&eacute;finit par B = A*X, o&ugrave; B est un vecteur et A est une
+matrice. Le vecteur X comporte p lignes (=p inconnues), et B comporte n
+lignes (=n observations). La matrice A est de dimensions n*p.</p>
+<h3> <a name="gsl_mfitmultilin" id="gsl_mfitmultilin" />gsl_mfitmultilin
+ListVectorY ListMatrixX ListVectorW</h3>
+<p>Cette fonction permet la r&eacute;solution d'un syst&egrave;me
+multilin&eacute;aire de type y=X*c o&ugrave; :</p>
+<p>y est un vecteur de n observations (param&egrave;tre ListVectorY).</p>
+<p>X est une matrice n*p associ&eacute;e au mod&egrave;le physique
+&agrave; r&eacute;soudre (param&egrave;tre ListMatrixX).</p>
+<p>C'est le vecteur des p inconnues &agrave; d&eacute;terminer.</p>
+<p>La condition n&gt;p permet la d&eacute;termination du vecteur c par
+une m&eacute;thode d'ajustement aux moindre carr&eacute;s. Le meilleur
+ajustement est recherch&eacute; en minimisant le chi2 par la formule
+suivante :</p>
+<p>chi2 = (y-X*c)<sup>T</sup>*w*(y-X*c)</p>
+<p>O&ugrave; w est une matrice n*n dont les &eacute;l&eacute;ments de
+la diagonale sont associ&eacute;s aux variances des mesures des n
+observations. Si l'on ne souhaite pas pond&eacute;rer les diverses
+mesures du vecteur y, alors w sera une matrice unitaire. Les valeurs
+des &eacute;l&eacute;ments de la diagonale de la matrice w sont
+remplies avec les valeurs du vecteur W (param&egrave;tre ListVectorW).</p>
+<p>En retour, on a une liste de trois &eacute;l&eacute;ments :</p>
+<p>1er &eacute;l&eacute;ment : Vecteur des solutions c.</p>
+<p>2&egrave;me &eacute;l&eacute;ment : chi2 de l'ajustement.</p>
+<p>3&egrave;me &eacute;l&eacute;ment : Matrice des covariances.</p>
+<p>Exemple : On dispose de n mesures d'un signal (x,y), que l'on
+souhaite ajuster par une loi parabolique :</p>
+<p>y = c(1) + c(2) * x + c(3) *x*x</p>
+<p>Le syst&egrave;me comporte donc p=3 inconnues &agrave;
+d&eacute;terminer : c(1), c(2) et c(3). La forme matricielle du
+syst&egrave;me y=X*c, s'&eacute;crit :</p>
+<code>[ y(1) ] [ 1 x(1) x(1)*x(1) ]</code> <br />
+<code>[ y(2) ] [ 1 x(2) x(2)*x(2) ]</code> <br />
+<code>... ... [ c(1) ]</code> <br />
+<code>[ y(i) ] = [ 1 x(i) x(i)*x(i) ] * [ c(2) ]</code> <br />
+<code>... ... [ c(3) ]</code> <br />
+<code>[ y(n) ] [ 1 x(n) x(n)*x(n) ]</code>
+<p>Application num&eacute;rique :</p>
+<p><code># - definition des mesures</code> <br />
+<code>set x {0 1 2 3 4 5 }</code> <br />
+<code>set y {0.12 0.95 3.78 9.21 15.43 25.83 }</code> <br />
+<code>set w {1 1 1 1 1 1 }</code> <br />
+<code># - calcul de la matrice X</code> <br />
+<code>set n [llength $x]</code> <br />
+<code>set X ""</code> <br />
+<code>for {set i 0} {$i&lt;$n} {incr i} {</code> <br />
+<code>&nbsp;&nbsp;&nbsp; set xi [lindex $x $i]</code> <br />
+<code>&nbsp;&nbsp;&nbsp; set ligne_i 1</code> <br />
+<code>&nbsp;&nbsp;&nbsp; lappend ligne_i $xi</code> <br />
+<code>&nbsp;&nbsp;&nbsp; lappend ligne_i [expr $xi*$xi]</code> <br />
+<code>&nbsp;&nbsp;&nbsp; lappend X $ligne_i</code> <br />
+<code>}</code> <br />
+<code># - calcul de l'ajustement</code> <br />
+<code>set result [gsl_mfitmultilin $y $X $w]</code> <br />
+<code># - extrait le resultat</code> <br />
+<code>set c [lindex $result 0]</code> <br />
+<code>set chi2 [lindex $result 1]</code> <br />
+<code>set covar [lindex $result 2]</code></p>
+<p>La variable result vaut :</p>
+<code>{0.202500 -0.413893 1.096607} 0.674041 {{0.821429 -0.589286
+0.089286} {-0.589286 0.726786 -0.133929} {0.089286 -0.133929 0.026786}}</code>
+<br />
+<p>L'interpr&eacute;tation du r&eacute;sultat est que le meilleur
+ajustement est obtenu par la fonction : y = 0.202500 - 0.413893*x +
+1.096607*x*x</p>
+<h2> 2.4. Transform&eacute;es de Fourier</h2>
+<h3> <a name="gsl_fft" id="gsl_fft" />gsl_fft ListVector
+?ListVectorTime?</h3>
+<p>Effectue la transform&eacute;e de Fourier du vecteur ListVector. En
+retour, on a une liste de deux &eacute;l&eacute;ments :</p>
+<p>1er &eacute;l&eacute;ment : Vecteur des amplitudes r&eacute;elles.</p>
+<p>2&egrave;me &eacute;l&eacute;ment : Vecteur des amplitudes
+imaginaires.</p>
+<p>Si l'on a effectu&eacute; le calcul avec le vecteur ListVectorTime
+correspondant aux instants de mesure de chaque point de ListVector,
+alors un troisi&egrave;me &eacute;l&eacute;ment est retourn&eacute; par
+la fonction gsl_fft. C'est le vecteur de la valeur des
+fr&eacute;quences associ&eacute;es &agrave; chaque point de la TF.</p>
+<p>Exemple : Nous allons g&eacute;n&eacute;rer un vecteur c(k)=sin(k)
+dont les valeurs varient sinuso&iuml;dalement pour 0&lt;=k&lt;100, puis
+nous allons visualiser le module de sa transform&eacute;e de Fourier :</p>
+<code>set n 100</code> <br />
+<code>set c ""</code> <br />
+<code>set t ""</code> <br />
+<code>for {set k 0} {$k&lt;$n} {incr k} {</code> <br />
+<code>&nbsp;&nbsp;&nbsp; set value [expr sin($k)]</code> <br />
+<code>&nbsp;&nbsp;&nbsp; lappend c $value</code> <br />
+<code>&nbsp;&nbsp;&nbsp; lappend t $k</code> <br />
+<code>}</code> <br />
+<code>set fft [gsl_fft $c $t]</code> <br />
+<code>set fftr [lindex $fft 0]</code> <br />
+<code>set ffti [lindex $fft 1]</code> <br />
+<code>set freq [lindex $fft 2]</code> <br />
+<code>set module ""</code> <br />
+<code>for {set k 0} {$k&lt;$n} {incr k} {</code> <br />
+<code>&nbsp;&nbsp;&nbsp; set x [lindex $fftr $k]</code> <br />
+<code>&nbsp;&nbsp;&nbsp; set y [lindex $ffti $k]</code> <br />
+<code>&nbsp;&nbsp;&nbsp; set value [expr sqrt($x*$x+$y*$y)]</code> <br />
+<code>&nbsp;&nbsp;&nbsp; lappend module $value</code> <br />
+<code>}</code> <br />
+<code>::plotxy::figure 1</code> <br />
+<code>::plotxy::plot $freq $module</code> <br />
+<code>::plotxy::xlabel "frequency (Hz)"</code> <br />
+<code>::plotxy::ylabel "module intensity"</code> <br />
+<code>::plotxy::title "FFT of a sinus function"</code>
+<p>Cet exemple affiche le r&eacute;sultat sous la forme d'un graphe
+gr&acirc;ce aux fonctions du <a href="audplotxy.htm">namespace ::plotxy</a>
+disponible dans Aud'ACE. Sur le graphe, on remarquera que la
+fr&eacute;quence de Nyquist est 0.5Hz (= inverse de deux fois la
+dur&eacute;e totale du signal temporel). Au-del&agrave; de 0.5Hz, on
+assiste &agrave; un ph&eacute;nom&egrave;ne d'aliasing.</p>
+<h3> <a name="gsl_ifft" id="gsl_ifft" />gsl_ifft ListVectorReal
+ListVectorImag ?ListVectorFreq?</h3>
+<p>Effectue la transform&eacute;e de Fourier inverse des vecteurs
+ListVectorReal (vecteur des amplitudes r&eacute;elles) et
+ListVectorImag (vecteur des amplitudes imaginaires) et retourne un
+vecteur. Si l'on a effectu&eacute; le calcul avec le vecteur
+ListVectorFreq correspondant aux fr&eacute;quences de mesure de chaque
+point, alors un second &eacute;l&eacute;ment est retourn&eacute; par la
+fonction gsl_fft. C'est le vecteur de la valeur des instants
+associ&eacute;es &agrave; chaque point de la TF inverse.</p>
+<h2> 2.5. Calculs autour du Chi2</h2>
+<p>L'interpr&eacute;tation de l'ajustement d'un mod&egrave;le en
+utilisant une s&eacute;rie de mesures n&eacute;cessite des outils
+statistiques ad&eacute;quats. Pour cela les fonctions suivantes de la
+librairie GSL peuvent &ecirc;tre appel&eacute;es par la librairie
+gsltcl :</p>
+Fonction : double gsl_cdf_chisq_P (double x, double nu)<br />
+Fonction : double gsl_cdf_chisq_Q (double x, double nu)<br />
+Fonction : double gsl_cdf_chisq_Pinv (double P, double nu)<br />
+Fonction : double gsl_cdf_chisq_Qinv (double Q, double nu)<br />
+<a
+ href="http://www.gnu.org/software/gsl/manual/gsl-ref.html#The-Chi_002dsquared-Distribution">Documentation
+originale de la librairie GSL</a> <br />
+<br />
+Fonction : double gsl_cdf_ugaussian_P (double x)<br />
+Fonction : double gsl_cdf_ugaussian_Q (double x)<br />
+Fonction : double gsl_cdf_ugaussian_Pinv (double P)<br />
+Fonction : double gsl_cdf_ugaussian_Qinv (double Q)<br />
+<a
+ href="http://www.gnu.org/software/gsl/manual/gsl-ref.html#The-Gaussian-Distribution">Documentation
+originale de la librairie GSL</a>
+<p>Dans les paragraphes suivants nous donnons des explication sur
+l'utilisation de ces fonctions pour le cas de la v&eacute;rification de
+la validit&eacute; d'un mod&egrave;le de pointage.</p>
+<h3>gsl_cdf_chisq_Pinv ProbabilityDensity_P DegreesOfFreedom_nu</h3>
+<p>Cette fonction retourne la valeur limite de chi2 connaissant la
+densit&eacute; de probabilit&eacute; souhait&eacute;e
+(ProbabilityDensity_P) et le nombre de degr&eacute;s de libert&eacute;
+(DegreesOfFreedom_nu).</p>
+<p>Par exemple :</p>
+<code>gsl_cdf_chisq_Pinv 0.95 43</code> <br />
+<code># 59.3035</code> <br />
+<p>L'interpr&eacute;tation du chi2 n'est pas triviale. Elle
+d&eacute;pend du nombre de points de mesures N et du nombre de
+variables &agrave; trouver V. Plus le nombre est petit, mieux c'est.
+Mais pour une interpr&eacute;tation quantitative il faut d'abord
+calculer ddl le nombre de degr&eacute;s de libert&eacute;. Dans notre
+cas de mod&egrave;le de pointage, avec N &eacute;toiles point&eacute;es
+et un mod&egrave;le &agrave; V param&egrave;tres, on a :</p>
+<code>ddl = 2*N - V - 1</code> <br />
+<p>Soit avec 25 &eacute;toiles et le mod&egrave;le {IH ID NP CH ME MA}
+donc &agrave; 6 param&egrave;tres, alors on aura : ddl= 2*25 - 6 - 1 =
+43 degr&eacute;s de libert&eacute;.</p>
+<p>Pour un niveau de confiance &agrave; 95% (p=0.95) on calcule la
+valeur limite du chi2 avec :</p>
+<code>gsl_cdf_chisq_Pinv 0.95 43</code> <br />
+<p>On obtient la valeur de 59.3035. Il faut alors comparer la valeur
+trouv&eacute;e par le calcul du mod&egrave;le et 59.3035. Si la valeur
+trouv&eacute;e par le calcul est inf&eacute;rieure &agrave; 59.3035
+alors cela signifie que le nombre de param&egrave;tres choisis est OK.
+Si la valeur est sup&eacute;rieure &agrave; 59.3035 alors il faudrait
+ajouter des param&egrave;tres au mod&egrave;le pour revenir dans la
+zone d'acceptabilit&eacute;.</p>
+<p>Le test du chi2 ne nous apprend rien sur quelle mesure
+d'&eacute;toile aurait &eacute;t&eacute; fausse (mauvais pointage). Le
+test chi2 est simplement l&agrave; pour nous dire que le choix du
+nombre d'&eacute;toiles et des param&egrave;tres du test sont
+compatibles avec le mod&egrave;le.</p>
+<h3>gsl_cdf_chisq_Q Chi2Critic_x DegreesOfFreedom_nu</h3>
+<p>Cette fonction retourne pour une valeur exp&eacute;rimentale de chi2
+et un nombre de degr&eacute; de libert&eacute; nu donn&eacute;, la
+probabilit&eacute; que le mod&egrave;le soit correct.</p>
+<p>Par exemple :</p>
+<code>gsl_cdf_chisq_Q 25.67 34</code> <br />
+<code># 0.847126</code> <br />
+Ce qui signifie que le mod&egrave;le est acceptable &agrave; 84.7% de
+niveau de confiance. Il faut interpr&eacute;ter cela comme on le fait
+avec l'&eacute;cart type d'une distribution gaussienne :
+&nbsp;&nbsp;&nbsp;68% = 1 sigma
+&nbsp;&nbsp;&nbsp;95% = 2 sigma
+&nbsp;&nbsp;&nbsp;99.7% = 3 sigma
+<h3>gsl_cdf_ugaussian_Qinv&nbsp; Q</h3>
+<p>Cette fonction permet de calculer le nombre de sigma.</p>
+<p>Par exemple :</p>
+<code>set p [gsl_cdf_chisq_Q 25.67 34]</code> <br />
+<code>set Q [expr (1.-$p)/2.]</code> <br />
+<code>set kappa [gsl_cdf_ugaussian_Qinv $Q]</code> <br />
+<p>&nbsp;&nbsp;&nbsp; =&gt; p = 0.847126 &agrave; interpr&eacute;ter
+comme acceptable &agrave; 84.7% de niveau de confiance.</p>
+<p>&nbsp;&nbsp;&nbsp; =&gt; kappa = 1.4 &agrave; interpr&eacute;ter
+comme 1.4*sigma</p>
+<p>Un bon mod&egrave;le doit &ecirc;tre meilleur que 3 sigmas.</p>
+</body>
+</html>

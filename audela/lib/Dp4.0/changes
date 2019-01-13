@@ -1,0 +1,39 @@
+---------------- Released Tcl-DP 4.0b2   Nov 28, 1997 -----------------
+
+WARNING!!! DP will now only compile on Tcl 7.6 and 8.0 release.
+Updated core socket code to support changes in Tcl 8.0 channels.  
+    This update forced major changes in the socket architecture.
+    Notice the new files in the non-portable directories.
+Drastically updated SPAM to TEKI.
+Integrated RPC race condition fix from <Paul-Harrington@deshaw.com>.
+Updated ftp example (hopefully it works! :)
+
+---------------- Released Tcl-DP 4.0b1   May 6, 1997 ------------------
+
+Fixed some overall DP problems with extraneous files, docs, and
+    Makefile bugs.
+Fixed some broken parts of TCP.  Linger, addressing, etc.
+Added a C API library for communication between a C-based client and a
+	Tcl-DP server.  Consider this alpha quality software and please send
+	us bug reports.
+Added a "Help!" FAQ to the distribution in order to answer those
+    questions we get asked all the time...
+
+---------------- Released Tcl-DP 4.0a2   March 3, 1997 ----------------
+
+Ran DP through Purify 4.0 on every OS.  Fixed alot of bugs.  :)
+Fixed many bugs with the SPAM installation.  Please let us know if you
+    continue to have problems.
+Fixed several bugs in the RPC/RDO code and library procedures.
+    Broken connection caused client to spin out of control - FIXED.
+    RDO callback/onerror did not work because dp_rpcFile was not being set
+    	 - FIXED.
+Fixed a bug or two in the filter and serial port code.
+Added several new channel filters including uuencode/decode and
+    simple xor encryption/decryption.
+Updated ftp example so now it has a chance of working.
+Shrunk SendRPCMessage() by about an order of a magnitude.
+
+--------------- Released Tcl-DP 4.0a1   February 17, 1997 ----------------
+
+Completely rewrote Tcl-DP source, test suite and docs.  Ported library files.

@@ -1,0 +1,323 @@
+# FITS TCL makefile.in
+# $Id: Makefile.in,v 1.17 2006/09/25 15:27:02 irby Exp $
+
+#----------------------------------------------------------------------------
+# Definitions:
+#----------------------------------------------------------------------------
+LIBRARY		= fitstcl
+
+CFILES 		= fitsInit.c fitsUtils.c fitsTcl.c fitsCmds.c fitsIO.c fvTcl.c
+
+SHARED_CFILE	= tclShared.c
+
+OBJECTS		= ${CFILES:.c=.o}
+LOCAL_OBJ	= ${OBJECTS} ${SHARED_CFILE:.c=.o}
+
+CFITSIO_OBJ_TMP	= ${shell if [ -f ${CFITSIO_DIR}/Makefile ]; then ${MAKE} -f ${CFITSIO_DIR}/Makefile cfitsioLibObjs; fi | grep buffers}
+
+CFITSIO_OBJ	= ${shell if [ "x${CFITSIO_OBJ_TMP}" != "x" ]; then echo ${CFITSIO_OBJ_TMP}; fi | sed "s: : ${CFITSIO_DIR}/:g" | sed "s:^:${CFITSIO_DIR}/:"}
+
+SHARED_OBJ	= ${LOCAL_OBJ} ${CFITSIO_OBJ}
+
+STATIC_LIB	= lib${LIBRARY}.a
+SHARED_LIB	= lib${LIBRARY}${SHLIB_SUFFIX}
+
+IFLAGS		= -I${CFITSIO_DIR} -I${TCL_INC_PATH} -I./
+
+#----------------------------------------------------------------------------
+# Configurable macros:
+#----------------------------------------------------------------------------
+INSTALLDIR	= @prefix@
+CC		= @CC@
+RANLIB		= @RANLIB@
+CFLAGS		= @CFLAGS@
+DEFS		= @DEFS@ -DWCSTRIG_MACRO
+C_LIB_OPTION	= @C_LIB_OPTION@
+SHLIB_SUFFIX	= @SHLIB_SUFFIX@
+SHLIB_LD 	= @SHLIB_LD@
+LD_FLAGS 	= @LD_FLAGS@
+
+TCL_INC_PATH	= @TCL_INC_PATH@
+TCL_LIB_PATH	= @TCL_PATH@
+TCL_LIB		= @TCL_LIB@
+CFITSIO_DIR	= @CFITSIODIR@
+SHLIB_LD_LIBS 	= @LIBS@ @SHLIB_LD_LIBS@
+
+#----------------------------------------------------------------------------
+# Targets:
+#----------------------------------------------------------------------------
+all: ${C_LIB_OPTION}
+
+static: ${STATIC_LIB}
+
+shared: ${SHARED_LIB}
+
+${STATIC_LIB}: ${OBJECTS}
+	rm -f ${STATIC_LIB}
+	ar cr ${STATIC_LIB} ${OBJECTS}
+	${RANLIB} ${STATIC_LIB}
+
+${SHARED_LIB}: build-cfitsio ${LOCAL_OBJ}
+	@if [ "x${TCL_LIB_PATH}" = x -o "x${TCL_LIB}" = x ]; then \
+		echo "${SHLIB_LD} ${LD_FLAGS} ${SHARED_OBJ} ${SHLIB_LD_LIBS} -o ${SHARED_LIB}"; \
+		${SHLIB_LD} ${LD_FLAGS} ${SHARED_OBJ} ${SHLIB_LD_LIBS} \
+			-o ${SHARED_LIB}; \
+	else \
+		echo "${SHLIB_LD} ${LD_FLAGS} ${SHARED_OBJ} ${SHLIB_LD_LIBS} -L${TCL_LIB_PATH} -l${TCL_LIB} -o ${SHARED_LIB}"; \
+		${SHLIB_LD} ${LD_FLAGS} ${SHARED_OBJ} ${SHLIB_LD_LIBS} \
+			 -L${TCL_LIB_PATH} -l${TCL_LIB} -o ${SHARED_LIB}; \
+	fi
+
+build-cfitsio:
+	@if [ "x${CFITSIO_DIR}" != x ]; then \
+	    if [ -d "${CFITSIO_DIR}" ]; then \
+		if [ ! -f ${CFITSIO_DIR}/f77_wrap4.o ]; then \
+			echo "Configuring and building in ${CFITSIO_DIR}"; \
+			cd ${CFITSIO_DIR}; ./configure; \
+			${MAKE} stand_alone "CC=${CC}" "CFLAGS=${CFLAGS}" \
+               			"FITSIO_OBJ=" "FITSIO_SRC="; \
+		fi; \
+	    else \
+		echo "CFITSIO_DIR='${CFITSIO_DIR}' does not exist!"; \
+		exit 1; \
+	    fi; \
+	else \
+	    echo "CFITSIO_DIR was not set!"; \
+	    exit 1; \
+	fi
+
+install: all
+	@if [ "x${C_LIB_OPTION}" = xstatic ]; then \
+		echo "cp ${STATIC_LIB} ${INSTALLDIR}/lib/"; \
+		cp ${STATIC_LIB} ${INSTALLDIR}/lib/; \
+	else \
+		echo "cp ${SHARED_LIB} ${INSTALLDIR}/lib/"; \
+		cp ${SHARED_LIB} ${INSTALLDIR}/lib/; \
+	fi
+
+clean:
+	-rm -rf *.o *~ ${STATIC_LIB} ${SHARED_LIB}
+
+distclean: clean
+	-rm -f config.cache config.status config.log Makefile so_locations
+
+#----------------------------------------------------------------------------
+# Make target which outputs the list of the .o contained in the fitsTcl lib
+# useful to build a single big shared library containing Tcl/Tk and other
+# extensions.  used for the Tcl Plugin. 
+#----------------------------------------------------------------------------
+fitstclLibObjs:
+	@echo ${OBJECTS}
+
+
+.c.o:
+	${CC} -c ${CFLAGS} ${DEFS} ${IFLAGS} $<
+
+#
+# $Log: Makefile.in,v $
+# Revision 1.17  2006/09/25 15:27:02  irby
+# Do not remove wcssub.o prior to creating libfitstcl.  As of cfitsio
+# v3.004 the wcssub routine is needed by fitsTcl.
+#
+# Revision 1.16  2004/04/28 17:16:12  irby
+# Use C_LIB_OPTION instead of LIB_OPTION so that the shared/static
+# option doesn't get trumped by the BUILD_DIR/Makefile LIB_OPTION macro
+# which will force fitsTcl, pow, and powclient to be built static (only)
+# under Darwin.
+#
+# Revision 1.15  2004/04/19 17:34:00  irby
+# Break ${CFITSIO_DIR}/*.o out of dependencies since we check the cfitsio
+# status independently.
+#
+# Revision 1.14  2004/04/14 19:03:15  irby
+# Add some echoes, and rm so_locations when cleaning.
+#
+# Revision 1.13  2004/03/12 19:50:44  irby
+# Add cfitsio target appropriate for fitsTcl standalone users.
+#
+# Revision 1.12  2004/03/11 20:59:28  irby
+# Tidy up a couple of things, and add some echoes for the shared library
+# build.
+#
+# Revision 1.11  2004/03/10 19:42:06  irby
+# Another round of cleaning up the fitsTcl/pow/powclient/xdf Makefiles.
+#
+# The fitsTcl configure has been reinstated since we need it for
+# standalone fitsTcl distribution.  It and the tcltk2/configure (which
+# configures fitsTcl, pow, powclient, and xdf in the full HEAsoft build
+# context) now need a --with-tcl-includes flag.
+#
+# Revision 1.10  2003/08/18 21:11:43  irby
+# Remove redundant copy of cfitsio.  CFITSIO is now located via a
+# --with-cfitsio flag given to the tcltk2/configure.
+#
+# Uncertain about the necessity of the "rm -f cfitsio/wcssub.o" command in
+# the previous Makefile - may have to replace it.
+#
+# Revision 1.9  2003/07/02 19:43:58  irby
+# Macro-ize tcl/tk library names (i.e. tcl8._, tk8._) so we don't have to
+# change the Makefiles every time we upgrade tcl/tk versions.  The
+# tcltk2/configure sorts it out based on information provided by the
+# --with-tcl and --with-tk options.
+#
+# Revision 1.8  2002/12/04 21:28:46  irby
+# Add tcl/tk libraries/paths to SHLIB_LD_LIBS.
+#
+# Revision 1.7  2002/04/15 16:35:45  irby
+# New (cleaner) configure script (and modified Makefile.in) based on lheasoft
+# master (BUILD_DIR) configure.
+#
+# Revision 1.6  2002/02/11 22:33:57  irby
+# Change non-existent macro SH_LD_LIBS to SHLIB_LD_LIBS.
+#
+# Revision 1.5  2001/01/04 16:55:42  irby
+# Changed 'make' to ${MAKE} in clean/distclean
+#
+# Revision 1.4  1999/07/28 17:38:05  elwin
+# Removed junk line.
+#
+# Revision 1.3  1999/07/28 17:26:28  elwin
+# Changes for the plugin.
+#
+# Revision 1.2  1999/07/20 21:45:44  pwilson
+# Cleanup some configure/make details
+#
+# Revision 1.1  1999/06/16 17:02:54  pwilson
+# Commiting fitsTcl2.0
+#
+# Revision 1.34  1998/12/01 20:11:58  pwilson
+# Add @CFLAGS@ to CFLAGS line (adds optimization)
+# Remove fitsExpr from build... use CFITSIO's parser instead
+#
+# Revision 1.33  1998/10/21 22:00:22  pwilson
+# Clean up makefiles... Makefile.in -> call cfitsio's make clean
+#                       makefile.bc5-> suppress many many warnings
+#
+# Revision 1.32  1998/09/30  14:20:21  peachey
+# Set FTOOLS using configure's prefix; this will still be overridden if
+# fitsTcl is built from within the ftools/tcltk2 Makefile
+#
+# Revision 1.31  1998/09/21  16:36:43  pwilson
+# Make build more portable for new tcl/tk versions
+#
+# Revision 1.30  1998/09/16 16:08:14  jxu
+# point to tcl8.0.3
+#
+# Revision 1.29  1998/08/27  21:40:30  peachey
+# Umm... remove wcssub.o, but don't fall down if you can't
+#
+# Revision 1.28  1998/08/07  17:32:29  elwin
+# Hack to remove wcssub.o from cfitsio before making shared lib.
+#
+# Revision 1.27  1998/08/05  20:34:31  elwin
+# Quick temporary fixes on the road to itcl3.0 integration.
+#
+# Revision 1.26  1998/06/04 12:38:55  peachey
+# Fix libcfitsio make so it doesn't delete object files, and it excludes the
+# Fortran wrappers, which are not necessary for this copy of libcfitsio.a
+#
+# Revision 1.25  1998/06/03 14:13:41  peachey
+# Fixed typos from last commit
+#
+# Revision 1.24  1998/06/02  19:38:09  peachey
+# Use cfitsio's native configure and Makefile rather than compile objects
+# here explicitly.
+#
+# Revision 1.23  1997/11/24  20:46:32  elwin
+# Added compress.c to the cfitsio build stuff
+#
+# Revision 1.22  1997/08/27  17:01:08  oneel
+# cfitsio 1.26b5
+#
+# Revision 1.21  1997/07/11 15:26:03  jxu
+# add in the new file.
+#
+# Revision 1.20  1997/04/04 18:31:13  jxu
+# add command
+# 	get imgwcs
+# to calculate the world coordinate system parameter for image
+#
+# Revision 1.19  1997/03/28 20:14:01  oneel
+# cfitsio 1.21 update
+#
+# Revision 1.18  1997/01/24 19:32:50  oneel
+# itcl 2.2 changes
+#
+# Revision 1.17  1996/12/05  21:45:03  oneel
+# More fixes to make the new regime work
+#
+# Revision 1.16  1996/12/05  21:15:05  oneel
+# More fixes to make the new regime work
+#
+# Revision 1.15  1996/12/05  20:24:54  oneel
+# More fixes to make the new regiem work
+#
+# Revision 1.14  1996/11/04  19:13:59  oneel
+# AUTHORIZED CHANGES: Opps, screwed up my list of files to build.
+#
+# Revision 1.13  1996/11/01  20:26:59  oneel
+# cfitsio beta update
+#
+# Revision 1.12  1996/08/22  17:40:46  oneel
+# Put back in the shared cflags so that shared libraries build on SunOS
+# and Solaris
+#
+# Revision 1.11  1996/08/22  12:14:24  oneel
+# Don't require an install on itcl2.1 to build fitsTcl
+#
+# Revision 1.10  1996/08/19  21:01:08  jxu
+# On the ALPHAs, if cfitsio functions are compiled with "gcc -O", then
+# some column in bin table will give floating exception error. Take "-O" out
+# for now.
+#
+# Revision 1.9  1996/08/19  20:58:08  jxu
+# On the ALPHAS, long != int. VISU can not hadle long type image, while
+# most of the images in fits are long type. Simply convert the long to
+# int in fitstcl. VISU is happy
+#
+# Revision 1.8  1996/08/07  16:30:00  oneel
+# build fixes
+#
+# Revision 1.5  1996/07/19 14:41:40  oneel
+# fitstcl Shared libraries
+#
+# Revision 1.4  1996/07/19  13:58:51  oneel
+# fitstcl Shared libraries
+#
+# Revision 1.3  1996/07/18  18:43:36  oneel
+# itcl 2.1 updates
+#
+# Revision 1.2  1996/06/14  14:41:07  oneel
+# itcl2 updates, both for SunOS 4 and to resync with orig tcltk
+#
+# Revision 1.1  1996/06/13  14:00:17  oneel
+# itcl2 additions
+#
+# Revision 3.6  1996/04/23  18:22:52  oneel
+# Converting to /ftools/vc cvs root
+#
+# Revision 1.2  1996/04/04  16:22:14  oneel
+# Fitstcl Updates, newewst from Jianjun, plus makefile changes to let
+# irix buildok.
+#
+# ftools_query fixes.
+#
+# Revision 1.1.1.1  1996/02/20  20:22:10  oneel
+# tcltk directory import
+#
+# Revision 1.5  1996/02/12  18:04:49  oneel
+# Added CFLAGS to cfitsio compile
+#
+# Revision 1.4  1995/10/20  16:18:35  oneel
+# Changed to not set CFLAGS
+#
+# Revision 1.3  1995/08/24  21:52:31  oneel
+# Changed to use passed in FORTRANLIB
+#
+# Revision 1.2  1995/08/18  18:54:29  oneel
+# Some include and library fixes
+#
+# Revision 1.1  1995/08/16  19:30:44  oneel
+# Initial revision
+#
+#

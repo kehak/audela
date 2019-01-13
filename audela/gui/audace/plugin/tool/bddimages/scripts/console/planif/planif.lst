@@ -1,0 +1,45 @@
+# Exemples:
+# 
+#    Type,    Num,              Nom,   Mag, PeriodeRotation (h), Binning, Exposure, Priority
+#asteroid,     22,         Kalliope,  12.4,               4.120,       1,       60,        0
+# 
+#       Type,       Nom,   Mag, Binning, Exposure, Step(h), NbImg, Priority, { Ra(deg) Dec(deg) }
+#stationnary, AT2018cow,  20.1,       3,      300,     0.5,     2,      -10, { -21.4354265 45.235423 }
+# 
+#       Type,      Nom,    Mag, Binning, Exposure, Step(h), NbImg, Priority, { a b c d }
+#linear,       K18N12N,   20.4,       3,      300,     0.5,     2,      -10, { -257689.70033804086 0.10494463738584785 -210190.43612795824 0.085500072368930133}
+# 
+#       Type,      Nom,    Mag, Binning, Exposure, Step(h), NbImg, Priority, { MJD a e i Omega omegap am }
+#keplerian,    M2018A6, -9.990,       3,      300,     0.5,     2,      -10, {58341.751016105 3.2275803452238740E+00 0.052114399992232 4.4427209086903 248.7236715091047 85.6672163782663 345.3463108186460}
+# 
+#
+# asteroid, Num, Nom, Magnitude, Period(h), Binning, Expo(s), Score
+#
+# EPHEMERIDES POSSIBLES
+#
+#   Type,    Num,              Nom,   Mag, PeriodeRotation (h), Binning, Exposure, Priority
+asteroid,     22,         Kalliope, 12.55,              4.1483,       1,      120, 101.10896817747
+asteroid,     41,           Daphne, 11.53,              5.9880,       1,      120, 102.085504342
+asteroid,     45,          Eugenia, 12.86,              5.6992,       1,      120, 122.9067236885
+asteroid,     87,           Sylvia, 12.65,              5.1836,       1,      120, 105.05123852
+asteroid,     93,          Minerva, 11.55,              5.3853,       1,      120, 103.07045104186
+asteroid,    283,             Emma, 14.77,              6.8880,       1,      240, 101.77671312412
+asteroid,    379,           Huenna, 15.18,              0.0220,       1,      300, 105.1515151515 
+asteroid,    617,        Patroclus, 16.51,            103.0200,       1,      300, 101.00000      
+asteroid,    624,           Hektor, 14.71,              6.9210,       1,      240, 104.04387612617
+asteroid,    702,           Alauda, 12.91,              8.3540,       1,      120, 102.26885324372
+asteroid,    762,          Pulcova, 14.51,              5.8390,       1,      240, 102.55848604184
+#
+# LARGE PROGRAM SPHERE
+#
+#   Type,    Num,              Nom,   Mag, PeriodeRotation (h), Binning, Exposure, Priority
+asteroid,     59,            Elpis, 13.66,             13.6900,       1,      180, 101.54492330184  
+asteroid,     96,            Aegle, 13.51,             13.8200,       1,      180, 101.33140376286  
+asteroid,    105,          Artemis, 12.24,             16.8400,       1,      120, 100.858076009464 
+asteroid,    128,          Nemesis, 12.08,             39.0000,       1,      120, 100.579487174
+asteroid,    145,           Adeona, 13.15,              8.1000,       1,      180, 100.154320987653 
+asteroid,    211,           Isolda, 13.54,             18.3650,       1,      180, 100.215083038381 
+asteroid,    324,         Bamberga, 11.67,             29.4300,       1,      120, 100.348284063871 
+asteroid,    451,        Patientia, 12.53,              9.7270,       1,      120, 100.945820910814 
+asteroid,    479,          Caprera, 14.23,              9.4300,       1,      240, 100.592082007755
+asteroid,    704,       Interamnia, 11.91,              8.7360,       1,      120, 100.520833333

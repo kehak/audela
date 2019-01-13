@@ -1,0 +1,183 @@
+July, 2009: Release of fitsTcl v2.3 (part of fv5.3)
+
+   * Fix large FITS file crashing and displaying summary/header issue.
+   * Fix opening FITS files in read-only mode issue.
+
+=====================================================================
+
+September, 2007: Release of fitsTcl v2.2 (part of fv5.0)
+
+   * Allow Long Long type (64 bits integer) in Windows.
+   * Allow the switching of different set of WCS (WCSn, where n is a, b, c..) information.
+   * Add routines to extract WCS header information.
+
+=====================================================================
+
+July, 2006: Release of fitsTcl v2.1.5 (part of fv4.4)
+
+   * Fix incorrect calculation of Table array size of a FITS file.
+
+=====================================================================
+
+March, 2006: Release of fitsTcl v.2.1.4 (part of fv4.3)
+
+   * Add region statistical calculation
+
+=====================================================================
+April 5th, 2005: Release of fitsTcl v.2.1.3 (part of fv4.2)
+
+   * Change calling routine parameters to cfitsio
+   * Fix TSTRING column length calculation (previous set to 80)
+
+=====================================================================
+August 9, 2004: Release of fitsTcl v.2.1.2 (part of fv4.1.4)
+
+   * Fix CAR projection
+
+=====================================================================
+April 19, 2004: Release of fitsTcl v.2.1.1 (part of fv4.1.2)
+
+   * Seperate cfitsio package from fitsTcl package.
+
+=====================================================================
+November 9, 2000: Release of fitsTcl v2.1 (part of fv3.0)
+
+   * Added smooth command.  Currently only supports a boxcar filter.
+
+   * Added range command.  Currently only has a "count" option which
+     takes a range string (eg, 1-4,7,9-) and counts how many rows are
+     included.
+
+   * Added -rows parameter to "load expr".  This allows calculations to
+     be performed on a subset of rows.
+
+   * Replace fitsTcl's histogramming code with call to CFITSIO's
+     better implementation.  Add new command 'histogram' which replaces
+     the 'create 1dhisto' and 'create 2dhisto' and deprecate the latter.
+     New command supports up to 4D histograms and inverse weighting.
+
+   * Convert fitsObjn entry point to use Tcl_Objs instead of strings.
+     Was able to get full precision data, but lost it when putting it.
+     About half of file commands converted, rest have all parameters
+     converted to strings in fitsDispatch.
+
+   * Dropped/Ignore numElem parameter to 'put image'.  Can get number
+     of elements from data list.
+
+   * When "put"ting data to a complex column, single numbers will be
+     interpretted as real only... imaginary part is zero
+
+   * Added an optional rowList parameter to "get vtable"
+
+   * Added -noformat option to "load tblock", "get table", and "get vtable"
+     so that one can obtain raw values, not formatted strings.
+
+   * Modified "get image" and "load iblock" routines so that they use
+     native Tcl_Obj's instead of DString's for return values... allows
+     full precision instead of truncated formats in real values->string
+     conversion.
+
+   * Revised wcs code to support CD matrix keywords and be more general.
+     "-m" flag to 'get wcs' command will return WCS information as...
+          {refVals} {refPix} {matrix} {types} {projections}
+     Old-style keywords will be converted to this.  New-style will be
+     converted to old-style in absence of "-m".  New-style not limited
+     to 2D images or only 2 columns... can be 1 thru N-dimensions.
+
+========================================================================
+
+February 7, 2000: Release of fitsTcl v2.002 (part of fv2.6 and FTOOLS 5.0)
+
+   * Modified histogram code so that it writes the column names into
+     the CTYPEn keywords if the columns did not have TCTYPn keywords.
+
+   * Add optional wcsSwap to return list of 'get wcs' command to flag
+     whether the RA and Dec WCS keywords are swapped with regard to X
+     and Y.  Use 'fits option wcsSwap 1|0' to toggle this parameter on
+     or off. (Default: off... old behavior)
+
+   * Add new 'fits option' command which allows one to alter fitsTcl's
+     default behaviors.
+
+   * Cast all argv's to "char *const[]" to protect them from accidental
+     modification.
+
+   * Modify 'load image' to conform to vtable/column's default NULL
+     handling... NULLS are converted to datatype_MAX.  Formerly converted
+     to -1.
+
+   * Modify 'load vtable' to accept a default Null parameter.  This breaks
+     backwards compatibility (it used to take a vector column width at
+     the same position, but ignored in v2.0).
+
+   * Modify 'get wcs' defaults to match CFITSIO's new implementation of
+     them: 1.0 for xinc/yinc and 0.0 for all others.  Keep ctype='none',
+     although CFITSIO uses a null string.
+
+========================================================================
+
+July 28, 1999: Release of fitsTcl v2.0
+
+   * Major rewrite of internal code, while keeping as backwards
+     compatible as possible with last fv release.  Update
+     documentation and create this Release Notes document.
+
+   * Change method of passing address pointers... Instead of using %ld
+     to read and write addresses to/from strings, use the much more
+     appropriate %p format.  NOTE: This is *NOT* compatible with %ld
+     formats.  You must change any code dependent on fitsTcl in this
+     regard!  (Or change all '%p' strings in fitsTcl back to '%ld'.)
+
+   * Drop 'get imageblock' which was actually identical to 'load iblock'.
+     'get' commands should return lists of data, which 'get imageblock'
+     did not.  (Still exists for backwards compatibility, but removed from
+     docs.)
+
+   * Add new 'get image' command which returns list of data from an image
+     array.
+
+   * Rename 'put ihd/ahd/bhd' to 'insert image/table' which makes
+     more sense.  New version drops the numCols parameter and allows some
+     parameters to be empty.  (Again, old commands still exist but
+     undocumented.)
+
+   * Make many more trailing parameters optional
+
+   * Convert some series of parameters to lists (eg,
+     'get keyword keyName ...' becomes 'get keyword keyList')
+
+   * Add/improve support for long keywords using new HIERARCH notation.
+
+   * Eliminate (ignore if present) the object type parameter from the
+     'free' command and accept a list of addresses to free.
+
+   * Add general 'fits free addList' command to replace the
+     fitsObj-dependent free command.
+
+   * Add 'fits version' command to get fitsTcl and cfitsio version numbers.
+
+   * Replace 'get imgwcs' and 'get colwcs' with a single 'get wcs'
+     command which behaves appropriately based on the CHDU type.
+     Error-handling behavior (ie, use of default values) is consistent,
+     unlike the separate versions.  (Old commands exist, but undocumntd.)
+
+   * Add 2 new commands for creating/reading 'load'ed data: lst2ptr and
+     ptr2lst.  The former takes a TCL list and creates a pointer able to
+     be passed to C code (eg, POW).  The latter reverses the conversion,
+     taking a pointer and producing a TCL list.
+
+   * Add new vector math command: vexpr.  It takes a C-style arithmetic
+     expression and evaluates it in the context of TCL lists (or fitsTcl
+     pointers).  Returns results as either a TCL list or fitsTcl pointer.
+
+========================================================================
+
+Apr 30, 1999: Release of fv v2.5 (unnumbered fitsTcl included)
+
+========================================================================
+
+NovDec, 1998: Release of FTOOLS v4.2 and fv v2.4 (unnumbered fitsTcl included)
+
+========================================================================
+
+??? ??, 1997: Release of fitsTcl v1.0

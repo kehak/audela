@@ -1,0 +1,27 @@
+
+CP= copy
+RM= -@del /f /q
+
+SOURCE=sdk_32bits_2_095_3
+EXTERNAL_INCLUDE=..\include
+EXTERNAL_LIB=..\lib
+AUDELA_BIN=..\..\..\bin
+
+build:
+
+install: build
+	if not exist $(EXTERNAL_INCLUDE)  mkdir $(EXTERNAL_INCLUDE)
+	if not exist $(EXTERNAL_LIB)      mkdir $(EXTERNAL_LIB)
+	if not exist $(AUDELA_BIN)        mkdir $(AUDELA_BIN)
+	$(CP) $(SOURCE)\include\Atmcd32d.h $(EXTERNAL_INCLUDE)
+	$(CP) $(SOURCE)\lib\atmcd32m.lib   $(EXTERNAL_LIB)
+	$(CP) $(SOURCE)\bin\Atmcd32d.dll   $(AUDELA_BIN)
+	if exist $(SOURCE)\bin\andornt.ini $(CP) $(SOURCE)\bin\andornt.ini    $(AUDELA_BIN)
+
+clean:
+	$(RM) $(EXTERNAL_INCLUDE)\Atmcd32d.h
+	$(RM) $(EXTERNAL_LIB)\atmcd32m.lib
+	$(RM) $(AUDELA_BIN)\Atmcd32d.dll
+	$(RM) $(AUDELA_BIN)\andornt.ini
+
+
