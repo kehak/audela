@@ -4,7 +4,7 @@ build_driver() {
 	cd ..
 	mkdir $1
 	cd $1
-	cmake -DCMAKE_INSTALL_PREFIX=/usr/local ../../3rdparty/$1
+	cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_BUILD_TYPE=Debug ../../3rdparty/$1
 	make -j4
 	sudo make install
 	sudo ldconfig
