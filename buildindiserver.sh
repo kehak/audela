@@ -29,6 +29,7 @@ sudo true
 
 echo -e  "\e[33m--> Removing stock libindi...\e[0m"
 sudo apt remove -y libindi-dev libindi-data libindi-plugins
+
 echo -e "\e[33m--> Installing dependencies...\e[0m"
 sudo apt install -y libnova-dev libcfitsio-dev libusb-1.0-0-dev zlib1g-dev libgsl-dev build-essential cmake git libjpeg-dev libcurl4-gnutls-dev libtiff-dev
 
