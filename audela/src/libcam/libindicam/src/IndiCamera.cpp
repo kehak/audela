@@ -459,6 +459,17 @@ void IndiCamera::newProperty(INDI::Property *property)
 void IndiCamera::newNumber(INumberVectorProperty *nvp)
 {
     libcam_log(LOG_DEBUG,"IndiCamera::newNumber %s = %g", nvp->name, nvp->np[0].value);
+
+    if (this->cameraName == NULL) {
+	return;
+    }
+
+//	if (strcmp(nvp->device,this->mydevice->getDeviceName()))
+	if (nvp->device!=this->mydevice->getDeviceName() ) 
+	{
+		return;
+	}
+    
 	
     // Let's check if we get any new values for CCD_TEMPERATURE
     if (!strcmp(nvp->name, "CCD_TEMPERATURE"))
@@ -491,6 +502,11 @@ void IndiCamera::newMessage(INDI::BaseDevice *dp, int messageID)
 //----------------------------------------------------------------------------------
 void IndiCamera::newBLOB(IBLOB *bp)
 {
+	//  TODO: faire la bonne comparaison ici
+   if (strcmp(bp->bvp->device,this->mydevice->getDeviceName())) {
+	   return;
+   }
+	
    imageBlob = bp;
    libcam_log(LOG_DEBUG,"IndiCamera::newBLOB Received blobName=%s", bp->name);
 
