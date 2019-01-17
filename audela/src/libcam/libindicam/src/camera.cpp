@@ -116,12 +116,12 @@ struct _PrivateParams {
 int cam_init(struct camprop *cam, int argc, const char **argv)
 {
    // attention : il faut absolument initialiser a zero la zone 
-   // memoire correspondant à cam->params->pCam  
-   // car sinon l'objet COM camera.CreateInstance croit qu'il existe un objet à supprimer
+   // memoire correspondant Ã  cam->params->pCam  
+   // car sinon l'objet COM camera.CreateInstance croit qu'il existe un objet Ã  supprimer
    // avant d'affecter un nouveu pointer dans la variable. 
    cam->params = (PrivateParams*) calloc(sizeof(PrivateParams),1);
 
-   // trace d'erreur par défaut 
+   // trace d'erreur par dÃ©faut 
    //debug_level = LOG_ERROR;
    debug_level = LOG_DEBUG;
    strcpy(logFileName,"libindicam.log");
@@ -134,9 +134,8 @@ int cam_init(struct camprop *cam, int argc, const char **argv)
    
    // nom de la camera       
    std::string cameraName = argv[2];
-   std::string serverAddress = argv[7];
-   int serverPort = 7624;
-
+   std::string serverAddress = argv[6];
+   int serverPort = atoi(argv[7]);
    
    libcam_log(LOG_INFO ,"argc=%d cameraName=%s", argc, argv[2]);
    
@@ -161,7 +160,7 @@ int cam_init(struct camprop *cam, int argc, const char **argv)
       cam->celldimx   = cam->params->indiCamera->getPixelSizeX() * 1e-6;
       cam->celldimy   = cam->params->indiCamera->getPixelSizeY() * 1e-6;     
       libcam_log(LOG_DEBUG,"cam_init celldim=%d x %d", cam->celldimx , cam->celldimy);
-      // je recupere la description en limitant la taille à la taille de la variable destinatrice
+      // je recupere la description en limitant la taille Ã  la taille de la variable destinatrice
       strncpy(CAM_INI[cam->index_cam].name, cam->params->indiCamera->getCameraName(), 255 ); 
       libcam_log(LOG_DEBUG,"cam_init camera name=%s", CAM_INI[cam->index_cam].name);      
       
@@ -369,7 +368,7 @@ void cam_ampli_off(struct camprop *cam)
 void cam_measure_temperature(struct camprop *cam)
 {
 /*    
-   libcam_log(LOG_DEBUG,"cam_measure_temperature début");
+   libcam_log(LOG_DEBUG,"cam_measure_temperature dÃ©but");
    if ( cam->params->indiCamera == NULL ) {
       sprintf(cam->msg, "cam_measure_temperature camera not initialized");
       libcam_log(LOG_ERROR,cam->msg);
