@@ -134,9 +134,8 @@ int cam_init(struct camprop *cam, int argc, const char **argv)
    
    // nom de la camera       
    std::string cameraName = argv[2];
-   std::string serverAddress = "127.0.0.1";
-   int serverPort = 7624;
-
+   std::string serverAddress = argv[6];
+   int serverPort = atoi(argv[7]);
    
    libcam_log(LOG_INFO ,"argc=%d cameraName=%s", argc, argv[2]);
    
