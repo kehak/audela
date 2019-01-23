@@ -116,12 +116,12 @@ struct _PrivateParams {
 int cam_init(struct camprop *cam, int argc, const char **argv)
 {
    // attention : il faut absolument initialiser a zero la zone 
-   // memoire correspondant à cam->params->pCam  
-   // car sinon l'objet COM camera.CreateInstance croit qu'il existe un objet à supprimer
+   // memoire correspondant ï¿½ cam->params->pCam  
+   // car sinon l'objet COM camera.CreateInstance croit qu'il existe un objet ï¿½ supprimer
    // avant d'affecter un nouveu pointer dans la variable. 
    cam->params = (PrivateParams*) calloc(sizeof(PrivateParams),1);
 
-   // trace d'erreur par défaut 
+   // trace d'erreur par dï¿½faut 
    //debug_level = LOG_ERROR;
    debug_level = LOG_DEBUG;
    strcpy(logFileName,"libindicam.log");
@@ -134,8 +134,8 @@ int cam_init(struct camprop *cam, int argc, const char **argv)
    
    // nom de la camera       
    std::string cameraName = argv[2];
-   std::string serverAddress = argv[6];
-   int serverPort = atoi(argv[7]);
+   std::string serverAddress = "127.0.0.1";
+   int serverPort = 7624;
 
    
    libcam_log(LOG_INFO ,"argc=%d cameraName=%s", argc, argv[2]);
@@ -161,7 +161,7 @@ int cam_init(struct camprop *cam, int argc, const char **argv)
       cam->celldimx   = cam->params->indiCamera->getPixelSizeX() * 1e-6;
       cam->celldimy   = cam->params->indiCamera->getPixelSizeY() * 1e-6;     
       libcam_log(LOG_DEBUG,"cam_init celldim=%d x %d", cam->celldimx , cam->celldimy);
-      // je recupere la description en limitant la taille à la taille de la variable destinatrice
+      // je recupere la description en limitant la taille ï¿½ la taille de la variable destinatrice
       strncpy(CAM_INI[cam->index_cam].name, cam->params->indiCamera->getCameraName(), 255 ); 
       libcam_log(LOG_DEBUG,"cam_init camera name=%s", CAM_INI[cam->index_cam].name);      
       
@@ -266,7 +266,9 @@ void cam_update_window(struct camprop *cam)
    
    // je configure la fenetre de la camera.
    // subframe start position for the X axis (0 based) in binned pixels
-   cam->params->indiCamera->setFrame(x1, y1, cam->w, cam->h);
+   //cam->params->indiCamera->setFrame(x1, y1, cam->w, cam->h);
+   // du point de vue indi, on garde la full frame
+   cam->params->indiCamera->setFrame(0, 0, maxx, maxy);
 }
 
 void cam_start_exp(struct camprop *cam, const char *amplionoff)
@@ -368,8 +370,8 @@ void cam_ampli_off(struct camprop *cam)
 
 void cam_measure_temperature(struct camprop *cam)
 {
-/*    
-   libcam_log(LOG_DEBUG,"cam_measure_temperature début");
+   
+   libcam_log(LOG_DEBUG,"cam_measure_temperature dï¿½but");
    if ( cam->params->indiCamera == NULL ) {
       sprintf(cam->msg, "cam_measure_temperature camera not initialized");
       libcam_log(LOG_ERROR,cam->msg);
@@ -383,14 +385,14 @@ void cam_measure_temperature(struct camprop *cam)
       libcam_log(LOG_ERROR,cam->msg);
       return;
    }
-   libcam_log(LOG_DEBUG,"cam_measure_temperature fin OK.");
-*/   
+   libcam_log(LOG_DEBUG,"cam_measure_temperature fin OK. Temp=%d",cam->temperature);
+
 }
 
 void cam_cooler_on(struct camprop *cam)
 {
     
-/*    
+    
    libcam_log(LOG_DEBUG,"cam_cooler_on debut");
    if ( cam->params->indiCamera == NULL ) {
       sprintf(cam->msg, "cam_cooler_on camera not initialized");
@@ -398,7 +400,7 @@ void cam_cooler_on(struct camprop *cam)
       return;
    }
    try {
-      cam->params->indiCamera->setCoolerOn(true);
+      //cam->params->indiCamera->setCoolerOn(true);
    } catch( std::exception &e) {
       sprintf(cam->msg, "cam_cooler_on  error=%s",e.what());
       libcam_log(LOG_ERROR,cam->msg);
@@ -406,12 +408,12 @@ void cam_cooler_on(struct camprop *cam)
    }
    libcam_log(LOG_DEBUG,"cam_cooler_on fin OK");
    
-*/
+
 }
 
 void cam_cooler_off(struct camprop *cam)
 {
-/*    
+   
    libcam_log(LOG_DEBUG,"cam_cooler_off debut");
    if ( cam->params->indiCamera == NULL ) {
       libcam_log(LOG_ERROR,"cam_cooler_off camera not initialized");
@@ -419,19 +421,19 @@ void cam_cooler_off(struct camprop *cam)
       return;
    }
    try {
-      cam->params->indiCamera->setCoolerOn(false);
+      //cam->params->indiCamera->setCoolerOn(false);
     } catch( std::exception &e) {
        sprintf(cam->msg, "cam_cooler_off  error=%s",e.what());
       libcam_log(LOG_ERROR,cam->msg);
       return;
    }
    libcam_log(LOG_DEBUG,"cam_cooler_off fin OK");
-*/   
+   
 }
 
 void cam_cooler_check(struct camprop *cam)
 {
-/*    
+    
    libcam_log(LOG_DEBUG,"cam_cooler_check debut");
    if ( cam->params->indiCamera == NULL ) {
       libcam_log(LOG_ERROR,"cam_cooler_check camera not initialized");
@@ -439,14 +441,14 @@ void cam_cooler_check(struct camprop *cam)
       return;
    }
    try {
-      cam->params->indiCamera->setSetCCDTemperature(cam->check_temperature);
+      cam->params->indiCamera->setCCDTemperature(cam->check_temperature);
    } catch( std::exception &e) {
       sprintf(cam->msg, "cam_cooler_check  error=%s",e.what());
       libcam_log(LOG_ERROR,cam->msg);
       return;
    }
    libcam_log(LOG_DEBUG,"cam_cooler_check fin OK");
- */
+ 
 }
 
 void ascomcamGetTemperatureInfo(struct camprop *cam, double *setTemperature, double *ccdTemperature, 
@@ -483,7 +485,7 @@ void ascomcamGetTemperatureInfo(struct camprop *cam, double *setTemperature, dou
 
 void cam_set_binning(int binx, int biny, struct camprop *cam)
 {
-/*    
+    
    libcam_log(LOG_DEBUG,"cam_set_binning debut. binx=%d biny=%d",binx, biny);
    if ( cam->params->indiCamera == NULL ) {
       libcam_log(LOG_ERROR,"cam_set_binning camera not initialized");
@@ -491,8 +493,7 @@ void cam_set_binning(int binx, int biny, struct camprop *cam)
       return;
    }
    try {
-      cam->params->indiCamera->setBinX(binx);
-      cam->params->indiCamera->setBinY(biny);
+      cam->params->indiCamera->setBinning(binx,biny);
       libcam_log(LOG_DEBUG,"cam_set_binning apres binx=%d biny=%d",binx, biny);
       cam->binx = binx;
       cam->biny = biny;
@@ -502,7 +503,7 @@ void cam_set_binning(int binx, int biny, struct camprop *cam)
       libcam_log(LOG_ERROR,cam->msg);
       return;
    }
-*/   
+  
 }
 
 // ---------------------------------------------------------------------------
