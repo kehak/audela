@@ -27,6 +27,7 @@ using namespace std;
 IndiCamera* IndiCamera::createInstance(const char* cameraName, const char* serverAddress, int serverPort) {
    IndiCamera* indiCamera= NULL;
    
+   
    try {
          
       if( cameraName == NULL || strlen(cameraName)==0 ) {
@@ -79,6 +80,7 @@ IndiCamera::IndiCamera()
 {
    mydevice = NULL;   
    imageBlob = NULL;
+   readImageDisable = false;
 }
 
 //----------------------------------------------------------------------------------
@@ -128,8 +130,8 @@ void IndiCamera::connect(const char* cameraName)
    //libcam_log(LOG_DEBUG,"IndiCamera::connect connect device");
    
    // wait newProperty CONNECTION
-   for(int delay=0;  !mydevice->isConnected()  &&  delay < 120000 ; delay+=100) {
-      usleep(100000);  // wait 100 millisecond
+   for(int delay=0;  !mydevice->isConnected()  &&  delay < 120000 ; delay+=500) {
+      usleep(500000);  // wait 500 millisecond
       libcam_log(LOG_DEBUG,"IndiCamera::connect wait CONNECTION event delay=%d ms", delay);
    }
    if( !mydevice->isConnected()) {
@@ -138,6 +140,19 @@ void IndiCamera::connect(const char* cameraName)
       throw std::runtime_error(message);  
    }
    
+   // wait newProperty CCD_FRAME
+   for(int delay=0;  !mydevice->getNumber("CCD_FRAME")  &&  delay < 120000 ; delay+=500) {
+      usleep(500000);  // wait 500 millisecond
+      libcam_log(LOG_DEBUG,"IndiCamera::connect wait CCD_FRAME event delay=%d ms", delay);
+   }
+
+   // wait newProperty CCD_INFO
+   for(int delay=0;  !mydevice->getNumber("CCD_INFO")  &&  delay < 120000 ; delay+=500) {
+      usleep(500000);  // wait 500 millisecond
+      libcam_log(LOG_DEBUG,"IndiCamera::connect wait CCD_INFO event delay=%d ms", delay);
+   }
+
+
    setBLOBMode(B_ALSO, this->cameraName, NULL);
 
    libcam_log(LOG_DEBUG,"IndiCamera::connect device is connected");
@@ -171,6 +186,7 @@ const char * IndiCamera::getCameraName()
 //----------------------------------------------------------------------------------
 int IndiCamera::getCameraXSize()
 {
+ //  return this->getPropertyNumber("CCD_FRAME", "WIDTH");
    return this->getPropertyNumber("CCD_INFO", "CCD_MAX_X");
 }
 
@@ -179,6 +195,7 @@ int IndiCamera::getCameraXSize()
 //----------------------------------------------------------------------------------
 int IndiCamera::getCameraYSize()
 {
+//   return this->getPropertyNumber("CCD_FRAME", "HEIGHT");
    return this->getPropertyNumber("CCD_INFO", "CCD_MAX_Y");
 }
 
@@ -197,6 +214,14 @@ int IndiCamera::getPixelSizeX()
 int IndiCamera::getPixelSizeY()
 {
    return this->getPropertyNumber("CCD_INFO", "CCD_PIXEL_SIZE_Y");
+}
+
+//----------------------------------------------------------------------------------
+// return temperature 
+//----------------------------------------------------------------------------------
+int IndiCamera::getCCDTemperature()
+{
+   return this->getPropertyNumber("CCD_TEMPERATURE","CCD_TEMPERATURE_VALUE");
 }
 
 //----------------------------------------------------------------------------------
@@ -225,9 +250,23 @@ int IndiCamera::getPropertyNumber(const char * vectorName, const char* propertyN
 //----------------------------------------------------------------------------------
 // set binning
 //----------------------------------------------------------------------------------
-void setBinning(int binx, int biny) 
+void IndiCamera::setBinning(int binx, int biny) 
 {
-   libcam_log(LOG_ERROR,"IndiCamera::stopExposure NOT IMPLEMENTED" );
+   INumberVectorProperty *binning_number = NULL;
+
+   binning_number = mydevice->getNumber("CCD_BINNING");
+   if (binning_number == NULL)  {
+      char message[1024];
+      sprintf(message, "IndiCamera::setBinning unable to find CCD_BINNING property");
+      libcam_log(LOG_ERROR, message);
+      throw std::runtime_error(message);  
+   }
+
+   binning_number->np[0].value = binx;
+   binning_number->np[1].value = binx;
+
+   sendNewNumber(binning_number);
+   libcam_log(LOG_DEBUG,"IndiCamera::setBinning binx=%d biny=%d",binx,biny);
 }
 
 
@@ -241,7 +280,7 @@ void IndiCamera::setFrame(int x, int y , int width, int height)
    frameWidth->value = width;
    frameHeight->value = height;
    sendNewNumber(frameProperty);
-   libcam_log(LOG_DEBUG,"IndiCamera::setFrame x=%d y=%d width=%d height=%d", 
+   libcam_log(LOG_DEBUG,"IndiCamera::setFrame x=%f y=%f width=%f height=%f", 
       frameX->value, frameY->value, frameWidth->value, frameHeight->value);
 }
 
@@ -263,6 +302,7 @@ void IndiCamera::startExposure(double exptime, int shutterindex)
 
    // reset image result
    imageBlob = NULL; 
+   readImageDisable = false;
    
    ccd_exposure->np[0].value = exptime;
    sendNewNumber(ccd_exposure);
@@ -275,7 +315,18 @@ void IndiCamera::startExposure(double exptime, int shutterindex)
 //----------------------------------------------------------------------------------
 void IndiCamera::stopExposure() 
 {
-   libcam_log(LOG_ERROR,"IndiCamera::stopExposure NOT IMPLEMENTED" );
+   ISwitchVectorProperty *switchAbort = NULL;
+   switchAbort = mydevice->getSwitch("CCD_ABORT_EXPOSURE");
+   if (switchAbort == NULL)  {
+      char message[1024];
+      sprintf(message, "IndiCamera::stopExposure unable to find CCD_ABORT_EXPOSURE Switch");
+      libcam_log(LOG_ERROR, message);
+      throw std::runtime_error(message);  
+   }
+   
+   sendNewSwitch(switchAbort);
+   readImageDisable = true;
+   libcam_log(LOG_ERROR,"IndiCamera::stopExposure OK" );
 }
 
 //----------------------------------------------------------------------------------
@@ -283,7 +334,21 @@ void IndiCamera::stopExposure()
 //----------------------------------------------------------------------------------
 void IndiCamera::abortExposure() 
 {
-   libcam_log(LOG_ERROR,"IndiCamera::abortExposure NOT IMPLEMENTED" );
+
+   ISwitchVectorProperty *switchAbort = NULL;
+   switchAbort = mydevice->getSwitch("CCD_ABORT_EXPOSURE");
+
+   if (switchAbort == NULL)  {
+      char message[1024];
+      sprintf(message, "IndiCamera::abortExposure unable to find CCD_ABORT_EXPOSURE Switch");
+      libcam_log(LOG_ERROR, message);
+      throw std::runtime_error(message);  
+   }
+   else
+   
+   sendNewSwitch(switchAbort);
+   readImageDisable = true;
+   libcam_log(LOG_ERROR,"IndiCamera::abortExposure OK" );
 }
 
 //----------------------------------------------------------------------------------
@@ -295,6 +360,11 @@ void IndiCamera::readImage(float *pixels)
    fitsfile *fptr;  // FITS file pointer
    int status = 0;  // CFITSIO status value MUST be initialized to zero!
    
+   if (readImageDisable) {
+      libcam_log(LOG_DEBUG,"IndiCamera::readImage disable by stopExposure");
+      return;
+   }
+
    //  wait 240 000 millisconds for IndiCamera::newBLOB notification 
    for( int delay =0 ; imageBlob == NULL  &&  delay < 240000 ; delay+=100) {
       usleep(100000);  // wait 100 millisecond
@@ -307,7 +377,8 @@ void IndiCamera::readImage(float *pixels)
       libcam_log(LOG_ERROR, message);
       throw std::runtime_error(message);       
    }
-   libcam_log(LOG_DEBUG, "IndiCamera::readImage blob ready bloblen=%ld bytes" , imageBlob->bloblen );
+   libcam_log(LOG_DEBUG, "IndiCamera::readImage blob ready name=%s label=%s format=%s bloblen=%ld bytes size=%ld" , 
+                   imageBlob->name, imageBlob->label, imageBlob->format, imageBlob->bloblen, imageBlob->size );
    
    // open fits reader  
    size_t blobSize = (size_t) imageBlob->bloblen;
@@ -389,7 +460,7 @@ void IndiCamera::readImage(float *pixels)
 //----------------------------------------------------------------------------------
 //
 //
-void IndiCamera::setTemperature()
+void IndiCamera::setCCDTemperature(float desired_temperature)
 {
    INumberVectorProperty *ccd_temperature = NULL;
 
@@ -401,7 +472,7 @@ void IndiCamera::setTemperature()
        return;
    }
 
-   ccd_temperature->np[0].value = -20;
+   ccd_temperature->np[0].value = desired_temperature;
    sendNewNumber(ccd_temperature);
 }
 
@@ -438,17 +509,14 @@ void IndiCamera::newProperty(INDI::Property *property)
       frameY = IUFindNumber(frameProperty,"Y");
       frameWidth = IUFindNumber(frameProperty,"WIDTH");
       frameHeight = IUFindNumber(frameProperty,"HEIGHT");
-      libcam_log(LOG_DEBUG,"IndiCamera::newProperty %s x=%d y=%d width=%d height=%d", 
+      libcam_log(LOG_DEBUG,"IndiCamera::newProperty %s x=%f y=%f width=%f height=%f", 
          property->getName(), frameX->value, frameY->value, frameWidth->value, frameHeight->value);
       
     } else if ( !strcmp(property->getName(), "CCD_TEMPERATURE")) {
-        if (mydevice->isConnected())
-        {
-            //slibcam_log(LOG_DEBUG,"IndiCamera::newProperty. Setting temperature to -20 C.");
-            //setTemperature();
-        }
+      libcam_log(LOG_DEBUG,"IndiCamera::newProperty. CCD_TEMPERATURE");
+
     } else {
-       libcam_log(LOG_DEBUG,"IndiCamera::newProperty %s", property->getName());
+      libcam_log(LOG_DEBUG,"IndiCamera::newProperty %s", property->getName());
     }
    
 }
@@ -458,32 +526,29 @@ void IndiCamera::newProperty(INDI::Property *property)
 //----------------------------------------------------------------------------------
 void IndiCamera::newNumber(INumberVectorProperty *nvp)
 {
-    libcam_log(LOG_DEBUG,"IndiCamera::newNumber %s = %g", nvp->name, nvp->np[0].value);
-
-    if (this->cameraName == NULL) {
-	return;
-    }
-
-//	if (strcmp(nvp->device,this->mydevice->getDeviceName()))
-	if (nvp->device!=this->mydevice->getDeviceName() ) 
-	{
-		return;
-	}
-    
-	
-    // Let's check if we get any new values for CCD_TEMPERATURE
-    if (!strcmp(nvp->name, "CCD_TEMPERATURE"))
-    {
-       //libcam_log(LOG_ERROR,"Receving new CCD Temperature: %g C", nvp->np[0].value);
-
-/*        if (nvp->np[0].value == -20)
- *        {
- *            libcam_log(LOG_DEBUG,"CCD temperature reached desired value!");
- *            takeExposure();
- *        }
- */
-
+   if (strcmp(nvp->device,this->mydevice->getDeviceName())!=0) {
+      return;
    }
+
+   libcam_log(LOG_DEBUG,"IndiCamera::newNumber %s dim=%d", nvp->name, nvp->nnp);
+   for (int i=0;i<nvp->nnp;i++) {
+         libcam_log(LOG_DEBUG,"IndiCamera::newNumber         %s = %f", nvp->np[i].name, nvp->np[i].value);
+   }
+	
+   // Let's check if we get any new values for CCD_TEMPERATURE
+   if (!strcmp(nvp->name, "CCD_TEMPERATURE"))
+   {
+       libcam_log(LOG_DEBUG,"IndiCamera:newNumber Get CCD Temperature");
+   } 
+   else if (!strcmp(nvp->name, "CCD_EXPOSURE")) 
+   {
+       libcam_log(LOG_DEBUG,"IndiCamera:newNumber Get CCD Exposure");
+   }
+   else if (!strcmp(nvp->name, "CCD_FRAME")) 
+   {
+       libcam_log(LOG_DEBUG,"IndiCamera:newNumber Get CCD FRAME %f %f %f %f",nvp->np[0].value,nvp->np[1].value,nvp->np[2].value,nvp->np[3].value);
+   }
+
 }
 
 //----------------------------------------------------------------------------------
@@ -502,11 +567,10 @@ void IndiCamera::newMessage(INDI::BaseDevice *dp, int messageID)
 //----------------------------------------------------------------------------------
 void IndiCamera::newBLOB(IBLOB *bp)
 {
-	//  TODO: faire la bonne comparaison ici
+   // check if that is our image, and not one from another camera
    if (strcmp(bp->bvp->device,this->mydevice->getDeviceName())) {
 	   return;
    }
-	
    imageBlob = bp;
    libcam_log(LOG_DEBUG,"IndiCamera::newBLOB Received blobName=%s", bp->name);
 
