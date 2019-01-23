@@ -23,7 +23,6 @@ public:
    int getCameraYSize();
    int getPixelSizeX();
    int getPixelSizeY();
-   int getCCDTemperature();
 
    void setBinning(int binx, int biny);
    void setFrame(int x, int y , int width, int height);
@@ -33,7 +32,7 @@ public:
    void abortExposure();
    void readImage(float *p);
    
-   void setCCDTemperature(float desired_temperature);
+   void setTemperature();
 
 
 protected:
@@ -63,8 +62,6 @@ private:
    INumber* frameWidth;
    INumber* frameHeight;
    IBLOB*    imageBlob;
-   // desable readImage method, for abort CCD..
-   bool  readImageDisable;
 
    int getPropertyNumber(const char * vectorName, const char* propertyName);
 
