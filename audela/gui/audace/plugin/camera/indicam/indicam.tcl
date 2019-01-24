@@ -179,11 +179,8 @@ proc ::indicam::fillConfigPage { frm camItem } {
    #--- Je recupere la liste des caméras
    #set list_combobox [ ::confLink::getLinkLabels { "parallelport" } ]
    #lappend list_combobox $caption(indicam,usb) $caption(indicam,ethernet)
-	set list_combobox ""
-	lappend list_combobox "CCD Simulator"
-	lappend list_combobox "ZWO CCD ASI120MM-S"
-	lappend list_combobox "ZWO CCD ASI290MC"
-	lappend list_combobox "Atik 414ex CCD"
+   set list_combobox [ list ]
+   set list_combobox { "CCD Simulator" "ZWO CCD ASI120MM-S" "ZWO CCD ASI290MC" "Atik 414ex CCD" "V4L2 CCD" "SX CCD LodeStar" "SBIG CCD" "ZWO CCD ASI183MM Pro" "Atik Titan CCD" }
 
    
    #--- Frame de la configuration de l'IP et port
