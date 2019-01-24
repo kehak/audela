@@ -1,11 +1,11 @@
-**Compilation de libindicam.so
+**Compilation de libindicam.so**
 ```
 $ cd audela/src/libcam/libindicam/linux
 $ make clean
 $ make
 ```
 
-**Test de libindicam.so 
+**Test de libindicam.so**
 
 1) lancer le serveur  ( cf installation du serveur ci-dessous)
 `indiserver -v indi_simulator_ccd`
