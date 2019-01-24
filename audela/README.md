@@ -1,6 +1,6 @@
 # AudeLA-INDI
 
-## This is an AudeLA-trunk fork with INDI compatibility.
+This is an AudeLA-trunk fork with INDI compatibility.
 
 Please test in a fresh Ubuntu Bionic 18.04 install. Debian Buster should work too.
 
