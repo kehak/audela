@@ -10,26 +10,26 @@ AR  = ar rc
 # Definitions for external tools
 
 AUD_TCL_SPEC          = /usr
-AUD_TCL_BIN_DIR       = /usr/lib
+AUD_TCL_BIN_DIR       = /usr/lib/tcl8.6
 AUD_TCL_INCLUDE_SPEC  = -I/usr/include/tcl8.6
 AUD_TCL_LIB_SPEC      = -L/usr/lib/x86_64-linux-gnu -ltcl8.6
 AUD_TCL_STUB_LIB_SPEC = -L/usr/lib/x86_64-linux-gnu -ltclstub8.6
 AUD_TK_INCLUDE_SPEC   = 
 AUD_TK_LIB_SPEC       = -L/usr/lib/x86_64-linux-gnu -ltk8.6
 AUD_TK_STUB_LIB_SPEC  = -L/usr/lib/x86_64-linux-gnu -ltkstub8.6
-AUD_TK_BIN_DIR       = /usr/lib
+AUD_TK_BIN_DIR       = /usr/lib/tk8.6
 
 AUD_GSL_CFLAGS = -I/usr/include
-AUD_GSL_LIBS = -L/usr/lib -lgsl -lgslcblas -lm
+AUD_GSL_LIBS = -L/usr/lib/x86_64-linux-gnu -lgsl -lgslcblas -lm
 GSLFOUND = 1
 
 # AudeLA definitions
 
-ROOT  = /root/audela-code/audela/src
+ROOT  = /home/jb/audela/audela/src
 MAJOR = 3
 MINOR = 0
 PATCH = 0
-EXTRA = b1
+EXTRA = b4
 
 PACKAGE = audela
 VERSION = $(MAJOR).$(MINOR).$(PATCH)$(EXTRA)
@@ -55,10 +55,10 @@ LDFLAGS  =  -shared  -ldl -lm -lstdc++ $(AUD_TCL_STUB_LIB_SPEC) $(AUD_TK_STUB_LI
 DLLIB = -ldl
 
 # Definition of modules
-EXTERNAL = andor blt cfitsio fli fitstcl gzip jpeg6b libdcjpeg libdcraw libftd2xx libusb oscadine porttalk sbig sextractor sofa tcl tkhtml
+EXTERNAL = andor blt cfitsio fitstcl gzip jpeg6b libdcjpeg libdcraw libftd2xx libusb oscadine porttalk sbig sextractor sofa tcl tkhtml qsi
 CONTRIB  = ethernaude libgs av4l libbm
 AUDELA   = audela libtt libtcltt libaudela libaudelatk libgzip libmc librgb libak libgsltcl libjm libml libros libyd libcatalog libcatalog_tcl
-LIBCAMS  = libethernaude libaudine libcagire liboscadine libquicka libgrabber libdigicam
+LIBCAMS  = libethernaude libaudine libcagire liboscadine libquicka libgrabber libqsi libsbig libdigicam
 LIBTELS  = libaudecom libcelestron libcombit libdeltatau libcsi libdfm libeqmod liblx200 libmcmt libouranos libtemma libtelscript
 LIBLINKS = libparallelport libserialport libquickremote
 ASTROBRICK = libabcommon libabaudela libabmc libabsimple

@@ -14,7 +14,7 @@ OBJ = $(patsubst $(SRCDIR)/%.cpp, %.o, $(filter $(SRCDIR)/%.cpp, $(SRC)))
 include ../../../Makefile1
 
 CXXFLAGS += $(AUD_GSL_CFLAGS) -DNO_STRING_H
-LDFLAGS  += $(AUD_GSL_LIBS) -Wl,-rpath,. -L $(ROOT)/audela/libaudela/linux -laudela
+LDFLAGS  += $(AUD_GSL_LIBS) -Wl,-rpath,. -L ../../../audela/libaudela/linux -laudela
 
 .PHONY: clean cleanall
 clean:

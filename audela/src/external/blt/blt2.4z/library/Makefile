@@ -9,7 +9,7 @@ version      = 2.4
 lib_prefix    = lib
 srcdir       = .
 libdir       = /usr/lib
-scriptdir    = /root/audela-code/audela/src/../lib/blt2.4
+scriptdir    = /home/jb/audela/audela/src/../lib/blt2.4
 
 INSTALL      = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644

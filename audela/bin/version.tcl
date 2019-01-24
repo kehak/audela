@@ -26,9 +26,9 @@ global audela
 set audela(major) "3"
 set audela(minor) "0"
 set audela(patch) "0"
-set audela(extra) "b1" 		;#--- extra="" if stable, or "a1" if alpha, or "b1" if beta 
+set audela(extra) "b4" 		;#--- extra="" if stable, or "a1" if alpha, or "b1" if beta 
 set audela(revision) "@REVISION@"  	;#--- svn revision
-set audela(date) "05/04/2015"
+set audela(date) "17/04/2018"
 
 #--- Normalized version number
 #--- TCL Version numbers consist of one or more decimal numbers separated by dots, such as 2 or 1.162 or 3.1.13.1. 

@@ -10,8 +10,8 @@ OBJ += $(patsubst $(LIBCAMDIR)/%.cpp, %.o, $(filter $(LIBCAMDIR)/%.cpp, $(SRC)))
 
 include ../../../Makefile1
 
-#CFLAGS += -I $(EXTINC)   -I ../../../external/libindi/include -I /root/audela-code/audela/src/audela/libaudela/src/
-#CXXFLAGS += -I $(EXTINC)  -I ../../../external/libindi/include -I /root/audela-code/audela/src/audela/libaudela/src/
+#CFLAGS += -I $(EXTINC)   -I ../../../external/libindi/include -I ../../../audela/src/audela/libaudela/src/
+#CXXFLAGS += -I $(EXTINC)  -I ../../../external/libindi/include -I ../../../audela/src/audela/libaudela/src/
 #LDFLAGS  += ../../../external/libindi/lib/libindiclient.a -L$(EXTLIB) -lindi -lm -lcfitsio -lpthread 
 
 # Note : on lie vers notre propre version d'INDI :
@@ -30,4 +30,4 @@ CXXFLAGS += -I $(EXTINC)  -I /usr/local/include/libindi
 # - Désinstaller le citsio-dev de la distribution, il faut utiliser celui d'AudeLA.
 
 #LDFLAGS  += ../../../external/libindi/lib/libindiclient.a -L/root/audela-code/audela/src/external/cfitsio/cfitsio3340 -L$(EXTLIB) -lindi -lm -lcfitsio -lpthread
-LDFLAGS  += /usr/local/lib/libindiclient.a -L/root/audela-code/audela/src/external/cfitsio/cfitsio3340 -L$(EXTLIB) -lindi -lm -lcfitsio -lpthread
+LDFLAGS  += /usr/local/lib/libindiclient.a -L../../../audela/src/external/cfitsio/cfitsio3340 -L$(EXTLIB) -lindi -lm -lcfitsio -lpthread
