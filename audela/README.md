@@ -7,8 +7,8 @@ Please test in a fresh Ubuntu Bionic 18.04 install. Debian Buster should work to
 ### Dependencies:
 ```
   sudo apt-get install indi-bin 
-  sudo apt-get install subversion gcc g++ make autoconf tcl-thread
-  sudo apt-get install linux-libc-dev tk8.6-dev libgsl-dev libftdi-dev libgphoto2-dev libindi-dev  libv4l-dev 
+  sudo apt-get install subversion gcc g++ make autoconf tcl-thread tcl-vfs libtk-img libgsl2 gnuplot-x11 libstdc++6 libusb-0.1-4 libusb-1.0-0 
+  sudo apt-get install linux-libc-dev tk8.6-dev libgsl-dev libftdi-dev libgphoto2-dev libindi-dev libv4l-dev libtiff5-dev
   sudo apt-get remove tk8.6-blt2.5 
   sudo apt-get install libindi-dev
 ```
