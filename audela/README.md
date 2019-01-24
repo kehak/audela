@@ -24,8 +24,10 @@ This driver ships with a proprietary binary blob so won't be bundled with the di
   sudo apt install cmake
 ```  
   Retrieve the release from https://github.com/indilib/indi/releases
+  
   (ex: `wget https://github.com/indilib/indi/archive/v1.7.1.tar.gz`)
-  **use the same release as installed on your distribution**
+  
+  **Use the same release as installed on your distribution.**
   
   Extract and cd to the indi dir
   (ex: `tar xzf v1.7.1.tar.gz; cd indi-1.7.1`)
