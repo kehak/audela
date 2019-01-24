@@ -1,22 +1,22 @@
-#AudeLA-INDI
+# AudeLA-INDI
 
-##This is an AudeLA-trunk fork with INDI compatibility.
+## This is an AudeLA-trunk fork with INDI compatibility.
 
 Please test in a fresh Ubuntu Bionic 18.04 install. Debian Buster should work too.
 
-###Dependencies:
+### Dependencies:
   sudo apt-get install indi-bin 
   sudo apt-get install subversion gcc g++ make autoconf 
   sudo apt-get install linux-libc-dev tk8.6-dev libgsl-dev libftdi-dev libgphoto2-dev libindi-dev  libv4l-dev 
   sudo apt-get remove tk8.6-blt2.5 
   sudo apt-get install libindi-dev 
 
-###Atik driver:
+### Atik driver:
   sudo dpkg -i atikccd-1.30-amd64.deb
   sudo apt-get install libnova-0.16-0 
   sudo apt-get install libnova-dev 
   
-###ASI driver:
+### ASI driver:
   This driver ships with a proprietary binary blob so won't be bundled with the distro.
 
   sudo apt install cmake
