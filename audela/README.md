@@ -7,10 +7,10 @@ Please test in a fresh Ubuntu Bionic 18.04 install. Debian Buster should work to
 ### Dependencies:
 ```
   sudo apt-get install indi-bin 
-  sudo apt-get install subversion gcc g++ make autoconf 
+  sudo apt-get install subversion gcc g++ make autoconf tcl-thread
   sudo apt-get install linux-libc-dev tk8.6-dev libgsl-dev libftdi-dev libgphoto2-dev libindi-dev  libv4l-dev 
   sudo apt-get remove tk8.6-blt2.5 
-  sudo apt-get install libindi-dev 
+  sudo apt-get install libindi-dev
 ```
 ### Atik driver:
 ```
