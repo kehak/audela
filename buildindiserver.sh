@@ -37,7 +37,7 @@ sudo apt remove -y libindi-dev libindi-data libindi-plugins
 echo -e "\e[33m--> Installing dependencies...\e[0m"
 sudo apt install -y libnova-dev libcfitsio-dev libusb-1.0-0-dev zlib1g-dev libgsl-dev build-essential cmake git libjpeg-dev libcurl4-gnutls-dev libtiff-dev
 
-echo -e "\e[33m--> Retrieving indi v1.3\e[0m"
+echo -e "\e[33m--> Retrieving indi v1.7.1\e[0m"
 cd; wget -c https://github.com/indilib/indi/archive/v1.7.1.tar.gz
 
 echo -e "\e[33m--> Extracting archive\e[0m"
