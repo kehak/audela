@@ -97,6 +97,70 @@ proc ::indicam::isReady { camItem } {
    }
 }
 
+proc ::indicam::getCams { socket } {
+
+	set indiOutput ""
+	set timeout 0
+	flush stdout
+	flush $socket
+	
+	puts $socket "<getProperties version=\"1.7\"/>"
+	
+	# Because INDI won't close the socket after the request
+	# we need to close it manually after a scheduled timeout			
+	while { $timeout < 1500 } {
+		catch { gets $socket output }
+		if { $output != "" } { append indiOutput $output\n }
+		incr timeout
+	}
+	
+	close $socket 
+
+	# Since the regexp engine only outputs the last matched occurence,
+	# we need to parse the list line by line
+	set camOutput [split $indiOutput "\n"]
+	
+	set cams ""
+	set cam ""
+	
+	foreach line $camOutput {
+		regexp {.*device\=\"(.*CCD.*)\" name\=\"CONNECTION\".*} $line match cam 
+		lappend cams $cam
+	}
+	
+	if { $cams ne "" } {return [ lsort -unique $cams ]}	
+	# No camera found
+	return ""
+}
+
+proc ::indicam::checkConnection { } {
+	
+	global caption conf
+	variable private
+	
+	set s [socket $::indicam::widget(host) $::indicam::widget(port) ]
+	set r [catch {fconfigure $s -peername} msg]
+	if { ! $r } {
+		fconfigure $s -blocking 0 -buffering line
+		# Connect and retrieve the INDI camera list
+		::console::affiche_prompt "INDI: connected to $::indicam::widget(host) $::indicam::widget(port)\n"
+		set conf(indicam,camlist) [::indicam::getCams $s]
+	}
+	
+	if { $conf(indicam,camlist) ne "" } { ::console::affiche_prompt "INDI: found [ llength $conf(indicam,camlist) ] cameras"
+	} else { ::console::affiche_erreur "Could not find any camera. Is this the right INDI host?" }
+		
+		
+	# Refresh the combo list
+	if { [ info exists private(frm) ] } {
+		set frm $private(frm)
+		set camItem [ ::confCam::getCurrentCamItem ]
+				::indicam::fillConfigPage $frm $camItem
+	}
+	
+	return 0
+}
+
 #
 # initPlugin
 #    Initialise les variables conf(indicam,...)
@@ -112,13 +176,14 @@ proc ::indicam::initPlugin { } {
    if { ! [ info exists conf(indicam,mirv) ] }              { set conf(indicam,mirv)              "0" }
    if { ! [ info exists conf(indicam,port) ] }              { set conf(indicam,port)              "7624" }
    if { ! [ info exists conf(indicam,temp) ] }              { set conf(indicam,temp)              "0" }
-   if { ! [ info exists conf(indicam,device) ] }            { set conf(indicam,device)            "Atik 414ex CCD" }
-  
+   if { ! [ info exists conf(indicam,device) ] }            { set conf(indicam,device)            "" }
+
    #--- Initialisation
    set private(A,camNo) "0"
    set private(B,camNo) "0"
    set private(C,camNo) "0"
    set private(ccdTemp) "$caption(indicam,temp_ext)"
+   
 }
 
 #
@@ -161,28 +226,28 @@ proc ::indicam::widgetToConf { camItem } {
 #    Interface de configuration de la camera indicam
 #
 proc ::indicam::fillConfigPage { frm camItem } {
-   variable private
-   variable widget
-   global caption
 
-   #--- Initialise une variable locale
-   set private(frm) $frm
+	variable private
+	variable widget
+	global caption conf
 
-   #--- confToWidget
-   ::indicam::confToWidget
+	#--- Initialise une variable locale
+	set private(frm) $frm
 
-   #--- Supprime tous les widgets de l'onglet
-   foreach i [ winfo children $frm ] {
-      destroy $i
-   }
+	#--- confToWidget
+	::indicam::confToWidget
 
-   #--- Je recupere la liste des caméras
-   #set list_combobox [ ::confLink::getLinkLabels { "parallelport" } ]
-   #lappend list_combobox $caption(indicam,usb) $caption(indicam,ethernet)
-   set list_combobox [ list ]
-   set list_combobox { "CCD Simulator" "ZWO CCD ASI120MM-S" "ZWO CCD ASI290MC" "Atik 414ex CCD" "V4L2 CCD" "SX CCD LodeStar" "SBIG CCD" "ZWO CCD ASI183MM Pro" "Atik Titan CCD" }
+	#--- Supprime tous les widgets de l'onglet
+	foreach i [ winfo children $frm ] {
+	  destroy $i
+	}
 
-   
+	set list_combobox ""
+	# Retrieve the camera list
+	foreach cam $conf(indicam,camlist) {
+		lappend list_combobox $cam
+	}
+	
    #--- Frame de la configuration de l'IP et port
    frame $frm.frame1 -borderwidth 1 -relief raised
 	
@@ -224,13 +289,12 @@ proc ::indicam::fillConfigPage { frm camItem } {
          -relief sunken         \
          -borderwidth 1         \
          -editable 0            \
-         -textvariable ::indicam::widget(device) \
-         -values $list_combobox
-         
+         -values $list_combobox \
+         -textvariable ::indicam::widget(device)
       pack $frm.frame2.device -anchor center -side left -padx 10    
                      
 	  button $frm.frame2.refresh -text "$caption(indicam,refresh)" -relief raised \
-	 -command { ::confLink::run ::indicam::getCamNo }
+	 -command { ::indicam::checkConnection }
       pack $frm.frame2.refresh -anchor center -side left -padx 10    
      pack $frm.frame2.device -anchor center -side left -padx 10
                
