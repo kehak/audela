@@ -108,7 +108,7 @@ proc ::indicam::getCams { socket } {
 	
 	# Because INDI won't close the socket after the request
 	# we need to close it manually after a scheduled timeout			
-	while { $timeout < 1500 } {
+	while { $timeout < 250000 } {
 		catch { gets $socket output }
 		if { $output != "" } { append indiOutput $output\n }
 		incr timeout
@@ -124,10 +124,10 @@ proc ::indicam::getCams { socket } {
 	set cam ""
 	
 	foreach line $camOutput {
-		regexp {.*device\=\"(.*CCD.*)\" name\=\"CONNECTION\".*} $line match cam 
+		regexp {.*device\=\"(.*CCD.*)\" name\=\"CONNECTION\".*} $line match cam
 		lappend cams $cam
 	}
-	
+		
 	if { $cams ne "" } {return [ lsort -unique $cams ]}	
 	# No camera found
 	return ""
@@ -150,14 +150,16 @@ proc ::indicam::checkConnection { } {
 	if { $conf(indicam,camlist) ne "" } { ::console::affiche_prompt "INDI: found [ llength $conf(indicam,camlist) ] cameras"
 	} else { ::console::affiche_erreur "Could not find any camera. Is this the right INDI host?" }
 		
+	# Update INDI conf with our new settings
+	set camItem [ ::confCam::getCurrentCamItem ]
+	::indicam::widgetToConf $camItem
 		
 	# Refresh the combo list
 	if { [ info exists private(frm) ] } {
 		set frm $private(frm)
-		set camItem [ ::confCam::getCurrentCamItem ]
 				::indicam::fillConfigPage $frm $camItem
 	}
-	
+		
 	return 0
 }
 
@@ -245,7 +247,7 @@ proc ::indicam::fillConfigPage { frm camItem } {
 	set list_combobox ""
 	# Retrieve the camera list
 	foreach cam $conf(indicam,camlist) {
-		lappend list_combobox $cam
+		if { $cam ne "" } { lappend list_combobox $cam }
 	}
 	
    #--- Frame de la configuration de l'IP et port
@@ -366,6 +368,7 @@ proc ::indicam::fillConfigPage { frm camItem } {
 
    #--- Mise a jour dynamique des couleurs
    ::confColor::applyColor $frm
+   
 }
 
 #
