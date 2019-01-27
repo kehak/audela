@@ -97,24 +97,24 @@ proc ::indicam::isReady { camItem } {
    }
 }
 
-proc ::indicam::getCams { socket } {
+proc ::indicam::getCams { indiSocket } {
 
 	set indiOutput ""
 	set timeout 0
 	flush stdout
-	flush $socket
+	flush $indiSocket
 	
-	puts $socket "<getProperties version=\"1.7\"/>"
+	puts $indiSocket "<getProperties version=\"1.7\"/>"
 	
 	# Because INDI won't close the socket after the request
 	# we need to close it manually after a scheduled timeout			
 	while { $timeout < 250000 } {
-		catch { gets $socket output }
+		catch { gets $indiSocket output }
 		if { $output != "" } { append indiOutput $output\n }
 		incr timeout
 	}
 	
-	close $socket 
+	close $indiSocket 
 
 	# Since the regexp engine only outputs the last matched occurence,
 	# we need to parse the list line by line
@@ -127,8 +127,8 @@ proc ::indicam::getCams { socket } {
 		regexp {.*device\=\"(.*CCD.*)\" name\=\"CONNECTION\".*} $line match cam
 		lappend cams $cam
 	}
-		
-	if { $cams ne "" } {return [ lsort -unique $cams ]}	
+			
+	if { [ lindex $cams 0 ] ne "" } { return [ lsort -unique $cams ] }	
 	# No camera found
 	return ""
 }
@@ -137,18 +137,22 @@ proc ::indicam::checkConnection { } {
 	
 	global caption conf
 	variable private
+	variable widget
 	
-	set s [socket $::indicam::widget(host) $::indicam::widget(port) ]
-	set r [catch {fconfigure $s -peername} msg]
-	if { ! $r } {
-		fconfigure $s -blocking 0 -buffering line
+	catch { set sock [ socket $::indicam::widget(host) $::indicam::widget(port) ] }
+	set readable [ catch { fconfigure $sock -peername } msg]
+	if { ! $readable } {
+		fconfigure $sock -blocking 0 -buffering line
 		# Connect and retrieve the INDI camera list
-		::console::affiche_prompt "INDI: connected to $::indicam::widget(host) $::indicam::widget(port)\n"
-		set conf(indicam,camlist) [::indicam::getCams $s]
+		::console::affiche_resultat "INDI: connected to $::indicam::widget(host) $::indicam::widget(port)\n"
+		set conf(indicam,camlist) [ ::indicam::getCams $sock ]
+		} else { set conf(indicam,camlist) ""
 	}
 	
-	if { $conf(indicam,camlist) ne "" } { ::console::affiche_prompt "INDI: found [ llength $conf(indicam,camlist) ] cameras"
-	} else { ::console::affiche_erreur "Could not find any camera. Is this the right INDI host?" }
+	if { $conf(indicam,camlist) ne "" } { ::console::affiche_resultat "INDI: found [ llength $conf(indicam,camlist) ] cameras\n"
+	} else { ::console::affiche_erreur "Could not find any camera. Is this the right INDI host?\n" }
+	
+	set widget(device) [ lindex $conf(indicam,camlist) 0 ]
 		
 	# Update INDI conf with our new settings
 	set camItem [ ::confCam::getCurrentCamItem ]
