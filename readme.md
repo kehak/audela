@@ -1,4 +1,4 @@
-buildindiser.sh	 : script utilisé pour compiler indi1.3 (ne pas utiliser. utiliser indi 1.7 livré avec la distribution)
+Utiliser indi 1.7 livré avec Ubuntu 18.04. Pour les autres distributions, utiliser buildindiserver.sh pour compiler/installer indi 1.7 automatiquement.
 
 ---------
 cd audela
