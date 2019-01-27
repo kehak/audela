@@ -125,12 +125,11 @@ proc ::indicam::getCams { indiSocket } {
 	
 	foreach line $camOutput {
 		regexp {.*device\=\"(.*CCD.*)\" name\=\"CONNECTION\".*} $line match cam
-		lappend cams $cam
+		if { $cam ne "" } { lappend cams $cam }
 	}
 			
-	if { [ lindex $cams 0 ] ne "" } { return [ lsort -unique $cams ] }	
-	# No camera found
-	return ""
+	if { [ lindex $cams 0 ] ne "" } { return [ lsort -unique $cams ]
+	} else { return "" }
 }
 
 proc ::indicam::checkConnection { } {
