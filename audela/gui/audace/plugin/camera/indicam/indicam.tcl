@@ -143,7 +143,7 @@ proc ::indicam::checkConnection { } {
 	if { ! $readable } {
 		fconfigure $sock -blocking 0 -buffering line
 		# Connect and retrieve the INDI camera list
-		::console::affiche_resultat "INDI: connected to $::indicam::widget(host) $::indicam::widget(port)\n"
+		::console::affiche_resultat "INDI: connected to $::indicam::widget(host):$::indicam::widget(port)\n"
 		set conf(indicam,camlist) [ ::indicam::getCams $sock ]
 		} else { set conf(indicam,camlist) ""
 	}
@@ -160,7 +160,7 @@ proc ::indicam::checkConnection { } {
 	# Refresh the combo list
 	if { [ info exists private(frm) ] } {
 		set frm $private(frm)
-				::indicam::fillConfigPage $frm $camItem
+		::indicam::fillConfigPage $frm $camItem
 	}
 		
 	return 0
@@ -182,6 +182,7 @@ proc ::indicam::initPlugin { } {
    if { ! [ info exists conf(indicam,port) ] }              { set conf(indicam,port)              "7624" }
    if { ! [ info exists conf(indicam,temp) ] }              { set conf(indicam,temp)              "0" }
    if { ! [ info exists conf(indicam,device) ] }            { set conf(indicam,device)            "" }
+   if { ! [ info exists conf(indicam,camlist) ] }           { set conf(indicam,camlist)           "" }
 
    #--- Initialisation
    set private(A,camNo) "0"
@@ -304,6 +305,12 @@ proc ::indicam::fillConfigPage { frm camItem } {
      pack $frm.frame2.device -anchor center -side left -padx 10
                
    pack $frm.frame2 -side top -fill both -expand 1
+   
+	# Get temperature. If camera is not yet available, display "--"
+	if { $private($camItem,camNo) ne "0" } {
+		set camTemp [ cam$private($camItem,camNo) temperature ]
+		set camTemp [ format "%.2f" $camTemp ]
+		} else { set camTemp "--" }
 
    #--- Frame des miroirs en x et en y, du refroidissement et de la temperature (du capteur CCD et exterieure)
    frame $frm.frame3 -borderwidth 0 -relief raised
@@ -329,7 +336,8 @@ proc ::indicam::fillConfigPage { frm camItem } {
          frame $frm.frame3.frame6.frame7 -borderwidth 0 -relief raised
 
             #--- Definition du refroidissement
-            checkbutton $frm.frame3.frame6.frame7.cool -text "$caption(indicam,refroidissement)" -highlightthickness 0 \
+            label $frm.frame3.frame6.frame7.cool -text "Temp: ${camTemp}°C"
+            #checkbutton $frm.frame3.frame6.frame7.cool -text "$caption(indicam,refroidissement)" -highlightthickness 0 \
                -variable ::indicam::widget(cool) -command "::indicam::checkConfigRefroidissement"
             pack $frm.frame3.frame6.frame7.cool -anchor center -side left -padx 0 -pady 5
 
@@ -379,27 +387,21 @@ proc ::indicam::fillConfigPage { frm camItem } {
 #    Configure la camera indicam en fonction des donnees contenues dans les variables conf(indicam,...)
 #
 proc ::indicam::configureCamera { camItem bufNo } {
-   variable private
-   global caption conf
+	variable private
+	global caption conf
 
-   set catchResult [ catch {
-      #--- je verifie que la camera n'est deja utilisee
-      if { $private(A,camNo) != 0 || $private(B,camNo) != 0 || $private(C,camNo) != 0  } {
-         # error "" "" "CameraUnique"
-      }
-     ### set conf(indicam,host) [ ::audace::verifip $conf(indicam,host) ]
-
-      #--- Je cree la liaison utilisee par la camera pour l'acquisition (cette commande arctive porttalk si necessaire)
-      set linkNo [ ::confLink::create $conf(indicam,port) "cam$camItem" "acquisition" "bits 1 to 8" ]
-      #--- Je cree la camera
-  
-	 set camNo [ cam::create indicam $conf(indicam,device) $conf(indicam,host) $conf(indicam,port) \
+	set catchResult [ catch {
+	#--- je verifie que la camera n'est deja utilisee
+	if { $private(A,camNo) != 0 || $private(B,camNo) != 0 || $private(C,camNo) != 0  } {
+		#error "" "" "CameraUnique"
+	}
+    
+	set camNo [ cam::create indicam $conf(indicam,device) $conf(indicam,host) $conf(indicam,port) \
 		-log_file [::confCam::getLogFileName $camItem] \
 		-log_level [::confCam::getLogLevel $camItem] \
 	 ]
 
-      console::affiche_entete "$caption(indicam,device) ([ cam$camNo name ]) $caption(indicam,2points) $conf(indicam,device)\n"
-      console::affiche_saut "\n"
+      console::affiche_entete "Connected: [ cam$camNo name ]\n"
       #--- Je change de variable
       set private($camItem,camNo) $camNo
       #--- Je configure le refroidissement
