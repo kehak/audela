@@ -4,6 +4,7 @@
  * Copyright (C) 1998-2004 The AudeLA Core Team
  *
  * Initial author : Michel Pujol
+ *    additional author:  Thierry Lemoult
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -267,6 +268,8 @@ void cam_update_window(struct camprop *cam)
    // subframe start position for the X axis (0 based) in binned pixels
    //cam->params->indiCamera->setFrame(x1, y1, cam->w, cam->h);
    // du point de vue indi, on garde la full frame
+
+   // je demande a la camera d'utiliser tout le capteur.
    cam->params->indiCamera->setFrame(0, 0, maxx, maxy);
 }
 
