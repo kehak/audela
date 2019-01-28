@@ -137,6 +137,16 @@ fi
 AC_SUBST(V4L2_ENABLE)
 
 
+dnl libcamindi dependencies
+INDI_ENABLE=1
+AC_CHECK_HEADERS([indibase.h indiapi.h],,[INDI_ENABLE=0])
+AC_MSG_CHECKING([if INDI cameras are supported])
+if test x"$INDI_ENABLE" = x"1" ; then
+        AC_MSG_RESULT([yes.])
+else
+        AC_MSG_RESULT([no, disabling the libindi interface.])
+fi
+AC_SUBST(INDI_ENABLE)
 
 dnl libqsi dependencies
 QSI_ENABLE=1
@@ -253,6 +263,11 @@ fi
 if test x"$QSI_ENABLE" = x"1" ; then
     LIBCAMS="$LIBCAMS libqsi"
 fi
+
+if test x"$INDI_ENABLE" = x"1" ; then
+    LIBCAMS="$LIBCAMS libcamindi"
+fi
+
 
 dnl modified by Benjamin Mauclaire
 SBIG_ENABLE=1

@@ -51,7 +51,7 @@ configure:1398: checking for ranlib
 configure:1426: checking whether ln -s works
 configure:1453: checking for main in -lsocket
 configure:1468: gcc -o conftest -g -O2 -fPIC   conftest.c -lsocket   1>&5
-/usr/bin/ld: cannot find -lsocket
+/usr/bin/x86_64-linux-gnu-ld: cannot find -lsocket
 collect2: error: ld returned 1 exit status
 configure: failed program was:
 #line 1461 "configure"

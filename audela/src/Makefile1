@@ -1,4 +1,4 @@
-ROOT   = /home/jb/audela/audela/src
+ROOT   = /root/audela/audela-git/audela/src
 
 include $(ROOT)/Makefile.defs
 

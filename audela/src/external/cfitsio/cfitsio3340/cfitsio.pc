@@ -1,4 +1,4 @@
-prefix=/home/jb/audela/audela/src/external/cfitsio/cfitsio3340/../..
+prefix=/root/audela/audela-git/audela/src/external/cfitsio/cfitsio3340/../..
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

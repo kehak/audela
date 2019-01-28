@@ -8,7 +8,7 @@
 # 	C Compiler options
 # ------------------------------------------------------------------------
 
-BLT_LIBRARY =	/home/jb/audela/audela/src/../lib/blt2.4
+BLT_LIBRARY =	/root/audela/audela-git/audela/src/../lib/blt2.4
 TCLLIBPATH   =	/usr/include/tcl8.6/tcl-private/unix/tcl8.6
 CC =		gcc
 CFLAGS =	-g -O2 -fPIC

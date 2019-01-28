@@ -24,7 +24,7 @@ IFLAGS		= -I${CFITSIO_DIR} -I${TCL_INC_PATH}
 #----------------------------------------------------------------------------
 # Configurable macros:
 #----------------------------------------------------------------------------
-INSTALLDIR	= /home/jb/audela/audela/src/external/fitstcl/fitstcl21/../..
+INSTALLDIR	= /root/audela/audela-git/audela/src/external/fitstcl/fitstcl21/../..
 CC		= cc
 RANLIB		= ranlib
 CFLAGS		= -g -O2 -fPIC
@@ -34,10 +34,10 @@ SHLIB_SUFFIX	= .so
 SHLIB_LD 	= cc -shared
 LD_FLAGS 	=  -Wl,-rpath=$(INSTALLDIR)/lib
 
-TCL_INC_PATH	= /home/jb/audela/audela/src/external/tcl/tcl/include
+TCL_INC_PATH	= /root/audela/audela-git/audela/src/external/tcl/tcl/include
 TCL_LIB_PATH	= /usr/lib/tcl8.6
 TCL_LIB		= tcl8.6
-CFITSIO_DIR	= /home/jb/audela/audela/src/external/cfitsio/cfitsio3340
+CFITSIO_DIR	= /root/audela/audela-git/audela/src/external/cfitsio/cfitsio3340
 ### modif michel
 ###SHLIB_LD_LIBS 	= -ldl  
 SHLIB_LD_LIBS 	= -ldl   -L${INSTALLDIR}/lib -lcfitsio

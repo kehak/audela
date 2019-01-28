@@ -68,8 +68,8 @@ BINARIES	= $(lib_BINARIES) html.css
 SHELL		= /bin/bash
 
 srcdir		= .
-prefix		= /home/jb/audela/audela/src/..
-exec_prefix	= /home/jb/audela/audela/src/..
+prefix		= /root/audela/audela-git/audela/src/..
+exec_prefix	= /root/audela/audela-git/audela/src/..
 
 bindir		= ${exec_prefix}/bin
 libdir		= ${exec_prefix}/lib

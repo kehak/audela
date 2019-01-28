@@ -9,7 +9,7 @@
 srcdir = .
 
 # Where to install the programs and man pages.
-prefix = /home/jb/audela/audela/src/external/jpeg6b/jpeg-6b/../..
+prefix = /root/audela/audela-git/audela/src/external/jpeg6b/jpeg-6b/../..
 exec_prefix = ${prefix}
 bindir = $(exec_prefix)/bin
 libdir = $(exec_prefix)/lib

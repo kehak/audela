@@ -18,7 +18,7 @@
 # testprog targets. See also changes and comments in configure.in
 #
 
-prefix		= /home/jb/audela/audela/src/external/cfitsio/cfitsio3340/../..
+prefix		= /root/audela/audela-git/audela/src/external/cfitsio/cfitsio3340/../..
 exec_prefix	= ${prefix}
 DESTDIR		= 
 CFITSIO_LIB	= ${DESTDIR}${exec_prefix}/lib

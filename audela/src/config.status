@@ -427,7 +427,7 @@ Copyright (C) 2012 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-ac_pwd='/home/jb/audela/audela/src'
+ac_pwd='/root/audela/audela-git/audela/src'
 srcdir='.'
 test -n "$AWK" || AWK=awk
 # The default lists apply if the user does not specify any file.
@@ -646,7 +646,7 @@ S["EXTRA"]="b4"
 S["PATCH"]="0"
 S["MINOR"]="0"
 S["MAJOR"]="3"
-S["DEV_ROOT"]="/home/jb/audela/audela/src"
+S["DEV_ROOT"]="/root/audela/audela-git/audela/src"
 S["target_alias"]=""
 S["host_alias"]=""
 S["build_alias"]=""
