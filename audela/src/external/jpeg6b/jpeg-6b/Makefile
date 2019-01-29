@@ -9,7 +9,7 @@
 srcdir = .
 
 # Where to install the programs and man pages.
-prefix = /root/audela/audela-git/audela/src/external/jpeg6b/jpeg-6b/../..
+prefix = /home/jb/Compil/audela/audela/src/external/jpeg6b/jpeg-6b/../..
 exec_prefix = ${prefix}
 bindir = $(exec_prefix)/bin
 libdir = $(exec_prefix)/lib
@@ -64,7 +64,7 @@ AR= ar rc
 # second step in .a creation (use "touch" if not needed)
 AR2= ranlib
 # installation program
-INSTALL= /usr/bin/install -c
+INSTALL= /bin/install -c
 INSTALL_PROGRAM= ${INSTALL}
 INSTALL_LIB= ${INSTALL} -m 644
 INSTALL_DATA= ${INSTALL} -m 644

@@ -633,6 +633,7 @@ EXTERNAL
 LIBINDI_ENABLE
 LIBGPHOTO2_ENABLE
 QSI_ENABLE
+INDI_ENABLE
 V4L2_ENABLE
 WEBCAM_ENABLE
 EGREP
@@ -699,7 +700,6 @@ infodir
 docdir
 oldincludedir
 includedir
-runstatedir
 localstatedir
 sharedstatedir
 sysconfdir
@@ -782,7 +782,6 @@ datadir='${datarootdir}'
 sysconfdir='${prefix}/etc'
 sharedstatedir='${prefix}/com'
 localstatedir='${prefix}/var'
-runstatedir='${localstatedir}/run'
 includedir='${prefix}/include'
 oldincludedir='/usr/include'
 docdir='${datarootdir}/doc/${PACKAGE}'
@@ -1035,15 +1034,6 @@ do
   | -silent | --silent | --silen | --sile | --sil)
     silent=yes ;;
 
-  -runstatedir | --runstatedir | --runstatedi | --runstated \
-  | --runstate | --runstat | --runsta | --runst | --runs \
-  | --run | --ru | --r)
-    ac_prev=runstatedir ;;
-  -runstatedir=* | --runstatedir=* | --runstatedi=* | --runstated=* \
-  | --runstate=* | --runstat=* | --runsta=* | --runst=* | --runs=* \
-  | --run=* | --ru=* | --r=*)
-    runstatedir=$ac_optarg ;;
-
   -sbindir | --sbindir | --sbindi | --sbind | --sbin | --sbi | --sb)
     ac_prev=sbindir ;;
   -sbindir=* | --sbindir=* | --sbindi=* | --sbind=* | --sbin=* \
@@ -1181,7 +1171,7 @@ fi
 for ac_var in	exec_prefix prefix bindir sbindir libexecdir datarootdir \
 		datadir sysconfdir sharedstatedir localstatedir includedir \
 		oldincludedir docdir infodir htmldir dvidir pdfdir psdir \
-		libdir localedir mandir runstatedir
+		libdir localedir mandir
 do
   eval ac_val=\$$ac_var
   # Remove trailing slashes.
@@ -1334,7 +1324,6 @@ Fine tuning of the installation directories:
   --sysconfdir=DIR        read-only single-machine data [PREFIX/etc]
   --sharedstatedir=DIR    modifiable architecture-independent data [PREFIX/com]
   --localstatedir=DIR     modifiable single-machine data [PREFIX/var]
-  --runstatedir=DIR       modifiable per-process data [LOCALSTATEDIR/run]
   --libdir=DIR            object code libraries [EPREFIX/lib]
   --includedir=DIR        C header files [PREFIX/include]
   --oldincludedir=DIR     C header files for non-gcc [/usr/include]
@@ -5295,6 +5284,32 @@ fi
 
 
 
+INDI_ENABLE=1
+for ac_header in indibase.h indiapi.h
+do :
+  as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
+ac_fn_c_check_header_mongrel "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"
+if eval test \"x\$"$as_ac_Header"\" = x"yes"; then :
+  cat >>confdefs.h <<_ACEOF
+#define `$as_echo "HAVE_$ac_header" | $as_tr_cpp` 1
+_ACEOF
+
+else
+  INDI_ENABLE=0
+fi
+
+done
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking if INDI cameras are supported" >&5
+$as_echo_n "checking if INDI cameras are supported... " >&6; }
+if test x"$INDI_ENABLE" = x"1" ; then
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes." >&5
+$as_echo "yes." >&6; }
+else
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: no, disabling the libindi interface." >&5
+$as_echo "no, disabling the libindi interface." >&6; }
+fi
+
 
 QSI_ENABLE=1
 for ac_header in tiff.h ftdi.h
@@ -5541,6 +5556,11 @@ fi
 if test x"$QSI_ENABLE" = x"1" ; then
     LIBCAMS="$LIBCAMS libqsi"
 fi
+
+if test x"$INDI_ENABLE" = x"1" ; then
+    LIBCAMS="$LIBCAMS libcamindi"
+fi
+
 
 SBIG_ENABLE=1
 if test x"$SBIG_ENABLE" = x"1" ; then
@@ -6168,7 +6188,7 @@ esac
 
 cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
 # Files that config.status was made for.
-config_files="$ac_config_files"
+config_files="`echo $ac_config_files`"
 
 _ACEOF
 

@@ -561,23 +561,23 @@
 
 
 #define HTML_SOURCE_FILES \
-    "htmllayout.c,v 1.216 2006/09/07 14:41:52 danielk1977 Exp\n" \
-    "htmlprop.c,v 1.93 2006/09/07 14:41:52 danielk1977 Exp\n" \
-    "htmlhash.c,v 1.20 2006/08/28 08:42:35 danielk1977 Exp\n" \
-    "css.c,v 1.92 2006/08/28 08:42:34 danielk1977 Exp\n" \
-    "htmlparse.c,v 1.78 2006/08/24 14:53:02 danielk1977 Exp\n" \
-    "htmldecode.c,v 1.1 2006/07/01 07:33:22 danielk1977 Exp\n" \
-    "htmltcl.c,v 1.125 2006/09/11 10:45:26 danielk1977 Exp\n" \
-    "htmlfloat.c,v 1.19 2006/05/08 15:28:50 danielk1977 Exp\n" \
-    "htmlstyle.c,v 1.46 2006/09/07 08:30:49 danielk1977 Exp\n" \
-    "htmldraw.c,v 1.166 2006/09/07 11:03:02 danielk1977 Exp\n" \
-    "cssdynamic.c,v 1.8 2006/07/16 10:53:14 danielk1977 Exp\n" \
-    "htmltagdb.c,v 1.10 2006/07/14 13:37:56 danielk1977 Exp\n" \
+    "htmltable.c,v 1.105 2006/09/04 16:18:03 danielk1977 Exp\n" \
+    "swproc.c,v 1.6 2006/06/10 12:38:38 danielk1977 Exp\n" \
     "htmlinline.c,v 1.30 2006/08/11 12:24:05 danielk1977 Exp\n" \
     "htmltree.c,v 1.89 2006/09/15 07:29:53 danielk1977 Exp\n" \
-    "htmltable.c,v 1.105 2006/09/04 16:18:03 danielk1977 Exp\n" \
-    "restrack.c,v 1.7 2006/06/28 06:31:11 danielk1977 Exp\n" \
-    "htmlimage.c,v 1.56 2006/08/28 08:42:35 danielk1977 Exp\n" \
+    "cssdynamic.c,v 1.8 2006/07/16 10:53:14 danielk1977 Exp\n" \
+    "htmltagdb.c,v 1.10 2006/07/14 13:37:56 danielk1977 Exp\n" \
+    "htmlhash.c,v 1.20 2006/08/28 08:42:35 danielk1977 Exp\n" \
+    "htmlprop.c,v 1.93 2006/09/07 14:41:52 danielk1977 Exp\n" \
+    "htmlparse.c,v 1.78 2006/08/24 14:53:02 danielk1977 Exp\n" \
+    "htmltcl.c,v 1.125 2006/09/11 10:45:26 danielk1977 Exp\n" \
+    "css.c,v 1.92 2006/08/28 08:42:34 danielk1977 Exp\n" \
+    "htmllayout.c,v 1.216 2006/09/07 14:41:52 danielk1977 Exp\n" \
+    "htmldecode.c,v 1.1 2006/07/01 07:33:22 danielk1977 Exp\n" \
     "main.c,v 1.8 2006/07/12 06:47:38 danielk1977 Exp\n" \
-    "swproc.c,v 1.6 2006/06/10 12:38:38 danielk1977 Exp\n" \
+    "htmldraw.c,v 1.166 2006/09/07 11:03:02 danielk1977 Exp\n" \
+    "htmlimage.c,v 1.56 2006/08/28 08:42:35 danielk1977 Exp\n" \
+    "htmlfloat.c,v 1.19 2006/05/08 15:28:50 danielk1977 Exp\n" \
+    "htmlstyle.c,v 1.46 2006/09/07 08:30:49 danielk1977 Exp\n" \
+    "restrack.c,v 1.7 2006/06/28 06:31:11 danielk1977 Exp\n" \
 

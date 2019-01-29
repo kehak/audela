@@ -1,6 +1,0 @@
-libtt.o: ../src/libtt.cpp ../src/utf2Unicode_tcl.h \
- /usr/include/tcl8.6/tcl.h /usr/include/tcl8.6/tclDecls.h \
- /usr/include/tcl8.6/tclPlatDecls.h
-utf2Unicode_tcl.o: ../src/utf2Unicode_tcl.cpp ../src/utf2Unicode_tcl.h \
- /usr/include/tcl8.6/tcl.h /usr/include/tcl8.6/tclDecls.h \
- /usr/include/tcl8.6/tclPlatDecls.h
