@@ -1187,10 +1187,10 @@ proc ::tlscp::sync {} {
 
    # # mangling coordinates from dec to HMS...
    set raList [ split [ mc_angle2hms $ra] " "]
-   append raHms [ lindex $raList 0 ] "h" [ lindex $raList 1 ] "m" [ lindex [ split [ lindex $raList 2 ] "." ] 0 ] "s"
+   append raHms [ lindex $raList 0 ] "h" [ lindex $raList 1 ] "m" [ expr round([ lindex $raList 2 ]) ] "s"
 
    set decList [ split [ mc_angle2dms $dec] " "]
-   append decDms [ lindex $decList 0 ] "d" [ lindex $decList 1 ] "m" [ lindex [ split [ lindex $decList 2 ] "." ] 0 ] "s"
+   append decDms [ lindex $decList 0 ] "d" [ lindex $decList 1 ] "m" [ expr round([ lindex $decList 2 ]) ] "s"
 
    ::console::disp "Found RA,Dec: $raHms $decDms\n"
    ::console::disp "Updating telescope position\n"
