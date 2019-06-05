@@ -140,6 +140,7 @@ proc ::indicam::checkConnection { } {
 	
 	catch { set sock [ socket $::indicam::widget(host) $::indicam::widget(port) ] }
 	set readable [ catch { fconfigure $sock -peername } msg]
+	# if readable = 0 -> no error, let's proceed
 	if { ! $readable } {
 		fconfigure $sock -blocking 0 -buffering line
 		# Connect and retrieve the INDI camera list
@@ -149,7 +150,7 @@ proc ::indicam::checkConnection { } {
 	}
 	
 	if { $conf(indicam,camlist) ne "" } { ::console::affiche_resultat "INDI: found [ llength $conf(indicam,camlist) ] cameras\n"
-	} else { ::console::affiche_erreur "Could not find any camera. Is this the right INDI host?\n" }
+	} else { ::console::affiche_erreur "Could not find any camera. Is the INDI server on?\n" }
 	
 	set widget(device) [ lindex $conf(indicam,camlist) 0 ]
 		
@@ -180,7 +181,9 @@ proc ::indicam::initPlugin { } {
    if { ! [ info exists conf(indicam,mirh) ] }              { set conf(indicam,mirh)              "0" }
    if { ! [ info exists conf(indicam,mirv) ] }              { set conf(indicam,mirv)              "0" }
    if { ! [ info exists conf(indicam,port) ] }              { set conf(indicam,port)              "7624" }
+   # consigne de refroidissement
    if { ! [ info exists conf(indicam,temp) ] }              { set conf(indicam,temp)              "0" }
+
    if { ! [ info exists conf(indicam,device) ] }            { set conf(indicam,device)            "" }
    if { ! [ info exists conf(indicam,camlist) ] }           { set conf(indicam,camlist)           "" }
 
@@ -280,7 +283,13 @@ proc ::indicam::fillConfigPage { frm camItem } {
 
       pack $frm.frame1.port -anchor center -side left -padx 10 -fill both -expand 1
 
-	pack $frm.frame1 -side top -fill both -expand 1
+      # INDI buttons
+      button $frm.frame1.indistarter -text "INDI starter" -relief raised -command { exec indistarter & }
+      pack  $frm.frame1.indistarter -anchor center -side right -padx 10
+      button $frm.frame1.indigui -text "INDI GUI" -relief raised -command { exec indigui & }
+      pack  $frm.frame1.indigui -anchor center -side right -padx 10
+
+   pack $frm.frame1 -side top -fill both -expand 1
 	
 	frame $frm.frame2 -borderwidth 0 -relief raised
       
