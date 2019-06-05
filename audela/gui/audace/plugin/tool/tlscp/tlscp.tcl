@@ -752,6 +752,7 @@ proc ::tlscp::cmdMatch { visuNo } {
 
    $private($visuNo,This).fra2.fra1a.match configure -relief groove -state disabled
    update
+   ::console::disp "DEBUG-tlscp.tcl: [list $private($visuNo,raObjet) $private($visuNo,decObjet)]\n"
    set catchError [ catch {
       ::telescope::match [list $private($visuNo,raObjet) $private($visuNo,decObjet)]
    } ]
@@ -1040,7 +1041,16 @@ proc ::tlscp::startCenter { visuNo { methode "" } } {
       set methode $::conf(tlscp,methode)
    }
 
-   if { $methode == "BRIGHTEST" } {
+   
+   set bufNo [ ::confVisu::getBufNo $visuNo ]
+   
+   #  **** HACK HACK HACK ****
+   #buf$bufNo setkwd [list "PIXSIZE1" 3.75 float "x size of pixel" "um"]
+   #buf$bufNo setkwd [list "PIXSIZE2" 3.75 float "y size of pixel" "um"]
+   
+   buf$bufNo save "/tmp/center-buf$bufNo-1.fits"
+
+if { $methode == "BRIGHTEST" } {
       #--- je cherche l'etoile la plus brillante
       set brigthestStarCoord [::tlscp::startSearchStar $visuNo]
       if { $brigthestStarCoord == "" } {
@@ -1142,9 +1152,7 @@ proc ::tlscp::startCenter { visuNo { methode "" } } {
 
 #------------------------------------------------------------
 ## @brief commande du bouton "Rechercher" ;
-#  cherche l'étoile la plus brillante dans la zone
-#  @param visuNo numéro de la visu
-#  @return les coordonnées de l'étoile trouvée ; sinon une chaîne vide
+#  Astrometry plate solving in the current view
 #
 proc ::tlscp::startSearchStar { visuNo } {
    variable private
@@ -1152,64 +1160,108 @@ proc ::tlscp::startSearchStar { visuNo } {
    if { $private($visuNo,acquisitionState) != "" } {
       return
    }
-
-   #--- j'efface les traces precedentes
-   clearSearchStar $visuNo
-
-   #--- je configure le type d'acquisition
-   set private($visuNo,acquisitionState)  "search"
-   set private($visuNo,acquisitionResult) ""
-
-   #--- j'affiche le bouton STOP SEARCH
-   $private($visuNo,This).camera.search configure -text "$::caption(tlscp,stop_rechercher) (ESC)" -command "::tlscp::stopAcquisition $visuNo $private($visuNo,This).camera.search"
-
-   #--- J'associe la commande d'arret a la touche ESCAPE
-   bind all <Key-Escape> "::tlscp::stopAcquisition $visuNo $private($visuNo,This).camera.search"
-
-   #--- je lance la recherche
-   ::camera::searchBrightestStar $private($visuNo,camItem) "::tlscp::callbackAcquisition $visuNo" $::conf(tlscp,expTime) $::conf(tlscp,originCoord) $::conf(tlscp,searchBoxSize) $::conf(tlscp,searchThreshin) $::conf(tlscp,searchFwhm) $::conf(tlscp,searchRadius) $::conf(tlscp,searchThreshold)
-
-   #--- j'attends la fin de le recherche
-   vwait ::tlscp::private($visuNo,acquisitionState)
-
-   #--- j'ajoute les mots cles dans l'en-tete FITS
+   ::console::disp "Solving field...\n"
+   
+   file delete -force /tmp/solved.fit
    set bufNo [ ::confVisu::getBufNo $visuNo ]
-   foreach keyword [ ::keyword::getKeywords $visuNo $::conf(tlscp,keywordConfigName) ] {
-      buf$bufNo setkwd $keyword
-   }
+   buf$bufNo save /tmp/dummy.fit
 
-   #--- j'affiche les etoiles
-   if { $private($visuNo,acquisitionResult) != "" } {
-      set hCanvas [::confVisu::getCanvas $visuNo]
-      #--- je dessine des cercles vert autour des etoiles
-      foreach star $private($visuNo,acquisitionResult) {
-         set coord [::confVisu::picture2Canvas $visuNo [lrange $star 1 2]]
-         set x  [lindex $coord 0]
-         set y  [lindex $coord 1]
-         $hCanvas create oval [expr $x-5] [expr $y-5] [expr $x+5] [expr $y+5] -fill {} -outline blue -width 2 -activewidth 3 -tag tlscpstar
-        ### $hCanvas create text [expr $x+12] [expr $y+6] -text "$xintensity $yintensity" -tag tlscpstar -state normal -fill green
-      }
-
-      #--- je cree un cercle rouge autour de l'etoile la plus brillante
-      set brigthestStarCoord [lrange [lindex $private($visuNo,acquisitionResult) 0 ] 1 2]
-      set private($visuNo,targetCoord) $brigthestStarCoord
-      moveTarget $visuNo $brigthestStarCoord
-     ### set coord [::confVisu::picture2Canvas $visuNo $brigthestStarCoord ]
-     ### set x [lindex $coord 0]
-     ### set y [lindex $coord 1]
-     ### $hCanvas create oval [expr $x-8] [expr $y-8] [expr $x+8] [expr $y+8] -fill {} -outline red -width 2 -activewidth 3 -tag tlscpstar
-   } else {
-       set brigthestStarCoord ""
-   }
-
-   #--- j'affiche le bouton SEARCH
-   $private($visuNo,This).camera.search configure -text "$::caption(tlscp,rechercher)" \
-      -command "::tlscp::startSearchStar $visuNo" -state normal
-   #--- je descative la touche ESC
-   bind all <Key-Escape>
-
-   return $brigthestStarCoord
+   # running astrometry.net in its own thread. Will call back when done.
+   thread::create "[list exec solve-field -u arcsecperpix -L 4 -H 5 -z 2 -O -N /tmp/solved.fit -p /tmp/dummy.fit ];[list thread::send [thread::id] {::tlscp::sync } ];thread::exit"
 }
+
+proc ::tlscp::sync {} {
+
+   # was the solving successful?
+   if { ! [ file exists /tmp/solved.fit ] } {
+         ::console::disp "Solving unsuccessful. Try running \"solve-field /tmp/dummy.fit\" manually"
+         return
+   }
+
+   ::console::disp "Field solved\n"
+   # retrieving values from generated FITS header
+   set fits [ fits open /tmp/solved.fit ]
+   set ra [ lindex [ split [ $fits get keyword CRVAL1 ] " " ] 1 ]
+   set dec [ lindex [ split [ $fits get keyword CRVAL2 ] " " ] 1 ]
+   $fits close
+
+   # # mangling coordinates from dec to HMS...
+   set raList [ split [ mc_angle2hms $ra] " "]
+   append raHms [ lindex $raList 0 ] "h" [ lindex $raList 1 ] "m" [ lindex [ split [ lindex $raList 2 ] "." ] 0 ] "s"
+
+   set decList [ split [ mc_angle2hms $dec] " "]
+   append decHms "+" [ lindex $decList 0 ] "h" [ lindex $decList 1 ] "m" [ lindex [ split [ lindex $decList 2 ] "." ] 0 ] "s"
+
+   ::console::disp "Found RA,Dec: $raHms $decHms\n"
+   ::console::disp "Updating telescope position\n"
+
+   set catchResult [ catch [ ::carteducielv3::moveCoord $raHms $decHms ] ]
+   #if { $catchResult == "1" } { ::console::disp "Could not connect to Skycharts. Is it started?\n"; return } 
+
+   catch [telescope::match [ list $ra $dec ] ]
+   
+   ::console::disp "OK\n"
+}
+
+### DEAD CODE
+
+# #--- j'efface les traces precedentes
+#    clearSearchStar $visuNo
+
+#    #--- je configure le type d'acquisition
+#    set private($visuNo,acquisitionState)  "search"
+#    set private($visuNo,acquisitionResult) ""
+
+#    #--- j'affiche le bouton STOP SEARCH
+#    $private($visuNo,This).camera.search configure -text "$::caption(tlscp,stop_rechercher) (ESC)" -command "::tlscp::stopAcquisition $visuNo $private($visuNo,This).camera.search"
+
+#    #--- J'associe la commande d'arret a la touche ESCAPE
+#    bind all <Key-Escape> "::tlscp::stopAcquisition $visuNo $private($visuNo,This).camera.search"
+
+#    #--- je lance la recherche
+#    ::camera::searchBrightestStar $private($visuNo,camItem) "::tlscp::callbackAcquisition $visuNo" $::conf(tlscp,expTime) $::conf(tlscp,originCoord) $::conf(tlscp,searchBoxSize) $::conf(tlscp,searchThreshin) $::conf(tlscp,searchFwhm) $::conf(tlscp,searchRadius) $::conf(tlscp,searchThreshold)
+
+#    #--- j'attends la fin de le recherche
+#    vwait ::tlscp::private($visuNo,acquisitionState)
+
+#    #--- j'ajoute les mots cles dans l'en-tete FITS
+#    set bufNo [ ::confVisu::getBufNo $visuNo ]
+#    foreach keyword [ ::keyword::getKeywords $visuNo $::conf(tlscp,keywordConfigName) ] {
+#       buf$bufNo setkwd $keyword
+#    }
+
+#    #--- j'affiche les etoiles
+#    if { $private($visuNo,acquisitionResult) != "" } {
+#       set hCanvas [::confVisu::getCanvas $visuNo]
+#       #--- je dessine des cercles vert autour des etoiles
+#       foreach star $private($visuNo,acquisitionResult) {
+#          set coord [::confVisu::picture2Canvas $visuNo [lrange $star 1 2]]
+#          set x  [lindex $coord 0]
+#          set y  [lindex $coord 1]
+#          $hCanvas create oval [expr $x-5] [expr $y-5] [expr $x+5] [expr $y+5] -fill {} -outline blue -width 2 -activewidth 3 -tag tlscpstar
+#         ### $hCanvas create text [expr $x+12] [expr $y+6] -text "$xintensity $yintensity" -tag tlscpstar -state normal -fill green
+#       }
+
+#       #--- je cree un cercle rouge autour de l'etoile la plus brillante
+#       set brigthestStarCoord [lrange [lindex $private($visuNo,acquisitionResult) 0 ] 1 2]
+#       set private($visuNo,targetCoord) $brigthestStarCoord
+#       moveTarget $visuNo $brigthestStarCoord
+#      ### set coord [::confVisu::picture2Canvas $visuNo $brigthestStarCoord ]
+#      ### set x [lindex $coord 0]
+#      ### set y [lindex $coord 1]
+#      ### $hCanvas create oval [expr $x-8] [expr $y-8] [expr $x+8] [expr $y+8] -fill {} -outline red -width 2 -activewidth 3 -tag tlscpstar
+#    } else {
+#        set brigthestStarCoord ""
+#    }
+
+#    #--- j'affiche le bouton SEARCH
+#    $private($visuNo,This).camera.search configure -text "$::caption(tlscp,rechercher)" \
+#       -command "::tlscp::startSearchStar $visuNo" -state normal
+#    #--- je descative la touche ESC
+#    bind all <Key-Escape>
+
+#    return $brigthestStarCoord
+# }
 
 #------------------------------------------------------------
 #  brief efface les cercles autour des étoiles
