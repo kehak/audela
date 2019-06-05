@@ -1189,13 +1189,13 @@ proc ::tlscp::sync {} {
    set raList [ split [ mc_angle2hms $ra] " "]
    append raHms [ lindex $raList 0 ] "h" [ lindex $raList 1 ] "m" [ lindex [ split [ lindex $raList 2 ] "." ] 0 ] "s"
 
-   set decList [ split [ mc_angle2hms $dec] " "]
-   append decHms "+" [ lindex $decList 0 ] "h" [ lindex $decList 1 ] "m" [ lindex [ split [ lindex $decList 2 ] "." ] 0 ] "s"
+   set decList [ split [ mc_angle2dms $dec] " "]
+   append decDms [ lindex $decList 0 ] "d" [ lindex $decList 1 ] "m" [ lindex [ split [ lindex $decList 2 ] "." ] 0 ] "s"
 
-   ::console::disp "Found RA,Dec: $raHms $decHms\n"
+   ::console::disp "Found RA,Dec: $raHms $decDms\n"
    ::console::disp "Updating telescope position\n"
 
-   set catchResult [ catch [ ::carteducielv3::moveCoord $raHms $decHms ] ]
+   set catchResult [ catch [ ::carteducielv3::moveCoord $raHms $decDms ] ]
    #if { $catchResult == "1" } { ::console::disp "Could not connect to Skycharts. Is it started?\n"; return } 
 
    catch [telescope::match [ list $ra $dec ] ]
