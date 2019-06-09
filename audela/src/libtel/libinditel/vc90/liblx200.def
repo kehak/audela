@@ -1,0 +1,2 @@
+LIBRARY liblx200
+EXPORTS Lx_Init @1

@@ -1,0 +1,29 @@
+util.o: /home/jb/Compil/audela/audela/src/libtel/util.cpp \
+ /home/jb/Compil/audela/audela/src/include/sysexp.h \
+ /home/jb/Compil/audela/audela/src/include/system.h \
+ /home/jb/Compil/audela/audela/src/include/libtel/util.h
+libtel.o: /home/jb/Compil/audela/audela/src/libtel/libtel.cpp \
+ /home/jb/Compil/audela/audela/src/include/sysexp.h ../src/telescop.h \
+ /usr/include/tcl8.6/tcl.h /usr/include/tcl8.6/tclDecls.h \
+ /usr/include/tcl8.6/tclPlatDecls.h \
+ /home/jb/Compil/audela/audela/src/include/libtel/libstruc.h \
+ /home/jb/Compil/audela/audela/src/include/libtel/libtel.h \
+ ../src/libname.h \
+ /home/jb/Compil/audela/audela/src/include/libtel/libstruc.h \
+ /home/jb/Compil/audela/audela/src/include/libtel/util.h ../src/teltcl.h \
+ ../src/telcmd.h
+telescop.o: ../src/telescop.c \
+ /home/jb/Compil/audela/audela/src/include/sysexp.h ../src/telescop.h \
+ /usr/include/tcl8.6/tcl.h /usr/include/tcl8.6/tclDecls.h \
+ /usr/include/tcl8.6/tclPlatDecls.h \
+ /home/jb/Compil/audela/audela/src/include/libtel/libstruc.h \
+ /home/jb/Compil/audela/audela/src/include/libtel/util.h
+teltcl.o: ../src/teltcl.c \
+ /home/jb/Compil/audela/audela/src/include/sysexp.h ../src/telescop.h \
+ /usr/include/tcl8.6/tcl.h /usr/include/tcl8.6/tclDecls.h \
+ /usr/include/tcl8.6/tclPlatDecls.h \
+ /home/jb/Compil/audela/audela/src/include/libtel/libstruc.h \
+ /home/jb/Compil/audela/audela/src/include/libtel/libtel.h \
+ ../src/libname.h \
+ /home/jb/Compil/audela/audela/src/include/libtel/libstruc.h \
+ ../src/teltcl.h /home/jb/Compil/audela/audela/src/include/libtel/util.h

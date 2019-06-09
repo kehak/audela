@@ -229,7 +229,7 @@ configure:4646: $? = 0
 configure:4687: result: yes
 configure:4715: checking for dlopen
 configure:4715: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/ccc6UAJx.o: In function `main':
+/tmp/cc3tPWnE.o: In function `main':
 /home/jb/Compil/audela/audela/src/conftest.c:50: undefined reference to `dlopen'
 collect2: error: ld returned 1 exit status
 configure:4715: $? = 1
