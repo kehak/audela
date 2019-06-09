@@ -1,0 +1,249 @@
+#
+# Fichier : indicam.cap
+# Mise a jour $Id: indicam.cap 9971 2013-08-17 14:17:49Z robertdelmas $
+#
+
+#=========================================================================
+#   Début de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
+global caption langage
+
+# *************** Version anglaise ****************************
+
+set caption(indicam,camera)                       "INDI"
+
+set caption(indicam,refresh)                   "Refresh"
+set caption(indicam,device)                       "Camera"
+set caption(indicam,configurer)                   "Set up"
+set caption(indicam,acquisition)                  "Acquisition"
+set caption(indicam,host)                         "INDI server IP"
+set caption(indicam,port)                   	  "INDI server port"
+set caption(indicam,refroidissement)              "Cooling to Temperature"
+set caption(indicam,refroidissement_1)            "°C"
+set caption(indicam,temp_ext)                     "CCD Temp. / Ext.:"
+set caption(indicam,deg_c)                        "°C"
+set caption(indicam,miroir_x)                     "Top/Bottom Reversal"
+set caption(indicam,miroir_y)                     "Left/Right Reversal"
+
+set caption(indicam,installNewVersion)            "Installation of library %s of plugin indicam v%s completed."
+
+set caption(indicam,2points)                      ":"
+
+set caption(indicam,titre_site_web)            "Reference website :"
+set caption(indicam,site_web_ref)              "http://www.indilib.org/api/index.html"
+
+# *************** Version française ***************************
+if { [ string compare $langage "french" ] == "0" } {
+
+   set caption(indicam,camera)                    "INDI"
+
+   set caption(indicam,refresh)                   "Rafraichir"
+   set caption(indicam,device)                      "Camera"
+   set caption(indicam,configurer)                "Configurer"
+   set caption(indicam,acquisition)               "Acquisition"
+   set caption(indicam,port)                "Port du serveur INDI"
+   set caption(indicam,host)                      "IP du serveur INDI"
+   set caption(indicam,refroidissement)           "Refroidissement à la température de"
+   set caption(indicam,refroidissement_1)         "°C"
+   set caption(indicam,temp_ext)                  "Temp. CCD / Ext. :"
+   set caption(indicam,deg_c)                     "°C"
+   set caption(indicam,miroir_x)                  "Inverser Haut/Bas"
+   set caption(indicam,miroir_y)                  "Inverser Gauche/Droite"
+
+   set caption(indicam,installNewVersion)         "Fin de l'installation de la librairie %s du plugin indicam v%s."
+
+   set caption(indicam,2points)                   ":"
+
+   set caption(indicam,titre_site_web)            "Site Web de référence :"
+   set caption(indicam,site_web_ref)              "http://www.indilib.org/api/index.html"
+
+# *************** Version italienne ***************************
+} elseif { [ string compare $langage "italian" ] == "0" } {
+
+   set caption(indicam,camera)                    "INDI"
+   
+   set caption(indicam,refresh)                   "Refresh"
+   set caption(indicam,usb)                       "USB"
+   set caption(indicam,ethernet)                  "Ethernet"
+   set caption(indicam,device)                    "Camera"
+   set caption(indicam,configurer)                "Configurare"
+   set caption(indicam,acquisition)               "Acquisizione"
+   set caption(indicam,port)                "INDI server port"
+   set caption(indicam,host)                      "Host INDICAM (Solamente per Ethernet)"
+   set caption(indicam,refroidissement)           "Raffreddamento alla temperatura di"
+   set caption(indicam,refroidissement_1)         "°C"
+   set caption(indicam,temp_ext)                  "CCD Temp. / Ext.:"
+   set caption(indicam,deg_c)                     "°C"
+   set caption(indicam,miroir_x)                  "Inversione Alto/Basso"
+   set caption(indicam,miroir_y)                  "Inversione Sinistra/Destra"
+
+   set caption(indicam,installNewVersion)         "Installazione della libreria %s del plugin indicam v%s terminata."
+
+   set caption(indicam,port_camera)               "Porta INDICAM"
+   set caption(indicam,2points)                   ":"
+
+   set caption(indicam,titre_site_web)            "Sito Web di riferimento:"
+   set caption(indicam,site_web_ref)              "http://www.indilib.org/api/index.html"
+
+# *************** Version espagnole ***************************
+} elseif { [ string compare $langage "spanish" ] == "0" } {
+
+   set caption(indicam,camera)                    "INDI"
+
+   set caption(indicam,refresh)                   "Refresh"
+   set caption(indicam,device)                      "Camera"
+   set caption(indicam,configurer)                "Configurar"
+   set caption(indicam,acquisition)               "Adquisición"
+   set caption(indicam,port)                "INDI server port"
+   set caption(indicam,host)                      "Host INDICAM (Sólo para Ethernet)"
+   set caption(indicam,refroidissement)           "Enfriar hasta temperatura"
+   set caption(indicam,refroidissement_1)         "°C"
+   set caption(indicam,temp_ext)                  "Temp. CCD / Ext.:"
+   set caption(indicam,deg_c)                     "°C"
+   set caption(indicam,miroir_x)                  "Invertir Arriba/Abajo"
+   set caption(indicam,miroir_y)                  "Invertir Izquierda/Derecha"
+
+   set caption(indicam,installNewVersion)         "Fin de la instalación de la libreria %s del plugin indicam v%s."
+
+   set caption(indicam,port_camera)               "Puerto INDICAM"
+   set caption(indicam,2points)                   ":"
+
+   set caption(indicam,titre_site_web)            "Sitio Web de referencia:"
+   set caption(indicam,site_web_ref)              "http://www.indilib.org/api/index.html"
+
+# *************** Version allemande ***************************
+} elseif { [ string compare $langage "german" ] == "0" } {
+
+   set caption(indicam,camera)                    "INDI"
+
+   set caption(indicam,refresh)                   "Refresh"
+   set caption(indicam,device)                      "Camera"
+   set caption(indicam,configurer)                "Konfigurieren"
+   set caption(indicam,acquisition)               "Belichtung"
+   set caption(indicam,port)                "INDI server port"
+   set caption(indicam,host)                      "Host INDICAM (Nur für Ethernet)"
+   set caption(indicam,refroidissement)           "Temperatur bis zu"
+   set caption(indicam,refroidissement_1)         "°C kühlen"
+   set caption(indicam,temp_ext)                  "Temp. CCD / äuß.:"
+   set caption(indicam,deg_c)                     "°C"
+   set caption(indicam,miroir_x)                  "Oben/Unten umkehren"
+   set caption(indicam,miroir_y)                  "Links/Rechts umkehren"
+
+   set caption(indicam,installNewVersion)         "Die Installation der Bibliothek %s ist vervollständigt der Plugin indicam v%s."
+
+   set caption(indicam,port_camera)               "INDICAM Port"
+   set caption(indicam,2points)                   ":"
+
+   set caption(indicam,titre_site_web)            "Referenz Webseite:"
+   set caption(indicam,site_web_ref)              "http://www.indilib.org/api/index.html"
+
+# *************** Version portugaise **************************
+} elseif { [ string compare $langage "portuguese" ] == "0" } {
+
+   set caption(indicam,camera)                    "INDI"
+
+   set caption(indicam,refresh)                   "Refresh"
+   set caption(indicam,device)                      "Cemera"
+   set caption(indicam,configurer)                "Configurar"
+   set caption(indicam,acquisition)               "Aquisição"
+   set caption(indicam,port)                "INDI server port"
+   set caption(indicam,host)                      "Host INDICAM (Só para Ethernet)"
+   set caption(indicam,refroidissement)           "Arrefecendo até Temperatura"
+   set caption(indicam,refroidissement_1)         "°C"
+   set caption(indicam,temp_ext)                  "CCD Temp. / Ext.:"
+   set caption(indicam,deg_c)                     "°C"
+   set caption(indicam,miroir_x)                  "Inverter Cima/Baixo"
+   set caption(indicam,miroir_y)                  "Inverter Esquerda/Direita"
+
+   set caption(indicam,installNewVersion)         "Instalação da livraria %s do plugin indicam v%s concluída."
+
+   set caption(indicam,port_camera)               "Porta INDICAM"
+   set caption(indicam,2points)                   ":"
+
+   set caption(indicam,titre_site_web)            "Site Web de referência:"
+   set caption(indicam,site_web_ref)              "http://www.indilib.org/api/index.html"
+
+# *************** Version danoise *****************************
+} elseif { [ string compare $langage "danish" ] == "0" } {
+
+   set caption(indicam,camera)                    "INDI"
+   set caption(indicam,refresh)                   "Refresh"
+   set caption(indicam,ethernet)                  "Ethernet"
+   set caption(indicam,device)                      "Camera"
+   set caption(indicam,configurer)                "Set up"
+   set caption(indicam,acquisition)               "Acquisition"
+   set caption(indicam,port)                "INDI server port"
+   set caption(indicam,host)                      "Host INDICAM (Only for Ethernet)"
+   set caption(indicam,refroidissement)           "Cooling to Temperature"
+   set caption(indicam,refroidissement_1)         "°C"
+   set caption(indicam,temp_ext)                  "CCD Temp. / Ext.:"
+   set caption(indicam,deg_c)                     "°C"
+   set caption(indicam,miroir_x)                  "Top/Bottom Reversal"
+   set caption(indicam,miroir_y)                  "Left/Right Reversal"
+
+   set caption(indicam,installNewVersion)         "Installation of library %s of plugin indicam v%s completed."
+
+   set caption(indicam,port_camera)               "INDICAM Port"
+   set caption(indicam,2points)                   ":"
+
+   set caption(indicam,titre_site_web)            "Reference Web Site:"
+   set caption(indicam,site_web_ref)              "http://www.indilib.org/api/index.html"
+
+# *************** Version ukrainienne *************************
+} elseif { [ string compare $langage "ukrainian" ] == "0" } {
+
+   set caption(indicam,camera)                    "INDI"
+   set caption(indicam,refresh)                   "Refresh"
+   set caption(indicam,device)                      "Camera"
+   set caption(indicam,configurer)                "Set up"
+   set caption(indicam,acquisition)               "Acquisition"
+   set caption(indicam,port)                "INDI server port"
+   set caption(indicam,host)                      "Host INDICAM (Only for Ethernet)"
+   set caption(indicam,refroidissement)           "Cooling to Temperature"
+   set caption(indicam,refroidissement_1)         "°C"
+   set caption(indicam,temp_ext)                  "CCD Temp. / Ext.:"
+   set caption(indicam,deg_c)                     "°C"
+   set caption(indicam,miroir_x)                  "Top/Bottom Reversal"
+   set caption(indicam,miroir_y)                  "Left/Right Reversal"
+
+   set caption(indicam,installNewVersion)         "Installation of library %s of plugin indicam v%s completed."
+
+   set caption(indicam,port_camera)               "INDICAM Port"
+   set caption(indicam,2points)                   ":"
+
+   set caption(indicam,titre_site_web)            "Reference Web Site:"
+   set caption(indicam,site_web_ref)              "http://www.indilib.org/api/index.html"
+
+# *************** Version russe *******************************
+} elseif { [ string compare $langage "russian" ] == "0" } {
+
+   set caption(indicam,camera)                    "INDI"
+   set caption(indicam,refresh)                   "Refresh"
+   set caption(indicam,ethernet)                  "Ethernet"
+   set caption(indicam,device)                    "Camera"
+   set caption(indicam,configurer)                "Set up"
+   set caption(indicam,acquisition)               "Acquisition"
+   set caption(indicam,port)                "INDI server port"
+   set caption(indicam,host)                      "Host INDICAM (Only for Ethernet)"
+   set caption(indicam,refroidissement)           "Cooling to Temperature"
+   set caption(indicam,refroidissement_1)         "°C"
+   set caption(indicam,temp_ext)                  "CCD Temp. / Ext.:"
+   set caption(indicam,deg_c)                     "°C"
+   set caption(indicam,miroir_x)                  "Top/Bottom Reversal"
+   set caption(indicam,miroir_y)                  "Left/Right Reversal"
+
+   set caption(indicam,installNewVersion)         "Installation of library %s of plugin indicam v%s completed."
+
+   set caption(indicam,port_camera)               "INDICAM Port"
+   set caption(indicam,2points)                   ":"
+
+   set caption(indicam,titre_site_web)            "Reference Web Site:"
+   set caption(indicam,site_web_ref)              "http://www.indilib.org/api/index.html"
+
+}
+
+#=========================================================================
+#   Fin de la déclaration des textes localisés (internationalisation)
+#=========================================================================
+
