@@ -7,7 +7,7 @@
 #       Source and target installation directories
 # ------------------------------------------------------------------------
 
-prefix =	
+prefix =	/usr
 exec_prefix  =	/usr
 srcdir =	.
 bindir =	${exec_prefix}/bin
@@ -27,7 +27,7 @@ instdirs =	$(prefix) \
 #       Don't edit anything beyond this point
 # ------------------------------------------------------------------------
 
-INSTALL =	/bin/install -c
+INSTALL =	/usr/bin/install -c
 INSTALL_DATA =	${INSTALL} -m 644
 INSTALL_ROOT =
 SHELL =		/bin/sh

@@ -9,13 +9,13 @@
 # ------------------------------------------------------------------------
 
 BLT_LIBRARY =	/home/jb/Compil/audela/audela/src/../lib/blt2.4
-TCLLIBPATH   =	/usr/lib/tcl8.6
+TCLLIBPATH   =	/usr/include/tcl8.6/tcl-private/unix/tcl8.6
 CC =		gcc
 CFLAGS =	-g -O2 -fPIC
 SHLIB_LD =	gcc
 DEFINES =	
 EXTRA_CFLAGS =	-Wall
-LDFLAGS =	 -Wl,-rpath,
+LDFLAGS =	 -Wl,-rpath,/usr/include/tcl8.6/tcl-private/unix:/usr/include/tcl8.6/tk-private/unix
 version =	24
 
 # ------------------------------------------------------------------------
@@ -28,7 +28,7 @@ incdir =	$(prefix)/include
 libdir = 	/usr/lib
 scriptdir =	$(exec_prefix)/lib
 
-prefix =	
+prefix =	/usr
 srcdir =	.
 
 instdirs =	$(prefix) $(exec_prefix) $(bindir) $(libdir) $(incdir)
@@ -37,14 +37,14 @@ instdirs =	$(prefix) $(exec_prefix) $(bindir) $(libdir) $(incdir)
 # 	Directories containing Tcl and Tk include files and libraries
 # ------------------------------------------------------------------------
 
-INCLUDES =	-I. -I$(srcdir) 
+INCLUDES =	-I. -I$(srcdir)  -I/usr/include/tcl8.6/tk-private/generic -I/usr/include/tcl8.6
 
 # ------------------------------------------------------------------------
 #       Libraries directives for Tcl, Tk, X11, and BLT
 # ------------------------------------------------------------------------
 
-LIBS =		 -ltk8.6 -ltcl8.6 -lX11 -lm -lnsl  -ldl
-TCL_ONLY_LIBS = -ltcl8.6 -lm -lnsl  -ldl
+LIBS =		 -L/usr/include/tcl8.6/tk-private/unix -ltk8.6 -L/usr/include/tcl8.6/tcl-private/unix -ltcl8.6 -lX11 -lm -lnsl  -ldl
+TCL_ONLY_LIBS = -L/usr/include/tcl8.6/tcl-private/unix -ltcl8.6 -lm -lnsl  -ldl
 
 # ------------------------------------------------------------------------
 # 	You don't need to edit anything beyond this point
@@ -144,7 +144,7 @@ tcl_only_libvers_a = libBLTlite$(version).a
 lib_so =		libBLT$(version).so
 
 CC_SWITCHES =	$(EXTRA_CFLAGS) $(CFLAGS) $(DEFINES) $(INCLUDES)
-INSTALL =	/bin/install -c
+INSTALL =	/usr/bin/install -c
 INSTALL_DATA =	${INSTALL} -m 644
 INSTALL_ROOT =
 RANLIB =	ranlib

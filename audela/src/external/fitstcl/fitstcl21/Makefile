@@ -35,7 +35,7 @@ SHLIB_LD 	= cc -shared
 LD_FLAGS 	=  -Wl,-rpath=$(INSTALLDIR)/lib
 
 TCL_INC_PATH	= /home/jb/Compil/audela/audela/src/external/tcl/tcl/include
-TCL_LIB_PATH	= /usr/lib
+TCL_LIB_PATH	= /usr/lib/tcl8.6
 TCL_LIB		= tcl8.6
 CFITSIO_DIR	= /home/jb/Compil/audela/audela/src/external/cfitsio/cfitsio3340
 ### modif michel

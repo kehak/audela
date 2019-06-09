@@ -2,7 +2,7 @@
 # Generated automatically by configure.
 # Run this file to recreate the current configuration.
 # This directory was configured as follows,
-# on host localhost.localdomain:
+# on host jb-UX305FA:
 #
 # ./configure  --prefix=/home/jb/Compil/audela/audela/src/external/jpeg6b/jpeg-6b/../..
 #
@@ -26,7 +26,7 @@ do
 done
 
 ac_given_srcdir=.
-ac_given_INSTALL="/bin/install -c"
+ac_given_INSTALL="/usr/bin/install -c"
 
 trap 'rm -fr Makefile jconfig.h conftest*; exit 1' 1 2 15
 

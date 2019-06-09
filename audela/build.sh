@@ -2,6 +2,6 @@
 cd src
 autoconf
 ./configure
-make external 
-make contrib 
+make -j 2 external 
+make -j 2 contrib 
 make

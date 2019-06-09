@@ -3,7 +3,7 @@
 # 	Makefile for library files and directories of BLT library
 # ------------------------------------------------------------------------
 
-prefix       = 
+prefix       = /usr
 exec_prefix  = /usr
 version      = 2.4
 lib_prefix    = lib
@@ -11,7 +11,7 @@ srcdir       = .
 libdir       = /usr/lib
 scriptdir    = /home/jb/Compil/audela/audela/src/../lib/blt2.4
 
-INSTALL      = /bin/install -c
+INSTALL      = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_ROOT = 
 RM           = rm -f

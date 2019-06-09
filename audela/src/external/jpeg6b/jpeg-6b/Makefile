@@ -64,7 +64,7 @@ AR= ar rc
 # second step in .a creation (use "touch" if not needed)
 AR2= ranlib
 # installation program
-INSTALL= /bin/install -c
+INSTALL= /usr/bin/install -c
 INSTALL_PROGRAM= ${INSTALL}
 INSTALL_LIB= ${INSTALL} -m 644
 INSTALL_DATA= ${INSTALL} -m 644

@@ -36,7 +36,7 @@
 /* #undef NEED_DECL_J1 */
 
 /* Define if union wait type is defined incorrectly.  */
-#define HAVE_UNION_WAIT 1
+/* #undef HAVE_UNION_WAIT */
 
 /* Define if isfinite is found in libm.  */
 #define HAVE_ISFINITE 1
