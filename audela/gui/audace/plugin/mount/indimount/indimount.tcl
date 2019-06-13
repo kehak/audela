@@ -184,7 +184,7 @@ proc ::indimount::initPlugin { } {
 #    Copie les variables de configuration dans des variables locales
 #
 proc ::indimount::confToWidget { } {
-   variable private
+   variable widget
    global conf
 
    #--- Recupere la configuration de la monture INDI dans le tableau private(...)
@@ -200,7 +200,7 @@ proc ::indimount::confToWidget { } {
 #    Copie les variables locales dans des variables de configuration
 #
 proc ::indimount::widgetToConf { } {
-   variable private
+   variable widget
    global conf
 
    #--- Memorise la configuration de la monture INDI dans le tableau conf(indimount,...)
@@ -216,6 +216,7 @@ proc ::indimount::widgetToConf { } {
 #
 proc ::indimount::fillConfigPage { frm } {
    variable private
+   variable widget
    global caption conf
 
    #--- Initialise une variable locale
@@ -294,7 +295,15 @@ proc ::indimount::fillConfigPage { frm } {
                
    pack $frm.frame2 -side top -fill both -expand 1
    
-	
+   frame $frm.frame3 -borderwidth 0 -relief raised
+   pack $frm.frame3 -side top -fill x
+    #--- Le checkbutton pour la visibilite de la raquette a l'ecran
+   checkbutton $frm.raquette -text "$caption(indimount,raquette_tel)" -highlightthickness 0 -variable ::indimount::widget(raquette)
+   pack $frm.raquette -in $frm.frame3 -anchor center -side left -padx 10 -pady 10
+
+   #--- Frame raquette
+   ::confPad::createFramePad $frm.nom_raquette "::confTel::widget(nomRaquette)"
+   pack $frm.nom_raquette -in $frm.frame3 -anchor center -side left -padx 0 -pady 10
    
       #--- Frame du site web officiel de la indicam
    frame $frm.frame4 -borderwidth 0 -relief raised
@@ -321,36 +330,19 @@ proc ::indimount::configureMonture { } {
 
    set catchResult [ catch {
       #--- Je cree la monture
-      if { $conf(indimount,mode) == "0" } {
-         #--- Mode UDP
-         set telNo [ tel::create indimount UDP -ip $conf(indimount,host) -port $conf(indimount,port) ]
-      } else {
-         #--- Mode RS232
-         set telNo [ tel::create indimount $conf(indimount,portSerie) ]
-      }
+      set telNo [ tel::create indimount $conf(indimount,device) $conf(indimount,port) 
+         -log_file [::confCam::getLogFileName $camItem] \
+		-log_level [::confCam::getLogLevel $camItem] \
+		]
+      
+      console::affiche_entete "Connected: [ cam$camNo name ]\n"
       #--- Je configure la position geographique et le nom de la monture
       #--- (la position geographique est utilisee pour calculer le temps sideral)
       tel$telNo home $::audace(posobs,observateur,gps)
       tel$telNo home name $::conf(posobs,nom_observatoire)
-      #--- J'affiche un message d'information dans la Console
-      if { $conf(indimount,mode) == "0" } {
-         #--- Mode UDP
-         ::console::affiche_entete "$caption(indimount,port_indimount) $caption(indimount,2points) Ethernet\n"
-         ::console::affiche_entete "$caption(indimount,mode) $caption(indimount,2points) UDP\n"
-         ::console::affiche_entete "$caption(indimount,host) $caption(indimount,2points) $conf(indimount,host)\n"
-         ::console::affiche_entete "$caption(indimount,port) $caption(indimount,2points) $conf(indimount,port)\n"
-         ::console::affiche_saut "\n"
-      } else {
-         #--- Mode RS232
-         ::console::affiche_entete "$caption(indimount,port_indimount) $caption(indimount,2points) $conf(indimount,portSerie)\n"
-         ::console::affiche_entete "$caption(indimount,mode) $caption(indimount,2points) RS232\n"
-         ::console::affiche_saut "\n"
-      }
-      #--- Je cree la liaison (ne sert qu'a afficher l'utilisation de cette liaison par la monture)
-      if { $conf(indimount,mode) == "1" } {
-         #--- Mode RS232
-         set linkNo [ ::confLink::create $conf(indimount,portSerie) "tel$telNo" "control" [ tel$telNo product ] -noopen  ]
-      }
+      
+      
+      
       #--- Je change de variable
       set private(telNo) $telNo
    } ]
@@ -376,18 +368,18 @@ proc ::indimount::stop { } {
       return
    }
 
-   #--- Je memorise le port
-   if { $conf(indimount,mode) == "1" } {
-      #--- Mode RS232
-      set telPort [ tel$private(telNo) port ]
-   }
+#    #--- Je memorise le port
+#    if { $conf(indimount,hos) == "1" } {
+#       #--- Mode RS232
+#       set telPort [ tel$private(telNo) port ]
+#    }
    #--- J'arrete la monture
    tel::delete $private(telNo)
    #--- J'arrete le link
-   if { $conf(indimount,mode) == "1" } {
-      #--- Mode RS232
-      ::confLink::delete $telPort "tel$private(telNo)" "control"
-   }
+#    if { $conf(indimount,mode) == "1" } {
+#       #--- Mode RS232
+#       ::confLink::delete $telPort "tel$private(telNo)" "control"
+#    }
    #--- Remise a zero du numero de monture
    set private(telNo) "0"
 }
@@ -437,11 +429,11 @@ proc ::indimount::getPluginProperty { propertyName } {
       hasGoto                 { return 1 }
       hasMatch                { return 1 }
       hasManualMotion         { return 1 }
-      hasControlSuivi         { return 0 }
+      hasControlSuivi         { return 1 }
       hasModel                { return 0 }
-      hasPark                 { return 0 }
-      hasUnpark               { return 0 }
-      hasUpdateDate           { return 0 }
+      hasPark                 { return 1 }
+      hasUnpark               { return 1 }
+      hasUpdateDate           { return 1 }
       backlash                { return 0 }
    }
 }
