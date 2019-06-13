@@ -206,7 +206,7 @@ proc ::indimount::widgetToConf { } {
    #--- Memorise la configuration de la monture INDI dans le tableau conf(indimount,...)
    set conf(indimount,host)      $widget(host)
    set conf(indimount,port)      $widget(port)
-   set conf(raquette)         $private(raquette)
+   set conf(raquette)         $widget(raquette)
    set conf(indimount, device)  $widget(device)
 }
 
