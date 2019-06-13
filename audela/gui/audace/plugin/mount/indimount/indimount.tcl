@@ -1,30 +1,30 @@
 #
-# Fichier : inditel.tcl
+# Fichier : indimount.tcl
 # Description : Configuration de la monture INDI
 # Auteur : JB BUTET
-# Mise à jour $Id: inditel.tcl 14486 2018-09-21 14:29:32Z jbbutet $
+# Mise à jour $Id: indimount.tcl 14486 2018-09-21 14:29:32Z jbbutet $
 #
 
-namespace eval ::inditel {
-   package provide inditel 1.0
+namespace eval ::indimount {
+   package provide indimount 1.0
 
    #--- Charge le fichier caption
-   source [ file join [file dirname [info script]] inditel.cap ]
+   source [ file join [file dirname [info script]] indimount.cap ]
 }
 
 #
 # install
 #    installe le plugin et la dll
 #
-proc ::inditel::install { } {
+proc ::indimount::install { } {
    if { $::tcl_platform(platform) == "windows" } {
-      #--- je deplace libinditel.dll dans le repertoire audela/bin
-      set sourceFileName [file join $::audace(rep_plugin) [::audace::getPluginTypeDirectory [::inditel::getPluginType]] "inditel" "libinditel.dll"]
+      #--- je deplace libindimount.dll dans le repertoire audela/bin
+      set sourceFileName [file join $::audace(rep_plugin) [::audace::getPluginTypeDirectory [::indimount::getPluginType]] "indimount" "libindimount.dll"]
       if { [ file exists $sourceFileName ] } {
          ::audace::appendUpdateCommand "file rename -force {$sourceFileName} {$::audela_start_dir} \n"
       }
       #--- j'affiche le message de fin de mise a jour du plugin
-      ::audace::appendUpdateMessage "$::caption(inditel,install_1) v[package version inditel]. $::caption(inditel,install_2)"
+      ::audace::appendUpdateMessage "$::caption(indimount,install_1) v[package version indimount]. $::caption(indimount,install_2)"
    }
 }
 
@@ -32,25 +32,25 @@ proc ::inditel::install { } {
 # getPluginTitle
 #    Retourne le label du plugin dans la langue de l'utilisateur
 #
-proc ::inditel::getPluginTitle { } {
+proc ::indimount::getPluginTitle { } {
    global caption
 
-   return "$caption(inditel,monture)"
+   return "$caption(indimount,monture)"
 }
 
 #
 # getPluginHelp
 #     Retourne la documentation du plugin
 #
-proc ::inditel::getPluginHelp { } {
-   return "inditel.htm"
+proc ::indimount::getPluginHelp { } {
+   return "indimount.htm"
 }
 
 #
 # getPluginType
 #    Retourne le type du plugin
 #
-proc ::inditel::getPluginType { } {
+proc ::indimount::getPluginType { } {
    return "mount"
 }
 
@@ -58,7 +58,7 @@ proc ::inditel::getPluginType { } {
 # getPluginOS
 #    Retourne le ou les OS de fonctionnement du plugin
 #
-proc ::inditel::getPluginOS { } {
+proc ::indimount::getPluginOS { } {
    return [ list Windows Linux Darwin ]
 }
 
@@ -66,7 +66,7 @@ proc ::inditel::getPluginOS { } {
 # getTelNo
 #    Retourne le numero de la monture
 #
-proc ::inditel::getTelNo { } {
+proc ::indimount::getTelNo { } {
    variable private
 
    return $private(telNo)
@@ -77,7 +77,7 @@ proc ::inditel::getTelNo { } {
 #    Indique que la monture est prete
 #    Retourne "1" si la monture est prete, sinon retourne "0"
 #
-proc ::inditel::isReady { } {
+proc ::indimount::isReady { } {
    variable private
 
    if { $private(telNo) == "0" } {
@@ -91,7 +91,7 @@ proc ::inditel::isReady { } {
 
 
 
-proc ::inditel::getTels { indiSocket } {
+proc ::indimount::getTels { indiSocket } {
 
 	set indiOutput ""
 	set timeout 0
@@ -122,50 +122,50 @@ proc ::inditel::getTels { indiSocket } {
 		if { $tel ne "" } { lappend tels $tel }
 	}
 			
-	if { [ lindex $telss 0 ] ne "" } { return [ lsort -unique $tels ]
+	if { [ lindex $tels 0 ] ne "" } { return [ lsort -unique $tels ]
 	} else { return "" }
 }
 
-proc ::inditel::checkConnection { } {
+proc ::indimount::checkConnection { } {
 	
 	global caption conf
 	variable private
 	variable widget
 	
-	catch { set sock [ socket $::inditel::widget(host) $::inditel::widget(port) ] }
+	catch { set sock [ socket $::indimount::widget(host) $::indimount::widget(port) ] }
 	set readable [ catch { fconfigure $sock -peername } msg]
 	# if readable = 0 -> no error, let's proceed
 	if { ! $readable } {
 		fconfigure $sock -blocking 0 -buffering line
 		# Connect and retrieve the INDI telescope list
-		::console::affiche_resultat "INDI: connected to $::inditel::widget(host):$::inditel::widget(port)\n"
-		set conf(inditel,tellist) [ ::inditel::getTels $sock ]
-		} else { set conf(inditel,tellist) ""
+		::console::affiche_resultat "INDI: connected to $::indimount::widget(host):$::indimount::widget(port)\n"
+		set conf(indimount,tellist) [ ::indimount::getTels $sock ]
+		} else { set conf(indimount,tellist) ""
 	}
 	
-	if { $conf(inditel,tellist) ne "" } { ::console::affiche_resultat "INDI: found [ llength $conf(inditel,tellist) ] telescopes\n"
+	if { $conf(indimount,tellist) ne "" } { ::console::affiche_resultat "INDI: found [ llength $conf(indimount,tellist) ] telescopes\n"
 	} else { ::console::affiche_erreur "Could not find any mount. Is the INDI server on?\n" }
 	
-	set widget(defvice) [ lindex $conf(inditel,tellist) 0 ]
+	set widget(device) [ lindex $conf(indimount,tellist) 0 ]
 		
-	# Update INDI conf with our new settings
-	set telItem [ ::confTel::getCurrentTelItem ]
-	::inditel::widgetToConf $telItem
+# 	# Update INDI conf with our new settings
+# 	set telItem [ ::confTel::getCurrentTelItem ]
+# 	::indimount::widgetToConf $telItem
 		
 	# Refresh the combo list
-	if { [ info exists private(frm) ] } {
-		set frm $private(frm)
-		::inditel::fillConfigPage $frm $telItem
-	}
+# 	if { [ info exists private(frm) ] } {
+# 		set frm $private(frm)
+# 		::indimount::fillConfigPage $frm $tel
+# 	}
 		
 	return 0
 }
 
 #
 # initPlugin
-#    Initialise les variables conf(inditel,...)
+#    Initialise les variables conf(indimount,...)
 #
-proc ::inditel::initPlugin { } {
+proc ::indimount::initPlugin { } {
    variable private
    global conf
 
@@ -173,25 +173,25 @@ proc ::inditel::initPlugin { } {
    set private(telNo) "0"
 
    #--- Initialise les variables de la monture INDI
-   if { ! [ info exists conf(inditel,host) ] }      { set conf(inditel,host)      "localhost" }
-   if { ! [ info exists conf(inditel,port) ] }      { set conf(inditel,port)      "7624" }
-   if { ! [ info exists conf(inditel,device) ] }    { set conf(inditel,device)            "" }
-   if { ! [ info exists conf(inditel,tellist) ] }   { set conf(inditel,tellist) }
+   if { ! [ info exists conf(indimount,host) ] }      { set conf(indimount,host)      "localhost" }
+   if { ! [ info exists conf(indimount,port) ] }      { set conf(indimount,port)      "7624" }
+   if { ! [ info exists conf(indimount,device) ] }    { set conf(indimount,device)            "" }
+   if { ! [ info exists conf(indimount,tellist) ] }   { set conf(indimount,tellist)     "" }
 }
 
 #
 # confToWidget
 #    Copie les variables de configuration dans des variables locales
 #
-proc ::inditel::confToWidget { } {
+proc ::indimount::confToWidget { } {
    variable private
    global conf
 
    #--- Recupere la configuration de la monture INDI dans le tableau private(...)
-   set widget(host)      $conf(inditel,host)
-   set widget(port)      $conf(inditel,port)
+   set widget(host)      $conf(indimount,host)
+   set widget(port)      $conf(indimount,port)
    set widget(raquette)  $conf(raquette)
-   set widget(device)    $conf(inditel,device)
+   set widget(device)    $conf(indimount,device)
 
 }
 
@@ -199,22 +199,22 @@ proc ::inditel::confToWidget { } {
 # widgetToConf
 #    Copie les variables locales dans des variables de configuration
 #
-proc ::inditel::widgetToConf { } {
+proc ::indimount::widgetToConf { } {
    variable private
    global conf
 
-   #--- Memorise la configuration de la monture INDI dans le tableau conf(inditel,...)
-   set conf(inditel,host)      $widget(host)
-   set conf(inditel,port)      $widget(port)
+   #--- Memorise la configuration de la monture INDI dans le tableau conf(indimount,...)
+   set conf(indimount,host)      $widget(host)
+   set conf(indimount,port)      $widget(port)
    set conf(raquette)         $private(raquette)
-   set conf(inditel, device)  $widget(device)
+   set conf(indimount, device)  $widget(device)
 }
 
 #
 # fillConfigPage
 #    Interface de configuration de la monture INDI
 #
-proc ::inditel::fillConfigPage { frm } {
+proc ::indimount::fillConfigPage { frm } {
    variable private
    global caption conf
 
@@ -223,7 +223,7 @@ proc ::inditel::fillConfigPage { frm } {
 
    
    #--- confToWidget
-   ::inditel::confToWidget
+   ::indimount::confToWidget
    
    #--- Supprime tous les widgets de l'onglet
 	foreach i [ winfo children $frm ] {
@@ -232,7 +232,7 @@ proc ::inditel::fillConfigPage { frm } {
 
 	set list_combobox ""
 	# Retrieve the camera list
-	foreach tel $conf(inditel,tellist) {
+	foreach tel $conf(indimount,tellist) {
 		if { $tel ne "" } { lappend list_combobox $tel }
 	}
 	
@@ -242,10 +242,10 @@ proc ::inditel::fillConfigPage { frm } {
 	 # IP
      frame $frm.frame1.ip -borderwidth 0 -relief raised
      
-            label $frm.frame1.ip.label -text "$caption(inditel,host)"
+            label $frm.frame1.ip.label -text "$caption(indimount,host)"
             pack  $frm.frame1.ip.label -side left -padx 10
 
-            entry $frm.frame1.ip.entry -width 18 -textvariable ::inditel::widget(host)
+            entry $frm.frame1.ip.entry -width 18 -textvariable ::indimount::widget(host)
             pack  $frm.frame1.ip.entry -side left -padx 10
 
       pack $frm.frame1.ip -anchor center -side left -padx 10 -fill both -expand 1
@@ -253,11 +253,11 @@ proc ::inditel::fillConfigPage { frm } {
       # Port 
       frame $frm.frame1.port -borderwidth 0 -relief flat
 
-            label $frm.frame1.port.label -text "$caption(inditel,port)" \
+            label $frm.frame1.port.label -text "$caption(indimount,port)" \
                -highlightthickness 0 
             pack  $frm.frame1.port.label -anchor center -side left -padx 10
 
-            entry $frm.frame1.port.entry -width 18 -textvariable ::inditel::widget(port)
+            entry $frm.frame1.port.entry -width 18 -textvariable ::indimount::widget(port)
             pack  $frm.frame1.port.entry -anchor center -side right -padx 10
 
       pack $frm.frame1.port -anchor center -side left -padx 10 -fill both -expand 1
@@ -273,7 +273,7 @@ proc ::inditel::fillConfigPage { frm } {
 	frame $frm.frame2 -borderwidth 0 -relief raised
       
       #--- Definition de la camera
-      label $frm.frame2.lab1 -text "$caption(inditel,device)"
+      label $frm.frame2.lab1 -text "$caption(indimount,device)"
       pack $frm.frame2.lab1 -anchor center -side left -padx 10
 
       #--- Choix de la camera
@@ -284,11 +284,11 @@ proc ::inditel::fillConfigPage { frm } {
          -borderwidth 1         \
          -editable 0            \
          -values $list_combobox \
-         -textvariable ::inditel::widget(device)
+         -textvariable ::indimount::widget(device)
       pack $frm.frame2.device -anchor center -side left -padx 10    
                      
-	  button $frm.frame2.refresh -text "$caption(inditel,refresh)" -relief raised \
-	 -command { ::inditel::checkConnection }
+	  button $frm.frame2.refresh -text "$caption(indimount,refresh)" -relief raised \
+	 -command { ::indimount::checkConnection }
       pack $frm.frame2.refresh -anchor center -side left -padx 10    
      pack $frm.frame2.device -anchor center -side left -padx 10
                
@@ -299,11 +299,11 @@ proc ::inditel::fillConfigPage { frm } {
       #--- Frame du site web officiel de la indicam
    frame $frm.frame4 -borderwidth 0 -relief raised
 
-      label $frm.frame4.lab103 -text "$caption(inditel,titre_site_web)"
+      label $frm.frame4.lab103 -text "$caption(indimount,titre_site_web)"
       pack $frm.frame4.lab103 -side top -fill x -pady 2
 
-      set labelName [ ::confTel::createUrlLabel $frm.frame4 "$caption(inditel,site_web_ref)" \
-         "$caption(inditel,site_web_ref)" ]
+      set labelName [ ::confTel::createUrlLabel $frm.frame4 "$caption(indimount,site_web_ref)" \
+         "$caption(indimount,site_web_ref)" ]
       pack $labelName -side top -fill x -pady 2
 
    pack $frm.frame4 -side bottom -fill x -pady 2
@@ -313,43 +313,43 @@ proc ::inditel::fillConfigPage { frm } {
 
 
 # configureMonture
-#    Configure la monture INDI en fonction des donnees contenues dans les variables conf(inditel,...)
+#    Configure la monture INDI en fonction des donnees contenues dans les variables conf(indimount,...)
 #
-proc ::inditel::configureMonture { } {
+proc ::indimount::configureMonture { } {
    variable private
    global caption conf
 
    set catchResult [ catch {
       #--- Je cree la monture
-      if { $conf(inditel,mode) == "0" } {
+      if { $conf(indimount,mode) == "0" } {
          #--- Mode UDP
-         set telNo [ tel::create inditel UDP -ip $conf(inditel,host) -port $conf(inditel,port) ]
+         set telNo [ tel::create indimount UDP -ip $conf(indimount,host) -port $conf(indimount,port) ]
       } else {
          #--- Mode RS232
-         set telNo [ tel::create inditel $conf(inditel,portSerie) ]
+         set telNo [ tel::create indimount $conf(indimount,portSerie) ]
       }
       #--- Je configure la position geographique et le nom de la monture
       #--- (la position geographique est utilisee pour calculer le temps sideral)
       tel$telNo home $::audace(posobs,observateur,gps)
       tel$telNo home name $::conf(posobs,nom_observatoire)
       #--- J'affiche un message d'information dans la Console
-      if { $conf(inditel,mode) == "0" } {
+      if { $conf(indimount,mode) == "0" } {
          #--- Mode UDP
-         ::console::affiche_entete "$caption(inditel,port_inditel) $caption(inditel,2points) Ethernet\n"
-         ::console::affiche_entete "$caption(inditel,mode) $caption(inditel,2points) UDP\n"
-         ::console::affiche_entete "$caption(inditel,host) $caption(inditel,2points) $conf(inditel,host)\n"
-         ::console::affiche_entete "$caption(inditel,port) $caption(inditel,2points) $conf(inditel,port)\n"
+         ::console::affiche_entete "$caption(indimount,port_indimount) $caption(indimount,2points) Ethernet\n"
+         ::console::affiche_entete "$caption(indimount,mode) $caption(indimount,2points) UDP\n"
+         ::console::affiche_entete "$caption(indimount,host) $caption(indimount,2points) $conf(indimount,host)\n"
+         ::console::affiche_entete "$caption(indimount,port) $caption(indimount,2points) $conf(indimount,port)\n"
          ::console::affiche_saut "\n"
       } else {
          #--- Mode RS232
-         ::console::affiche_entete "$caption(inditel,port_inditel) $caption(inditel,2points) $conf(inditel,portSerie)\n"
-         ::console::affiche_entete "$caption(inditel,mode) $caption(inditel,2points) RS232\n"
+         ::console::affiche_entete "$caption(indimount,port_indimount) $caption(indimount,2points) $conf(indimount,portSerie)\n"
+         ::console::affiche_entete "$caption(indimount,mode) $caption(indimount,2points) RS232\n"
          ::console::affiche_saut "\n"
       }
       #--- Je cree la liaison (ne sert qu'a afficher l'utilisation de cette liaison par la monture)
-      if { $conf(inditel,mode) == "1" } {
+      if { $conf(indimount,mode) == "1" } {
          #--- Mode RS232
-         set linkNo [ ::confLink::create $conf(inditel,portSerie) "tel$telNo" "control" [ tel$telNo product ] -noopen  ]
+         set linkNo [ ::confLink::create $conf(indimount,portSerie) "tel$telNo" "control" [ tel$telNo product ] -noopen  ]
       }
       #--- Je change de variable
       set private(telNo) $telNo
@@ -357,7 +357,7 @@ proc ::inditel::configureMonture { } {
 
    if { $catchResult == "1" } {
       #--- En cas d'erreur, je libere toutes les ressources allouees
-      ::inditel::stop
+      ::indimount::stop
       #--- Je transmets l'erreur a la procedure appelante
       return -code error -errorcode $::errorCode -errorinfo $::errorInfo
    }
@@ -367,7 +367,7 @@ proc ::inditel::configureMonture { } {
 # stop
 #    Arrete la monture INDI
 #
-proc ::inditel::stop { } {
+proc ::indimount::stop { } {
    variable private
    global conf
 
@@ -377,14 +377,14 @@ proc ::inditel::stop { } {
    }
 
    #--- Je memorise le port
-   if { $conf(inditel,mode) == "1" } {
+   if { $conf(indimount,mode) == "1" } {
       #--- Mode RS232
       set telPort [ tel$private(telNo) port ]
    }
    #--- J'arrete la monture
    tel::delete $private(telNo)
    #--- J'arrete le link
-   if { $conf(inditel,mode) == "1" } {
+   if { $conf(indimount,mode) == "1" } {
       #--- Mode RS232
       ::confLink::delete $telPort "tel$private(telNo)" "control"
    }
@@ -414,7 +414,7 @@ proc ::inditel::stop { } {
 # hasUpdateDate           Retourne la possibilite de mettre a jour la date et le lieu
 # backlash                Retourne la possibilite de faire un rattrapage des jeux
 #
-proc ::inditel::getPluginProperty { propertyName } {
+proc ::indimount::getPluginProperty { propertyName } {
    variable private
 
    switch $propertyName {

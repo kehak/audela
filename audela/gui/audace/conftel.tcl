@@ -1019,6 +1019,7 @@ proc ::confTel::removeMountListener { cmd } {
    trace remove variable "::audace(telNo)" write $cmd
 }
 
+
 #--- Connexion au demarrage de la monture selectionnee par defaut
 ::confTel::init
 
