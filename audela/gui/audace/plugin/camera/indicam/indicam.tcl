@@ -175,6 +175,8 @@ proc ::indicam::initPlugin { } {
    variable private
    global conf caption
 
+	#console::affiche_entete "Dans initPlugin \n"
+ 
    #--- Initialise les variables de la camera indicam
    if { ! [ info exists conf(indicam,cool) ] }              { set conf(indicam,cool)              "0" }
    if { ! [ info exists conf(indicam,host) ] }              { set conf(indicam,host)              "localhost" }
@@ -191,7 +193,7 @@ proc ::indicam::initPlugin { } {
    set private(A,camNo) "0"
    set private(B,camNo) "0"
    set private(C,camNo) "0"
-   set private(ccdTemp) "$caption(indicam,temp_ext)"
+   #set private(ccdTemp) "$caption(indicam,temp_ext)"
    
 }
 
@@ -202,6 +204,7 @@ proc ::indicam::initPlugin { } {
 proc ::indicam::confToWidget { } {
    variable widget
    global caption conf
+       
    set widget(cool)              $conf(indicam,cool)
    set widget(host)              $conf(indicam,host)
    set widget(mirh)              $conf(indicam,mirh)
@@ -218,7 +221,7 @@ proc ::indicam::confToWidget { } {
 proc ::indicam::widgetToConf { camItem } {
    variable widget
    global caption conf
-
+   
    #--- Memorise la configuration de la camera indicam dans le tableau conf(indicam,...)
  
    set conf(indicam,cool)              $widget(cool)
@@ -235,7 +238,7 @@ proc ::indicam::widgetToConf { camItem } {
 #    Interface de configuration de la camera indicam
 #
 proc ::indicam::fillConfigPage { frm camItem } {
-
+ 
 	variable private
 	variable widget
 	global caption conf
@@ -256,7 +259,7 @@ proc ::indicam::fillConfigPage { frm camItem } {
 	foreach cam $conf(indicam,camlist) {
 		if { $cam ne "" } { lappend list_combobox $cam }
 	}
-	
+
    #--- Frame de la configuration de l'IP et port
    frame $frm.frame1 -borderwidth 1 -relief raised
 	
@@ -284,9 +287,9 @@ proc ::indicam::fillConfigPage { frm camItem } {
       pack $frm.frame1.port -anchor center -side left -padx 10 -fill both -expand 1
 
       # INDI buttons
-      button $frm.frame1.indistarter -text "INDI starter" -relief raised -command { exec indistarter & }
+      button $frm.frame1.indistarter -text "INDI starter" -relief raised -command { exec indistarter >& /dev/null  & }
       pack  $frm.frame1.indistarter -anchor center -side right -padx 10
-      button $frm.frame1.indigui -text "INDI GUI" -relief raised -command { exec indigui & }
+      button $frm.frame1.indigui -text "INDI GUI" -relief raised -command { exec indigui >& /dev/null & }
       pack  $frm.frame1.indigui -anchor center -side right -padx 10
 
    pack $frm.frame1 -side top -fill both -expand 1
@@ -345,27 +348,29 @@ proc ::indicam::fillConfigPage { frm camItem } {
          frame $frm.frame3.frame6.frame7 -borderwidth 0 -relief raised
 
             #--- Definition du refroidissement
-            label $frm.frame3.frame6.frame7.cool -text "Temp: ${camTemp}°C"
-            #checkbutton $frm.frame3.frame6.frame7.cool -text "$caption(indicam,refroidissement)" -highlightthickness 0 \
-               -variable ::indicam::widget(cool) -command "::indicam::checkConfigRefroidissement"
-            pack $frm.frame3.frame6.frame7.cool -anchor center -side left -padx 0 -pady 5
+            label $frm.frame3.frame6.frame7.temp -text "Sensor temperature: ${camTemp}°C"
+            pack $frm.frame3.frame6.frame7.temp -anchor center -side left -padx 0 -pady 5
+        
+            #label $frm.frame3.frame6.frame7.tempdeg -text "$caption(indicam,refroidissement_1)"
+            #pack $frm.frame3.frame6.frame7.tempdeg -anchor center -side left -padx 0 -pady 5
 
-            entry $frm.frame3.frame6.frame7.temp -textvariable ::indicam::widget(temp) -width 4 \
-               -justify center \
-               -validate all -validatecommand { ::tkutil::validateNumber %W %V %P %s double -274 50 }
-            pack $frm.frame3.frame6.frame7.temp -anchor center -side left -padx 5 -pady 5
-
-            label $frm.frame3.frame6.frame7.tempdeg -text "$caption(indicam,refroidissement_1)"
-            pack $frm.frame3.frame6.frame7.tempdeg -anchor center -side left -padx 0 -pady 5
-
-         pack $frm.frame3.frame6.frame7 -side top -fill none -padx 30
+         pack $frm.frame3.frame6.frame7 -side top -fill x -padx 0
 
          frame $frm.frame3.frame6.frame9 -borderwidth 0 -relief raised
 
-            label $frm.frame3.frame6.frame9.ccdtemp -textvariable ::indicam::private(ccdTemp)
-            pack $frm.frame3.frame6.frame9.ccdtemp -side left -fill x -padx 20 -pady 5
+            checkbutton $frm.frame3.frame6.frame9.coolorder -text "$caption(indicam,refroidissement) (°C)" -highlightthickness 0 \
+               -variable ::indicam::widget(cool) -command "::indicam::checkConfigRefroidissement"
+    
+            entry $frm.frame3.frame6.frame9.temp -textvariable ::indicam::widget(temp) -width 4 \
+               -justify center \
+               -validate all -validatecommand { ::tkutil::validateNumber %W %V %P %s double -274 50 }
+            pack $frm.frame3.frame6.frame9.coolorder -anchor center -side left -padx 0 -pady 5
+            pack $frm.frame3.frame6.frame9.temp -anchor center -side left -padx 5 -pady 5
 
-         pack $frm.frame3.frame6.frame9 -side top -fill x -padx 30
+            #label $frm.frame3.frame6.frame9.ccdtemp -textvariable ::indicam::private(ccdTemp)
+            #pack $frm.frame3.frame6.frame9.ccdtemp -side left -fill x -padx 20 -pady 5
+
+         pack $frm.frame3.frame6.frame9 -side top -fill x -padx 0
 
       pack $frm.frame3.frame6 -side left -expand 0 -padx 60
 
@@ -408,11 +413,19 @@ proc ::indicam::configureCamera { camItem bufNo } {
 	set camNo [ cam::create indicam $conf(indicam,device) $conf(indicam,host) $conf(indicam,port) \
 		-log_file [::confCam::getLogFileName $camItem] \
 		-log_level [::confCam::getLogLevel $camItem] \
-	 ]
+	]
+      #console::affiche_entete "DEBUG: cam1: [ cam1 name ]\n"
+      #console::affiche_entete "DEBUG: cam2: [ cam2 name ]\n"
+      #console::affiche_entete "DEBUG: camNo: $camNo \n"
+      #console::affiche_entete "DEBUG: camNo name: [ cam$camNo name ]\n"
+      #console::affiche_entete "DEBUG: indicam device: $conf(indicam,device)\n\n"
+      #console::affiche_entete "private camitem: $camItem - camNo: $private(A,camNo)\n"
 
-      console::affiche_entete "Connected: [ cam$camNo name ]\n"
       #--- Je change de variable
       set private($camItem,camNo) $camNo
+
+      console::affiche_entete "Connected: [ cam$camNo name ]\n"
+
       #--- Je configure le refroidissement
       if { $conf(indicam,cool) == "1" } {
          cam$camNo cooler check $conf(indicam,temp)
@@ -425,10 +438,14 @@ proc ::indicam::configureCamera { camItem bufNo } {
       cam$camNo mirrorh $conf(indicam,mirh)
       cam$camNo mirrorv $conf(indicam,mirv)
       #--- Je mesure la temperature du capteur CCD
-#      if { [ info exists private(aftertemp) ] == "0" } {
-#         ::indicam::dispTempindicam $camItem
-#      }
+      if { [ info exists private(aftertemp) ] == "0" } {
+         ::indicam::dispTempindicam $camItem
+      }
    } ]
+
+#console::affiche_entete "DEBUG: camA: [getPluginProperty A name]\n"
+#console::affiche_entete "DEBUG: camB: [getPluginProperty B name]\n"
+#console::affiche_entete "DEBUG: camC: [getPluginProperty C name]\n"
 
    if { $catchResult == "1" } {
       #--- En cas d'erreur, je libere toutes les ressources allouees
@@ -469,14 +486,14 @@ proc ::indicam::dispTempindicam { camItem } {
       set temp_ccd           [ format "%+5.2f" [ lindex $tempstatus 1 ] ]
       set temp_ambiant       [ format "%+5.2f" [ lindex $tempstatus 2 ] ]
       set regulation         [ lindex $tempstatus 3 ]
-      set private(ccdTemp)   "$caption(indicam,temp_ext) $temp_ccd $caption(indicam,deg_c) / $temp_ambiant $caption(indicam,deg_c)"
+      #set private(ccdTemp)   "$caption(indicam,temp_ext) $temp_ccd $caption(indicam,deg_c) / $temp_ambiant $caption(indicam,deg_c)"
       set private(aftertemp) [ after 5000 ::indicam::dispTempindicam $camItem ]
    } else {
       set temp_check       ""
       set temp_ccd         ""
       set temp_ambiant     ""
       set regulation       ""
-      set private(ccdTemp) "$caption(indicam,temp_ext) $temp_ccd"
+      #set private(ccdTemp) "$caption(indicam,temp_ext) $temp_ccd"
       if { [ info exists private(aftertemp) ] == "1" } {
         unset private(aftertemp)
       }
@@ -491,17 +508,20 @@ proc ::indicam::checkConfigRefroidissement { } {
    variable private
    variable widget
 
-   if { [ info exists private(frm) ] } {
+   return
+   
+   # no need to go there...
+      if { [ info exists private(frm) ] } {
       set frm $private(frm)
       if { [ winfo exists $frm ] } {
          if { $::indicam::widget(cool) == "1" } {
-            pack $frm.frame3.frame6.frame7.temp -anchor center -side left -padx 5 -pady 5
-            pack $frm.frame3.frame6.frame7.tempdeg -side left -fill x -padx 0 -pady 5
-            $frm.frame3.frame6.frame9.ccdtemp configure -state normal
+            pack $frm.frame3.frame6.frame9.temp -anchor center -side left -padx 5 -pady 5
+            pack $frm.frame3.frame6.frame9.tempdeg -side left -fill x -padx 0 -pady 5
+            #$frm.frame3.frame6.frame9.ccdtemp configure -state normal
          } else {
-            pack forget $frm.frame3.frame6.frame7.temp
-            pack forget $frm.frame3.frame6.frame7.tempdeg
-            $frm.frame3.frame6.frame9.ccdtemp configure -state disabled
+            pack forget $frm.frame3.frame6.frame9.temp
+            pack forget $frm.frame3.frame6.frame9.tempdeg
+            #$frm.frame3.frame6.frame9.ccdtemp configure -state disabled
          }
       }
    }
