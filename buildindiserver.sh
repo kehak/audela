@@ -1,8 +1,11 @@
 #!/bin/bash
 
 #
-# This will download, build and install libindi 1.7.1 with all the 3rd-party drivers
+# This will download, build and install libindi $RELEASE with all the 3rd-party drivers
 #
+
+# Desired release:
+RELEASE=1.8.0
 
 #--- Driver list:
 #- Selection:
@@ -37,11 +40,11 @@ sudo apt remove -y libindi-dev libindi-data libindi-plugins
 echo -e "\e[33m--> Installing dependencies...\e[0m"
 sudo apt install -y libnova-dev libcfitsio-dev libusb-1.0-0-dev zlib1g-dev libgsl-dev build-essential cmake git libjpeg-dev libcurl4-gnutls-dev libtiff-dev
 
-echo -e "\e[33m--> Retrieving indi v1.7.1\e[0m"
-cd; wget -c https://github.com/indilib/indi/archive/v1.7.1.tar.gz
+echo -e "\e[33m--> Retrieving indi v$RELEASE\e[0m"
+cd; wget -c https://github.com/indilib/indi/archive/v$RELEASE.tar.gz
 
 echo -e "\e[33m--> Extracting archive\e[0m"
-tar xzf ./v1.7.1.tar.gz && cd ./indi-1.7.1
+tar xzf ./v$RELEASE.tar.gz && cd ./indi-$RELEASE
 mkdir -p build/libindi
 cd build/libindi
 
