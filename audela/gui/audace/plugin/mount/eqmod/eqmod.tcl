@@ -351,6 +351,8 @@ proc ::eqmod::configureMonture { } {
    variable private
    global caption conf confgene
 
+   if { ! [ info exists confgene(posobs,observateur,gps) ] }  { set confgene(posobs,observateur,gps) $conf(posobs,observateur,gps) }
+
    set catchResult [ catch {
       #--- Je cree la monture
       ::console::affiche_resultat "$caption(eqmod,positionMonture) $confgene(posobs,observateur,gps)\n"
