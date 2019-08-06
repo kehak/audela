@@ -4316,10 +4316,10 @@ proc ::confVisu::ChangeCutsDisplay { visuNo } {
    set sb [lindex [visu$visuNo cut] 1]
    
    if { $sh == "-Inf" || $sh == "Inf" } {
-      set sh $private($visuNo,maxdyn)
+      set sh 1024
    }
    if { $sb == "-Inf" || $sb == "Inf" } {
-      set sb $private($visuNo,mindyn)
+      set sb 0
    }
    
    if { [ expr abs( $sh - $sb ) ] > "$private($visuNo,intervalleSHSB)" } {
@@ -4378,10 +4378,11 @@ proc ::confVisu::ComputeScaleRange { visuNo } {
       set private($visuNo,maxcut) [ expr $maxi + $conf(seuils,%_dynamique) / 100.0 * $range ]
       
       if { $private($visuNo,mincut) == "-Inf" || $private($visuNo,mincut) == "Inf" } {
-         set private($visuNo,mincut) $private($visuNo,mindyn)
+         set private($visuNo,mincut) 0
       }
       if { $private($visuNo,maxcut) == "-Inf" || $private($visuNo,maxcut) == "Inf" } {
-         set private($visuNo,maxcut) $private($visuNo,maxdyn)
+         #set private($visuNo,maxcut) $private($visuNo,maxdyn)
+         set private($visuNo,maxcut) 1024
       }
 
       set private($visuNo,minindex) [ $private($visuNo,This).fra1.sca1 cget -from ]
