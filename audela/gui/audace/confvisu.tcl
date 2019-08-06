@@ -4314,14 +4314,6 @@ proc ::confVisu::ChangeCutsDisplay { visuNo } {
    #---
    set sh [lindex [visu$visuNo cut] 0]
    set sb [lindex [visu$visuNo cut] 1]
-   
-   if { $sh == "-Inf" || $sh == "Inf" } {
-      set sh $private($visuNo,maxdyn)
-   }
-   if { $sb == "-Inf" || $sb == "Inf" } {
-      set sb $private($visuNo,mindyn)
-   }
-   
    if { [ expr abs( $sh - $sb ) ] > "$private($visuNo,intervalleSHSB)" } {
       $private($visuNo,This).fra1.lab1 configure -text [format %d [expr int($sh)]]
       $private($visuNo,This).fra1.lab2 configure -text [format %d [expr int($sb)]]
@@ -4376,14 +4368,6 @@ proc ::confVisu::ComputeScaleRange { visuNo } {
       }
       set private($visuNo,mincut) [ expr $mini - $conf(seuils,%_dynamique) / 100.0 * $range ]
       set private($visuNo,maxcut) [ expr $maxi + $conf(seuils,%_dynamique) / 100.0 * $range ]
-      
-      if { $private($visuNo,mincut) == "-Inf" || $private($visuNo,mincut) == "Inf" } {
-         set private($visuNo,mincut) $private($visuNo,mindyn)
-      }
-      if { $private($visuNo,maxcut) == "-Inf" || $private($visuNo,maxcut) == "Inf" } {
-         set private($visuNo,maxcut) $private($visuNo,maxdyn)
-      }
-
       set private($visuNo,minindex) [ $private($visuNo,This).fra1.sca1 cget -from ]
       set private($visuNo,maxindex) [ $private($visuNo,This).fra1.sca1 cget -to ]
 
@@ -4391,12 +4375,12 @@ proc ::confVisu::ComputeScaleRange { visuNo } {
       #---  cut = a * pos + b
       set cut_lo $private($visuNo,mincut)
       set cut_hi $private($visuNo,maxcut)
-      set index_lo $private($visuNo,mincut)
-      set index_hi $private($visuNo,maxcut)
+      set index_lo $private($visuNo,minindex)
+      set index_hi $private($visuNo,maxindex)
 
       set private($visuNo,a) [ expr ( $cut_lo - $cut_hi ) / ( $index_lo - $index_hi ) ]
       set private($visuNo,b) [ expr ( $cut_lo * $index_hi - $cut_hi * $index_lo ) / ( $index_hi - $index_lo ) ]
-            
+
       #--- Repositionnement des poignees a leur nouvelle position
       $private($visuNo,This).fra1.sca1 set [ expr ( $sh - $private($visuNo,b) ) / $private($visuNo,a) ]
       $private($visuNo,This).fra1.sca2 set [ expr ( $sb - $private($visuNo,b) ) / $private($visuNo,a) ]
