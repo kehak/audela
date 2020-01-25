@@ -1,3 +1,7 @@
+**Update:** 
+This fork is no longer maintained and will not work with recent INDI releases.
+Until someone chimes in and takes over the work, we do NOT recommend the use of AudeLA due to bitrot, lack of maintenance and unaddressed issues. Check out [KStars](https://www.indilib.org/download/ubuntu.html) for a modern alternative to AudeLA.
+
 # AudeLA-INDI
 
 This is an AudeLA-trunk fork with INDI compatibility.
